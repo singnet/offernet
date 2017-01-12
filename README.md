@@ -1,0 +1,1 @@
+Playing with the [Offer Networks](http://onet.globalbraininstitute.org) idea on a TinkerPop 3 graph.
