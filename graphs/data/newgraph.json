@@ -1,0 +1,2097 @@
+{
+  "nodes": [
+    {
+      "value": "0000010100010101",
+      "type": "dataItem",
+      "label": 1080060,
+      "_type": "vertex"
+    },
+    {
+      "value": "0001011011000101",
+      "type": "dataItem",
+      "label": 1080180,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080188,
+      "_type": "vertex"
+    },
+    {
+      "value": "0000000001000000",
+      "type": "dataItem",
+      "label": 1080312,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080016",
+      "type": "agent",
+      "label": 1080016,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080056,
+      "_type": "vertex"
+    },
+    {
+      "value": "0010000001111000",
+      "type": "dataItem",
+      "label": 1080216,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080200,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080164,
+      "_type": "vertex"
+    },
+    {
+      "value": "0111010100000011",
+      "type": "dataItem",
+      "label": 1080264,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080140,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080020",
+      "type": "agent",
+      "label": 1080020,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080296,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080176,
+      "_type": "vertex"
+    },
+    {
+      "value": "0011010100100111",
+      "type": "dataItem",
+      "label": 1080196,
+      "_type": "vertex"
+    },
+    {
+      "value": "0001010100011000",
+      "type": "dataItem",
+      "label": 1080328,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080236,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080044,
+      "_type": "vertex"
+    },
+    {
+      "value": "0011101110110010",
+      "type": "dataItem",
+      "label": 1080088,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080008",
+      "type": "agent",
+      "label": 1080008,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080116,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080272,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080032",
+      "type": "agent",
+      "label": 1080032,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080040",
+      "type": "agent",
+      "label": 1080040,
+      "_type": "vertex"
+    },
+    {
+      "value": "1110010111110001",
+      "type": "dataItem",
+      "label": 1080120,
+      "_type": "vertex"
+    },
+    {
+      "value": "0001010100011000",
+      "type": "dataItem",
+      "label": 1080336,
+      "_type": "vertex"
+    },
+    {
+      "value": "1110001001000111",
+      "type": "dataItem",
+      "label": 1080252,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080248,
+      "_type": "vertex"
+    },
+    {
+      "value": "0011000000100010",
+      "type": "dataItem",
+      "label": 1080340,
+      "_type": "vertex"
+    },
+    {
+      "value": "1100101110001010",
+      "type": "dataItem",
+      "label": 1080084,
+      "_type": "vertex"
+    },
+    {
+      "value": "0000000000111001",
+      "type": "dataItem",
+      "label": 1080184,
+      "_type": "vertex"
+    },
+    {
+      "value": "0010001001001111",
+      "type": "dataItem",
+      "label": 1080048,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080332,
+      "_type": "vertex"
+    },
+    {
+      "value": "1010001001100110",
+      "type": "dataItem",
+      "label": 1080300,
+      "_type": "vertex"
+    },
+    {
+      "value": "1111110010101101",
+      "type": "dataItem",
+      "label": 1080280,
+      "_type": "vertex"
+    },
+    {
+      "value": "1111000010001101",
+      "type": "dataItem",
+      "label": 1080324,
+      "_type": "vertex"
+    },
+    {
+      "value": "0100001101000101",
+      "type": "dataItem",
+      "label": 1080064,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080104,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080152,
+      "_type": "vertex"
+    },
+    {
+      "value": "0101111100010010",
+      "type": "dataItem",
+      "label": 1080052,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080024",
+      "type": "agent",
+      "label": 1080024,
+      "_type": "vertex"
+    },
+    {
+      "value": "1000000111000011",
+      "type": "dataItem",
+      "label": 1080276,
+      "_type": "vertex"
+    },
+    {
+      "value": "0010010110100101",
+      "type": "dataItem",
+      "label": 1080208,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080036",
+      "type": "agent",
+      "label": 1080036,
+      "_type": "vertex"
+    },
+    {
+      "value": "1000111001101110",
+      "type": "dataItem",
+      "label": 1080172,
+      "_type": "vertex"
+    },
+    {
+      "value": "0111000101011101",
+      "type": "dataItem",
+      "label": 1080288,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080308,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080260,
+      "_type": "vertex"
+    },
+    {
+      "value": "1110010101000001",
+      "type": "dataItem",
+      "label": 1080096,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080224,
+      "_type": "vertex"
+    },
+    {
+      "value": "0001001110010110",
+      "type": "dataItem",
+      "label": 1080228,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080284,
+      "_type": "vertex"
+    },
+    {
+      "value": "1011010101110101",
+      "type": "dataItem",
+      "label": 1080072,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080028",
+      "type": "agent",
+      "label": 1080028,
+      "_type": "vertex"
+    },
+    {
+      "value": "1001011100001001",
+      "type": "dataItem",
+      "label": 1080220,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080080,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080012",
+      "type": "agent",
+      "label": 1080012,
+      "_type": "vertex"
+    },
+    {
+      "value": "1010001001100110",
+      "type": "dataItem",
+      "label": 1080292,
+      "_type": "vertex"
+    },
+    {
+      "value": "1001000111000110",
+      "type": "dataItem",
+      "label": 1080232,
+      "_type": "vertex"
+    },
+    {
+      "value": "1101010010101000",
+      "type": "dataItem",
+      "label": 1080124,
+      "_type": "vertex"
+    },
+    {
+      "value": "0100001010110001",
+      "type": "dataItem",
+      "label": 1080136,
+      "_type": "vertex"
+    },
+    {
+      "value": "0010011101111000",
+      "type": "dataItem",
+      "label": 1080148,
+      "_type": "vertex"
+    },
+    {
+      "value": "1100000100011011",
+      "type": "dataItem",
+      "label": 1080244,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080068,
+      "_type": "vertex"
+    },
+    {
+      "value": "0011101000011100",
+      "type": "dataItem",
+      "label": 1080168,
+      "_type": "vertex"
+    },
+    {
+      "value": "0010010010110111",
+      "type": "dataItem",
+      "label": 1080192,
+      "_type": "vertex"
+    },
+    {
+      "value": "1111000010001101",
+      "type": "dataItem",
+      "label": 1080316,
+      "_type": "vertex"
+    },
+    {
+      "value": "1100000001001000",
+      "type": "dataItem",
+      "label": 1080156,
+      "_type": "vertex"
+    },
+    {
+      "value": "0000111110110100",
+      "type": "dataItem",
+      "label": 1080108,
+      "_type": "vertex"
+    },
+    {
+      "value": "0001010000110100",
+      "type": "dataItem",
+      "label": 1080240,
+      "_type": "vertex"
+    },
+    {
+      "value": "1001010111110011",
+      "type": "dataItem",
+      "label": 1080076,
+      "_type": "vertex"
+    },
+    {
+      "value": "1111010110111001",
+      "type": "dataItem",
+      "label": 1080144,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080212,
+      "_type": "vertex"
+    },
+    {
+      "value": "0100111000000101",
+      "type": "dataItem",
+      "label": 1080204,
+      "_type": "vertex"
+    },
+    {
+      "value": "1011011000011001",
+      "type": "dataItem",
+      "label": 1080268,
+      "_type": "vertex"
+    },
+    {
+      "identity": "1080004",
+      "type": "agent",
+      "label": 1080004,
+      "_type": "vertex"
+    },
+    {
+      "value": "0010001000111110",
+      "type": "dataItem",
+      "label": 1080304,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080092,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080128,
+      "_type": "vertex"
+    },
+    {
+      "value": "1110110011101000",
+      "type": "dataItem",
+      "label": 1080132,
+      "_type": "vertex"
+    },
+    {
+      "value": "0101100000110111",
+      "type": "dataItem",
+      "label": 1080100,
+      "_type": "vertex"
+    },
+    {
+      "value": "1110100110001010",
+      "type": "dataItem",
+      "label": 1080112,
+      "_type": "vertex"
+    },
+    {
+      "value": "0000110010011100",
+      "type": "dataItem",
+      "label": 1080160,
+      "_type": "vertex"
+    },
+    {
+      "value": "1000100110010000",
+      "type": "dataItem",
+      "label": 1080256,
+      "_type": "vertex"
+    },
+    {
+      "metatype": "process",
+      "type": "work",
+      "label": 1080320,
+      "_type": "vertex"
+    }
+  ],
+  "links": [
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgr-4wYk-RU",
+      "_type": "edge",
+      "source": 1080060,
+      "target": 1080064,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfgv-4wYk-RU",
+      "_type": "edge",
+      "source": 1080060,
+      "target": 1080328,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfgt-4wYk-RU",
+      "_type": "edge",
+      "source": 1080060,
+      "target": 1080336,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfgx-4wYk-RU",
+      "_type": "edge",
+      "source": 1080060,
+      "target": 1080240,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeZ-4x0g-RU",
+      "_type": "edge",
+      "source": 1080180,
+      "target": 1080064,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypif-4x0o-P4",
+      "_type": "edge",
+      "source": 1080188,
+      "target": 1080192,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypin-4x0o-Pc",
+      "_type": "edge",
+      "source": 1080188,
+      "target": 1080196,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "ypkN-4wXC-OW",
+      "_type": "edge",
+      "source": 1080016,
+      "target": 1080272,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypdP-4wXC-OW",
+      "_type": "edge",
+      "source": 1080016,
+      "target": 1080056,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypdZ-4wYg-P4",
+      "_type": "edge",
+      "source": 1080056,
+      "target": 1080060,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ype7-4wYg-Pc",
+      "_type": "edge",
+      "source": 1080056,
+      "target": 1080064,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfhb-4x0Q-RU",
+      "_type": "edge",
+      "source": 1080216,
+      "target": 1080312,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypiD-4x0A-P4",
+      "_type": "edge",
+      "source": 1080200,
+      "target": 1080204,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypiL-4x0A-Pc",
+      "_type": "edge",
+      "source": 1080200,
+      "target": 1080208,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "ypht-4x00-P4",
+      "_type": "edge",
+      "source": 1080164,
+      "target": 1080168,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "yphB-4x00-Pc",
+      "_type": "edge",
+      "source": 1080164,
+      "target": 1080172,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfg3-4x1C-RU",
+      "_type": "edge",
+      "source": 1080264,
+      "target": 1080340,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypgH-4wZC-P4",
+      "_type": "edge",
+      "source": 1080140,
+      "target": 1080144,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypgP-4wZC-Pc",
+      "_type": "edge",
+      "source": 1080140,
+      "target": 1080148,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "yphj-4wXG-OW",
+      "_type": "edge",
+      "source": 1080020,
+      "target": 1080164,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypk1-4wXG-OW",
+      "_type": "edge",
+      "source": 1080020,
+      "target": 1080248,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypmZ-4wXG-OW",
+      "_type": "edge",
+      "source": 1080020,
+      "target": 1080332,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "yplN-4x28-P4",
+      "_type": "edge",
+      "source": 1080296,
+      "target": 1080300,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "yplX-4x28-Pc",
+      "_type": "edge",
+      "source": 1080296,
+      "target": 1080304,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "yphR-4x0c-P4",
+      "_type": "edge",
+      "source": 1080176,
+      "target": 1080180,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "yphZ-4x0c-Pc",
+      "_type": "edge",
+      "source": 1080176,
+      "target": 1080184,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfgZ-4x0w-RU",
+      "_type": "edge",
+      "source": 1080196,
+      "target": 1080208,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypjN-4x1a-P4",
+      "_type": "edge",
+      "source": 1080236,
+      "target": 1080240,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypjV-4x1a-Pc",
+      "_type": "edge",
+      "source": 1080236,
+      "target": 1080244,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "ypdB-4wY4-P4",
+      "_type": "edge",
+      "source": 1080044,
+      "target": 1080048,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypdJ-4wY4-Pc",
+      "_type": "edge",
+      "source": 1080044,
+      "target": 1080052,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffP-4wYM-RU",
+      "_type": "edge",
+      "source": 1080088,
+      "target": 1080340,
+      "_label": "similar"
+    },
+    {
+      "weight": 0,
+      "label": "ypdd-4wXu-Ds",
+      "_type": "edge",
+      "source": 1080008,
+      "target": 1080036,
+      "_label": "knows"
+    },
+    {
+      "weight": 1,
+      "label": "ypjf-4wXu-OW",
+      "_type": "edge",
+      "source": 1080008,
+      "target": 1080224,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "yplD-4wXu-OW",
+      "_type": "edge",
+      "source": 1080008,
+      "target": 1080296,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "yped-4wXu-OW",
+      "_type": "edge",
+      "source": 1080008,
+      "target": 1080068,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypfV-4wZe-P4",
+      "_type": "edge",
+      "source": 1080116,
+      "target": 1080120,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypg3-4wZe-Pc",
+      "_type": "edge",
+      "source": 1080116,
+      "target": 1080124,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "ypkX-4x1K-P4",
+      "_type": "edge",
+      "source": 1080272,
+      "target": 1080276,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypl5-4x1K-Pc",
+      "_type": "edge",
+      "source": 1080272,
+      "target": 1080280,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "ypeZ-4wXS-OW",
+      "_type": "edge",
+      "source": 1080032,
+      "target": 1080092,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypfL-4wY0-OW",
+      "_type": "edge",
+      "source": 1080040,
+      "target": 1080116,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypm5-4wY0-OW",
+      "_type": "edge",
+      "source": 1080040,
+      "target": 1080308,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypmx-4wY0-OW",
+      "_type": "edge",
+      "source": 1080040,
+      "target": 1080320,
+      "_label": "owns"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfhl-4wZi-RU",
+      "_type": "edge",
+      "source": 1080120,
+      "target": 1080144,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfhj-4wZi-RU",
+      "_type": "edge",
+      "source": 1080120,
+      "target": 1080072,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "cost": 0,
+      "label": "zfgH-4x2M-RU",
+      "_type": "edge",
+      "source": 1080336,
+      "target": 1080328,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfgJ-4x2M-RU",
+      "_type": "edge",
+      "source": 1080336,
+      "target": 1080240,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfgF-4x1q-RU",
+      "_type": "edge",
+      "source": 1080252,
+      "target": 1080300,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypkb-4x1m-P4",
+      "_type": "edge",
+      "source": 1080248,
+      "target": 1080252,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypkj-4x1m-Pc",
+      "_type": "edge",
+      "source": 1080248,
+      "target": 1080256,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgP-4x2Q-RU",
+      "_type": "edge",
+      "source": 1080340,
+      "target": 1080312,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgR-4x2Q-RU",
+      "_type": "edge",
+      "source": 1080340,
+      "target": 1080240,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgN-4x2Q-RU",
+      "_type": "edge",
+      "source": 1080340,
+      "target": 1080304,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgL-4x2Q-RU",
+      "_type": "edge",
+      "source": 1080340,
+      "target": 1080300,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgT-4x2Q-RU",
+      "_type": "edge",
+      "source": 1080340,
+      "target": 1080216,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffN-4wYI-RU",
+      "_type": "edge",
+      "source": 1080084,
+      "target": 1080244,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffL-4wYI-RU",
+      "_type": "edge",
+      "source": 1080084,
+      "target": 1080256,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zff5-4x0k-RU",
+      "_type": "edge",
+      "source": 1080184,
+      "target": 1080312,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffd-4x0k-RU",
+      "_type": "edge",
+      "source": 1080184,
+      "target": 1080328,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfff-4x0k-RU",
+      "_type": "edge",
+      "source": 1080184,
+      "target": 1080336,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zff1-4x0k-RU",
+      "_type": "edge",
+      "source": 1080184,
+      "target": 1080216,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zff7-4x0k-RU",
+      "_type": "edge",
+      "source": 1080184,
+      "target": 1080304,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffb-4x0k-RU",
+      "_type": "edge",
+      "source": 1080184,
+      "target": 1080240,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zff3-4x0k-RU",
+      "_type": "edge",
+      "source": 1080184,
+      "target": 1080244,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zff9-4x0k-RU",
+      "_type": "edge",
+      "source": 1080184,
+      "target": 1080060,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypn9-4x2I-P4",
+      "_type": "edge",
+      "source": 1080332,
+      "target": 1080336,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypnj-4x2I-Pc",
+      "_type": "edge",
+      "source": 1080332,
+      "target": 1080340,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zffn-4x2c-RU",
+      "_type": "edge",
+      "source": 1080300,
+      "target": 1080304,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "cost": 0,
+      "label": "zffp-4x2c-RU",
+      "_type": "edge",
+      "source": 1080300,
+      "target": 1080292,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfgp-4x1S-RU",
+      "_type": "edge",
+      "source": 1080280,
+      "target": 1080144,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfgn-4x1S-RU",
+      "_type": "edge",
+      "source": 1080280,
+      "target": 1080124,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfgj-4x1S-RU",
+      "_type": "edge",
+      "source": 1080280,
+      "target": 1080316,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfgl-4x1S-RU",
+      "_type": "edge",
+      "source": 1080280,
+      "target": 1080324,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfhv-4x2A-RU",
+      "_type": "edge",
+      "source": 1080324,
+      "target": 1080144,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgB-4wYo-RU",
+      "_type": "edge",
+      "source": 1080064,
+      "target": 1080312,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfgz-4wYo-RU",
+      "_type": "edge",
+      "source": 1080064,
+      "target": 1080252,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypfx-4wZ2-P4",
+      "_type": "edge",
+      "source": 1080104,
+      "target": 1080108,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypfF-4wZ2-Pc",
+      "_type": "edge",
+      "source": 1080104,
+      "target": 1080112,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "yph5-4wZO-P4",
+      "_type": "edge",
+      "source": 1080152,
+      "target": 1080156,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "yphd-4wZO-Pc",
+      "_type": "edge",
+      "source": 1080152,
+      "target": 1080160,
+      "_label": "offers"
+    },
+    {
+      "weight": 0,
+      "label": "ypcX-4wXK-Ds",
+      "_type": "edge",
+      "source": 1080024,
+      "target": 1080028,
+      "_label": "knows"
+    },
+    {
+      "weight": 0,
+      "label": "ypd5-4wXK-Ds",
+      "_type": "edge",
+      "source": 1080024,
+      "target": 1080032,
+      "_label": "knows"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgf-4x1O-RU",
+      "_type": "edge",
+      "source": 1080276,
+      "target": 1080256,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgd-4x1O-RU",
+      "_type": "edge",
+      "source": 1080276,
+      "target": 1080244,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgh-4x1O-RU",
+      "_type": "edge",
+      "source": 1080276,
+      "target": 1080312,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypjD-4wXW-OW",
+      "_type": "edge",
+      "source": 1080036,
+      "target": 1080236,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypgx-4wXW-OW",
+      "_type": "edge",
+      "source": 1080036,
+      "target": 1080140,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypiR-4wXW-OW",
+      "_type": "edge",
+      "source": 1080036,
+      "target": 1080212,
+      "_label": "owns"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfgD-4x08-RU",
+      "_type": "edge",
+      "source": 1080172,
+      "target": 1080300,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffT-4x20-RU",
+      "_type": "edge",
+      "source": 1080288,
+      "target": 1080316,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffR-4x20-RU",
+      "_type": "edge",
+      "source": 1080288,
+      "target": 1080064,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffV-4x20-RU",
+      "_type": "edge",
+      "source": 1080288,
+      "target": 1080324,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypmf-4x2k-P4",
+      "_type": "edge",
+      "source": 1080308,
+      "target": 1080312,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypmp-4x2k-Pc",
+      "_type": "edge",
+      "source": 1080308,
+      "target": 1080316,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "ypkz-4x1y-P4",
+      "_type": "edge",
+      "source": 1080260,
+      "target": 1080264,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypkH-4x1y-Pc",
+      "_type": "edge",
+      "source": 1080260,
+      "target": 1080268,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "ypjp-4x0Y-P4",
+      "_type": "edge",
+      "source": 1080224,
+      "target": 1080228,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypjx-4x0Y-Pc",
+      "_type": "edge",
+      "source": 1080224,
+      "target": 1080232,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zffh-4x12-RU",
+      "_type": "edge",
+      "source": 1080228,
+      "target": 1080232,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zffj-4x12-RU",
+      "_type": "edge",
+      "source": 1080228,
+      "target": 1080088,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypll-4x1W-P4",
+      "_type": "edge",
+      "source": 1080284,
+      "target": 1080288,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "yplv-4x1W-Pc",
+      "_type": "edge",
+      "source": 1080284,
+      "target": 1080292,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zffz-4wYw-RU",
+      "_type": "edge",
+      "source": 1080072,
+      "target": 1080076,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffD-4wYw-RU",
+      "_type": "edge",
+      "source": 1080072,
+      "target": 1080144,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffF-4wYw-RU",
+      "_type": "edge",
+      "source": 1080072,
+      "target": 1080060,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffH-4wYw-RU",
+      "_type": "edge",
+      "source": 1080072,
+      "target": 1080288,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffB-4wYw-RU",
+      "_type": "edge",
+      "source": 1080072,
+      "target": 1080240,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypdr-4wXO-OW",
+      "_type": "edge",
+      "source": 1080028,
+      "target": 1080044,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypi5-4wXO-OW",
+      "_type": "edge",
+      "source": 1080028,
+      "target": 1080188,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypg9-4wXO-OW",
+      "_type": "edge",
+      "source": 1080028,
+      "target": 1080128,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypit-4wXO-OW",
+      "_type": "edge",
+      "source": 1080028,
+      "target": 1080200,
+      "_label": "owns"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfhd-4x0U-RU",
+      "_type": "edge",
+      "source": 1080220,
+      "target": 1080328,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfhh-4x0U-RU",
+      "_type": "edge",
+      "source": 1080220,
+      "target": 1080268,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfhf-4x0U-RU",
+      "_type": "edge",
+      "source": 1080220,
+      "target": 1080336,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypeL-4wYE-P4",
+      "_type": "edge",
+      "source": 1080080,
+      "target": 1080084,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypeT-4wYE-Pc",
+      "_type": "edge",
+      "source": 1080080,
+      "target": 1080088,
+      "_label": "offers"
+    },
+    {
+      "weight": 0,
+      "label": "ypcz-4wXy-Ds",
+      "_type": "edge",
+      "source": 1080012,
+      "target": 1080016,
+      "_label": "knows"
+    },
+    {
+      "weight": 0,
+      "label": "ypcH-4wXy-Ds",
+      "_type": "edge",
+      "source": 1080012,
+      "target": 1080020,
+      "_label": "knows"
+    },
+    {
+      "weight": 0,
+      "label": "ypdl-4wXy-Ds",
+      "_type": "edge",
+      "source": 1080012,
+      "target": 1080040,
+      "_label": "knows"
+    },
+    {
+      "weight": 1,
+      "label": "ypeB-4wXy-OW",
+      "_type": "edge",
+      "source": 1080012,
+      "target": 1080080,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "yplb-4wXy-OW",
+      "_type": "edge",
+      "source": 1080012,
+      "target": 1080284,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypkp-4wXy-OW",
+      "_type": "edge",
+      "source": 1080012,
+      "target": 1080260,
+      "_label": "owns"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfg1-4x24-RU",
+      "_type": "edge",
+      "source": 1080292,
+      "target": 1080252,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffX-4x24-RU",
+      "_type": "edge",
+      "source": 1080292,
+      "target": 1080340,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zffZ-4x24-RU",
+      "_type": "edge",
+      "source": 1080292,
+      "target": 1080172,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffl-4x16-RU",
+      "_type": "edge",
+      "source": 1080232,
+      "target": 1080076,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "A5fJ-4x16-RU",
+      "_type": "edge",
+      "source": 1080232,
+      "target": 1080276,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfhn-4wZm-RU",
+      "_type": "edge",
+      "source": 1080124,
+      "target": 1080316,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfhp-4wZm-RU",
+      "_type": "edge",
+      "source": 1080124,
+      "target": 1080324,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfh5-4wZK-RU",
+      "_type": "edge",
+      "source": 1080148,
+      "target": 1080216,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfh7-4wZK-RU",
+      "_type": "edge",
+      "source": 1080148,
+      "target": 1080328,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfh9-4wZK-RU",
+      "_type": "edge",
+      "source": 1080148,
+      "target": 1080336,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypen-4wYs-P4",
+      "_type": "edge",
+      "source": 1080068,
+      "target": 1080072,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypev-4wYs-Pc",
+      "_type": "edge",
+      "source": 1080068,
+      "target": 1080076,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfgV-4x0s-RU",
+      "_type": "edge",
+      "source": 1080192,
+      "target": 1080196,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfgX-4x0s-RU",
+      "_type": "edge",
+      "source": 1080192,
+      "target": 1080208,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "cost": 0,
+      "label": "zfhr-4x2s-RU",
+      "_type": "edge",
+      "source": 1080316,
+      "target": 1080324,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfht-4x2s-RU",
+      "_type": "edge",
+      "source": 1080316,
+      "target": 1080144,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfdV-4wZS-RU",
+      "_type": "edge",
+      "source": 1080156,
+      "target": 1080244,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.333333,
+      "cost": 3,
+      "label": "zfet-4wZS-RU",
+      "_type": "edge",
+      "source": 1080156,
+      "target": 1080312,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfer-4wZS-RU",
+      "_type": "edge",
+      "source": 1080156,
+      "target": 1080124,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfep-4wZS-RU",
+      "_type": "edge",
+      "source": 1080156,
+      "target": 1080216,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeN-4wZ6-RU",
+      "_type": "edge",
+      "source": 1080108,
+      "target": 1080240,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeP-4wZ6-RU",
+      "_type": "edge",
+      "source": 1080108,
+      "target": 1080256,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeR-4wZ6-RU",
+      "_type": "edge",
+      "source": 1080108,
+      "target": 1080088,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeL-4wZ6-RU",
+      "_type": "edge",
+      "source": 1080108,
+      "target": 1080060,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeJ-4wZ6-RU",
+      "_type": "edge",
+      "source": 1080108,
+      "target": 1080228,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfh1-4x1e-RU",
+      "_type": "edge",
+      "source": 1080240,
+      "target": 1080328,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffJ-4wYA-RU",
+      "_type": "edge",
+      "source": 1080076,
+      "target": 1080144,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "A5fL-4wYA-RU",
+      "_type": "edge",
+      "source": 1080076,
+      "target": 1080276,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "A5fN-4wYA-RU",
+      "_type": "edge",
+      "source": 1080076,
+      "target": 1080120,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfh3-4wZG-RU",
+      "_type": "edge",
+      "source": 1080144,
+      "target": 1080124,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypj1-4x0M-P4",
+      "_type": "edge",
+      "source": 1080212,
+      "target": 1080216,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypj9-4x0M-Pc",
+      "_type": "edge",
+      "source": 1080212,
+      "target": 1080220,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfg7-4x1G-RU",
+      "_type": "edge",
+      "source": 1080268,
+      "target": 1080336,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfg5-4x1G-RU",
+      "_type": "edge",
+      "source": 1080268,
+      "target": 1080168,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfg9-4x1G-RU",
+      "_type": "edge",
+      "source": 1080268,
+      "target": 1080328,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfgb-4x1G-RU",
+      "_type": "edge",
+      "source": 1080268,
+      "target": 1080144,
+      "_label": "similar"
+    },
+    {
+      "weight": 0,
+      "label": "ypcj-4wXq-Ds",
+      "_type": "edge",
+      "source": 1080004,
+      "target": 1080008,
+      "_label": "knows"
+    },
+    {
+      "weight": 0,
+      "label": "ypcr-4wXq-Ds",
+      "_type": "edge",
+      "source": 1080004,
+      "target": 1080012,
+      "_label": "knows"
+    },
+    {
+      "weight": 0,
+      "label": "ypcP-4wXq-Ds",
+      "_type": "edge",
+      "source": 1080004,
+      "target": 1080024,
+      "_label": "knows"
+    },
+    {
+      "weight": 1,
+      "label": "ypgV-4wXq-OW",
+      "_type": "edge",
+      "source": 1080004,
+      "target": 1080152,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "ypfn-4wXq-OW",
+      "_type": "edge",
+      "source": 1080004,
+      "target": 1080104,
+      "_label": "owns"
+    },
+    {
+      "weight": 1,
+      "label": "yphH-4wXq-OW",
+      "_type": "edge",
+      "source": 1080004,
+      "target": 1080176,
+      "_label": "owns"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zffx-4x2g-RU",
+      "_type": "edge",
+      "source": 1080304,
+      "target": 1080168,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zffv-4x2g-RU",
+      "_type": "edge",
+      "source": 1080304,
+      "target": 1080292,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfft-4x2g-RU",
+      "_type": "edge",
+      "source": 1080304,
+      "target": 1080216,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zffr-4x2g-RU",
+      "_type": "edge",
+      "source": 1080304,
+      "target": 1080148,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypf9-4wYQ-P4",
+      "_type": "edge",
+      "source": 1080092,
+      "target": 1080096,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypfh-4wYQ-Pc",
+      "_type": "edge",
+      "source": 1080092,
+      "target": 1080100,
+      "_label": "offers"
+    },
+    {
+      "weight": 1,
+      "label": "ypgj-4wZq-P4",
+      "_type": "edge",
+      "source": 1080128,
+      "target": 1080132,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypgr-4wZq-Pc",
+      "_type": "edge",
+      "source": 1080128,
+      "target": 1080136,
+      "_label": "offers"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeT-4wZa-RU",
+      "_type": "edge",
+      "source": 1080112,
+      "target": 1080244,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeV-4wZa-RU",
+      "_type": "edge",
+      "source": 1080112,
+      "target": 1080256,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.5,
+      "cost": 2,
+      "label": "zfeX-4wZa-RU",
+      "_type": "edge",
+      "source": 1080112,
+      "target": 1080084,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeB-4wZW-RU",
+      "_type": "edge",
+      "source": 1080160,
+      "target": 1080168,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfex-4wZW-RU",
+      "_type": "edge",
+      "source": 1080160,
+      "target": 1080240,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeD-4wZW-RU",
+      "_type": "edge",
+      "source": 1080160,
+      "target": 1080256,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfez-4wZW-RU",
+      "_type": "edge",
+      "source": 1080160,
+      "target": 1080060,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeH-4wZW-RU",
+      "_type": "edge",
+      "source": 1080160,
+      "target": 1080328,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.2,
+      "cost": 5,
+      "label": "zfeF-4wZW-RU",
+      "_type": "edge",
+      "source": 1080160,
+      "target": 1080336,
+      "_label": "similar"
+    },
+    {
+      "weight": 0.25,
+      "cost": 4,
+      "label": "zfev-4wZW-RU",
+      "_type": "edge",
+      "source": 1080160,
+      "target": 1080108,
+      "_label": "similar"
+    },
+    {
+      "weight": 1,
+      "label": "ypmH-4x2w-P4",
+      "_type": "edge",
+      "source": 1080320,
+      "target": 1080324,
+      "_label": "demands"
+    },
+    {
+      "weight": 1,
+      "label": "ypmR-4x2w-Pc",
+      "_type": "edge",
+      "source": 1080320,
+      "target": 1080328,
+      "_label": "offers"
+    }
+  ]
+}

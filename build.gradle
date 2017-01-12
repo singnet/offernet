@@ -1,0 +1,54 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+
+group="offernet-graph"
+version="0.0.1"
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.3'
+}
+
+//def TITAN_HOME = System.getenv('TITAN_HOME')
+def TITAN_HOME = './required/'
+
+repositories {
+	jcenter()
+}
+
+
+dependencies {
+  compile 'org.codehaus.groovy:groovy:2.4.7'
+  testCompile 'junit:junit:4.12'
+}  
+
+
+task install(dependsOn: ['installTitanServer'])
+
+task start(dependsOn: ['startTitanServer'])
+
+task stop(dependsOn: ['stopTitanServer'])
+
+task installTitanServer(type: Exec) {
+      executable "sh"
+      args "scripts/installTitanServer.sh", TITAN_HOME
+}
+
+task startTitanServer(type: Exec) {
+    executable "sh"
+    args TITAN_HOME + "titan-1.0.0-hadoop1/bin/titan.sh", "start"
+}
+
+task stopTitanServer(type: Exec) {
+    executable "sh"
+    args TITAN_HOME + "titan-1.0.0-hadoop1/bin/titan.sh", "stop"
+}
+
+task createOfferNetwork(type: Exec) {
+    executable "groovy"
+    args "groovy/createOfferNetwork.groovy"
+}
+
+task searchSimilarities(type: Exec) {
+    executable "groovy"
+    args "groovy/searchSimilarities.groovy"
+}

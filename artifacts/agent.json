@@ -1,0 +1,28 @@
+{
+  "id": 4,
+  "label": "agent",
+  "outE": {
+    "offered": [
+      {
+        "id": 9,
+        "inV": 3
+      }
+    ],
+    "demanded": [
+      {
+        "id": 10,
+        "inV": 5
+      }
+    ]
+    "knows": [
+      {
+        "id": 7,
+        "inV": 2
+      },
+      {
+        "id": 8,
+        "inV": 4
+      }
+    ]
+  }
+}
