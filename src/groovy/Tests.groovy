@@ -1,4 +1,4 @@
-@Grab(group='org.apache.tinkerpop', module='gremlin-driver', version='3.0.1-incubating')
+@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
 @Grab(group='log4j', module='log4j', version='1.2.17')
 
 import org.apache.log4j.PropertyConfigurator
@@ -6,11 +6,9 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import OfferNet;
+import Agent;
 
-import org.apache.tinkerpop.gremlin.driver.Client;
-import org.apache.tinkerpop.gremlin.structure.Direction;
-import org.apache.tinkerpop.gremlin.structure.Edge;
-import org.apache.tinkerpop.gremlin.structure.Vertex;
+import static org.junit.Assert.assertNotNull
 
 
 class Tests {
@@ -22,20 +20,13 @@ class Tests {
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
         on = OfferNet.getInstance();
-		getResultAsObject();
+        def agent1 = new Agent(on.session);
+        assertNotNull(agent1);
+        def agent2 = new Agent(on.session);
+        assertNotNull(agent2);
+        def edge = agent1.knowsAgent(agent2);
+        assertNotNull(edge);
 		on.close();
-	}
-
-	static getResultAsObject() {
-        Map params = new HashMap();
-        params.put("labelValue", "test");
-        params.put("key1", "param1");
-        params.put("value1", "param1");
-        params.put("key2", "param2");
-        params.put("value2", "param2");
-
-		def result = on.client.submit("g.addV(label,labelValue,key1,value1,key2,value2)",params).all().get().first();
-        logger.warn("Created a new test vertex with object {}", result);
 	}
 
 }

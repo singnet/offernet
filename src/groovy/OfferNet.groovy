@@ -1,8 +1,13 @@
-@Grab(group='org.apache.tinkerpop', module='gremlin-driver', version='3.0.1-incubating')
+@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
 @Grab(group='log4j', module='log4j', version='1.2.17')
 
-import org.apache.tinkerpop.gremlin.driver.Client;
-import org.apache.tinkerpop.gremlin.driver.Cluster;
+import com.datastax.driver.dse.DseCluster;
+import com.datastax.driver.dse.DseSession;
+
+import com.datastax.driver.dse.graph.GraphStatement;
+import com.datastax.driver.dse.graph.SimpleGraphStatement;
+import com.datastax.driver.dse.graph.GraphResultSet
+import com.datastax.driver.dse.graph.GraphOptions
 
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
@@ -11,9 +16,8 @@ import org.slf4j.LoggerFactory
 
 public class OfferNet implements AutoCloseable {
 
-    private Cluster cluster;
-    private Client client; // creating one 'main' client and allowing to create more with the method
-    private List AgentsList;
+    private DseCluster cluster;
+    private DseSession session; // creating one 'main' client and allowing to create more with the method
     private Logger logger;
 
     /**
@@ -22,15 +26,24 @@ public class OfferNet implements AutoCloseable {
     private static final OfferNet INSTANCE = new OfferNet();
 
     private OfferNet() {
+
         //loading log4j properties
         def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
 
         try {
-            cluster = Cluster.build(new File("configs/driver-settings.yaml")).create();
-            client = cluster.connect();
-            logger.info("Created OfferNet instance with client {}", client);
+            cluster = DseCluster.builder().addContactPoint("192.168.1.6").build();
+            cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
+
+            cluster = DseCluster.builder()
+                .addContactPoint("192.168.1.6")
+                .withGraphOptions(new GraphOptions().setGraphName("offernet"))
+                .build();
+            session = cluster.connect();
+
+            logger.info("Created OfferNet instance with session {}", session);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -42,10 +55,9 @@ public class OfferNet implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
-        client.close();
+        session.close();
         cluster.close();
     }
-
 
     public List createChain(int length) {
         List chain = []
@@ -57,8 +69,8 @@ public class OfferNet implements AutoCloseable {
     }
 
     public createAgentNetwork(int numberOfAgents) {
-        AgentsList = new ArrayList()
-        AgentsList.add(new Agent(this.client))
+        List agentsList = new ArrayList()
+        agentsList.add(new Agent(this.client))
 
         while (AgentsList.size() < numberOfAgents) {
             def random = new Random();
@@ -66,7 +78,7 @@ public class OfferNet implements AutoCloseable {
             Object Agent1 = AgentsList[i]
             Object Agent2 = new Agent(this.client)
             Agent1.knowsAgent(Agent2)
-            AgentsList.add(Agent2)
+            agentsList.add(Agent2)
         }
         logger.info("Created a network of "+numberOfAgents+ " Agents")
     }
