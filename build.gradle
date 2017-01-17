@@ -17,7 +17,7 @@ repositories {
 
 
 dependencies {
-  compile 'org.codehaus.groovy:groovy:2.4.7'
+  compile 'org.codehaus.groovy:groovy:2.4.1'
   testCompile 'junit:junit:4.12'
 }  
 
@@ -35,12 +35,12 @@ task installTitanServer(type: Exec) {
 
 task startTitanServer(type: Exec) {
     executable "sh"
-    args TITAN_HOME + "titan-1.0.0-hadoop1/bin/titan.sh", "start"
+    args TITAN_HOME + "titan/bin/titan.sh", "start"
 }
 
 task stopTitanServer(type: Exec) {
     executable "sh"
-    args TITAN_HOME + "titan-1.0.0-hadoop1/bin/titan.sh", "stop"
+    args TITAN_HOME + "titan/bin/titan.sh", "stop"
 }
 
 task createOfferNetwork(type: Exec) {

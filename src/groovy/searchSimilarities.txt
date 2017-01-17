@@ -1,4 +1,5 @@
-package org.globalbraininstitute.offernet
+package net.vveitas.offernet;
+
 import com.tinkerpop.pipes.Pipe
 import com.tinkerpop.blueprints.Vertex
 import com.tinkerpop.pipes.sideeffect.SideEffectFunctionPipe

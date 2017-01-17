@@ -1,17 +1,25 @@
-/**
-* OfferNet class describes the general structure and global operations on it needed for the simulation
-**/
+@Grab(group='org.apache.tinkerpop', module='gremlin-driver', version='3.0.1-incubating')
+@Grab(group='log4j', module='log4j', version='1.2.17')
 
-public class OfferNet {
+import org.apache.tinkerpop.gremlin.driver.Client;
+import org.apache.tinkerpop.gremlin.driver.Cluster;
+
+import org.apache.log4j.PropertyConfigurator
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+
+public class OfferNet implements AutoCloseable {
 
     private Cluster cluster;
     private Client client; // creating one 'main' client and allowing to create more with the method
-    private List agentsList;
+    private List AgentsList;
+    private Logger logger;
 
     /**
      * Create Service as a singleton given the simplicity of App.
      */
-    private static final Service INSTANCE = new Service();
+    private static final OfferNet INSTANCE = new OfferNet();
 
     private OfferNet() {
         //loading log4j properties
@@ -32,14 +40,6 @@ public class OfferNet {
         return INSTANCE;
     }
 
-    public static Client createClient() throws Exception {
-        return cluster.connect();
-    }
-
-    public static Client closeClient(Client client) throws Exception {
-        return client.close();
-    }
-
     @Override
     public void close() throws Exception {
         client.close();
@@ -47,7 +47,7 @@ public class OfferNet {
     }
 
 
-    public static List createChain(int length) {
+    public List createChain(int length) {
         List chain = []
         lenght.times {
             chain.add(generateBinaryString(16))
@@ -56,38 +56,39 @@ public class OfferNet {
         return chain
     }
 
-    public static createAgentNetwork(int numberOfAgents) {
-        agentsList = new ArrayList()
-        agentsList.add(new Agent(this.client))
+    public createAgentNetwork(int numberOfAgents) {
+        AgentsList = new ArrayList()
+        AgentsList.add(new Agent(this.client))
 
-        while (agentsList.size() < numberOfAgents) {
+        while (AgentsList.size() < numberOfAgents) {
             def random = new Random();
-            def i = random.nextInt(agentsList.size())
-            Object agent1 = agentsList[i]
-            Object agent2 = new Agent(this.client)
-            agent1.knowsAgent(agent2)
-            agentsList.add(agent2)
+            def i = random.nextInt(AgentsList.size())
+            Object Agent1 = AgentsList[i]
+            Object Agent2 = new Agent(this.client)
+            Agent1.knowsAgent(Agent2)
+            AgentsList.add(Agent2)
         }
-        logger.info("Created a network of "+numberOfAgents+ " agents")
+        logger.info("Created a network of "+numberOfAgents+ " Agents")
     }
 
 
-    public static addRandomProcessesToAgents(numberOfProcesses) {
-        numberOfProcesses.times {
-            def i = random.nextInt(agentsList.size())
-            agentsList[i].ownsProcess();
+    public addRandomWorksToAgents(int numberOfWorks) {
+        numberOfWorks.times {
+            def random = new Random();
+            def i = random.nextInt(AgentsList.size())
+            AgentsList[i].ownsWork();
         }
-        logger.info("Added "+numberOfProcesses+" of random processes to the network")
+        logger.info("Added "+numberOfWorks+" of random processes to the network")
     }
 
     def addChainToNetwork(List chain) {
         def dataItemsWithDesignedSimilarities = new ArrayList()
         for (x=0;x<chain.size()-1;x++) {
             def random = new Random();
-            def i = random.nextInt(agentsList.size())
-            def process = agentsList[i].ownsProcess(new Process().addDemand(new Item(chain[x])).addOffer(new Item(chain[x+1]));
-            def demand = process.getDemands()[0]
-            def offer = process.getOffers()[0]
+            def i = random.nextInt(AgentsList.size())
+            def process = AgentsList[i].ownsWork(new Work().addDemand(new Item(chain[x])).addOffer(new Item(chain[x+1])));
+            def demand = process.getDemands().first()
+            def offer = process.getOffers().first()
             //print a list with items which have designed similarities in the network
             switch (x) {
                 case 0:

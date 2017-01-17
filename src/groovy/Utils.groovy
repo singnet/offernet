@@ -1,11 +1,10 @@
-static class Utils {
-
+public class Utils {
 
     public static String generateBinaryString(int length) {
         String randomString="";
-        for (var i=1;i<lenght;i++) {
+        for (int i=1;i<length;i++) {
             Random randomNum = new Random();
-            randomString = randomString.concat(randomNum.nextInt(2));
+            randomString = randomString.concat(randomNum.nextInt(2).toString());
         }
         return randomString;
     }
