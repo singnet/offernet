@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory
 
 import OfferNet;
 import Agent;
+import Work;
 
 import static org.junit.Assert.assertNotNull
 
@@ -20,13 +21,55 @@ class Tests {
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
         on = OfferNet.getInstance();
+
+        createAgentTest();
+        knowsAgentTest();
+        createWorkTest();
+        ownsNewWorkTest();
+        ownsKnownWorkTest();
+
+		on.close();
+	}
+
+    static void createAgentTest() {
+        def agent1 = new Agent(on.session);
+        assertNotNull(agent1);
+    }
+
+    static void knowsAgentTest() {
         def agent1 = new Agent(on.session);
         assertNotNull(agent1);
         def agent2 = new Agent(on.session);
         assertNotNull(agent2);
         def edge = agent1.knowsAgent(agent2);
         assertNotNull(edge);
-		on.close();
-	}
+    }
 
+    static void createWorkTest() {
+        def work = new Work(on.session);
+        assertNotNull(work);
+    }
+
+    static void ownsNewWorkTest() {
+        def agent1 = new Agent(on.session);
+        assertNotNull(agent1);
+
+        def work = agent1.ownsWork();
+        assertNotNull(work);
+    }
+
+    static void ownsKnownWorkTest() {
+        def agent1 = new Agent(on.session);
+        assertNotNull(agent1);
+
+        def work = new Work(on.session);
+        assertNotNull(work);
+
+        def edge = agent1.ownsWork(work);
+        assertNotNull(edge);
+    }
+
+    static void addDemandTest() {
+        // not implemented
+    }
 }

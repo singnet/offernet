@@ -1,6 +1,7 @@
 @Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
 @Grab(group='org.apache.tinkerpop', module='gremlin-driver', version='3.2.3')
 
+import com.datastax.driver.dse.DseGraph;
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
 
@@ -14,7 +15,6 @@ import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSo
 
 DseCluster dseCluster = null;
 DseSession dseSession = null;
-GraphTraversalSource g = null;
 try {
 	dseCluster = DseCluster.builder().addContactPoint("192.168.1.6").build();
 	dseCluster.connect().executeGraph("system.graph('demo').ifNotExists().create()");
@@ -41,7 +41,6 @@ try {
 
 	GraphOptions graphOptions = dseCluster.getConfiguration().getGraphOptions();
 	graphOptions.setGraphName("demo");
-
 
 	Vertex john = g.V().has('name','john').next();
 	VertexProperty<Integer> ageProperty = john.properties("age");

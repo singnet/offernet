@@ -1,5 +1,4 @@
 @Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
-@Grab(group='com.datastax.cassandra', module='java-dse-graph', version='1.0.0-beta1')
 @Grab(group='log4j', module='log4j', version='1.2.17')
 
 import com.datastax.driver.dse.DseCluster;
@@ -17,7 +16,7 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-//import Work;
+import Work;
 
 public class Agent  {
     private Vertex vertex;
@@ -67,25 +66,30 @@ public class Agent  {
         return edge;
     }
 
-    /*
     private Object ownsWork() {
-    	return ownsWork(new Work(this.client));
+    	return ownsWork(new Work(this.session));
     }
 
 	private Object ownsWork(Work process) {
-        logger.warn("Creating owns edge from agent {} to work {}", this.id, process.id)
-
         Map params = new HashMap();
-        params.put("agent", this.id);
+        params.put("agent", this.id());
         params.put("process",process.id());
         params.put("edgeLabel","owns");
 
-        def edgeId = client.submit("g.withSideEffect('a',g.V(process)).V(agent).addOutE(edgeLabel,'a').id()",params).all().get().first().object;
+        logger.warn("Creating owns edge from agent {} to work {}", params.agent, params.process)
 
-        logger.info("Added owns edge {} to the network", edgeId.toString());
-        return edgeId;
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "def v1 = g.V(agent).next()\n" +
+                "def v2 = g.V(process).next()\n" +
+                "v1.addEdge(edgeLabel, v2)", params)
+
+        GraphResultSet rs = session.executeGraph(s);
+        def edge = rs.one().asEdge();
+        logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
+
+        return edge;
     }
-    */
+
     private id() {
     	return vertex.getId();
     }

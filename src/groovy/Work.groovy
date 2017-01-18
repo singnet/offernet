@@ -1,52 +1,64 @@
-@Grab(group='org.apache.tinkerpop', module='gremlin-driver', version='3.0.1-incubating')
+@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
+@Grab(group='log4j', module='log4j', version='1.2.17')
 
-import org.apache.tinkerpop.gremlin.driver.Client;
-import org.apache.tinkerpop.gremlin.structure.Direction;
-import org.apache.tinkerpop.gremlin.structure.Edge;
-import org.apache.tinkerpop.gremlin.structure.Vertex;
+import com.datastax.driver.dse.DseCluster;
+import com.datastax.driver.dse.DseSession;
 
-import Item;
+import com.datastax.driver.dse.graph.GraphStatement;
+import com.datastax.driver.dse.graph.SimpleGraphStatement;
+import com.datastax.driver.dse.graph.GraphResultSet
+import com.datastax.driver.dse.graph.GraphOptions
+
+import com.datastax.driver.dse.graph.Vertex
+import com.datastax.driver.dse.graph.Edge
 
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import Item;
+
 import static org.junit.Assert.*
 
 
 public class Work  {
-	private Client client; 
-	private Object id;
-    private Logger logger
+    private Vertex vertex;
+    private DseSession session; 
+    private Logger logger;
 
-	private Work(Client client) {
+	private Work(DseSession session) {
 
         def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('Work.class');
 
-		this.client= client;
+        this.session= session;
 
         Map params = new HashMap();
         params.put("labelValue", "work");
-        this.id = client.submit("g.addV(label,labelValue).id()", params).all().get().first().object;
+
+        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(label, labelValue)", params));
+        this.vertex = rs.one().asVertex();
+
+        logger.warn("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
+
         this.addDemand();
         this.addOffer();
 	}
 
-	private Work(Object id, Client client) {
-		this.id = id;
-		this.client =client;
+	private Work(Vertex vertex, DseSession session) {
+        this.vertex = vertex;
+        this.session =session;
 	}
 
 	// getters & setters
 
     public id() {
-    	return this.id;
+    	return this.vertex.getId();
     }
 
     public Item addDemand() {
-    	return addItem(new Item(client), 'demands');
+    	return addItem(new Item(this.session), 'demands');
     }
 
     public Item addDemand(Item item) {
@@ -59,7 +71,7 @@ public class Work  {
     }
 
     public Item addOffer() {
-    	return addItem(new Item(client), 'offers');
+    	return addItem(new Item(session), 'offers');
     }
 
     public Item addOffer(Item item) {
@@ -72,22 +84,32 @@ public class Work  {
 
     public Item addItem(Item item, String labelName) {
     	Map params = new HashMap();
-        params.put("thisVertex", this.id);
+        params.put("thisVertex", this.id());
         params.put("edgeLabel", (String) labelName);
         params.put("targetVertex",item.id());
-        logger.info("Executing query : g.withSideEffect('a',g.V({})).V({}).addOutE({},'a').id()", params.targetVertex, params.thisVertex, params.edgeLabel);
-        def resultList = client.submit("g.withSideEffect('a',g.V(targetVertex)).V(thisVertex).addOutE(edgeLabel,'a').id()",params).all().get().stream().collect()
 
-        logger.info("get resultList of size {}", resultList.size());
+        logger.info("Adding {}:{} to work:{}", params.edgeLabel, params.targetVertex, params.thisVertex);
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "def v1 = g.V(thisVertex).next()\n" +
+                "def v2 = g.V(targetVertex).next()\n" +
+                "v1.addEdge(edgeLabel, v2)", params);
+
+        GraphResultSet rs = session.executeGraph(s);
+        def edge = rs.one().asEdge();
+        logger.info("Added {} edge {} to the network", labelName, edge);
      	return item;
     }
 
-    public List getItems(String labelName) {
+    public List<Vertex> getItems(String labelName) {
     	Map params = new HashMap();
         params.put("thisVertex", this.process.id());
         params.put("edgeLabel", label);
         params.put("edgeDirection", Direction.OUT);
-        def items = Utils.toList(client.submit("g.V(thisVertex).vertices(edgeDirection,edgeLabel)",params).iterator());
+
+        SimpleGraphStatement s = new SimpleGraphStatement("g.V(thisVertex).vertices(edgeDirection,edgeLabel)",params);
+        GraphResultSet rs = session.executeGraph(s);
+        def items = rs.all().collect {it.asVertex()};
         logger.info("Retrieved {} list {} from process {}", edgeLabel, items.toString(),this.process.toString());
         return items;
     }
