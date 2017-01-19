@@ -24,6 +24,15 @@ public class Utils {
 
     }
 
+    public List createChain(int length) {
+        List chain = []
+        lenght.times {
+            chain.add(generateBinaryString(16))
+        }
+        logger.info("Created chain of length with: { end: {}, start: {} }",chain.last(),chain.first())
+        return chain
+    }
+
     public static List<String> getWarnings(GraphResultSet rs) {
       List<String> executionWarnings = rs.getExecutionInfo().getWarnings();
       return executionWarnings;

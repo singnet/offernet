@@ -8,8 +8,8 @@ class CreateOfferNetwork {
 
 		on.createAgentNetwork(10)
 		on.addRandomWorksToAgents(20)
-		on.addChainToNetwork(on.createChain(3))
-		on.addChainToNetwork(on.createChain(2))
+		on.addChainToNetwork(Utils.createChain(3))
+		on.addChainToNetwork(Utils.createChain(2))
 
 		on.close();
 

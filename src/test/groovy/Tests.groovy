@@ -4,7 +4,7 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import static org.junit.Assert.assertNotNull
+import static org.junit.Assert.*
 
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -57,7 +57,7 @@ public class Tests {
     }
 
 		@Test
-		void knowsAgentTest() {
+		void agentKnowsAgentTest() {
         def agent1 = new Agent(on.session);
         assertNotNull(agent1);
         def agent2 = new Agent(on.session);
@@ -65,6 +65,27 @@ public class Tests {
         def edge = agent1.knowsAgent(agent2);
         assertNotNull(edge);
     }
+
+		@Test
+		void agentOwnsNewWorkTest() {
+				def agent1 = new Agent(on.session);
+				assertNotNull(agent1);
+
+				def work = agent1.ownsWork();
+				assertNotNull(work);
+		}
+
+		@Test
+		void agentOwnsKnownWorkTest() {
+				def agent1 = new Agent(on.session);
+				assertNotNull(agent1);
+
+				def work = new Work(on.session);
+				assertNotNull(work);
+
+				def edge = agent1.ownsWork(work);
+				assertNotNull(edge);
+		}
 
 		/*
 		* Work.groovy
@@ -77,28 +98,144 @@ public class Tests {
     }
 
 		@Test
-		void ownsNewWorkTest() {
-        def agent1 = new Agent(on.session);
-        assertNotNull(agent1);
-
-        def work = agent1.ownsWork();
-        assertNotNull(work);
-    }
+		void getWorkIdTest() {
+			def id = new Work(on.session).id();
+			assertNotNull(id);
+			println "got Work.id: "+id;
+		}
 
 		@Test
-    void ownsKnownWorkTest() {
-        def agent1 = new Agent(on.session);
-        assertNotNull(agent1);
-
-        def work = new Work(on.session);
-        assertNotNull(work);
-
-        def edge = agent1.ownsWork(work);
-        assertNotNull(edge);
-    }
+		void addNewOfferTest() {
+			def work = new Work(on.session)
+			def offer = work.addOffer();
+			assertNotNull(offer);
+		}
 
 		@Test
-		void addDemandTest() {
-        // not implemented
-    }
+		void addKnownOfferTest() {
+			def work = new Work(on.session)
+			def offer = new Item(on.session);
+			assertEquals(offer,work.addOffer(offer));
+		}
+
+		@Test
+		void addNewDemandTest() {
+			def work = new Work(on.session)
+			def demand = work.addDemand();
+			assertNotNull(demand);
+		}
+
+		@Test
+		void addKnownDemandTest() {
+			def work = new Work(on.session)
+			def demand = new Item(on.session);
+			assertEquals(demand,work.addDemand(demand));
+		}
+
+		@Test
+		void getWorkItemsTest() {
+			 def work = new Work(on.session);
+			 def item1 = new Item(on.session);
+			 work.addItem(item1, "demands");
+
+			 def item2 = new Item(on.session);
+			 work.addItem(item2, "demands");
+
+			 def demands = work.getItems("demands");
+			 assertEquals(3,demands.size()); // tree because one is created by default in Work constructor
+
+			 def offers = work.getItems("offers");
+			 assertEquals(1,offers.size());
+
+		}
+
+		@Test
+		void getDemandsTest() {
+			def work = new Work(on.session);
+			work.addDemand();
+			work.addOffer();
+
+			def demands = work.getDemands()
+			assertEquals(2,demands.size());
+		}
+
+		@Test
+		void getOffersTest() {
+			def work = new Work(on.session);
+			work.addDemand();
+			work.addOffer();
+
+			def offers = work.getOffers()
+			assertEquals(2,offers.size());
+		}
+
+		/*
+		*	OfferNet.class
+		*/
+
+		@Test
+		void createOfferNetworkTest() {
+			def on = new OfferNet()
+			assertNotNull(on);
+			assertFalse(on.session.isClosed());
+			assertFalse(on.cluster.isClosed());
+		}
+
+		@Test
+		void closeOfferNetworkTest() {
+			def on = new OfferNet()
+			assertNotNull(on);
+			on.close();
+			assertTrue(on.session.isClosed());
+			assertTrue(on.cluster.isClosed());
+		}
+
+		@Test
+		void flushAgentsTest() {
+			def on = new OfferNet()
+			assertNotNull(on);
+			on.flushVertices("agent");
+			assertEquals(0,on.getIds('agent').size())
+		}
+
+		@Test
+		void flushVerticesTest() {
+			def on = new OfferNet();
+			assertNotNull(on);
+			on.flushVertices();
+			assertEquals(0,on.getIds('item').size())
+		}
+
+		@Test
+		void getIdsTest() {
+			def on = new OfferNet()
+			on.flushVertices('agent');
+			on.createAgentNetwork(10)
+
+			def agentIds = on.getIds('agent');
+			assertNotNull(agentIds);
+			assertEquals(10,agentIds.size());
+		}
+
+
+		@Test
+		void createAgentNetworkTest() {
+			def on = new OfferNet()
+			on.createAgentNetwork(10)
+
+
+		}
+
+		@Test
+		void addRandomWorksToAgents() {
+
+		}
+
+		@Test
+		void createChainToNetworkTest() {
+
+		}
+
+
+
 }

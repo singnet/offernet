@@ -57,34 +57,58 @@ public class OfferNet implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
-        session.close();
-        cluster.close();
-    }
-
-    public List createChain(int length) {
-        List chain = []
-        lenght.times {
-            chain.add(generateBinaryString(16))
-        }
-        logger.info("Created chain of length with: { end: {}, start: {} }",chain.last(),chain.first())
-        return chain
+        this.session.close();
+        this.cluster.close();
     }
 
     public createAgentNetwork(int numberOfAgents) {
         List agentsList = new ArrayList()
-        agentsList.add(new Agent(this.client))
+        agentsList.add(new Agent(this.session))
 
-        while (AgentsList.size() < numberOfAgents) {
+        while (agentsList.size() < numberOfAgents) {
             def random = new Random();
-            def i = random.nextInt(AgentsList.size())
-            Object Agent1 = AgentsList[i]
-            Object Agent2 = new Agent(this.client)
+            def i = random.nextInt(agentsList.size())
+            Object Agent1 = agentsList[i]
+            Object Agent2 = new Agent(this.session)
             Agent1.knowsAgent(Agent2)
             agentsList.add(Agent2)
         }
         logger.info("Created a network of "+numberOfAgents+ " Agents")
     }
 
+    public void flushVertices(String labelName) {
+      Map params = new HashMap();
+      params.put("labelName", labelName);
+
+      SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(label,labelName).drop()",params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.warn("Executed statement: {}", Utils.getStatement(rs));
+      logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.info("Dropped vertexes with label {} from OfferNet", labelName);
+    }
+
+    public void flushVertices() {
+      SimpleGraphStatement s = new SimpleGraphStatement("g.V().drop()");
+      GraphResultSet rs = session.executeGraph(s);
+      logger.warn("Executed statement: {}", Utils.getStatement(rs));
+      logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.info("Dropped all vertexes from OfferNet");
+
+    }
+
+    public List getIds(String labelName) {
+      Map params = new HashMap();
+      params.put("labelName", labelName);
+
+      SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(label,labelName).id()",params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.warn("Executed statement: {}", Utils.getStatement(rs));
+      logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
+
+      List<Object> agentIds = rs.all();
+      logger.info("Retrieved list of {} agentIds from OfferNet", agentIds.size());
+      return agentIds;
+    }
 
     public addRandomWorksToAgents(int numberOfWorks) {
         numberOfWorks.times {

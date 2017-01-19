@@ -41,11 +41,6 @@ public class Agent  {
         logger.warn("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
 	}
 
-	public Agent(Vertex vertex, DseSession session) {
-		this.vertex = vertex;
-		this.session =session;
-	}
-
 	private Object knowsAgent(Agent agent) {
         Map params = new HashMap();
         params.put("agent1", vertex.getId());
