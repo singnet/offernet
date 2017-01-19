@@ -1,5 +1,7 @@
-@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
-@Grab(group='log4j', module='log4j', version='1.2.17')
+//@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
+//@Grab(group='log4j', module='log4j', version='1.2.17')
+
+package net.vveitas.offernet
 
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
@@ -16,14 +18,12 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import Item;
-
 import static org.junit.Assert.*
 
 
 public class Work  {
     private Vertex vertex;
-    private DseSession session; 
+    private DseSession session;
     private Logger logger;
 
 	private Work(DseSession session) {
@@ -64,7 +64,7 @@ public class Work  {
     public Item addDemand(Item item) {
     	return addItem(item, 'demands');
     }
-	
+
     public Item getDemands() {
     	Map params = new HashMap();
     	return getItems('demands');
@@ -77,7 +77,7 @@ public class Work  {
     public Item addOffer(Item item) {
     	return addItem(item, 'offers');
     }
-	
+
     public List getOffers() {
         return getItems("offers");
     }
@@ -115,4 +115,4 @@ public class Work  {
     }
 
 
-}	
+}

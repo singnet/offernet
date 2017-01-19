@@ -1,0 +1,2 @@
+system.graph('offernet')
+:remote config alias g offernet.g

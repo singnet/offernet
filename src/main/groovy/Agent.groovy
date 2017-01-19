@@ -1,5 +1,7 @@
-@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
-@Grab(group='log4j', module='log4j', version='1.2.17')
+//@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
+//@Grab(group='log4j', module='log4j', version='1.2.17')
+
+package net.vveitas.offernet
 
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
@@ -16,11 +18,9 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import Work;
-
 public class Agent  {
     private Vertex vertex;
-	private DseSession session; 
+	   private DseSession session;
     private Logger logger;
 
 

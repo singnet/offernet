@@ -1,4 +1,4 @@
-import OfferNet;
+package net.vveitas.offernet
 
 class CreateOfferNetwork {
 
@@ -16,6 +16,3 @@ class CreateOfferNetwork {
 	}
 
 }
-
-
-

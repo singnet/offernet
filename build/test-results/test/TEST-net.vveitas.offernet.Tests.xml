@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.vveitas.offernet.Tests" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-01-19T14:46:28" hostname="vveitas-XPS-13-9350" time="1.318">
+  <properties/>
+  <testcase name="getItemPropertiesTest" classname="net.vveitas.offernet.Tests" time="0.411"/>
+  <testcase name="getItemValueTest" classname="net.vveitas.offernet.Tests" time="0.07"/>
+  <testcase name="getItemIdTest" classname="net.vveitas.offernet.Tests" time="0.059"/>
+  <testcase name="createItemTest" classname="net.vveitas.offernet.Tests" time="0.106"/>
+  <system-out><![CDATA[got item properties: [value:"100110000010011"]
+got item value: "110000111010011"
+got Item.id: {"~label":"item","community_id":176536064,"member_id":519}
+createdItem: net.vveitas.offernet.Item@49e955f5
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

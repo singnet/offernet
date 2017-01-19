@@ -1,5 +1,4 @@
-@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
-@Grab(group='org.apache.tinkerpop', module='gremlin-driver', version='3.2.3')
+//@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
 
 import com.datastax.driver.dse.DseGraph;
 import com.datastax.driver.dse.DseCluster;
@@ -48,8 +47,6 @@ try {
 	println john.toString();
 	println age
 
-} finally {	 
+} finally {
 	if (dseCluster != null) dseCluster.close();
 }
-
-

@@ -1,6 +1,6 @@
 log4j {
     rootLogger="DEBUG, DebugFileAppender"
-    logger."gbi.Offernet"="WARN, DebugFileAppender"
+    logger."gbi.Offernet"="DEBUG, DebugFileAppender"
     additivity."gbi.Offernet"=true
     appender.WarnFileAppender = "org.apache.log4j.FileAppender"
     appender."DebugFileAppender.File"="./logs/OfferNet.log"

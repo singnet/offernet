@@ -1,5 +1,7 @@
-@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
-@Grab(group='log4j', module='log4j', version='1.2.17')
+//@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
+//@Grab(group='log4j', module='log4j', version='1.2.17')
+
+package net.vveitas.offernet
 
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
@@ -20,10 +22,14 @@ public class OfferNet implements AutoCloseable {
     private DseSession session; // creating one 'main' client and allowing to create more with the method
     private Logger logger;
 
-    /**
-     * Create Service as a singleton given the simplicity of App.
-     */
-    private static final OfferNet INSTANCE = new OfferNet();
+    public void ass() {
+    Runtime.getRuntime().addShutdownHook(new Thread() {
+        public void run() {
+          sesion.close();
+          cluster.close();
+        }
+      });
+    }
 
     private OfferNet() {
 
@@ -47,10 +53,6 @@ public class OfferNet implements AutoCloseable {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public static OfferNet getInstance() {
-        return INSTANCE;
     }
 
     @Override

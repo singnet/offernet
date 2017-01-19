@@ -1,3 +1,9 @@
+package net.vveitas.offernet
+
+import groovy.json.*
+
+import com.datastax.driver.dse.graph.GraphResultSet
+
 public class Utils {
 
     public static String generateBinaryString(int length) {
@@ -15,7 +21,18 @@ public class Utils {
     		list.add(iterator.next());
     	}
     	return list;
+
     }
 
-	
+    public static List<String> getWarnings(GraphResultSet rs) {
+      List<String> executionWarnings = rs.getExecutionInfo().getWarnings();
+      return executionWarnings;
+    }
+
+    public static String getStatement(GraphResultSet rs) {
+      String executionStatement = rs.getExecutionInfo().getStatement().toString();
+      return executionStatement;
+    }
+
+
 }
