@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
 public class Tests {
-		private OfferNet on = new OfferNet();
+		private OfferNet on = new OfferNet().flushVertices();
 
 		/*
 		* Item.groovy
@@ -51,10 +51,22 @@ public class Tests {
 		*/
 
 		@Test
-    void createAgentTest() {
+    void createAgentNewVertexTest() {
         def agent1 = new Agent(on.session);
         assertNotNull(agent1);
     }
+
+		@Test
+		void createAgentExistingVertexTest() {
+				def agent1 = new Agent(on.session);
+				assertNotNull(agent1);
+				def id1 = agent1.id();
+
+				def agent2 = new Agent(id1,on.session);
+				assertNotNull(agent2);
+				assertEquals(id1,agent2.id());
+		}
+
 
 		@Test
 		void agentKnowsAgentTest() {
@@ -222,13 +234,16 @@ public class Tests {
 		void createAgentNetworkTest() {
 			def on = new OfferNet()
 			on.createAgentNetwork(10)
-
-
 		}
 
 		@Test
-		void addRandomWorksToAgents() {
+		void addRandomWorksToAgentsTest() {
+			def on = new OfferNet()
+			on.flushVertices();
 
+			on.createAgentNetwork(10)
+			on.addRandomWorksToAgents(10)
+			assertEquals(20,on.getIds("item").size()); // creates two items (demand and offer) when creating a ramdom work;
 		}
 
 		@Test
@@ -236,6 +251,22 @@ public class Tests {
 
 		}
 
+		/*
+		*	Utils.class
+		*/
+
+		@Test
+		void generateBinaryStringTest() {
+				String string = Utils.generateBinaryString(16);
+				assertEquals(16,string.length());
+				assertTrue(string.toSet().sort().join() == '01' | string.toSet().sort().join() == '10');
+		}
+
+		@Test
+		void createChainTest() {
+			List chain = Utils.createChain(5)
+			assertEquals(5,chain.size());
+		}
 
 
 }

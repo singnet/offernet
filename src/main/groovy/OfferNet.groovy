@@ -87,13 +87,13 @@ public class OfferNet implements AutoCloseable {
       logger.info("Dropped vertexes with label {} from OfferNet", labelName);
     }
 
-    public void flushVertices() {
+    public Object flushVertices() {
       SimpleGraphStatement s = new SimpleGraphStatement("g.V().drop()");
       GraphResultSet rs = session.executeGraph(s);
       logger.warn("Executed statement: {}", Utils.getStatement(rs));
       logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
       logger.info("Dropped all vertexes from OfferNet");
-
+      return this;
     }
 
     public List getIds(String labelName) {
@@ -111,16 +111,20 @@ public class OfferNet implements AutoCloseable {
     }
 
     public addRandomWorksToAgents(int numberOfWorks) {
+        List agentIds = this.getIds('agent');
         numberOfWorks.times {
             def random = new Random();
-            def i = random.nextInt(AgentsList.size())
-            AgentsList[i].ownsWork();
+            def i = random.nextInt(agentIds.size())
+            def agent = new Agent(agentIds[i],this.session);
+            def ownsWork = agent.ownsWork();
+            logger.info("Added ownsWork link {} to agent {}", ownsWork, agent.id());
         }
         logger.info("Added "+numberOfWorks+" of random processes to the network")
     }
 
     def addChainToNetwork(List chain) {
         def dataItemsWithDesignedSimilarities = new ArrayList()
+
         for (x=0;x<chain.size()-1;x++) {
             def random = new Random();
             def i = random.nextInt(AgentsList.size())

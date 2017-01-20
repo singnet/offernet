@@ -4,11 +4,15 @@ import groovy.json.*
 
 import com.datastax.driver.dse.graph.GraphResultSet
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 public class Utils {
+    static Logger logger = LoggerFactory.getLogger('OfferNet.class');
 
     public static String generateBinaryString(int length) {
         String randomString="";
-        for (int i=1;i<length;i++) {
+        for (int i=0;i<length;i++) {
             Random randomNum = new Random();
             randomString = randomString.concat(randomNum.nextInt(2).toString());
         }
@@ -24,9 +28,9 @@ public class Utils {
 
     }
 
-    public List createChain(int length) {
+    public static List createChain(int length) {
         List chain = []
-        lenght.times {
+        length.times {
             chain.add(generateBinaryString(16))
         }
         logger.info("Created chain of length with: { end: {}, start: {} }",chain.last(),chain.first())

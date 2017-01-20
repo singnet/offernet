@@ -41,6 +41,23 @@ public class Agent  {
         logger.warn("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
 	}
 
+  public Agent(Object vertexId, DseSession session) {
+    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+    PropertyConfigurator.configure(config.toProperties())
+    logger = LoggerFactory.getLogger('OfferNet.class');
+
+    this.session= session;
+
+    Map params = new HashMap();
+    params.put("vertexId",vertexId);
+
+    GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.V(vertexId)", params));
+    this.vertex = rs.one().asVertex();
+
+    logger.warn("Instantiated an {} with existing vertex id {}", vertex.getLabel(), vertex.getId());
+
+  }
+
 	private Object knowsAgent(Agent agent) {
         Map params = new HashMap();
         params.put("agent1", vertex.getId());
