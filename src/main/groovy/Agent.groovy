@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory
 
 public class Agent  {
     private Vertex vertex;
-	   private DseSession session;
+	  private DseSession session;
     private Logger logger;
 
 
@@ -30,7 +30,7 @@ public class Agent  {
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
 
-		this.session= session;
+		    this.session= session;
 
         Map params = new HashMap();
         params.put("labelValue", "agent");
@@ -42,19 +42,19 @@ public class Agent  {
 	}
 
   public Agent(Object vertexId, DseSession session) {
-    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-    PropertyConfigurator.configure(config.toProperties())
-    logger = LoggerFactory.getLogger('OfferNet.class');
+      def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+      PropertyConfigurator.configure(config.toProperties())
+      logger = LoggerFactory.getLogger('OfferNet.class');
 
-    this.session= session;
+      this.session= session;
 
-    Map params = new HashMap();
-    params.put("vertexId",vertexId);
+      Map params = new HashMap();
+      params.put("vertexId",vertexId);
 
-    GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.V(vertexId)", params));
-    this.vertex = rs.one().asVertex();
+      GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.V(vertexId)", params));
+      this.vertex = rs.one().asVertex();
 
-    logger.warn("Instantiated an {} with existing vertex id {}", vertex.getLabel(), vertex.getId());
+      logger.warn("Instantiated an {} with existing vertex id {}", vertex.getLabel(), vertex.getId());
 
   }
 

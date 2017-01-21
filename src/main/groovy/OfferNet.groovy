@@ -15,7 +15,6 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-
 public class OfferNet implements AutoCloseable {
 
     private DseCluster cluster;
@@ -57,8 +56,12 @@ public class OfferNet implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
+        String clusterName = cluster.toString()
+        String sessionName = session.toString()
         this.session.close();
+        logger.info("Closed session {}",sessionName);
         this.cluster.close();
+        logger.info("Closed cluster {}",clusterName);
     }
 
     public createAgentNetwork(int numberOfAgents) {
@@ -122,33 +125,38 @@ public class OfferNet implements AutoCloseable {
         logger.info("Added "+numberOfWorks+" of random processes to the network")
     }
 
-    def addChainToNetwork(List chain) {
+    def Object addChainToNetwork(List chain) {
         def dataItemsWithDesignedSimilarities = new ArrayList()
-
-        for (x=0;x<chain.size()-1;x++) {
+        def chainedWorks = []
+        for (int x=0;x<chain.size()-1;x++) {
             def random = new Random();
-            def i = random.nextInt(AgentsList.size())
-            def process = AgentsList[i].ownsWork(new Work().addDemand(new Item(chain[x])).addOffer(new Item(chain[x+1])));
-            def demand = process.getDemands().first()
-            def offer = process.getOffers().first()
+            def agentIds = this.getIds('agent');
+            def i = random.nextInt(agentIds.size())
+            def agent = new Agent(agentIds[i],this.session)
+            def work = new Work(this.session);
+            chaindedWorks.add(work.id()}
+            def demand = work.addDemand(new Item(chain[x],this.session))
+            def offer = work.addOffer(new Item(chain[x+1],this.session))
+            agent.ownsWork(work);
             //print a list with items which have designed similarities in the network
             switch (x) {
                 case 0:
                     // for the first item in chain we add only offer
-                    logger.info("Item with designed similarity {}:{}", offer,offer.value)
+                    logger.info("Item with designed similarity {}:{}", offer,offer.getValue())
                     break
                 case chain.size()-2:
                     //for the last item in chain we add only demand
-                    logger.info("Item with designed similarity {}:{}", demand,demand.value)
+                    logger.info("Item with designed similarity {}:{}", demand,demand.getValue())
                     break
                 default:
                     //otherwise we add both, because it has similarity both ways
-                    logger.info("Item with designed similarity {}:{}", demand,demand.value)
-                    logger.info("Item with designed similarity {}:{}", offer,offer.value)
+                    logger.info("Item with designed similarity {}:{}", demand,demand.getValue())
+                    logger.info("Item with designed similarity {}:{}", offer,offer.getValue())
                     break
             }
         }
         logger.info("Added a chain to the network")
+        return chainedWorks;
     }
 
 

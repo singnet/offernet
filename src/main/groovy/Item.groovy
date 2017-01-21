@@ -23,25 +23,27 @@ public class Item  {
     private Logger logger;
 
 	private Item(DseSession session) {
-
-        def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-        PropertyConfigurator.configure(config.toProperties())
-        logger = LoggerFactory.getLogger('Item.class');
-		    this.session= session;
-
-        Map params = new HashMap();
-        params.put("labelValue", "item");
-        params.put("propertyKey", "value");
-        params.put("propertyValue", Utils.generateBinaryString(16));
-
-        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(label, labelValue).property(propertyKey ,propertyValue)", params));
-        logger.warn("Executed statement: {}", Utils.getStatement(rs));
-        logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
-        this.vertex = rs.one().asVertex();
-
-        logger.warn("Created a new {}", this.id().toString());
-
+    this(Utils.generateBinaryString(16),session)
 	}
+
+  private Item(String value, DseSession session) {
+      def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+      PropertyConfigurator.configure(config.toProperties())
+      logger = LoggerFactory.getLogger('Item.class');
+      this.session= session;
+
+      Map params = new HashMap();
+      params.put("labelValue", "item");
+      params.put("propertyKey", "value");
+      params.put("propertyValue", value);
+
+      GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(label, labelValue).property(propertyKey ,propertyValue)", params));
+      logger.warn("Executed statement: {}", Utils.getStatement(rs));
+      logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      this.vertex = rs.one().asVertex();
+
+      logger.warn("Created a new {}", this.id().toString());
+  }
 
   private id() {
     return this.vertex.getId();
