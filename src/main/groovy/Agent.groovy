@@ -99,14 +99,26 @@ public class Agent  {
         def edge = rs.one().asEdge();
         logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
 
-        return edge;
+        return process;
     }
 
     private id() {
     	return vertex.getId();
     }
 
-    private getAllItems() {
-      
+    private List allItems() {
+      Map params = new HashMap();
+      params.put("agentLabelName", this.id());
+
+      logger.warn("Getting all items of agent {}", this.id())
+
+      SimpleGraphStatement s = new SimpleGraphStatement(
+            "g.V(agentLabelName).outE('owns').inV().outE().inV().has(label,'item')", params)
+
+      GraphResultSet rs = session.executeGraph(s);
+      List items = rs.all().collect {it.asVertex() };
+      logger.info("Returned {} items of agent {}", items.size(), this.id());
+
+      return items;
     }
 }

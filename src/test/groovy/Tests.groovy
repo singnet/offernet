@@ -99,6 +99,20 @@ public class Tests {
 				assertNotNull(edge);
 		}
 
+		@Test
+		void allItemsTest() {
+				def agent=new Agent(on.session)
+				assertNotNull(agent);
+
+				def work = agent.ownsWork();
+				assertNotNull(work);
+
+				work.addDemand();
+				work.addOffer();
+
+				assertEquals(4,agent.allItems().size())
+		}
+
 		/*
 		* Work.groovy
 		*/
