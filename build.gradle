@@ -38,7 +38,7 @@ task stopTitanServer(type: Exec) {
     args TITAN_HOME + "titan/bin/titan.sh", "stop"
 }
 
-task execute(type: JavaExec) {
+task createNetwork1(type: JavaExec) {
   classpath sourceSets.main.runtimeClasspath
-  main = "net.vveitas.offernet.CreateOfferNetwork"
+  main = "net.vveitas.offernet.Simulations.createNetwork1"
 }

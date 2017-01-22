@@ -106,4 +106,7 @@ public class Agent  {
     	return vertex.getId();
     }
 
+    private getAllItems() {
+      
+    }
 }

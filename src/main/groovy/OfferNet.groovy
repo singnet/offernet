@@ -134,7 +134,7 @@ public class OfferNet implements AutoCloseable {
             def i = random.nextInt(agentIds.size())
             def agent = new Agent(agentIds[i],this.session)
             def work = new Work(this.session);
-            chaindedWorks.add(work.id()}
+            chainedWorks.add(work.id())
             def demand = work.addDemand(new Item(chain[x],this.session))
             def offer = work.addOffer(new Item(chain[x+1],this.session))
             agent.ownsWork(work);
