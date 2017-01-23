@@ -58,7 +58,7 @@ public class Item  {
     return properties;
   }
 
-  private Object getValue() {
+  private String getValue() {
     return this.vertex.getProperty("value").getValue();
   }
 
@@ -82,13 +82,13 @@ public class Item  {
   private Integer existsDistance(Item anotherItem) {
     Map params = new HashMap();
     params.put("thisItem", this.id());
-    params.put("anotherItem", item.id());
+    params.put("anotherItem", anotherItem.id());
 
     logger.warn("Retrieving esplicit (recorded to graph) distance link between items {} and {}", this.id(), anotherItem)
 
     SimpleGraphStatement s = new SimpleGraphStatement("g.V(thisItem).union("+
-                              ".outE('similar').as('e1').where(_.as('e1').inV(),eq(g.V(anotherItem))),"+
-                              ".inE('similar').as('e2').where(_.as('e2').outV(),eq(g.V(anotherItem)))).dedup()", params)
+                              "__.outE('similar').as('e1').where(__.as('e1').inV().next(),eq(g.V(anotherItem))),"+
+                              "inE('similar').as('e2').where(__.as('e2').outV().next(),eq(g.V(anotherItem)))).dedup()", params)
 
     GraphResultSet rs = session.executeGraph(s);
     def distance = -1
@@ -100,34 +100,50 @@ public class Item  {
 
   }
 
-  private Object connectSimilar(List itemsOfKnownAgents, Integer similarityThreshold) {
-      itemsOfKnownAgents.each {knownItem ->
-        if (this.existsDistance(knownItem) != -1) {
-          def distance = Utils.calculateDistance(this.vertex,knownItem);
-          logger.warn("The distance between items {} and {} is {}", this.vertex.id(),knownItem.id(),distance);
-          if (distance !< similarityThreshold) {
-              Map params = new HashMap();
-              params.put("item1", this.id());
-              params.put("item2",knownItem.id());
-              params.put('edgeLabel','distance');
-              params.put('valueKey','value');
-              params.put('valueName',distance);
+  private Object connect(Item knownItem, distance) {
+    Map params = new HashMap();
+    params.put("item1", this.id());
+    params.put("item2",knownItem.id());
+    params.put('edgeLabel','distance');
+    params.put('valueKey','value');
+    params.put('valueName',distance);
 
-              logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, param.value)
+    logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, param.value)
 
 
-              SimpleGraphStatement s = new SimpleGraphStatement(
-                      "def v1 = g.V(item1).next()\n" +
-                      "def v2 = g.V(item2).next()\n" +
-                      "v1.addEdge(edgeLabel, v2).property(valueKey,valueName)", params)
+    SimpleGraphStatement s = new SimpleGraphStatement(
+            "def v1 = g.V(item1).next()\n" +
+            "def v2 = g.V(item2).next()\n" +
+            "v1.addEdge(edgeLabel, v2).property(valueKey,valueName)", params)
 
-              GraphResultSet rs = session.executeGraph(s);
-              def edge = rs.one().asEdge();
-              logger.info("Added similar edge {} to the network", edge);
-          }
+    GraphResultSet rs = session.executeGraph(s);
+    def similarityEdge = rs.one().asEdge();
+    logger.info("Added distance edge {} to the network", edge);
+    return similarityEdge;
+
+  }
+
+  private Object connectIfSimilar(Item knownItem, Integer similarityThreshold) {
+      def edge = null;
+      if (this.existsDistance(knownItem) != -1) {
+        def distance = Utils.calculateDistance(this,knownItem);
+        logger.warn("The distance between items {} and {} is {}", this.vertex.id(),knownItem.id(),distance);
+        if (distance > similarityThreshold) {
+            logger.warn("distance {}  > similarityThreshold {}, therefore connecting", distance, similarityThreshold)
+            this.connect(knownItem,distance)
+        }
       }
-    }
-    return edge;
+      return similarityEdge;
+  }
+
+  private List connectAllSimilar(List itemsOfKnownAgents, Integer similarityThreshold) {
+      def similarityEdges = [];
+      itemsOfKnownAgents.each {knownItem ->
+          def edge = this.connectIfSimilar(knownItem,similarityThreshold)
+          if (edge != null) {similarityEdges.add(edge)}
+      }
+      logger.info("Added {} similarity Edges to graph", similarityEdges.size());
+      return similarityEdges;
   }
 
 

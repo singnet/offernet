@@ -46,6 +46,15 @@ public class Tests {
 		}
 
 
+		@Test
+		void connectTest() {
+			def item1 = new Item(on.session);
+			def item2 = new Item (on.session);
+			def distance = Utils.calculateDistance(item1,item2);
+			def similarityEdge = item1.connectIfSimilar(item1, distance);
+			assertNotNull(similarityEdge);
+		}
+
 		/*
 		* Agent.groovy
 		*/
@@ -282,5 +291,20 @@ public class Tests {
 			assertEquals(5,chain.size());
 		}
 
+		@Test
+		void calculateDistanceTest() {
+			def value1 = '000000'
+			def value2 = '000111'
+			def d1 = Utils.hammingDistance(value1,value2);
+			assertNotNull(d1)
+			def item1 = new Item(value1,on.session);
+			assertNotNull(item1)
+			def item2 = new Item(value2,on.session);
+			assertNotNull(item2)
+			def d2 = Utils.calculateDistance(item1,item2);
+			assertNotNull(d2)
+			assertEquals(d1,d2);
+
+		}
 
 }
