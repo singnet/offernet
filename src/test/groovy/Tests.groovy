@@ -86,25 +86,23 @@ public class Tests {
 		}
 
 		@Test
-		void connectIfSimilarExceedsSimilarityThresholdTest() {
+		void connectIfSimilarTest() {
 			def item1 = new Item(on.session);
 			def item2 = new Item (on.session);
 			def distance = Utils.calculateDistance(item1,item2);
-			def connectedEdge = item1.connectIfSimilar(item2, distance-1);
+			def connectedEdge = item1.connectIfSimilar(item2, distance+1);
 			assertNotNull(connectedEdge);
 			assertEquals(distance,Utils.edgePropertyValueAsInteger(connectedEdge,'value'))
 
+			def item3 = new Item(on.session);
+			def item4 = new Item (on.session);
+			distance = Utils.calculateDistance(item3,item4);
+
+			connectedEdge = item3.connectIfSimilar(item4, distance-1);
+			assertNull(connectedEdge);
+
 		}
 
-		@Test
-			void connectIfSimilarDoesNotExceedSimilarityThresholdTest() {
-				def item1 = new Item(on.session);
-				def item2 = new Item (on.session);
-				def distance = Utils.calculateDistance(item1,item2);
-
-				def connectedEdge = item1.connectIfSimilar(item2, distance+1);
-				assertNull(connectedEdge);
-			}
 
 		/*
 		* Agent.groovy

@@ -148,11 +148,11 @@ public class Item  {
       if (this.existsDistance(knownItem) == -1) {
         def distance = Utils.calculateDistance(this,knownItem);
         logger.warn("The distance between items {} and {} is {}", this.id(),knownItem.id(),distance);
-        if (distance > similarityThreshold) {
-            logger.warn("distance {}  > similarityThreshold {}, therefore connecting", distance, similarityThreshold)
+        if (distance < similarityThreshold) {
+            logger.warn("distance {}  < similarityThreshold {}, therefore connecting", distance, similarityThreshold)
             similarityEdge = this.connect(knownItem,distance)
         } else {
-           logger.warn("distance {}  not > similarityThreshold {}, therefore not connecting", distance, similarityThreshold)
+           logger.warn("distance {}  not < similarityThreshold {}, therefore not connecting", distance, similarityThreshold)
         }
       }
       return similarityEdge;
