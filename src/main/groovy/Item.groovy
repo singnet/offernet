@@ -106,8 +106,8 @@ public class Item  {
         }
     }
     assertTrue(distanceList.size()<2);
-    def distance = distanceList.isEmpty() ? -1 : ((String) distanceList[0].getProperty('value').getValue()).replace("\"", "").toInteger();
-
+    def distance = distanceList.isEmpty()!= true ? Utils.edgePropertyValueAsInteger(distanceList[0],'value') : -1;
+    logger.info("Retrieved distance value {} between item {} and {}",distance,this.id(),anotherItem.id())
     return distance;
   }
 
@@ -125,7 +125,7 @@ public class Item  {
     params.put('valueKey','value');
     params.put('valueName',distance);
 
-    logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, params.distance)
+    logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, distance)
 
 
     SimpleGraphStatement s = new SimpleGraphStatement(
@@ -144,13 +144,15 @@ public class Item  {
   }
 
   private Object connectIfSimilar(Item knownItem, Integer similarityThreshold) {
-      def edge = null;
-      if (this.existsDistance(knownItem) != -1) {
+      def similarityEdge = null;
+      if (this.existsDistance(knownItem) == -1) {
         def distance = Utils.calculateDistance(this,knownItem);
-        logger.warn("The distance between items {} and {} is {}", this.vertex.id(),knownItem.id(),distance);
+        logger.warn("The distance between items {} and {} is {}", this.id(),knownItem.id(),distance);
         if (distance > similarityThreshold) {
             logger.warn("distance {}  > similarityThreshold {}, therefore connecting", distance, similarityThreshold)
-            this.connect(knownItem,distance)
+            similarityEdge = this.connect(knownItem,distance)
+        } else {
+           logger.warn("distance {}  not > similarityThreshold {}, therefore not connecting", distance, similarityThreshold)
         }
       }
       return similarityEdge;

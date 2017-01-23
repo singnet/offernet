@@ -7,8 +7,10 @@ import com.datastax.driver.dse.graph.GraphResultSet
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import com.datastax.driver.dse.graph.Edge
+
 public class Utils {
-    static Logger logger = LoggerFactory.getLogger('OfferNet.class');
+    static Logger logger = LoggerFactory.getLogger('Utils.class');
 
     public static String generateBinaryString(int length) {
         String randomString="";
@@ -90,4 +92,10 @@ public class Utils {
   		return distance;
   	}
 
+
+    private static Integer edgePropertyValueAsInteger(Edge edge,String propertyName) {
+        logger.warn("Returning integer value of the property {} on edge {}", propertyName,edge.getId())
+        def intValue = ((String) edge.getProperty(propertyName).getValue()).replace("\"", "").toInteger()
+        return intValue
+    }
 }
