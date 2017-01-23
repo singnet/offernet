@@ -63,9 +63,9 @@ public class Tests {
 			def similarityEdge = item1.connect(item1, distance);
 			assertNotNull(similarityEdge);
 
-			def d1 = existsDistance(item1,item2);
+			def d1 =item1.existsDistance(item2);
 			assertNotNull(d1)
-			def d2 = existsDistance(item2,item1);
+			def d2 = item2.existsDistance(item1);
 			assertNotNull(d2)
 			assertEquals(d1,d2)
 
