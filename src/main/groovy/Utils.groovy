@@ -86,7 +86,7 @@ public class Utils {
   				distance++;
   			}
   		}
-
+      logger.info("Calculated humming distance between {} and {}: {}", left,right,distance)
   		return distance;
   	}
 
