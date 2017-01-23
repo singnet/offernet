@@ -108,17 +108,20 @@ public class Item  {
     params.put('valueKey','value');
     params.put('valueName',distance);
 
-    logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, param.value)
+    logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, params.value)
 
 
     SimpleGraphStatement s = new SimpleGraphStatement(
             "def v1 = g.V(item1).next()\n" +
             "def v2 = g.V(item2).next()\n" +
-            "v1.addEdge(edgeLabel, v2).property(valueKey,valueName)", params)
+            "def e = v1.addEdge(edgeLabel, v2)\n"+
+            "e.property(valueKey,valueName)\n"+
+            "e", params);
+            
 
     GraphResultSet rs = session.executeGraph(s);
     def similarityEdge = rs.one().asEdge();
-    logger.info("Added distance edge {} to the network", edge);
+    logger.info("Added distance edge {} to the network", similarityEdge);
     return similarityEdge;
 
   }

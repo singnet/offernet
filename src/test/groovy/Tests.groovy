@@ -51,7 +51,7 @@ public class Tests {
 			def item1 = new Item(on.session);
 			def item2 = new Item (on.session);
 			def distance = Utils.calculateDistance(item1,item2);
-			def similarityEdge = item1.connectIfSimilar(item1, distance);
+			def similarityEdge = item1.connect(item1, distance);
 			assertNotNull(similarityEdge);
 		}
 
