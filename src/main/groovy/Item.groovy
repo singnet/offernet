@@ -28,6 +28,17 @@ public class Item  {
     this(Utils.generateBinaryString(16),session)
 	}
 
+  private Item(Vertex vertex,DseSession session) {
+
+    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+    PropertyConfigurator.configure(config.toProperties())
+    logger = LoggerFactory.getLogger('Item.class');
+    this.session= session;
+    this.vertex=vertex
+    logger.warn("Created a new {} from known vertex {}", vertex.getLabel(), vertex.getId());
+
+  }
+
   private Item(String value, DseSession session) {
       def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
       PropertyConfigurator.configure(config.toProperties())
@@ -67,12 +78,14 @@ public class Item  {
   private List itemsOfKnownAgents(Integer maxDistance) {
     Map params = new HashMap();
     params.put("thisItem", this.id());
-    params.put("repeats", repeats);
+    params.put("repeats", maxDistance);
 
-    logger.warn("Getting a list of all connected items of item {} with loop {}", this.id(), repeats)
+    logger.warn("Getting a list of all connected items of item {} with loop {}", this.id(), maxDistance)
 
     SimpleGraphStatement s = new SimpleGraphStatement(
-          "g.V(thisItem).as('thisItem').in().has(label,'work').in('owns').repeat(both('knows').has(label,'agent')).times(repeats).dedup()", params)
+          "g.V(thisItem).in().in('owns').as('s').repeat("+
+            "both('knows').has(label,'agent')).times(repeats).emit().dedup().as('t')"+
+            ".where('t',neq('s')).out('owns').out()",params);
 
     GraphResultSet rs = session.executeGraph(s);
     List items = rs.all().collect {it.asVertex() };
@@ -148,11 +161,11 @@ public class Item  {
       if (this.existsDistance(knownItem) == -1) {
         def distance = Utils.calculateDistance(this,knownItem);
         logger.warn("The distance between items {} and {} is {}", this.id(),knownItem.id(),distance);
-        if (distance < similarityThreshold) {
-            logger.warn("distance {}  < similarityThreshold {}, therefore connecting", distance, similarityThreshold)
-            similarityEdge = this.connect(knownItem,distance)
+        if (distance <= similarityThreshold) {
+            logger.warn("distance {}  <= similarityThreshold {}, therefore connecting", distance, similarityThreshold)
+            similarityEdge = this.reciprocalDistanceLink(knownItem,distance)
         } else {
-           logger.warn("distance {}  not < similarityThreshold {}, therefore not connecting", distance, similarityThreshold)
+           logger.warn("distance {}  > similarityThreshold {}, therefore not connecting", distance, similarityThreshold)
         }
       }
       return similarityEdge;

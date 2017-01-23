@@ -103,6 +103,43 @@ public class Tests {
 
 		}
 
+		@Test
+		void connectAllSimilarTest() {
+			def item = new Item('1111',on.session);
+			List knownItemsList = []
+			knownItemsList.add(new Item ('1110',on.session));
+			knownItemsList.add(new Item ('1100',on.session));
+			knownItemsList.add(new Item ('1000',on.session));
+			knownItemsList.add(new Item ('0000',on.session));
+			List similarityEdges = item.connectAllSimilar(knownItemsList,2)
+			assertEquals(2,similarityEdges.size())
+		}
+
+		@Test
+		void itemsOfKnownAgentsTest() {
+			def agent1 = new Agent(on.session)
+			def agent2 = new Agent(on.session)
+			def agent3 = new Agent(on.session)
+			def agent4 = new Agent(on.session)
+
+			agent1.knowsAgent(agent2);
+			agent2.knowsAgent(agent3);
+			agent3.knowsAgent(agent4);
+
+			def work1 = agent1.ownsWork();
+			agent2.ownsWork()
+			agent3.ownsWork()
+			agent4.ownsWork()
+
+			def demand = new Item(work1.getDemands()[0],on.session);
+			List items = demand.itemsOfKnownAgents(2)
+			assertNotNull(items)
+			assertEquals(4,items.size())
+			items.each{ item ->
+				assertEquals('item',item.getLabel())
+			}
+
+		}
 
 		/*
 		* Agent.groovy

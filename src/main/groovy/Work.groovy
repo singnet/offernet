@@ -47,6 +47,16 @@ public class Work  {
         this.addOffer();
 	}
 
+  private Work(Vertex vertex,DseSession session) {
+
+    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+    PropertyConfigurator.configure(config.toProperties())
+    logger = LoggerFactory.getLogger('Work.class');
+    this.session= session;
+    this.vertex=vertex
+    logger.warn("Created a new {} from known vertex {}", vertex.getLabel(), vertex.getId());
+    
+  }
     public id() {
     	return this.vertex.getId();
     }
