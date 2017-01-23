@@ -17,6 +17,8 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import static org.junit.Assert.*
+
 public class Item  {
     private Vertex vertex;
     private DseSession session;
@@ -79,28 +81,43 @@ public class Item  {
     return items;
   }
 
-  private Integer existsDistance(Item anotherItem) {
+  private List distanceEdges() {
+
     Map params = new HashMap();
     params.put("thisItem", this.id());
-    params.put("anotherItem", anotherItem.id());
 
-    logger.warn("Retrieving esplicit (recorded to graph) distance link between items {} and {}", this.id(), anotherItem)
-
-    SimpleGraphStatement s = new SimpleGraphStatement("g.V(thisItem).union("+
-                              "__.outE('similar').as('e1').where(__.as('e1').inV().next(),eq(g.V(anotherItem))),"+
-                              "inE('similar').as('e2').where(__.as('e2').outV().next(),eq(g.V(anotherItem)))).dedup()", params)
+    SimpleGraphStatement s = new SimpleGraphStatement(
+          "g.V(thisItem).outE('distance')", params)
 
     GraphResultSet rs = session.executeGraph(s);
-    def distance = -1
-    List results = rs.all()
-    if (! results.isEmpty()) {distanceEdge = rs.one().getProperty('value');}
-    logger.info("Found explicit distance {} between {} and {}", distance, this.id(),anotherItem.id());
-
-    return distance;
+    List distanceEdges = rs.all().collect {it.asEdge()};
+    logger.info("Found {} items with explicit distance from item {}",distanceEdges.size(),this.id());
+    return distanceEdges;
 
   }
 
-  private Object connect(Item knownItem, distance) {
+  private Integer existsDistance(Item anotherItem) {
+    logger.info("Checking if explicit distance link exists between from {} to {}",this.id(),anotherItem.id())
+    List distanceList = []
+    this.distanceEdges().each { outEdge ->
+        if (outEdge.getInV() == anotherItem.id()) {
+          distanceList.add(outEdge);
+          logger.info("Found distance link {}",outEdge)
+        }
+    }
+    assertTrue(distanceList.size()<2);
+    def distance = distanceList.isEmpty() ? -1 : ((String) distanceList[0].getProperty('value').getValue()).replace("\"", "").toInteger();
+
+    return distance;
+  }
+
+  private Object reciprocalDistanceLink(Item knownItem, Integer distance) {
+     // every distance edge created also triggers the creation of reciprocal edge with same parameters
+     knownItem.connect(this,distance);
+     return this.connect(knownItem, distance);
+  }
+
+  private Object connect(Item knownItem, Integer distance) {
     Map params = new HashMap();
     params.put("item1", this.id());
     params.put("item2",knownItem.id());
@@ -108,7 +125,7 @@ public class Item  {
     params.put('valueKey','value');
     params.put('valueName',distance);
 
-    logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, params.value)
+    logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, params.distance)
 
 
     SimpleGraphStatement s = new SimpleGraphStatement(
@@ -117,11 +134,11 @@ public class Item  {
             "def e = v1.addEdge(edgeLabel, v2)\n"+
             "e.property(valueKey,valueName)\n"+
             "e", params);
-            
 
     GraphResultSet rs = session.executeGraph(s);
     def similarityEdge = rs.one().asEdge();
     logger.info("Added distance edge {} to the network", similarityEdge);
+
     return similarityEdge;
 
   }

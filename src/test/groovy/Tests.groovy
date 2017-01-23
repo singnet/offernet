@@ -55,6 +55,49 @@ public class Tests {
 			assertNotNull(similarityEdge);
 		}
 
+		@Test
+		void reciprocalDistanceLinkTest() {
+			def item1 = new Item(on.session);
+			def item2 = new Item (on.session);
+			def distance = Utils.calculateDistance(item1,item2);
+			def similarityEdge = item1.connect(item1, distance);
+			assertNotNull(similarityEdge);
+
+			def d1 = existsDistance(item1,item2);
+			assertNotNull(d1)
+			def d2 = existsDistance(item2,item1);
+			assertNotNull(d2)
+			assertEquals(d1,d2)
+
+		}
+
+
+		@Test
+		void existsDistanceTest() {
+			def item1 = new Item(on.session);
+			def item2 = new Item (on.session);
+			def d1 = Utils.calculateDistance(item1,item2);
+			def similarityEdge = item1.connect(item2, d1);
+			assertNotNull(similarityEdge);
+
+			def d2 = item1.existsDistance(item2);
+			assertNotNull(d2)
+			assertEquals(d1,d2)
+		}
+
+		@Test
+		void connectIfSimilarTest() {
+			def item1 = new Item(on.session);
+			def item2 = new Item (on.session);
+			def distance = Utils.calculateDistance(item1,item2);
+			def connectedEdge = item1.connect(item1, distance-1);
+			assertNotNull(similarityEdge);
+			assertEquals(distance-1,similarityEdge.getProperty('value'))
+
+			connectedEdge = item1.connect(item1, distance+1);
+			assertNull(connectedEdge);
+		}
+
 		/*
 		* Agent.groovy
 		*/
