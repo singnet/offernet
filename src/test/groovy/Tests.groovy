@@ -111,7 +111,7 @@ public class Tests {
 			knownItemsList.add(new Item ('1100',on.session));
 			knownItemsList.add(new Item ('1000',on.session));
 			knownItemsList.add(new Item ('0000',on.session));
-			List similarityEdges = item.connectAllSimilar(knownItemsList,2)
+			List similarityEdges = item.connectAllSimilar(knownItemsList.collect{it.vertex},2)
 			assertEquals(2,similarityEdges.size())
 		}
 
