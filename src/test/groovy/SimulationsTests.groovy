@@ -16,8 +16,6 @@ public class SimulationsTests {
 		@Test
 		void createOfferNetworkTest() {
 
-			Simulations.createAgentNetwork(10,25,[3,2])
-
 			// test if nework was created correctly
 		}
 }

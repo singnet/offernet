@@ -121,4 +121,17 @@ public class Agent  {
 
       return items;
     }
+
+    private Integer searchAndConnect(Integer similarityThreshold, Integer maxDistance) {
+      logger.warn('Search and connect all items of agent {} with its known agents at distance {}', this.id(), maxDistance)
+      def totalConnectionsCreated = 0;
+      this.allItems().collect{ vertex -> new Item(vertex,this.session) }.each {item ->
+        def itemsOfKnownAgents = item.itemsOfKnownAgents(maxDistance);
+        def similarityEdges = item.connectAllSimilar(itemsOfKnownAgents,similarityThreshold);
+        logger.warn("Found and connected {} similar items to the item {}",similarityEdges.size(),item.id())
+        totalConnectionsCreated=totalConnectionsCreated+similarityEdges.size();
+      }
+      logger.warn("Created {} new distance connections for agent {}", totalConnectionsCreated, this.id())
+      return totalConnectionsCreated;
+    }
 }

@@ -208,6 +208,27 @@ public class Tests {
 				assertEquals(4,agent.allItems().size())
 		}
 
+		@Test
+		void searchAndConnectTest() {
+			on.flushVertices("agent");
+			def agent1 = new Agent(on.session);
+			agent1.ownsWork(new Work([new Item ('111110',on.session)],[new Item ('000000',on.session)],on.session));
+			def agent2 = new Agent(on.session);
+			agent2.ownsWork(new Work([new Item ('111000',on.session)],[new Item ('110000',on.session)],on.session));
+			def agent3 = new Agent(on.session);
+			agent3.ownsWork(new Work([new Item ('100000',on.session)],[new Item ('111100',on.session)],on.session));
+			def agent4 = new Agent(on.session);
+			agent4.ownsWork(new Work([new Item ('111110',on.session)],[new Item ('000000',on.session)],on.session));
+
+			agent1.knowsAgent(agent2);
+			agent2.knowsAgent(agent3);
+			agent3.knowsAgent(agent4);
+
+			assertEquals(4,agent1.searchAndConnect(2,2))
+			assertEquals(2,agent1.searchAndConnect(2,3)) // two because the other 4 are already connected
+
+		}
+
 		/*
 		* Work.groovy
 		*/

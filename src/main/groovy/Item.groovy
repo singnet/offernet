@@ -173,7 +173,7 @@ public class Item  {
 
   private List connectAllSimilar(List itemsOfKnownAgents, Integer similarityThreshold) {
       def similarityEdges = [];
-      itemsOfKnownAgents.each {knownItem ->
+      itemsOfKnownAgents.collect{vertex -> new Item(vertex,this.session) }.each {knownItem ->
           def edge = this.connectIfSimilar(knownItem,similarityThreshold)
           if (edge != null) {similarityEdges.add(edge)}
       }

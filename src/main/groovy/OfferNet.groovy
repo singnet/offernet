@@ -64,7 +64,7 @@ public class OfferNet implements AutoCloseable {
         logger.info("Closed cluster {}",clusterName);
     }
 
-    public createAgentNetwork(int numberOfAgents) {
+    public List createAgentNetwork(int numberOfAgents) {
         List agentsList = new ArrayList()
         agentsList.add(new Agent(this.session))
 
@@ -77,6 +77,7 @@ public class OfferNet implements AutoCloseable {
             agentsList.add(Agent2)
         }
         logger.info("Created a network of "+numberOfAgents+ " Agents")
+        return agentsList;
     }
 
     public void flushVertices(String labelName) {

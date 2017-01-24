@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory
 
 import static org.junit.Assert.*
 
-
 public class Work  {
     private Vertex vertex;
     private DseSession session;
@@ -55,7 +54,33 @@ public class Work  {
     this.session= session;
     this.vertex=vertex
     logger.warn("Created a new {} from known vertex {}", vertex.getLabel(), vertex.getId());
-    
+
+  }
+
+  private Work(List demands, List offers, DseSession session) {
+    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+    PropertyConfigurator.configure(config.toProperties())
+    logger = LoggerFactory.getLogger('Work.class');
+    this.session= session;
+
+    Map params = new HashMap();
+    params.put("labelValue", "work");
+
+    GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(label, labelValue)", params));
+    logger.warn("Executed statement: {}", Utils.getStatement(rs));
+    logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
+    this.vertex = rs.one().asVertex();
+
+    logger.warn("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
+
+    demands.each {demand ->
+      this.addDemand(demand);
+    }
+    offers.each {offer ->
+      this.addDemand(offer);
+    }
+
+
   }
     public id() {
     	return this.vertex.getId();
