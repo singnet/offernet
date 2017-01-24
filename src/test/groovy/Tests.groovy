@@ -219,6 +219,19 @@ public class Tests {
     }
 
 		@Test
+		void createWorkFromExistingVertexTest() {
+			def work1 = new Work(on.session);
+			assertNotNull(work1);
+			def vertex1 = work1.vertex;
+			assertNotNull(vertex1);
+
+			def work2 = new Work(vertex1,on.session);
+			assertNotNull(work2);
+			assertEquals(work1.vertex,work2.vertex);
+
+		}
+
+		@Test
 		void getWorkIdTest() {
 			def id = new Work(on.session).id();
 			assertNotNull(id);
