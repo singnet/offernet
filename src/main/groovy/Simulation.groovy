@@ -20,7 +20,7 @@ class Simulation {
 	public one() {
 		def chains = [Utils.createChain(3),Utils.createChain(2)]
 		def agentList = this.createAgentNetwork(10,20,chains);
-		this.connectIfSimilarForAllAgents(agentList,8,3);
+		this.connectIfSimilarForAllAgents(agentList,8,2);
 		//search Cycles (not implemented yet)
 
 	}

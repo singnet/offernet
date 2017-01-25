@@ -97,7 +97,7 @@ public class Utils {
 
     private static Integer edgePropertyValueAsInteger(Edge edge,String propertyName) {
         logger.warn("Returning integer value of the property {} on edge {}", propertyName,edge.getId())
-        def intValue = ((String) edge.getProperty(propertyName).getValue()).replace("\"", "").toInteger()
+        def intValue = edge.getProperty('distance').getValue().asInt()
         return intValue
     }
 
