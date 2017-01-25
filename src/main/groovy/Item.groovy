@@ -25,7 +25,7 @@ public class Item  {
     private Logger logger;
 
 	private Item(DseSession session) {
-    this(Utils.generateBinaryString(16),session)
+    this(Utils.generateBinaryString(Parameters.parameters.binaryStringLength),session)
 	}
 
   private Item(Vertex vertex,DseSession session) {
@@ -75,13 +75,13 @@ public class Item  {
     return this.vertex.getProperty("value").getValue();
   }
 
-  private List itemsOfKnownAgents(Integer maxDistance) {
+  private List itemsOfKnownAgents(Integer maxReachDistance) {
     def start = System.currentTimeMillis()
     Map params = new HashMap();
     params.put("thisItem", this.id());
-    params.put("repeats", maxDistance);
+    params.put("repeats", maxReachDistance);
 
-    logger.warn("Getting a list of all connected items of item {} with loop {}", this.id(), maxDistance)
+    logger.warn("Getting a list of all connected items of item {} with loop {}", this.id(), maxReachDistance)
 
     SimpleGraphStatement s = new SimpleGraphStatement(
           "g.V(thisItem).in().in('owns').as('s').repeat("+
@@ -90,56 +90,56 @@ public class Item  {
 
     GraphResultSet rs = session.executeGraph(s);
     List items = rs.all().collect {it.asVertex() };
-    logger.info("Returned {} items with maxDistance {} from item {}", items.size(), maxDistance, this.id());
+    logger.info("Returned {} items with maxReachDistance {} from item {}", items.size(), maxReachDistance, this.id());
     logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     return items;
   }
 
-  private List distanceEdges() {
+  private List similarityEdges() {
 
     Map params = new HashMap();
     params.put("thisItem", this.id());
 
     SimpleGraphStatement s = new SimpleGraphStatement(
-          "g.V(thisItem).outE('distance')", params)
+          "g.V(thisItem).outE('similarity')", params)
 
     GraphResultSet rs = session.executeGraph(s);
-    List distanceEdges = rs.all().collect {it.asEdge()};
-    logger.info("Found {} items with explicit distance from item {}",distanceEdges.size(),this.id());
-    return distanceEdges;
+    List similarityEdges = rs.all().collect {it.asEdge()};
+    logger.info("Found {} items with explicit similarity from item {}",similarityEdges.size(),this.id());
+    return similarityEdges;
 
   }
 
-  private Integer existsDistance(Item anotherItem) {
-    logger.info("Checking if explicit distance link exists between from {} to {}",this.id(),anotherItem.id())
-    List distanceList = []
-    this.distanceEdges().each { outEdge ->
+  private Integer existsSimilarity(Item anotherItem) {
+    logger.info("Checking if explicit similarity link exists between from {} to {}",this.id(),anotherItem.id())
+    List similarityList = []
+    this.similarityEdges().each { outEdge ->
         if (outEdge.getInV() == anotherItem.id()) {
-          distanceList.add(outEdge);
-          logger.info("Found distance link {}",outEdge)
+          similarityList.add(outEdge);
+          logger.info("Found similarity link {}",outEdge)
         }
     }
-    assertTrue(distanceList.size()<2);
-    def distance = distanceList.isEmpty()!= true ? Utils.edgePropertyValueAsInteger(distanceList[0],'distance') : -1;
-    logger.info("Retrieved distance value {} between item {} and {}",distance,this.id(),anotherItem.id())
-    return distance;
+    assertTrue(similarityList.size()<2);
+    def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValueAsInteger(similarityList[0],'similarity') : -1;
+    logger.info("Retrieved similarity value {} between item {} and {}",similarity,this.id(),anotherItem.id())
+    return similarity;
   }
 
-  private Object reciprocalDistanceLink(Item knownItem, Integer distance) {
-     // every distance edge created also triggers the creation of reciprocal edge with same parameters
-     knownItem.connect(this,distance);
-     return this.connect(knownItem, distance);
+  private Object reciprocalDistanceLink(Item knownItem, Integer similarity) {
+     // every similarity edge created also triggers the creation of reciprocal edge with same parameters
+     knownItem.connect(this,similarity);
+     return this.connect(knownItem, similarity);
   }
 
-  private Object connect(Item knownItem, Integer distance) {
+  private Object connect(Item knownItem, Integer similarity) {
     Map params = new HashMap();
     params.put("item1", this.id());
     params.put("item2",knownItem.id());
-    params.put('edgeLabel','distance');
-    params.put('valueKey','distance');
-    params.put('valueName',distance);
+    params.put('edgeLabel','similarity');
+    params.put('valueKey','similarity');
+    params.put('valueName',similarity);
 
-    logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, distance)
+    logger.warn("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
 
     SimpleGraphStatement s = new SimpleGraphStatement(
             "def v1 = g.V(item1).next()\n" +
@@ -150,7 +150,7 @@ public class Item  {
 
     GraphResultSet rs = session.executeGraph(s);
     def similarityEdge = rs.one().asEdge();
-    logger.info("Added distance edge {} to the network", similarityEdge);
+    logger.info("Added similarity edge {} to the network", similarityEdge);
 
     return similarityEdge;
 
@@ -159,14 +159,14 @@ public class Item  {
   private Object connectIfSimilar(Item knownItem, Integer similarityThreshold) {
       def start = System.currentTimeMillis()
       def similarityEdge = null;
-      if (this.existsDistance(knownItem) == -1) {
-        def distance = Utils.calculateDistance(this,knownItem);
-        logger.warn("The distance between items {} and {} is {}", this.id(),knownItem.id(),distance);
-        if (distance <= similarityThreshold) {
-            logger.warn("distance {}  <= similarityThreshold {}, therefore connecting", distance, similarityThreshold)
-            similarityEdge = this.reciprocalDistanceLink(knownItem,distance)
+      if (this.existsSimilarity(knownItem) == -1) {
+        def similarity = Utils.calculateSimilarity(this,knownItem);
+        logger.warn("The similarity between items {} and {} is {}", this.id(),knownItem.id(),similarity);
+        if (similarity >= similarityThreshold) {
+            logger.warn("similarity {}  >= similarityThreshold {}, therefore connecting", similarity, similarityThreshold)
+            similarityEdge = this.reciprocalDistanceLink(knownItem,similarity)
         } else {
-           logger.warn("distance {}  > similarityThreshold {}, therefore not connecting", distance, similarityThreshold)
+           logger.warn("similarity {} < similarityThreshold {}, therefore not connecting", similarity, similarityThreshold)
         }
       }
       logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
@@ -185,10 +185,10 @@ public class Item  {
       return similarityEdges;
   }
 
-  private List connectAllSimilar(Integer maxDistance, Integer similarityThreshold) {
+  private List connectAllSimilar(Integer maxReachDistance, Integer similarityThreshold) {
       def start = System.currentTimeMillis()
       def similarityEdges = [];
-      this.itemsOfKnownAgents(maxDistance).collect{vertex -> new Item(vertex,this.session) }.each {knownItem ->
+      this.itemsOfKnownAgents(maxReachDistance).collect{vertex -> new Item(vertex,this.session) }.each {knownItem ->
           def edge = this.connectIfSimilar(knownItem,similarityThreshold)
           if (edge != null) {similarityEdges.add(edge)}
       }
@@ -203,13 +203,13 @@ public class Item  {
   private Object cycleSearch(Integer cutoffValue, Integer similarityConstraint) {
     Map params = new HashMap();
     params.put("thisItem", this.id());
-    params.put("cutoffValue", maxDistance);
+    params.put("cutoffValue", cutoffValue);
     params.put("similarityConstraint", similarityConstraint);
 
     logger.warn("Searching for the cycle starting from item {}, cutoffValue {}, similarityConstraint {}", this.id(), cutoffValue, similarityConstraint)
 
     SimpleGraphStatement s = new SimpleGraphStatement(
-          "g.V().has(label,'item').range(0,1).bothE('distance').where(values('distance').is(gt(6)))"
+          "g.V().has(label,'item').range(0,1).bothE('similarity').where(values('similarity').is(gt(6)))"
           // finished here - does not work, because something is wrong with types -- try to run from here...
           // it seems that everything recorded to the graph is a String type, therefore comparison work correctly only up to 9
           // use the length of the item value 9 for now and ask the question to the group.
@@ -217,7 +217,7 @@ public class Item  {
 
     GraphResultSet rs = session.executeGraph(s);
     List items = rs.all().collect {it.asVertex() };
-    logger.info("Returned {} items with maxDistance {} from item {}", items.size(), maxDistance, this.id());
+    logger.info("Returned {} items with maxReachDistance {} from item {}", items.size(), maxReachDistance, this.id());
 
     return items;
 

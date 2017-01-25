@@ -35,7 +35,7 @@ public class Utils {
     public static List createChain(int length) {
         List chain = []
         length.times {
-            chain.add(generateBinaryString(16))
+            chain.add(generateBinaryString(Parameters.parameters.binaryStringLength))
         }
         logger.info("Created chain of length with: { end: {}, start: {} }",chain.last(),chain.first())
         return chain
@@ -51,53 +51,41 @@ public class Utils {
       return executionStatement;
     }
 
-    public static Integer calculateDistance(Item itemOne, Item itemTwo) {
-  		return Utils.hammingDistance(itemOne.getValue(), itemTwo.getValue())
+    public static Integer calculateSimilarity(Item itemOne, Item itemTwo) {
+  		return Utils.veitasSimilarity(itemOne.getValue(), itemTwo.getValue())
   	}
 
-    public static Integer hammingDistance(CharSequence left, CharSequence right) {
-  		/*
-  		 * Licensed to the Apache Software Foundation (ASF) under one or more
-  		 * contributor license agreements.  See the NOTICE file distributed with
-  		 * this work for additional information regarding copyright ownership.
-  		 * The ASF licenses this file to You under the Apache License, Version 2.0
-  		 * (the "License"); you may not use this file except in compliance with
-  		 * the License.  You may obtain a copy of the License at
-  		 *
-  		 *      http://www.apache.org/licenses/LICENSE-2.0
-  		 *
-  		 * Unless required by applicable law or agreed to in writing, software
-  		 * distributed under the License is distributed on an "AS IS" BASIS,
-  		 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  		 * See the License for the specific language governing permissions and
-  		 * limitations under the License.
-  		 */
-
-  		// taken from https://commons.apache.org/sandbox/commons-text/jacoco/org.apache.commons.text.similarity/HammingDistance.java.html
+    public static Integer veitasSimilarity(CharSequence left, CharSequence right) {
+      // this is simply a count of positions in the string where both strings have values of ones
+      // the logic behind being that positions encode features and 1 means that feature exists
 
   		if (left == null || right == null) {
   			throw new IllegalArgumentException("Strings must not be null");
   		}
 
-  		if (left.length() != right.length()) {
-  			throw new IllegalArgumentException("Strings must have the same length");
+  		if (left.length() > right.length()) {
+        def temp = left;
+        left=right;
+        right=left;
+  			// strings can have different lengths, but the measuring should be based on the shorter string
+        // -- so we have to know which one is shorter..
   		}
 
-  		int distance = 0;
+  		int similarity = 0;
 
   		for (int i = 0; i < left.length(); i++) {
-  			if (left.charAt(i) != right.charAt(i)) {
-  				distance++;
+  			if (left.charAt(i) =='1' && left.charAt(i) == right.charAt(i)) {
+  				similarity++;
   			}
   		}
-      logger.info("Calculated humming distance between {} and {}: {}", left,right,distance)
-  		return distance;
+      logger.info("Calculated veitas similarity between {} and {}: {}", left,right,similarity)
+  		return similarity;
   	}
 
 
     private static Integer edgePropertyValueAsInteger(Edge edge,String propertyName) {
         logger.warn("Returning integer value of the property {} on edge {}", propertyName,edge.getId())
-        def intValue = edge.getProperty('distance').getValue().asInt()
+        def intValue = edge.getProperty('similarity').getValue().asInt()
         return intValue
     }
 

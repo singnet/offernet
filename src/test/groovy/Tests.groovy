@@ -50,8 +50,8 @@ public class Tests {
 		void connectTest() {
 			def item1 = new Item(on.session);
 			def item2 = new Item (on.session);
-			def distance = Utils.calculateDistance(item1,item2);
-			def similarityEdge = item1.connect(item1, distance);
+			def similarity = Utils.calculateSimilarity(item1,item2);
+			def similarityEdge = item1.connect(item1, similarity);
 			assertNotNull(similarityEdge);
 		}
 
@@ -59,13 +59,13 @@ public class Tests {
 		void reciprocalDistanceLinkTest() {
 			def item1 = new Item(on.session);
 			def item2 = new Item (on.session);
-			def distance = Utils.calculateDistance(item1,item2);
-			def similarityEdge = item1.connect(item1, distance);
+			def similarity = Utils.calculateSimilarity(item1,item2);
+			def similarityEdge = item1.connect(item1, similarity);
 			assertNotNull(similarityEdge);
 
-			def d1 =item1.existsDistance(item2);
+			def d1 =item1.existsSimilarity(item2);
 			assertNotNull(d1)
-			def d2 = item2.existsDistance(item1);
+			def d2 = item2.existsSimilarity(item1);
 			assertNotNull(d2)
 			assertEquals(d1,d2)
 
@@ -73,14 +73,14 @@ public class Tests {
 
 
 		@Test
-		void existsDistanceTest() {
+		void existsSimilarityTest() {
 			def item1 = new Item(on.session);
 			def item2 = new Item (on.session);
-			def d1 = Utils.calculateDistance(item1,item2);
+			def d1 = Utils.calculateSimilarity(item1,item2);
 			def similarityEdge = item1.connect(item2, d1);
 			assertNotNull(similarityEdge);
 
-			def d2 = item1.existsDistance(item2);
+			def d2 = item1.existsSimilarity(item2);
 			assertNotNull(d2)
 			assertEquals(d1,d2)
 		}
@@ -89,16 +89,16 @@ public class Tests {
 		void connectIfSimilarTest() {
 			def item1 = new Item(on.session);
 			def item2 = new Item (on.session);
-			def distance = Utils.calculateDistance(item1,item2);
-			def connectedEdge = item1.connectIfSimilar(item2, distance+1);
+			def similarity = Utils.calculateSimilarity(item1,item2);
+			def connectedEdge = item1.connectIfSimilar(item2, similarity-1);
 			assertNotNull(connectedEdge);
-			assertEquals(distance,Utils.edgePropertyValueAsInteger(connectedEdge,'value'))
+			assertEquals(similarity,Utils.edgePropertyValueAsInteger(connectedEdge,'value'))
 
 			def item3 = new Item(on.session);
 			def item4 = new Item (on.session);
-			distance = Utils.calculateDistance(item3,item4);
+			similarity = Utils.calculateSimilarity(item3,item4);
 
-			connectedEdge = item3.connectIfSimilar(item4, distance-1);
+			connectedEdge = item3.connectIfSimilar(item4, similarity+1);
 			assertNull(connectedEdge);
 
 		}
@@ -214,7 +214,7 @@ public class Tests {
 			def agent1 = new Agent(on.session);
 			agent1.ownsWork(new Work([new Item ('111110',on.session)],[new Item ('000000',on.session)],on.session));
 			def agent2 = new Agent(on.session);
-			agent2.ownsWork(new Work([new Item ('111000',on.session)],[new Item ('110000',on.session)],on.session));
+			agent2.ownsWork(new Work([new Item ('111100',on.session)],[new Item ('110000',on.session)],on.session));
 			def agent3 = new Agent(on.session);
 			agent3.ownsWork(new Work([new Item ('100000',on.session)],[new Item ('111100',on.session)],on.session));
 			def agent4 = new Agent(on.session);
@@ -224,8 +224,8 @@ public class Tests {
 			agent2.knowsAgent(agent3);
 			agent3.knowsAgent(agent4);
 
-			assertEquals(4,agent1.searchAndConnect(2,2))
-			assertEquals(2,agent1.searchAndConnect(2,3)) // two because the other 4 are already connected
+			assertEquals(3,agent1.searchAndConnect(2,2))
+			assertEquals(1,agent1.searchAndConnect(2,3)) // two because the other 4 are already connected
 
 		}
 
@@ -400,7 +400,7 @@ public class Tests {
 
 		@Test
 		void generateBinaryStringTest() {
-				String string = Utils.generateBinaryString(16);
+				String string = Utils.generateBinaryString(Parameters.parameters.binaryStringLength);
 				assertEquals(16,string.length());
 				assertTrue(string.toSet().sort().join() == '01' | string.toSet().sort().join() == '10');
 		}
@@ -412,16 +412,16 @@ public class Tests {
 		}
 
 		@Test
-		void calculateDistanceTest() {
+		void calculateSimilarityTest() {
 			def value1 = '000000'
 			def value2 = '000111'
-			def d1 = Utils.hammingDistance(value1,value2);
+			def d1 = Utils.veitasSimilarity(value1,value2);
 			assertNotNull(d1)
 			def item1 = new Item(value1,on.session);
 			assertNotNull(item1)
 			def item2 = new Item(value2,on.session);
 			assertNotNull(item2)
-			def d2 = Utils.calculateDistance(item1,item2);
+			def d2 = Utils.calculateSimilarity(item1,item2);
 			assertNotNull(d2)
 			assertEquals(d1,d2);
 
@@ -434,7 +434,7 @@ public class Tests {
 		@Test
 		void parametersTest() {
 			assertEquals(16,Parameters.parameters.binaryStringLength);
-			assertEquals(8,Parameters.parameters.similarityConstraint);
+			assertEquals(8,Parameters.parameters.similarityThreshold);
 		}
 
 }

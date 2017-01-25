@@ -27,12 +27,12 @@ public class SimulationTests {
 			// test if nework was created correctly
 		}
 
-		private Integer numDistanceEdgesNotLessSimilar(Integer similarityConstraint) {
+		private Integer numsimilarityEdgesNotLessSimilar(Integer similarityConstraint) {
 			Map params = new HashMap();
 			params.put("similarityConstraint", similarityConstraint);
 
 			SimpleGraphStatement s = new SimpleGraphStatement(
-						"g.E().has(label,'distance').has('distance',gte(similarityConstraint).count()",params);
+						"g.E().has(label,'similarity').has('similarity',gte(similarityConstraint).count()",params);
 			GraphResultSet rs = session.executeGraph(s);
 
 			return rs.one().object;

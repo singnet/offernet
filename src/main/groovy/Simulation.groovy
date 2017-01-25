@@ -20,7 +20,7 @@ class Simulation {
 	public one() {
 		def chains = [Utils.createChain(3),Utils.createChain(2)]
 		def agentList = this.createAgentNetwork(10,20,chains);
-		this.connectIfSimilarForAllAgents(agentList,8,2);
+		this.connectIfSimilarForAllAgents(agentList,Parameters.parameters.similarityThreshold,2);
 		//search Cycles (not implemented yet)
 
 	}
@@ -40,13 +40,13 @@ class Simulation {
 
 	}
 
-	private void connectIfSimilarForAllAgents(List agentList, Integer similarityThreshold, Integer maxDistance) {
+	private void connectIfSimilarForAllAgents(List agentList, Integer similarityThreshold, Integer maxReachDistance) {
 		logger.warn("Searching and connecting similar items of all agents in the graph:")
 		def newConnectionsCreated = 0;
 		agentList.each {agent ->
-			 newConnectionsCreated += agent.searchAndConnect(similarityThreshold,maxDistance);
+			 newConnectionsCreated += agent.searchAndConnect(similarityThreshold,maxReachDistance);
 		}
-		logger.warn("Created {} new 'distance' links between items in the graph",newConnectionsCreated)
+		logger.warn("Created {} new 'similarity' links between items in the graph",newConnectionsCreated)
 	}
 
 
