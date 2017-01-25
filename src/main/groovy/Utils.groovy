@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory
 
 import com.datastax.driver.dse.graph.Edge
 
+import org.codehaus.groovy.runtime.StackTraceUtils
+
 public class Utils {
     static Logger logger = LoggerFactory.getLogger('Utils.class');
 
@@ -97,5 +99,10 @@ public class Utils {
         logger.warn("Returning integer value of the property {} on edge {}", propertyName,edge.getId())
         def intValue = ((String) edge.getProperty(propertyName).getValue()).replace("\"", "").toInteger()
         return intValue
+    }
+
+    private static String getCurrentMethodName(){
+      def marker = new Throwable()
+      return StackTraceUtils.sanitize(marker).stackTrace[1].methodName
     }
 }

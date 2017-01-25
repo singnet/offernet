@@ -1,17 +1,26 @@
 package net.vveitas.offernet
 
+import org.apache.log4j.PropertyConfigurator
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 class Simulation {
 	OfferNet on;
+	Logger logger;
 
 	private Simulation() {
+		def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+		PropertyConfigurator.configure(config.toProperties())
+		logger = LoggerFactory.getLogger('Simulation.class');
+
 		on = new OfferNet();
 		on.flushVertices();
 	}
 
 	public one() {
 		def chains = [Utils.createChain(3),Utils.createChain(2)]
-		def agentList = on.createAgentNetwork(10,20,chains);
-		on.connectIfSimilarForAllAgents(agentList,8,3);
+		def agentList = this.createAgentNetwork(10,20,chains);
+		this.connectIfSimilarForAllAgents(agentList,8,3);
 		//search Cycles (not implemented yet)
 
 	}
@@ -19,13 +28,15 @@ class Simulation {
 	private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
 
 		def agentList = on.createAgentNetwork(numberOfAgents)
+		agentList.each {agent ->
+			agent.ownsWork()
+		}
 		on.addRandomWorksToAgents(numberOfRandomWorks)
-		def se = [];
-		chains.each {chainLength ->
-			se.add(on.addChainToNetwork(Utils.createChain(chainLength)))
+		chains.each {chain ->
+			on.addChainToNetwork(chain)
 		}
 
-		return se;
+		return agentList;
 
 	}
 
@@ -35,7 +46,7 @@ class Simulation {
 		agentList.each {agent ->
 			 newConnectionsCreated += agent.searchAndConnect(similarityThreshold,maxDistance);
 		}
-		logger.warn("Created {} new 'distnace' links between items in the grahp",newConnectionsCreated)
+		logger.warn("Created {} new 'distance' links between items in the graph",newConnectionsCreated)
 	}
 
 

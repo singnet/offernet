@@ -76,6 +76,7 @@ public class Item  {
   }
 
   private List itemsOfKnownAgents(Integer maxDistance) {
+    def start = System.currentTimeMillis()
     Map params = new HashMap();
     params.put("thisItem", this.id());
     params.put("repeats", maxDistance);
@@ -90,7 +91,7 @@ public class Item  {
     GraphResultSet rs = session.executeGraph(s);
     List items = rs.all().collect {it.asVertex() };
     logger.info("Returned {} items with maxDistance {} from item {}", items.size(), maxDistance, this.id());
-
+    logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     return items;
   }
 
@@ -119,7 +120,7 @@ public class Item  {
         }
     }
     assertTrue(distanceList.size()<2);
-    def distance = distanceList.isEmpty()!= true ? Utils.edgePropertyValueAsInteger(distanceList[0],'value') : -1;
+    def distance = distanceList.isEmpty()!= true ? Utils.edgePropertyValueAsInteger(distanceList[0],'distance') : -1;
     logger.info("Retrieved distance value {} between item {} and {}",distance,this.id(),anotherItem.id())
     return distance;
   }
@@ -135,11 +136,10 @@ public class Item  {
     params.put("item1", this.id());
     params.put("item2",knownItem.id());
     params.put('edgeLabel','distance');
-    params.put('valueKey','value');
+    params.put('valueKey','distance');
     params.put('valueName',distance);
 
     logger.warn("Creating distance edge from item {} to item {} with value {}", params.item1, params.item2, distance)
-
 
     SimpleGraphStatement s = new SimpleGraphStatement(
             "def v1 = g.V(item1).next()\n" +
@@ -157,6 +157,7 @@ public class Item  {
   }
 
   private Object connectIfSimilar(Item knownItem, Integer similarityThreshold) {
+      def start = System.currentTimeMillis()
       def similarityEdge = null;
       if (this.existsDistance(knownItem) == -1) {
         def distance = Utils.calculateDistance(this,knownItem);
@@ -168,17 +169,58 @@ public class Item  {
            logger.warn("distance {}  > similarityThreshold {}, therefore not connecting", distance, similarityThreshold)
         }
       }
+      logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return similarityEdge;
   }
 
   private List connectAllSimilar(List itemsOfKnownAgents, Integer similarityThreshold) {
+      def start = System.currentTimeMillis()
       def similarityEdges = [];
       itemsOfKnownAgents.collect{vertex -> new Item(vertex,this.session) }.each {knownItem ->
           def edge = this.connectIfSimilar(knownItem,similarityThreshold)
           if (edge != null) {similarityEdges.add(edge)}
       }
       logger.info("Added {} similarity Edges to graph", similarityEdges.size());
+      logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return similarityEdges;
+  }
+
+  private List connectAllSimilar(Integer maxDistance, Integer similarityThreshold) {
+      def start = System.currentTimeMillis()
+      def similarityEdges = [];
+      this.itemsOfKnownAgents(maxDistance).collect{vertex -> new Item(vertex,this.session) }.each {knownItem ->
+          def edge = this.connectIfSimilar(knownItem,similarityThreshold)
+          if (edge != null) {similarityEdges.add(edge)}
+      }
+      logger.info("Added {} similarity Edges to graph", similarityEdges.size());
+      logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      return similarityEdges;
+  }
+
+  /*
+  * params: cutoffValue stops the search if this depth is reached with no cycle discovered; similarityConstraint - all exceeding this value is considered as similar (so allows to connect items which are not EXACTLY similar) -- ideally this should be customizable for every item individually;
+  */
+  private Object cycleSearch(Integer cutoffValue, Integer similarityConstraint) {
+    Map params = new HashMap();
+    params.put("thisItem", this.id());
+    params.put("cutoffValue", maxDistance);
+    params.put("similarityConstraint", similarityConstraint);
+
+    logger.warn("Searching for the cycle starting from item {}, cutoffValue {}, similarityConstraint {}", this.id(), cutoffValue, similarityConstraint)
+
+    SimpleGraphStatement s = new SimpleGraphStatement(
+          "g.V().has(label,'item').range(0,1).bothE('distance').where(values('distance').is(gt(6)))"
+          // finished here - does not work, because something is wrong with types -- try to run from here...
+          // it seems that everything recorded to the graph is a String type, therefore comparison work correctly only up to 9
+          // use the length of the item value 9 for now and ask the question to the group.
+          ,params);
+
+    GraphResultSet rs = session.executeGraph(s);
+    List items = rs.all().collect {it.asVertex() };
+    logger.info("Returned {} items with maxDistance {} from item {}", items.size(), maxDistance, this.id());
+
+    return items;
+
   }
 
 

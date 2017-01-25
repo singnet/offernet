@@ -11,11 +11,13 @@ import org.junit.Ignore;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
-public class SimulationsTests {
+public class SimulationTests {
 
 		@Test
-		void createOfferNetworkTest() {
-
+		void cycleSearchTest() {
+			def sim = new Simulation()
+			assertNotNull(sim);
+			sim.one();
 			// test if nework was created correctly
 		}
 }
