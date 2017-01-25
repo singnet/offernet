@@ -11,6 +11,11 @@ import org.junit.Ignore;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
+import com.datastax.driver.dse.graph.GraphStatement;
+import com.datastax.driver.dse.graph.SimpleGraphStatement;
+import com.datastax.driver.dse.graph.GraphResultSet
+import com.datastax.driver.dse.graph.GraphOptions
+
 public class SimulationTests {
 
 		@Test
@@ -18,6 +23,18 @@ public class SimulationTests {
 			def sim = new Simulation()
 			assertNotNull(sim);
 			sim.one();
+
 			// test if nework was created correctly
+		}
+
+		private Integer numDistanceEdgesNotLessSimilar(Integer similarityConstraint) {
+			Map params = new HashMap();
+			params.put("similarityConstraint", similarityConstraint);
+
+			SimpleGraphStatement s = new SimpleGraphStatement(
+						"g.E().has(label,'distance').has('distance',gte(similarityConstraint).count()",params);
+			GraphResultSet rs = session.executeGraph(s);
+
+			return rs.one().object;
 		}
 }

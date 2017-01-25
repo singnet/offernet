@@ -427,4 +427,14 @@ public class Tests {
 
 		}
 
+		/*
+		*	Parameters.class
+		*/
+
+		@Test
+		void parametersTest() {
+			assertEquals(16,Parameters.parameters.binaryStringLength);
+			assertEquals(8,Parameters.parameters.similarityConstraint);
+		}
+
 }
