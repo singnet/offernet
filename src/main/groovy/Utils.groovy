@@ -56,7 +56,7 @@ public class Utils {
   	}
 
     public static Integer veitasSimilarity(CharSequence left, CharSequence right) {
-      // this is simply a count of positions in the string where both strings have values of ones
+      // this is simply a count of positions in the string where both strings have values
       // the logic behind being that positions encode features and 1 means that feature exists
 
   		if (left == null || right == null) {
@@ -74,7 +74,7 @@ public class Utils {
   		int similarity = 0;
 
   		for (int i = 0; i < left.length(); i++) {
-  			if (left.charAt(i) =='1' && left.charAt(i) == right.charAt(i)) {
+  			if (left.charAt(i) == right.charAt(i)) {
   				similarity++;
   			}
   		}

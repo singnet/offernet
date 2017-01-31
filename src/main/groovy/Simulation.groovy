@@ -17,14 +17,6 @@ class Simulation {
 		on.flushVertices();
 	}
 
-	public one() {
-		def chains = [Utils.createChain(3),Utils.createChain(2)]
-		def agentList = this.createAgentNetwork(10,20,chains);
-		this.connectIfSimilarForAllAgents(agentList,Parameters.parameters.similarityThreshold,2);
-		//search Cycles (not implemented yet)
-
-	}
-
 	private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
 
 		def agentList = on.createAgentNetwork(numberOfAgents)

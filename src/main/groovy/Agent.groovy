@@ -82,7 +82,7 @@ public class Agent  {
     	return ownsWork(new Work(this.session));
     }
 
-	private Object ownsWork(Work process) {
+  	private Object ownsWork(Work process) {
         Map params = new HashMap();
         params.put("agent", this.id());
         params.put("process",process.id());
@@ -101,6 +101,22 @@ public class Agent  {
 
         return process;
     }
+
+    private Object getWorks() {
+        Map params = new HashMap();
+        params.put("agent", this.id());
+        params.put("edgeLabel","owns");
+
+        logger.warn("Getting all works owned by agent {}",params.agent);
+
+        SimpleGraphStatement s = new SimpleGraphStatement("g.V(agent).out(edgeLabel)",params);
+
+        GraphResultSet rs = session.executeGraph(s);
+        List<Vertex> works = rs.all().collect {it.asVertex()};
+        logger.info("Retrieved works list {} from agent {}", works.toString(),this.id());
+        return works;
+    }
+
 
     private id() {
     	return vertex.getId();
@@ -133,5 +149,9 @@ public class Agent  {
       }
       logger.warn("Created {} new similarity connections for agent {}", totalConnectionsCreated, this.id())
       return totalConnectionsCreated;
+    }
+
+    private Object searchCyclesForAllWorks() {
+
     }
 }

@@ -224,8 +224,26 @@ public class Tests {
 			agent2.knowsAgent(agent3);
 			agent3.knowsAgent(agent4);
 
-			assertEquals(3,agent1.searchAndConnect(2,2))
-			assertEquals(1,agent1.searchAndConnect(2,3)) // two because the other 4 are already connected
+			/*
+			The resulting graph has 4 agents, 4 works, 8 items and 6 reciprocal connections (12 links in total)
+			*/
+			assertEquals(3,agent1.searchAndConnect(5,2)) // this traverses part of the graph
+			assertEquals(3,agent1.searchAndConnect(4,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(4)
+
+		}
+
+		@Test
+		void getWorksTest() {
+			def agent = new Agent(on.sesion);
+			work1 = agent.ownsWork();
+			work2 = agent.ownsWork();
+			work3 = agent.ownsWork();
+
+			List worksVertexList = agent.getWorks();
+			assertEquals(3,worksVertexList.size());
+			assertTrue(worksVertexList.contains(work1.vertex));
+			assertTrue(worksVertexList.contains(work2.vertex));
+			assertTrue(worksVertexList.contains(work3.vertex));
 
 		}
 
@@ -234,10 +252,10 @@ public class Tests {
 		*/
 
 		@Test
-    void createWorkTest() {
-        def work = new Work(on.session);
-        assertNotNull(work);
-    }
+	    void createWorkTest() {
+	        def work = new Work(on.session);
+	        assertNotNull(work);
+	    }
 
 		@Test
 		void createWorkFromExistingVertexTest() {
@@ -251,6 +269,33 @@ public class Tests {
 			assertEquals(work1.vertex,work2.vertex);
 
 		}
+
+	    @Test 
+	    void createWorkWithKnownItemsTest() {
+			def demand = new Item(on.session);
+			def offer = new Item(on.session);
+
+			def work = new Work([demand],[offer],on.session);
+
+			assertEquals(work.getDemands()[0].getId(),demand.id());
+			assertEquals(work.getOffers()[0].getId(),offer.id());
+	    	
+	    }
+
+  	    @Test 
+  	    void createTaskTask() {
+			def demand = new Item(on.session);
+			def offer = new Item(on.session);
+
+			def task = new Work('task',[demand],[offer],on.session);
+
+			assertEquals(task.getDemands()[0].getId(),demand.id());
+			assertEquals(task.getOffers()[0].getId(),offer.id());
+			assertEquals('task',task.getType());
+	    	
+	    }
+
+
 
 		@Test
 		void getWorkIdTest() {
@@ -413,8 +458,8 @@ public class Tests {
 
 		@Test
 		void calculateSimilarityTest() {
-			def value1 = '000000'
-			def value2 = '000111'
+			String value1 = "000000"
+			String value2 = "000111"
 			def d1 = Utils.veitasSimilarity(value1,value2);
 			assertNotNull(d1)
 			def item1 = new Item(value1,on.session);
@@ -424,6 +469,7 @@ public class Tests {
 			def d2 = Utils.calculateSimilarity(item1,item2);
 			assertNotNull(d2)
 			assertEquals(d1,d2);
+			assertEquals(3,d1);
 
 		}
 

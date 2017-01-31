@@ -72,7 +72,7 @@ public class Item  {
   }
 
   private String getValue() {
-    return this.vertex.getProperty("value").getValue();
+    return this.vertex.getProperty("value").getValue().asString();
   }
 
   private List itemsOfKnownAgents(Integer maxReachDistance) {
@@ -195,32 +195,6 @@ public class Item  {
       logger.info("Added {} similarity Edges to graph", similarityEdges.size());
       logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return similarityEdges;
-  }
-
-  /*
-  * params: cutoffValue stops the search if this depth is reached with no cycle discovered; similarityConstraint - all exceeding this value is considered as similar (so allows to connect items which are not EXACTLY similar) -- ideally this should be customizable for every item individually;
-  */
-  private Object cycleSearch(Integer cutoffValue, Integer similarityConstraint) {
-    Map params = new HashMap();
-    params.put("thisItem", this.id());
-    params.put("cutoffValue", cutoffValue);
-    params.put("similarityConstraint", similarityConstraint);
-
-    logger.warn("Searching for the cycle starting from item {}, cutoffValue {}, similarityConstraint {}", this.id(), cutoffValue, similarityConstraint)
-
-    SimpleGraphStatement s = new SimpleGraphStatement(
-          "g.V().has(label,'item').range(0,1).bothE('similarity').where(values('similarity').is(gt(6)))"
-          // finished here - does not work, because something is wrong with types -- try to run from here...
-          // it seems that everything recorded to the graph is a String type, therefore comparison work correctly only up to 9
-          // use the length of the item value 9 for now and ask the question to the group.
-          ,params);
-
-    GraphResultSet rs = session.executeGraph(s);
-    List items = rs.all().collect {it.asVertex() };
-    logger.info("Returned {} items with maxReachDistance {} from item {}", items.size(), maxReachDistance, this.id());
-
-    return items;
-
   }
 
 

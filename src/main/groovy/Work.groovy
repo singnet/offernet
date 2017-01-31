@@ -7,6 +7,7 @@ import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
 
 import com.datastax.driver.dse.graph.GraphStatement;
+import com.datastax.driver.dse.graph.GraphNode;
 import com.datastax.driver.dse.graph.SimpleGraphStatement;
 import com.datastax.driver.dse.graph.GraphResultSet
 import com.datastax.driver.dse.graph.GraphOptions
@@ -77,11 +78,10 @@ public class Work  {
       this.addDemand(demand);
     }
     offers.each {offer ->
-      this.addDemand(offer);
+      this.addOffer(offer);
     }
-
-
   }
+
     public id() {
     	return this.vertex.getId();
     }
@@ -130,7 +130,7 @@ public class Work  {
     }
 
     public List<Vertex> getItems(String labelName) {
-    	  Map params = new HashMap();
+    	Map params = new HashMap();
         params.put("thisVertex", this.id());
         params.put("edgeLabel", labelName);
 
@@ -143,6 +143,38 @@ public class Work  {
         logger.info("Retrieved {} list {} from process {}", labelName, items.toString(),this.id());
         return items;
     }
+
+      /*
+      * params: cutoffValue stops the search if this depth is reached with no cycle discovered; similarityConstraint - all exceeding this value is considered as similar (so allows to connect items which are not EXACTLY similar) -- ideally this should be customizable for every item individually;
+      */
+      private List<GraphNode> cycleSearch(Integer cutoffValue, Integer similarityConstraint) {
+        Map params = new HashMap();
+        params.put("thisWork", this.id());
+        params.put("cutoffValue", cutoffValue);
+        params.put("similarityConstraint", similarityConstraint);
+
+        logger.warn("Searching for the cycle starting from item {}, cutoffValue {}, similarityConstraint {}", this.id(), cutoffValue, similarityConstraint)
+
+        String query="""
+            g.V(thisWork).as('source').repeat(
+                  __.outE('demands').inV().as('a').has(label,'item')                // get the demand of the work as item
+                  .bothE('similarity').has('similarity',gte(similarityConstraint))  // look for edges with perfect similarity
+                  .bothV().as('b').where('a',neq('b'))                              // get the item on the other side
+                  .inE('offers').outV().has(label,'work')).as('step')               // get the work that has offers the item
+              .until(__.as('source'))                                               // until finding the same work (which would be a task actually)
+              .path()                                                               // return path
+        """
+        //finished here - the above query seems to work, needs to be tested
+        SimpleGraphStatement s = new SimpleGraphStatement(quary,params);
+
+        GraphResultSet rs = session.executeGraph(s);
+        List<GraphNode> paths = rs.all();
+        logger.info("Returned {} paths with from cycleSearch query", paths.size());
+
+        return paths;
+
+      }
+
 
 
 }
