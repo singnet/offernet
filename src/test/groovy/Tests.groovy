@@ -234,10 +234,10 @@ public class Tests {
 
 		@Test
 		void getWorksTest() {
-			def agent = new Agent(on.sesion);
-			work1 = agent.ownsWork();
-			work2 = agent.ownsWork();
-			work3 = agent.ownsWork();
+			def agent = new Agent(on.session);
+			def work1 = agent.ownsWork();
+			def work2 = agent.ownsWork();
+			def work3 = agent.ownsWork();
 
 			List worksVertexList = agent.getWorks();
 			assertEquals(3,worksVertexList.size());
@@ -281,21 +281,6 @@ public class Tests {
 			assertEquals(work.getOffers()[0].getId(),offer.id());
 	    	
 	    }
-
-  	    @Test 
-  	    void createTaskTask() {
-			def demand = new Item(on.session);
-			def offer = new Item(on.session);
-
-			def task = new Work('task',[demand],[offer],on.session);
-
-			assertEquals(task.getDemands()[0].getId(),demand.id());
-			assertEquals(task.getOffers()[0].getId(),offer.id());
-			assertEquals('task',task.getType());
-	    	
-	    }
-
-
 
 		@Test
 		void getWorkIdTest() {
