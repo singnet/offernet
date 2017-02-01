@@ -147,7 +147,13 @@ public class Work  {
       /*
       * params: cutoffValue stops the search if this depth is reached with no cycle discovered; similarityConstraint - all exceeding this value is considered as similar (so allows to connect items which are not EXACTLY similar) -- ideally this should be customizable for every item individually;
       */
-      private List<GraphNode> cycleSearch(Integer cutoffValue, Integer similarityConstraint) {
+
+      /*
+      Something is wrong with this query as it runs well when running from the gremlin console.
+      I think the problem again is with types when getting 'similarity' property --
+      Read DSE Graph tutorial before going further.
+      */
+      private List<GraphNode> pathSearch(Integer cutoffValue, Integer similarityConstraint) {
         Map params = new HashMap();
         params.put("thisWork", this.id());
         params.put("cutoffValue", cutoffValue);
@@ -157,21 +163,24 @@ public class Work  {
 
         String query="""
             g.V(thisWork).as('source').repeat(
-                  __.outE('demands').inV().as('a').has(label,'item')                // get the demand of the work as item
-                  .bothE('similarity').has('similarity',gte(similarityConstraint))  // look for edges with perfect similarity
-                  .bothV().as('b').where('a',neq('b'))                              // get the item on the other side
-                  .inE('offers').outV().has(label,'work')).as('step')               // get the work that has offers the item
-              .until(__.as('source'))                                               // until finding the same work (which would be a task actually)
-              .path()                                                               // return path
+                   __.outE('demands').inV().as('a').has(label,'item')                               // (1)
+                  .bothE('similarity').has('similarity',gte(similarityConstraint))            // (2)
+                  .bothV().as('b').where('a',neq('b'))                                              // (3)
+                  .inE('offers').outV().has(label,'work')).times(cutoffValue).range(0,1).simplePath().path().unfold()   // (4)
         """
-        //finished here - the above query seems to work, needs to be tested
-        SimpleGraphStatement s = new SimpleGraphStatement(quary,params);
+        /*
+        (1) get the demand of the work as item
+        (2) look for edges with perfect similarity
+        (3) check that the items items are not the same (not sure this is needed)
+        (4) get the item on the other side & get the work that has offers the item        
+        */
+        SimpleGraphStatement s = new SimpleGraphStatement(query,params);
 
         GraphResultSet rs = session.executeGraph(s);
-        List<GraphNode> paths = rs.all();
-        logger.info("Returned {} paths with from cycleSearch query", paths.size());
+        def path = rs.all();
+        logger.warn("Found path: {}",path);
 
-        return paths;
+        return path;
 
       }
 

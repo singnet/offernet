@@ -143,11 +143,11 @@ public class OfferNet implements AutoCloseable {
             switch (x) {
                 case 0:
                     // for the first item in chain we add only offer
-                    logger.info("Item with designed similarity {}:{}", offer,offer.getValue())
+                    logger.info("First item with designed similarity {}:{}", offer,offer.getValue())
                     break
                 case chain.size()-2:
                     //for the last item in chain we add only demand
-                    logger.info("Item with designed similarity {}:{}", demand,demand.getValue())
+                    logger.info("Last item with designed similarity {}:{}", demand,demand.getValue())
                     break
                 default:
                     //otherwise we add both, because it has similarity both ways
@@ -156,8 +156,61 @@ public class OfferNet implements AutoCloseable {
                     break
             }
         }
-        logger.info("Added a chain to the network")
+        logger.info("Added a chain to the network {}",chainedWorks)
         return chainedWorks;
+    }
+
+    /* 
+    * Note that this function is for testing only - it calculates the perfect similarities between items
+    */ 
+    public List allConnectedSimilarPairs() {
+        logger.warn("Centralized search of all demand-offer pairs with perfect similarities in the network");
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "g.V().match("+
+                "__.as('g').has(label,'work').as('w').out('offers').as('o').properties('value').value().as('b')"+
+                ",__.as('o').out('similarity').as('d'),__.as('d').properties('value').value().as('b')"+
+                ",__.as('d').in('demands').as('w2')"+
+                ").select('b','o','d')");
+
+        GraphResultSet rs = session.executeGraph(s);
+        List pairs = rs.all();
+        logger.info("Found {} demand-offer pairs existing in the network", pairs.size());
+
+        return pairs;
+
+    }
+
+    // this query mysteriously does not work -- looks like something is wrong with the type of 'v', as sometimes it works and sometimes not.
+
+    public List allSimilarPairs() {
+        logger.warn("Centralized search of connected demand-offer pairs with perfect similarities in the network");
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "g.V().match("+
+                "__.as('g').has(label,'work').out('offers').as('o').properties('value').value().as('v')"+
+                ",__.as('g').has(label,'work').out('demands').as('d').properties('value').value().as('v')"+
+                ").select('o','d','v')");
+
+        GraphResultSet rs = session.executeGraph(s);
+        List pairs = rs.all();
+        logger.info("Found {} demand-offer pairs existing in the network", pairs.size());
+
+        return pairs;
+
+    }
+
+    public List allSimilarityEdges() {
+        logger.warn("Returning all similarity links");
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "g.E().has(label,'similarity')");
+
+        GraphResultSet rs = session.executeGraph(s);
+        List edges = rs.all();
+        logger.info("Found {} similarity Edges existing in the network", edges.size());
+
+        return edges;
     }
 
 
