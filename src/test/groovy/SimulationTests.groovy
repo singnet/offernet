@@ -126,12 +126,18 @@ public class SimulationTests {
  	       	
  	       	def cutoffValue = 2;
  	       	def uniquePaths = [] as Set;
- 	       	[agent1,agent2,agent3,agent4].each{ agent -> 
- 	       		def path = new Work(agent1.getWorks()[0],on.session).pathSearch(cutoffValue,similarityThreshold)
+ 	       	[agent1,agent2,agent3].each{ agent -> 
+ 	       		def path = new Work(agent.getWorks()[0],on.session).pathSearch(cutoffValue,similarityThreshold)
  	       		logger.info("Found {} paths from agent {}",path.size(),agent1.id())
- 	       		uniquePaths.retainAll([path])
+ 	       		uniquePaths.add(path)
  	       	}
  	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
+
+ 	       	def index = 0;
+ 	       	uniquePaths.each {path -> 
+ 	       		index +=1;
+ 	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
+ 	       	}
 
 		}
 

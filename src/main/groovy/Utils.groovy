@@ -3,13 +3,18 @@ package net.vveitas.offernet
 import groovy.json.*
 
 import com.datastax.driver.dse.graph.GraphResultSet
+import com.datastax.driver.dse.graph.GraphNode
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.datastax.driver.dse.graph.Edge
+import com.datastax.driver.dse.graph.Vertex
 
 import org.codehaus.groovy.runtime.StackTraceUtils
+
+
+import static org.junit.Assert.*
 
 public class Utils {
     static Logger logger = LoggerFactory.getLogger('Utils.class');
@@ -93,4 +98,52 @@ public class Utils {
       def marker = new Throwable()
       return StackTraceUtils.sanitize(marker).stackTrace[1].methodName
     }
+
+    public static boolean convertToDotNotation(List path, String label, String dotFilePath) {
+        def dotFile = new File(dotFilePath);
+        dotFile.delete()
+        // print heading
+        dotFile << "digraph G {\n"
+        dotFile << "\trankdir=\"TD\";\n"
+        dotFile << "\tsubgraph cluster_0 {\n"
+        dotFile << "\t\tcolor=lightgrey;\n"
+        dotFile << "\t\tnode [style=filled];\n"
+        dotFile << "\t\tlabel = \""+label+"\";\n"
+        logger.info("path {} with class {}",path,path.getClass())
+        for (int i = 0; i < path.size() - 1; i+=2) {
+          def vertex1 = path[i].isVertex() ? path[i].asVertex() : null;
+          logger.info("Got vertex1: {} with class {}",vertex1,vertex1.getClass())
+          assertNotNull(vertex1)
+          def vertex2 = path[i+2].isVertex() ? path[i+2].asVertex() : null;
+          logger.info("Got vertex2: {} with class {}",vertex2,vertex2.getClass())
+          assertNotNull(vertex2)
+          def edge = path[i+1].isEdge() ? path[i+1].asEdge() : null;
+          logger.info("Got edge: {} with class {}",edge,edge.getClass())
+          assertNotNull(edge)
+          dotFile << "\t\t\t\""+dotString(vertex1)+"\" -> \""+ dotString(vertex2) +"\" [label=\""+dotString(edge)+"\"];\n"
+        }
+
+        dotFile << "\t}\n"
+        dotFile << "}\n"
+        logger.info("Saved dotNotationFile to {}",dotFilePath);
+    }
+
+    public static String dotString(Vertex vertex) {
+        def id = vertex.getId()
+        def dotString = vertex.getLabel()+":"+id.community_id+": "+id.member_id;
+        logger.info("Constructed {} dotString from vertex {}",dotString,id);
+        return dotString;
+    }
+
+    public static String dotString(Edge edge) {
+        def id = edge.getId()
+        def dotString = edge.getLabel()
+        if (edge.getLabel().contains('similarity')) {
+            dotString = dotString +": "+edge.getProperty('similarity').getValue().asInt()
+        }
+        logger.info("Constructed {} dotString from edge {}",dotString,id);
+        return dotString;
+    }
+
+
 }
