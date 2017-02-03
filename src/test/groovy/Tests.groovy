@@ -10,6 +10,10 @@ import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
+import org.apache.log4j.PropertyConfigurator
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 public class Tests {
 		private OfferNet on = new OfferNet().flushVertices();
 
@@ -146,10 +150,10 @@ public class Tests {
 		*/
 
 		@Test
-    void createAgentNewVertexTest() {
-        def agent1 = new Agent(on.session);
-        assertNotNull(agent1);
-    }
+    	void createAgentNewVertexTest() {
+        	def agent1 = new Agent(on.session);
+        	assertNotNull(agent1);
+   		}
 
 		@Test
 		void createAgentExistingVertexTest() {
@@ -420,9 +424,55 @@ public class Tests {
 		}
 
 		@Test
-		void createChainToNetworkTest() {
+		void allWorkItemEdgesTest() {
+			def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+			PropertyConfigurator.configure(config.toProperties())
+			def logger = LoggerFactory.getLogger('Test.class');
+
+			def sim = new Simulation();
+
+			def chains = [Utils.createChain(4)]
+			logger.info("Created chains: {}",chains)
+
+			sim.createAgentNetwork(4,0,chains);
+
+			def demandEdges = on.allWorkItemEdges("demands");
+			def offerEdges = on.allWorkItemEdges("offers")
+
+	        logger.info("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
+
+			assertEquals(10,demandEdges.size())
+			assertEquals(10,offerEdges.size())
 
 		}
+
+		@Test
+		void connectMatchingPairsTest() {
+			def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+			PropertyConfigurator.configure(config.toProperties())
+			def logger = LoggerFactory.getLogger('Test.class');
+
+			def sim = new Simulation();
+			def chainLength = 4
+
+			def chains = [Utils.createChain(chainLength)]
+			logger.info("Created chains: {}",chains)
+
+			sim.createAgentNetwork(chainLength,0,chains);
+
+			def demandEdges = on.allWorkItemEdges("demands");
+			def offerEdges = on.allWorkItemEdges("offers")
+
+	        logger.info("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
+
+			def matchingOfferDemandPairs = Utils.getMatchingOfferDemandPairs(offerEdges,demandEdges)
+			logger.warn("Offer-Demand pairs found: {}",matchingOfferDemandPairs)
+
+			def connectedPairsCount = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
+			assertEquals((chainLength - 2).toInteger(),connectedPairsCount)
+		}
+
+
 
 		/*
 		*	Utils.class
@@ -455,7 +505,6 @@ public class Tests {
 			assertNotNull(d2)
 			assertEquals(d1,d2);
 			assertEquals(3,d1);
-			
 
 		}
 

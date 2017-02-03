@@ -32,13 +32,14 @@ class Simulation {
 
 	}
 
-	private void connectIfSimilarForAllAgents(List agentList, Integer similarityThreshold, Integer maxReachDistance) {
+	private Integer connectIfSimilarForAllAgents(List agentList, Integer similarityThreshold, Integer maxReachDistance) {
 		logger.warn("Searching and connecting similar items of all agents in the graph:")
 		def newConnectionsCreated = 0;
 		agentList.each {agent ->
 			 newConnectionsCreated += agent.searchAndConnect(similarityThreshold,maxReachDistance);
 		}
 		logger.warn("Created {} new 'similarity' links between items in the graph",newConnectionsCreated)
+		return newConnectionsCreated
 	}
 
 

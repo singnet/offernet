@@ -11,6 +11,9 @@ import com.datastax.driver.dse.graph.SimpleGraphStatement;
 import com.datastax.driver.dse.graph.GraphResultSet
 import com.datastax.driver.dse.graph.GraphOptions
 
+import com.datastax.driver.dse.graph.Edge
+import com.datastax.driver.dse.graph.Vertex
+
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -185,6 +188,10 @@ public class OfferNet implements AutoCloseable {
 
     public List allSimilarPairs() {
         logger.warn("Centralized search of connected demand-offer pairs with perfect similarities in the network");
+        Map params = new HashMap();
+        params.put("labelName", "work");
+        params.put("itemName","demand");
+        params.put("propertyName","value");
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "g.V().match("+
@@ -200,11 +207,32 @@ public class OfferNet implements AutoCloseable {
 
     }
 
+    public List allWorkItemEdges(String itemName) {
+        Map params = new HashMap();
+        params.put("labelName", "work");
+        params.put("itemName",itemName);
+        params.put("propertyName","value");
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+              "g.V().has(label,labelName).outE(itemName).as('d').inV().properties(propertyName).as('v').select('d','v')"
+              ,params)
+
+        GraphResultSet rs = session.executeGraph(s);
+        List edges = rs.all();
+        logger.info("Found {} allWorkItemEdges of {} existing in the network", edges.size(), itemName);
+
+        return edges
+
+    }
+
     public List allSimilarityEdges() {
+        Map params = new HashMap();
+        params.put("labelName", "similarity");
+
         logger.warn("Returning all similarity links");
 
         SimpleGraphStatement s = new SimpleGraphStatement(
-                "g.E().has(label,'similarity')");
+                "g.E().has(label,labelName)",params);
 
         GraphResultSet rs = session.executeGraph(s);
         List edges = rs.all();
@@ -213,5 +241,55 @@ public class OfferNet implements AutoCloseable {
         return edges;
     }
 
+    public Integer connectMatchingPairs(Map matchingPairs) {
+      def connected = 0;
+      logger.info("Connecting all matching demand offer item pairs")
+      matchingPairs.each { key,value ->
+         def offers = value.get('offers');
+         offers.each {offerEdge -> 
+            offerEdge = offerEdge.asEdge()
+            logger.info("Offer edge: {}", offerEdge)
+            def item1 = offerEdge.getInV();
+            String item1Label = "item:"+item1.community_id+":"+item1.member_id;
+            logger.info("Offer item: {}", item1)
+            def demands = value.get('demands');
+            demands.each{demandEdge -> 
+              demandEdge = demandEdge.asEdge()
+              def item2 = demandEdge.getInV();
+              String item2Label = "item:"+item2.community_id+":"+item2.member_id;
+              logger.info("Demand item: {}", item2);
+              def similarity = Utils.calculateSimilarity(key.asString(),key.asString())
+              this.connectItems(item1Label,item2Label,similarity)
+              connected += 1
+            }
+         }
+      }
+      logger.info("Connected {} item pairs.", connected)
+      return connected
+    }
+
+    public Edge connectItems(String item1Label, String item2Label, Integer similarity) {
+      Map params = new HashMap();
+      params.put("item1", item1Label);
+      params.put("item2",item2Label);
+      params.put('edgeLabel','similarity');
+      params.put('valueKey','similarity');
+      params.put('valueName',similarity);
+
+      logger.warn("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
+
+      SimpleGraphStatement s = new SimpleGraphStatement(
+              "def v1 = g.V(item1).next()\n" +
+              "def v2 = g.V(item2).next()\n" +
+              "def e = v1.addEdge(edgeLabel, v2)\n"+
+              "e.property(valueKey,valueName)\n"+
+              "e", params);
+
+      GraphResultSet rs = session.executeGraph(s);
+      def similarityEdge = rs.one().asEdge();
+      logger.info("Added similarity edge {} to the network", similarityEdge);
+
+      return similarityEdge;
+    }
 
 }

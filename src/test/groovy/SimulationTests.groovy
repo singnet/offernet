@@ -69,7 +69,7 @@ public class SimulationTests {
 		}
 
 		@Test
-		void cycleSearchManualTest() {
+		void pathSearchManualTest() {
 		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
 	        PropertyConfigurator.configure(config.toProperties())
     	    logger = LoggerFactory.getLogger('SimulationTests.class');

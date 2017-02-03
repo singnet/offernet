@@ -60,6 +60,10 @@ public class Utils {
   		return Utils.veitasSimilarity(itemOne.getValue(), itemTwo.getValue())
   	}
 
+    public static Integer calculateSimilarity(String left, String right) {
+      return Utils.veitasSimilarity(left,right)
+    }
+
     public static Integer veitasSimilarity(CharSequence left, CharSequence right) {
       // this is simply a count of positions in the string where both strings have values
       // the logic behind being that positions encode features and 1 means that feature exists
@@ -103,13 +107,12 @@ public class Utils {
         def dotFile = new File(dotFilePath);
         dotFile.delete()
         // print heading
-        dotFile << "digraph G {\n"
+        dotFile << "graph G {\n"
         dotFile << "\trankdir=\"TD\";\n"
         dotFile << "\tsubgraph cluster_0 {\n"
         dotFile << "\t\tcolor=lightgrey;\n"
         dotFile << "\t\tnode [style=filled];\n"
         dotFile << "\t\tlabel = \""+label+"\";\n"
-        logger.info("path {} with class {}",path,path.getClass())
         for (int i = 0; i < path.size() - 1; i+=2) {
           def vertex1 = path[i].isVertex() ? path[i].asVertex() : null;
           logger.info("Got vertex1: {} with class {}",vertex1,vertex1.getClass())
@@ -120,7 +123,7 @@ public class Utils {
           def edge = path[i+1].isEdge() ? path[i+1].asEdge() : null;
           logger.info("Got edge: {} with class {}",edge,edge.getClass())
           assertNotNull(edge)
-          dotFile << "\t\t\t\""+dotString(vertex1)+"\" -> \""+ dotString(vertex2) +"\" [label=\""+dotString(edge)+"\"];\n"
+          dotFile << "\t\t\t\""+dotString(vertex1)+"\" -- \""+ dotString(vertex2) +"\" [label=\" "+dotString(edge)+"\"];\n"
         }
 
         dotFile << "\t}\n"
@@ -130,7 +133,8 @@ public class Utils {
 
     public static String dotString(Vertex vertex) {
         def id = vertex.getId()
-        def dotString = vertex.getLabel()+":"+id.community_id+": "+id.member_id;
+        def dotString = vertex.getLabel()+":"+id.community_id+":"+id.member_id;
+        if (vertex.getLabel().contains("item")) { dotString += "\nvalue: "+vertex.getProperty("value").getValue().asString()}
         logger.info("Constructed {} dotString from vertex {}",dotString,id);
         return dotString;
     }
@@ -139,11 +143,41 @@ public class Utils {
         def id = edge.getId()
         def dotString = edge.getLabel()
         if (edge.getLabel().contains('similarity')) {
-            dotString = dotString +": "+edge.getProperty('similarity').getValue().asInt()
+            dotString = dotString +": "+edge.getProperty('similarity').getValue().asString()
         }
         logger.info("Constructed {} dotString from edge {}",dotString,id);
         return dotString;
     }
 
+    public static Object getMatchingOfferDemandPairs(Object offerItemPairs, Object  demandItemPairs) {
+        def matchingPairs = [:]
+        Map offerPairs = listToMap(offerItemPairs);
+        Map demandPairs = listToMap(demandItemPairs);
+        offerPairs.each { key,value -> 
+          def matchingDemandPairs = demandPairs.get(key);
+          if (matchingDemandPairs!=null) {
+            Map matches = [:]
+            matches.put("offers",[value])
+            matches.put("demands",[matchingDemandPairs])
+            matchingPairs.find{ it.key == key } \
+              ? { matchingPairs.get(key).get('offers').add(value); matchingPairs.get(key).get('demands').add(matchingDemandPairs) } \
+              : matchingPairs.put(key,matches)
+          }
+        }
+        logger.warn("Found {} matching offer-demand pairs", matchingPairs.size())
+        return matchingPairs
+    }
+
+    public static Map listToMap(List listOfItemPairs) {
+        Map map = [:]
+        listOfItemPairs.each { pair -> 
+            def v = pair.get('v').get('value');
+            def d = pair.get('d');
+            map.find{it.key==v} ? map.find{it.key==v}.value.add(d) : map.put(v,d)
+            logger.info("Added item {}",pair)
+        }
+        logger.info("Constructed map {}",map)
+        return map;
+    }
 
 }
