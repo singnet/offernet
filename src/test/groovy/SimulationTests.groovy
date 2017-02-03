@@ -50,9 +50,8 @@ public class SimulationTests {
 			logger.warn("added agent network with agents: {}", agentList)			
 			def similarityThreshold = Parameters.parameters.similarityThreshold
 			def maxDistance = 2;
-			sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
-			logger.warn("connected similar items of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance)
-
+			def connections = sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
+			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance)
 
 			/*
 
@@ -138,6 +137,47 @@ public class SimulationTests {
  	       		index +=1;
  	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
  	       	}
+
+		}
+
+		@Test
+		void compareCentralizedAndDecentralizedSimilaritySearchTest() {
+		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+	        PropertyConfigurator.configure(config.toProperties())
+    	    logger = LoggerFactory.getLogger('OfferNet.class');
+
+			def sim = new Simulation()
+			assertNotNull(sim);
+			
+			def chainLength = 5
+			def chains = [Utils.createChain(chainLength)]
+			logger.warn("Created chain to add to the network: {}", chains[0])
+
+			def agentList = sim.createAgentNetwork(chainLength+2,0,chains);
+			logger.warn("added agent network with agents: {}", agentList)			
+
+			logger.warn("Running decentralized similarity search")
+			def timeStart = System.currentTimeMillis();
+			def similarityThreshold = Parameters.parameters.binaryStringLength
+			def maxDistance = 3;
+			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
+			def timeDecentralized = System.currentTimeMillis() - timeStart;
+			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
+			logger.warn("Decentralized search time (sec): {}",timeDecentralized/1000)
+
+			sim.on.removeEdges('similarity');
+
+			logger.warn("Running centralized similarity search")
+			timeStart = System.currentTimeMillis();
+			def demandEdges = sim.on.allWorkItemEdges("demands");
+			def offerEdges = sim.on.allWorkItemEdges("offers")
+
+			def matchingOfferDemandPairs = Utils.getMatchingOfferDemandPairs(offerEdges,demandEdges)
+			def similarityConnectionsCentralized = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
+			def timeCentralized = System.currentTimeMillis() - timeStart;
+			logger.warn("Centralized search time (sec): {}",timeCentralized/1000)
+
+			assertEquals(similarityConnectionsDecentralized,similarityConnectionsCentralized)
 
 		}
 

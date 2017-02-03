@@ -241,6 +241,20 @@ public class OfferNet implements AutoCloseable {
         return edges;
     }
 
+    public void removeEdges(String edgeLabel) {
+        Map params = new HashMap();
+        params.put("labelName", edgeLabel);
+
+        logger.warn("Removing all similarity links");
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "g.E().has(label,labelName).drop()",params);
+
+        GraphResultSet rs = session.executeGraph(s);
+        logger.info("Removed all {} edges from the graph", edgeLabel);
+    }
+
+
     public Integer connectMatchingPairs(Map matchingPairs) {
       def connected = 0;
       logger.info("Connecting all matching demand offer item pairs")
