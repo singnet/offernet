@@ -15,11 +15,19 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 public class Tests {
-		private OfferNet on = new OfferNet().flushVertices();
+		static private OfferNet on = new OfferNet().flushVertices();
+	    static private Logger logger;
 
 		/*
 		* Item.groovy
 		*/
+
+		@BeforeClass
+		static void initLogging() {
+		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+    		PropertyConfigurator.configure(config.toProperties())
+    		logger = LoggerFactory.getLogger('Tests.class');
+		}
 
 		@Test
 		void createItemTest() {
@@ -52,11 +60,13 @@ public class Tests {
 
 		@Test
 		void connectTest() {
+			def start = System.currentTimeMillis()
 			def item1 = new Item(on.session);
 			def item2 = new Item (on.session);
 			def similarity = Utils.calculateSimilarity(item1,item2);
 			def similarityEdge = item1.connect(item1, similarity);
 			assertNotNull(similarityEdge);
+			logger.warn("Finished test {} in {} seconds","connectTest",(System.currentTimeMillis() - start)/1000)	
 		}
 
 		@Test
