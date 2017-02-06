@@ -3,3 +3,4 @@ required/
 logs/*
 build/
 resources/
+temp/
