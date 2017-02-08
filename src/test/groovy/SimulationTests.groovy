@@ -28,17 +28,22 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import java.text.SimpleDateFormat;
+
 public class SimulationTests {
 
-		private Logger logger;
+		static private Logger logger;
+
+		@BeforeClass
+		static void initLogging() {
+		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+	        PropertyConfigurator.configure(config.toProperties())
+    	    logger = LoggerFactory.getLogger('OfferNet.class');
+		}
 
 		//@Ignore // for now -- takes too much time
 		@Test
 		void cycleSearchTest() {
-
-		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-	        PropertyConfigurator.configure(config.toProperties())
-    	    logger = LoggerFactory.getLogger('OfferNet.class');
 
 			def sim = new Simulation()
 			assertNotNull(sim);
@@ -68,15 +73,11 @@ public class SimulationTests {
 		}
 
 		@Test
-		void pathSearchManualTest() {
-		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-	        PropertyConfigurator.configure(config.toProperties())
-    	    logger = LoggerFactory.getLogger('SimulationTests.class');
-
+		void pathSearchManualDecentralizedTest() {
     	    def on = new OfferNet();
     	    on.flushVertices();
 
-
+    	    def start = System.currentTimeMillis();
     	    def chain = ["0010","0110","0000","1110"]
     	    //def chain = Utils.createChain(4)
     	    logger.info("Created chain {}", chain)
@@ -114,9 +115,9 @@ public class SimulationTests {
     	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",agent3.searchAndConnect(similarityThreshold,maxDistance),agent3.id(),similarityThreshold, maxDistance)
  	       	logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",agent4.searchAndConnect(similarityThreshold,maxDistance),agent4.id(),similarityThreshold, maxDistance)
 
- 	       	def connectedPairs = on.allConnectedSimilarPairs();
+ 	       	def connectedPairs = on.allConnectedSimilarPairsCentralized(4);
  	       	logger.info("Calculated allConnectedSimilarPairs: {}",connectedPairs.size())
- 	       	def similarPairs = on.allSimilarPairs();
+ 	       	def similarPairs = on.allSimilarPairsCentralized();
  	       	logger.info("Calculated allSimilarityPairs (not necessarily connected) --  (query does not work): {}",similarPairs.size())
  	       	def similarityEdges = on.allSimilarityEdges().size() / 2;
  	       	def allSimilarityLinks = similarityEdges.toInteger();
@@ -131,6 +132,7 @@ public class SimulationTests {
  	       		uniquePaths.add(path)
  	       	}
  	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
+           	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
  	       	def index = 0;
  	       	uniquePaths.each {path -> 
@@ -138,14 +140,100 @@ public class SimulationTests {
  	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
  	       	}
 
+
+		}
+
+		@Test
+		void decentralizedPathSimulationTest() {
+
+			def sim = new Simulation()
+			assertNotNull(sim);
+			
+			def chainLength = 6
+			def chains = [Utils.createChain(chainLength)]
+			logger.warn("Created chain to add to the network: {}", chains[0])
+
+			def agentList = sim.createAgentNetwork(chainLength+2,0,chains);
+			logger.warn("added agent network with agents: {}", agentList)			
+
+			logger.warn("Running decentralized similarity search")
+			def start = System.currentTimeMillis();
+			def similarityThreshold = Parameters.parameters.binaryStringLength
+			def maxDistance = 6;
+			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
+			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
+			
+	       	def cutoffValue = 6;
+ 	       	def uniquePaths = [] as Set;
+ 	       	agentList.each{ agent -> 
+ 	       		def path = new Work(agent.getWorks()[0],sim.on.session).pathSearch(cutoffValue,similarityThreshold)
+ 	       		logger.info("Found {} paths from agent {}",path.size(),agent.id())
+ 	       		uniquePaths.add(path)
+ 	       	}
+ 	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
+           	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+           	def index = 0;
+
+           	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
+           	def methodName = Utils.getCurrentMethodName()
+           	new File("resources/"+methodName+dirname).mkdir();
+ 	       	uniquePaths.each {path -> 
+ 	       		index +=1;
+ 	       		Utils.convertToDotNotation(path,"Path","resources/"+methodName+dirname+"/path"+index+".dot");
+ 	       	}
+
+			
+		}
+
+		@Test
+		void centralizedPathSimulationTest() {
+			
+			def sim = new Simulation()
+			assertNotNull(sim);
+			
+			def chainLength = 6
+			def chains = [Utils.createChain(chainLength)]
+			logger.warn("Created chain to add to the network: {}", chains[0])
+
+			def agentList = sim.createAgentNetwork(chainLength+2,0,chains);
+			logger.warn("added agent network with agents: {}", agentList)			
+
+			logger.warn("Running centralized similarity search")
+			def start = System.currentTimeMillis();
+			def similarityThreshold = Parameters.parameters.binaryStringLength
+			def maxDistance = 3;
+
+			def demandEdges = sim.on.allWorkItemEdges("demands");
+			def offerEdges = sim.on.allWorkItemEdges("offers")
+
+			def matchingOfferDemandPairs = Utils.getMatchingOfferDemandPairs(offerEdges,demandEdges)
+			def similarityConnectionsCentralized = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
+
+			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
+			
+			def uniquePaths = [] as Set;
+			def paths = sim.on.allPathsCentralized(similarityThreshold);
+			uniquePaths.addAll(paths);
+
+ 	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
+ 	       	def methodName = Utils.getCurrentMethodName();
+           	logger.warn("Method {} took {} seconds to complete", methodName, (System.currentTimeMillis()-start)/1000)
+
+           	def index = 0;
+
+           	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
+           	new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
+ 	       	uniquePaths.each {path -> 
+ 	       		index +=1;
+ 	       		Utils.convertToDotNotation(path,"Path","resources/"+methodName+dirname+"/path"+index+".dot");
+ 	       	}
+
+			
 		}
 
 		@Test
 		void compareCentralizedAndDecentralizedSimilaritySearchTest() {
-		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-	        PropertyConfigurator.configure(config.toProperties())
-    	    logger = LoggerFactory.getLogger('OfferNet.class');
-
 			def sim = new Simulation()
 			assertNotNull(sim);
 			
@@ -176,7 +264,6 @@ public class SimulationTests {
 			def similarityConnectionsCentralized = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
 			def timeCentralized = System.currentTimeMillis() - timeStart;
 			logger.warn("Centralized search time (sec): {}",timeCentralized/1000)
-
 			assertEquals(similarityConnectionsDecentralized,similarityConnectionsCentralized)
 
 		}

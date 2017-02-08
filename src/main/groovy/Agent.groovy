@@ -25,7 +25,7 @@ public class Agent  {
 
 
 	public Agent(DseSession session) {
-
+        def start = System.currentTimeMillis();
         def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
@@ -39,9 +39,11 @@ public class Agent  {
         this.vertex = rs.one().asVertex();
 
         logger.warn("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 	}
 
   public Agent(Object vertexId, DseSession session) {
+      def start = System.currentTimeMillis();
       def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
       PropertyConfigurator.configure(config.toProperties())
       logger = LoggerFactory.getLogger('OfferNet.class');
@@ -55,10 +57,12 @@ public class Agent  {
       this.vertex = rs.one().asVertex();
 
       logger.warn("Instantiated an {} with existing vertex id {}", vertex.getLabel(), vertex.getId());
-
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
   }
 
 	private Object knowsAgent(Agent agent) {
+
+        def start = System.currentTimeMillis();
         Map params = new HashMap();
         params.put("agent1", vertex.getId());
         params.put("agent2",agent.vertex.getId());
@@ -75,6 +79,8 @@ public class Agent  {
         GraphResultSet rs = session.executeGraph(s);
         def edge = rs.one().asEdge();
         logger.info("Added knows edge {} to the network", edge);
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
         return edge;
     }
 
@@ -83,6 +89,7 @@ public class Agent  {
     }
 
   	private Object ownsWork(Work process) {
+        def start = System.currentTimeMillis();
         Map params = new HashMap();
         params.put("agent", this.id());
         params.put("process",process.id());
@@ -98,11 +105,14 @@ public class Agent  {
         GraphResultSet rs = session.executeGraph(s);
         def edge = rs.one().asEdge();
         logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return process;
     }
 
     private Object getWorks() {
+
+        def start = System.currentTimeMillis();
         Map params = new HashMap();
         params.put("agent", this.id());
         params.put("edgeLabel","owns");
@@ -114,6 +124,8 @@ public class Agent  {
         GraphResultSet rs = session.executeGraph(s);
         List<Vertex> works = rs.all().collect {it.asVertex()};
         logger.info("Retrieved works list {} from agent {}", works.toString(),this.id());
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
         return works;
     }
 
@@ -123,6 +135,8 @@ public class Agent  {
     }
 
     private List allItems() {
+
+      def start = System.currentTimeMillis();
       Map params = new HashMap();
       params.put("agentLabelName", this.id());
 
@@ -134,11 +148,13 @@ public class Agent  {
       GraphResultSet rs = session.executeGraph(s);
       List items = rs.all().collect {it.asVertex() };
       logger.info("Returned {} items of agent {}", items.size(), this.id());
-
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      
       return items;
     }
 
     private Integer searchAndConnect(Integer similarityThreshold, Integer maxReachDistance) {
+      def start = System.currentTimeMillis();
       logger.warn('Search and connect all items of agent {} with its known agents at similarity {}', this.id(), maxReachDistance)
       def totalConnectionsCreated = 0;
       this.allItems().collect{ vertex -> new Item(vertex,this.session) }.each {item ->
@@ -148,6 +164,7 @@ public class Agent  {
         totalConnectionsCreated=totalConnectionsCreated+similarityEdges.size();
       }
       logger.warn("Created {} new similarity connections for agent {}", totalConnectionsCreated, this.id())
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return totalConnectionsCreated;
     }
 

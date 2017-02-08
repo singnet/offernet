@@ -28,6 +28,7 @@ public class Work  {
 
 	private Work(DseSession session) {
 
+        def start = System.currentTimeMillis();
         def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('Work.class');
@@ -42,23 +43,25 @@ public class Work  {
         this.vertex = rs.one().asVertex();
 
         logger.warn("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         this.addDemand();
         this.addOffer();
 	}
 
   private Work(Vertex vertex,DseSession session) {
-
+    def start = System.currentTimeMillis();
     def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
     PropertyConfigurator.configure(config.toProperties())
     logger = LoggerFactory.getLogger('Work.class');
     this.session= session;
     this.vertex=vertex
     logger.warn("Created a new {} from known vertex {}", vertex.getLabel(), vertex.getId());
-
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
   }
 
   private Work(List demands, List offers, DseSession session) {
+    def start = System.currentTimeMillis();
     def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
     PropertyConfigurator.configure(config.toProperties())
     logger = LoggerFactory.getLogger('Work.class');
@@ -73,6 +76,7 @@ public class Work  {
     this.vertex = rs.one().asVertex();
 
     logger.warn("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
     demands.each {demand ->
       this.addDemand(demand);
@@ -111,6 +115,7 @@ public class Work  {
     }
 
     public Item addItem(Item item, String labelName) {
+        def start = System.currentTimeMillis();
     	Map params = new HashMap();
         params.put("thisVertex", this.id());
         params.put("edgeLabel", (String) labelName);
@@ -126,11 +131,15 @@ public class Work  {
         GraphResultSet rs = session.executeGraph(s);
         def edge = rs.one().asEdge();
         logger.info("Added {} edge {} to the network", labelName, edge);
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
      	return item;
     }
 
     public List<Vertex> getItems(String labelName) {
-    	Map params = new HashMap();
+        def start = System.currentTimeMillis();
+    
+      	Map params = new HashMap();
         params.put("thisVertex", this.id());
         params.put("edgeLabel", labelName);
 
@@ -141,6 +150,8 @@ public class Work  {
 
         List<Vertex> items = rs.all().collect {it.asVertex()};
         logger.info("Retrieved {} list {} from process {}", labelName, items.toString(),this.id());
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
         return items;
     }
 
@@ -154,6 +165,7 @@ public class Work  {
       Read DSE Graph tutorial before going further.
       */
       private List<GraphNode> pathSearch(Integer cutoffValue, Integer similarityConstraint) {
+        def start = System.currentTimeMillis()
         Map params = new HashMap();
         params.put("thisWork", this.id());
         params.put("cutoffValue", cutoffValue);
@@ -163,10 +175,10 @@ public class Work  {
 
         String query="""
             g.V(thisWork).as('source').repeat(
-                   __.outE('demands').inV().as('a').has(label,'item')                               // (1)
+                   __.outE('offers').inV().as('a').has(label,'item')                               // (1)
                   .bothE('similarity').has('similarity',gte(similarityConstraint))            // (2)
                   .bothV().as('b').where('a',neq('b'))                                              // (3)
-                  .inE('offers').outV().has(label,'work')).times(cutoffValue).range(0,1).simplePath().path().unfold()   // (4)
+                  .inE('demands').outV().has(label,'work')).times(cutoffValue).range(0,1).simplePath().path().unfold()   // (4)
         """
         /*
         (1) get the demand of the work as item
@@ -179,6 +191,7 @@ public class Work  {
         GraphResultSet rs = session.executeGraph(s);
         def path = rs.all();
         logger.warn("Found path: {}",path);
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return path;
 

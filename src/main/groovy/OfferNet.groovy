@@ -41,6 +41,7 @@ public class OfferNet implements AutoCloseable {
         logger = LoggerFactory.getLogger('OfferNet.class');
 
         try {
+            def start = System.currentTimeMillis()
             cluster = DseCluster.builder().addContactPoint("192.168.1.6").build();
             cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
 
@@ -51,6 +52,7 @@ public class OfferNet implements AutoCloseable {
             session = cluster.connect();
 
             logger.info("Created OfferNet instance with session {}", session);
+            logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -68,6 +70,7 @@ public class OfferNet implements AutoCloseable {
     }
 
     public List createAgentNetwork(int numberOfAgents) {
+        def start = System.currentTimeMillis()
         List agentsList = new ArrayList()
         agentsList.add(new Agent(this.session))
 
@@ -80,6 +83,7 @@ public class OfferNet implements AutoCloseable {
             agentsList.add(Agent2)
         }
         logger.info("Created a network of "+numberOfAgents+ " Agents")
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
         return agentsList;
     }
 
@@ -104,6 +108,7 @@ public class OfferNet implements AutoCloseable {
     }
 
     public List getIds(String labelName) {
+      def start = System.currentTimeMillis()
       Map params = new HashMap();
       params.put("labelName", labelName);
 
@@ -114,10 +119,12 @@ public class OfferNet implements AutoCloseable {
 
       List<Object> agentIds = rs.all();
       logger.info("Retrieved list of {} agentIds from OfferNet", agentIds.size());
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return agentIds;
     }
 
     public addRandomWorksToAgents(int numberOfWorks) {
+        def start=System.currentTimeMillis();
         List agentIds = this.getIds('agent');
         numberOfWorks.times {
             def random = new Random();
@@ -127,9 +134,11 @@ public class OfferNet implements AutoCloseable {
             logger.info("Added ownsWork link {} to agent {}", ownsWork, agent.id());
         }
         logger.info("Added "+numberOfWorks+" of random processes to the network")
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     }
 
-    def Object addChainToNetwork(List chain) {
+    public Object addChainToNetwork(List chain) {
+        def start = System.currentTimeMillis();
         def dataItemsWithDesignedSimilarities = new ArrayList()
         def chainedWorks = []
         for (int x=0;x<chain.size()-1;x++) {
@@ -160,38 +169,65 @@ public class OfferNet implements AutoCloseable {
             }
         }
         logger.info("Added a chain to the network {}",chainedWorks)
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
         return chainedWorks;
     }
 
     /* 
     * Note that this function is for testing only - it calculates the perfect similarities between items
     */ 
-    public List allConnectedSimilarPairs() {
+    public List allConnectedSimilarPairsCentralized(Integer similarityThreshold) {
         logger.warn("Centralized search of all demand-offer pairs with perfect similarities in the network");
+        def start = System.currentTimeMillis();
+        Map params = new HashMap();
+        params.put("similarityThreshold", similarityThreshold);
+
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "g.V().match("+
                 "__.as('g').has(label,'work').as('w').out('offers').as('o').properties('value').value().as('b')"+
-                ",__.as('o').out('similarity').as('d'),__.as('d').properties('value').value().as('b')"+
+                ",__.as('o').outE('similarity').as('s').properties('similarity').value().is(gte(similarityThreshold))"+
+                ",__.as('s').inV().as('d')"+
+                ",__.as('d').properties('value').value().as('b')"+
                 ",__.as('d').in('demands').as('w2')"+
-                ").select('b','o','d')");
+                ").select('b','o','d')",params);
 
         GraphResultSet rs = session.executeGraph(s);
         List pairs = rs.all();
         logger.info("Found {} demand-offer pairs existing in the network", pairs.size());
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return pairs;
 
     }
 
+    public List allPathsCentralized(Integer similarityThreshold) {
+        logger.warn("Centralized search of all paths in the network");
+        def start = System.currentTimeMillis();
+        Map params = new HashMap();
+        params.put("similarityThreshold", similarityThreshold);
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "g.V().has(label,'work').as('source')"+
+                ".until(outE('demands').inV().has(label,'item').bothE('similarity').has('similarity',gte(similarityThreshold)).count().is(0))"+
+                ".repeat(__.outE('demands').inV().as('a').has(label,'item')"+
+                  ".bothE('similarity').has('similarity',gte(similarityThreshold)).bothV().as('b').where('a',neq('b'))"+
+                  ".inE('offers').outV().has(label,'work')).simplePath().path()"+
+                  ".where(count(local).is(neq(1)))",params);
+
+        GraphResultSet rs = session.executeGraph(s);
+        List paths = rs.all().collect{it.objects};
+        logger.warn("Found {} paths",paths);
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+        return paths
+    }
+
     // this query mysteriously does not work -- looks like something is wrong with the type of 'v', as sometimes it works and sometimes not.
 
-    public List allSimilarPairs() {
+    public List allSimilarPairsCentralized() {
         logger.warn("Centralized search of connected demand-offer pairs with perfect similarities in the network");
-        Map params = new HashMap();
-        params.put("labelName", "work");
-        params.put("itemName","demand");
-        params.put("propertyName","value");
+        def start = System.currentTimeMillis();
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "g.V().match("+
@@ -202,12 +238,16 @@ public class OfferNet implements AutoCloseable {
         GraphResultSet rs = session.executeGraph(s);
         List pairs = rs.all();
         logger.info("Found {} demand-offer pairs existing in the network", pairs.size());
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return pairs;
 
     }
 
     public List allWorkItemEdges(String itemName) {
+        logger.warn("Centralized search of work vertexes in the graph");
+        def start = System.currentTimeMillis();
+
         Map params = new HashMap();
         params.put("labelName", "work");
         params.put("itemName",itemName);
@@ -220,12 +260,15 @@ public class OfferNet implements AutoCloseable {
         GraphResultSet rs = session.executeGraph(s);
         List edges = rs.all();
         logger.info("Found {} allWorkItemEdges of {} existing in the network", edges.size(), itemName);
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
 
         return edges
 
     }
 
     public List allSimilarityEdges() {
+
+        def start = System.currentTimeMillis();
         Map params = new HashMap();
         params.put("labelName", "similarity");
 
@@ -237,6 +280,7 @@ public class OfferNet implements AutoCloseable {
         GraphResultSet rs = session.executeGraph(s);
         List edges = rs.all();
         logger.info("Found {} similarity Edges existing in the network", edges.size());
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return edges;
     }
@@ -256,6 +300,7 @@ public class OfferNet implements AutoCloseable {
 
 
     public Integer connectMatchingPairs(Map matchingPairs) {
+      def start = System.currentTimeMillis();
       def connected = 0;
       logger.info("Connecting all matching demand offer item pairs")
       matchingPairs.each { key,value ->
@@ -279,10 +324,12 @@ public class OfferNet implements AutoCloseable {
          }
       }
       logger.info("Connected {} item pairs.", connected)
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return connected
     }
 
     public Edge connectItems(String item1Label, String item2Label, Integer similarity) {
+      def start = System.currentTimeMillis();
       Map params = new HashMap();
       params.put("item1", item1Label);
       params.put("item2",item2Label);
@@ -302,6 +349,7 @@ public class OfferNet implements AutoCloseable {
       GraphResultSet rs = session.executeGraph(s);
       def similarityEdge = rs.one().asEdge();
       logger.info("Added similarity edge {} to the network", similarityEdge);
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
       return similarityEdge;
     }

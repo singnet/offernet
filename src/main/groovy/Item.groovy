@@ -29,17 +29,18 @@ public class Item  {
 	}
 
   private Item(Vertex vertex,DseSession session) {
-
+    def start = System.currentTimeMillis();
     def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
     PropertyConfigurator.configure(config.toProperties())
     logger = LoggerFactory.getLogger('Item.class');
     this.session= session;
     this.vertex=vertex
     logger.warn("Created a new {} from known vertex {}", vertex.getLabel(), vertex.getId());
-
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
   }
 
   private Item(String value, DseSession session) {
+      def start = System.currentTimeMillis();
       def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
       PropertyConfigurator.configure(config.toProperties())
       logger = LoggerFactory.getLogger('Item.class');
@@ -56,6 +57,7 @@ public class Item  {
       this.vertex = rs.one().asVertex();
 
       logger.warn("Created a new {}", this.id().toString());
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
   }
 
   private id() {
@@ -63,16 +65,20 @@ public class Item  {
   }
 
   private Map getProperties() {
+    def start = System.currentTimeMillis();
     Map properties = [:]
     def vertexProperties = vertex.getProperties();
     vertexProperties.each { vp ->
       properties.put(vp.getName(),vp.getValue());
     }
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     return properties;
   }
 
   private String getValue() {
+    def start = System.currentTimeMillis();    
     return this.vertex.getProperty("value").getValue().asString();
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
   }
 
   private List itemsOfKnownAgents(Integer maxReachDistance) {
@@ -96,7 +102,7 @@ public class Item  {
   }
 
   private List similarityEdges() {
-
+    def start = System.currentTimeMillis()
     Map params = new HashMap();
     params.put("thisItem", this.id());
 
@@ -106,11 +112,14 @@ public class Item  {
     GraphResultSet rs = session.executeGraph(s);
     List similarityEdges = rs.all().collect {it.asEdge()};
     logger.info("Found {} items with explicit similarity from item {}",similarityEdges.size(),this.id());
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
     return similarityEdges;
 
   }
 
   private Integer existsSimilarity(Item anotherItem) {
+    def start = System.currentTimeMillis();
     logger.info("Checking if explicit similarity link exists between from {} to {}",this.id(),anotherItem.id())
     List similarityList = []
     this.similarityEdges().each { outEdge ->
@@ -122,6 +131,7 @@ public class Item  {
     assertTrue(similarityList.size()<2);
     def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValueAsInteger(similarityList[0],'similarity') : -1;
     logger.info("Retrieved similarity value {} between item {} and {}",similarity,this.id(),anotherItem.id())
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     return similarity;
   }
 
@@ -132,6 +142,7 @@ public class Item  {
   }
 
   private Object connect(Item knownItem, Integer similarity) {
+    def start = System.currentTimeMillis();
     Map params = new HashMap();
     params.put("item1", this.id());
     params.put("item2",knownItem.id());
@@ -151,7 +162,7 @@ public class Item  {
     GraphResultSet rs = session.executeGraph(s);
     def similarityEdge = rs.one().asEdge();
     logger.info("Added similarity edge {} to the network", similarityEdge);
-
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     return similarityEdge;
 
   }

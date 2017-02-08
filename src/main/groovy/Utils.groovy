@@ -103,7 +103,7 @@ public class Utils {
       return StackTraceUtils.sanitize(marker).stackTrace[1].methodName
     }
 
-    public static boolean convertToDotNotation(List path, String label, String dotFilePath) {
+    public static boolean convertToDotNotation(Object path, String label, String dotFilePath) {
         def dotFile = new File(dotFilePath);
         dotFile.delete()
         // print heading
