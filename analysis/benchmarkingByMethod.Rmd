@@ -1,0 +1,29 @@
+---
+title: "Log file analysis"
+output: 
+  html_document:
+    toc: true
+    theme: united
+---
+
+```{r filter-time-benchmarks, engine='bash',echo=FALSE}
+
+cat ../logs/OfferNet.log | grep 'seconds to complete' > ../analysis/logfile.ssv
+```
+
+```{r read-log-file, echo=FALSE}
+log <- read.table('../analysis/logfile.ssv', header=FALSE)
+```
+
+## Total clock running times by class&method
+
+```{r log-summary, results='asis',echo=FALSE}
+agg1 <- aggregate(log$V12, by=list(class=log$V7, method=log$V10), FUN=sum)
+agg2 <- aggregate(log$V12, by=list(class=log$V7, method=log$V10), FUN=mean)
+agg3 <- aggregate(log$V12, by=list(class=log$V7, method=log$V10), FUN=length)
+agg_t <- merge(agg1,agg2,by=c('class','method'))
+agg <- merge(agg_t,agg3,by=c('class','method'))
+colnames(agg) <- c('class','method','sec (sum)', 'sec (avg)', 'no')
+library(xtable)
+print(xtable(agg),type='html',comment=F)
+```
