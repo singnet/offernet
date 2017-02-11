@@ -178,7 +178,7 @@ public class Work  {
                    __.outE('offers').inV().as('a').has(label,'item')                               // (1)
                   .bothE('similarity').has('similarity',gte(similarityConstraint))            // (2)
                   .bothV().as('b').where('a',neq('b'))                                              // (3)
-                  .inE('demands').outV().has(label,'work')).times(cutoffValue).range(0,1).simplePath().path().unfold()   // (4)
+                  .inE('demands').outV().has(label,'work')).times(cutoffValue).range(0,1).simplePath().path()   // (4)
         """
         /*
         (1) get the demand of the work as item
@@ -189,12 +189,14 @@ public class Work  {
         SimpleGraphStatement s = new SimpleGraphStatement(query,params);
 
         GraphResultSet rs = session.executeGraph(s);
-        def path = rs.all();
+        def result = rs.one()
+        logger.warn("Received result {}",result)
+        List path=[]
+        if (result != null) { path = result.asPath().getObjects();}
         logger.warn("Found path: {}",path);
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return path;
-
       }
 
 

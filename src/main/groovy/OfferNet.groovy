@@ -137,7 +137,7 @@ public class OfferNet implements AutoCloseable {
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     }
 
-    public Object addChainToNetwork(List chain) {
+    private List addChainToNetwork(List chain) {
         def start = System.currentTimeMillis();
         def dataItemsWithDesignedSimilarities = new ArrayList()
         def chainedWorks = []
@@ -216,7 +216,7 @@ public class OfferNet implements AutoCloseable {
                   ".where(count(local).is(neq(1)))",params);
 
         GraphResultSet rs = session.executeGraph(s);
-        List paths = rs.all().collect{it.objects};
+        List paths = rs.all().collect{it.asPath().getObjects()}
         logger.warn("Found {} paths",paths);
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
@@ -241,7 +241,6 @@ public class OfferNet implements AutoCloseable {
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return pairs;
-
     }
 
     public List allWorkItemEdges(String itemName) {

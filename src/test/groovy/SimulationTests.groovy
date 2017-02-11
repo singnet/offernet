@@ -74,74 +74,92 @@ public class SimulationTests {
 
 		@Test
 		void pathSearchManualDecentralizedTest() {
-    	    def on = new OfferNet();
-    	    on.flushVertices();
+			def sim = new Simulation()
+			assertNotNull(sim);
+			sim.testNetworkSmall();
 
-    	    def start = System.currentTimeMillis();
-    	    def chain = ["0010","0110","0000","1110"]
-    	    //def chain = Utils.createChain(4)
-    	    logger.info("Created chain {}", chain)
-
-    	    def work1 = new Work([new Item(chain[0],on.session)],[new Item(chain[1],on.session)],on.session);
-    	    def work2 = new Work([new Item(chain[1],on.session)],[new Item(chain[2],on.session)],on.session);
-    	    def work3 = new Work([new Item(chain[2],on.session)],[new Item(chain[3],on.session)],on.session);
-    	    logger.info("Created two works: {}",[work1.id(),work2.id()],work3.id())
-
-	   	    def agent1 = new Agent(on.session);
-    	    def agent2 = new Agent(on.session);
-    	    def agent3 = new Agent(on.session);
-       	    def agent4 = new Agent(on.session);
-
-    	    logger.info("Created three agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
-
-    	    agent1.knowsAgent(agent2);
-    	    logger.info("agent {} knows agent {}",agent1,agent2)
-    	    agent2.knowsAgent(agent3);
-    	    logger.info("agent {} knows agent {}",agent2,agent3)
-    	    agent3.knowsAgent(agent4);
-    	    logger.info("agent {} knows agent {}",agent3,agent4)
-
-    	    agent1.ownsWork(work1);
-    	    logger.info("agent {} owns work {}", agent1,work1)
-    	    agent2.ownsWork(work2);
-    	    logger.info("agent {} owns work {}", agent2,work2)
-       	    agent3.ownsWork(work3);
-    	    logger.info("agent {} owns work {}", agent3,work3)
+			def start = System.currentTimeMillis();
 
     	    def similarityThreshold = 4;
     	    def maxDistance = 2;
-    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",agent1.searchAndConnect(similarityThreshold,maxDistance),agent1.id(),similarityThreshold, maxDistance)
-    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",agent2.searchAndConnect(similarityThreshold,maxDistance),agent2.id(),similarityThreshold, maxDistance)
-    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",agent3.searchAndConnect(similarityThreshold,maxDistance),agent3.id(),similarityThreshold, maxDistance)
- 	       	logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",agent4.searchAndConnect(similarityThreshold,maxDistance),agent4.id(),similarityThreshold, maxDistance)
+    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[0].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[0].id(),similarityThreshold, maxDistance)
+    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[1].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[1].id(),similarityThreshold, maxDistance)
+    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[2].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[2].id(),similarityThreshold, maxDistance)
+ 	       	logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[3].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[3].id(),similarityThreshold, maxDistance)
 
- 	       	def connectedPairs = on.allConnectedSimilarPairsCentralized(4);
+ 	       	def connectedPairs = sim.on.allConnectedSimilarPairsCentralized(4);
  	       	logger.info("Calculated allConnectedSimilarPairs: {}",connectedPairs.size())
- 	       	def similarPairs = on.allSimilarPairsCentralized();
+ 	       	def similarPairs = sim.on.allSimilarPairsCentralized();
  	       	logger.info("Calculated allSimilarityPairs (not necessarily connected) --  (query does not work): {}",similarPairs.size())
- 	       	def similarityEdges = on.allSimilarityEdges().size() / 2;
+ 	       	def similarityEdges = sim.on.allSimilarityEdges().size() / 2;
  	       	def allSimilarityLinks = similarityEdges.toInteger();
  	       	assertEquals("similarityLinks is not correct",2,allSimilarityLinks);
  	       	assertEquals("similarityLinks is not equal to allConectedSimilarPairs",connectedPairs.size(),allSimilarityLinks)
  	       	
  	       	def cutoffValue = 2;
  	       	def uniquePaths = [] as Set;
- 	       	[agent1,agent2,agent3].each{ agent -> 
- 	       		def path = new Work(agent.getWorks()[0],on.session).pathSearch(cutoffValue,similarityThreshold)
- 	       		logger.info("Found {} paths from agent {}",path.size(),agent1.id())
+ 	       	sim.agentList.subList(0,2).each{ agent -> 
+ 	       		def path = new Work(agent.getWorks()[0],sim.on.session).pathSearch(cutoffValue,similarityThreshold)
+ 	       		logger.info("Found {} paths from agent {}",path.size(),agent.id())
  	       		uniquePaths.add(path)
  	       	}
  	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
-           	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+           	def methodName = Utils.getCurrentMethodName();
+           	logger.warn("Method {} took {} seconds to complete", methodName, (System.currentTimeMillis()-start)/1000)
 
- 	       	def index = 0;
+           	def index = 0;
+
+           	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
+           	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
  	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
  	       	}
 
+		}
+
+		@Test
+		void pathSearchManualCentralizedTest() {
+			def sim = new Simulation()
+			assertNotNull(sim);
+			sim.testNetworkSmall();
+
+			def start = System.currentTimeMillis();
+
+    	    def similarityThreshold = 4;
+    	    def maxDistance = 2;
+    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[0].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[0].id(),similarityThreshold, maxDistance)
+    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[1].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[1].id(),similarityThreshold, maxDistance)
+    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[2].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[2].id(),similarityThreshold, maxDistance)
+ 	       	logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[3].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[3].id(),similarityThreshold, maxDistance)
+
+			def demandEdges = sim.on.allWorkItemEdges("demands");
+			def offerEdges = sim.on.allWorkItemEdges("offers")
+
+			def matchingOfferDemandPairs = Utils.getMatchingOfferDemandPairs(offerEdges,demandEdges)
+			def similarityConnectionsCentralized = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
+
+			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
+			
+			def uniquePaths = [] as Set;
+			def paths = sim.on.allPathsCentralized(similarityThreshold);
+			uniquePaths.addAll(paths);
+
+ 	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
+ 	       	def methodName = Utils.getCurrentMethodName();
+           	logger.warn("Method {} took {} seconds to complete", methodName, (System.currentTimeMillis()-start)/1000)
+
+           	def index = 0;
+
+           	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
+           	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
+ 	       	uniquePaths.each {path -> 
+ 	       		index +=1;
+ 	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
+ 	       	}
 
 		}
+
 
 		@Test
 		void decentralizedPathSimulationTest() {
@@ -163,7 +181,7 @@ public class SimulationTests {
 			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
 			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
 			
-	       	def cutoffValue = 6;
+	       	def cutoffValue = 7;
  	       	def uniquePaths = [] as Set;
  	       	agentList.each{ agent -> 
  	       		def path = new Work(agent.getWorks()[0],sim.on.session).pathSearch(cutoffValue,similarityThreshold)
@@ -177,13 +195,12 @@ public class SimulationTests {
 
            	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
            	def methodName = Utils.getCurrentMethodName()
-           	new File("resources/"+methodName+dirname).mkdir();
+           	//new File("resources/"+methodName+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","resources/"+methodName+dirname+"/path"+index+".dot");
+ 	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
  	       	}
 
-			
 		}
 
 		@Test
@@ -223,13 +240,11 @@ public class SimulationTests {
            	def index = 0;
 
            	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
-           	new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
+           	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","resources/"+methodName+dirname+"/path"+index+".dot");
+ 	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
  	       	}
-
-			
 		}
 
 		@Test

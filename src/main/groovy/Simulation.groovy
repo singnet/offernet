@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory
 class Simulation {
 	OfferNet on;
 	Logger logger;
+	List agentList;
 
 	private Simulation() {
 
@@ -21,10 +22,22 @@ class Simulation {
 
 	}
 
+	private void createAgentNetworkWithChains(String[] args){
+   		def numberOfAgents = args[1];
+   		def numberOfRandomWorks = args[2];
+	    def numberOfChains = args[3];
+	    def lenghtOfChain = args[4];
+	    List chains = [];
+	    numberOfChains.times {
+	    	chains.add(Utils.createChain(lenghtOfChain));
+	    }
+   		createAgentNetwork(numberOfAgents,numberOfRandomWorks,chains);
+	}
+
 	private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
 
 		def start = System.currentTimeMillis();
-		def agentList = on.createAgentNetwork(numberOfAgents)
+		agentList = on.createAgentNetwork(numberOfAgents)
 		agentList.each {agent ->
 			agent.ownsWork()
 		}
@@ -51,6 +64,43 @@ class Simulation {
 
 		return newConnectionsCreated
 	}
+
+	private void testNetworkSmall() {
+	    def start = System.currentTimeMillis();
+	    def chain = ["0010","0110","0000","1110"]
+	    //def chain = Utils.createChain(4)
+	    logger.info("Created chain {}", chain)
+
+	    def work1 = new Work([new Item(chain[0],on.session)],[new Item(chain[1],on.session)],on.session);
+	    def work2 = new Work([new Item(chain[1],on.session)],[new Item(chain[2],on.session)],on.session);
+	    def work3 = new Work([new Item(chain[2],on.session)],[new Item(chain[3],on.session)],on.session);
+	    logger.info("Created two works: {}",[work1.id(),work2.id()],work3.id())
+
+   	    def agent1 = new Agent(on.session);
+	    def agent2 = new Agent(on.session);
+	    def agent3 = new Agent(on.session);
+   	    def agent4 = new Agent(on.session);
+
+	    logger.info("Created three agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
+
+	    agent1.knowsAgent(agent2);
+	    logger.info("agent {} knows agent {}",agent1,agent2)
+	    agent2.knowsAgent(agent3);
+	    logger.info("agent {} knows agent {}",agent2,agent3)
+	    agent3.knowsAgent(agent4);
+	    logger.info("agent {} knows agent {}",agent3,agent4)
+
+	    agent1.ownsWork(work1);
+	    logger.info("agent {} owns work {}", agent1,work1)
+	    agent2.ownsWork(work2);
+	    logger.info("agent {} owns work {}", agent2,work2)
+   	    agent3.ownsWork(work3);
+	    logger.info("agent {} owns work {}", agent3,work3)
+
+	    agentList = [agent1,agent2,agent3,agent4]
+    }
+
+
 
 
 

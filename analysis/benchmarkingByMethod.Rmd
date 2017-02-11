@@ -27,3 +27,5 @@ colnames(agg) <- c('class','method','sec (sum)', 'sec (avg)', 'no')
 library(xtable)
 print(xtable(agg),type='html',comment=F)
 ```
+
+## Paths discovered
