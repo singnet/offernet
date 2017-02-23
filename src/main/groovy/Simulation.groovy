@@ -101,7 +101,42 @@ class Simulation {
     }
 
 
+	private void testNetworkSmallWithCycle() {
+	    def start = System.currentTimeMillis();
+	    def chain = ["0010","0110","0000","1110"]
+	    //def chain = Utils.createChain(4)
+	    logger.info("Created chain {}", chain)
 
+	    def work1 = new Work([new Item(chain[0],on.session)],[new Item(chain[1],on.session)],on.session);
+	    def work2 = new Work([new Item(chain[1],on.session)],[new Item(chain[2],on.session)],on.session);
+	    def work3 = new Work([new Item(chain[2],on.session)],[new Item(chain[3],on.session)],on.session);
+	    def work4 = new Work([new Item(chain[3],on.session)],[new Item(chain[0],on.session)],on.session);
+
+   	    def agent1 = new Agent(on.session);
+	    def agent2 = new Agent(on.session);
+	    def agent3 = new Agent(on.session);
+   	    def agent4 = new Agent(on.session);
+
+	    logger.info("Created three agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
+
+	    agent1.knowsAgent(agent2);
+	    logger.info("agent {} knows agent {}",agent1,agent2)
+	    agent2.knowsAgent(agent3);
+	    logger.info("agent {} knows agent {}",agent2,agent3)
+	    agent3.knowsAgent(agent4);
+	    logger.info("agent {} knows agent {}",agent3,agent4)
+
+	    agent1.ownsWork(work1);
+	    logger.info("agent {} owns work {}", agent1,work1)
+	    agent2.ownsWork(work2);
+	    logger.info("agent {} owns work {}", agent2,work2)
+   	    agent3.ownsWork(work3);
+	    logger.info("agent {} owns work {}", agent3,work3)
+	    agent4.ownsWork(work4);
+	    logger.info("agent {} owns work {}", agent4,work4)
+
+	    agentList = [agent1,agent2,agent3,agent4]
+    }
 
 
 

@@ -76,12 +76,12 @@ public class SimulationTests {
 		void pathSearchManualDecentralizedTest() {
 			def sim = new Simulation()
 			assertNotNull(sim);
-			sim.testNetworkSmall();
+			sim.testNetworkSmallWithCycle();
 
 			def start = System.currentTimeMillis();
 
     	    def similarityThreshold = 4;
-    	    def maxDistance = 2;
+    	    def maxDistance = 3;
     	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[0].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[0].id(),similarityThreshold, maxDistance)
     	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[1].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[1].id(),similarityThreshold, maxDistance)
     	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[2].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[2].id(),similarityThreshold, maxDistance)
@@ -115,7 +115,6 @@ public class SimulationTests {
  	       		index +=1;
  	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
  	       	}
-
 		}
 
 		@Test
