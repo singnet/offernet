@@ -26,10 +26,6 @@ agg <- merge(agg_t,agg3,by=c('class','method'))
 colnames(agg) <- c('class','method','sec (sum)', 'sec (avg)', 'no')
 library(xtable)
 print(xtable(agg),type='html',comment=F)
-<<<<<<< HEAD
 ```
 
 ## Paths discovered
-=======
-```
->>>>>>> a26e1bf... Rmd for benchmarking method runing times from log

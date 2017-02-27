@@ -179,13 +179,13 @@ public class Tests {
 
 		@Test
 		void agentKnowsAgentTest() {
-        def agent1 = new Agent(on.session);
-        assertNotNull(agent1);
-        def agent2 = new Agent(on.session);
-        assertNotNull(agent2);
-        def edge = agent1.knowsAgent(agent2);
-        assertNotNull(edge);
-    }
+	        def agent1 = new Agent(on.session);
+	        assertNotNull(agent1);
+	        def agent2 = new Agent(on.session);
+	        assertNotNull(agent2);
+	        def edge = agent1.knowsAgent(agent2);
+	        assertNotNull(edge);
+    	}
 
 		@Test
 		void agentOwnsNewWorkTest() {
@@ -201,11 +201,16 @@ public class Tests {
 				def agent1 = new Agent(on.session);
 				assertNotNull(agent1);
 
-				def work = new Work(on.session);
+				def work = agent1.ownsWork("00011","00001")
 				assertNotNull(work);
 
-				def edge = agent1.ownsWork(work);
-				assertNotNull(edge);
+				def demand = agent1.getWorksItems(work,"demands")[0];
+				assertNotNull(demand)
+				def offer = agent1.getWorksItems(work,"offers")[0];
+				assertNotNull(offer)
+
+				assertEquals("00011",demand.getProperty("value").getValue().asString())
+				assertEquals("00001",offer.getProperty("value").getValue().asString())
 		}
 
 		@Test
@@ -216,8 +221,8 @@ public class Tests {
 				def work = agent.ownsWork();
 				assertNotNull(work);
 
-				work.addDemand();
-				work.addOffer();
+				agent.addItemToWork("demands",work);
+				agent.addItemToWork("offers",work);
 
 				assertEquals(4,agent.allItems().size())
 		}
@@ -226,13 +231,13 @@ public class Tests {
 		void searchAndConnectTest() {
 			on.flushVertices("agent");
 			def agent1 = new Agent(on.session);
-			agent1.ownsWork(new Work([new Item ('111110',on.session)],[new Item ('000000',on.session)],on.session));
+			agent1.ownsWork('111110','000000');
 			def agent2 = new Agent(on.session);
-			agent2.ownsWork(new Work([new Item ('111100',on.session)],[new Item ('110000',on.session)],on.session));
+			agent2.ownsWork('111100','110000');
 			def agent3 = new Agent(on.session);
-			agent3.ownsWork(new Work([new Item ('100000',on.session)],[new Item ('111100',on.session)],on.session));
+			agent3.ownsWork('100000','111100');
 			def agent4 = new Agent(on.session);
-			agent4.ownsWork(new Work([new Item ('111110',on.session)],[new Item ('000000',on.session)],on.session));
+			agent4.ownsWork('111110','000000');
 
 			agent1.knowsAgent(agent2);
 			agent2.knowsAgent(agent3);
@@ -255,9 +260,9 @@ public class Tests {
 
 			List worksVertexList = agent.getWorks();
 			assertEquals(3,worksVertexList.size());
-			assertTrue(worksVertexList.contains(work1.vertex));
-			assertTrue(worksVertexList.contains(work2.vertex));
-			assertTrue(worksVertexList.contains(work3.vertex));
+			assertTrue(worksVertexList.contains(work1));
+			assertTrue(worksVertexList.contains(work2));
+			assertTrue(worksVertexList.contains(work3));
 
 		}
 

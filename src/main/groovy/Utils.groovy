@@ -56,8 +56,8 @@ public class Utils {
       return executionStatement;
     }
 
-    public static Integer calculateSimilarity(Item itemOne, Item itemTwo) {
-  		return Utils.veitasSimilarity(itemOne.getValue(), itemTwo.getValue())
+    public static Integer calculateSimilarity(Vertex itemOne, Vertex itemTwo) {
+  		return Utils.veitasSimilarity(itemOne.getProperty("value").getValue().asString(), itemTwo.getProperty("value").getValue().asString())
   	}
 
     public static Integer calculateSimilarity(String left, String right) {
