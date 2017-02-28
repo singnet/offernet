@@ -18,10 +18,6 @@ public class Tests {
 		static private OfferNet on = new OfferNet().flushVertices();
 	    static private Logger logger;
 
-		/*
-		* Item.groovy
-		*/
-
 		@BeforeClass
 		static void initLogging() {
 		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
@@ -29,34 +25,9 @@ public class Tests {
     		logger = LoggerFactory.getLogger('Tests.class');
 		}
 
-		@Test
-		void createItemTest() {
-				def item = new Item(on.session);
-				assertNotNull(item)
-				println "createdItem: "+item;
-		}
-
-		@Test
-		void getItemIdTest() {
-			def id = new Item(on.session).id();
-			assertNotNull(id);
-			println "got Item.id: "+id;
-		}
-
-		@Test
-		void getItemPropertiesTest() {
-			def properties = new Item(on.session).getProperties();
-			assertNotNull(properties);
-			println "got item properties: "+properties;
-		}
-
-		@Test
-		void getItemValueTest() {
-			def value = new Item(on.session).getValue();
-			assertNotNull(value);
-			println "got item value: "+value;
-		}
-
+		/*
+		* Item.groovy
+		*/
 
 		@Test
 		void connectTest() {
@@ -167,13 +138,13 @@ public class Tests {
 
 		@Test
 		void createAgentExistingVertexTest() {
-				def agent1 = new Agent(on.session);
-				assertNotNull(agent1);
-				def id1 = agent1.id();
+			def agent1 = new Agent(on.session);
+			assertNotNull(agent1);
+			def id1 = agent1.id();
 
-				def agent2 = new Agent(id1,on.session);
-				assertNotNull(agent2);
-				assertEquals(id1,agent2.id());
+			def agent2 = new Agent(id1,on.session);
+			assertNotNull(agent2);
+			assertEquals(id1,agent2.id());
 		}
 
 
@@ -266,10 +237,6 @@ public class Tests {
 
 		}
 
-		/*
-		* Work.groovy
-		*/
-
 		@Test
 		void addNewOfferTest() {
 			def agent=new Agent(on.session)
@@ -323,71 +290,72 @@ public class Tests {
 
 		@Test
 		void createOfferNetworkTest() {
-			def on = new OfferNet()
-			assertNotNull(on);
-			assertFalse(on.session.isClosed());
-			assertFalse(on.cluster.isClosed());
+			def on1 = new OfferNet()
+			assertNotNull(on1);
+			assertFalse(on1.session.isClosed());
+			assertFalse(on1.cluster.isClosed());
 		}
 
 		@Test
 		void closeOfferNetworkTest() {
-			def on = new OfferNet()
-			assertNotNull(on);
-			on.close();
-			assertTrue(on.session.isClosed());
-			assertTrue(on.cluster.isClosed());
+			def on1 = new OfferNet()
+			assertNotNull(on1);
+			on1.close();
+			assertTrue(on1.session.isClosed());
+			assertTrue(on1.cluster.isClosed());
 		}
 
 		@Test
 		void flushAgentsTest() {
-			def on = new OfferNet()
-			assertNotNull(on);
-			on.flushVertices("agent");
-			assertEquals(0,on.getIds('agent').size())
+			def on1 = new OfferNet()
+			assertNotNull(on1);
+			new Agent(on1.session)
+			new Agent(on1.session)
+			assertEquals(2,on1.getIds('agent').size())
+			on1.flushVertices("agent");
+			assertEquals(0,on1.getIds('agent').size())
 		}
 
 		@Test
 		void flushVerticesTest() {
-			def on = new OfferNet();
-			assertNotNull(on);
-			on.flushVertices();
-			assertEquals(0,on.getIds('item').size())
+			def on1 = new OfferNet();
+			assertNotNull(on1);
+			def agent=new Agent(on1.session)
+			def work = agent.ownsWork();
+			def item1 = agent.addItemToWork("offers",work);
+			def item2 = agent.addItemToWork("demands",work);
+			assertEquals(1,on1.getIds('agent').size())
+			assertEquals(1,on1.getIds('work').size())
+			assertEquals(4,on1.getIds('item').size())
+			on1.flushVertices();
+			assertEquals(0,on1.getIds('agent').size())
+			assertEquals(0,on1.getIds('work').size())
+			assertEquals(0,on1.getIds('item').size())
 		}
 
 		@Test
 		void getIdsTest() {
-			def on = new OfferNet()
-			on.flushVertices('agent');
-			on.createAgentNetwork(10)
-
-			def agentIds = on.getIds('agent');
+			def on1 = new OfferNet()
+			on1.flushVertices('agent');
+			on1.createAgentNetwork(10)
+			def agentIds = on1.getIds('agent');
 			assertNotNull(agentIds);
 			assertEquals(10,agentIds.size());
 		}
 
 
 		@Test
-		void createAgentNetworkTest() {
-			def on = new OfferNet()
-			on.createAgentNetwork(10)
-		}
-
-		@Test
 		void addRandomWorksToAgentsTest() {
-			def on = new OfferNet()
-			on.flushVertices();
+			def on1 = new OfferNet()
+			on1.flushVertices();
 
-			on.createAgentNetwork(10)
-			on.addRandomWorksToAgents(10)
-			assertEquals(20,on.getIds("item").size()); // creates two items (demand and offer) when creating a ramdom work;
+			on1.createAgentNetwork(10)
+			on1.addRandomWorksToAgents(10)
+			assertEquals(20,on.getIds("item").size()); // creates two items (demand and offer) when creating a random work;
 		}
 
 		@Test
 		void allWorkItemEdgesTest() {
-			def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-			PropertyConfigurator.configure(config.toProperties())
-			def logger = LoggerFactory.getLogger('Test.class');
-
 			def sim = new Simulation();
 
 			def chains = [Utils.createChain(4)]
@@ -400,17 +368,12 @@ public class Tests {
 
 	        logger.info("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
 
-			assertEquals(10,demandEdges.size())
-			assertEquals(10,offerEdges.size())
-
+			assertEquals(7,demandEdges.size())
+			assertEquals(7,offerEdges.size())
 		}
 
 		@Test
 		void connectMatchingPairsTest() {
-			def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-			PropertyConfigurator.configure(config.toProperties())
-			def logger = LoggerFactory.getLogger('Test.class');
-
 			def sim = new Simulation();
 			def chainLength = 4
 
@@ -430,8 +393,6 @@ public class Tests {
 			def connectedPairsCount = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
 			assertEquals((chainLength - 2).toInteger(),connectedPairsCount)
 		}
-
-
 
 		/*
 		*	Utils.class
@@ -456,15 +417,16 @@ public class Tests {
 			String value2 = "000111"
 			def d1 = Utils.veitasSimilarity(value1,value2);
 			assertNotNull(d1)
-			def item1 = new Item(value1,on.session);
+			def agent = new Agent(on.session)
+            def work = agent.ownsWork(value1,value2);
+            def item1 = agent.getWorksItems(work,"demands")[0]
+            def item2 = agent.getWorksItems(work,"offers")[0]
 			assertNotNull(item1)
-			def item2 = new Item(value2,on.session);
 			assertNotNull(item2)
 			def d2 = Utils.calculateSimilarity(item1,item2);
 			assertNotNull(d2)
 			assertEquals(d1,d2);
 			assertEquals(3,d1);
-
 		}
 
 		/*

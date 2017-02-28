@@ -146,25 +146,24 @@ public class OfferNet implements AutoCloseable {
             def agentIds = this.getIds('agent');
             def i = random.nextInt(agentIds.size())
             def agent = new Agent(agentIds[i],this.session)
-            def work = new Work(this.session);
-            chainedWorks.add(work.id())
-            def demand = work.addDemand(new Item(chain[x],this.session))
-            def offer = work.addOffer(new Item(chain[x+1],this.session))
-            agent.ownsWork(work);
+            def work = agent.ownsWork(chain[x],chain[x+1]);
+            chainedWorks.add(work.getId())
+            def demand = agent.getWorksItems(work,"demands")[0]
+            def offer = agent.getWorksItems(work,"offers")[0]
             //print a list with items which have designed similarities in the network
             switch (x) {
                 case 0:
                     // for the first item in chain we add only offer
-                    logger.info("First item with designed similarity {}:{}", offer,offer.getValue())
+                    logger.info("First item with designed similarity {}:{}", offer,offer.getProperty("value").getValue().asString())
                     break
                 case chain.size()-2:
                     //for the last item in chain we add only demand
-                    logger.info("Last item with designed similarity {}:{}", demand,demand.getValue())
+                    logger.info("Last item with designed similarity {}:{}", demand,demand.getProperty("value").getValue().asString())
                     break
                 default:
                     //otherwise we add both, because it has similarity both ways
-                    logger.info("Item with designed similarity {}:{}", demand,demand.getValue())
-                    logger.info("Item with designed similarity {}:{}", offer,offer.getValue())
+                    logger.info("Item with designed similarity {}:{}", demand,demand.getProperty("value").getValue().asString())
+                    logger.info("Item with designed similarity {}:{}", offer,offer.getProperty("value").getValue().asString())
                     break
             }
         }
