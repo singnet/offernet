@@ -271,106 +271,50 @@ public class Tests {
 		*/
 
 		@Test
-	    void createWorkTest() {
-	        def work = new Work(on.session);
-	        assertNotNull(work);
-	    }
-
-		@Test
-		void createWorkFromExistingVertexTest() {
-			def work1 = new Work(on.session);
-			assertNotNull(work1);
-			def vertex1 = work1.vertex;
-			assertNotNull(vertex1);
-
-			def work2 = new Work(vertex1,on.session);
-			assertNotNull(work2);
-			assertEquals(work1.vertex,work2.vertex);
-
-		}
-
-	    @Test 
-	    void createWorkWithKnownItemsTest() {
-			def demand = new Item(on.session);
-			def offer = new Item(on.session);
-
-			def work = new Work([demand],[offer],on.session);
-
-			assertEquals(work.getDemands()[0].getId(),demand.id());
-			assertEquals(work.getOffers()[0].getId(),offer.id());
-	    	
-	    }
-
-		@Test
-		void getWorkIdTest() {
-			def id = new Work(on.session).id();
-			assertNotNull(id);
-			println "got Work.id: "+id;
-		}
-
-		@Test
 		void addNewOfferTest() {
-			def work = new Work(on.session)
-			def offer = work.addOffer();
+			def agent=new Agent(on.session)
+			def work = agent.ownsWork()
+			def offer = agent.addItemToWork("offers",work)
 			assertNotNull(offer);
 		}
 
 		@Test
 		void addKnownOfferTest() {
-			def work = new Work(on.session)
-			def offer = new Item(on.session);
-			assertEquals(offer,work.addOffer(offer));
+			def agent=new Agent(on.session)
+			def work = agent.ownsWork()
+			def offer = agent.addItemToWork("offers",work,"00000")
+			assertEquals("00000",offer.getProperty("value").getValue().asString());
 		}
 
 		@Test
 		void addNewDemandTest() {
-			def work = new Work(on.session)
-			def demand = work.addDemand();
-			assertNotNull(demand);
+			def agent=new Agent(on.session)
+			def work = agent.ownsWork()
+			def offer = agent.addItemToWork("demands",work)
+			assertNotNull(offer);
 		}
 
 		@Test
 		void addKnownDemandTest() {
-			def work = new Work(on.session)
-			def demand = new Item(on.session);
-			assertEquals(demand,work.addDemand(demand));
+			def agent=new Agent(on.session)
+			def work = agent.ownsWork()
+			def offer = agent.addItemToWork("demands",work,"00011")
+			assertEquals("00011",offer.getProperty("value").getValue().asString());
 		}
 
 		@Test
 		void getWorkItemsTest() {
-			 def work = new Work(on.session);
-			 def item1 = new Item(on.session);
-			 work.addItem(item1, "demands");
+			 def agent=new Agent(on.session)
+			 def work = agent.ownsWork();
+			 def item1 = agent.addItemToWork("demands",work);
+			 def item2 = agent.addItemToWork("demands",work);
 
-			 def item2 = new Item(on.session);
-			 work.addItem(item2, "demands");
-
-			 def demands = work.getItems("demands");
+			 def demands = agent.getWorksItems(work,"demands");
 			 assertEquals(3,demands.size()); // tree because one is created by default in Work constructor
 
-			 def offers = work.getItems("offers");
+			 def offers = agent.getWorksItems(work,"offers");
 			 assertEquals(1,offers.size());
 
-		}
-
-		@Test
-		void getDemandsTest() {
-			def work = new Work(on.session);
-			work.addDemand();
-			work.addOffer();
-
-			def demands = work.getDemands()
-			assertEquals(2,demands.size());
-		}
-
-		@Test
-		void getOffersTest() {
-			def work = new Work(on.session);
-			work.addDemand();
-			work.addOffer();
-
-			def offers = work.getOffers()
-			assertEquals(2,offers.size());
 		}
 
 		/*

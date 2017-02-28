@@ -61,6 +61,13 @@ public class Agent  {
   }
 
   /*
+  * returns an id of an Agent vertex
+  */
+  private id() {
+    return vertex.getId();
+  }
+
+  /*
   * Creates 'knows' edge between current agent and provided agent; returns that edge;
   */
 	private Edge knowsAgent(Agent agent) {
@@ -82,6 +89,28 @@ public class Agent  {
         GraphResultSet rs = session.executeGraph(s);
         def edge = rs.one().asEdge();
         logger.info("Added knows edge {} to the network", edge);
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+        return edge;
+    }
+
+    private Object ownsWork(Vertex work) {
+        def start = System.currentTimeMillis();
+        Map params = new HashMap();
+        params.put("agent", this.id());
+        params.put("work",work.getId());
+        params.put("edgeLabel","owns");
+
+        logger.warn("Creating owns edge from agent {} to work {}", params.agent, params.process)
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "def v1 = g.V(agent).next()\n" +
+                "def v2 = g.V(work).next()\n" +
+                "v1.addEdge(edgeLabel, v2)", params)
+
+        GraphResultSet rs = session.executeGraph(s);
+        def edge = rs.one().asEdge();
+        logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return edge;
@@ -177,28 +206,6 @@ public class Agent  {
       return item;
     }
 
-  	private Object ownsWork(Vertex work) {
-        def start = System.currentTimeMillis();
-        Map params = new HashMap();
-        params.put("agent", this.id());
-        params.put("work",work.getId());
-        params.put("edgeLabel","owns");
-
-        logger.warn("Creating owns edge from agent {} to work {}", params.agent, params.process)
-
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "def v1 = g.V(agent).next()\n" +
-                "def v2 = g.V(work).next()\n" +
-                "v1.addEdge(edgeLabel, v2)", params)
-
-        GraphResultSet rs = session.executeGraph(s);
-        def edge = rs.one().asEdge();
-        logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-        return edge;
-    }
-
     /*
     * returns all works of the current agent;
     */
@@ -219,13 +226,6 @@ public class Agent  {
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return works;
-    }
-
-    /*
-    * returns an id of an Agent vertex
-    */
-    private id() {
-    	return vertex.getId();
     }
 
     /*
