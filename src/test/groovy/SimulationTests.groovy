@@ -72,6 +72,7 @@ public class SimulationTests {
 			*/
 		}
 
+		/* Rewrite according to new API
 		@Test
 		void pathSearchManualDecentralizedTest() {
 			def sim = new Simulation()
@@ -201,7 +202,7 @@ public class SimulationTests {
  	       	}
 
 		}
-
+		*/
 		@Test
 		void centralizedPathSimulationTest() {
 			

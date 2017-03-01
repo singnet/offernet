@@ -390,6 +390,8 @@ public class Agent  {
             "def v2 = g.V(item2).next()\n" +
             "def e = v1.addEdge(edgeLabel, v2)\n"+
             "e.property(valueKey,valueName)\n"+
+            "def e2 = v2.addEdge(edgeLabel, v1)\n"+
+            "e2.property(valueKey,valueName)\n"+
             "e", params);
 
     GraphResultSet rs = session.executeGraph(s);

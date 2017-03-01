@@ -26,78 +26,97 @@ public class Tests {
 		}
 
 		/*
-		* Item.groovy
+		* Agent.groovy
 		*/
-		
+
 		@Test
 		void connectTest() {
-			def start = System.currentTimeMillis()
-			def item1 = new Item(on.session);
-			def item2 = new Item (on.session);
+			def agent1 = new Agent(on.session)
+			def agent2 = new Agent(on.session)
+			def work1 = agent1.ownsWork();
+			def work2 = agent2.ownsWork();
+			def item1 = agent1.addItemToWork("demands",work1)
+			def item2 = agent2.addItemToWork("demands",work1)
+
 			def similarity = Utils.calculateSimilarity(item1,item2);
-			def similarityEdge = item1.connect(item1, similarity);
+			def similarityEdge = agent1.connect(item1,item2, similarity);
 			assertNotNull(similarityEdge);
-			logger.warn("Finished test {} in {} seconds","connectTest",(System.currentTimeMillis() - start)/1000)	
-		}
-
-		@Test
-		void reciprocalDistanceLinkTest() {
-			def item1 = new Item(on.session);
-			def item2 = new Item (on.session);
-			def similarity = Utils.calculateSimilarity(item1,item2);
-			def similarityEdge = item1.connect(item1, similarity);
-			assertNotNull(similarityEdge);
-
-			def d1 =item1.existsSimilarity(item2);
-			assertNotNull(d1)
-			def d2 = item2.existsSimilarity(item1);
-			assertNotNull(d2)
-			assertEquals(d1,d2)
-
-		}
-
-
-		@Test
-		void existsSimilarityTest() {
-			def item1 = new Item(on.session);
-			def item2 = new Item (on.session);
-			def d1 = Utils.calculateSimilarity(item1,item2);
-			def similarityEdge = item1.connect(item2, d1);
-			assertNotNull(similarityEdge);
-
-			def d2 = item1.existsSimilarity(item2);
-			assertNotNull(d2)
-			assertEquals(d1,d2)
-		}
-
-		@Test
-		void connectIfSimilarTest() {
-			def item1 = new Item(on.session);
-			def item2 = new Item (on.session);
-			def similarity = Utils.calculateSimilarity(item1,item2);
-			def connectedEdge = item1.connectIfSimilar(item2, similarity-1);
-			assertNotNull(connectedEdge);
-			assertEquals(similarity,Utils.edgePropertyValueAsInteger(connectedEdge,'value'))
-
-			def item3 = new Item(on.session);
-			def item4 = new Item (on.session);
-			similarity = Utils.calculateSimilarity(item3,item4);
-
-			connectedEdge = item3.connectIfSimilar(item4, similarity+1);
-			assertNull(connectedEdge);
-
 		}
 
 		@Test
 		void connectAllSimilarTest() {
-			def item = new Item('1111',on.session);
-			List knownItemsList = []
-			knownItemsList.add(new Item ('1110',on.session));
-			knownItemsList.add(new Item ('1100',on.session));
-			knownItemsList.add(new Item ('1000',on.session));
-			knownItemsList.add(new Item ('0000',on.session));
-			List similarityEdges = item.connectAllSimilar(knownItemsList.collect{it.vertex},2)
-			assertEquals(2,similarityEdges.size())
+			on.flushVertices();
+			def agent1 = new Agent(on.session)
+			def agent2 = new Agent(on.session)
+			def work1 = agent1.ownsWork('1111','1110');
+			def work2 = agent2.ownsWork('1100','1000');
+			def start = agent1.addItemToWork("demands",work2,'0000')
+
+			def knownItemsList = on.getVertices('item')
+			List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,2)
+			assertEquals(3,similarityEdges.size())
+		}
+
+		@Test
+		void reciprocalDistanceLinkTest() {
+			def agent1 = new Agent(on.session) 
+			def agent2 = new Agent(on.session) 
+			def work1 = agent1.ownsWork();
+			def work2 = agent2.ownsWork();
+			def item1 = agent1.addItemToWork("demands",work1)
+			def item2 = agent2.addItemToWork("demands",work1)
+
+			def similarity = Utils.calculateSimilarity(item1,item2);
+			def similarityEdge = agent1.connect(item1, item2, similarity);
+			assertNotNull(similarityEdge);
+
+			def d1 =agent1.existsSimilarity(item1,item2);
+			assertNotNull(d1)
+			def d2 = agent2.existsSimilarity(item2,item1);
+			assertNotNull(d2)
+			assertEquals(d1,d2)
+		}
+
+		@Test
+		void existsSimilarityTest() {
+			def agent1 = new Agent(on.session) 
+			def agent2 = new Agent(on.session) 
+			def work1 = agent1.ownsWork();
+			def work2 = agent2.ownsWork();
+			def item1 = agent1.addItemToWork("demands",work1)
+			def item2 = agent2.addItemToWork("demands",work1)
+
+			def similarity = Utils.calculateSimilarity(item1,item2);
+			def similarityEdge = agent1.connect(item1, item2, similarity);
+			assertNotNull(similarityEdge);
+
+			def d2 = agent2.existsSimilarity(item1,item2);
+			assertNotNull(d2)
+
+		}
+
+
+		@Test
+		void connectIfSimilarTest() {
+			def agent1 = new Agent(on.session) 
+			def agent2 = new Agent(on.session) 
+			def work1 = agent1.ownsWork();
+			def work2 = agent2.ownsWork();
+			def item1 = agent1.addItemToWork("demands",work1)
+			def item2 = agent2.addItemToWork("demands",work1)
+
+			def similarity = Utils.calculateSimilarity(item1,item2);
+			def connectedEdge = agent1.connectIfSimilar(item1, item2, similarity-1);
+			assertNotNull(connectedEdge);
+			assertEquals(similarity,Utils.edgePropertyValueAsInteger(connectedEdge,'value'))
+
+			def item3 = agent1.addItemToWork("offers",work1)
+			def item4 = agent2.addItemToWork("offers",work1)
+
+			similarity = Utils.calculateSimilarity(item3,item4);
+
+			connectedEdge = agent2.connectIfSimilar(item3, item4, similarity+1);
+			assertNull(connectedEdge);
 		}
 
 		@Test
@@ -116,8 +135,7 @@ public class Tests {
 			agent3.ownsWork()
 			agent4.ownsWork()
 
-			def demand = new Item(work1.getDemands()[0],on.session);
-			List items = demand.itemsOfKnownAgents(2)
+			List items = agent1.itemsOfKnownAgents(2)
 			assertNotNull(items)
 			assertEquals(4,items.size())
 			items.each{ item ->
@@ -126,9 +144,6 @@ public class Tests {
 
 		}
 
-		/*
-		* Agent.groovy
-		*/
 
 		@Test
     	void createAgentNewVertexTest() {
@@ -311,7 +326,7 @@ public class Tests {
 			assertNotNull(on1);
 			new Agent(on1.session)
 			new Agent(on1.session)
-			assertEquals(2,on1.getIds('agent').size())
+			assertNotEquals(0,on1.getIds('agent').size())
 			on1.flushVertices("agent");
 			assertEquals(0,on1.getIds('agent').size())
 		}
@@ -324,9 +339,9 @@ public class Tests {
 			def work = agent.ownsWork();
 			def item1 = agent.addItemToWork("offers",work);
 			def item2 = agent.addItemToWork("demands",work);
-			assertEquals(1,on1.getIds('agent').size())
-			assertEquals(1,on1.getIds('work').size())
-			assertEquals(4,on1.getIds('item').size())
+			assertNotEquals(0,on1.getIds('agent').size())
+			assertNotEquals(0,on1.getIds('work').size())
+			assertNotEquals(0,on1.getIds('item').size())
 			on1.flushVertices();
 			assertEquals(0,on1.getIds('agent').size())
 			assertEquals(0,on1.getIds('work').size())

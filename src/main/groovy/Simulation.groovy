@@ -71,17 +71,20 @@ class Simulation {
 	    //def chain = Utils.createChain(4)
 	    logger.info("Created chain {}", chain)
 
-	    def work1 = new Work([new Item(chain[0],on.session)],[new Item(chain[1],on.session)],on.session);
-	    def work2 = new Work([new Item(chain[1],on.session)],[new Item(chain[2],on.session)],on.session);
-	    def work3 = new Work([new Item(chain[2],on.session)],[new Item(chain[3],on.session)],on.session);
-	    logger.info("Created two works: {}",[work1.id(),work2.id()],work3.id())
-
    	    def agent1 = new Agent(on.session);
 	    def agent2 = new Agent(on.session);
 	    def agent3 = new Agent(on.session);
    	    def agent4 = new Agent(on.session);
+   	    logger.info("Created agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
 
-	    logger.info("Created three agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
+
+	    def work1 = agent1.ownsWork(chain[0],chain[1]);
+	    logger.info("agent {} owns work {}", agent1,work1)
+	    def work2 = agent2.ownsWork(chain[1],chain[2]);
+	    logger.info("agent {} owns work {}", agent2,work2)
+	    def work3 = agent3.ownsWork(chain[2],chain[3]);
+	    logger.info("agent {} owns work {}", agent3,work3)
+	    logger.info("Created works: {}",[work1.getId(),work2.getId(),work3.getId()])
 
 	    agent1.knowsAgent(agent2);
 	    logger.info("agent {} knows agent {}",agent1,agent2)
@@ -89,13 +92,6 @@ class Simulation {
 	    logger.info("agent {} knows agent {}",agent2,agent3)
 	    agent3.knowsAgent(agent4);
 	    logger.info("agent {} knows agent {}",agent3,agent4)
-
-	    agent1.ownsWork(work1);
-	    logger.info("agent {} owns work {}", agent1,work1)
-	    agent2.ownsWork(work2);
-	    logger.info("agent {} owns work {}", agent2,work2)
-   	    agent3.ownsWork(work3);
-	    logger.info("agent {} owns work {}", agent3,work3)
 
 	    agentList = [agent1,agent2,agent3,agent4]
     }
@@ -107,17 +103,21 @@ class Simulation {
 	    //def chain = Utils.createChain(4)
 	    logger.info("Created chain {}", chain)
 
-	    def work1 = new Work([new Item(chain[0],on.session)],[new Item(chain[1],on.session)],on.session);
-	    def work2 = new Work([new Item(chain[1],on.session)],[new Item(chain[2],on.session)],on.session);
-	    def work3 = new Work([new Item(chain[2],on.session)],[new Item(chain[3],on.session)],on.session);
-	    def work4 = new Work([new Item(chain[3],on.session)],[new Item(chain[0],on.session)],on.session);
-
    	    def agent1 = new Agent(on.session);
 	    def agent2 = new Agent(on.session);
 	    def agent3 = new Agent(on.session);
    	    def agent4 = new Agent(on.session);
+   	    logger.info("Created agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
 
-	    logger.info("Created three agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
+
+	    def work1 = agent1.ownsWork(chain[0],chain[1]);
+	    logger.info("agent {} owns work {}", agent1,work1)
+	    def work2 = agent2.ownsWork(chain[1],chain[2]);
+	    logger.info("agent {} owns work {}", agent2,work2)
+	    def work3 = agent3.ownsWork(chain[2],chain[3]);
+	    logger.info("agent {} owns work {}", agent3,work3)
+	    def work4 = agent4.ownsWork(chain[3],chain[0]);
+	    logger.info("Created works: {}",[work1.getId(),work2.getId(),work3.getId(),work4.getId()])
 
 	    agent1.knowsAgent(agent2);
 	    logger.info("agent {} knows agent {}",agent1,agent2)
@@ -126,18 +126,7 @@ class Simulation {
 	    agent3.knowsAgent(agent4);
 	    logger.info("agent {} knows agent {}",agent3,agent4)
 
-	    agent1.ownsWork(work1);
-	    logger.info("agent {} owns work {}", agent1,work1)
-	    agent2.ownsWork(work2);
-	    logger.info("agent {} owns work {}", agent2,work2)
-   	    agent3.ownsWork(work3);
-	    logger.info("agent {} owns work {}", agent3,work3)
-	    agent4.ownsWork(work4);
-	    logger.info("agent {} owns work {}", agent4,work4)
-
 	    agentList = [agent1,agent2,agent3,agent4]
-    }
-
-
+	}
 
 }
