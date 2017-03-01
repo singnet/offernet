@@ -72,9 +72,9 @@ public class SimulationTests {
 			*/
 		}
 
-		/* Rewrite according to new API
 		@Test
 		void pathSearchManualDecentralizedTest() {
+
 			def sim = new Simulation()
 			assertNotNull(sim);
 			sim.testNetworkSmallWithCycle();
@@ -100,7 +100,7 @@ public class SimulationTests {
  	       	def cutoffValue = 2;
  	       	def uniquePaths = [] as Set;
  	       	sim.agentList.subList(0,2).each{ agent -> 
- 	       		def path = new Work(agent.getWorks()[0],sim.on.session).pathSearch(cutoffValue,similarityThreshold)
+ 	       		def path = agent.pathSearch(agent.getWorks()[0],cutoffValue,similarityThreshold)
  	       		logger.info("Found {} paths from agent {}",path.size(),agent.id())
  	       		uniquePaths.add(path)
  	       	}
@@ -109,7 +109,6 @@ public class SimulationTests {
            	logger.warn("Method {} took {} seconds to complete", methodName, (System.currentTimeMillis()-start)/1000)
 
            	def index = 0;
-
            	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
            	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
  	       	uniquePaths.each {path -> 
@@ -157,13 +156,10 @@ public class SimulationTests {
  	       		index +=1;
  	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
  	       	}
-
 		}
-
 
 		@Test
 		void decentralizedPathSimulationTest() {
-
 			def sim = new Simulation()
 			assertNotNull(sim);
 			
@@ -184,7 +180,7 @@ public class SimulationTests {
 	       	def cutoffValue = 7;
  	       	def uniquePaths = [] as Set;
  	       	agentList.each{ agent -> 
- 	       		def path = new Work(agent.getWorks()[0],sim.on.session).pathSearch(cutoffValue,similarityThreshold)
+ 	       		def path = agent.pathSearch(agent.getWorks()[0], cutoffValue, similarityThreshold)
  	       		logger.info("Found {} paths from agent {}",path.size(),agent.id())
  	       		uniquePaths.add(path)
  	       	}
@@ -200,12 +196,11 @@ public class SimulationTests {
  	       		index +=1;
  	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
  	       	}
-
 		}
-		*/
+
+		
 		@Test
 		void centralizedPathSimulationTest() {
-			
 			def sim = new Simulation()
 			assertNotNull(sim);
 			

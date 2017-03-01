@@ -7,6 +7,7 @@ import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
 
 import com.datastax.driver.dse.graph.GraphStatement;
+import com.datastax.driver.dse.graph.GraphNode;
 import com.datastax.driver.dse.graph.SimpleGraphStatement;
 import com.datastax.driver.dse.graph.GraphResultSet
 import com.datastax.driver.dse.graph.GraphOptions
@@ -402,5 +403,48 @@ public class Agent  {
 
   }
 
+  /*
+  * params: cutoffValue stops the search if this depth is reached with no cycle discovered; similarityConstraint - all exceeding this value is considered as similar (so allows to connect items which are not EXACTLY similar) -- ideally this should be customizable for every item individually;
+  */
+
+  /*
+  Something is wrong with this query as it runs well when running from the gremlin console.
+  I think the problem again is with types when getting 'similarity' property --
+  Read DSE Graph tutorial before going further.
+  */
+  private List<GraphNode> pathSearch(Vertex work, Integer cutoffValue, Integer similarityConstraint) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      params.put("thisWork", work.getId());
+      params.put("cutoffValue", cutoffValue);
+      params.put("similarityConstraint", similarityConstraint);
+
+      logger.warn("Searching for the cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
+
+      String query="""
+          g.V(thisWork).as('source').repeat(
+                 __.outE('offers').inV().as('a').has(label,'item')                               // (1)
+                .bothE('similarity').has('similarity',gte(similarityConstraint))            // (2)
+                .bothV().as('b').where('a',neq('b'))                                              // (3)
+                .inE('demands').outV().has(label,'work')).times(cutoffValue).range(0,1).simplePath().path()   // (4)
+      """
+      /*
+      (1) get the demand of the work as item
+      (2) look for edges with perfect similarity
+      (3) check that the items items are not the same (not sure this is needed)
+      (4) get the item on the other side & get the work that has offers the item        
+      */
+      SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+
+      GraphResultSet rs = session.executeGraph(s);
+      def result = rs.one()
+      logger.warn("Received result {}",result)
+      List path=[]
+      if (result != null) { path = result.asPath().getObjects();}
+      logger.warn("Found path: {}",path);
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+      return path;
+  }
 
 }
