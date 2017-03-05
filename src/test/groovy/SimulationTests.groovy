@@ -23,7 +23,6 @@ import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSo
 import org.apache.tinkerpop.gremlin.structure.Direction
 import org.apache.tinkerpop.gremlin.structure.Vertex
 
-
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -312,4 +311,51 @@ public class SimulationTests {
 
 			return rs.one().object;
 		}
+
+		@Test
+		void createAgentNetworkPathGraphTest() {
+			def sim = new Simulation();
+			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/pathGraph50.dat");
+			assertEquals(50,sim.on.getVertices('agent').size());
+			assertEquals(49*2,sim.on.getEdges('knows').size());
+		}
+
+		@Test
+		void createAgentNetworkCycleGraphTest() {
+			def sim = new Simulation();
+			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/cycleGraph50.dat");
+			assertEquals(50,sim.on.getVertices('agent').size());
+			assertEquals(50*2,sim.on.getEdges('knows').size());
+		}
+
+		@Test
+		void createAgentNetworkSmallWorldTest() {
+			def sim = new Simulation();
+			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/smallWorld50.dat");
+			assertEquals(50,sim.on.getVertices('agent').size());
+		}
+
+		@Test
+		void createAgentNetworkPreferentialAttachmentGraphTest() {
+			def sim = new Simulation();
+			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/preferentialAttachment50x3.dat");
+			assertEquals(50,sim.on.getVertices('agent').size());
+		}
+
+		@Test
+		void createAgentNetworkConnectedStarsTest() {
+			def sim = new Simulation()
+			sim.createAgentNetworkConnectedStars(sim.on.createAgent(),3,3);
+			assertEquals(sim.on.getVertices("agent").size(),connectedStarsNumber(3,3))
+		}
+
+		private Integer connectedStarsNumber(Integer radius, Integer branchingFactor) {
+			def number = 0;
+			for (int i = 0; i<=radius; i++) {
+				number = number + branchingFactor ** i;
+			}
+			logger.info("Calculated connectedStars number={} for radius={}, branchingFactor={}",number,radius,branchingFactor)
+			return number;
+		}
+
 }

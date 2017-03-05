@@ -139,6 +139,22 @@ public class OfferNet implements AutoCloseable {
       return agentIds;
     }
 
+    public List getEdges(String labelName) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      params.put("labelName", labelName);
+
+      SimpleGraphStatement s = new SimpleGraphStatement("g.E().has(label,labelName)",params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.warn("Executed statement: {}", Utils.getStatement(rs));
+      logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
+
+      List<Object> agentIds = rs.all().collect{it.asEdge()};
+      logger.info("Retrieved list of {} edges from OfferNet", agentIds.size());
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      return agentIds;
+    }
+
     public addRandomWorksToAgents(int numberOfWorks) {
         def start=System.currentTimeMillis();
         List agentIds = this.getIds('agent');
@@ -366,6 +382,48 @@ public class OfferNet implements AutoCloseable {
       logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
       return similarityEdge;
+    }
+
+    public Vertex createAgent() {
+        Map params = new HashMap();
+        params.put("labelValue", "agent");
+        return createVertex(params)
+    }
+
+    private Vertex createVertex(Map params) {
+        def start = System.currentTimeMillis();
+
+        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(label, labelValue)", params));
+        def vertex = rs.one().asVertex();
+
+        logger.warn("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        return vertex;
+    }
+
+    public Edge knowsAgent(Vertex agent1, Vertex agent2) {
+        Map params = new HashMap();
+        params.put("agent1", agent1.getId());
+        params.put("agent2",agent2.getId());
+        params.put('edgeLabel','knows');
+        return createEdge(params)
+    }
+
+    public Edge createEdge(Map params) {
+        def start = System.currentTimeMillis();
+        logger.warn("Creating knows edge from agent {} to agent {}", params.agent1, params.agent2)
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "def v1 = g.V(agent1).next()\n" +
+                "def v2 = g.V(agent2).next()\n" +
+                "v1.addEdge(edgeLabel, v2)", params)
+
+        GraphResultSet rs = session.executeGraph(s);
+        def edge = rs.one().asEdge();
+        logger.info("Added knows edge {} to the network", edge);
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+        return edge;
     }
 
 }

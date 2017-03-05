@@ -4,6 +4,8 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import com.datastax.driver.dse.graph.Vertex;
+
 class Simulation {
 	OfferNet on;
 	Logger logger;
@@ -129,4 +131,51 @@ class Simulation {
 	    agentList = [agent1,agent2,agent3,agent4]
 	}
 
+    private void createAgentNetworkFromNetworkXDataFile(String fileName) throws Throwable {
+        FileInputStream inStream = new FileInputStream(fileName);
+        Scanner scanner = new Scanner(inStream);
+        int numberOfAgents = scanner.nextInt();
+        int numberOfEdges = scanner.nextInt();
+        ArrayList<Integer>[] adj = (ArrayList<Integer>[])new ArrayList[numberOfAgents];
+        for (int i = 0; i < numberOfAgents; i++) {
+            adj[i] = new ArrayList<Integer>();
+        }
+        for (int i = 0; i < numberOfEdges; i++) {
+            int x, y;
+            x = scanner.nextInt();
+            logger.warn("Agent {}",x)
+            y = scanner.nextInt();
+            logger.warn("knows agent {}",y)
+            adj[x - 1].add(y - 1);
+            adj[y - 1].add(x - 1);
+        }
+        logger.warn("Imported adjacency list: {}",adj)
+
+        def agentsList = [];
+        numberOfAgents.times {
+        	agentsList.add( on.createAgent() );
+        }
+        logger.warn("Created {} agents list: {}", agentsList.size(), agentsList)
+
+        def edges = 0;
+        for (int i = 0; i<adj.size(); i++) {
+        	def agent1 = agentsList[i]
+        	adj[i].each { i2 ->
+        		def agent2 = agentsList[i2]
+        		on.knowsAgent(agent1, agent2)	
+        		edges +=1
+        	}
+        }
+        logger.warn("Created {} edges in the network",edges)
+    }
+
+    private void createAgentNetworkConnectedStars(Vertex center, Integer radius, Integer branchingFactor) {
+    	if (radius > 0 ) {
+    		branchingFactor.times {
+    			def spike = on.createAgent()	
+    			on.knowsAgent(center,spike)
+    			createAgentNetworkConnectedStars(spike,radius -1,branchingFactor);
+    		}
+    	}
+    }
 }

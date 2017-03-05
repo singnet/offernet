@@ -409,6 +409,24 @@ public class Tests {
 			assertEquals((chainLength - 2).toInteger(),connectedPairsCount)
 		}
 
+		@Test
+		void createAgentTest() {
+			def sim = new Simulation();
+			def agent = sim.on.createAgent();
+			assertNotNull(agent);
+		}
+
+		@Test 
+		void createEdgeTest() {
+			def sim = new Simulation();
+			def agent1 = sim.on.createAgent();
+			assertNotNull(agent1)
+			def agent2 = sim.on.createAgent();
+			assertNotNull(agent2)
+			def edge = sim.on.knowsAgent(agent1,agent2);
+			assertNotNull(edge)
+		}
+
 		/*
 		*	Utils.class
 		*/

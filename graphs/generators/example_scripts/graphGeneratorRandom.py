@@ -21,4 +21,5 @@ for edge in nx.edges(G):
     f.write(str(edge[1]+1))
     f.write("\n")
 
+f.write("0") # means non-bipartite
 f.close()
