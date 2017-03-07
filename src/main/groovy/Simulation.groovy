@@ -6,7 +6,11 @@ import org.slf4j.LoggerFactory
 
 import com.datastax.driver.dse.graph.Vertex;
 
-class Simulation {
+import akka.actor.UntypedActor;
+import akka.actor.Props;
+import akka.japi.Creator;
+
+class Simulation extends UntypedActor {
 	OfferNet on;
 	Logger logger;
 	List agentList;
@@ -24,6 +28,14 @@ class Simulation {
 
 	}
 
+	/*
+	* TODO:
+	* With agents the logic of simulation changes considerably. What needs to bee done:
+	- OfferNetwork class should hold a map with agents / vertex labels and ways to query them;
+	- Simulation is an Actor, OfferNet is a normal class (encapsulated within Simulation);
+	- Simulations will be run by passing messages for running methods
+	*/
+
 	private void createAgentNetworkWithChains(String[] args){
    		def numberOfAgents = args[1];
    		def numberOfRandomWorks = args[2];
@@ -35,6 +47,24 @@ class Simulation {
 	    }
    		createAgentNetwork(numberOfAgents,numberOfRandomWorks,chains);
 	}
+
+    public List createAgentNetwork(int numberOfAgents) {
+        def start = System.currentTimeMillis()
+        List agentsList = new ArrayList()
+        agentsList.add(system.actorOf(Agent.props(on.session),"agent1"))
+
+        while (agentsList.size() < numberOfAgents) {
+            def random = new Random();
+            def i = random.nextInt(agentsList.size())
+            Object agent1 = agentsList[i]
+            Object agent2 = system.actorOf(Agent.props(on.session),"agent1");
+            agent1.tell(new Method("knowsAgent",[agent2id]),getRef())
+            agentsList.add(agent2)
+        }
+        logger.info("Created a network of "+numberOfAgents+ " Agents")
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
+        return agentsList;
+    }
 
 	private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
 

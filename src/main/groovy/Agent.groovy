@@ -19,11 +19,56 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-public class Agent  {
+import akka.actor.UntypedActor;
+import akka.actor.Props;
+import akka.japi.Creator;
+
+public class Agent extends UntypedActor {
     private Vertex vertex;
 	  private DseSession session;
     private Logger logger;
 
+  public static Props props(DseSession session) {
+    return Props.create(new Creator<Agent>() {
+      @Override
+      public Agent create() throws Exception {
+        return new Agent(session);
+      }
+    });
+  }
+
+  public static Props props(Object vertexId, DseSession session) {
+    return Props.create(new Creator<Agent>() {
+      @Override
+      public Agent create() throws Exception {
+        return new Agent(vertexId, session);
+      }
+    });
+  }
+
+  public void onReceive(Object message) throws Exception {
+    if (message instanceof Method) {
+      logger.info("received Method message: {}",message.getMethodString())
+      switch (message) {
+        default: 
+          def args = message.args
+          def reply = this."$message.name"(*args)
+          getSender().tell(reply,getSelf());
+          break;
+      }
+    } else if (message instanceof GraphNode ) {
+        logger.info("received GraphNode message: {}",message.getMethodString())
+        switch (message) {
+          default:
+            this.knowsAgent(message);
+            break;
+        }
+    } else if (message instanceof String) {
+      logger.info("Agent {} received message {}",this.id(), message)
+    } else { 
+      getSender().tell("Cannot process the message",getSelf()) 
+    }
+  }
 
 	public Agent(DseSession session) {
         def start = System.currentTimeMillis();
@@ -71,12 +116,12 @@ public class Agent  {
   /*
   * Creates 'knows' edge between current agent and provided agent; returns that edge;
   */
-	private Edge knowsAgent(Agent agent) {
+	private Edge knowsAgent(Object id) {
 
         def start = System.currentTimeMillis();
         Map params = new HashMap();
         params.put("agent1", vertex.getId());
-        params.put("agent2",agent.vertex.getId());
+        params.put("agent2",id);
         params.put('edgeLabel','knows');
 
         logger.warn("Creating knows edge from agent {} to agent {}", params.agent1, params.agent2)

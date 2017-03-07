@@ -23,6 +23,7 @@ public class OfferNet implements AutoCloseable {
     private DseCluster cluster;
     private DseSession session; // creating one 'main' client and allowing to create more with the method
     private Logger logger;
+    static ActorSystem system = ActorSystem.create();
 
     public void ass() {
     Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -67,24 +68,6 @@ public class OfferNet implements AutoCloseable {
         logger.info("Closed session {}",sessionName);
         this.cluster.close();
         logger.info("Closed cluster {}",clusterName);
-    }
-
-    public List createAgentNetwork(int numberOfAgents) {
-        def start = System.currentTimeMillis()
-        List agentsList = new ArrayList()
-        agentsList.add(new Agent(this.session))
-
-        while (agentsList.size() < numberOfAgents) {
-            def random = new Random();
-            def i = random.nextInt(agentsList.size())
-            Object Agent1 = agentsList[i]
-            Object Agent2 = new Agent(this.session)
-            Agent1.knowsAgent(Agent2)
-            agentsList.add(Agent2)
-        }
-        logger.info("Created a network of "+numberOfAgents+ " Agents")
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
-        return agentsList;
     }
 
     public void flushVertices(String labelName) {

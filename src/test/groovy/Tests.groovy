@@ -14,9 +14,17 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import akka.actor.Props
+import akka.actor.ActorSystem;
+import akka.actor.ActorRef;
+
+import akka.testkit.TestActorRef
+import akka.testkit.JavaTestKit;
+
 public class Tests {
 		static private OfferNet on = new OfferNet().flushVertices();
 	    static private Logger logger;
+	    static ActorSystem system = ActorSystem.create();
 
 		@BeforeClass
 		static void initLogging() {
@@ -31,8 +39,8 @@ public class Tests {
 
 		@Test
 		void connectTest() {
-			def agent1 = new Agent(on.session)
-			def agent2 = new Agent(on.session)
+			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work1 = agent1.ownsWork();
 			def work2 = agent2.ownsWork();
 			def item1 = agent1.addItemToWork("demands",work1)
@@ -46,8 +54,8 @@ public class Tests {
 		@Test
 		void connectAllSimilarTest() {
 			on.flushVertices();
-			def agent1 = new Agent(on.session)
-			def agent2 = new Agent(on.session)
+			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work1 = agent1.ownsWork('1111','1110');
 			def work2 = agent2.ownsWork('1100','1000');
 			def start = agent1.addItemToWork("demands",work2,'0000')
@@ -59,8 +67,8 @@ public class Tests {
 
 		@Test
 		void reciprocalDistanceLinkTest() {
-			def agent1 = new Agent(on.session) 
-			def agent2 = new Agent(on.session) 
+			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work1 = agent1.ownsWork();
 			def work2 = agent2.ownsWork();
 			def item1 = agent1.addItemToWork("demands",work1)
@@ -79,8 +87,8 @@ public class Tests {
 
 		@Test
 		void existsSimilarityTest() {
-			def agent1 = new Agent(on.session) 
-			def agent2 = new Agent(on.session) 
+			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work1 = agent1.ownsWork();
 			def work2 = agent2.ownsWork();
 			def item1 = agent1.addItemToWork("demands",work1)
@@ -95,11 +103,10 @@ public class Tests {
 
 		}
 
-
 		@Test
 		void connectIfSimilarTest() {
-			def agent1 = new Agent(on.session) 
-			def agent2 = new Agent(on.session) 
+			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work1 = agent1.ownsWork();
 			def work2 = agent2.ownsWork();
 			def item1 = agent1.addItemToWork("demands",work1)
@@ -121,14 +128,14 @@ public class Tests {
 
 		@Test
 		void itemsOfKnownAgentsTest() {
-			def agent1 = new Agent(on.session)
-			def agent2 = new Agent(on.session)
-			def agent3 = new Agent(on.session)
-			def agent4 = new Agent(on.session)
+			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent3 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent4 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 
-			agent1.knowsAgent(agent2);
-			agent2.knowsAgent(agent3);
-			agent3.knowsAgent(agent4);
+			agent1.knowsAgent(agent2.vertex.getId());
+			agent2.knowsAgent(agent3.vertex.getId());
+			agent3.knowsAgent(agent4.vertex.getId());
 
 			def work1 = agent1.ownsWork();
 			agent2.ownsWork()
@@ -147,17 +154,17 @@ public class Tests {
 
 		@Test
     	void createAgentNewVertexTest() {
-        	def agent1 = new Agent(on.session);
+        	def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
         	assertNotNull(agent1);
    		}
 
 		@Test
 		void createAgentExistingVertexTest() {
-			def agent1 = new Agent(on.session);
+			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			assertNotNull(agent1);
 			def id1 = agent1.id();
 
-			def agent2 = new Agent(id1,on.session);
+			def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			assertNotNull(agent2);
 			assertEquals(id1,agent2.id());
 		}
@@ -165,17 +172,32 @@ public class Tests {
 
 		@Test
 		void agentKnowsAgentTest() {
-	        def agent1 = new Agent(on.session);
+	        def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 	        assertNotNull(agent1);
-	        def agent2 = new Agent(on.session);
+	        def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 	        assertNotNull(agent2);
-	        def edge = agent1.knowsAgent(agent2);
+	        def edge = agent1.knowsAgent(agent2.vertex,getId());
 	        assertNotNull(edge);
     	}
 
 		@Test
+		void agentKnowsAgentViaMessageTest() {
+			new JavaTestKit(system) {{
+	        	def agent1Ref = system.actorOf(Agent.props(on.session),"agent1");
+	        	assertNotNull(agent1Ref);
+	        	def agent2Ref = system.actorOf(Agent.props(on.session),"agent2");
+	        	assertNotNull(agent2Ref);
+	        	agent2Ref.tell(new Method("id",[]),getRef())
+	        	def agent2id = receiveN(1)
+	        	agent1Ref.tell(new Method("knowsAgent",[agent2id]),getRef())
+	        	def edge = receiveN(1)
+	        	assertNotNull(edge);
+	        }}
+    	}
+
+		@Test
 		void agentOwnsNewWorkTest() {
-				def agent1 = new Agent(on.session);
+				def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 				assertNotNull(agent1);
 
 				def work = agent1.ownsWork();
@@ -184,7 +206,7 @@ public class Tests {
 
 		@Test
 		void agentOwnsKnownWorkTest() {
-				def agent1 = new Agent(on.session);
+				def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 				assertNotNull(agent1);
 
 				def work = agent1.ownsWork("00011","00001")
@@ -201,7 +223,7 @@ public class Tests {
 
 		@Test
 		void allItemsTest() {
-				def agent=new Agent(on.session)
+				def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 				assertNotNull(agent);
 
 				def work = agent.ownsWork();
@@ -216,18 +238,18 @@ public class Tests {
 		@Test
 		void searchAndConnectTest() {
 			on.flushVertices("agent");
-			def agent1 = new Agent(on.session);
+			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			agent1.ownsWork('111110','000000');
-			def agent2 = new Agent(on.session);
+			def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			agent2.ownsWork('111100','110000');
-			def agent3 = new Agent(on.session);
+			def agent3 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			agent3.ownsWork('100000','111100');
-			def agent4 = new Agent(on.session);
+			def agent4 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			agent4.ownsWork('111110','000000');
 
-			agent1.knowsAgent(agent2);
-			agent2.knowsAgent(agent3);
-			agent3.knowsAgent(agent4);
+			agent1.knowsAgent(agent2.vertex.getId());
+			agent2.knowsAgent(agent3.vertex.getId());
+			agent3.knowsAgent(agent4.vertex.getId());
 
 			/*
 			The resulting graph has 4 agents, 4 works, 8 items and 6 reciprocal connections (12 links in total)
@@ -239,7 +261,7 @@ public class Tests {
 
 		@Test
 		void getWorksTest() {
-			def agent = new Agent(on.session);
+			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work1 = agent.ownsWork();
 			def work2 = agent.ownsWork();
 			def work3 = agent.ownsWork();
@@ -254,7 +276,7 @@ public class Tests {
 
 		@Test
 		void addNewOfferTest() {
-			def agent=new Agent(on.session)
+			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work = agent.ownsWork()
 			def offer = agent.addItemToWork("offers",work)
 			assertNotNull(offer);
@@ -262,7 +284,7 @@ public class Tests {
 
 		@Test
 		void addKnownOfferTest() {
-			def agent=new Agent(on.session)
+			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work = agent.ownsWork()
 			def offer = agent.addItemToWork("offers",work,"00000")
 			assertEquals("00000",offer.getProperty("value").getValue().asString());
@@ -270,7 +292,7 @@ public class Tests {
 
 		@Test
 		void addNewDemandTest() {
-			def agent=new Agent(on.session)
+			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work = agent.ownsWork()
 			def offer = agent.addItemToWork("demands",work)
 			assertNotNull(offer);
@@ -278,7 +300,7 @@ public class Tests {
 
 		@Test
 		void addKnownDemandTest() {
-			def agent=new Agent(on.session)
+			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work = agent.ownsWork()
 			def offer = agent.addItemToWork("demands",work,"00011")
 			assertEquals("00011",offer.getProperty("value").getValue().asString());
@@ -286,7 +308,7 @@ public class Tests {
 
 		@Test
 		void getWorkItemsTest() {
-			 def agent=new Agent(on.session)
+			 def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			 def work = agent.ownsWork();
 			 def item1 = agent.addItemToWork("demands",work);
 			 def item2 = agent.addItemToWork("demands",work);
@@ -324,8 +346,8 @@ public class Tests {
 		void flushAgentsTest() {
 			def on1 = new OfferNet()
 			assertNotNull(on1);
-			new Agent(on1.session)
-			new Agent(on1.session)
+			TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			assertNotEquals(0,on1.getIds('agent').size())
 			on1.flushVertices("agent");
 			assertEquals(0,on1.getIds('agent').size())
@@ -335,7 +357,7 @@ public class Tests {
 		void flushVerticesTest() {
 			def on1 = new OfferNet();
 			assertNotNull(on1);
-			def agent=new Agent(on1.session)
+			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
 			def work = agent.ownsWork();
 			def item1 = agent.addItemToWork("offers",work);
 			def item2 = agent.addItemToWork("demands",work);
@@ -450,7 +472,7 @@ public class Tests {
 			String value2 = "000111"
 			def d1 = Utils.veitasSimilarity(value1,value2);
 			assertNotNull(d1)
-			def agent = new Agent(on.session)
+			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
             def work = agent.ownsWork(value1,value2);
             def item1 = agent.getWorksItems(work,"demands")[0]
             def item2 = agent.getWorksItems(work,"offers")[0]
