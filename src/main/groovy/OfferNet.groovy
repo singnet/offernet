@@ -18,6 +18,8 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import akka.actor.ActorSystem;
+
 public class OfferNet implements AutoCloseable {
 
     private DseCluster cluster;

@@ -19,7 +19,7 @@ import static org.junit.Assert.*
 public class Utils {
     static Logger logger = LoggerFactory.getLogger('Utils.class');
 
-    public static String generateBinaryString(int length) {
+    public static String generateBinaryString(int length) { //implemented in python
         String randomString="";
         for (int i=0;i<length;i++) {
             Random randomNum = new Random();

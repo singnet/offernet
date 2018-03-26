@@ -65,7 +65,7 @@ class Simulation extends UntypedActor {
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
         return agentsList;
     }
-
+a
 	private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
 
 		def start = System.currentTimeMillis();
