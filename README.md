@@ -1,1 +1,1 @@
-Playing with the [Offer Networks](http://onet.globalbraininstitute.org) idea on a TinkerPop 3 graph.
+[Offer Networks](http://onet.globalbraininstitute.org) implementation with Java/Groovy/Gremlin (Apache Tinkerpop 3). Forked from [https://bitbucket.org/vveitas/offernet-jvm](https://bitbucket.org/vveitas/offernet-jvm).
