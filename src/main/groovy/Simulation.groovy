@@ -15,6 +15,49 @@ class Simulation extends UntypedActor {
 	Logger logger;
 	List agentList;
 
+  private static Props props(DseSession session) {
+    return Props.create(new Creator<Simulation>() {
+      @Override
+      public Simulation create() throws Exception {
+        return new Simulation(session);
+      }
+    });
+  }
+
+  public static Props props(Object vertexId, DseSession session) {
+    return Props.create(new Creator<Simulation>() {
+      @Override
+      public Simulation create() throws Exception {
+        return new Simulation(vertexId, session);
+      }
+    });
+  }
+
+  public void onReceive(Object message) throws Exception {
+    if (message instanceof Method) {
+      logger.info("received Method message: {}",message.getMethodString())
+      switch (message) {
+        default: 
+          def args = message.args
+          def reply = this."$message.name"(*args)
+          getSender().tell(reply,getSelf());
+          break;
+      }
+    } else if (message instanceof GraphNode ) {
+        logger.info("received GraphNode message: {}",message.getMethodString())
+        switch (message) {
+          default:
+            this.knowsAgent(message);
+            break;
+        }
+    } else if (message instanceof String) {
+      logger.info("Agent {} received message {}",this.id(), message)
+    } else { 
+      getSender().tell("Cannot process the message",getSelf()) 
+    }
+  }
+
+
 	private Simulation() {
 
 		def start = System.currentTimeMillis();
@@ -48,7 +91,7 @@ class Simulation extends UntypedActor {
    		createAgentNetwork(numberOfAgents,numberOfRandomWorks,chains);
 	}
 
-    public List createAgentNetwork(int numberOfAgents) {
+    private List createAgentNetwork(int numberOfAgents) {
         def start = System.currentTimeMillis()
         List agentsList = new ArrayList()
         agentsList.add(system.actorOf(Agent.props(on.session),"agent1"))
@@ -65,7 +108,7 @@ class Simulation extends UntypedActor {
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
         return agentsList;
     }
-a
+
 	private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
 
 		def start = System.currentTimeMillis();
