@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  janusgraph-docker:
+    image: kabirkbr/janusgraph-docker:0.2.0
+    networks:
+      static-network:
+        ipv4_address: 172.17.0.2
+    build: .
+    ports:
+      - "8182:8182"
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.17.0.0/16
+          ip_range: 172.17.0.0/24
