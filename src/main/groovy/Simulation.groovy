@@ -5,6 +5,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.datastax.driver.dse.graph.Vertex;
+import com.datastax.driver.dse.DseSession;
+import com.datastax.driver.dse.graph.GraphNode;
 
 import akka.actor.UntypedActor;
 import akka.actor.Props;
@@ -15,7 +17,7 @@ class Simulation extends UntypedActor {
 	Logger logger;
 	List agentList;
 
-  private static Props props(DseSession session) {
+  public static Props props(DseSession session) {
     return Props.create(new Creator<Simulation>() {
       @Override
       public Simulation create() throws Exception {

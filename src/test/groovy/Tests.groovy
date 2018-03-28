@@ -18,6 +18,7 @@ import akka.actor.Props
 import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
 
+
 import akka.testkit.TestActorRef
 import akka.testkit.JavaTestKit;
 
@@ -150,7 +151,6 @@ public class Tests {
 			}
 
 		}
-
 
 		@Test
     	void createAgentNewVertexTest() {

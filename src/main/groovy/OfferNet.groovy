@@ -47,12 +47,14 @@ public class OfferNet implements AutoCloseable {
             def start = System.currentTimeMillis()
             cluster = DseCluster.builder().addContactPoint("192.168.1.6").build();
             cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
-
+            
             cluster = DseCluster.builder()
                 .addContactPoint("192.168.1.6")
                 .withGraphOptions(new GraphOptions().setGraphName("offernet"))
                 .build();
             session = cluster.connect();
+
+            session.executeGraph(new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')"))
 
             logger.info("Created OfferNet instance with session {}", session);
             logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)

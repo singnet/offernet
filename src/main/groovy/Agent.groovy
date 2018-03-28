@@ -1,5 +1,6 @@
-//@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
+//@Grab(group='com.datastax.dse', module='dse-java-driver-graph', version='1.5.1')
 //@Grab(group='log4j', module='log4j', version='1.2.17')
+//@Grab(group='com.typesafe.akka', module='akka-actor_2.12', version='2.5.11')
 
 package net.vveitas.offernet
 
@@ -28,7 +29,7 @@ public class Agent extends UntypedActor {
 	  private DseSession session;
     private Logger logger;
 
-  public static Props props(DseSession session) {
+  static Props props(DseSession session) {
     return Props.create(new Creator<Agent>() {
       @Override
       public Agent create() throws Exception {
@@ -37,7 +38,7 @@ public class Agent extends UntypedActor {
     });
   }
 
-  public static Props props(Object vertexId, DseSession session) {
+  static Props props(Object vertexId, DseSession session) {
     return Props.create(new Creator<Agent>() {
       @Override
       public Agent create() throws Exception {
