@@ -214,11 +214,13 @@ public class AgentTests {
 	@Test
 	void agentKnowsAgentViaMessageTest() {
 		new JavaTestKit(system) {{
-        	def agent1Ref = system.actorOf(Agent.props(on.session),"agent1");
+			String agent1Id = UUID.randomUUID().toString();
+        	def agent1Ref = system.actorOf(Agent.props(on.session, agent1Id));
         	assertNotNull(agent1Ref);
-        	def agent2Ref = system.actorOf(Agent.props(on.session),"agent2");
+        	String agent2Id = UUID.randomUUID().toString();
+        	def agent2Ref = system.actorOf(Agent.props(on.session, agent2Id));
         	assertNotNull(agent2Ref);
-        	agent2Ref.tell(new Method("id",[]),getRef())
+        	agent2Ref.tell(new Method("vertexId",[]),getRef())
         	def agent2id = receiveN(1)
         	agent1Ref.tell(new Method("knowsAgent",[agent2id]),getRef())
         	def edge = receiveN(1)

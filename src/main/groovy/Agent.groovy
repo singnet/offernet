@@ -98,11 +98,19 @@ public class Agent extends UntypedAbstractActor {
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 	}
 
-  /*
-  * returns an id of an Agent vertex
+  /**
+  * returns the agentId property on the vertex, which is the unique id (is also the actor name in akka system)
+  * need to rename into something more intuitive -- agentId
   */
   private String id() {
     return vertex.getProperty("agentId").getValue().asString();
+  }
+
+  /**
+  * returns the agentId property on the vertex, which is the unique id (is also the actor name in akka system)
+  */
+  private Object vertexId() {
+    return vertex.getId();
   }
 
   /*
