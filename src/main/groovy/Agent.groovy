@@ -20,29 +20,22 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import akka.actor.UntypedActor;
+import akka.actor.UntypedAbstractActor;
 import akka.actor.Props;
 import akka.japi.Creator;
 
-public class Agent extends UntypedActor {
+import java.util.UUID;
+
+public class Agent extends UntypedAbstractActor {
     private Vertex vertex;
 	  private DseSession session;
     private Logger logger;
 
-  static Props props(DseSession session) {
+  static Props props(DseSession session, String agentId) {
     return Props.create(new Creator<Agent>() {
       @Override
       public Agent create() throws Exception {
-        return new Agent(session);
-      }
-    });
-  }
-
-  static Props props(Object vertexId, DseSession session) {
-    return Props.create(new Creator<Agent>() {
-      @Override
-      public Agent create() throws Exception {
-        return new Agent(vertexId, session);
+        return new Agent(session,agentId);
       }
     });
   }
@@ -71,7 +64,17 @@ public class Agent extends UntypedActor {
     }
   }
 
-	public Agent(DseSession session) {
+  /**
+  * Agent constructor returning a new agent by creating a vertex in the graph
+  * if a vertex with the given UUID exists - connect this vertex to the newly created actor
+  * UUID is shared between graph identifier (agentId) and actor identifier (path)
+  * @param session the DSE graph session for communication with the graph
+  * @return Agent class instance;
+  * @author kabir@singularitynet.io
+  */
+
+	public Agent(DseSession session, String agentId) {
+
         def start = System.currentTimeMillis();
         def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         PropertyConfigurator.configure(config.toProperties())
@@ -81,37 +84,21 @@ public class Agent extends UntypedActor {
 
         Map params = new HashMap();
         params.put("labelValue", "agent");
+        params.put("agentId",agentId);
+        params.put("agentIdLabel","agentId")
 
-        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(label, labelValue)", params));
+        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.V().choose(has(agentIdLabel,agentId).is(null),has(agentIdLabel,agentId),g.addV(label, labelValue).property(agentIdLabel,agentId))", params));
         this.vertex = rs.one().asVertex();
 
-        logger.warn("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
+        logger.warn("Created a new {} with id {} and agentId {}", vertex.getLabel(), vertex.getId(), vertex.getProperty("agentId").getValue());
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 	}
-
-  public Agent(Object vertexId, DseSession session) {
-      def start = System.currentTimeMillis();
-      def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-      PropertyConfigurator.configure(config.toProperties())
-      logger = LoggerFactory.getLogger('OfferNet.class');
-
-      this.session= session;
-
-      Map params = new HashMap();
-      params.put("vertexId",vertexId);
-
-      GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.V(vertexId)", params));
-      this.vertex = rs.one().asVertex();
-
-      logger.warn("Instantiated an {} with existing vertex id {}", vertex.getLabel(), vertex.getId());
-      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-  }
 
   /*
   * returns an id of an Agent vertex
   */
-  private id() {
-    return vertex.getId();
+  private String id() {
+    return vertex.getProperty("agentId").getValue().asString();
   }
 
   /*
