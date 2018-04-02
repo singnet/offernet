@@ -13,7 +13,6 @@ import com.datastax.driver.dse.graph.Vertex
 
 import org.codehaus.groovy.runtime.StackTraceUtils
 
-
 import static org.junit.Assert.*
 
 public class Utils {
