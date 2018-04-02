@@ -176,7 +176,7 @@ public class Agent extends UntypedAbstractActor {
 
         Map params = new HashMap();
         params.put("labelValue", "work");
-        params.put("agent", this.id());
+        params.put("agent", this.vertexId());
         params.put("edgeLabel","owns");
 
         logger.warn("Creating new work for agent {}", params.agent)

@@ -230,7 +230,8 @@ public class AgentTests {
 
 	@Test
 	void agentOwnsNewWorkTest() {
-			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			String agent1Id = UUID.randomUUID().toString();
+			def agent1 = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 			assertNotNull(agent1);
 
 			def work = agent1.ownsWork();
@@ -239,7 +240,7 @@ public class AgentTests {
 
 	@Test
 	void agentOwnsKnownWorkTest() {
-			def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent1 = TestActorRef.create(system, Agent.props(on.session,agent1Id)).underlyingActor();
 			assertNotNull(agent1);
 
 			def work = agent1.ownsWork("00011","00001")
