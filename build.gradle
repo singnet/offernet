@@ -6,8 +6,18 @@ group="offernet"
 version="0.0.3"
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '3.3'
+	gradleVersion = '4.6'
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.enabled true
+    }
+}
+
+test { finalizedBy jacocoTestReport }
 
 repositories {
 	mavenCentral()
