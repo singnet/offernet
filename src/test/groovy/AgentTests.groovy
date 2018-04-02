@@ -199,16 +199,16 @@ public class AgentTests {
 
 	}
 
-
 	@Test
 	void agentKnowsAgentTest() {
-        def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent1Id = UUID.randomUUID().toString();
+        def agent1 = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
         assertNotNull(agent1);
-        def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+        String agent2Id = UUID.randomUUID().toString();
+        def agent2 = TestActorRef.create(system, Agent.props(on.session, agent2Id)).underlyingActor();
         assertNotNull(agent2);
-        def edge = agent1.knowsAgent(agent2.vertex,getId());
+        def edge = agent1.knowsAgent(agent2.vertex.getId());
         assertNotNull(edge);
-
 	}
 
 	@Test
