@@ -165,7 +165,6 @@ public class AgentTests {
 		items.each{ item ->
 			assertEquals('item',item.getLabel())
 		}
-
 	}
 
 	@Test
@@ -177,17 +176,27 @@ public class AgentTests {
     	logger.info("Original agent id {} is of type {}",agentId, agentId.getClass().getSimpleName())
     	logger.info("Agent id extracted from vertex {} is of type {}",agentIdFromVertex, agentIdFromVertex.getClass().getSimpleName())
     	assertEquals(agentId,agentIdFromVertex)
-		}
+	}
 
 	@Test
 	void createAgentExistingVertexTest() {
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-		assertNotNull(agent1);
-		def id1 = agent1.id();
+		String agentId = UUID.randomUUID().toString();
+    	def agent1ref = TestActorRef.create(system, Agent.props(on.session,agentId))
+    	def agent1 = agent1ref.underlyingActor();
+    	assertNotNull(agent1);
+    	assertEquals(agentId,agent1.id());
+    	agent1ref.stop()
 
-		def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session,agentId)).underlyingActor();
 		assertNotNull(agent2);
-		assertEquals(id1,agent2.id());
+		assertEquals(agentId,agent2.id());
+
+		String agent3Id = UUID.randomUUID().toString();
+    	def agent3ref = TestActorRef.create(system, Agent.props(on.session,agent3Id))
+    	def agent3 = agent3ref.underlyingActor();
+    	assertNotNull(agent3);
+    	assertNotEquals(agentId,agent3.id());
+
 	}
 
 
@@ -199,6 +208,7 @@ public class AgentTests {
         assertNotNull(agent2);
         def edge = agent1.knowsAgent(agent2.vertex,getId());
         assertNotNull(edge);
+
 	}
 
 	@Test
@@ -277,7 +287,6 @@ public class AgentTests {
 		*/
 		assertEquals(3,agent1.searchAndConnect(5,2)) // this traverses part of the graph
 		assertEquals(3,agent1.searchAndConnect(4,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(4)
-
 	}
 
 	@Test

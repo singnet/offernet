@@ -87,7 +87,11 @@ public class Agent extends UntypedAbstractActor {
         params.put("agentId",agentId);
         params.put("agentIdLabel","agentId")
 
-        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.V().choose(has(agentIdLabel,agentId).is(null),has(agentIdLabel,agentId),g.addV(label, labelValue).property(agentIdLabel,agentId))", params));
+        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement(
+          "if (g.V().has(agentIdLabel,agentId).toList().size() == 0)\n"+ 
+            "g.addV(label, labelValue).property(agentIdLabel,agentId)\n"+
+          "else\n"+
+            "g.V().has(agentIdLabel,agentId)", params));
         this.vertex = rs.one().asVertex();
 
         logger.warn("Created a new {} with id {} and agentId {}", vertex.getLabel(), vertex.getId(), vertex.getProperty("agentId").getValue());
