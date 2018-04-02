@@ -142,6 +142,35 @@ public class OfferNet implements AutoCloseable {
       return agentIds;
     }
 
+    private void createAgentNetworkWithChains(String[] args){
+        def numberOfAgents = args[1];
+        def numberOfRandomWorks = args[2];
+        def numberOfChains = args[3];
+        def lenghtOfChain = args[4];
+        List chains = [];
+        numberOfChains.times {
+          chains.add(Utils.createChain(lenghtOfChain));
+        }
+        createAgentNetwork(numberOfAgents,numberOfRandomWorks,chains);
+    }
+
+    private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
+
+      def start = System.currentTimeMillis();
+      agentList = on.createAgentNetwork(numberOfAgents)
+      agentList.each {agent ->
+        agent.ownsWork()
+      }
+      on.addRandomWorksToAgents(numberOfRandomWorks)
+      chains.each {chain ->
+        on.addChainToNetwork(chain)
+      }
+      logger.warn("Created agentNetwork with {} agents, {} randomWorks and {} chains",numberOfAgents,numberOfRandomWorks,chains.size())
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+      return agentList;
+    }
+
     public addRandomWorksToAgents(int numberOfWorks) {
         def start=System.currentTimeMillis();
         List agentIds = this.getIds('agent');
