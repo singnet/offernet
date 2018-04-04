@@ -5,30 +5,26 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.datastax.driver.dse.graph.Vertex;
+import com.datastax.driver.dse.DseSession;
+import com.datastax.driver.dse.graph.GraphNode;
 
-import akka.actor.UntypedActor;
+import akka.actor.UntypedAbstractActor;
 import akka.actor.Props;
 import akka.japi.Creator;
 
-class Simulation extends UntypedActor {
+import akka.actor.ActorRef;
+import java.util.UUID;
+
+class Simulation extends UntypedAbstractActor {
 	OfferNet on;
 	Logger logger;
 	List agentList;
 
-  private static Props props(DseSession session) {
+  public static Props props() {
     return Props.create(new Creator<Simulation>() {
       @Override
       public Simulation create() throws Exception {
-        return new Simulation(session);
-      }
-    });
-  }
-
-  public static Props props(Object vertexId, DseSession session) {
-    return Props.create(new Creator<Simulation>() {
-      @Override
-      public Simulation create() throws Exception {
-        return new Simulation(vertexId, session);
+        return new Simulation();
       }
     });
   }
@@ -79,52 +75,37 @@ class Simulation extends UntypedActor {
 	- Simulations will be run by passing messages for running methods
 	*/
 
-	private void createAgentNetworkWithChains(String[] args){
-   		def numberOfAgents = args[1];
-   		def numberOfRandomWorks = args[2];
-	    def numberOfChains = args[3];
-	    def lenghtOfChain = args[4];
-	    List chains = [];
-	    numberOfChains.times {
-	    	chains.add(Utils.createChain(lenghtOfChain));
-	    }
-   		createAgentNetwork(numberOfAgents,numberOfRandomWorks,chains);
-	}
+  private ActorRef createAgent() {
+    String agentId = UUID.randomUUID().toString();
+    def actorRef = getContext().actorOf(Agent.props(on.session,agentId),agentId);
+    return actorRef
+  }
+
+  private Vertex getAgentVertexId(ActorRef actorRef) {
+    return actorRef.tell(id());
+  }
 
     private List createAgentNetwork(int numberOfAgents) {
-        def start = System.currentTimeMillis()
-        List agentsList = new ArrayList()
-        agentsList.add(system.actorOf(Agent.props(on.session),"agent1"))
+      def start = System.currentTimeMillis()
+      List agentsList = new ArrayList()
+      def firstAgent = Props.create(Agent.class, on.session)
 
-        while (agentsList.size() < numberOfAgents) {
-            def random = new Random();
-            def i = random.nextInt(agentsList.size())
-            Object agent1 = agentsList[i]
-            Object agent2 = system.actorOf(Agent.props(on.session),"agent1");
-            agent1.tell(new Method("knowsAgent",[agent2id]),getRef())
-            agentsList.add(agent2)
-        }
-        logger.info("Created a network of "+numberOfAgents+ " Agents")
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
-        return agentsList;
-    }
+      agentsList.add(system.actorOf(Agent.props(on.session),"agent1"))
 
-	private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
+      while (agentsList.size() < numberOfAgents) {
+          def random = new Random();
+          def i = random.nextInt(agentsList.size())
+          Object agent1 = agentsList[i]
+          Object agent2 = system.actorOf(Agent.props(on.session),"agent1");
+          agent1.tell(new Method("knowsAgent",[agent2id]),getRef())
+          agentsList.add(agent2)
+      }
+      logger.info("Created a network of "+numberOfAgents+ " Agents")
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
+      return agentsList;
+  }
 
-		def start = System.currentTimeMillis();
-		agentList = on.createAgentNetwork(numberOfAgents)
-		agentList.each {agent ->
-			agent.ownsWork()
-		}
-		on.addRandomWorksToAgents(numberOfRandomWorks)
-		chains.each {chain ->
-			on.addChainToNetwork(chain)
-		}
-		logger.warn("Created agentNetwork with {} agents, {} randomWorks and {} chains",numberOfAgents,numberOfRandomWorks,chains.size())
-		logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-		return agentList;
-	}
+  /* done until here */
 
 	private Integer connectIfSimilarForAllAgents(List agentList, Integer similarityThreshold, Integer maxReachDistance) {
 

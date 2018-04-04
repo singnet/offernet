@@ -47,12 +47,14 @@ public class OfferNet implements AutoCloseable {
             def start = System.currentTimeMillis()
             cluster = DseCluster.builder().addContactPoint("192.168.1.6").build();
             cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
-
+            
             cluster = DseCluster.builder()
                 .addContactPoint("192.168.1.6")
                 .withGraphOptions(new GraphOptions().setGraphName("offernet"))
                 .build();
             session = cluster.connect();
+
+            session.executeGraph(new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')"))
 
             logger.info("Created OfferNet instance with session {}", session);
             logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
@@ -138,6 +140,35 @@ public class OfferNet implements AutoCloseable {
       logger.info("Retrieved list of {} edges from OfferNet", agentIds.size());
       logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return agentIds;
+    }
+
+    private void createAgentNetworkWithChains(String[] args){
+        def numberOfAgents = args[1];
+        def numberOfRandomWorks = args[2];
+        def numberOfChains = args[3];
+        def lenghtOfChain = args[4];
+        List chains = [];
+        numberOfChains.times {
+          chains.add(Utils.createChain(lenghtOfChain));
+        }
+        createAgentNetwork(numberOfAgents,numberOfRandomWorks,chains);
+    }
+
+    private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
+
+      def start = System.currentTimeMillis();
+      agentList = on.createAgentNetwork(numberOfAgents)
+      agentList.each {agent ->
+        agent.ownsWork()
+      }
+      on.addRandomWorksToAgents(numberOfRandomWorks)
+      chains.each {chain ->
+        on.addChainToNetwork(chain)
+      }
+      logger.warn("Created agentNetwork with {} agents, {} randomWorks and {} chains",numberOfAgents,numberOfRandomWorks,chains.size())
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+      return agentList;
     }
 
     public addRandomWorksToAgents(int numberOfWorks) {

@@ -5,6 +5,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import static org.junit.Assert.*
+import static org.hamcrest.CoreMatchers.instanceOf;
 
 import org.junit.Test;
 import org.junit.Ignore;
@@ -29,8 +30,15 @@ import org.slf4j.LoggerFactory
 
 import java.text.SimpleDateFormat;
 
-public class SimulationTests {
+import akka.actor.Props
+import akka.actor.ActorSystem;
+import akka.actor.ActorRef;
 
+import akka.testkit.TestActorRef
+import akka.testkit.JavaTestKit;
+
+public class SimulationTests {
+		static ActorSystem system = ActorSystem.create();
 		static private Logger logger;
 
 		@BeforeClass
@@ -38,6 +46,28 @@ public class SimulationTests {
 		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
 	        PropertyConfigurator.configure(config.toProperties())
     	    logger = LoggerFactory.getLogger('OfferNet.class');
+		}
+
+		@Test
+		void createSimulationTest() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertThat(sim, instanceOf(Simulation.class))
+		}
+
+		@Test
+		void createAgentTest() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			def agent1 = sim.createAgent();
+			assertThat(agent1, instanceOf(ActorRef.class)); 
+		}
+		
+		@Test
+		void createAgentNetworkTest() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			int size
+			def agentList = sim.createAgentNetwork(size)
+			assertThat(agentList.size(), size)
+
 		}
 
 		//@Ignore // for now -- takes too much time
