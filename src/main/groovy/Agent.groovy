@@ -264,7 +264,7 @@ public class Agent extends UntypedAbstractActor {
 
         logger.warn("Getting all works owned by agent {}",params.agent);
 
-        SimpleGraphStatement s = new SimpleGraphStatement("g.V(agent).out(edgeLabel)",params);
+        SimpleGraphStatement s = new SimpleGraphStatement("g.V().has('agentId',agent).out(edgeLabel)",params);
 
         GraphResultSet rs = session.executeGraph(s);
         List<Vertex> works = rs.all().collect {it.asVertex()};
@@ -281,12 +281,13 @@ public class Agent extends UntypedAbstractActor {
 
       def start = System.currentTimeMillis();
       Map params = new HashMap();
-      params.put("agentLabelName", this.id());
+      params.put("agentId", this.id());
+      params.put("agentIdLabel", "agentId");
 
       logger.warn("Getting all items of agent {}", this.id())
 
       SimpleGraphStatement s = new SimpleGraphStatement(
-            "g.V(agentLabelName).outE('owns').inV().outE().inV().has(label,'item')", params)
+            "g.V().has(agentIdLabel,agentId).outE('owns').inV().outE().inV().has(label,'item')", params)
 
       GraphResultSet rs = session.executeGraph(s);
       List items = rs.all().collect {it.asVertex() };
