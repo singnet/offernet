@@ -333,7 +333,8 @@ public class AgentTests {
 
 	@Test
 	void addKnownDemandTest() {
-		def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent1Id = UUID.randomUUID().toString();
+		def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		def work = agent.ownsWork()
 		def offer = agent.addItemToWork("demands",work,"00011")
 		assertEquals("00011",offer.getProperty("value").getValue().asString());
