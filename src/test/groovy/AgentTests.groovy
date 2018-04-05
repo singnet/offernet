@@ -40,7 +40,7 @@ public class AgentTests {
 	void idStaticTest() {
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		assertNotNull(agent1.id())
-		logger.info("id of the actor via static interface is {}",agentId)
+		logger.info("id of the actor via static interface is {}",agent1.id())
 	}
 
 	@Test

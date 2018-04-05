@@ -335,13 +335,14 @@ public class Agent extends UntypedAbstractActor {
     private List<Vertex> itemsOfKnownAgents(Integer maxReachDistance) {
       def start = System.currentTimeMillis()
       Map params = new HashMap();
-      params.put("thisAgent", this.id());
+      params.put("thisAgentId", this.id());
+      params.put("agentIdLabel","agentId")
       params.put("repeats", maxReachDistance);
 
       logger.warn("Getting a list of all connected items of agent {} with loop {}", this.id(), maxReachDistance)
 
       SimpleGraphStatement s = new SimpleGraphStatement(
-            "g.V(thisAgent).as('s').repeat("+
+            "g.V().has(agentIdLabel,thisAgentId).as('s').repeat("+
               "both('knows').has(label,'agent')).times(repeats).emit().dedup().as('t')"+
               ".where('t',neq('s')).out('owns').out()",params);
 
