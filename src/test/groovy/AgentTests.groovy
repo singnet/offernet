@@ -38,7 +38,7 @@ public class AgentTests {
 
 	@Test
 	void idStaticTest() {
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		assertNotNull(agent1.id())
 		logger.info("id of the actor via static interface is {}",agentId)
 	}
@@ -46,7 +46,7 @@ public class AgentTests {
 	@Test
 	void idMessageTest() {
 		new JavaTestKit(system) {{
-			def agentRef = system.actorOf(Agent.props(on.session),"agent1");
+			def agentRef = system.actorOf(Agent.props(on.session, UUID.randomUUID().toString()),"agent1");
 			agentRef.tell(new Method("id",[]),getRef())
         	def agentId = receiveN(1)
 			assertNotNull(agentId)
@@ -56,8 +56,8 @@ public class AgentTests {
 
 	@Test
 	void connectTest() {
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-		def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		def work1 = agent1.ownsWork();
 		def work2 = agent2.ownsWork();
 		def item1 = agent1.addItemToWork("demands",work1)
@@ -71,8 +71,8 @@ public class AgentTests {
 	@Test
 	void connectAllSimilarTest() {
 		on.flushVertices();
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-		def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		def work1 = agent1.ownsWork('1111','1110');
 		def work2 = agent2.ownsWork('1100','1000');
 		def start = agent1.addItemToWork("demands",work2,'0000')
@@ -84,8 +84,8 @@ public class AgentTests {
 
 	@Test
 	void reciprocalDistanceLinkTest() {
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-		def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		def work1 = agent1.ownsWork();
 		def work2 = agent2.ownsWork();
 		def item1 = agent1.addItemToWork("demands",work1)
@@ -104,8 +104,8 @@ public class AgentTests {
 
 	@Test
 	void existsSimilarityTest() {
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-		def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		def work1 = agent1.ownsWork();
 		def work2 = agent2.ownsWork();
 		def item1 = agent1.addItemToWork("demands",work1)
@@ -122,8 +122,8 @@ public class AgentTests {
 
 	@Test
 	void connectIfSimilarTest() {
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-		def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		def work1 = agent1.ownsWork();
 		def work2 = agent2.ownsWork();
 		def item1 = agent1.addItemToWork("demands",work1)
@@ -145,10 +145,10 @@ public class AgentTests {
 
 	@Test
 	void itemsOfKnownAgentsTest() {
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-		def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-		def agent3 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-		def agent4 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent3 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent4 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 
 		agent1.knowsAgent(agent2.vertex.getId());
 		agent2.knowsAgent(agent3.vertex.getId());
@@ -240,6 +240,7 @@ public class AgentTests {
 
 	@Test
 	void agentOwnsKnownWorkTest() {
+			String agent1Id = UUID.randomUUID().toString();
 			def agent1 = TestActorRef.create(system, Agent.props(on.session,agent1Id)).underlyingActor();
 			assertNotNull(agent1);
 
@@ -257,7 +258,8 @@ public class AgentTests {
 
 	@Test
 	void allItemsTest() {
-			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			String agent1Id = UUID.randomUUID().toString();
+			def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 			assertNotNull(agent);
 
 			def work = agent.ownsWork();
@@ -272,13 +274,17 @@ public class AgentTests {
 	@Test
 	void searchAndConnectTest() {
 		on.flushVertices("agent");
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent1Id = UUID.randomUUID().toString();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		agent1.ownsWork('111110','000000');
-		def agent2 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent2Id = UUID.randomUUID().toString();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, agent2Id)).underlyingActor();
 		agent2.ownsWork('111100','110000');
-		def agent3 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent3Id = UUID.randomUUID().toString();
+		def agent3 = TestActorRef.create(system, Agent.props(on.session, agent3Id)).underlyingActor();
 		agent3.ownsWork('100000','111100');
-		def agent4 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent4Id = UUID.randomUUID().toString();
+		def agent4 = TestActorRef.create(system, Agent.props(on.session, agent4Id)).underlyingActor();
 		agent4.ownsWork('111110','000000');
 
 		agent1.knowsAgent(agent2.vertex.getId());
@@ -294,7 +300,8 @@ public class AgentTests {
 
 	@Test
 	void getWorksTest() {
-		def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent1Id = UUID.randomUUID().toString();
+		def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		def work1 = agent.ownsWork();
 		def work2 = agent.ownsWork();
 		def work3 = agent.ownsWork();
@@ -309,7 +316,8 @@ public class AgentTests {
 
 	@Test
 	void addNewOfferTest() {
-		def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent1Id = UUID.randomUUID().toString();
+		def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		def work = agent.ownsWork()
 		def offer = agent.addItemToWork("offers",work)
 		assertNotNull(offer);
@@ -317,7 +325,8 @@ public class AgentTests {
 
 	@Test
 	void addKnownOfferTest() {
-		def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent1Id = UUID.randomUUID().toString();
+		def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		def work = agent.ownsWork()
 		def offer = agent.addItemToWork("offers",work,"00000")
 		assertEquals("00000",offer.getProperty("value").getValue().asString());
@@ -325,7 +334,8 @@ public class AgentTests {
 
 	@Test
 	void addNewDemandTest() {
-		def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		String agent1Id = UUID.randomUUID().toString();
+		def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		def work = agent.ownsWork()
 		def offer = agent.addItemToWork("demands",work)
 		assertNotNull(offer);
@@ -342,7 +352,7 @@ public class AgentTests {
 
 	@Test
 	void getWorkItemsTest() {
-		 def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		 def agent = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		 def work = agent.ownsWork();
 		 def item1 = agent.addItemToWork("demands",work);
 		 def item2 = agent.addItemToWork("demands",work);
