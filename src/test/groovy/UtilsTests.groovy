@@ -53,7 +53,7 @@ public class UtilsTests {
 			String value2 = "000111"
 			def d1 = Utils.veitasSimilarity(value1,value2);
 			assertNotNull(d1)
-			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
             def work = agent.ownsWork(value1,value2);
             def item1 = agent.getWorksItems(work,"demands")[0]
             def item2 = agent.getWorksItems(work,"offers")[0]

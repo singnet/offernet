@@ -46,7 +46,7 @@ public class AgentTests {
 	@Test
 	void idMessageTest() {
 		new JavaTestKit(system) {{
-			def agentRef = system.actorOf(Agent.props(on.session, UUID.randomUUID().toString()),"agent1");
+			def agentRef = system.actorOf(Agent.props(on.session, UUID.randomUUID().toString()),UUID.randomUUID().toString());
 			agentRef.tell(new Method("id",[]),getRef())
         	def agentId = receiveN(1)
 			assertNotNull(agentId)
