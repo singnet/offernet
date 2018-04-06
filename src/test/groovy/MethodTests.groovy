@@ -36,7 +36,19 @@ public class MethodTests {
 
 	@Test
 	void sendMethod() {
-		def agent1 = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+		new JavaTestKit(system) {{
+			String agentUUID = UUID.randomUUID().toString()
+			def agentRef = system.actorOf(Agent.props(on.session, agentUUID),agentUUID);
+			String method = "id"
+			def args = [];
+			agentRef.tell(new Method(method,args),getRef())
+			logger.info("Sent method {} with arguments {} to actor {}", method, args, agentRef)
+        	def agentId = receiveN(1)
+			assertNotNull(agentId)
+			logger.info("Received message {} of type {}", agentId, agentId.getClass().getSimpleName())
+			assertEquals(agentId[0], agentUUID)
+			logger.info("Received {} of the actor via message is {}",method, agentId)
+		}}
 	}
 
 }
