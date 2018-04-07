@@ -94,6 +94,24 @@ public class OfferNet implements AutoCloseable {
       return this;
     }
 
+    public List getProperties(String labelName, String labelValue, String propertyName) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      params.put("labelName", labelName);
+      params.put("labelValue", labelValue);
+      params.put("propertyName", propertyName);
+
+      SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(labelName,labelValue).properties(propertyName).value()",params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.warn("Executed statement: {}", Utils.getStatement(rs));
+      logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
+
+      List<Object> agentIds = rs.all();
+      logger.info("Retrieved list of {} agentIds from OfferNet", agentIds.size());
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      return agentIds;
+    }
+
     public List getIds(String labelName) {
       def start = System.currentTimeMillis()
       Map params = new HashMap();
@@ -169,20 +187,6 @@ public class OfferNet implements AutoCloseable {
       logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
       return agentList;
-    }
-
-    public addRandomWorksToAgents(int numberOfWorks) {
-        def start=System.currentTimeMillis();
-        List agentIds = this.getIds('agent');
-        numberOfWorks.times {
-            def random = new Random();
-            def i = random.nextInt(agentIds.size())
-            def agent = new Agent(agentIds[i],this.session);
-            def ownsWork = agent.ownsWork();
-            logger.info("Added ownsWork link {} to agent {}", ownsWork, agent.id());
-        }
-        logger.info("Added "+numberOfWorks+" of random processes to the network")
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     }
 
     private List addChainToNetwork(List chain) {
