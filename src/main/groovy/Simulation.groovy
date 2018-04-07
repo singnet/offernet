@@ -120,7 +120,8 @@ class Simulation extends UntypedAbstractActor {
           def i = random.nextInt(agentsList.size())
           Object agent1 = agentsList[i]
           Object agent2 = this.createAgent();
-          agent1.tell(new Method("knowsAgent",[actorPathToVertexIdTable.get(agent2.path())]),getSelf())
+          def agent2vertexId = this.getAgentVertexId(agent2)
+          agent1.tell(new Method("knowsAgent",[agent2vertexId]),getSelf())
           agentsList.add(agent2)
       }
       logger.info("Created a network of "+numberOfAgents+ " Agents")

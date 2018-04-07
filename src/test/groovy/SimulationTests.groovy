@@ -58,16 +58,34 @@ public class SimulationTests {
 		void createAgentTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			def agent1 = sim.createAgent();
-			assertThat(agent1, instanceOf(ActorRef.class)); 
+			assertThat(agent1, instanceOf(ActorRef.class));
+			def actorPath = agent1.path();
+			def agentId = sim.actorPathToAgentIdTable.get(actorPath)
+			logger.info("Created agent {} with path {} and agentId {}", agent1, actorPath, agentId);
+		}
+
+		@Test
+		void getAgentVertexIdTest() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			def agent1Ref = TestActorRef.create(system, Agent.props(sim.on.session, UUID.randomUUID().toString()));
+			def agent1 = agent1Ref.underlyingActor();
+			def vertexIdViaObject = agent1.vertexId()
+			def vertexIdViaMessage = sim.getAgentVertexId(agent1Ref)
+			logger.info("Got agents {} vertexId {} via message {}", agent1, vertexIdViaObject, vertexIdViaMessage)
+			assertEquals(vertexIdViaObject, vertexIdViaMessage)
 		}
 		
 		@Test
 		void createAgentNetworkTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-			int size
+			sim.on.flushVertices();
+			int size = 20
 			def agentList = sim.createAgentNetwork(size)
-			assertThat(agentList.size(), size)
-
+			assertEquals(agentList.size(), size)
+			def agentNumber = sim.on.getVertices('agent').size();
+			assertEquals(agentNumber, size);
+			def knowsEdgeNumber = sim.on.getEdges('knows').size();
+			assertEquals(knowsEdgeNumber, size-1);
 		}
 
 		//@Ignore // for now -- takes too much time
@@ -387,5 +405,15 @@ public class SimulationTests {
 			logger.info("Calculated connectedStars number={} for radius={}, branchingFactor={}",number,radius,branchingFactor)
 			return number;
 		}
+
+		@Test
+		void addRandomWorksToAgentsTest() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			sim.on.flushVertices();
+			sim.createAgentNetwork(10)
+			sim.addRandomWorksToAgents(10)
+			assertEquals(20,sim.on.getIds("item").size()); // creates two items (demand and offer) when creating a random work;
+		}
+
 
 }
