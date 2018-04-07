@@ -106,6 +106,7 @@ public class Agent extends UntypedAbstractActor {
     return vertex.getProperty("agentId").getValue().asString();
   }
 
+  
   /**
   * returns the agentId property on the vertex, which is the unique id (is also the actor name in akka system)
   */
@@ -115,6 +116,7 @@ public class Agent extends UntypedAbstractActor {
 
   /*
   * Creates 'knows' edge between current agent and provided agent; returns that edge;
+  * Takes vertex Id as parameter (depreciated?)
   */
 	private Edge knowsAgent(Object id) {
 
@@ -130,6 +132,35 @@ public class Agent extends UntypedAbstractActor {
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(agent1).next()\n" +
                 "def v2 = g.V(agent2).next()\n" +
+                "v1.addEdge(edgeLabel, v2)", params)
+
+        GraphResultSet rs = session.executeGraph(s);
+        def edge = rs.one().asEdge();
+        logger.info("Added knows edge {} to the network", edge);
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+        return edge;
+    }
+
+  /*
+  * Creates 'knows' edge between current agent and provided agent; returns that edge;
+  * Takes agent UUID as parameter
+  */
+  private Edge knowsAgent(String uuid) {
+
+        def start = System.currentTimeMillis();
+        Map params = new HashMap();
+        params.put("agent1", this.vertexId());
+        params.put("agent2",uuid);
+        params.put("agentIdLabel", "agentId")
+        params.put('edgeLabel','knows');
+
+        logger.warn("Creating knows edge from agent {} to agent {}", params.agent1, params.agent2)
+
+
+        SimpleGraphStatement s = new SimpleGraphStatement(
+                "def v1 = g.V(agent1).next()\n" +
+                "def v2 = g.V().has(agentIdLabel,agent2).next()\n" +
                 "v1.addEdge(edgeLabel, v2)", params)
 
         GraphResultSet rs = session.executeGraph(s);
