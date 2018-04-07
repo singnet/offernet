@@ -13,12 +13,23 @@ import akka.actor.Props;
 import akka.japi.Creator;
 
 import akka.actor.ActorRef;
+import akka.actor.ActorSelection;
 import java.util.UUID;
+
+import akka.dispatch.*;
+import scala.concurrent.Future;
+import scala.concurrent.Await;
+import akka.util.Timeout;
+import scala.concurrent.duration.Duration;
+import akka.pattern.Patterns;
+
 
 class Simulation extends UntypedAbstractActor {
 	OfferNet on;
 	Logger logger;
 	List agentList;
+  Hashtable<String,String> vertexIdToActorPathTable;
+  Hashtable<String,String> actorPathToVertexIdTable;
 
   public static Props props() {
     return Props.create(new Creator<Simulation>() {
@@ -65,6 +76,9 @@ class Simulation extends UntypedAbstractActor {
 		on.flushVertices();
 		logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
+    vertexIdToActorPathTable = new Hashtable<String,String>();
+    actorPathToVertexIdTable = new Hashtable<String,String>();
+
 	}
 
 	/*
@@ -81,23 +95,32 @@ class Simulation extends UntypedAbstractActor {
     return actorRef
   }
 
-  private Vertex getAgentVertexId(ActorRef actorRef) {
-    return actorRef.tell(id());
+  /**
+  * gets agent vertexId via asynchronous blocking message
+  * not perfect: have to change to non -blocking message with probably future.onComplete...
+  */
+
+  private Object getAgentVertexId(ActorRef actorRef) {
+    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+    def msg = new Method("vertexId",[])
+    Future<Object> future = Patterns.ask(actorRef, msg, timeout);
+    def vertexId = Await.result(future, timeout.duration());
+    logger.info('Got actorRefs {} vertexId {} via blocking future', actorRef, vertexId)
+    return vertexId;
   }
 
     private List createAgentNetwork(int numberOfAgents) {
       def start = System.currentTimeMillis()
       List agentsList = new ArrayList()
-      def firstAgent = Props.create(Agent.class, on.session)
 
-      agentsList.add(system.actorOf(Agent.props(on.session),"agent1"))
+      agentsList.add(this.createAgent())
 
       while (agentsList.size() < numberOfAgents) {
           def random = new Random();
           def i = random.nextInt(agentsList.size())
           Object agent1 = agentsList[i]
-          Object agent2 = system.actorOf(Agent.props(on.session),"agent1");
-          agent1.tell(new Method("knowsAgent",[agent2id]),getRef())
+          Object agent2 = this.createAgent();
+          agent1.tell(new Method("knowsAgent",[actorPathToVertexIdTable.get(agent2.path())]),getSelf())
           agentsList.add(agent2)
       }
       logger.info("Created a network of "+numberOfAgents+ " Agents")
@@ -231,5 +254,20 @@ class Simulation extends UntypedAbstractActor {
     			createAgentNetworkConnectedStars(spike,radius -1,branchingFactor);
     		}
     	}
+    }
+
+    private void addRandomWorksToAgents(int numberOfWorks) {
+        def start=System.currentTimeMillis();
+        ArrayList actorPaths = actorPathToVertexIdTable.keySet().toArray();
+        logger.info("ActorPaths array is of size {}: {}", actorPaths.size(), actorPaths)
+        numberOfWorks.times {
+            def random = new Random();
+            def i = random.nextInt(actorPaths.size()-1)
+            ActorSelection actorSelection = getContext().actorSelection(actorPaths[i])
+            actorSelection.tell(new Method("ownsWork",[]),getSelf());
+            logger.info("Added random work to actorSelection {}", actorSelection);
+        }
+        logger.info("Added "+numberOfWorks+" of random processes to the network")
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     }
 }
