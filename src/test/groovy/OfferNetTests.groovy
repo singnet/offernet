@@ -90,16 +90,6 @@ public class OfferNetTests {
 		}
 
 		@Test
-		void addRandomWorksToAgentsTest() {
-			def on1 = new OfferNet()
-			on1.flushVertices();
-
-			on1.createAgentNetwork(10)
-			on1.addRandomWorksToAgents(10)
-			assertEquals(20,on.getIds("item").size()); // creates two items (demand and offer) when creating a random work;
-		}
-
-		@Test
 		void allWorkItemEdgesTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 
