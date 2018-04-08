@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ ! -d src/java ]; then mkdir -p src/java; else rm -r src/java/*; fi;
-cp src/groovy/* src/java/
-cd src/java
+if [ ! -d src/main/java ]; then mkdir -p src/main/java; else rm -r src/main/java/*; fi;
+cp src/main/groovy/* src/main/java/
+cd src/main/java
 
 #remove all @Grab annotations from the file -- cannot be run by java
 #sed -i '/@Grab/d' *.groovy
@@ -10,5 +10,5 @@ cd src/java
 echo $GROOVY_HOME
 
 #compile
-groovyc -cp "~/.groovy/gradle/*" -encoding utf-8 *.groovy
+groovyc -cp "/home/kabir/.gradle/*" -encoding utf-8 --indy *.groovy
 rm *.groovy

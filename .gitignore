@@ -4,3 +4,4 @@ logs/*
 build/
 resources/
 temp/
+src/main/java/
