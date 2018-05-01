@@ -55,8 +55,8 @@ public class OfferNetTests {
 		void flushAgentsTest() {
 			def on1 = new OfferNet()
 			assertNotNull(on1);
-			TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-			TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+			TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 			assertNotEquals(0,on1.getIds('agent').size())
 			on1.flushVertices("agent");
 			assertEquals(0,on1.getIds('agent').size())
@@ -66,7 +66,7 @@ public class OfferNetTests {
 		void flushVerticesTest() {
 			def on1 = new OfferNet();
 			assertNotNull(on1);
-			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 			def work = agent.ownsWork();
 			def item1 = agent.addItemToWork("offers",work);
 			def item2 = agent.addItemToWork("demands",work);
