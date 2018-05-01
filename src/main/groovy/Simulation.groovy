@@ -28,8 +28,8 @@ class Simulation extends UntypedAbstractActor {
 	OfferNet on;
 	Logger logger;
 	List agentList;
-  Hashtable<String,String> vertexIdToActorPathTable;
-  Hashtable<String,String> actorPathToVertexIdTable;
+  Hashtable<String,String> vertexIdToActorRefTable;
+  Hashtable<String,String> actorRefToVertexIdTable;
 
   public static Props props() {
     return Props.create(new Creator<Simulation>() {
@@ -76,8 +76,8 @@ class Simulation extends UntypedAbstractActor {
 		on.flushVertices();
 		logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-    vertexIdToActorPathTable = new Hashtable<String,String>();
-    actorPathToVertexIdTable = new Hashtable<String,String>();
+    vertexIdToActorRefTable = new Hashtable<String,ActorRef>();
+    actorRefToVertexIdTable = new Hashtable<ActorRef,String>();
 
 	}
 
@@ -92,6 +92,9 @@ class Simulation extends UntypedAbstractActor {
   private ActorRef createAgent() {
     String agentId = UUID.randomUUID().toString();
     def actorRef = getContext().actorOf(Agent.props(on.session,agentId),agentId);
+    def vertexId = this.getAgentVertexId(actorRef);
+    vertexIdToActorRefTable.put(vertexId,actorRef);
+    actorRefToVertexIdTable.put(actorRef,vertexId);
     return actorRef
   }
 
@@ -259,16 +262,67 @@ class Simulation extends UntypedAbstractActor {
 
     private void addRandomWorksToAgents(int numberOfWorks) {
         def start=System.currentTimeMillis();
-        ArrayList actorPaths = actorPathToVertexIdTable.keySet().toArray();
-        logger.info("ActorPaths array is of size {}: {}", actorPaths.size(), actorPaths)
+        /* here should randomly select actor from the system instead of the next line*/
+        ArrayList actorRefs = actorRefToVertexIdTable.keySet().toArray();
+        logger.info("ActorRefs array is of size {}: {}", actorRefs.size(), actorRefs)
         numberOfWorks.times {
             def random = new Random();
-            def i = random.nextInt(actorPaths.size()-1)
-            ActorSelection actorSelection = getContext().actorSelection(actorPaths[i])
-            actorSelection.tell(new Method("ownsWork",[]),getSelf());
-            logger.info("Added random work to actorSelection {}", actorSelection);
+            def id = random.nextInt(actorRefs.size()-1)
+            def actorRef = actorRefs[id]
+            actorRef.tell(new Method("ownsWork",[]),getSelf());
+            logger.info("Added random work to actorRef {}", actorRef);
         }
         logger.info("Added "+numberOfWorks+" of random processes to the network")
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     }
+
+    private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
+      def start = System.currentTimeMillis();
+      agentList = this.createAgentNetwork(numberOfAgents)
+      this.addRandomWorksToAgents(numberOfRandomWorks)
+      chains.each {chain ->
+        this.addChainToNetwork(chain)
+      }
+      logger.warn("Created agentNetwork with {} agents, {} randomWorks and {} chains",numberOfAgents,numberOfRandomWorks,chains.size())
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+      return agentList;
+    }
+
+    private List addChainToNetwork(List chain) {
+        def start = System.currentTimeMillis();
+        def dataItemsWithDesignedSimilarities = new ArrayList()
+        def chainedWorks = []
+        for (int x=0;x<chain.size()-1;x++) {
+            ArrayList actorRefs = actorRefToVertexIdTable.keySet().toArray();
+            def random = new Random();
+            def agentIds = on.getIds('agent');
+            def i = random.nextInt(agentIds.size())
+            def agent = new Agent(agentIds[i],this.session)
+            def work = agent.ownsWork(chain[x],chain[x+1]);
+            chainedWorks.add(work.getId())
+            def demand = agent.getWorksItems(work,"demands")[0]
+            def offer = agent.getWorksItems(work,"offers")[0]
+            //print a list with items which have designed similarities in the network
+            switch (x) {
+                case 0:
+                    // for the first item in chain we add only offer
+                    logger.info("First item with designed similarity {}:{}", offer,offer.getProperty("value").getValue().asString())
+                    break
+                case chain.size()-2:
+                    //for the last item in chain we add only demand
+                    logger.info("Last item with designed similarity {}:{}", demand,demand.getProperty("value").getValue().asString())
+                    break
+                default:
+                    //otherwise we add both, because it has similarity both ways
+                    logger.info("Item with designed similarity {}:{}", demand,demand.getProperty("value").getValue().asString())
+                    logger.info("Item with designed similarity {}:{}", offer,offer.getProperty("value").getValue().asString())
+                    break
+            }
+        }
+        logger.info("Added a chain to the network {}",chainedWorks)
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        return chainedWorks;
+    }
+
 }
