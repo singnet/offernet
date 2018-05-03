@@ -117,6 +117,7 @@ public class OfferNetTests {
 			logger.info("Created chains: {}",chains)
 
 			sim.createAgentNetwork(chainLength,0,chains);
+			Thread.sleep(1000)
 
 			def demandEdges = on.allWorkItemEdges("demands");
 			def offerEdges = on.allWorkItemEdges("offers")
