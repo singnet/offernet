@@ -55,8 +55,8 @@ public class OfferNetTests {
 		void flushAgentsTest() {
 			def on1 = new OfferNet()
 			assertNotNull(on1);
-			TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
-			TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+			TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 			assertNotEquals(0,on1.getIds('agent').size())
 			on1.flushVertices("agent");
 			assertEquals(0,on1.getIds('agent').size())
@@ -66,7 +66,7 @@ public class OfferNetTests {
 		void flushVerticesTest() {
 			def on1 = new OfferNet();
 			assertNotNull(on1);
-			def agent = TestActorRef.create(system, Agent.props(on.session)).underlyingActor();
+			def agent = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 			def work = agent.ownsWork();
 			def item1 = agent.addItemToWork("offers",work);
 			def item2 = agent.addItemToWork("demands",work);
@@ -92,19 +92,20 @@ public class OfferNetTests {
 		@Test
 		void allWorkItemEdgesTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-
-			def chains = [Utils.createChain(4)]
+			def size = 4
+			def chains = [Utils.createChain(size)]
 			logger.info("Created chains: {}",chains)
 
-			sim.createAgentNetwork(4,0,chains);
+			sim.createAgentNetwork(size,0,chains);
+			Thread.sleep(1000)
 
 			def demandEdges = on.allWorkItemEdges("demands");
 			def offerEdges = on.allWorkItemEdges("offers")
 
 	        logger.info("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
 
-			assertEquals(7,demandEdges.size())
-			assertEquals(7,offerEdges.size())
+			assertEquals(size - 1,demandEdges.size())
+			assertEquals(size - 1,offerEdges.size())
 		}
 
 		@Test
@@ -116,6 +117,7 @@ public class OfferNetTests {
 			logger.info("Created chains: {}",chains)
 
 			sim.createAgentNetwork(chainLength,0,chains);
+			Thread.sleep(1000)
 
 			def demandEdges = on.allWorkItemEdges("demands");
 			def offerEdges = on.allWorkItemEdges("offers")

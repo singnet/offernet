@@ -123,7 +123,7 @@ public class OfferNet implements AutoCloseable {
       logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
 
       List<Object> agentIds = rs.all();
-      logger.info("Retrieved list of {} agentIds from OfferNet", agentIds.size());
+      logger.info("Retrieved list of {} vertices with label '{}' from OfferNet", agentIds.size(),labelName);
       logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return agentIds;
     }
@@ -170,58 +170,6 @@ public class OfferNet implements AutoCloseable {
           chains.add(Utils.createChain(lenghtOfChain));
         }
         createAgentNetwork(numberOfAgents,numberOfRandomWorks,chains);
-    }
-
-    private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
-
-      def start = System.currentTimeMillis();
-      agentList = on.createAgentNetwork(numberOfAgents)
-      agentList.each {agent ->
-        agent.ownsWork()
-      }
-      on.addRandomWorksToAgents(numberOfRandomWorks)
-      chains.each {chain ->
-        on.addChainToNetwork(chain)
-      }
-      logger.warn("Created agentNetwork with {} agents, {} randomWorks and {} chains",numberOfAgents,numberOfRandomWorks,chains.size())
-      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-      return agentList;
-    }
-
-    private List addChainToNetwork(List chain) {
-        def start = System.currentTimeMillis();
-        def dataItemsWithDesignedSimilarities = new ArrayList()
-        def chainedWorks = []
-        for (int x=0;x<chain.size()-1;x++) {
-            def random = new Random();
-            def agentIds = this.getIds('agent');
-            def i = random.nextInt(agentIds.size())
-            def agent = new Agent(agentIds[i],this.session)
-            def work = agent.ownsWork(chain[x],chain[x+1]);
-            chainedWorks.add(work.getId())
-            def demand = agent.getWorksItems(work,"demands")[0]
-            def offer = agent.getWorksItems(work,"offers")[0]
-            //print a list with items which have designed similarities in the network
-            switch (x) {
-                case 0:
-                    // for the first item in chain we add only offer
-                    logger.info("First item with designed similarity {}:{}", offer,offer.getProperty("value").getValue().asString())
-                    break
-                case chain.size()-2:
-                    //for the last item in chain we add only demand
-                    logger.info("Last item with designed similarity {}:{}", demand,demand.getProperty("value").getValue().asString())
-                    break
-                default:
-                    //otherwise we add both, because it has similarity both ways
-                    logger.info("Item with designed similarity {}:{}", demand,demand.getProperty("value").getValue().asString())
-                    logger.info("Item with designed similarity {}:{}", offer,offer.getProperty("value").getValue().asString())
-                    break
-            }
-        }
-        logger.info("Added a chain to the network {}",chainedWorks)
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-        return chainedWorks;
     }
 
     /* 
