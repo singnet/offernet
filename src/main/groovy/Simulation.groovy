@@ -154,11 +154,11 @@ class Simulation extends UntypedAbstractActor {
 	    //def chain = Utils.createChain(4)
 	    logger.info("Created chain {}", chain)
 
-   	    def agent1 = new Agent(on.session);
+   	  def agent1 = new Agent(on.session);
 	    def agent2 = new Agent(on.session);
 	    def agent3 = new Agent(on.session);
-   	    def agent4 = new Agent(on.session);
-   	    logger.info("Created agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
+   	  def agent4 = new Agent(on.session);
+   	  logger.info("Created agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
 
 
 	    def work1 = agent1.ownsWork(chain[0],chain[1]);
@@ -293,35 +293,16 @@ class Simulation extends UntypedAbstractActor {
         def start = System.currentTimeMillis();
         def dataItemsWithDesignedSimilarities = new ArrayList()
         def chainedWorks = []
+        ArrayList actorRefs = actorRefToVertexIdTable.keySet().toArray();
         for (int x=0;x<chain.size()-1;x++) {
-            ArrayList actorRefs = actorRefToVertexIdTable.keySet().toArray();
             def random = new Random();
-            def agentIds = on.getIds('agent');
-            def i = random.nextInt(agentIds.size())
-            def agent = new Agent(agentIds[i],this.session)
-            def work = agent.ownsWork(chain[x],chain[x+1]);
-            chainedWorks.add(work.getId())
-            def demand = agent.getWorksItems(work,"demands")[0]
-            def offer = agent.getWorksItems(work,"offers")[0]
-            //print a list with items which have designed similarities in the network
-            switch (x) {
-                case 0:
-                    // for the first item in chain we add only offer
-                    logger.info("First item with designed similarity {}:{}", offer,offer.getProperty("value").getValue().asString())
-                    break
-                case chain.size()-2:
-                    //for the last item in chain we add only demand
-                    logger.info("Last item with designed similarity {}:{}", demand,demand.getProperty("value").getValue().asString())
-                    break
-                default:
-                    //otherwise we add both, because it has similarity both ways
-                    logger.info("Item with designed similarity {}:{}", demand,demand.getProperty("value").getValue().asString())
-                    logger.info("Item with designed similarity {}:{}", offer,offer.getProperty("value").getValue().asString())
-                    break
-            }
+            def agentRef = actorRefs[random.nextInt(actorRefs.size())]
+            String method = "ownsWork"
+            def args = [chain[x],chain[x+1]];
+            agentRef.tell(new Method(method,args),getSelf())
+            chainedWorks.add([agentRef, chain[x], chain[x+1]])
         }
-        logger.info("Added a chain to the network {}",chainedWorks)
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        logger.info('Added chain to the network: {}', chainedWorks)
         return chainedWorks;
     }
 
