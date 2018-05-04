@@ -139,10 +139,10 @@ class Simulation extends UntypedAbstractActor {
 		def start = System.currentTimeMillis();
 		logger.warn("Searching and connecting similar items of all agents in the graph:")
 		def newConnectionsCreated = 0;
-		agentList.each {agent ->
-			 newConnectionsCreated += agent.searchAndConnect(similarityThreshold,maxReachDistance);
+		agentList.each {agentRef ->
+        String method = "searchAndConnect"
+        def args = [similarityThreshold,maxReachDistance];
 		}
-		logger.warn("Created {} new 'similarity' links between items in the graph",newConnectionsCreated)
 		logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
 		return newConnectionsCreated
