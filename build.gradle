@@ -12,6 +12,7 @@ task wrapper(type: Wrapper) {
 jacocoTestReport {
     reports {
         xml.enabled true
+        xml.destination "${buildDir}/reports/jacoco/report.xml"
         csv.enabled false
         html.enabled true
     }
