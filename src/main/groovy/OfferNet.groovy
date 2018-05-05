@@ -45,11 +45,11 @@ public class OfferNet implements AutoCloseable {
 
         try {
             def start = System.currentTimeMillis()
-            cluster = DseCluster.builder().addContactPoint("192.168.1.6").build();
+            cluster = DseCluster.builder().addContactPoint("dse-server.host").build();
             cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
             
             cluster = DseCluster.builder()
-                .addContactPoint("192.168.1.6")
+                .addContactPoint("dse-server.host")
                 .withGraphOptions(new GraphOptions().setGraphName("offernet"))
                 .build();
             session = cluster.connect();

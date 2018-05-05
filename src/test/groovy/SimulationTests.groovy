@@ -170,12 +170,13 @@ public class SimulationTests {
  	       	}
 		}
 
+		@Ignore // does not look as something with better than centralizedPathSearch
 		@Test
 		void pathSearchManualCentralizedTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
 			sim.on.flushVertices();
-			sim.testNetworkSmall();
+			createSmallTestNetwork(sim);
 
 			def start = System.currentTimeMillis();
 
@@ -347,7 +348,7 @@ public class SimulationTests {
 
 	   	    on = null;
 
-			DseCluster dseCluster = DseCluster.builder().addContactPoint("192.168.1.6").build();
+			DseCluster dseCluster = DseCluster.builder().addContactPoint("dse-server.host").build();
 			DseSession dseSession = dseCluster.connect();
 
 			GraphTraversalSource g = DseGraph.traversal(dseSession, new GraphOptions().setGraphName("offernet"));
