@@ -18,6 +18,7 @@ jacocoTestReport {
 }
 
 test { finalizedBy jacocoTestReport }
+check.dependsOn jacocoTestReport
 
 repositories {
 	mavenCentral()
