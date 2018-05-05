@@ -15,5 +15,5 @@ before_install:
 script:
   - gradle check
 
-after_success:
+after_script:
   - bash <(curl -s https://codecov.io/bash)
