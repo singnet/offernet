@@ -1,8 +1,4 @@
-//@Grab(group='com.datastax.dse', module='dse-java-driver-graph', version='1.5.1')
-//@Grab(group='log4j', module='log4j', version='1.2.17')
-//@Grab(group='com.typesafe.akka', module='akka-actor_2.12', version='2.5.11')
-
-package net.vveitas.offernet
+package io.singularitynet.offernet
 
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;

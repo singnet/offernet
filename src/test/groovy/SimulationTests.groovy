@@ -1,4 +1,4 @@
-package net.vveitas.offernet
+package io.singularitynet.offernet
 
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger

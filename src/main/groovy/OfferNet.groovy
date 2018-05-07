@@ -1,7 +1,4 @@
-//@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
-//@Grab(group='log4j', module='log4j', version='1.2.17')
-
-package net.vveitas.offernet
+package io.singularitynet.offernet
 
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
