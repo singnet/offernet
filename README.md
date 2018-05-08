@@ -2,4 +2,4 @@
 
 | Unit Tests | Coverage | Behaviour Tests |
 | --- | --- | --- |
-| [![Build Status](https://travis-ci.org/kabirkbr/offernet.svg?branch=master)](https://travis-ci.org/kabirkbr/offernet) | [![codecov](https://codecov.io/gh/kabirkbr/offernet/branch/master/graph/badge.svg)](https://codecov.io/gh/kabirkbr/offernet) | [Report](https://kabirkbr.github.io/offernet/cucumber-html-reports/overview-features.html) |
+| [![Build Status](https://travis-ci.org/kabirkbr/offernet.svg?branch=master)](https://travis-ci.org/kabirkbr/offernet) | [![codecov](https://codecov.io/gh/kabirkbr/offernet/branch/master/graph/badge.svg)](https://codecov.io/gh/kabirkbr/offernet) | [Report](https://singnet.github.io/offernet/cucumber-html-reports/overview-features.html) |
