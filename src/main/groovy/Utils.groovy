@@ -1,4 +1,4 @@
-package net.vveitas.offernet
+package io.singularitynet.offernet
 
 import groovy.json.*
 
@@ -113,7 +113,8 @@ public class Utils {
         dotFile << "\t\tnode [style=filled];\n"
         dotFile << "\t\tlabel = \""+label+"\";\n"
 
-        logger.warn("Path object: {}",path.getClass())
+        logger.warn("Path object class: {}",path.getClass())
+        logger.info("Path object contents: {}", path)
         for (int i = 0; i < path.size() - 1; i+=2) {
           def vertex1 = path[i].isVertex() ? path[i].asVertex() : null;
           logger.info("Got vertex1: {} with class {}",vertex1,vertex1.getClass())

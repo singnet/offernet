@@ -1,4 +1,10 @@
-package net.vveitas.offernet
+/*
+Copyright (c) 2018 SingularityNET
+
+Distributed under the MIT software license, see LICENSE file
+*/
+
+package io.singularitynet.offernet
 
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger

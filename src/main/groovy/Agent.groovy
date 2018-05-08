@@ -1,8 +1,4 @@
-//@Grab(group='com.datastax.dse', module='dse-java-driver-graph', version='1.5.1')
-//@Grab(group='log4j', module='log4j', version='1.2.17')
-//@Grab(group='com.typesafe.akka', module='akka-actor_2.12', version='2.5.11')
-
-package net.vveitas.offernet
+package io.singularitynet.offernet
 
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
@@ -106,7 +102,6 @@ public class Agent extends UntypedAbstractActor {
     return vertex.getProperty("agentId").getValue().asString();
   }
 
-  
   /**
   * returns the agentId property on the vertex, which is the unique id (is also the actor name in akka system)
   */
@@ -427,6 +422,21 @@ public class Agent extends UntypedAbstractActor {
     logger.info("Retrieved similarity value {} between item {} and {}",similarity,item.getId(),anotherItem.getId())
     logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     return similarity;
+  }
+
+  private List<Edge> getAllOutEdges(String labelName) {
+    Map params = new HashMap();
+    params.put("labelName", labelName);
+    params.put("thisItem", this.vertexId());
+
+    SimpleGraphStatement s = new SimpleGraphStatement(
+      "g.V(thisItem).outE(labelName)", params)
+
+    GraphResultSet rs = session.executeGraph(s);
+    List outEdges = rs.all().collect {it.asEdge()};
+
+    logger.info("Agent {} with vertex {} has {} outEdges: {}", this.id(), this.vertexId(), outEdges.size(), outEdges);
+    return outEdges;
   }
 
   private List<Edge> similarityEdges(Vertex item) {
