@@ -1,7 +1,4 @@
-//@Grab(group='com.datastax.cassandra', module='dse-driver', version='1.1.1')
-//@Grab(group='log4j', module='log4j', version='1.2.17')
-
-package net.vveitas.offernet
+package io.singularitynet.offernet
 
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
@@ -45,11 +42,11 @@ public class OfferNet implements AutoCloseable {
 
         try {
             def start = System.currentTimeMillis()
-            cluster = DseCluster.builder().addContactPoint("192.168.1.6").build();
+            cluster = DseCluster.builder().addContactPoint("dse-server.host").build();
             cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
             
             cluster = DseCluster.builder()
-                .addContactPoint("192.168.1.6")
+                .addContactPoint("dse-server.host")
                 .withGraphOptions(new GraphOptions().setGraphName("offernet"))
                 .build();
             session = cluster.connect();

@@ -5,3 +5,4 @@ build/
 resources/
 temp/
 src/main/java/
+target/

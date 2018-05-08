@@ -1,4 +1,4 @@
-package net.vveitas.offernet
+package io.singularitynet.offernet
 
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
@@ -51,22 +51,27 @@ public class SimulationTests {
 		@Test
 		void createSimulationTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
 			assertThat(sim, instanceOf(Simulation.class))
 		}
 
 		@Test
 		void createAgentTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-			def agent1 = sim.createAgent();
-			assertThat(agent1, instanceOf(ActorRef.class));
-			def actorPath = agent1.path();
-			def agentId = sim.actorPathToAgentIdTable.get(actorPath)
-			logger.info("Created agent {} with path {} and agentId {}", agent1, actorPath, agentId);
+			def actorRef = sim.createAgent();
+			assertThat(actorRef, instanceOf(ActorRef.class));
+			def vertexId = sim.actorRefToVertexIdTable.get(actorRef)
+			assertNotNull(vertexId)
+			logger.info("Created agent with actorRef {} and vertexId {}", actorRef, vertexId);
 		}
 
 		@Test
 		void getAgentVertexIdTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+
 			def agent1Ref = TestActorRef.create(system, Agent.props(sim.on.session, UUID.randomUUID().toString()));
 			def agent1 = agent1Ref.underlyingActor();
 			def vertexIdViaObject = agent1.vertexId()
@@ -78,6 +83,7 @@ public class SimulationTests {
 		@Test
 		void createAgentNetworkTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
 			sim.on.flushVertices();
 			int size = 20
 			def agentList = sim.createAgentNetwork(size)
@@ -91,9 +97,9 @@ public class SimulationTests {
 		//@Ignore // for now -- takes too much time
 		@Test
 		void cycleSearchTest() {
-
-			def sim = new Simulation()
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
+			sim.on.flushVertices();
 			
 			def chains = [Utils.createChain(3)]
 			logger.warn("Created chain to add to the network: {}", chains[0])
@@ -121,9 +127,9 @@ public class SimulationTests {
 
 		@Test
 		void pathSearchManualDecentralizedTest() {
-
-			def sim = new Simulation()
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
+			sim.on.flushVertices();
 			sim.testNetworkSmallWithCycle();
 
 			def start = System.currentTimeMillis();
@@ -164,11 +170,13 @@ public class SimulationTests {
  	       	}
 		}
 
+		@Ignore // does not look as something with better than centralizedPathSearch
 		@Test
 		void pathSearchManualCentralizedTest() {
-			def sim = new Simulation()
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
-			sim.testNetworkSmall();
+			sim.on.flushVertices();
+			createSmallTestNetwork(sim);
 
 			def start = System.currentTimeMillis();
 
@@ -207,8 +215,9 @@ public class SimulationTests {
 
 		@Test
 		void decentralizedPathSimulationTest() {
-			def sim = new Simulation()
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
+			sim.on.flushVertices();
 			
 			def chainLength = 6
 			def chains = [Utils.createChain(chainLength)]
@@ -248,8 +257,9 @@ public class SimulationTests {
 		
 		@Test
 		void centralizedPathSimulationTest() {
-			def sim = new Simulation()
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
+			sim.on.flushVertices();
 			
 			def chainLength = 6
 			def chains = [Utils.createChain(chainLength)]
@@ -281,6 +291,7 @@ public class SimulationTests {
 
            	def index = 0;
 
+           	Thread.sleep(5000) // pause until everything gets done in the graph
            	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
            	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
  	       	uniquePaths.each {path -> 
@@ -291,8 +302,9 @@ public class SimulationTests {
 
 		@Test
 		void compareCentralizedAndDecentralizedSimilaritySearchTest() {
-			def sim = new Simulation()
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
+			sim.on.flushVertices();
 			
 			def chainLength = 5
 			def chains = [Utils.createChain(chainLength)]
@@ -305,9 +317,9 @@ public class SimulationTests {
 			def timeStart = System.currentTimeMillis();
 			def similarityThreshold = Parameters.parameters.binaryStringLength
 			def maxDistance = 3;
-			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
+			sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
 			def timeDecentralized = System.currentTimeMillis() - timeStart;
-			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
+			def similarityConnectionsDecentralized = sim.on.getEdges('similarity')
 			logger.warn("Decentralized search time (sec): {}",timeDecentralized/1000)
 
 			sim.on.removeEdges('similarity');
@@ -319,6 +331,7 @@ public class SimulationTests {
 
 			def matchingOfferDemandPairs = Utils.getMatchingOfferDemandPairs(offerEdges,demandEdges)
 			def similarityConnectionsCentralized = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
+
 			def timeCentralized = System.currentTimeMillis() - timeStart;
 			logger.warn("Centralized search time (sec): {}",timeCentralized/1000)
 			assertEquals(similarityConnectionsDecentralized,similarityConnectionsCentralized)
@@ -336,7 +349,7 @@ public class SimulationTests {
 
 	   	    on = null;
 
-			DseCluster dseCluster = DseCluster.builder().addContactPoint("192.168.1.6").build();
+			DseCluster dseCluster = DseCluster.builder().addContactPoint("dse-server.host").build();
 			DseSession dseSession = dseCluster.connect();
 
 			GraphTraversalSource g = DseGraph.traversal(dseSession, new GraphOptions().setGraphName("offernet"));
@@ -362,7 +375,10 @@ public class SimulationTests {
 
 		@Test
 		void createAgentNetworkPathGraphTest() {
-			def sim = new Simulation();
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+
 			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/pathGraph50.dat");
 			assertEquals(50,sim.on.getVertices('agent').size());
 			assertEquals(49*2,sim.on.getEdges('knows').size());
@@ -370,7 +386,10 @@ public class SimulationTests {
 
 		@Test
 		void createAgentNetworkCycleGraphTest() {
-			def sim = new Simulation();
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+
 			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/cycleGraph50.dat");
 			assertEquals(50,sim.on.getVertices('agent').size());
 			assertEquals(50*2,sim.on.getEdges('knows').size());
@@ -378,21 +397,30 @@ public class SimulationTests {
 
 		@Test
 		void createAgentNetworkSmallWorldTest() {
-			def sim = new Simulation();
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+
 			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/smallWorld50.dat");
 			assertEquals(50,sim.on.getVertices('agent').size());
 		}
 
 		@Test
 		void createAgentNetworkPreferentialAttachmentGraphTest() {
-			def sim = new Simulation();
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+
 			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/preferentialAttachment50x3.dat");
 			assertEquals(50,sim.on.getVertices('agent').size());
 		}
 
 		@Test
 		void createAgentNetworkConnectedStarsTest() {
-			def sim = new Simulation()
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+
 			sim.createAgentNetworkConnectedStars(sim.on.createAgent(),3,3);
 			assertEquals(sim.on.getVertices("agent").size(),connectedStarsNumber(3,3))
 		}
@@ -410,6 +438,7 @@ public class SimulationTests {
 		void addRandomWorksToAgentsTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			sim.on.flushVertices();
+
 			sim.createAgentNetwork(10)
 			def itemNo = sim.on.getIds("agent").size()
 			assertEquals(10,itemNo); // creates two items (demand and offer) when creating a random work;			

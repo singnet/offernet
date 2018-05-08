@@ -1,0 +1,4 @@
+# codecov.yml
+
+fixes:
+  - "io/singularitynet/offernet/::src/main/groovy/"

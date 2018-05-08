@@ -1,4 +1,4 @@
-package net.vveitas.offernet
+package io.singularitynet.offernet
 
 public class Method {
         private final String name;

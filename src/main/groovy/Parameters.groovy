@@ -1,4 +1,4 @@
-package net.vveitas.offernet
+package io.singularitynet.offernet
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
