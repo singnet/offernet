@@ -291,6 +291,7 @@ public class SimulationTests {
 
            	def index = 0;
 
+           	Thread.sleep(5000) // pause until everything gets done in the graph
            	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
            	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
  	       	uniquePaths.each {path -> 

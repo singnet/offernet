@@ -91,6 +91,11 @@ class Simulation extends UntypedAbstractActor {
 
   private ActorRef createAgent() {
     String agentId = UUID.randomUUID().toString();
+    def actorRef = createAgentWithId(agentId);
+    return actorRef
+  }
+
+  public ActorRef createAgentWithId(String agentId) {
     def actorRef = getContext().actorOf(Agent.props(on.session,agentId),agentId);
     def vertexId = this.getAgentVertexId(actorRef);
     vertexIdToActorRefTable.put(vertexId,actorRef);
@@ -148,71 +153,7 @@ class Simulation extends UntypedAbstractActor {
 		return newConnectionsCreated
 	}
 
-	private void testNetworkSmall() {
-	    def start = System.currentTimeMillis();
-	    def chain = ["0010","0110","0000","1110"]
-	    //def chain = Utils.createChain(4)
-	    logger.info("Created chain {}", chain)
-
-   	  def agent1 = new Agent(on.session);
-	    def agent2 = new Agent(on.session);
-	    def agent3 = new Agent(on.session);
-   	  def agent4 = new Agent(on.session);
-   	  logger.info("Created agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
-
-
-	    def work1 = agent1.ownsWork(chain[0],chain[1]);
-	    logger.info("agent {} owns work {}", agent1,work1)
-	    def work2 = agent2.ownsWork(chain[1],chain[2]);
-	    logger.info("agent {} owns work {}", agent2,work2)
-	    def work3 = agent3.ownsWork(chain[2],chain[3]);
-	    logger.info("agent {} owns work {}", agent3,work3)
-	    logger.info("Created works: {}",[work1.getId(),work2.getId(),work3.getId()])
-
-	    agent1.knowsAgent(agent2);
-	    logger.info("agent {} knows agent {}",agent1,agent2)
-	    agent2.knowsAgent(agent3);
-	    logger.info("agent {} knows agent {}",agent2,agent3)
-	    agent3.knowsAgent(agent4);
-	    logger.info("agent {} knows agent {}",agent3,agent4)
-
-	    agentList = [agent1,agent2,agent3,agent4]
-    }
-
-
-	private void testNetworkSmallWithCycle() {
-	    def start = System.currentTimeMillis();
-	    def chain = ["0010","0110","0000","1110"]
-	    //def chain = Utils.createChain(4)
-	    logger.info("Created chain {}", chain)
-
-   	    def agent1 = new Agent(on.session);
-	    def agent2 = new Agent(on.session);
-	    def agent3 = new Agent(on.session);
-   	    def agent4 = new Agent(on.session);
-   	    logger.info("Created agents: {}",[agent1.id(),agent2.id(),agent3.id(),agent4.id()])
-
-
-	    def work1 = agent1.ownsWork(chain[0],chain[1]);
-	    logger.info("agent {} owns work {}", agent1,work1)
-	    def work2 = agent2.ownsWork(chain[1],chain[2]);
-	    logger.info("agent {} owns work {}", agent2,work2)
-	    def work3 = agent3.ownsWork(chain[2],chain[3]);
-	    logger.info("agent {} owns work {}", agent3,work3)
-	    def work4 = agent4.ownsWork(chain[3],chain[0]);
-	    logger.info("Created works: {}",[work1.getId(),work2.getId(),work3.getId(),work4.getId()])
-
-	    agent1.knowsAgent(agent2);
-	    logger.info("agent {} knows agent {}",agent1,agent2)
-	    agent2.knowsAgent(agent3);
-	    logger.info("agent {} knows agent {}",agent2,agent3)
-	    agent3.knowsAgent(agent4);
-	    logger.info("agent {} knows agent {}",agent3,agent4)
-
-	    agentList = [agent1,agent2,agent3,agent4]
-	}
-
-    private void createAgentNetworkFromNetworkXDataFile(String fileName) throws Throwable {
+  private void createAgentNetworkFromNetworkXDataFile(String fileName) throws Throwable {
         FileInputStream inStream = new FileInputStream(fileName);
         Scanner scanner = new Scanner(inStream);
         int numberOfAgents = scanner.nextInt();

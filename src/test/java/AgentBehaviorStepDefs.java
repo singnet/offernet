@@ -28,7 +28,6 @@ import scala.concurrent.Future;
 import scala.concurrent.Await;
 import scala.concurrent.duration.Duration;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,25 +62,50 @@ public class AgentBehaviorStepDefs {
 	public void thereIsNoLinkBetweenAnd(String linkName, String agentOne, String agentTwo) throws Throwable {
 	    ActorRef actorOneRef = this.sim.createAgentWithId(agentOne);
 	    ActorRef actorTwoRef = this.sim.createAgentWithId(agentTwo);
-	    Method msg = new Method("getAllOutEdges", new ArrayList(){{add("knows");}});
+	    Method msg = new Method("getAllOutEdges", new ArrayList(){{add(linkName);}});
 	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
 	   	Future<Object> future = Patterns.ask(actorOneRef, msg, timeout);
   		List edges = (List<Edge>) Await.result(future, timeout.duration());
   		assertTrue(edges.size() == 0);
   		actorOneRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
   		actorTwoRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+  		Thread.sleep(1000);
 	}
 
 	@When("^Agent \"(.*?)\" befriends Agent \"(.*?)\"$")
-	public void agentBefriendsAgent(String arg1, String arg2) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void agentBefriendsAgent(String agentOne, String agentTwo) throws Throwable {
+	    ActorRef actorOneRef = this.sim.createAgentWithId(agentOne);
+	    ActorRef actorTwoRef = this.sim.createAgentWithId(agentTwo);
+
+	    Method msg = new Method("vertexId", new ArrayList());
+  	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+	   	Future<Object> future = Patterns.ask(actorOneRef, msg, timeout);
+  		Object actorTwoVertexId = Await.result(future, timeout.duration());
+  		assertNotNull(actorTwoVertexId);
+
+	    msg = new Method("knowsAgent", new ArrayList(){{add(actorTwoVertexId);}});
+	    timeout = new Timeout(Duration.create(5, "seconds"));
+	   	future = Patterns.ask(actorOneRef, msg, timeout);
+  		Edge knowsEdge = (Edge) Await.result(future, timeout.duration());
+  		assertTrue(knowsEdge.getLabel().equals("knows"));
+  		actorOneRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+  		actorTwoRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+  		Thread.sleep(1000);
 	}
 
 	@Then("^there is \"(.*?)\" link between \"(.*?)\" and \"(.*?)\"$")
-	public void thereIsLinkBetweenAnd(String arg1, String arg2, String arg3) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void thereIsLinkBetweenAnd(String linkName, String agentOne, String agentTwo) throws Throwable {
+	    ActorRef actorOneRef = this.sim.createAgentWithId(agentOne);
+	    ActorRef actorTwoRef = this.sim.createAgentWithId(agentTwo);
+	    Method msg = new Method("getAllOutEdges", new ArrayList(){{add(linkName);}});
+	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+	   	Future<Object> future = Patterns.ask(actorOneRef, msg, timeout);
+  		List edges = (List<Edge>) Await.result(future, timeout.duration());
+  		assertTrue(edges.size() == 1);
+  		assertTrue(((Edge) edges.get(0)).getLabel().equals(linkName));
+  		actorOneRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+  		actorTwoRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+  		Thread.sleep(1000);
 	}
 
 }
