@@ -2,13 +2,13 @@
 
 import net.masterthought.cucumber.*;
 
-File reportOutputDirectory = new File("target");
+File reportOutputDirectory = new File("docs");
 List<String> jsonFiles = new ArrayList<>();
 jsonFiles.add("target/cucumber-json-report.json");
 
 String jenkinsBasePath = "";
 String buildNumber = "1";
-String projectName = "offernet";
+String projectName = "io.singularitynet.offernet";
 boolean runWithJenkins = false;
 boolean parallelTesting = false;
 
