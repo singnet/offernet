@@ -14,6 +14,7 @@ import cucumber.api.java.Before;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import akka.testkit.TestActorRef;
@@ -50,9 +51,30 @@ public class AgentBehaviorStepDefs {
     public void after(Scenario scenario) throws Throwable {
 		// this.on.flushVertices();
     }
-    
-	@Given("^Agent \"(.*?)\" exists on the OfferNet$")
+
+    /*
+    * Scenario: an agent can introduce a new agent to the network by 'befriending' it
+    */
+
+	@Then("^Agent \"(.*?)\" exists on the OfferNet$")
 	public void agentExistsOnTheOfferNet(String agentId) throws Throwable {
+	   	boolean exists = this.sim.agentExists(agentId);
+	    assertTrue(exists);
+	}
+
+	@And("^Agent \"(.*?)\" does not exist on the OfferNet$")
+	public void agentDoesNotExistOnTheOfferNet(String agentId) throws Throwable {
+	   	boolean exists = this.sim.agentExists(agentId);
+	    assertFalse(exists);
+	}
+
+
+    /*
+    * Scenario: an agent can 'befriend' another agent existing in the network
+    */
+    
+	@Given("^Agent \"(.*?)\" is created on the OfferNet$")
+	public void agentIsCreatedOnTheOfferNet(String agentId) throws Throwable {
 	   	ActorRef actorRef = this.sim.createAgentWithId(agentId);
 	    assertNotNull(actorRef);
 	    actorRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());

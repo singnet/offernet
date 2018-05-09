@@ -125,7 +125,7 @@ public class OfferNet implements AutoCloseable {
       return agentIds;
     }
 
-    public List getVertices(String labelName) {
+    private List getVertices(String labelName) {
       def start = System.currentTimeMillis()
       Map params = new HashMap();
       params.put("labelName", labelName);
@@ -135,10 +135,27 @@ public class OfferNet implements AutoCloseable {
       logger.warn("Executed statement: {}", Utils.getStatement(rs));
       logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
 
-      List<Object> agentIds = rs.all().collect{it.asVertex()};
-      logger.info("Retrieved list of {} vertices from OfferNet", agentIds.size());
+      List<Object> vertices = rs.all().collect{it.asVertex()};
+      logger.info("Retrieved list of {} vertices from OfferNet",  vertices.size());
       logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-      return agentIds;
+      return vertices;
+    }
+
+    private List getVertices(String propertyName, String propertyValue) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      params.put("propertyName", propertyName);
+      params.put("propertyValue", propertyValue);
+
+      SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(propertyName,propertyValue)",params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.warn("Executed statement: {}", Utils.getStatement(rs));
+      logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
+
+      List<Object> vertices = rs.all().collect{it.asVertex()};
+      logger.info("Retrieved list of {} vertices from OfferNet", vertices.size());
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      return vertices;
     }
 
     public List getEdges(String labelName) {
