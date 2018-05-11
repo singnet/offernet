@@ -91,11 +91,16 @@ For the conceptual treatment of the process see [A descriptive model of the indi
 ### Storage of value / timed exchanges
 
 In the specific case of Offer Networks, memory (apart from persistent connectivity patterns) is the ability to store value by agents (represented in reputation / tokens, etc.) for the usage later in timed exchanges. This is an essential aspect of the system and has to be considered in the early design (if not in early implementations).
-  
+
+
+## Conceptual Architecture
 
 Taken into account all [open problems / features to consider](../index.html) the proposed conceptual architecture of Offer Networks is summarized in the picture below. The goal of simulation modelling is to experiment and test more or less isolated aspects of this architecture (following envisaged goals and phases of the project) taking into account the future need for eventual integration of the results into the complete framework.
 
-<center><img src="../../pictures/OfferNet_architecture.png" width="500" align="middle"/></center>
+<div class="figure" style="text-align: center">
+<img src="pictures/OfferNet_architecture.png" alt="Conceptual architecture of OfferNet" width="60%" />
+<p class="caption">(\#fig:architecture)Conceptual architecture of OfferNet</p>
+</div>
 
 In this architecture, the Offer Network consists of humans, which are represented by one or more ON-AI agent, which learns the behavior/preferences of the represented human relevant to its role in an Offer Network. An ON-AI agent formulates and owns sets of rules of exchange == conditions of how items (owned by the human) are offered and demanded in the network. Items are represented in a way that allows to calculate their similarity and match most similar items (i.e if an item1 offered by agent1 is sufficiently similar to item2 demanded by agent2 then there is a high probability that it is a match and the exchange can be executed. In case the similarity is not perfect (in real scenarios this will be always the case), the differences and incomplete preferences have to be resolved via negotiation of respective ON-AI agents with or without human intervention if AI agents cannot solve the issue themselves -- implying more complex information flows within the network than just passing commands of humans to AI agents and then network. 
 
@@ -168,7 +173,7 @@ Possible real-world use-cases / models are:
 1. GitHub code contributions
 1. Offering of expertise;
 1. Decentralized chatbot;
-1. Personalized Open Eduction for the Masses;!INCLUDE "../assets/hypothesis.html"
+1. Personalized Open Eduction for the Masses;
 
 Offer Networks is a concept of an alternative economy where Agents (humans, AIs and or more/less simple programs and intelligences) find, negotiate and execute locally and globally beneficial series of not-only-monetary exchanges of goods (tangible and/or intangible). 
 The initial motivation is to find conceptual and implementable ways for humans to express and share complex inter-subjective values of exchangeable items in fundamentally richer way than ‘flat’ & ‘one-dimensional’ monetary economy warrants, while still leveraging advantages of it. Conceptually, one can generalize humans to any agents or processes, material / immaterial goods to any items (e.g. data) and by doing this come close to a general concept of ‘distributed marketplace of intelligences’  -- which is SingularityNET is all about (only without strict emphasis on AI).
