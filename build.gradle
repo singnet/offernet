@@ -71,6 +71,6 @@ dependencies {
 tasks.withType(JavaCompile) {
 //    options.compilerArgs << '-Xlint:deprecation'
     options.compilerArgs << '-proc:none'
-    options.compilerArgs << '-Xlint:unchecked'
+//    options.compilerArgs << '-Xlint:unchecked'
     options.warnings = false
 }
