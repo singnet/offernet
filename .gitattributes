@@ -3,5 +3,5 @@
 *.java linguist-language=Java
 *.Rmd linguist-language=R
 *.sh linguist-language=Bash
-*.html linguist-language=HTML
+*.html linguist-vendor
 docs/ linguist-documentation

@@ -25,7 +25,7 @@
 <meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
 
 
-<meta name="date" content="2018-05-11">
+<meta name="date" content="2018-05-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -66,11 +66,11 @@
 <li><a href="./">OfferNet documentation</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="conceptual-framework.html"><a href="conceptual-framework.html"><i class="fa fa-check"></i><b>2</b> Conceptual framework</a><ul>
 <li class="chapter" data-level="2.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#open-problems-features-to-consider"><i class="fa fa-check"></i><b>2.1</b> Open problems / features to consider</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#representation-theory-of-value"><i class="fa fa-check"></i><b>2.1.1</b> Representation / theory of value</a></li>
-<li class="chapter" data-level="2.1.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#representation-description-of-items-of-exchange"><i class="fa fa-check"></i><b>2.1.2</b> Representation / description of items of exchange</a></li>
+<li class="chapter" data-level="2.1.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#description-of-items-of-exchange"><i class="fa fa-check"></i><b>2.1.2</b> Description of items of exchange</a></li>
 <li class="chapter" data-level="2.1.3" data-path="conceptual-framework.html"><a href="conceptual-framework.html#similarity-measure"><i class="fa fa-check"></i><b>2.1.3</b> Similarity measure</a></li>
 <li class="chapter" data-level="2.1.4" data-path="conceptual-framework.html"><a href="conceptual-framework.html#matching-algorithm-and-search"><i class="fa fa-check"></i><b>2.1.4</b> Matching algorithm and search</a></li>
 <li class="chapter" data-level="2.1.5" data-path="conceptual-framework.html"><a href="conceptual-framework.html#incomplete-preferences-and-selection-for-relevance"><i class="fa fa-check"></i><b>2.1.5</b> Incomplete preferences and selection for relevance</a></li>
@@ -87,11 +87,17 @@
 <li class="chapter" data-level="2.4.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#goals"><i class="fa fa-check"></i><b>2.4.1</b> Goals</a></li>
 <li class="chapter" data-level="2.4.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#phases"><i class="fa fa-check"></i><b>2.4.2</b> Phases</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="conceptual-framework.html"><a href="conceptual-framework.html#practical-use-cases-and-models"><i class="fa fa-check"></i><b>2.5</b> Practical use cases and models</a></li>
+<li class="chapter" data-level="2.5" data-path="conceptual-framework.html"><a href="conceptual-framework.html#practical-use-cases"><i class="fa fa-check"></i><b>2.5</b> Practical use cases</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="computational-framework.html"><a href="computational-framework.html"><i class="fa fa-check"></i><b>3</b> Computational Framework</a><ul>
+<li class="chapter" data-level="3" data-path="computational-framework.html"><a href="computational-framework.html"><i class="fa fa-check"></i><b>3</b> Computational framework</a><ul>
 <li class="chapter" data-level="3.1" data-path="computational-framework.html"><a href="computational-framework.html#actor-model-of-computation"><i class="fa fa-check"></i><b>3.1</b> Actor model of computation</a></li>
 <li class="chapter" data-level="3.2" data-path="computational-framework.html"><a href="computational-framework.html#graph-computing-framework"><i class="fa fa-check"></i><b>3.2</b> Graph computing framework</a></li>
+<li class="chapter" data-level="3.3" data-path="computational-framework.html"><a href="computational-framework.html#simulation-engine"><i class="fa fa-check"></i><b>3.3</b> Simulation engine</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="computational-framework.html"><a href="computational-framework.html#data-structures-and-objects"><i class="fa fa-check"></i><b>3.3.1</b> Data structures and objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="computational-framework.html"><a href="computational-framework.html#processes-gremlin-dsl-pseudo-code"><i class="fa fa-check"></i><b>3.3.2</b> Processes (Gremlin DSL pseudo-code)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="computational-framework.html"><a href="computational-framework.html#expected-dynamics-graphical-depiction"><i class="fa fa-check"></i><b>3.3.3</b> Expected dynamics (graphical depiction)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="computational-framework.html"><a href="computational-framework.html#notes"><i class="fa fa-check"></i><b>3.4</b> Notes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -121,24 +127,24 @@
 <p>Open problems and features are are conceptual and ‘implementation’ issues that the system has to address in one or another way or at least provide a potential to do that. There is not particular order to the listed items now and they will be updated as the work progresses.</p>
 <div id="representation-theory-of-value" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Representation / theory of value</h3>
-<p>In monetary exchange, the value of items is represented in a ‘flat’ and ‘one-dimensional’ way – in terms of money – which abstracts away subjective differences in how heterogenous agents value the same items of exchange. The main idea of Offer Networks is to allow for these subjective values to be [partially] externalized in a distributed marketplace in order to enable peer-to-peer exchanges. This should increase the total generation of value as compared to monetary markets which support consumerist dynamics. Yet the theory of value goes beyond purely Offer Networks concept and implementation.</p>
+<p>In monetary exchange, the value of items is represented in a ‘flat’ and ‘one-dimensional’ way – in terms of money – which abstracts away subjective differences in how heterogenous agents value the same items of exchange. The main idea of Offer Networks is to allow for these subjective values to be (partially) externalized in a distributed marketplace in order to enable peer-to-peer exchanges. This should increase the total generation of value as compared to monetary markets which support consumerist dynamics. Yet the theory of value goes beyond purely Offer Networks concept and implementation.</p>
 <p>Usually theories of value try to posit some sort of globally accepted measure of value, existence of which alone facilitates the exchange of goods – giving rise for transactional role of money. Yet the notion of global measure of value automatically takes away the subjective values and local aspect of exchange – precisely the things that Offer Network is supposed to bring back.</p>
 <p>In any case, expression and communication of subjective values will involve some sort of simplification (in terms of map, vector representations or just behavioral preferences) which will need to be experimented with in a simulation model.</p>
 </div>
-<div id="representation-description-of-items-of-exchange" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Representation / description of items of exchange</h3>
+<div id="description-of-items-of-exchange" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Description of items of exchange</h3>
 <p>Whatever will be exchanged in the market will have to be somehow represented and stored in a system for subsequent search and discovery by other agents. This is obvious but not simple, taking into account that every agent may ‘want’ to express its subjective preferences regarding concrete item offered / demanded. Ways to represent items could be:</p>
 <ul>
 <li><em>Limited number of hard-coded types</em>. Obviously simplest to implement (and, depending on the angle of simulation, could be practical for the start), yet less realistic for a full fledged Offer Networks system.</li>
 <li><em>Natural language descriptions</em> (or at least structured natural language). This seems to be most realistic, but also hardest to implement, as would need some sort of NLP capabilities on behalf of agents. The advantage is that it would allow seamless interaction of humans with the system (see HMI).</li>
-<li><em>Vector representations</em>. A sort of a middle ground between natural language and hard coded types; I am currently in favor of this one, since it allows to define a simple similarity measure between items within exchange – allowing also to map them with ‘fuzzy’ or ‘incomplete’ preferences – which is an essential and necessary feature of the system;</li>
+<li><em>Vector representations</em>. A sort of a middle ground between natural language and hard coded types; I am currently in favour of this one, since it allows to define a simple similarity measure between items within exchange – allowing also to map them with ‘fuzzy’ or ‘incomplete’ preferences – which is an essential and necessary feature of the system;</li>
 <li><em>Map representations</em>. The problem with vector representations is that they will require a sort of global key map for the values in a vector. In a map representation, and agent could explicitly indicate keys and their values. The similarity calculation may become somewhat more complicated in this case.
 Sparse Distributed Representation (of HTM) <span class="citation">(Ahmad and Hawkins <a href="#ref-ahmad_properties_2015">2015</a>)</span>. Just an idea so far, but could be interesting to explore.</li>
 </ul>
 </div>
 <div id="similarity-measure" class="section level3">
 <h3><span class="header-section-number">2.1.3</span> Similarity measure</h3>
-<p>It should be possible to calculate similarity measures between items traded and their values (which is by the way not the same, taken into account emphasis on subjective values in Offer Networks…). This is where <a href="#Representation-and-description-of-items-of-exchange">representation of items</a> becomes important. The need of similarity measure also becomes important if taking into account <a href="Incomplete-preferences-and-selection-for-relevance">incomplete preferences</a> of agents – they will somehow will need to find items that map to those incomplete preferences.</p>
+<p>It should be possible to calculate similarity measures between items traded and their values (which is by the way not the same, taken into account emphasis on subjective values in Offer Networks…). This is where [representation / description of items of exchange] becomes important. The need of similarity measure also becomes important if taking into account <a href="conceptual-framework.html#incomplete-preferences-and-selection-for-relevance">incomplete preferences and selection for relevance</a> of agents – they will somehow will need to find items that map to those incomplete preferences.</p>
 </div>
 <div id="matching-algorithm-and-search" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Matching algorithm and search</h3>
@@ -160,20 +166,20 @@ Possible matching / search algorithms:</p>
 </ol></li>
 <li>Proposed in [unpublished] by <a href="mailto:kabir@singularitynet.io">kabir@singularitynet.io</a>:
 <ol style="list-style-type: decimal">
-<li>Aggregation of distributed vertex-based computations on a graph (see <a href="../../2-ComputationalFramework/index.html">Computational Framework</a> for details)</li>
+<li>Aggregation of distributed vertex-based computations on a graph (see <a href="computational-framework.html#computational-framework">Computational framework</a> for details)</li>
 </ol></li>
 </ol>
 </div>
 <div id="incomplete-preferences-and-selection-for-relevance" class="section level3">
 <h3><span class="header-section-number">2.1.5</span> Incomplete preferences and selection for relevance</h3>
 <p>In any close to realistic scenario agents cannot have complete and full preferences about everything what they demand / want (surely not if agents are humans) as well as an item of exchange cannot be represented completely and ‘non-ambiguously’. Furthermore, and more importantly conceptually, incomplete preferences of agents actually allow for communication, interaction, coordination and emergence rather than prevent it. Therefore allowing for incomplete preferences and foreseeing the mechanism of negotiation / individuation of incomplete (or in extreme cases – completely non-existent) preferences of interacting agents into behavioral choices is an essential aspect of a system aspiring for self-organizing dynamics. See <a href="https://arxiv.org/pdf/1505.06366.pdf#subsection.4.4">The resolution of disparity</a> in <span class="citation">(Weinbaum (Weaver) and Veitas <a href="#ref-weinbaum_weaver_open_2017">2017</a>)</span> for a conceptual treatment of this aspect.</p>
-<p>The important implication for Offer Networks is that ‘matching’ of demands and offers or ‘finding’ chains of exchanges among several agents is actually not at all a search problem given the space of possibilities ({offer, demand} pairs) but rather the result of dynamic interaction / negotiation among agents, in which concrete preferences / behaviours (not present before interaction) emerge from incomplete preferences, disparities and partial [in]compatibilities. The former (search) is a special case of the latter (negotiation) and the system architecture should at least attempt / consider the general case / framework before delving into implementation of special cases – which are nonetheless important.</p>
-<p>The main <a href="Centralization-/-decentralization">centralization / decentralization</a> (see later) issue is that in decentralized system there is no universal way to define relevance of items to all participants of the system (provide ‘best’ measures, ‘best’ reputation systems, etc.). Heterogeneous participants / agents will have different preferences and will select different aspects of the same item as important / unimportant to them – so will base decisions on a mechanism called selection for relevance. Consider also, that for any non-trivial agent the enacted preferences depend on the specific situation (e.g. Fido-dog agent built with OpenCog had a parameter ‘pee urgency’ which influenced its decisions…:)) as well as these preferences are incomplete in the first place. The implication is that preferences of agents can be identified and enacted only in the actual interaction of agents in the network and not prior to that. Anything beyond this (e.g. positing a global search mechanism / algorithm which chooses what is best for each agent based on their pre-announced preferences) is a movement towards centralization of a system – which may be needed or even desirable provided that limitations and advantages are wholly considered.</p>
+<p>The important implication for Offer Networks is that ‘matching’ of demands and offers or ‘finding’ chains of exchanges among several agents is actually not at all a search problem given the space of possibilities ({offer, demand} pairs) but rather the result of dynamic interaction / negotiation among agents, in which concrete preferences / behaviours (not present before interaction) emerge from incomplete preferences, disparities and partial (in)compatibilities. The former (search) is a special case of the latter (negotiation) and the system architecture should at least attempt / consider the general case / framework before delving into implementation of special cases – which are nonetheless important.</p>
+<p>The main <a href="conceptual-framework.html#centralization-decentralization">centralization / decentralization</a> issue is that in decentralized system there is no universal way to define relevance of items to all participants of the system (provide ‘best’ measures, ‘best’ reputation systems, etc.). Heterogeneous participants / agents will have different preferences and will select different aspects of the same item as important / unimportant to them – so will base decisions on a mechanism called selection for relevance. Consider also, that for any non-trivial agent the enacted preferences depend on the specific situation (e.g. Fido-dog agent built with OpenCog had a parameter ‘pee urgency’ which influenced its decisions…:)) as well as these preferences are incomplete in the first place. The implication is that preferences of agents can be identified and enacted only in the actual interaction of agents in the network and not prior to that. Anything beyond this (e.g. positing a global search mechanism / algorithm which chooses what is best for each agent based on their pre-announced preferences) is a movement towards centralization of a system – which may be needed or even desirable provided that limitations and advantages are wholly considered.</p>
 </div>
 <div id="human-machine-interface" class="section level3">
 <h3><span class="header-section-number">2.1.6</span> Human-machine interface</h3>
 <p>The vision of Offer Networks as an alternative economy first and foremost is concerned about increasing the welfare of humans and enriching ‘their’ economies <span class="citation">(B. Goertzel <a href="#ref-goertzel_beyond_2015">2015</a><a href="#ref-goertzel_beyond_2015">b</a>, 3)</span>. Therefore human participation should be considered in the design of the system, albeit most probably not in early experiments. Leaving aside technical issues of the interface this presents at least two more conceptual issues/challenges:
-1) Representing human preferences is tricky. It is obviously related to the <a href="Representation-/-theory-of-value">representation of value</a> and <a href="Representation-and-description-of-items-of-exchange">items of exchange</a> issues as well as <a href="incomplete-preferences">incomplete preferences</a>.
+1) Representing human preferences is tricky. It is obviously related to the <a href="conceptual-framework.html#representation-theory-of-value">representation / theory of value</a> and <a href="conceptual-framework.html#description-of-items-of-exchange">description of items of exchange</a> issues as well as <a href="conceptual-framework.html#incomplete-preferences-and-selection-for-relevance">Incomplete preferences and selection for relevance</a>.
 2) Humans will not participate in the system that asks them to list more than a few of their preferences (even if they know them for sure which is often not the case) about demands and characteristics of offered items. The SingularityNET-type solution seems to be to populate an Offer Network with AI agents representing preferences of people and having ability to interact with them in order to learn those preferences – and that would be a basis for Human-Machine Interface (see <a href="conceptual-framework.html#conceptual-architecture">Conceptual architecture</a> further in this document).</p>
 </div>
 <div id="centralization-decentralization" class="section level3">
@@ -194,7 +200,7 @@ The goal of the architectural design is to express / operationalize these princi
 <div id="memory-learning-emergence-of-identities" class="section level3">
 <h3><span class="header-section-number">2.1.8</span> Memory / learning: emergence of identities</h3>
 <p>A system that learns has necessary to have a memory in order to be able to remember (and forget) patterns. For a network of agents (including Offer Network and SingularityNET) such memory is a connectivity pattern among them. If a network of collaborating agents find an efficient way to pool their resources / competences and to solve complex type of problems together that cannot be solved individually it represents a new pattern. If this pattern becomes persistent, conceptually it can be viewed as a kind of ‘super-agent’ – so a new emerged identity in the network.</p>
-<p>For the conceptual treatment of the process see <a href="https://arxiv.org/pdf/1505.06366.pdf#subsection.4.2">A descriptive model of the individuation of cognition</a> <span class="citation">(Weinbaum (Weaver) and Veitas <a href="#ref-weinbaum_weaver_open_2017">2017</a>)</span>. In <a href="computational-framework.html#computational-framework">computational framework</a> part we try to see if a computational framework able to support this process and still be practically testable / usable can be conceived and implemented.</p>
+<p>For the conceptual treatment of the process see <a href="https://arxiv.org/pdf/1505.06366.pdf#subsection.4.2">A descriptive model of the individuation of cognition</a> <span class="citation">(Weinbaum (Weaver) and Veitas <a href="#ref-weinbaum_weaver_open_2017">2017</a>)</span>. In <a href="computational-framework.html#computational-framework">Computational framework</a> part we try to see if a computational framework able to support this process and still be practically testable / usable can be conceived and implemented.</p>
 </div>
 <div id="storage-of-value-timed-exchanges" class="section level3">
 <h3><span class="header-section-number">2.1.9</span> Storage of value / timed exchanges</h3>
@@ -203,7 +209,7 @@ The goal of the architectural design is to express / operationalize these princi
 </div>
 <div id="conceptual-architecture" class="section level2">
 <h2><span class="header-section-number">2.2</span> Conceptual Architecture</h2>
-<p>Taken into account all <a href="../index.html">open problems / features to consider</a> the proposed conceptual architecture of Offer Networks is summarized in the picture below. The goal of simulation modelling is to experiment and test more or less isolated aspects of this architecture (following envisaged goals and phases of the project) taking into account the future need for eventual integration of the results into the complete framework.</p>
+<p>Taken into account all <a href="conceptual-framework.html#open-problems-features-to-consider">Open problems / features to consider</a> the proposed conceptual architecture of Offer Networks is summarized in the picture below. The goal of simulation modelling is to experiment and test more or less isolated aspects of this architecture (following envisaged goals and phases of the project) taking into account the future need for eventual integration of the results into the complete framework.</p>
 <div class="figure" style="text-align: center"><span id="fig:architecture"></span>
 <img src="pictures/OfferNet_architecture.png" alt="Conceptual architecture of OfferNet" width="60%" />
 <p class="caption">
@@ -239,7 +245,7 @@ Figure 2.1: Conceptual architecture of OfferNet
 <h3><span class="header-section-number">2.3.1</span> Information integration</h3>
 <p>Conceptually the most interesting potential measure of performance of the network is information integration Φ, proposed by <span class="citation">(Edelman and Tononi <a href="#ref-edelman_universe_2000">2000</a>)</span>. Φ formally defines coordinated clusters in networks of interacting agents across time and space and is used by <span class="citation">(Tononi <a href="#ref-tononi_information_2004">2004</a>)</span> in developing an integrated theory of consciousness. Intuitively, “[a] subset of elements within a system will constitute an integrated process if, on a given time scale, these elements interact much more strongly among themselves than with the rest of the system” <span class="citation">(Edelman and Tononi <a href="#ref-edelman_universe_2000">2000</a>, 135)</span>.</p>
 <p>Such measure could in principle allow to detect the emergence of ‘higher scale agents’ in the self-organizing network (see Memory / learning: emergence of identities) and goes far beyond Offer Networks as could be an overall measure of measuring intelligence – which would be fascinating to experiment with on Offer Networks in simplified manner (and SingularityNET for that matter).</p>
-<p>Measuring information integration of a dynamic network of heterogeneous agents adds another layer of complexity to the simulation, as the calculation of information integration may take considerable computational resources (potentially more than simulation itself…). While this is an interesting avenue to explore in the context of AGI research it is not currently considered in <a href="../../../2-ConceptualFramework/index.html">computational framework</a>.</p>
+<p>Measuring information integration of a dynamic network of heterogeneous agents adds another layer of complexity to the simulation, as the calculation of information integration may take considerable computational resources (potentially more than simulation itself…). While this is an interesting avenue to explore in the context of AGI research it is not currently considered in <a href="computational-framework.html#computational-framework">Computational framework</a>.</p>
 </div>
 </div>
 <div id="goals-and-phases-of-the-project" class="section level2">
@@ -251,12 +257,14 @@ Figure 2.1: Conceptual architecture of OfferNet
 <li>Medium-term: enable Offer Networks as an alternative to token-based exchange on SingularityNET…. Or rather, as a superclass of token-based exchange, since one type of offer that can be made is “to pay to X a certain number N of tokens of type T”;</li>
 <li>Implementation-wise / medium term: formulate offers and demands in a predicate-logic type format, compilable into executable smart contract form;</li>
 <li>Continuous: Integration with SingularityNET prototype (Python, Solidity, Ethereum, etc.);</li>
-<li>Short term: find an actual AI task to simulate for PR, communication purposes, conceptual coherence, etc – for booting a fast prototyping process (see Use Cases).</li>
+<li>Short term: find an actual AI task to simulate for communication purposes, conceptual coherence, etc – for booting a fast prototyping process (see <a href="conceptual-framework.html#practical-use-cases">Practical use cases</a>).</li>
 <li>Long-term: build an economic exchange network that would perform ‘better’ than purely monetary based exchanges (better in terms of global value created, customer satisfaction, etc.);</li>
 <li>Continuous: build and perform a fast prototyping / modelling / experimenting pipeline that feeds back to the conceptual development (related to 4);</li>
-<li>Short-term: design the architecture which allows to combine:</li>
+<li>Short-term: design the architecture which allows to combine:
+<ol style="list-style-type: decimal">
 <li>rich/expensive small-scale experiments, which let us explore and understand in-depth application implementation strategies, but aren’t actually more efficient than centralized approaches at the scale on which they’re being run</li>
 <li>more simplistic scalable simulations, aimed at demonstrating/exploring the efficiency advantage achievable via decentralized methods at large scale</li>
+</ol></li>
 </ol>
 </div>
 <div id="phases" class="section level3">
@@ -268,9 +276,9 @@ Figure 2.1: Conceptual architecture of OfferNet
 </ol>
 </div>
 </div>
-<div id="practical-use-cases-and-models" class="section level2">
-<h2><span class="header-section-number">2.5</span> Practical use cases and models</h2>
-<p>Possible real-world use-cases / models are:</p>
+<div id="practical-use-cases" class="section level2">
+<h2><span class="header-section-number">2.5</span> Practical use cases</h2>
+<p>Possible real-world use-cases are:</p>
 <ol style="list-style-type: decimal">
 <li>Contact list sharing;</li>
 <li>Biomedical analytics;</li>
@@ -284,9 +292,6 @@ Figure 2.1: Conceptual architecture of OfferNet
 <li>Decentralized chatbot;</li>
 <li>Personalized Open Eduction for the Masses;</li>
 </ol>
-<p>Offer Networks is a concept of an alternative economy where Agents (humans, AIs and or more/less simple programs and intelligences) find, negotiate and execute locally and globally beneficial series of not-only-monetary exchanges of goods (tangible and/or intangible).
-The initial motivation is to find conceptual and implementable ways for humans to express and share complex inter-subjective values of exchangeable items in fundamentally richer way than ‘flat’ &amp; ‘one-dimensional’ monetary economy warrants, while still leveraging advantages of it. Conceptually, one can generalize humans to any agents or processes, material / immaterial goods to any items (e.g. data) and by doing this come close to a general concept of ‘distributed marketplace of intelligences’ – which is SingularityNET is all about (only without strict emphasis on AI).
-The conceptual (and of course implementational) details of Offer Network are still very much in development (see list of resources to date in <a href="./references.html">References</a>) and both have to advance together with the SingularityNET concept and infrastructure in a ‘simulation modelling way’. The idea is that concept - development - simulations - experiments have to co- inform each other in most efficient way.</p>
 
 </div>
 </div>
@@ -364,6 +369,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
