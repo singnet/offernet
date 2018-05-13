@@ -1,0 +1,177 @@
+# Conceptual framework
+
+## Open problems / features to consider
+
+Open problems and features are are conceptual and ‘implementation’ issues that the system has to address in one or another way or at least provide a potential to do that. There is not particular order to the listed items now and they will be updated as the work progresses.
+
+### Representation / theory of value
+
+In monetary exchange, the value of items is represented in a ‘flat’ and ‘one-dimensional’ way -- in terms of money -- which abstracts away subjective differences in how heterogenous agents value the same items of exchange. The main idea of Offer Networks is to allow for these subjective values to be (partially) externalized in a distributed marketplace in order to enable peer-to-peer exchanges. This should increase the total generation of value as compared to monetary markets which support consumerist dynamics. Yet the theory of value goes beyond purely Offer Networks concept and implementation.
+
+Usually theories of value try to posit some sort of globally accepted measure of value, existence of which alone facilitates the exchange of goods -- giving rise for transactional role of money. Yet the notion of global measure of value automatically takes away the subjective values and local aspect of exchange -- precisely the things that Offer Network is supposed to bring back. 
+
+In any case, expression and communication of subjective values will involve some sort of simplification (in terms of map, vector representations or just behavioral preferences) which will need to be experimented with in a simulation model.  
+
+### Description of items of exchange
+
+Whatever will be exchanged in the market will have to be somehow represented and stored in a system for subsequent search and discovery by other agents. This is obvious but not simple, taking into account that every agent may ‘want’ to express its subjective preferences regarding concrete item offered / demanded. Ways to represent items could be:
+
+* *Limited number of hard-coded types*. Obviously simplest to implement (and, depending on the angle of simulation, could be practical for the start), yet less realistic for a full fledged Offer Networks system.
+* *Natural language descriptions* (or at least structured natural language). This seems to be most realistic, but also hardest to implement, as would need some sort of NLP capabilities on behalf of agents. The advantage is that it would allow seamless interaction of humans with the system (see HMI).
+* *Vector representations*. A sort of a middle ground between natural language and hard coded types; I am currently in favour of this one, since it allows to define a simple similarity measure between items within exchange -- allowing also to map them with ‘fuzzy’ or ‘incomplete’ preferences -- which is an essential and necessary feature of the system;
+* *Map representations*. The problem with vector representations is that they will require a sort of global key map for the values in a vector. In a map representation, and agent could explicitly indicate keys and their values. The similarity calculation may become somewhat more complicated in this case.
+Sparse Distributed Representation (of HTM) [@ahmad_properties_2015]. Just an idea so far, but could be interesting to explore.  
+
+### Similarity measure
+
+It should be possible to calculate similarity measures between items traded and their values (which is by the way not the same, taken into account emphasis on subjective values in Offer Networks…). This is where [representation / description of items of exchange] becomes important. The need of similarity measure also becomes important if taking into account [incomplete preferences and selection for relevance] of agents -- they will somehow will need to find items that map to those incomplete preferences.  
+
+### Matching algorithm and search
+
+Given a (potentially huge) set of agents with {demand, offer} pairs, where demands and offers are items represented in a chosen way (see representation of items), an atomic task of an Offer Network at any point of time would be to find the items demanded by some agents which are offered by other agents and swap them so that the value created for agents participating in an exchange increases. For the problematics related to the ‘total value’ see discussion on centralization / decentralization which is not directly related to the matching algorithm / search (except that matching algorithm itself is related to it…;). For the problematics of the very ‘search’ problem in Offer Network, see incomplete preferences / selection for relevance.
+Possible matching / search algorithms:
+
+1. Proposed in [@goertzel_matching_2015] by ben@singularitynet.io:
+	1. Reducing the ON Matching problem to Weighted Boolean Optimization / MaxSAT;;
+	1. Mapping ON Matching problem into OpenCog Atomspace and solving with the Open-WBO/MaxSAT solvers on it;
+2. Proposed, formalized and experimented with in [@goertzel_offer_2017] by Zar Goertzel:
+	1. Maximum Edge-Weight Matching (MAX-WEIGHT)
+	1. Maximum 2-way Matching (MAX-2)
+	1. Greedy Shortest Cycle (GSC)
+	1. Dynamic Shortest Cycle (DYN-SC)
+	1. Hanging ORpairs (HOR)
+3. Proposed in [unpublished] by kabir@singularitynet.io:
+	1. Aggregation of distributed vertex-based computations on a graph (see [Computational framework] for details) 
+  
+
+### Incomplete preferences and selection for relevance
+
+In any close to realistic scenario agents cannot have complete and full preferences about everything what they demand / want (surely not if agents are humans) as well as an item of exchange cannot be represented completely and ‘non-ambiguously’. Furthermore, and more importantly conceptually, incomplete preferences of agents actually allow for communication, interaction, coordination and emergence rather than prevent it. Therefore allowing for incomplete preferences  and foreseeing the mechanism of negotiation / individuation of incomplete (or in extreme cases -- completely non-existent) preferences of interacting agents into behavioral choices is an essential aspect of a system aspiring for self-organizing dynamics. See [The resolution of disparity](https://arxiv.org/pdf/1505.06366.pdf#subsection.4.4) in [@weinbaum_weaver_open_2017] for a conceptual treatment of this aspect.
+
+The important implication for Offer Networks is that ‘matching’ of demands and offers or ‘finding’ chains of exchanges among several agents is actually not at all a search problem given the space of possibilities ({offer, demand} pairs) but rather the result of dynamic interaction / negotiation among agents, in which concrete preferences / behaviours (not present before interaction) emerge from incomplete preferences, disparities and partial (in)compatibilities. The former (search) is a special case of the latter (negotiation) and the system architecture should at least attempt / consider the general case / framework before delving into implementation of special cases -- which are nonetheless important.
+
+The main [centralization / decentralization] issue is that in decentralized system there is no universal way to define relevance of items to all participants of the system (provide ‘best’ measures, ‘best’ reputation systems, etc.). Heterogeneous participants / agents will have different preferences and will select different aspects of the same item as important / unimportant to them -- so will base decisions on a mechanism called selection for relevance. Consider also, that for any non-trivial agent the enacted preferences depend on the specific situation (e.g. Fido-dog agent built with OpenCog had a parameter ‘pee urgency’ which influenced its decisions…:)) as well as these preferences are incomplete in the first place. The implication is that preferences of agents can be identified and enacted only in the actual interaction of agents in the network and not prior to that. Anything beyond this (e.g. positing a global search mechanism / algorithm which chooses what is best for each agent based on their pre-announced preferences) is a movement towards centralization of a system -- which may be needed or even desirable provided that limitations and advantages are wholly considered.
+  
+
+### Human-machine interface
+
+The vision of Offer Networks as an alternative economy first and foremost is concerned about increasing the welfare of humans and enriching ‘their’ economies [@goertzel_beyond_2015, p. 3]. Therefore human participation should be considered in the design of the system, albeit most probably not in early experiments. Leaving aside technical issues of the interface this presents at least two more conceptual issues/challenges:
+1) Representing human preferences is tricky. It is obviously related to the [representation / theory of value] and [description of items of exchange] issues as well as [Incomplete preferences and selection for relevance].
+2) Humans will not participate in the system that asks them to list more than a few of their preferences (even if they know them for sure which is often not the case) about demands and characteristics of offered items. The SingularityNET-type solution seems to be to populate an Offer Network with AI agents representing preferences of people and having ability to interact with them in order to learn those preferences -- and that would be a basis for Human-Machine Interface (see [Conceptual architecture] further in this document).
+  
+
+### Centralization / decentralization
+
+We use the following definition of decentralization: a system is decentralized if no agent has an ability to directly access the global state of the system. This does not prevent it to indirectly infer or collect the information about the system that allows to construct a representation of a global state (like Google does with Internet :);
+
+Likewise, a centralized system is where a single agent (or agents) have a privileged role to access a global state of the system, collect information about it and provide such ‘global unified view’ to the other agents in the system (almost like Google does with Internet :));
+
+Google’s example fits to both definitions which is the result of ‘rich becomes richer’ network dynamics illustrating that an initially decentralized system (Internet) can become centralized by merely a self-organized process (preferential attachment network dynamics). It also illustrates that in reality there are no strict borders between centralized and decentralized systems -- they form a continuum (see [here](https://freedomandconstraint.github.io/distributed-it-governance/index.html) for more. 
+
+Suppose that a system initially consists of completely homogenous (in terms of knowledge/degree of connectivity and processing capacities) agents which are trying to find best ‘friends’ in the network. If these agents are autonomous, sooner or later some of them will turn out to be more successful  so other agents will start finding ‘friends’ through them -- they will become Facebooks and Googles of the SingularityNET -- this dynamics is general for any self-organizing system of autonomous agents. 
+
+Note, that without such mechanism, complexification, evolution and learning in and of a system is impossible. On the other hand, when a few agents become so powerful that they start to influence decisions of majority of other agents in the network, the availability of diversity of the network decreases -- and that again prevents complexification, evolution and learning. Furthermore, self-organization and search is a resource hungry process, therefore we want some sort of mechanism which propagates successful strategies/knowledge that can be utilized by others. Furthermore #2, the preferred balance between centralization / decentralization (degree distribution in a network if you will) depends on specific challenges and environment that the system is being exposed to. E.g. in stable times it may be globally beneficial to have more centralization and utilize / share a few best patterns of behavior, yet during volatile times it may be instrumental for the overall survival / stability of the system to experiment more (so destroy centralized hierarchies / neglect the highest degree nodes, etc.).
+
+Bottom line is that an ideal system capable of evolving and learning should not be centralized or decentralized, but it has to dynamically find a way to combine two modes of operation and fluidly change their balance depending on circumstances. The conceptual problem is that internal ‘rich becomes richer’ dynamics is natural to decentralized systems / networks, yet the dissolution of centralized networks is not -- it usually has to come from external sources with a threat to destroy the system… (see processes of [integration and disintegration](https://arxiv.org/pdf/1602.08388.pdf#subsubsection.5.2.1) in [@veitas_living_2015] for more).
+
+This discussion provides a few guiding principles for the architectural design: 
+1. It has to be flexible enough for implementing, testing and evaluating many different centralization / decentralization mechanisms and behaviors (in terms of Offer Network -- matching algorithms, representations and other features mentioned in this section);
+2. It has to allow for variety (at least in principle if not from day one) in the system so that to allow agents themselves to have a say about the preferred / best matching algorithm, reputation system, representation, etc.
+3. The system has to be able to learn / spread new useful patterns and to forget old or not-useful ones fast. The ideal criteria for a successful system would be its fluidity in adapting (learning new and forgetting old) rather than optimality / efficiency with respect to a static situation (while it could be an aspect to consider too);
+The goal of the architectural design is to express / operationalize these principles in computational terms and build a simulation environment / framework to experiment with them -- which is the topic of [computational framework](#computational-framework).
+
+Note also that from the computational standpoint, centralized algorithms are almost always more measurably efficient than decentralized for a simple (yet fundamental) reason that self-organization and resolution of disparities need additional resources (of time and memory). Finding clear cases, especially lending themselves to computer simulations with efficiency criteria that could give justice to Offer Networks distributed system is far from trivial and requires a rich simulation framework.  
+
+### Memory / learning: emergence of identities
+
+A system that learns has necessary to have a memory in order to be able to remember (and forget) patterns. For a network of agents (including Offer Network and SingularityNET) such memory is a connectivity pattern among them. If a network of collaborating agents find an efficient way to pool their resources / competences and to solve complex type of problems together that cannot be solved individually it represents a new pattern. If this pattern becomes persistent, conceptually it can be viewed as a kind of ‘super-agent’ -- so a new emerged identity in the network. 
+
+For the conceptual treatment of the process see [A descriptive model of the individuation of cognition](https://arxiv.org/pdf/1505.06366.pdf#subsection.4.2) [@weinbaum_weaver_open_2017]. In [Computational framework] part we try to see if a computational framework able to support this process and still be practically testable / usable can be conceived and implemented.  
+
+### Storage of value / timed exchanges
+
+In the specific case of Offer Networks, memory (apart from persistent connectivity patterns) is the ability to store value by agents (represented in reputation / tokens, etc.) for the usage later in timed exchanges. This is an essential aspect of the system and has to be considered in the early design (if not in early implementations).
+
+
+## Conceptual Architecture
+
+Taken into account all [Open problems / features to consider] the proposed conceptual architecture of Offer Networks is summarized in the picture below. The goal of simulation modelling is to experiment and test more or less isolated aspects of this architecture (following envisaged goals and phases of the project) taking into account the future need for eventual integration of the results into the complete framework.
+
+<div class="figure" style="text-align: center">
+<img src="pictures/OfferNet_architecture.png" alt="Conceptual architecture of OfferNet" width="60%" />
+<p class="caption">(\#fig:architecture)Conceptual architecture of OfferNet</p>
+</div>
+
+In this architecture, the Offer Network consists of humans, which are represented by one or more ON-AI agent, which learns the behavior/preferences of the represented human relevant to its role in an Offer Network. An ON-AI agent formulates and owns sets of rules of exchange == conditions of how items (owned by the human) are offered and demanded in the network. Items are represented in a way that allows to calculate their similarity and match most similar items (i.e if an item1 offered by agent1 is sufficiently similar to item2 demanded by agent2 then there is a high probability that it is a match and the exchange can be executed. In case the similarity is not perfect (in real scenarios this will be always the case), the differences and incomplete preferences have to be resolved via negotiation of respective ON-AI agents with or without human intervention if AI agents cannot solve the issue themselves -- implying more complex information flows within the network than just passing commands of humans to AI agents and then network. 
+
+We may also consider that humans that form the ‘outer’ layer of the network form a social network by knowing each other outside the Offer Network. This fact allows for distributed operation of the network without central authority -- humans would join the network only via recommendations of friends. This social network could also be a basis for the distributed reputation system where reputation of an agent would depend on the reputation of its friends in Page Rank / Google Guice style. Of course the initial social network would be augmented by a social network between ON-AI agents on the basis of their operation already within Offer Network. The social network structure is important for distributed search of similar items, since (provided that the ‘small-world’ structure) every agent of the network can potentially reach every other agent in the network via small number of links<sup>[1](#footnote1)</sup>.
+
+The efficiency of the operation of the network depends not only on the ‘smartness’ of ON-AI agents, but also on the structure of the network. The conceptual model does not prevent for introduction of additional ‘governing’, ‘matching’ or ‘similarity search’ agents operating on the same data structure.
+
+<a name="footnote1">1</a>: https://en.wikipedia.org/wiki/Small-world_network  
+
+## Performance measure
+
+Measuring ‘performance’ of the network of heterogeneous agents each having subjective values and running different processes  without resorting to some sort of over-simplistic average (like amount of money or reputation at the end of the simulation) is a tricky issue. Yet we need some kind of ways to distinguish successful simulations from unsuccessful ones. Possibilities are listed below:
+
+1. Proposed, formalized and experimented with in [@goertzel_offer_2017] by Zar Goertzel:
+	1. (TM): Total number of ORpairs satisfactorily matched.
+	1. (WT): Average wait time of ORpairs that are matched.
+	1. (AMS): Average number of matches accepted / suggested matches.
+	1. (SMS): Average size of suggested matches.(PoD): Matched task popularity measured by average product of degrees
+	1. (TH): Total number of ORpairs held.
+	1. (HT): Average number of times a hanging ORpair is held.
+	1. (HWT): Max wait time of a user in a held node
+
+2. Proposed and (to be) experimented with in [unpublished] by kabir@singularitynet.io:
+	1. (Static performance): Time required by the network to find known-to-exist matches in the network which are pre-calculated in advance;
+	1. (Learning rate): Time required by the network to find subsequently injected known-to-exist matches;
+
+### Information integration
+
+Conceptually the most interesting potential measure of performance of the network is information integration Φ, proposed by [@edelman_universe_2000]. Φ formally defines coordinated clusters in networks of interacting agents across time and space and is used by [@tononi_information_2004] in developing an integrated theory of consciousness. Intuitively, “[a] subset of elements within a system will constitute an integrated process if, on a given time scale, these elements interact much more strongly among themselves than with the rest of the system” [@edelman_universe_2000, p. 135].
+
+Such measure could in principle allow to detect the emergence of ‘higher scale agents’ in the self-organizing network (see Memory / learning: emergence of identities) and goes far beyond Offer Networks as could be an overall measure of measuring intelligence -- which would be fascinating to experiment with on Offer Networks in simplified manner (and SingularityNET for that matter).
+
+Measuring information integration of a dynamic network of heterogeneous agents adds another layer of complexity to the simulation, as the calculation of information integration may take considerable computational resources (potentially more than simulation itself…). While this is an interesting avenue to explore in the context of AGI research it is not currently considered in [Computational framework].  
+
+## Goals and phases of the project
+
+### Goals
+
+(in no particular order)
+
+1. Medium-term: enable Offer Networks as an alternative to token-based exchange on SingularityNET….  Or rather, as a superclass of token-based exchange, since one type of offer that can be made is “to pay to X a certain number N of tokens of type T”;
+2. Implementation-wise / medium term: formulate offers and demands in a predicate-logic type format, compilable into executable smart contract form;
+3. Continuous: Integration with SingularityNET prototype (Python, Solidity, Ethereum, etc.);
+4. Short term: find an actual AI task to simulate for communication purposes, conceptual coherence, etc -- for booting a fast prototyping process (see [Practical use cases]).
+5. Long-term: build an economic exchange network that would perform ‘better’ than purely monetary based exchanges (better in terms of global value created, customer satisfaction, etc.);
+6. Continuous: build and perform a fast prototyping / modelling / experimenting pipeline that feeds back to the conceptual development (related to 4);
+7. Short-term: design the architecture which allows to combine:
+	1. rich/expensive small-scale experiments, which let us explore and understand in-depth application implementation strategies, but aren't actually more efficient than centralized approaches at the scale on which they're being run
+	1. more simplistic scalable simulations, aimed at demonstrating/exploring the efficiency advantage achievable via decentralized methods at large scale
+
+### Phases
+
+1. (short-term): Exploratory work implementing Offer Networks atop SingularityNET and running preliminary experiments and simulations aimed at gaining knowledge and intuition. It may be beneficial to first construct experiments and simulations of isolated open problems / features to consider (search, memory, etc.) and get insights about them individually before integrating everything into one system. For this we may need to work out a more fine-grained schedule of goals / phases.
+
+2. (medium-term): Get a concrete sense of what sorts of AI-related exchanges are going to have the property that Offer Network type exchange works better for them than token based exchange;
+
+3. (long-term): Design and implement a scalable version of Offer Networks within SingularityNET, for handling an appropriate subset of AI interactions;  
+
+## Practical use cases
+
+Possible real-world use-cases are:
+
+1. Contact list sharing;
+1. Biomedical analytics;
+1. Fintech;
+1. Cybersecurity;
+1. Internet of Things;
+1. Data exchange between microservices;
+1. Paper reviewing
+1. GitHub code contributions
+1. Offering of expertise;
+1. Decentralized chatbot;
+1. Personalized Open Eduction for the Masses;
+

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Offer Network: concept and implementation</title>
+  <meta name="description" content="Offer Network: concept and implementation">
+  <meta name="generator" content="bookdown 0.7.10 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Offer Network: concept and implementation" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="singnet/offernet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Offer Network: concept and implementation" />
+  
+  
+  
+
+<meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
+
+
+<meta name="date" content="2018-05-13">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="conceptual-framework.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">OfferNet documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="conceptual-framework.html"><a href="conceptual-framework.html"><i class="fa fa-check"></i><b>2</b> Conceptual framework</a><ul>
+<li class="chapter" data-level="2.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#open-problems-features-to-consider"><i class="fa fa-check"></i><b>2.1</b> Open problems / features to consider</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#representation-theory-of-value"><i class="fa fa-check"></i><b>2.1.1</b> Representation / theory of value</a></li>
+<li class="chapter" data-level="2.1.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#description-of-items-of-exchange"><i class="fa fa-check"></i><b>2.1.2</b> Description of items of exchange</a></li>
+<li class="chapter" data-level="2.1.3" data-path="conceptual-framework.html"><a href="conceptual-framework.html#similarity-measure"><i class="fa fa-check"></i><b>2.1.3</b> Similarity measure</a></li>
+<li class="chapter" data-level="2.1.4" data-path="conceptual-framework.html"><a href="conceptual-framework.html#matching-algorithm-and-search"><i class="fa fa-check"></i><b>2.1.4</b> Matching algorithm and search</a></li>
+<li class="chapter" data-level="2.1.5" data-path="conceptual-framework.html"><a href="conceptual-framework.html#incomplete-preferences-and-selection-for-relevance"><i class="fa fa-check"></i><b>2.1.5</b> Incomplete preferences and selection for relevance</a></li>
+<li class="chapter" data-level="2.1.6" data-path="conceptual-framework.html"><a href="conceptual-framework.html#human-machine-interface"><i class="fa fa-check"></i><b>2.1.6</b> Human-machine interface</a></li>
+<li class="chapter" data-level="2.1.7" data-path="conceptual-framework.html"><a href="conceptual-framework.html#centralization-decentralization"><i class="fa fa-check"></i><b>2.1.7</b> Centralization / decentralization</a></li>
+<li class="chapter" data-level="2.1.8" data-path="conceptual-framework.html"><a href="conceptual-framework.html#memory-learning-emergence-of-identities"><i class="fa fa-check"></i><b>2.1.8</b> Memory / learning: emergence of identities</a></li>
+<li class="chapter" data-level="2.1.9" data-path="conceptual-framework.html"><a href="conceptual-framework.html#storage-of-value-timed-exchanges"><i class="fa fa-check"></i><b>2.1.9</b> Storage of value / timed exchanges</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#conceptual-architecture"><i class="fa fa-check"></i><b>2.2</b> Conceptual Architecture</a></li>
+<li class="chapter" data-level="2.3" data-path="conceptual-framework.html"><a href="conceptual-framework.html#performance-measure"><i class="fa fa-check"></i><b>2.3</b> Performance measure</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#information-integration"><i class="fa fa-check"></i><b>2.3.1</b> Information integration</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="conceptual-framework.html"><a href="conceptual-framework.html#goals-and-phases-of-the-project"><i class="fa fa-check"></i><b>2.4</b> Goals and phases of the project</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#goals"><i class="fa fa-check"></i><b>2.4.1</b> Goals</a></li>
+<li class="chapter" data-level="2.4.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#phases"><i class="fa fa-check"></i><b>2.4.2</b> Phases</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="conceptual-framework.html"><a href="conceptual-framework.html#practical-use-cases"><i class="fa fa-check"></i><b>2.5</b> Practical use cases</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="computational-framework.html"><a href="computational-framework.html"><i class="fa fa-check"></i><b>3</b> Computational framework</a><ul>
+<li class="chapter" data-level="3.1" data-path="computational-framework.html"><a href="computational-framework.html#actor-model-of-computation"><i class="fa fa-check"></i><b>3.1</b> Actor model of computation</a></li>
+<li class="chapter" data-level="3.2" data-path="computational-framework.html"><a href="computational-framework.html#graph-computing-framework"><i class="fa fa-check"></i><b>3.2</b> Graph computing framework</a></li>
+<li class="chapter" data-level="3.3" data-path="computational-framework.html"><a href="computational-framework.html#simulation-engine"><i class="fa fa-check"></i><b>3.3</b> Simulation engine</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="computational-framework.html"><a href="computational-framework.html#data-structures-and-objects"><i class="fa fa-check"></i><b>3.3.1</b> Data structures and objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="computational-framework.html"><a href="computational-framework.html#processes-gremlin-dsl-pseudo-code"><i class="fa fa-check"></i><b>3.3.2</b> Processes (Gremlin DSL pseudo-code)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="computational-framework.html"><a href="computational-framework.html#expected-dynamics-graphical-depiction"><i class="fa fa-check"></i><b>3.3.3</b> Expected dynamics (graphical depiction)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="computational-framework.html"><a href="computational-framework.html#notes"><i class="fa fa-check"></i><b>3.4</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Offer Network: concept and implementation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="computational-framework" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Computational framework</h1>
+<p>The proposed Offer Networks simulation framework is based on (and is a special case of) the “open-ended computing” model, which combines two paradigms / computation models: Actor model of computation and Graph Computing Framework.</p>
+<div id="actor-model-of-computation" class="section level2">
+<h2><span class="header-section-number">3.1</span> Actor model of computation</h2>
+<p>A decentralized and distributed system from the computational perspective can be best described by Actor model <span class="citation">(Agha <a href="#ref-agha_actors:_1986">1986</a>)</span>, which was introduced in 1973 as a “universal modular formalism for artificial intelligence” <span class="citation">(Hewitt, Bishop, and Steiger <a href="#ref-hewitt_universal_1973">1973</a>)</span>. The model defines interaction among independent processes via message passing that does not require a global observer / algorithm / manager. It aims to model intelligence “ […] in terms of a society of communicating knowledge-based problem-solving experts. In turn each of the experts can be viewed as a society that can be further decomposed in the same way until the primitive actors of the system are reached”. It models “the nature of the communication mechanisms needed for effective problem-solving by a society of experts and the conventions of discourse that make this possible” and is aimed for developing a framework for “problem-solving involving parallel versus serial processing and centralization versus decentralization of control and information storage” <span class="citation">(Hewitt <a href="#ref-hewitt_viewing_1976">1976</a>)</span>.</p>
+<p>Over the years, actor model found its way into programming languages and paradigms, including, for example, functional programming. Also, there exists software frameworks and libraries dedicated to actor model (i.e. <a href="https://akka.io/">Akka</a>, <a href="http://www.gpars.org/webapp/home.html">gpars</a>, <a href="https://docs.pulsarweb.org/en/latest/">python/pulsar</a>, etc.). These libraries allow for fast, yet scalable (across multiple machines) implementation of the actor model based logic.</p>
+<p>Actor model allows for operationalization of the ‘open-ended intelligence’ <span class="citation">(Weinbaum (Weaver) and Veitas <a href="#ref-weinbaum_weaver_open_2017">2017</a>,<span class="citation">@weinbaum_weaver_open-ended_2018</span>)</span> concept which perceives intelligence as a formative process of self-organization in which agents themselves get formed – as opposed to seeing intelligent agents which competencies are defined with respect to an a priori given problem domain or goal. Open-ended intelligence concept emphasizes onto-genesis of intelligent agents (in terms of their cognitive development) rather than their specific properties. Considering requirements / open problems / features related to implementation of Offer Networks (see Offer Networks: conceptual framework), the operationalization of aspects of Open-ended intelligence concept with the Actor model for building simulation modelling experiments seems to be a sensible path towards a scalable infrastructure for alternative economy.</p>
+<p>Having said this one has to admit that Actor model (as well as the concept of Open-ended intelligence) is fairly abstract and does not define actual mechanisms of communications between actors and formation of their collectives able to solve complex tasks. The issue here is of course introducing the right set of constraints that will make the model more concrete without losing the essential characteristics which we would like to understand (see also the <a href="https://community.singularitynet.io/t/open-ended-intelligence/259">community discussion</a> on the topic). For this a way to define logic of individual agent as well as communications between them is needed. ## Graph Computing Engine</p>
+</div>
+<div id="graph-computing-framework" class="section level2">
+<h2><span class="header-section-number">3.2</span> Graph computing framework</h2>
+<p>Graph computing is both a set of technologies and a way of thinking about the world in terms of graph data structures – entities connected via explicit or implicit links – and the processes working on them in terms of graph traversals <span class="citation">(Rodriguez <a href="#ref-rodriguez_graph_2013">2013</a>)</span>. Very large graph data structures can be stored and processed on multiple machine clusters using modern open source or commercial distributed graph database technologies (e.g. <a href="http://janusgraph.org/">Janusgraph</a>, <a href="https://neo4j.com/">Neo4J</a>, <a href="https://docs.microsoft.com/en-us/azure/cosmos-db/introduction">Azure Cosmos DB</a>, <a href="https://aws.amazon.com/neptune/">Amazon Neptune</a>, <a href="https://www.datastax.com/products/datastax-enterprise-graph">Data Stax Enterprise Graph</a>, etc.).</p>
+<p><em>Graph traversal</em> is a process of visiting (checking, updating or modifying) vertices and links of a graph based on the user defined constraints (or grammar) <span class="citation">(M. A. Rodriguez <a href="#ref-rodriguez_grammar-based_2008">2008</a>)</span> and is equivalent to ‘semantically constrained’ <a href="https://en.wikipedia.org/wiki/Spreading_activation">spreading activation</a>, which can be regarded a general method of how associative networks (including brain) operate. Modern graph traversal engines (e.g. <a href="http://tinkerpop.apache.org/">Apache TikerPop</a>, currently used in the <a href="https://github.com/singnet/offernet">offernet</a>) use vertex-centric programming model (also called “think like a vertex”), which implements user defined programs from the perspective of any vertex in a graph rather than the whole data structure <span class="citation">(McCune, Weninger, and Madey <a href="#ref-mccune_thinking_2015">2015</a>)</span>. This paradigm allows for implementation of decentralized model as well as other important features discussed in the <a href="conceptual-framework.html#conceptual-framework">Conceptual framework</a>. Furthermore, both the paradigm and available technologies are massively scalable – allowing to process very large data structures without requiring to store/access them at once which (not incidentally) follows the conceptual approach to the world as a decentralized system – which cannot be properly modelled by assuming a global omniscient observer (see conceptual perspective of <a href="http://freedomandconstraint.github.io/distributed-it-governance/2.html">decentralized IT governance</a> and <span class="citation">(M. A. Rodriguez Marko <a href="#ref-atlee_collectively_2008">2008</a>)</span>).</p>
+</div>
+<div id="simulation-engine" class="section level2">
+<h2><span class="header-section-number">3.3</span> Simulation engine</h2>
+<p>The final goal of the <a href="https://github.com/singnet/offernet">offernet</a> project is to build the simulation engine for simulating rich and large scale Offer Networks experiments considering the general architecture as well as particular solutions of SingularityNET network. The long term goal is to integrate/assimilate offernet into SingularityNET core architecture as well as use lessons learned. Ideally the simulation engine could be used for general SingularityNET simulations.</p>
+<p>The model of simulation engine consists of 4 layers (see figure <a href="computational-framework.html#fig:layers">3.1</a>). See also figure <a href="conceptual-framework.html#fig:architecture">2.1</a>. Layer 4 is written in Java/Groovy/[Gremlin](<a href="https://en.wikipedia.org/wiki/Gremlin_(programming_language)" class="uri">https://en.wikipedia.org/wiki/Gremlin_(programming_language)</a>; layer 3 is <a href="https://akka.io/">Akka</a> framework (Java); layer 2 is the DSE <a href="https://docs.datastax.com/en/developer/java-driver-dse/1.4/manual/graph/">native graph API</a>; and for layer 1 the <a href="https://docs.datastax.com/en/dse/6.0/dse-dev/datastax_enterprise/graph/graphTOC.html">Data Stax Enterprise Graph</a> is currently used.</p>
+<div class="figure" style="text-align: center"><span id="fig:layers"></span>
+<img src="pictures/simulation_architecture_java.png" alt="Simulation framework layers" width="60%" />
+<p class="caption">
+Figure 3.1: Simulation framework layers
+</p>
+</div>
+<p><a href="https://docs.datastax.com/en/dse/6.0/dse-dev/datastax_enterprise/graph/graphTOC.html">Data Stax Enterprise Graph</a> is a transactional database that can support thousands of concurrent connections and storing and querying graphs containing billions of vertices and edges, apart from being able to be distributed on multiple machines through <a href="http://cassandra.apache.org/">Apache Cassandra</a> (which is the backend of DSE graph) clusters. The network of items, rules of exchange and partially agents (see <a href="conceptual-framework.html#conceptual-framework">Conceptual framework</a> and figure @ref{fig:architecture} are implemented as vertices and links in the graph. ON-AI agents access the graph and run distributed traversals using an Offer Network domain specific language written on Apache Tinkerpop’s Gremlin language’s (for now DSE java driver is chosen but could be other variant). ON-AI agents themselves will be implemented as sequential programs running on separate threads concurrently via <a href="https://doc.akka.io/docs/akka/2.5/actors.html">Akka actors</a>. In terms of scalability, <a href="https://akka.io/">Akka</a> supports millions of actors and messages.</p>
+<p>Availability of concurrent connections is important for implementing actor model where actors will access the Offer Network graph asynchronously in order to simulate the dynamics of a realistic economic network composed of many heterogeneous actors in SingularityNET. Massive scalability of graph databases will allow for large scale experiments with simpler ON-AI agent logic (or not so simple, depending on the availability of computational resources) in Phase 3 (see <a href="conceptual-framework.html#phases">Phases</a>.</p>
+<p>Furthermore, the model architecture would allow to run experiments with matching algorithms of <span class="citation">(Goertzel <a href="#ref-goertzel_offer_2017">2017</a>)</span> on the same data structure and therefore potentially compare centralized search algorithms with decentralized search.</p>
+<p>The simulation engine / architecture briefly described above allows to run decentralized or centralized algorithms on the same data structure of the Offer Network whether statically constructed or dynamically changing – thus providing rich experimentation space for testing and comparing different ideas and algorithms.</p>
+<p>The best way to explain the model is in terms of data structures, objects and processes. See a semi-formal representation below.</p>
+<div id="data-structures-and-objects" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Data structures and objects</h3>
+<ul>
+<li>The structure is a list of vertexes and edges:</li>
+</ul>
+<p><span class="math display">\[ON = \left\{ {V, E, \lambda, \mu} \right\}\]</span></p>
+<p>where edges are directed (i.e. <span class="math inline">\(E \subset (V × V )\)</span>), edges are labelled (i.e. <span class="math inline">\(\lambda : E \rightarrow \Sigma\)</span>), and properties are a map from elements and keys to values (i.e. <span class="math inline">\(\mu : (V \cup E) × R \rightarrow S)\)</span> {<span class="citation">Rodriguez and Neubauer (<a href="#ref-rodriguez_graph_2010">2010</a>)</span>}.</p>
+<ul>
+<li>Vertexes can be of type ‘agent’, ‘work’ or ‘item’:</li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+\forall V ( &amp; type(V,\text{agent})\\
+            &amp; \lor type(V,\text{work})\\
+            &amp; \lor type(V,\text{item}))
+\end{aligned}
+\end{equation}\]</span></p>
+<ul>
+<li><p>Vertexes can be connected with edges, which define predicate relations between them:
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+\exists V1 \exists V2 \exists E &amp; (connected(V1,E,V2) \\ &amp; \Leftrightarrow \exists pred (pred(V1,V2) \land type(E,\text{pred})))
+\end{aligned}
+\end{equation}\]</span></p></li>
+<li><p>Edges can be of type ‘owns’, ‘offers’, ‘demands’ and ‘similar’ (which correspond to the possible predicate relations between vertexes):</p></li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+\forall E ( &amp; type(E,\text{owns}) \\
+            &amp; \lor type(E,\text{similar}) \\
+            &amp; \lor type (E,\text{offers}) \\
+            &amp; \lor type (E,\text{demands}) )
+\end{aligned}
+\end{equation}\]</span></p>
+<ul>
+<li>Agents ‘own’ works:</li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+owns(V1,V2) :\Leftrightarrow &amp; \forall V1 \forall V2 \forall E (type(V1,\text{agent}) \land type(V2,\text{work}) \\ &amp; \land connected(V1,E,V2) \land type(E,\text{owns}) )
+\end{aligned}
+\end{equation}\]</span></p>
+<ul>
+<li>A work ‘demands’ and/or ‘offers’ data :</li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+\textit{demands}(V1,V2) :\Leftrightarrow &amp; \forall V1 \forall V2 \forall E (type(V1,\text{work}) \land type(V2,\text{data}) \\ &amp; \land connected(V1,E,V2) \land type(E,\text{demands}))
+\end{aligned}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+\textit{offers}(V1,V2) :\Leftrightarrow &amp; \forall V1 \forall V2 \forall E (type(V1,\text{work}) \land type(V2,\text{data}) \\ &amp; \land connected(V1,E,V2) \land type(E,\text{offers}))
+\end{aligned}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+\forall V1 (type(V1,\text{work}) \, \exists V2 (demands(V1,V2) \lor \textit{offers}(V1,V2)))
+\end{aligned}
+\end{equation}\]</span></p>
+<ul>
+<li>Items can be connected with similarity relation:</li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+similar(V1,V2) :\Leftrightarrow &amp; \forall V1 \forall V2 \forall E (type(V1,\text{data}) \land type(V2,\text{data}) \\ &amp; \land connected(V1,E,V2) \land type(E,\text{similar}))
+\end{aligned}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+\forall E (type(E,\text{similar}) \Rightarrow \exists! value(E,\text{s})); s: \rm I\!R [0,1]
+\end{aligned}
+\end{equation}\]</span></p>
+</div>
+<div id="processes-gremlin-dsl-pseudo-code" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Processes (Gremlin DSL pseudo-code)</h3>
+<p>Processes are graph traversals (written in <a href="https://www.datastax.com/dev/blog/developing-a-domain-specific-language-in-gremlin">Gremlin DSL</a>) that run on separate threads of each agent. While the processes are concurrent and asynchronous, they nevertheless interact between each other by using the same data structure (OfferNet graph) in a <a href="https://en.wikipedia.org/wiki/Stigmergy">stigmergic</a> manner. Some of the processes are (full list will be available in the API documentation):</p>
+<ul>
+<li><em>findSimilar</em></li>
+</ul>
+<pre class="text"><code>def findSimilar() {
+  allOffersAndDemands.each {dataItem -&gt; 
+      dataItem.getProcess()
+            .getAgent()
+            .getNeighbours()
+            .getProcesses()
+            .getOffersAndDemands()
+            .calculateSimilarity(dataItem)
+  }
+};</code></pre>
+<ul>
+<li><em>findCycles</em></li>
+</ul>
+<pre class="text"><code>def findCycles() {
+  allAgents.each { agent -&gt; 
+      agent.getProcesses()
+          .getOffersAndDemands()
+          .getHighestSimilarityLink()
+          .filter{link -&gt; link.similarity &gt; threshold}
+          .remember(traversals)
+  }
+  if (traversals.contain(cycle) == true) {
+    return cycle
+  }
+};</code></pre>
+</div>
+<div id="expected-dynamics-graphical-depiction" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Expected dynamics (graphical depiction)</h3>
+<ul>
+<li>Offer Network (toy) graph before running processes on it (i.e. similarities among items not calculated):</li>
+</ul>
+<p><img src="pictures/toy_graph_before_processes.png" width="60%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>After running processes and finding cycles:</li>
+</ul>
+<p><img src="pictures/toy_graph_after_processes.png" width="60%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Similarity relation (based on Hamming distance):</li>
+</ul>
+<p><img src="pictures/similarity_relation.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="notes" class="section level2">
+<h2><span class="header-section-number">3.4</span> Notes</h2>
+<ul>
+<li>A graph database back-end is currently needed to enable the usage of graph traversal language for defining peer-to-peer communication rules among agents. In principle, however, it may be possible to implement Apache Tinkerpop OLTP graph computer directly on the chosen Actor framework (see <a href="http://tinkerpop.apache.org/docs/3.3.1/dev/provider/">Provider Documentation</a>) or even on any code. In any case, implementing OLTP graph computer directly involves a considerable effort and therefore should be well backed by the results of initial experiments.</li>
+</ul>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-agha_actors:_1986">
+<p>Agha, Gul A. 1986. <em>Actors: A Model of Concurrent Computation in Distributed Systems</em>. Mit Press.</p>
+</div>
+<div id="ref-hewitt_universal_1973">
+<p>Hewitt, Carl, Peter Bishop, and Richard Steiger. 1973. “A Universal Modular ACTOR Formalism for Artificial Intelligence.” In <em>Proceedings of the 3rd International Joint Conference on Artificial Intelligence</em>, 235–45. IJCAI’73. San Francisco, CA, USA: Morgan Kaufmann Publishers Inc. <a href="http://dl.acm.org/citation.cfm?id=1624775.1624804" class="uri">http://dl.acm.org/citation.cfm?id=1624775.1624804</a>.</p>
+</div>
+<div id="ref-hewitt_viewing_1976">
+<p>Hewitt, Carl. 1976. “Viewing Control Structures as Patterns of Passing Messages,” December. <a href="http://dspace.mit.edu/handle/1721.1/6272" class="uri">http://dspace.mit.edu/handle/1721.1/6272</a>.</p>
+</div>
+<div id="ref-weinbaum_weaver_open_2017">
+<p>Weinbaum (Weaver), David, and Viktoras Veitas. 2017. “Open Ended Intelligence: The Individuation of Intelligent Agents.” <em>Journal of Experimental &amp; Theoretical Artificial Intelligence</em> 29 (2):371–96. <a href="https://doi.org/10.1080/0952813X.2016.1185748" class="uri">https://doi.org/10.1080/0952813X.2016.1185748</a>.</p>
+</div>
+<div id="ref-rodriguez_graph_2013">
+<p>Rodriguez, Marko. 2013. “On Graph Computing.” <em>Marko A. Rodriguez</em>. <a href="http://markorodriguez.com/2013/01/09/on-graph-computing/" class="uri">http://markorodriguez.com/2013/01/09/on-graph-computing/</a>.</p>
+</div>
+<div id="ref-rodriguez_grammar-based_2008">
+<p>Rodriguez, Marko A. 2008. “Grammar-Based Random Walkers in Semantic Networks.” <em>Knowledge-Based Systems</em> 21 (7):727–39. <a href="https://doi.org/10.1016/j.knosys.2008.03.030" class="uri">https://doi.org/10.1016/j.knosys.2008.03.030</a>.</p>
+</div>
+<div id="ref-mccune_thinking_2015">
+<p>McCune, Robert Ryan, Tim Weninger, and Greg Madey. 2015. “Thinking Like a Vertex: A Survey of Vertex-Centric Frameworks for Large-Scale Distributed Graph Processing.” <em>ACM Comput. Surv.</em> 48 (2):25:1–25:39. <a href="https://doi.org/10.1145/2818185" class="uri">https://doi.org/10.1145/2818185</a>.</p>
+</div>
+<div id="ref-atlee_collectively_2008">
+<p>Rodriguez, Marko A., Marko. 2008. “A Collectively Generated Model of the World.” In <em>Collective Intelligence: Creating a Prosperous World at Peace</em>, edited by Tom Atlee, Yochai Benkler, Thomas Homer-Dixon, Pierre Levy, Thomas Malone, Rt Hon Paul Martin, Hassan Masum, Robert Steele, and Mark Tovey, 1st edition. Oakton, Va.: Earth Intelligence Network.</p>
+</div>
+<div id="ref-goertzel_offer_2017">
+<p>Goertzel, Zar. 2017. “Offer Networks Simulation and Dynamics.” Master’s thesis, Copenhagen. <a href="https://github.com/zariuq/offer-network-thesis/blob/master/Thesis/Zar_Thesis_Offer_Networks.pdf" class="uri">https://github.com/zariuq/offer-network-thesis/blob/master/Thesis/Zar_Thesis_Offer_Networks.pdf</a>.</p>
+</div>
+<div id="ref-rodriguez_graph_2010">
+<p>Rodriguez, Marko A., and Peter Neubauer. 2010. “The Graph Traversal Pattern.” <em>arXiv:1004.1001 [Cs]</em>, April. <a href="http://arxiv.org/abs/1004.1001" class="uri">http://arxiv.org/abs/1004.1001</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="conceptual-framework.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

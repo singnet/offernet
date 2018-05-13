@@ -6,3 +6,6 @@ resources/
 temp/
 src/main/java/
 target/
+docs/offernet-documentation/
+.Rproj.user
+

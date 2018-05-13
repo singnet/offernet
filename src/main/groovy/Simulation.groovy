@@ -247,4 +247,14 @@ class Simulation extends UntypedAbstractActor {
         return chainedWorks;
     }
 
+    /**
+    * Simply checks if an agent with a given Id already exist on the offernet graph..
+    **/
+
+    public boolean agentExists(String agentId) {
+      def vertices = this.on.getVertices('agentId',agentId);
+      return !vertices.isEmpty();
+    }
+
+
 }

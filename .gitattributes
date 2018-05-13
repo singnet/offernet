@@ -1,0 +1,7 @@
+*.groovy linguist-language=Groovy
+*.gremlin linguist-language=Gremlin
+*.java linguist-language=Java
+*.Rmd linguist-language=R
+*.sh linguist-language=Bash
+*.html linguist-vendor
+docs/ linguist-documentation
