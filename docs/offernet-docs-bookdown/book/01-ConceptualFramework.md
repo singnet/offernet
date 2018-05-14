@@ -134,20 +134,3 @@ Conceptually the most interesting potential measure of performance of the networ
 Such measure could in principle allow to detect the emergence of ‘higher scale agents’ in the self-organizing network (see Memory / learning: emergence of identities) and goes far beyond Offer Networks as could be an overall measure of measuring intelligence -- which would be fascinating to experiment with on Offer Networks in simplified manner (and SingularityNET for that matter).
 
 Measuring information integration of a dynamic network of heterogeneous agents adds another layer of complexity to the simulation, as the calculation of information integration may take considerable computational resources (potentially more than simulation itself…). While this is an interesting avenue to explore in the context of AGI research it is not currently considered in [Computational framework].  
-
-## Practical use cases
-
-Possible real-world use-cases are:
-
-1. Contact list sharing;
-1. Biomedical analytics;
-1. Fintech;
-1. Cybersecurity;
-1. Internet of Things;
-1. Data exchange between microservices;
-1. Paper reviewing
-1. GitHub code contributions
-1. Offering of expertise;
-1. Decentralized chatbot;
-1. Personalized Open Eduction for the Masses;
-
