@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.datastax.driver.dse.graph.Edge;
+import com.datastax.driver.dse.graph.Vertex;
 
 public class AgentBehaviorStepDefs {
 	private Simulation sim;
@@ -78,6 +79,7 @@ public class AgentBehaviorStepDefs {
 	   	ActorRef actorRef = this.sim.createAgentWithId(agentId);
 	    assertNotNull(actorRef);
 	    actorRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+	    Thread.sleep(1000);
 	}
 
 	@Given("^there is no \"(.*?)\" link between \"(.*?)\" and \"(.*?)\"$")
@@ -129,5 +131,53 @@ public class AgentBehaviorStepDefs {
   		actorTwoRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
   		Thread.sleep(1000);
 	}
+
+    /*
+    * Scenario: an agent can create a work (offer-demand) pair
+    */
+
+    @When("^Agent \"([^\"]*)\" publishes a pair of offer \"([^\"]*)\" and demand of \"([^\"]*)\"$")
+    public void agent_publishes_a_pair_of_offer_and_demand_of(String agentLabel, String offerValue, String demandValue) throws Throwable {
+        ActorRef actorRef = this.sim.createAgentWithId(agentLabel);
+        assertNotNull(actorRef);
+	    Method msg = new Method("ownsWork", new ArrayList(){{add(demandValue);add(offerValue);}});
+	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+	   	Future<Object> future = Patterns.ask(actorRef, msg, timeout);
+  		Vertex work = (Vertex) Await.result(future, timeout.duration());
+  		assertTrue(work.getLabel().equals("work"));
+  		actorRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+  		Thread.sleep(1000);
+    }
+
+    @Then("^Agent \"([^\"]*)\" owns a work which \"([^\"]*)\" item \"([^\"]*)\"$")
+    public void agent_owns_a_work_which_item(String agentLabel, String ownsLinkType, String itemValue) throws Throwable {
+
+    	// get the actor:
+    	ActorRef actorRef = this.sim.createAgentWithId(agentLabel);
+    	assertNotNull(actorRef);
+
+	   	// get the work of an actor
+	    Method msg = new Method("getWorks", new ArrayList());
+	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+	   	Future<Object> future = Patterns.ask(actorRef, msg, timeout);
+	   	List<Vertex> works = (List<Vertex>) Await.result(future, timeout.duration());
+	   	assertTrue(works.size() == 1);
+	   	Vertex work = works.get(0);
+	   	assertTrue(work.getLabel().equals("work"));
+
+	   	// get item and check its label
+	    msg = new Method("getWorksItems", new ArrayList(){{add(work);add(ownsLinkType);}});
+	    timeout = new Timeout(Duration.create(5, "seconds"));
+	   	future = Patterns.ask(actorRef, msg, timeout);
+	   	List<Vertex> items = (List<Vertex>) Await.result(future, timeout.duration());
+	   	assertTrue(items.size() == 1);
+	   	Vertex item = items.get(0);
+	   	assertTrue(item.getLabel().equals("item"));
+	   	assertTrue(item.getProperty("value").getValue().asString().equals(itemValue));
+
+   		actorRef.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+   		Thread.sleep(1000);
+    }
+
 
 }
