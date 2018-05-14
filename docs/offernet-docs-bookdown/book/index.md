@@ -1,7 +1,7 @@
 --- 
 title: "Offer Network: concept and implementation"
 author: "Kabir Veitas (kabir@singularitynet.io)"
-date: "2018-05-13"
+date: "2018-05-14"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]

@@ -25,7 +25,7 @@
 <meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
 
 
-<meta name="date" content="2018-05-13">
+<meta name="date" content="2018-05-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -83,11 +83,7 @@
 <li class="chapter" data-level="2.3" data-path="conceptual-framework.html"><a href="conceptual-framework.html#performance-measure"><i class="fa fa-check"></i><b>2.3</b> Performance measure</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#information-integration"><i class="fa fa-check"></i><b>2.3.1</b> Information integration</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="conceptual-framework.html"><a href="conceptual-framework.html#goals-and-phases-of-the-project"><i class="fa fa-check"></i><b>2.4</b> Goals and phases of the project</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#goals"><i class="fa fa-check"></i><b>2.4.1</b> Goals</a></li>
-<li class="chapter" data-level="2.4.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#phases"><i class="fa fa-check"></i><b>2.4.2</b> Phases</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="conceptual-framework.html"><a href="conceptual-framework.html#practical-use-cases"><i class="fa fa-check"></i><b>2.5</b> Practical use cases</a></li>
+<li class="chapter" data-level="2.4" data-path="conceptual-framework.html"><a href="conceptual-framework.html#practical-use-cases"><i class="fa fa-check"></i><b>2.4</b> Practical use cases</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="computational-framework.html"><a href="computational-framework.html"><i class="fa fa-check"></i><b>3</b> Computational framework</a><ul>
 <li class="chapter" data-level="3.1" data-path="computational-framework.html"><a href="computational-framework.html#actor-model-of-computation"><i class="fa fa-check"></i><b>3.1</b> Actor model of computation</a></li>
@@ -146,7 +142,7 @@ Figure 3.1: Simulation framework layers
 </p>
 </div>
 <p><a href="https://docs.datastax.com/en/dse/6.0/dse-dev/datastax_enterprise/graph/graphTOC.html">Data Stax Enterprise Graph</a> is a transactional database that can support thousands of concurrent connections and storing and querying graphs containing billions of vertices and edges, apart from being able to be distributed on multiple machines through <a href="http://cassandra.apache.org/">Apache Cassandra</a> (which is the backend of DSE graph) clusters. The network of items, rules of exchange and partially agents (see <a href="conceptual-framework.html#conceptual-framework">Conceptual framework</a> and figure @ref{fig:architecture} are implemented as vertices and links in the graph. ON-AI agents access the graph and run distributed traversals using an Offer Network domain specific language written on Apache Tinkerpop’s Gremlin language’s (for now DSE java driver is chosen but could be other variant). ON-AI agents themselves will be implemented as sequential programs running on separate threads concurrently via <a href="https://doc.akka.io/docs/akka/2.5/actors.html">Akka actors</a>. In terms of scalability, <a href="https://akka.io/">Akka</a> supports millions of actors and messages.</p>
-<p>Availability of concurrent connections is important for implementing actor model where actors will access the Offer Network graph asynchronously in order to simulate the dynamics of a realistic economic network composed of many heterogeneous actors in SingularityNET. Massive scalability of graph databases will allow for large scale experiments with simpler ON-AI agent logic (or not so simple, depending on the availability of computational resources) in Phase 3 (see <a href="conceptual-framework.html#phases">Phases</a>.</p>
+<p>Availability of concurrent connections is important for implementing actor model where actors will access the Offer Network graph asynchronously in order to simulate the dynamics of a realistic economic network composed of many heterogeneous actors in SingularityNET. Massive scalability of graph databases will allow for large scale experiments with simpler ON-AI agent logic (or not so simple, depending on the availability of computational resources).</p>
 <p>Furthermore, the model architecture would allow to run experiments with matching algorithms of <span class="citation">(Goertzel <a href="#ref-goertzel_offer_2017">2017</a>)</span> on the same data structure and therefore potentially compare centralized search algorithms with decentralized search.</p>
 <p>The simulation engine / architecture briefly described above allows to run decentralized or centralized algorithms on the same data structure of the Offer Network whether statically constructed or dynamically changing – thus providing rich experimentation space for testing and comparing different ideas and algorithms.</p>
 <p>The best way to explain the model is in terms of data structures, objects and processes. See a semi-formal representation below.</p>

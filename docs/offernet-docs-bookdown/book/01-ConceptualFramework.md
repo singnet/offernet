@@ -95,7 +95,7 @@ In the specific case of Offer Networks, memory (apart from persistent connectivi
 
 ## Conceptual Architecture
 
-Taken into account all [Open problems / features to consider] the proposed conceptual architecture of Offer Networks is summarized in the picture below. The goal of simulation modelling is to experiment and test more or less isolated aspects of this architecture (following envisaged goals and phases of the project) taking into account the future need for eventual integration of the results into the complete framework.
+Taken into account all [Open problems / features to consider] the proposed conceptual architecture of Offer Networks is summarized in the picture below. The goal of simulation modelling is to experiment and test more or less isolated aspects of this architecture taking into account the future need for eventual integration of the results into the complete framework.
 
 <div class="figure" style="text-align: center">
 <img src="pictures/OfferNet_architecture.png" alt="Conceptual architecture of OfferNet" width="60%" />
