@@ -13,7 +13,7 @@ before_install:
   - docker ps -a
 
 script:
-  - gradle test --tests RunCukesTest --debug
+  - gradle test --tests *RunCukesTest --debug
 #  - gradle check
 
 after_script:
