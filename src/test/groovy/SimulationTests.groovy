@@ -166,7 +166,7 @@ public class SimulationTests {
            	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
+ 	       		Utils.convertToDotNotation(path,"Path","temp/path"+index+".dot");
  	       	}
 		}
 
@@ -209,7 +209,7 @@ public class SimulationTests {
            	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
+ 	       		Utils.convertToDotNotation(path,"Path","temp/path"+index+".dot");
  	       	}
 		}
 
@@ -250,7 +250,7 @@ public class SimulationTests {
            	//new File("resources/"+methodName+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
+ 	       		Utils.convertToDotNotation(path,"Path","temp/path"+index+".dot");
  	       	}
 		}
 
@@ -296,7 +296,7 @@ public class SimulationTests {
            	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","resources/path"+index+".dot");
+ 	       		Utils.convertToDotNotation(path,"Path","temp/path"+index+".dot");
  	       	}
 		}
 
