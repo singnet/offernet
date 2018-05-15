@@ -13,8 +13,7 @@ before_install:
   - docker ps -a
 
 script:
-  - gradle test --tests *RunCukesTest --debug
-#  - gradle check
+  - ./gradlew check
 
 after_script:
   - bash <(curl -s https://codecov.io/bash)  -f build/reports/jacoco/test/jacocoTestReport.xml
