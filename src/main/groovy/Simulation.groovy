@@ -117,24 +117,42 @@ class Simulation extends UntypedAbstractActor {
     return vertexId;
   }
 
-    private List createAgentNetwork(int numberOfAgents) {
-      def start = System.currentTimeMillis()
-      List agentsList = new ArrayList()
+  private List createAgentNetwork(int numberOfAgents) {
+    def start = System.currentTimeMillis()
+    List agentsList = new ArrayList()
 
-      agentsList.add(this.createAgent())
+    agentsList.add(this.createAgent())
 
-      while (agentsList.size() < numberOfAgents) {
-          def random = new Random();
-          def i = random.nextInt(agentsList.size())
-          Object agent1 = agentsList[i]
-          Object agent2 = this.createAgent();
-          def agent2vertexId = this.getAgentVertexId(agent2)
-          agent1.tell(new Method("knowsAgent",[agent2vertexId]),getSelf())
-          agentsList.add(agent2)
-      }
-      logger.info("Created a network of "+numberOfAgents+ " Agents")
-      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
-      return agentsList;
+    while (agentsList.size() < numberOfAgents) {
+        def random = new Random();
+        def i = random.nextInt(agentsList.size())
+        Object agent1 = agentsList[i]
+        Object agent2 = this.createAgent();
+        def agent2vertexId = this.getAgentVertexId(agent2)
+        agent1.tell(new Method("knowsAgent",[agent2vertexId]),getSelf())
+        agentsList.add(agent2)
+    }
+    logger.info("Created a network of "+numberOfAgents+ " Agents")
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
+    return agentsList;
+  }
+
+  private List createAgentLine(int numberOfAgents) {
+    def start = System.currentTimeMillis()
+    List agentsList = new ArrayList()
+
+    agentsList.add(this.createAgent())
+
+    for (int x = 1; x<numberOfAgents;x++) {
+      Object agent1 = agentsList[x-1];
+      Object agent2 = this.createAgent();
+      def agent2vertexId = this.getAgentVertexId(agent2)
+      agent1.tell(new Method("knowsAgent",[agent2vertexId]),getSelf())
+      agentsList.add(agent2)      
+    }
+    logger.info("Created a line of {} agents",numberOfAgents);
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
+    return agentsList;
   }
 
   /* done until here */

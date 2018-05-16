@@ -94,6 +94,21 @@ public class SimulationTests {
 			assertEquals(knowsEdgeNumber, size-1);
 		}
 
+		@Test
+		void createAgentLineTest() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+			int size = 20
+			def agentList = sim.createAgentLine(size)
+			assertEquals(agentList.size(), size)
+			def agentNumber = sim.on.getVertices('agent').size();
+			assertEquals(agentNumber, size);
+			def knowsEdgeNumber = sim.on.getEdges('knows').size();
+			assertEquals(knowsEdgeNumber, size-1);
+		}
+
+
 		//@Ignore // for now -- takes too much time
 		@Test
 		void cycleSearchTest() {
