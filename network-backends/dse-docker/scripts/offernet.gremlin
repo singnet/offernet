@@ -1,2 +1,5 @@
 system.graph('offernet')
 :remote config alias g offernet.g
+#f = new FileOutputStream("/tmp/recipe_lossless.json");
+#mapper = graph.io(graphson()).mapper().embedTypes(true).create(); 
+#graph.io(graphson()).writer().mapper(mapper).create().writeVertex(f,g.V().next(),BOTH) 
