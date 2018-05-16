@@ -41,7 +41,7 @@ test {
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
     reports.junitXml.enabled = false
-    reports.html.enabled = false
+    reports.html.enabled = true
     finalizedBy jacocoTestReport
     finalizedBy cucumberReporting
 }
