@@ -1,4 +1,4 @@
-//@Grab(group='net.masterthought', module='cucumber-reporting', version='3.1.0')
+@Grab(group='net.masterthought', module='cucumber-reporting', version='3.1.0')
 
 import net.masterthought.cucumber.*;
 
