@@ -28,8 +28,9 @@ class Simulation extends UntypedAbstractActor {
 	OfferNet on;
 	Logger logger;
 	List agentList;
-  Hashtable<String,String> vertexIdToActorRefTable;
-  Hashtable<String,String> actorRefToVertexIdTable;
+  public Hashtable<String,ActorRef> vertexIdToActorRefTable;
+  public Hashtable<ActorRef,String> actorRefToVertexIdTable;
+  public Hashtable<String,ActorRef> agentIdToActorRefTable;
 
   public static Props props() {
     return Props.create(new Creator<Simulation>() {
@@ -78,6 +79,7 @@ class Simulation extends UntypedAbstractActor {
 
     vertexIdToActorRefTable = new Hashtable<String,ActorRef>();
     actorRefToVertexIdTable = new Hashtable<ActorRef,String>();
+    agentIdToActorRefTable = new Hashtable<String,ActorRef>();
 
 	}
 
@@ -100,6 +102,7 @@ class Simulation extends UntypedAbstractActor {
     def vertexId = this.getAgentVertexId(actorRef);
     vertexIdToActorRefTable.put(vertexId,actorRef);
     actorRefToVertexIdTable.put(actorRef,vertexId);
+    agentIdToActorRefTable.put(agentId,actorRef);
     return actorRef
   }
 
@@ -117,7 +120,7 @@ class Simulation extends UntypedAbstractActor {
     return vertexId;
   }
 
-  private List createAgentNetwork(int numberOfAgents) {
+  public List createAgentNetwork(int numberOfAgents) {
     def start = System.currentTimeMillis()
     List agentsList = new ArrayList()
 
@@ -137,15 +140,15 @@ class Simulation extends UntypedAbstractActor {
     return agentsList;
   }
 
-  private List createAgentLine(int numberOfAgents) {
+  public List createAgentLine(int numberOfAgents) {
     def start = System.currentTimeMillis()
     List agentsList = new ArrayList()
 
-    agentsList.add(this.createAgent())
+    agentsList.add(this.createAgentWithId('agent-0'))
 
     for (int x = 1; x<numberOfAgents;x++) {
       Object agent1 = agentsList[x-1];
-      Object agent2 = this.createAgent();
+      Object agent2 = this.createAgentWithId('agent-'+x);
       def agent2vertexId = this.getAgentVertexId(agent2)
       agent1.tell(new Method("knowsAgent",[agent2vertexId]),getSelf())
       agentsList.add(agent2)      
@@ -235,7 +238,7 @@ class Simulation extends UntypedAbstractActor {
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     }
 
-    private List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
+    public List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
       def start = System.currentTimeMillis();
       agentList = this.createAgentNetwork(numberOfAgents)
       this.addRandomWorksToAgents(numberOfRandomWorks)

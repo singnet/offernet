@@ -31,6 +31,7 @@ import scala.concurrent.duration.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Enumeration;
 
 import com.datastax.driver.dse.graph.Edge;
 import com.datastax.driver.dse.graph.Vertex;
@@ -39,13 +40,14 @@ public class AgentBehaviorStepDefs {
 	private Simulation sim;
 	private Scenario thisScenario;
 	private ActorSystem system;
-
+  private ArrayList<Object> exchangeBin;
 
     @Before
     public void before(Scenario scenario) throws Throwable {
     	this.thisScenario = scenario;
     	this.system = ActorSystem.create();
     	this.sim = (Simulation) TestActorRef.create(this.system, Simulation.props()).underlyingActor();
+      this.exchangeBin = new ArrayList<Object>();
     }
 
     @After
@@ -136,7 +138,7 @@ public class AgentBehaviorStepDefs {
     * Scenario: an agent can create a work (offer-demand) pair
     */
 
-    @When("^Agent \"([^\"]*)\" publishes a pair of offer \"([^\"]*)\" and demand of \"([^\"]*)\"$")
+    @When("^Agent \"([^\"]*)\" posts a pair of offer \"([^\"]*)\" and demand of \"([^\"]*)\"$")
     public void agent_publishes_a_pair_of_offer_and_demand_of(String agentLabel, String offerValue, String demandValue) throws Throwable {
         ActorRef actorRef = this.sim.createAgentWithId(agentLabel);
         assertNotNull(actorRef);
@@ -179,5 +181,65 @@ public class AgentBehaviorStepDefs {
    		Thread.sleep(1000);
     }
 
+    /*
+    * Scenario Outline: an agent can access all posted offers and demands by traversing its social network
+    */
 
+    @Given("^there exists an sequentially connected line of '(.+)' agents$")
+    public void there_exists_an_sequentially_connected_line_of_numberOfAgents_agents(Integer numberOfAgents) throws Throwable {
+        List<Vertex> agentList = this.sim.createAgentLine(numberOfAgents);
+        assertNotNull(agentList);
+        assertTrue(agentList.size() == numberOfAgents);
+    }
+
+    @Given("^all agents have posted '(.+)' offer-demand pair each$")
+    public void all_agents_have_posted_pairsPerAgent_offer_demand_pair_each(Integer pairsPerAgent) throws Throwable {
+    	Method msg;
+    	Timeout timeout;
+    	Future<Object> future;
+    	Vertex work;
+    	Enumeration<ActorRef> actorRefs = this.sim.actorRefToVertexIdTable.keys();
+    	int numberOfWorks = 0;
+    	int numberOfActors = 0;
+    	while (actorRefs.hasMoreElements()) {
+    		ActorRef actorRef = actorRefs.nextElement();
+    		for (int i = 0; i<pairsPerAgent; i++) {
+    			msg = new Method("ownsWork", new ArrayList());
+	    		timeout = new Timeout(Duration.create(5, "seconds"));
+	   			future = Patterns.ask(actorRef, msg, timeout);
+  				work = (Vertex) Await.result(future, timeout.duration());
+  				assertEquals(work.getLabel(),"work");
+  				numberOfWorks = numberOfWorks +1;
+  			}
+        numberOfActors = numberOfActors +1;
+		}
+		assertTrue(numberOfWorks == numberOfActors * pairsPerAgent);
+    Thread.sleep(1000);
+    }
+
+    @When("^first agent initiates search of '(.+)' depth$")
+    public void first_agent_initiates_search_of_searchDepth_depth(Integer searchDepth) throws Throwable {
+      // get the actor-0 which is the first in line:
+      ActorRef actorRef = this.sim.agentIdToActorRefTable.get("agent-0");
+      assertNotNull(actorRef);
+      
+      // initiate the search and get results back
+      Method msg = new Method("itemsOfKnownAgents", new ArrayList(){{add(searchDepth);}});
+      Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+      Future<Object> future = Patterns.ask(actorRef, msg, timeout);
+      List<Vertex> items = (List<Vertex>) Await.result(future, timeout.duration());
+      assertNotNull(items);
+
+      exchangeBin.add(items);
+      assertEquals(exchangeBin.size(), 1);
+      Thread.sleep(2000);
+    }
+
+    @Then("^agent finds '(.+)' demands and offers in its social network$")
+    public void agent_finds_numberOfFoundItems_in_its_social_network(Integer numberOfFoundItems) throws Throwable {
+        // get items collected in the previous step;
+        ArrayList<Vertex> items = (ArrayList<Vertex>) this.exchangeBin.get(0);
+        assertNotNull(items);
+        assertEquals((long) numberOfFoundItems, (long) items.size());
+    }
 }
