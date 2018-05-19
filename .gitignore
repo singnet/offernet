@@ -5,6 +5,6 @@ build/
 temp/
 src/main/java/
 target/
-docs/offernet-documentation/
 .Rproj.user
-
+docs/public/
+docs/cucumber-json-report.json

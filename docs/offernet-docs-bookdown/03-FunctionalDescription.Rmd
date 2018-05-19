@@ -1,0 +1,7 @@
+# Functional Description
+
+```{r process-json-report, results='asis',engine='sh', echo=FALSE}
+
+scripts/print_json_report.sh
+
+```
