@@ -11,7 +11,7 @@ before_install:
   - docker ps -a
   - sudo apt update
   - sudo apt install r-base-core
-  - Rscript -e "install.packages('devtools'); devtools::install_github('rstudio/bookdown')"
+  - sudo Rscript -e "install.packages('devtools'); devtools::install_github('rstudio/bookdown')"
 
 script:
   - "./gradlew check"
