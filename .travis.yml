@@ -5,14 +5,15 @@ addons:
   hosts:
   - dse-server.host
 before_install:
-- docker pull datastax/dse-server:5.1.6
-- docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name
-  dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:5.1.6 -g
-- docker ps -a
+  - docker pull datastax/dse-server:5.1.6
+  - docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:5.1.6 -g
+  - docker ps -a
+  - Rscript -e "install.packages('devtools'); devtools::install_github('rstudio/bookdown')"
+
 script:
-- "./gradlew check"
+  - "./gradlew check"
 after_script:
-- bash <(curl -s https://codecov.io/bash)  -f build/reports/jacoco/test/jacocoTestReport.xml
+  - bash <(curl -s https://codecov.io/bash)  -f build/reports/jacoco/test/jacocoTestReport.xml
 env:
   global:
     secure: QH/tkrFBXvTm3qfdPy1qrWI4sdjiPoXioDv63GHg0+wtvajKmDn2Q9JywaybSqrVmY9XncSe694Oq0hvfFMvIBwI/x6lz8sZNsFA6etxMkM9qfFy4EhFXxhOhwLsz/0fwxluwJyxj0YRDDd0+5+RMk4HJuzS0AJavDOtyFDaYBft1zrmmW/zP/WYEe2QD9wwqucBvd8nTnO/KIuIiLTJTxdxQuUkJnN4PeyjIIoUbiXqE56RwMgqo8rorQYbw2lzIhGmdfr7gduQqGDiScWuUyFbWYd4JTYZ7KFZmT4nFOUilRSIe6yiGtBDE49wSKXM3kAgbEK1jhKOxFwlTy2eCFoPggdyO94anjulltt6ROs0cA3g7NVBiCAmnKr+Lm+0iSZ1ZiLHWIRD0Fq4XFT8B32EmZHr7PrwiNWLrpa7yeM//WAyn3BUUC9qKmp5h9oQizR8zkA+MVRlYZYfszJILbyZCMmhJ6v5JRsRQOaxDZDNtew9UkGoJkQknuD95rFMOcGfoMWssIjv2JScK7waBmUf8qRniSV36ZTntmEkNCtL/h5cl5x6SZB2RNcpgTJCWASZZpeZ+dmzmPd03jKw8Qp5Ftq/BLiyONllx9EeKx49QGNoS+nzKj5joR4JzHzqmxX9z+ml6OOZbahap7TlDuPMiaINiieIVKLi24vvz0U=
