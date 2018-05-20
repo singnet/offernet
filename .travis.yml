@@ -12,6 +12,7 @@ before_install:
   - sudo apt update
   - sudo apt install r-base-core
   - sudo Rscript -e "install.packages('devtools', dependencies=TRUE, repos = 'https://cran.cnr.berkeley.edu/')"
+  - Rscript -e "library(devtools)"
   - sudo Rscript -e "devtools::install_github('rstudio/bookdown')"
 
 script:
