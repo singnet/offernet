@@ -18,6 +18,7 @@ before_install:
   - sudo apt-get -y build-dep libcurl4-gnutls-dev
   - sudo apt-get -y install libcurl4-gnutls-dev
   - sudo apt-get -y install libcurl4-openssl-dev
+  - sudo apt-get -y install r-base
   - mkdir $TRAVIS_BUILD_DIR/Rlibs
   - export R_LIBS=$TRAVIS_BUILD_DIR/Rlibs
   - R -e "install.packages('git2r', repos = 'http://cran.cnr.berkeley.edu/', lib='$TRAVIS_BUILD_DIR/Rlibs')"
