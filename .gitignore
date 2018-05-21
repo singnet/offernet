@@ -8,3 +8,5 @@ target/
 .Rproj.user
 docs/public/
 docs/cucumber-json-report.json
+docs/offernet-docs-bookdown/cucumber-json-report.json
+docs/offernet-docs-bookdown/cucumber-json-report-processed.json
