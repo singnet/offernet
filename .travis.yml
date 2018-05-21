@@ -12,7 +12,7 @@ before_install:
 #  - docker pull datastax/dse-server:5.1.6
 #  - docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:5.1.6 -g
 #  - docker ps -a
-  - sudo add-apt-repository deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu trusty/
+  - sudo add-apt-repository "deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu trusty"
   - sudo apt update
   - sudo apt-get -y build-dep libcurl4-gnutls-dev
   - sudo apt-get -y install libcurl4-gnutls-dev
