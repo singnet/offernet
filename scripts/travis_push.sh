@@ -12,7 +12,7 @@ commit_website_files() {
 
 upload_files() {
   git remote add documentation https://${GH_TOKEN}@github.com/kabirkbr/offernet.git
-  git push documentation master 
+  git push documentation HEAD:master 
 }
 
 setup_git
