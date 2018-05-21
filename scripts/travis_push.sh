@@ -11,8 +11,8 @@ commit_website_files() {
 }
 
 upload_files() {
-  git remote add documentation https://${GH_TOKEN}@github.com/kabirkbr/offernet.git > /dev/null 2>&1
-  git push --quiet --set-upstream documentation master 
+  git remote add documentation https://${GH_TOKEN}@github.com/kabirkbr/offernet.git
+  git push documentation master 
 }
 
 setup_git
