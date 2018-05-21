@@ -8,6 +8,7 @@ addons:
   apt:
     packages:
       - libssl-dev
+      - wget
 before_install:
   - docker pull datastax/dse-server:5.1.6
   - docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:5.1.6 -g
@@ -19,6 +20,8 @@ before_install:
   - sudo apt-get -y install libcurl4-gnutls-dev
   - sudo apt-get -y install libcurl4-openssl-dev
   - sudo apt-get -y install r-base
+  - wget https://github.com/jgm/pandoc/releases/download/2.2.1/pandoc-2.2.1-1-amd64.deb
+  - sudo dpkg -i pandoc-2.2.1-1-amd64.deb
   - mkdir $TRAVIS_BUILD_DIR/Rlibs
   - export R_LIBS=$TRAVIS_BUILD_DIR/Rlibs
   - R -e "install.packages('git2r', repos = 'http://cran.cnr.berkeley.edu/', lib='$TRAVIS_BUILD_DIR/Rlibs')"
