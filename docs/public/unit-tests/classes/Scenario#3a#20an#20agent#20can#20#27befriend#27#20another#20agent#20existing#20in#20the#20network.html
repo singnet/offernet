@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class Scenario: an agent can 'befriend' another agent existing in the network</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class Scenario: an agent can 'befriend' another agent existing in the network</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/default-package.html">default-package</a> &gt; Scenario: an agent can 'befriend' another agent existing in the network</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">8</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">10.369s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">And Agent &quot;AgentTwo&quot; is created on the OfferNet</td>
+<td>0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">And there is no &quot;knows&quot; link between &quot;AgentOne&quot; and &quot;AgentTwo&quot;</td>
+<td>0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">And there is no &quot;knows&quot; link between &quot;AgentTwo&quot; and &quot;AgentOne&quot;</td>
+<td>0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">And there is no &quot;knows&quot; link between &quot;AgentTwo&quot; and &quot;AgentOne&quot;</td>
+<td>0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Given Agent &quot;AgentOne&quot; is created on the OfferNet</td>
+<td>0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Then there is &quot;knows&quot; link between &quot;AgentOne&quot; and &quot;AgentTwo&quot;</td>
+<td>0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">When Agent &quot;AgentOne&quot; befriends Agent &quot;AgentTwo&quot;</td>
+<td>0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">classMethod</td>
+<td>10.367s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>
+  @indoc
+  Scenario: an agent can introduce a new agent to the network by 'befriending' it ?[90m# AgentBehavior.feature:6?[0m
+    The only way for the OfferNet to grow in a decentralized manner (i.e. without central controlling repository) is for new agents to get introduced to the network via old agent's recommendation.
+
+    ?[32mGiven ?[0m?[32mAgent &quot;?[0m?[32m?[1mAgentOne?[0m?[32m&quot; is created on the OfferNet?[0m                             ?[90m# AgentBehaviorStepDefs.agentIsCreatedOnTheOfferNet(String)?[0m
+    ?[32mAnd ?[0m?[32mAgent &quot;?[0m?[32m?[1mAgentTwo?[0m?[32m&quot; does not exist on the OfferNet?[0m                           ?[90m# AgentBehaviorStepDefs.agentDoesNotExistOnTheOfferNet(String)?[0m
+    ?[32mWhen ?[0m?[32mAgent &quot;?[0m?[32m?[1mAgentOne?[0m?[32m&quot; befriends Agent &quot;?[0m?[32m?[1mAgentTwo?[0m?[32m&quot;?[0m                              ?[90m# AgentBehaviorStepDefs.agentBefriendsAgent(String,String)?[0m
+    ?[32mThen ?[0m?[32mAgent &quot;?[0m?[32m?[1mAgentTwo?[0m?[32m&quot; exists on the OfferNet?[0m                                  ?[90m# AgentBehaviorStepDefs.agentExistsOnTheOfferNet(String)?[0m
+    ?[32mThen ?[0m?[32mthere is &quot;?[0m?[32m?[1mknows?[0m?[32m&quot; link between &quot;?[0m?[32m?[1mAgentOne?[0m?[32m&quot; and &quot;?[0m?[32m?[1mAgentTwo?[0m?[32m&quot;?[0m                  ?[90m# AgentBehaviorStepDefs.thereIsLinkBetweenAnd(String,String,String)?[0m
+    ?[32mAnd ?[0m?[32mthere is no &quot;?[0m?[32m?[1mknows?[0m?[32m&quot; link between &quot;?[0m?[32m?[1mAgentTwo?[0m?[32m&quot; and &quot;?[0m?[32m?[1mAgentOne?[0m?[32m&quot;?[0m                ?[90m# AgentBehaviorStepDefs.thereIsNoLinkBetweenAnd(String,String,String)?[0m
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 4.6</a> at May 21, 2018 11:06:59 PM</p>
+</div>
+</div>
+</body>
+</html>
