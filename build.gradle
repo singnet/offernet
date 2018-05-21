@@ -39,7 +39,7 @@ task copyUnitTestReport(type: Copy) {
     into "docs/public/unit-tests/"
 }
 
-task jacocoTestReport {
+jacocoTestReport {
      reports {
          xml.enabled true
          csv.enabled false
