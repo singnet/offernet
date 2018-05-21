@@ -31,6 +31,3 @@ script:
 after_script:
   - bash <(curl -s https://codecov.io/bash)  -f build/reports/jacoco/test/jacocoTestReport.xml
   - scripts/travis_push.sh
-env:
-  global:
-    secure: b74ba6d7f788b8d53ce5422a305afd42492554f3
