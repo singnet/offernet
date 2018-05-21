@@ -39,12 +39,21 @@ task copyUnitTestReport(type: Copy) {
     into "docs/public/unit-tests/"
 }
 
+task jacocoTestReport {
+     reports {
+         xml.enabled true
+         csv.enabled false
+         html.enabled true
+     }
+}
+
 test {
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
     reports.junitXml.enabled = false
     reports.html.enabled = true
     finalizedBy cucumberReporting
+    finalizedBy jacocoTestReport
     finalizedBy buildBook
     finalizedBy copyUnitTestReport
 }
