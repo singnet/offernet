@@ -5,19 +5,18 @@ services:
 addons:
   hosts:
   - dse-server.host
+  apt:
+    packages:
+      - r-base-core
 before_install:
-#  - docker pull datastax/dse-server:5.1.6
-#  - docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:5.1.6 -g
-#  - docker ps -a
-  - sudo apt update
-  - sudo apt install r-base-core
-  - echo $TRAVIS_BUILD_DIR
-  - echo R -e '.libPaths()'
-#  - mkdir $TRAVIS_BUILD_DIR/Rlibs
-#  - export R_LIBS=$TRAVIS_BUILD_DIR/Rlibs
-#  - R -e "install.packages('devtools', dependencies=TRUE, repos = 'https://cran.cnr.berkeley.edu/')"
-#  - R -e "library(devtools)"
-#  - R -e "devtools::install_github('rstudio/bookdown')"
+  - docker pull datastax/dse-server:5.1.6
+  - docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:5.1.6 -g
+  - docker ps -a
+  - mkdir $TRAVIS_BUILD_DIR/Rlibs
+  - export R_LIBS=$TRAVIS_BUILD_DIR/Rlibs
+  - R -e "install.packages('devtools', dependencies=TRUE, repos = 'https://cran.cnr.berkeley.edu/')"
+  - R -e "library(devtools)"
+  - R -e "devtools::install_github('rstudio/bookdown')"
 
 script:
 #  - "./gradlew check"
