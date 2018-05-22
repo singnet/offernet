@@ -24,26 +24,38 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '4.6'
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        csv.enabled false
-        html.enabled true
-    }
-}
-
 task cucumberReporting(type: Exec) {
   executable "sh"
-  args "-c", "groovy scripts/build-test-report.groovy"
+  args "-c", "groovy scripts/build-cucumber-report.groovy"
+}
+
+task buildBook(type: Exec) {
+    executable "sh"
+    args "-c", "scripts/build-offernet-documentation.sh"
+}
+
+task copyUnitTestReport(type: Copy) {
+    from "${buildDir}/reports/tests/test"
+    into "docs/public/unit-tests/"
+}
+
+jacocoTestReport {
+     reports {
+         xml.enabled true
+         csv.enabled false
+         html.enabled true
+     }
 }
 
 test {
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
     reports.junitXml.enabled = false
-    reports.html.enabled = false
-    finalizedBy jacocoTestReport
+    reports.html.enabled = true
     finalizedBy cucumberReporting
+    finalizedBy jacocoTestReport
+    finalizedBy buildBook
+    finalizedBy copyUnitTestReport
 }
 
 repositories {

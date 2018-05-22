@@ -24,9 +24,10 @@ The final goal of the [offernet](https://github.com/singnet/offernet) project is
 
 The model of simulation engine consists of 4 layers (see figure \@ref(fig:layers)). See also figure \@ref(fig:architecture). Layer 4 is written in Java/Groovy/[Gremlin](https://en.wikipedia.org/wiki/Gremlin_(programming_language); layer 3 is [Akka](https://akka.io/) framework (Java); layer 2 is the DSE [native graph API](https://docs.datastax.com/en/developer/java-driver-dse/1.4/manual/graph/); and for layer 1 the [Data Stax Enterprise Graph](https://docs.datastax.com/en/dse/6.0/dse-dev/datastax_enterprise/graph/graphTOC.html) is currently used.
 
-```{r layers, fig.cap='Simulation framework layers', out.width='60%', fig.align='center', echo=FALSE}
-knitr::include_graphics("pictures/simulation_architecture_java.png")
-```
+<div class="figure" style="text-align: center">
+<img src="pictures/simulation_architecture_java.png" alt="Simulation framework layers" width="60%" />
+<p class="caption">(\#fig:layers)Simulation framework layers</p>
+</div>
 [Data Stax Enterprise Graph](https://docs.datastax.com/en/dse/6.0/dse-dev/datastax_enterprise/graph/graphTOC.html) is a transactional database that can support thousands of concurrent connections and storing and querying graphs containing billions of vertices and edges, apart from being able to be distributed on multiple machines through [Apache Cassandra](http://cassandra.apache.org/) (which is the backend of DSE graph) clusters. The network of items, rules of exchange and partially agents (see [Conceptual framework] and figure \@ref{fig:architecture} are implemented as vertices and links in the graph. ON-AI agents access the graph and run distributed traversals using an Offer Network domain specific language  written on Apache Tinkerpop’s Gremlin language’s (for now DSE java driver is chosen but could be other variant). ON-AI agents themselves will be implemented as sequential programs running on separate threads concurrently via [Akka actors](https://doc.akka.io/docs/akka/2.5/actors.html). In terms of scalability, [Akka](https://akka.io/) supports millions of actors and messages.
 
 Availability of concurrent connections is important for implementing actor model where actors will access the Offer Network graph asynchronously in order to simulate the dynamics of a realistic economic network composed of many heterogeneous actors in SingularityNET. Massive scalability of graph databases will allow for large scale experiments with simpler ON-AI agent logic (or not so simple, depending on the availability of computational resources). 
@@ -121,7 +122,8 @@ Processes are graph traversals (written in [Gremlin DSL](https://www.datastax.co
 
 * *findSimilar*
 
-```{r, tidy=FALSE, eval=FALSE, highlight=FALSE }
+
+```text
 def findSimilar() {
   allOffersAndDemands.each {dataItem -> 
       dataItem.getProcess()
@@ -136,7 +138,8 @@ def findSimilar() {
 
 * *findCycles*
 
-```{r, tidy=FALSE, eval=FALSE, highlight=FALSE }
+
+```text
 def findCycles() {
   allAgents.each { agent -> 
       agent.getProcesses()
@@ -155,21 +158,15 @@ def findCycles() {
 
 * Offer Network (toy) graph before running processes on it (i.e. similarities among items not calculated):
 
-```{r toy-graph-before-processes, out.width='60%', fig.align='center', echo=FALSE}
-knitr::include_graphics("pictures/toy_graph_before_processes.png")
-```
+<img src="pictures/toy_graph_before_processes.png" width="60%" style="display: block; margin: auto;" />
 
 * After running processes and finding cycles:
 
-```{r toy-graph-after-processes, out.width='60%', fig.align='center', echo=FALSE}
-knitr::include_graphics("pictures/toy_graph_after_processes.png")
-```
+<img src="pictures/toy_graph_after_processes.png" width="60%" style="display: block; margin: auto;" />
 
 * Similarity relation (based on Hamming distance):
 
-```{r similarity-relation, out.width='60%', fig.align='center', echo=FALSE}
-knitr::include_graphics("pictures/similarity_relation.png")
-```
+<img src="pictures/similarity_relation.png" width="60%" style="display: block; margin: auto;" />
 
 ## Notes
 

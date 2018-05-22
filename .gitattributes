@@ -3,5 +3,4 @@
 *.java linguist-language=Java
 *.Rmd linguist-language=R
 *.sh linguist-language=Bash
-*.html linguist-vendor
-docs/ linguist-documentation
+docs/* linguist-documentation
