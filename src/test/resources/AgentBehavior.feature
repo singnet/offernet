@@ -65,3 +65,4 @@ Scenario Outline: an agent can connect similar offers and demands of its social 
 	Examples:
 	| numberOfAgents | numberOfSimilarItems | searchDepth | numberOfSimilarityRelations |
 	| 4 | 3 | 3 | 3 |
+	| 20 | 5 | 19 | 5 |

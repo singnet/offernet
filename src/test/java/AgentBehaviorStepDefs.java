@@ -277,8 +277,6 @@ public class AgentBehaviorStepDefs {
             assertNotNull(items);
             allSimilarItems = allSimilarItems + items;
         }
-        assertEquals(( long ) 3, ( long ) allSimilarItems); // this is temporary -- delete after scenario passes
-        
     }
 
     @Then("^there are '(\\d+)' similarity relations in the network$")
