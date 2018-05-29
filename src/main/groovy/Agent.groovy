@@ -343,7 +343,7 @@ public class Agent extends UntypedAbstractActor {
       return items;
     }
 
-    private Integer searchAndConnect(Integer similarityThreshold, Integer maxReachDistance) {
+    private Integer searchAndConnect(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
       logger.warn('Search and connect all items of agent {} with its known agents at similarity {}', this.id(), maxReachDistance)
       def totalConnectionsCreated = 0;
@@ -379,7 +379,7 @@ public class Agent extends UntypedAbstractActor {
       return items;
     }
 
-    private List connectAllSimilar(Vertex item, List<Vertex> itemsOfKnownAgents, Integer similarityThreshold) {
+    private List connectAllSimilar(Vertex item, List<Vertex> itemsOfKnownAgents, Double similarityThreshold) {
         def start = System.currentTimeMillis()
         def similarityEdges = [];
         itemsOfKnownAgents.each {knownItem ->
@@ -391,7 +391,7 @@ public class Agent extends UntypedAbstractActor {
         return similarityEdges;
     }
 
-    private Edge connectIfSimilar(Vertex item, Vertex knownItem, Integer similarityThreshold) {
+    private Edge connectIfSimilar(Vertex item, Vertex knownItem, Double similarityThreshold) {
       def start = System.currentTimeMillis()
       def similarityEdge = null;
       if (this.existsSimilarity(item,knownItem) == -1) {
@@ -418,7 +418,7 @@ public class Agent extends UntypedAbstractActor {
           logger.info("Found similarity link {}",outEdge)
         }
     }
-    def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValueAsInteger(similarityList[0],'similarity') : -1;
+    def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValue(similarityList[0],'similarity') : -1;
     logger.info("Retrieved similarity value {} between item {} and {}",similarity,item.getId(),anotherItem.getId())
     logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     return similarity;
@@ -457,20 +457,20 @@ public class Agent extends UntypedAbstractActor {
   }
 
 
-  private Edge reciprocalDistanceLink(Vertex item, Vertex knownItem, Integer similarity) {
+  private Edge reciprocalDistanceLink(Vertex item, Vertex knownItem, Object similarity) {
      // every similarity edge created also triggers the creation of reciprocal edge with same parameters
      //this.connect(knownItem,item,similarity);
      return this.connect(item,knownItem, similarity);
   }
 
-  private Object connect(Vertex item, Vertex knownItem, Integer similarity) {
+  private Object connect(Vertex item, Vertex knownItem, Object similarity) {
     def start = System.currentTimeMillis();
     Map params = new HashMap();
     params.put("item1", item.getId());
     params.put("item2",knownItem.getId());
     params.put('edgeLabel','similarity');
     params.put('valueKey','similarity');
-    params.put('valueName',similarity);
+    params.put('valueName', (Double) similarity);
 
     logger.warn("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
 

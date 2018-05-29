@@ -340,7 +340,7 @@ public class OfferNet implements AutoCloseable {
       return connected
     }
 
-    public Edge connectItems(String item1Label, String item2Label, Integer similarity) {
+    public Edge connectItems(String item1Label, String item2Label, Object similarity) {
       def start = System.currentTimeMillis();
       Map params = new HashMap();
       params.put("item1", item1Label);

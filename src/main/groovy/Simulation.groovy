@@ -160,7 +160,7 @@ class Simulation extends UntypedAbstractActor {
 
   /* done until here */
 
-	private Integer connectIfSimilarForAllAgents(List agentList, Integer similarityThreshold, Integer maxReachDistance) {
+	private Integer connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) {
 
 		def start = System.currentTimeMillis();
 		logger.warn("Searching and connecting similar items of all agents in the graph:")
@@ -241,7 +241,7 @@ class Simulation extends UntypedAbstractActor {
     public List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
       def start = System.currentTimeMillis();
       agentList = this.createAgentNetwork(numberOfAgents)
-      this.addRandomWorksToAgents(numberOfRandomWorks)
+      //this.addRandomWorksToAgents(numberOfRandomWorks)
       chains.each {chain ->
         this.addChainToNetwork(chain)
       }

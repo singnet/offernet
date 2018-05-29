@@ -61,8 +61,9 @@ public class UtilsTests {
 			assertNotNull(item2)
 			def d2 = Utils.calculateSimilarity(item1,item2);
 			assertNotNull(d2)
-			assertEquals(d1,d2);
-			assertEquals(0,d1); // if the similarity calculation is 'cosine'
+			def delta = 0.0001;
+			assertEquals(d1,d2,delta);
+			assertEquals(0.0,d1,delta); // if the similarity calculation is 'cosine'
 		}
 
 }
