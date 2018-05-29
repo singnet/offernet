@@ -30,7 +30,7 @@ before_install:
   - R -e "devtools::install_github('rstudio/bookdown')"
 
 script:
-  - "./gradlew check"
+  - "./gradlew check buildDocumentation"
 after_script:
   - bash <(curl -s https://codecov.io/bash)  -f build/reports/jacoco/test/jacocoTestReport.xml
   - scripts/travis_push.sh
