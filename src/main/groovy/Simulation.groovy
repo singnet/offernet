@@ -25,7 +25,7 @@ import akka.pattern.Patterns;
 
 
 class Simulation extends UntypedAbstractActor {
-	OfferNet on;
+	public OfferNet on;
 	Logger logger;
 	List agentList;
   public Hashtable<String,ActorRef> vertexIdToActorRefTable;
@@ -251,18 +251,26 @@ class Simulation extends UntypedAbstractActor {
       return agentList;
     }
 
-    private List addChainToNetwork(List chain) {
+    public List addChainToNetwork(List chain) {
         def start = System.currentTimeMillis();
         def dataItemsWithDesignedSimilarities = new ArrayList()
+        def affectedActors = []
         def chainedWorks = []
         ArrayList actorRefs = actorRefToVertexIdTable.keySet().toArray();
         for (int x=0;x<chain.size()-1;x++) {
-            def random = new Random();
-            def agentRef = actorRefs[random.nextInt(actorRefs.size())]
-            String method = "ownsWork"
-            def args = [chain[x],chain[x+1]];
-            agentRef.tell(new Method(method,args),getSelf())
-            chainedWorks.add([agentRef, chain[x], chain[x+1]])
+            boolean selected = false;
+            while (!selected) {
+              def random = new Random();
+              def agentRef = actorRefs[random.nextInt(actorRefs.size())]
+              if (! affectedActors.contains(agentRef)){
+                  selected = true;
+                  String method = "ownsWork"
+                  def args = [chain[x],chain[x+1]];
+                  agentRef.tell(new Method(method,args),getSelf())
+              }
+              chainedWorks.add([agentRef, chain[x], chain[x+1]])
+              affectedActors.add(agentRef)
+            }
         }
         logger.info('Added chain to the network: {}', chainedWorks)
         return chainedWorks;

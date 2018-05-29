@@ -50,8 +50,8 @@ public class UtilsTests {
 		@Test
 		void calculateSimilarityTest() {
 			String value1 = "000000"
-			String value2 = "000111"
-			def d1 = Utils.veitasSimilarity(value1,value2);
+			String value2 = "111111"
+			def d1 = Utils.calculateSimilarity(value1,value2);
 			assertNotNull(d1)
 			def agent = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
             def work = agent.ownsWork(value1,value2);
@@ -62,7 +62,7 @@ public class UtilsTests {
 			def d2 = Utils.calculateSimilarity(item1,item2);
 			assertNotNull(d2)
 			assertEquals(d1,d2);
-			assertEquals(3,d1);
+			assertEquals(0,d1); // if the similarity calculation is 'cosine'
 		}
 
 }
