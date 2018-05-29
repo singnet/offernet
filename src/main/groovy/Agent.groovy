@@ -459,7 +459,7 @@ public class Agent extends UntypedAbstractActor {
 
   private Edge reciprocalDistanceLink(Vertex item, Vertex knownItem, Integer similarity) {
      // every similarity edge created also triggers the creation of reciprocal edge with same parameters
-     this.connect(knownItem,item,similarity);
+     //this.connect(knownItem,item,similarity);
      return this.connect(item,knownItem, similarity);
   }
 

@@ -266,16 +266,19 @@ public class AgentBehaviorStepDefs {
     @When("^any agent finds similar items by executing search of '(\\d+)' depth$")
     public void any_agent_finds_similar_items_by_executing_search_of_depth(int searchDepth) throws Throwable {
         Object[] actorRefs = sim.actorRefToVertexIdTable.keySet().toArray();
-        Random random = new Random();
-        int id = random.nextInt(actorRefs.length-1);
-        ActorRef agent = (ActorRef) actorRefs[id];
-        int similarityThreshold = ( int ) 1;  
-        Method msg = new Method("searchAndConnect", new ArrayList(){{add(similarityThreshold); add(searchDepth);}});
-        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
-        Future<Object> future = Patterns.ask(agent, msg, timeout);
-        Integer items = (Integer) Await.result(future, timeout.duration());
-        assertNotNull(items);
-        assertEquals(( long ) 3, ( long ) items); // this is temporary -- delete after scenario passes
+        Integer allSimilarItems = 0;
+        for (Object actor : actorRefs) {
+            ActorRef agent = (ActorRef) actor;
+            int similarityThreshold = ( int ) 1;  
+            Method msg = new Method("searchAndConnect", new ArrayList(){{add(similarityThreshold); add(searchDepth);}});
+            Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+            Future<Object> future = Patterns.ask(agent, msg, timeout);
+            Integer items = (Integer) Await.result(future, timeout.duration());
+            assertNotNull(items);
+            allSimilarItems = allSimilarItems + items;
+        }
+        assertEquals(( long ) 3, ( long ) allSimilarItems); // this is temporary -- delete after scenario passes
+        
     }
 
     @Then("^there are '(\\d+)' similarity relations in the network$")

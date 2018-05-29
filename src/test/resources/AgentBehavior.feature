@@ -52,6 +52,7 @@ Scenario Outline: an agent can access all posted offers and demands by traversin
 	| 4 |  1 | 3 | 6 |
 	| 20 |  2 | 19 | 76 |
 
+#@ignore
 @indoc
 Scenario Outline: an agent can connect similar offers and demands of its social network
 	After an agent finds offer and demand items posted by its social network which are similar to its own items, it can connect those items with weighted $similarity$ relations (edges in the graph). Weight of the relation represents the 'strength' of similarity. Definition and computing algorithm of a $similarity$ relation can be chosen by choosing configuration parameters of the OfferNet system during initialization -- allowing to experiment with different approaches. This mechanism addresses these [Open problems / features to consider] of the framework: [Representation / theory of value], [Description of items of exchange], [Similarity measure];
