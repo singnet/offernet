@@ -13,6 +13,8 @@ import com.datastax.driver.dse.graph.Vertex
 
 import org.codehaus.groovy.runtime.StackTraceUtils
 
+import info.debatty.java.stringsimilarity.Cosine
+
 import static org.junit.Assert.*
 
 public class Utils {
@@ -41,7 +43,7 @@ public class Utils {
         length.times {
             chain.add(generateBinaryString(Parameters.parameters.binaryStringLength))
         }
-        logger.info("Created chain of length with: { end: {}, start: {} }",chain.last(),chain.first())
+        logger.info("Created chain of length {} with: end: {}, start: {} ",length, chain.last(),chain.first())
         return chain
     }
 
@@ -55,12 +57,14 @@ public class Utils {
       return executionStatement;
     }
 
-    public static Integer calculateSimilarity(Vertex itemOne, Vertex itemTwo) {
-  		return Utils.veitasSimilarity(itemOne.getProperty("value").getValue().asString(), itemTwo.getProperty("value").getValue().asString())
+    public static Object calculateSimilarity(Vertex itemOne, Vertex itemTwo) {
+        return Utils.cosineSimilarity(itemOne.getProperty("value").getValue().asString(), itemTwo.getProperty("value").getValue().asString())
+//  		return Utils.veitasSimilarity(itemOne.getProperty("value").getValue().asString(), itemTwo.getProperty("value").getValue().asString())
   	}
 
-    public static Integer calculateSimilarity(String left, String right) {
-      return Utils.veitasSimilarity(left,right)
+    public static Object calculateSimilarity(String left, String right) {
+        return Utils.cosineSimilarity(left,right)
+//      return Utils.veitasSimilarity(left,right)
     }
 
     public static Integer veitasSimilarity(CharSequence left, CharSequence right) {
@@ -91,10 +95,11 @@ public class Utils {
   	}
 
 
-    private static Integer edgePropertyValueAsInteger(Edge edge,String propertyName) {
+    private static Object edgePropertyValue(Edge edge,String propertyName) {
         logger.warn("Returning integer value of the property {} on edge {}", propertyName,edge.getId())
-        def intValue = edge.getProperty('similarity').getValue().asInt()
-        return intValue
+        //def value = edge.getProperty('similarity').getValue().asInt()
+        def value = edge.getProperty('similarity').getValue().asDouble()
+        return value
     }
 
     private static String getCurrentMethodName(){
@@ -180,6 +185,13 @@ public class Utils {
         }
         logger.info("Constructed map {}",map)
         return map;
+    }
+
+    public static Double cosineSimilarity(String left, String right) {
+        Cosine cosine = new Cosine(2);
+        def similarity =  cosine.similarity(left, right);
+        logger.info("Calculated cosine similarity between {} and {}: {}", left,right,similarity)
+        return similarity;
     }
 
 }

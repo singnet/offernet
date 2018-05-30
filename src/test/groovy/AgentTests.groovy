@@ -79,12 +79,13 @@ public class AgentTests {
 		on.flushVertices();
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		agent1.knowsAgent(agent2.vertexId());
 		def work1 = agent1.ownsWork('1111','1110');
 		def work2 = agent2.ownsWork('1100','1000');
-		def start = agent1.addItemToWork("demands",work2,'0000')
-
 		def knownItemsList = on.getVertices('item')
-		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,2)
+		def start = agent1.addItemToWork("demands",work2,'1110')
+		
+		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,0.5d)
 		assertEquals(3,similarityEdges.size())
 	}
 
@@ -136,16 +137,16 @@ public class AgentTests {
 		def item2 = agent2.addItemToWork("demands",work1)
 
 		def similarity = Utils.calculateSimilarity(item1,item2);
-		def connectedEdge = agent1.connectIfSimilar(item1, item2, similarity-1);
+		def connectedEdge = agent1.connectIfSimilar(item1, item2, similarity);
 		assertNotNull(connectedEdge);
-		assertEquals(similarity,Utils.edgePropertyValueAsInteger(connectedEdge,'value'))
+		assertEquals(similarity,Utils.edgePropertyValue(connectedEdge,'value'),0.0001)
 
 		def item3 = agent1.addItemToWork("offers",work1)
 		def item4 = agent2.addItemToWork("offers",work1)
 
 		similarity = Utils.calculateSimilarity(item3,item4);
 
-		connectedEdge = agent2.connectIfSimilar(item3, item4, similarity+1);
+		connectedEdge = agent2.connectIfSimilar(item3, item4, similarity*2);
 		assertNull(connectedEdge);
 	}
 
@@ -300,8 +301,8 @@ public class AgentTests {
 		/*
 		The resulting graph has 4 agents, 4 works, 8 items and 6 reciprocal connections (12 links in total)
 		*/
-		assertEquals(3,agent1.searchAndConnect(5,2)) // this traverses part of the graph
-		assertEquals(3,agent1.searchAndConnect(4,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(4)
+		assertEquals(4,agent1.searchAndConnect(0.5,2)) // this traverses part of the graph
+		assertEquals(2,agent1.searchAndConnect(0.5,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(0.5)
 	}
 
 	@Test

@@ -2,6 +2,6 @@ book_filename: "OffereNet Documentation"
 chapter_name: "Chapter "
 repo: https://github.com/singnet/offernet
 output_dir: ../public/offernet-documentation
-rmd_files: ["index.Rmd", "01-ConceptualFramework.Rmd", "02-ComputationalFramework.Rmd","03-FunctionalDescription.Rmd","04-References.Rmd"]
+rmd_files: ["index.Rmd", "01-ConceptualFramework.Rmd", "02-ComputationalFramework.Rmd","03-FunctionalDescription.Rmd","04-ImplementationReference.Rmd","05-References.Rmd"]
 clean: [book.bib]
 new_session: yes

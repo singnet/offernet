@@ -25,7 +25,7 @@ import akka.pattern.Patterns;
 
 
 class Simulation extends UntypedAbstractActor {
-	OfferNet on;
+	public OfferNet on;
 	Logger logger;
 	List agentList;
   public Hashtable<String,ActorRef> vertexIdToActorRefTable;
@@ -160,7 +160,7 @@ class Simulation extends UntypedAbstractActor {
 
   /* done until here */
 
-	private Integer connectIfSimilarForAllAgents(List agentList, Integer similarityThreshold, Integer maxReachDistance) {
+	private Integer connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) {
 
 		def start = System.currentTimeMillis();
 		logger.warn("Searching and connecting similar items of all agents in the graph:")
@@ -241,7 +241,7 @@ class Simulation extends UntypedAbstractActor {
     public List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
       def start = System.currentTimeMillis();
       agentList = this.createAgentNetwork(numberOfAgents)
-      this.addRandomWorksToAgents(numberOfRandomWorks)
+      //this.addRandomWorksToAgents(numberOfRandomWorks)
       chains.each {chain ->
         this.addChainToNetwork(chain)
       }
@@ -251,18 +251,26 @@ class Simulation extends UntypedAbstractActor {
       return agentList;
     }
 
-    private List addChainToNetwork(List chain) {
+    public List addChainToNetwork(List chain) {
         def start = System.currentTimeMillis();
         def dataItemsWithDesignedSimilarities = new ArrayList()
+        def affectedActors = []
         def chainedWorks = []
         ArrayList actorRefs = actorRefToVertexIdTable.keySet().toArray();
         for (int x=0;x<chain.size()-1;x++) {
-            def random = new Random();
-            def agentRef = actorRefs[random.nextInt(actorRefs.size())]
-            String method = "ownsWork"
-            def args = [chain[x],chain[x+1]];
-            agentRef.tell(new Method(method,args),getSelf())
-            chainedWorks.add([agentRef, chain[x], chain[x+1]])
+            boolean selected = false;
+            while (!selected) {
+              def random = new Random();
+              def agentRef = actorRefs[random.nextInt(actorRefs.size())]
+              if (! affectedActors.contains(agentRef)){
+                  selected = true;
+                  String method = "ownsWork"
+                  def args = [chain[x],chain[x+1]];
+                  agentRef.tell(new Method(method,args),getSelf())
+              }
+              chainedWorks.add([agentRef, chain[x], chain[x+1]])
+              affectedActors.add(agentRef)
+            }
         }
         logger.info('Added chain to the network: {}', chainedWorks)
         return chainedWorks;

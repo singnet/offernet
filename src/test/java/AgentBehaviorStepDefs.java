@@ -2,6 +2,7 @@ package io.singularitynet.offernet;
 
 import io.singularitynet.offernet.OfferNet;
 import io.singularitynet.offernet.Simulation;
+import io.singularitynet.offernet.Parameters;
 
 import cucumber.api.PendingException;
 import cucumber.api.Scenario;
@@ -35,6 +36,8 @@ import java.util.Enumeration;
 
 import com.datastax.driver.dse.graph.Edge;
 import com.datastax.driver.dse.graph.Vertex;
+
+import java.util.Random;
 
 public class AgentBehaviorStepDefs {
 	private Simulation sim;
@@ -104,7 +107,7 @@ public class AgentBehaviorStepDefs {
 	    ActorRef actorTwoRef = this.sim.createAgentWithId(agentTwo);
 
 	    Method msg = new Method("vertexId", new ArrayList());
-  	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+  	  Timeout timeout = new Timeout(Duration.create(5, "seconds"));
 	   	Future<Object> future = Patterns.ask(actorOneRef, msg, timeout);
   		Object actorTwoVertexId = Await.result(future, timeout.duration());
   		assertNotNull(actorTwoVertexId);
@@ -242,4 +245,49 @@ public class AgentBehaviorStepDefs {
         assertNotNull(items);
         assertEquals((long) numberOfFoundItems, (long) items.size());
     }
+
+    /*
+    * Scenario Outline: an agent can connect similar offers and demands of its social network
+    */
+
+    @Given("^a connected network of '(\\d+)' agents$")
+    public void a_connected_network_of_agents(int numberOfAgents) throws Throwable {
+      List<ActorRef> agentList = sim.createAgentNetwork(numberOfAgents);
+      assertEquals(numberOfAgents, sim.vertexIdToActorRefTable.size());
+    }
+
+    @Given("^that '(\\d+)' similar item pairs exist in the network$")
+    public void that_similar_items_exist_in_the_network(int numberOfSimilarItems) throws Throwable {
+      int chainLength = numberOfSimilarItems +2;
+      List chain = Utils.createChain(chainLength);
+      List works = sim.addChainToNetwork(chain);
+    }
+
+    @When("^any agent finds similar items by executing search of '(\\d+)' depth$")
+    public void any_agent_finds_similar_items_by_executing_search_of_depth(int searchDepth) throws Throwable {
+        Object[] actorRefs = sim.actorRefToVertexIdTable.keySet().toArray();
+        Integer allSimilarItems = 0;
+        for (Object actor : actorRefs) {
+            ActorRef agent = (ActorRef) actor;
+            int similarityThreshold = ( int ) 1;  
+            Method msg = new Method("searchAndConnect", new ArrayList(){{add(similarityThreshold); add(searchDepth);}});
+            Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+            Future<Object> future = Patterns.ask(agent, msg, timeout);
+            Integer items = (Integer) Await.result(future, timeout.duration());
+            assertNotNull(items);
+            allSimilarItems = allSimilarItems + items;
+        }
+    }
+
+    @Then("^there are '(\\d+)' similarity relations in the network$")
+    public void there_are_similarity_relations_in_the_network(int numberOfSimilarityRelations) throws Throwable {
+        ArrayList<Edge> edges = ( ArrayList<Edge> ) sim.on.getEdges("similarity");
+        assertEquals(numberOfSimilarityRelations, edges.size()/2);
+    }
+
+
 }
+
+
+
+

@@ -86,8 +86,9 @@
   
   Agents can interact with the graph structure of OfferNet by issuing semantically constrained graph traversals which query or mutate the graph as needed. These define the API of the OfferNet graph.
 
+  #@ignore
   @indoc
-  Scenario: an agent can post an {offer-demand} pair to the OfferNet               ?[90m# AgentBehavior.feature:29?[0m
+  Scenario: an agent can post an {offer-demand} pair to the OfferNet               ?[90m# AgentBehavior.feature:32?[0m
     Agents in an Offer Network engage in exchange by publishing an offer-demand pairs, or 'work's. See explanation of the Offer Network structure in [Data structures and objects].
 
     ?[32mGiven ?[0m?[32mAgent &quot;?[0m?[32m?[1mAgentOne?[0m?[32m&quot; is created on the OfferNet?[0m                              ?[90m# AgentBehaviorStepDefs.agentIsCreatedOnTheOfferNet(String)?[0m
@@ -95,8 +96,9 @@
     ?[32mThen ?[0m?[32mAgent &quot;?[0m?[32m?[1mAgentOne?[0m?[32m&quot; owns a work which &quot;?[0m?[32m?[1mdemands?[0m?[32m&quot; item &quot;?[0m?[32m?[1mdemand-1?[0m?[32m&quot;?[0m              ?[90m# AgentBehaviorStepDefs.agent_owns_a_work_which_item(String,String,String)?[0m
     ?[32mAnd ?[0m?[32mAgent &quot;?[0m?[32m?[1mAgentOne?[0m?[32m&quot; owns a work which &quot;?[0m?[32m?[1moffers?[0m?[32m&quot; item &quot;?[0m?[32m?[1moffer-1?[0m?[32m&quot;?[0m                 ?[90m# AgentBehaviorStepDefs.agent_owns_a_work_which_item(String,String,String)?[0m
 
+  #@ignore
   @indoc
-  Scenario Outline: an agent can access all posted offers and demands by traversing its social network ?[90m# AgentBehavior.feature:38?[0m
+  Scenario Outline: an agent can access all posted offers and demands by traversing its social network ?[90m# AgentBehavior.feature:42?[0m
     In a distributed system where there is no global observer which has the registry of all agents and their items of offer and demand. In this case, the only way for an agent to access items of other agents is to traverse its social network (to a given depth) and ask all friends of friends to send information about their items. Since the OfferNet is fully connected (and hopefully is a small world network) the whole network can be scanned this way, depending on availability of time and resource constrains of an agent which initiates the search. The expected number of items that an agent has to find in its social network is calculated as follows: $(numberOfAgents -1) * pairsPerAgent * 2$ (as every pair holds two items: one demand and one offer..).
 
     ?[36mGiven ?[0m?[36mthere exists an sequentially connected line of '&lt;numberOfAgents&gt;' agents?[0m
@@ -107,22 +109,43 @@
     Examples: 
 
   @indoc
-  Scenario Outline: an agent can access all posted offers and demands by traversing its social network ?[90m# AgentBehavior.feature:49?[0m
+  Scenario Outline: an agent can access all posted offers and demands by traversing its social network ?[90m# AgentBehavior.feature:53?[0m
     In a distributed system where there is no global observer which has the registry of all agents and their items of offer and demand. In this case, the only way for an agent to access items of other agents is to traverse its social network (to a given depth) and ask all friends of friends to send information about their items. Since the OfferNet is fully connected (and hopefully is a small world network) the whole network can be scanned this way, depending on availability of time and resource constrains of an agent which initiates the search. The expected number of items that an agent has to find in its social network is calculated as follows: $(numberOfAgents -1) * pairsPerAgent * 2$ (as every pair holds two items: one demand and one offer..).
 
     ?[32mGiven ?[0m?[32mthere exists an sequentially connected line of '?[0m?[32m?[1m20?[0m?[32m' agents?[0m                                   ?[90m# AgentBehaviorStepDefs.there_exists_an_sequentially_connected_line_of_numberOfAgents_agents(Integer)?[0m
     ?[32mAnd ?[0m?[32mall agents have posted '?[0m?[32m?[1m2?[0m?[32m' offer-demand pair each?[0m                                              ?[90m# AgentBehaviorStepDefs.all_agents_have_posted_pairsPerAgent_offer_demand_pair_each(Integer)?[0m
     ?[32mWhen ?[0m?[32mfirst agent initiates search of '?[0m?[32m?[1m19?[0m?[32m' depth?[0m                                                    ?[90m# AgentBehaviorStepDefs.first_agent_initiates_search_of_searchDepth_depth(Integer)?[0m
     ?[32mThen ?[0m?[32magent finds '?[0m?[32m?[1m76?[0m?[32m' demands and offers in its social network?[0m                                     ?[90m# AgentBehaviorStepDefs.agent_finds_numberOfFoundItems_in_its_social_network(Integer)?[0m
+
+  #@ignore
+  @indoc
+  Scenario Outline: an agent can connect similar offers and demands of its social network ?[90m# AgentBehavior.feature:57?[0m
+    After an agent finds offer and demand items posted by its social network which are similar to its own items, it can connect those items with weighted $similarity$ relations (edges in the graph). Weight of the relation represents the 'strength' of similarity. Definition and computing algorithm of a $similarity$ relation can be chosen by choosing configuration parameters of the OfferNet system during initialization -- allowing to experiment with different approaches. This mechanism addresses these [Open problems / features to consider] of the framework: [Representation / theory of value], [Description of items of exchange], [Similarity measure];
+
+    ?[36mGiven ?[0m?[36ma connected network of '&lt;numberOfAgents&gt;' agents?[0m
+    ?[36mGiven ?[0m?[36mthat '&lt;numberOfSimilarItems&gt;' similar item pairs exist in the network?[0m
+    ?[36mWhen ?[0m?[36many agent finds similar items by executing search of '&lt;searchDepth&gt;' depth?[0m
+    ?[36mThen ?[0m?[36mthere are '&lt;numberOfSimilarityRelations&gt;' similarity relations in the network?[0m
+
+    Examples: 
+
+  @indoc
+  Scenario Outline: an agent can connect similar offers and demands of its social network ?[90m# AgentBehavior.feature:68?[0m
+    After an agent finds offer and demand items posted by its social network which are similar to its own items, it can connect those items with weighted $similarity$ relations (edges in the graph). Weight of the relation represents the 'strength' of similarity. Definition and computing algorithm of a $similarity$ relation can be chosen by choosing configuration parameters of the OfferNet system during initialization -- allowing to experiment with different approaches. This mechanism addresses these [Open problems / features to consider] of the framework: [Representation / theory of value], [Description of items of exchange], [Similarity measure];
+
+    ?[32mGiven ?[0m?[32ma connected network of '?[0m?[32m?[1m20?[0m?[32m' agents?[0m                                              ?[90m# AgentBehaviorStepDefs.a_connected_network_of_agents(int)?[0m
+    ?[32mGiven ?[0m?[32mthat '?[0m?[32m?[1m5?[0m?[32m' similar item pairs exist in the network?[0m                                ?[90m# AgentBehaviorStepDefs.that_similar_items_exist_in_the_network(int)?[0m
+    ?[32mWhen ?[0m?[32many agent finds similar items by executing search of '?[0m?[32m?[1m19?[0m?[32m' depth?[0m                  ?[90m# AgentBehaviorStepDefs.any_agent_finds_similar_items_by_executing_search_of_depth(int)?[0m
+    ?[32mThen ?[0m?[32mthere are '?[0m?[32m?[1m5?[0m?[32m' similarity relations in the network?[0m                                ?[90m# AgentBehaviorStepDefs.there_are_similarity_relations_in_the_network(int)?[0m
 Feature: OfferNet processes
   
   The structure of OfferNet is realized as a Property Graph where agents / offers and demands connect via edges and all is enriched with properties. Agents interact with the graph (query/mutate) by executing  semantically constrained graph traversal processes. The result of these processes depend on the context of operation, but we want to make sure that they are deterministic when the context is known and clearly defined. These processes can be centralized or decentralized.
   
   &lt;realize SimulationTests as scenarios here&gt;
 
-5 Scenarios (?[32m5 passed?[0m)
-25 Steps (?[32m25 passed?[0m)
-0m49.057s
+7 Scenarios (?[32m7 passed?[0m)
+33 Steps (?[32m33 passed?[0m)
+1m10.203s
 
 </pre>
 </span>
@@ -135,7 +158,7 @@ Feature: OfferNet processes
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.6</a> at May 22, 2018 9:12:09 AM</p>
+<a href="http://www.gradle.org">Gradle 4.6</a> at May 30, 2018 8:32:53 AM</p>
 </div>
 </div>
 </body>

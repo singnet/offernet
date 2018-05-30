@@ -9,13 +9,18 @@ json_report_processed.each { feature ->
 		println('## '+feature.name)
 		println(feature.description+"\n")
 		def scenarioInOutlineNumber = 1;
+		def scenarioName = "";
 		feature.elements.each {  scenario->
 			def includeScenario = (scenario.tags.find {tag->tag.name=='@indoc'} ? true : false)
 			if (includeScenario && scenario.result.status =="passed") {
 				if (scenario.keyword == "Scenario Outline") {
+					if (scenarioName != scenario.name) {
+						scenarioInOutlineNumber = 1;
+					}
 					if (scenarioInOutlineNumber == 1) {
 						println('### '+scenario.keyword+': '+scenario.name)
 						println(scenario.description+"\n")
+						scenarioName = scenario.name;
 					}
 					println('#### Example '+scenarioInOutlineNumber+'\n')
 					scenarioInOutlineNumber = scenarioInOutlineNumber + 1;
