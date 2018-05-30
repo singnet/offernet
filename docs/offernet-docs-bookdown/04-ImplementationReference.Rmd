@@ -5,7 +5,7 @@ Here we will document implementation decisions on the software level (including 
 ## Description of items of exchange (implementation)
 Jump to conceptual discussion of [Description of items of exchange].
 
-As of now, items of exchange are represented as binary vectors of fixed length. The idea is each bit represents a feature of the item -- 1 if item has this feature,  0 -- if not. The length of vectors (i.e. number of features) can be set in the [global configuration file](https://github.com/kabirkbr/offernet/blob/master/configs/offernet.conf). It seems that binary vectors are the best middle-way between fixed types and maps. We can easily simulate fixed types by defining a vocabulary and attributing binary string to every type -- then similarity threshold to 1, which means that the system will consider only vectors that are identical (if cosine cosine similarity is used -- see [Similarity measure (implementation)] below).
+As of now, items of exchange are represented as binary vectors of fixed length. The idea is each bit represents a feature of the item -- 1 if item has this feature,  0 -- if not. The length of vectors (i.e. number of features) can be set in the [global configuration file](https://github.com/kabirkbr/offernet/blob/master/configs/offernet.conf). It seems that binary vectors are the best middle-way between fixed types and maps. We can easily simulate fixed types by defining a vocabulary and attributing binary string to every type -- then set similarity threshold to 1, which means that the system will consider similar only vectors that are identical (if cosine  similarity is used -- see [Similarity measure (implementation)] below).
 
 ## Similarity measure (implementation)
 Jump to conceptual discussion of [Similarity measure]. 
