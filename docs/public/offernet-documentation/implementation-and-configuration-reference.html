@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="implementation-and-configuration-reference.html">
-
+<link rel="prev" href="functional-description.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -135,61 +135,23 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="implementation-and-configuration-reference" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Implementation and Configuration Reference</h1>
+<p>Here we will document implementation decisions on the software level (including configuration) regarding <a href="conceptual-framework.html#open-problems-features-to-consider">Open problems / features to consider</a> discussed in <a href="conceptual-framework.html#conceptual-framework">Conceptual framework</a>.</p>
+<div id="description-of-items-of-exchange-implementation" class="section level2">
+<h2><span class="header-section-number">5.1</span> Description of items of exchange (implementation)</h2>
+<p>Jump to conceptual discussion of <a href="conceptual-framework.html#description-of-items-of-exchange">Description of items of exchange</a>.</p>
+<p>As of now, items of exchange are represented as binary vectors of fixed length. The idea is each bit represents a feature of the item – 1 if item has this feature, 0 – if not. The length of vectors (i.e. number of features) can be set in the <a href="https://github.com/kabirkbr/offernet/blob/master/configs/offernet.conf">global configuration file</a>. It seems that binary vectors are the best middle-way between fixed types and maps. We can easily simulate fixed types by defining a vocabulary and attributing binary string to every type – then set similarity threshold to 1, which means that the system will consider similar only vectors that are identical (if cosine similarity is used – see <a href="implementation-and-configuration-reference.html#similarity-measure-implementation">Similarity measure (implementation)</a> below).</p>
+</div>
+<div id="similarity-measure-implementation" class="section level2">
+<h2><span class="header-section-number">5.2</span> Similarity measure (implementation)</h2>
+<p>Jump to conceptual discussion of <a href="conceptual-framework.html#similarity-measure">Similarity measure</a>.</p>
+<p>Currently there are two options for calculating similarity – modified hamming distance and cosine similarity. The latter is default, the former is easy to adopt, but is not included as configuration option as for now – some change of code (and tests) would be needed to switch between two:</p>
+<ul>
+<li><p><strong>Modified Hamming distance</strong> (hidden) just calculates the number of how many bits in the same position are equal to 1 in both vectors. Which means that it calculates how many same features the two items have in common. See code of function: <a href="https://github.com/kabirkbr/offernet/blob/master/src/main/groovy/Utils.groovy#L70">veitasSimilarity(CharSequence left, CharSequence right)</a>. The assumption here is that there is a global mapping of features (i.e. each position in a vector represents the same feature which are the same globally). This is a strong assumption which will probably not hold in anything close to real circumstances. That is the main reason why cosine similarity is default measure.</p></li>
+<li><p><strong>Cosine similarity</strong> (default). The immediate advantage is that when similarity measure is calculated as cosine between vectors, it does not depend on the vector length – so decisions about similarity measure and representation of items are a bit more decoupled. Therefore, all kinds of system parameters, like similarityThreshold does not need to be adjusted when vector length changes (i.e. when items get explained by more features). See code of function: <a href="https://github.com/kabirkbr/offernet/blob/master/src/main/groovy/Utils.groovy#L190">cosineSimilarity(String left, String right)</a>. It is also more forward looking to further advancement of the framework towards conceptual description.</p></li>
+</ul>
 
-<div id="refs" class="references">
-<div>
-<p>Agha, Gul A. 1986. <em>Actors: A Model of Concurrent Computation in Distributed Systems</em>. Mit Press.</p>
-</div>
-<div>
-<p>Ahmad, S., and J. Hawkins. 2015. “Properties of Sparse Distributed Representations and Their Application to Hierarchical Temporal Memory.” <em>ArXiv E-Prints</em>, March. <a href="http://adsabs.harvard.edu/abs/2015arXiv150307469A" class="uri">http://adsabs.harvard.edu/abs/2015arXiv150307469A</a>.</p>
-</div>
-<div>
-<p>Edelman, Gerald M., and Giulio Tononi. 2000. <em>A Universe of Consciousness: How Matter Becomes Imagination</em>. Basic Books.</p>
-</div>
-<div>
-<p>Goertzel, Ben. 2015a. “Matching Algorithm for Attention Offer Networks.”</p>
-</div>
-<div>
-<p>———. 2015b. “Beyond Money: Offer Networks, a Potential Infrastructure for a Post-Money Economy.” In <em>The End of the Beginning: Life, Society and Economy on the Brink of the Singularity</em>, edited by Ben Goertzel and Ted Goertzel, 1 edition, 522–54. Humanity+ Press.</p>
-</div>
-<div>
-<p>Goertzel, Zar. 2017. “Offer Networks Simulation and Dynamics.” Master’s thesis, Copenhagen. <a href="https://github.com/zariuq/offer-network-thesis/blob/master/Thesis/Zar_Thesis_Offer_Networks.pdf" class="uri">https://github.com/zariuq/offer-network-thesis/blob/master/Thesis/Zar_Thesis_Offer_Networks.pdf</a>.</p>
-</div>
-<div>
-<p>Hewitt, Carl. 1976. “Viewing Control Structures as Patterns of Passing Messages,” December. <a href="http://dspace.mit.edu/handle/1721.1/6272" class="uri">http://dspace.mit.edu/handle/1721.1/6272</a>.</p>
-</div>
-<div>
-<p>Hewitt, Carl, Peter Bishop, and Richard Steiger. 1973. “A Universal Modular ACTOR Formalism for Artificial Intelligence.” In <em>Proceedings of the 3rd International Joint Conference on Artificial Intelligence</em>, 235–45. IJCAI’73. San Francisco, CA, USA: Morgan Kaufmann Publishers Inc. <a href="http://dl.acm.org/citation.cfm?id=1624775.1624804" class="uri">http://dl.acm.org/citation.cfm?id=1624775.1624804</a>.</p>
-</div>
-<div>
-<p>McCune, Robert Ryan, Tim Weninger, and Greg Madey. 2015. “Thinking Like a Vertex: A Survey of Vertex-Centric Frameworks for Large-Scale Distributed Graph Processing.” <em>ACM Comput. Surv.</em> 48 (2): 25:1–25:39. <a href="https://doi.org/10.1145/2818185" class="uri">https://doi.org/10.1145/2818185</a>.</p>
-</div>
-<div>
-<p>Rodriguez, Marko. 2013. “On Graph Computing.” <em>Marko A. Rodriguez</em>. <a href="http://markorodriguez.com/2013/01/09/on-graph-computing/" class="uri">http://markorodriguez.com/2013/01/09/on-graph-computing/</a>.</p>
-</div>
-<div>
-<p>Rodriguez, Marko A. 2008. “Grammar-Based Random Walkers in Semantic Networks.” <em>Knowledge-Based Systems</em> 21 (7): 727–39. <a href="https://doi.org/10.1016/j.knosys.2008.03.030" class="uri">https://doi.org/10.1016/j.knosys.2008.03.030</a>.</p>
-</div>
-<div>
-<p>Rodriguez, Marko A., Marko. 2008. “A Collectively Generated Model of the World.” In <em>Collective Intelligence: Creating a Prosperous World at Peace</em>, edited by Tom Atlee, Yochai Benkler, Thomas Homer-Dixon, Pierre Levy, Thomas Malone, Rt Hon Paul Martin, Hassan Masum, Robert Steele, and Mark Tovey, 1st edition. Oakton, Va.: Earth Intelligence Network.</p>
-</div>
-<div>
-<p>Rodriguez, Marko A., and Peter Neubauer. 2010. “The Graph Traversal Pattern.” <em>arXiv:1004.1001 [Cs]</em>, April. <a href="http://arxiv.org/abs/1004.1001" class="uri">http://arxiv.org/abs/1004.1001</a>.</p>
-</div>
-<div>
-<p>Tononi, Giulio. 2004. “An Information Integration Theory of Consciousness.” <em>BMC Neuroscience</em> 5 (1): 42. <a href="https://doi.org/10.1186/1471-2202-5-42" class="uri">https://doi.org/10.1186/1471-2202-5-42</a>.</p>
-</div>
-<div>
-<p>Veitas, V., and D. Weinbaum. 2015. “Living Cognitive Society: A ’Digital’ World of Views.” <em>Submitted to: Technological Forecasting and Social Change</em>, October. <a href="https://vveitas.files.wordpress.com/2015/11/paper2.pdf" class="uri">https://vveitas.files.wordpress.com/2015/11/paper2.pdf</a>.</p>
-</div>
-<div>
-<p>Weinbaum (Weaver), David R. 2018. “Open-Ended Intelligence.” PhD Thesis, Brussels: Vrije Universiteit Brussel. <a href="https://www.academia.edu/36140514/Open-Ended_Intelligence_-_PhD_Thesis" class="uri">https://www.academia.edu/36140514/Open-Ended_Intelligence_-_PhD_Thesis</a>.</p>
-</div>
-<div>
-<p>Weinbaum (Weaver), David, and Viktoras Veitas. 2017. “Open Ended Intelligence: The Individuation of Intelligent Agents.” <em>Journal of Experimental &amp; Theoretical Artificial Intelligence</em> 29 (2): 371–96. <a href="https://doi.org/10.1080/0952813X.2016.1185748" class="uri">https://doi.org/10.1080/0952813X.2016.1185748</a>.</p>
-</div>
 </div>
 </div>
             </section>
@@ -197,8 +159,8 @@
           </div>
         </div>
       </div>
-<a href="implementation-and-configuration-reference.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="functional-description.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
