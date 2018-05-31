@@ -10,6 +10,7 @@ Apart from the code, the following documentation is available:
 	* [Conceptual framework](https://kabirkbr.github.io/offernet/public/offernet-documentation/conceptual-framework.html);
 	* [Computational framework](https://kabirkbr.github.io/offernet/public/offernet-documentation/computational-framework.html);
 	* [Functional description](https://kabirkbr.github.io/offernet/public/offernet-documentation/functional-description.html);
+	* [Implementation & Configuration Reference](https://kabirkbr.github.io/offernet/public/offernet-documentation/implementation-and-configuration-reference.html);
 * [Unit rest report](https://kabirkbr.github.io/offernet/public/unit-tests/index.html);
 * [Behavioural test report](https://kabirkbr.github.io/offernet/public/cucumber-html-reports/overview-features.html);
 
