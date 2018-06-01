@@ -10,6 +10,7 @@ Apart from the code, the following documentation is available:
 	* [Conceptual framework](https://singnet.github.io/offernet/public/offernet-documentation/conceptual-framework.html);
 	* [Computational framework](https://singnet.github.io/offernet/public/offernet-documentation/computational-framework.html);
 	* [Functional description](https://singnet.github.io/offernet/public/offernet-documentation/functional-description.html);
+  * [Implementation & Configuration Reference](https://singnet.github.io/offernet/public/offernet-documentation/implementation-and-configuration-reference.html);
 * [Unit rest report](https://singnet.github.io/offernet/public/unit-tests/index.html);
 * [Behavioural test report](https://singnet.github.io/offernet/public/cucumber-html-reports/overview-features.html);
 
