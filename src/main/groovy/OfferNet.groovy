@@ -22,7 +22,7 @@ public class OfferNet implements AutoCloseable {
     private DseCluster cluster;
     private DseSession session; // creating one 'main' client and allowing to create more with the method
     private Logger logger;
-    static ActorSystem system = ActorSystem.create();
+    static ActorSystem system;
 
     public void ass() {
     Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -39,6 +39,7 @@ public class OfferNet implements AutoCloseable {
         def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
+        system =  ActorSystem.create("OfferNet");
 
         try {
             def start = System.currentTimeMillis()

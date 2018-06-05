@@ -33,7 +33,7 @@ import java.util.UUID;
 public class AgentTests {
 	static private OfferNet on = new OfferNet().flushVertices();
     static private Logger logger;
-    static ActorSystem system = ActorSystem.create();
+    static ActorSystem system = ActorSystem.create("AgentTests");
 
 	@BeforeClass
 	static void initLogging() {

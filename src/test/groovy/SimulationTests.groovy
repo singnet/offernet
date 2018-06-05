@@ -38,7 +38,7 @@ import akka.testkit.TestActorRef
 import akka.testkit.JavaTestKit;
 
 public class SimulationTests {
-		static ActorSystem system = ActorSystem.create();
+		static ActorSystem system = ActorSystem.create("SimulationTests");
 		static private Logger logger;
 
 		@BeforeClass
