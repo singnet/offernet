@@ -135,7 +135,34 @@ Such measure could in principle allow to detect the emergence of ‘higher scale
 
 Measuring information integration of a dynamic network of heterogeneous agents adds another layer of complexity to the simulation, as the calculation of information integration may take considerable computational resources (potentially more than simulation itself…). While this is an interesting avenue to explore in the context of AGI research it is not currently considered in [Computational framework].  
 
-## Practical use cases
+## Goals, phases and use cases
+
+These are further described and managed via GitHub project management in singnet/offernet repository -- see [here](https://github.com/singnet/offernet/projects) and links related to each item.
+
+### Goals
+
+(in no particular order)
+
+* Medium-term: enable Offer Networks as an alternative to token-based exchange on SingularityNET….  Or rather, as a superclass of token-based exchange, since one type of offer that can be made is “to pay to X a certain number N of tokens of type T”;
+* Implementation-wise / medium term: formulate offers and demands in a predicate-logic type format, compilable into executable smart contract form -- [issue](https://github.com/singnet/offernet/issues/18);
+* Continuous: Integration with SingularityNET prototype (Python, Solidity, Ethereum, etc.) -- [project](https://github.com/singnet/offernet/projects/6);
+* Short term: find an actual AI task to simulate for demonstration, communication purposes, conceptual coherence, etc -- for boosting a fast prototyping process [issue](https://github.com/singnet/offernet/issues/19).
+* Long-term: build an economic exchange network that would perform ‘better’ than purely monetary based exchanges (better in terms of global value created, customer satisfaction, etc.) -- [issue](https://github.com/singnet/offernet/issues/16);
+* Continuous: build and perform a fast prototyping / modelling / experimenting pipeline that feeds back to the conceptual development -- [project](https://github.com/singnet/offernet/projects/1);
+* Short-term: design the architecture which allows to combine -- [project](https://github.com/singnet/offernet/projects/1):
+	* rich/expensive small-scale experiments, which let us explore and understand in-depth application implementation strategies, but aren't actually more efficient than centralized approaches at the scale on which they're being run;
+	* more simplistic scalable simulations, aimed at demonstrating/exploring the efficiency advantage achievable via decentralized methods at large scale
+
+### Phases
+
+* **(short-term)**: Exploratory work implementing Offer Networks atop SingularityNET and running preliminary experiments and simulations aimed at gaining knowledge and intuition. It may be beneficial to first construct experiments and simulations of isolated open problems / features to consider (search, memory, etc.) and get insights about them individually before integrating everything into one system. For this we may need to work out a more fine-grained schedule of goals / phases -- milestones [one](https://github.com/singnet/offernet/milestone/2) and [two](https://github.com/singnet/offernet/milestone/5).
+
+* **(medium-term)**: Get a concrete sense of what sorts of AI-related exchanges are going to have the property that Offer Network type exchange works better for them than token based exchange -- [issue](https://github.com/singnet/offernet/issues/16);
+
+* **(long-term)**: Design and implement a scalable version of Offer Networks within SingularityNET, for handling an appropriate subset of AI interactions -- [project](https://github.com/singnet/offernet/projects/6);
+
+
+### Practical use cases
 
 Possible real-world use-cases are:
 
