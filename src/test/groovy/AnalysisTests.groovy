@@ -10,6 +10,7 @@ import static org.junit.Assert.*
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
@@ -41,6 +42,8 @@ public class AnalysisTests {
       	Kamon.addReporter(new JaegerReporter());
 	}
 
+	// this tests lasts forever -- for testing message tracing servers which take time to initialize
+	@Ignore
 	@Test
 	void sendMessages() {
 		ArrayList allActors = new ArrayList();
