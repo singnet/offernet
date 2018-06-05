@@ -25,13 +25,13 @@ import akka.testkit.JavaTestKit;
 public class OfferNetTests {
 		static private OfferNet on = new OfferNet().flushVertices();
 	    static private Logger logger;
-	    static ActorSystem system = ActorSystem.create();
+	    static ActorSystem system = ActorSystem.create("OfferNetTests");
 
 		@BeforeClass
 		static void initLogging() {
 		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
     		PropertyConfigurator.configure(config.toProperties())
-    		logger = LoggerFactory.getLogger('Tests.class');
+    		logger = LoggerFactory.getLogger('OfferNetTests.class');
 		}
 
 		@Test

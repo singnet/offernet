@@ -68,13 +68,26 @@ repositories {
 	jcenter()
 }
 
+configurations {
+  library
+}
+
 dependencies {
-	compile 'junit:junit:4.12'
+  library 'org.aspectj:aspectjweaver:1.9.1'
+  runtime files('configs')
+  compile "io.kamon:kamon-logback_2.12:1.0.0"
+  compile "io.kamon:kamon-core_2.12:1.1.0"
+  compile "io.kamon:kamon-akka-2.5_2.12:1.0.0"
+  compile "io.kamon:kamon-akka-http-2.5_2.12:1.0.0"
+  compile 'io.kamon:kamon-prometheus_2.12:1.1.1'
+  compile 'io.kamon:kamon-jaeger_2.12:1.0.2'
+  compile 'junit:junit:4.12'
 	compile 'org.codehaus.groovy:groovy-all:2.4.11'
 	compile 'com.datastax.dse:dse-java-driver-graph:1.5.1'
 	compile 'org.apache.tinkerpop:gremlin-core:3.3.1'
 	compile 'log4j:log4j:1.2.17'
-	compile 'org.slf4j:slf4j-log4j12:1.7.22'
+	//compile 'org.slf4j:slf4j-log4j12:1.7.22'
+  compile 'com.typesafe.akka:akka-slf4j_2.12:2.5.11'
 	compile 'com.typesafe.akka:akka-actor_2.12:2.5.11'
 	compile 'com.typesafe.akka:akka-actor-typed_2.12:2.5.11'
   compile 'info.debatty:java-string-similarity:1.1.0'
@@ -84,6 +97,21 @@ dependencies {
     testCompile 'net.masterthought:cucumber-reporting:3.1.0'
 }
 
+task copyLibraries(type: Copy) {
+  from configurations.library
+  into projectDir.absolutePath+'/lib'
+}
+
+build.dependsOn(copyLibraries)
+
+test {
+  if (project.hasProperty("kamon")) {
+    doFirst {
+      copyLibraries
+      jvmArgs = [ '-javaagent:' + projectDir + '/lib/aspectjweaver-1.9.1.jar' ]
+    }
+  }
+}
 
 tasks.withType(JavaCompile) {
 //    options.compilerArgs << '-Xlint:deprecation'

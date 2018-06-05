@@ -25,7 +25,7 @@ import akka.testkit.JavaTestKit;
 public class UtilsTests {
 		static private OfferNet on = new OfferNet().flushVertices();
 	    static private Logger logger;
-	    static ActorSystem system = ActorSystem.create();
+	    static ActorSystem system = ActorSystem.create("UtilsTests");
 
 		@BeforeClass
 		static void initLogging() {

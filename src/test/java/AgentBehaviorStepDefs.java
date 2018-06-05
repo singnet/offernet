@@ -48,7 +48,7 @@ public class AgentBehaviorStepDefs {
     @Before
     public void before(Scenario scenario) throws Throwable {
     	this.thisScenario = scenario;
-    	this.system = ActorSystem.create();
+    	this.system = ActorSystem.create("AgentBehaviorStepDefs");
     	this.sim = (Simulation) TestActorRef.create(this.system, Simulation.props()).underlyingActor();
       this.exchangeBin = new ArrayList<Object>();
     }
