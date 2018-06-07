@@ -77,6 +77,16 @@ After an agent finds offer and demand items posted by its social network which a
 
 #### Example 1
 
+* Given : a connected network of '4' agents
+
+* Given : that '3' similar item pairs exist in the network
+
+* When : any agent finds similar items by executing search of '3' depth
+
+* Then : there are '3' similarity relations in the network
+
+#### Example 2
+
 * Given : a connected network of '20' agents
 
 * Given : that '5' similar item pairs exist in the network
