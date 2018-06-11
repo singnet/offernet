@@ -160,14 +160,15 @@ class Simulation extends UntypedAbstractActor {
 
   /* done until here */
 
-	private Integer connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) {
+	private Integer connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) throws Throwable{
 
 		def start = System.currentTimeMillis();
 		logger.warn("Searching and connecting similar items of all agents in the graph:")
 		def newConnectionsCreated = 0;
 		agentList.each {agentRef ->
-        String method = "searchAndConnect"
         def args = [similarityThreshold,maxReachDistance];
+        Method msg = new Method("searchAndConnect", args);
+        agentRef.tell(msg,getSelf());
 		}
 		logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
