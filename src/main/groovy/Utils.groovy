@@ -13,9 +13,9 @@ import com.datastax.driver.dse.graph.Vertex
 
 import org.codehaus.groovy.runtime.StackTraceUtils
 
-import info.debatty.java.stringsimilarity.Cosine
-
 import static org.junit.Assert.*
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Utils {
     static Logger logger = LoggerFactory.getLogger('Utils.class');
@@ -54,6 +54,14 @@ public class Utils {
 
     public static String getStatement(GraphResultSet rs) {
       String executionStatement = rs.getExecutionInfo().getStatement().toString();
+      return executionStatement;
+    }
+
+    public static String getStatement(GraphResultSet rs, Map params) {
+      String executionStatement = rs.getExecutionInfo().getStatement().toString();
+      params.each { labelName,labelValue ->
+        executionStatement = executionStatement.replaceAll(labelName.toString(), labelValue.toString());
+      }
       return executionStatement;
     }
 
@@ -108,6 +116,7 @@ public class Utils {
     }
 
     public static boolean convertToDotNotation(Object path, String label, String dotFilePath) {
+        
         def dotFile = new File(dotFilePath);
         dotFile.delete()
         // print heading
@@ -187,11 +196,30 @@ public class Utils {
         return map;
     }
 
-    public static Double cosineSimilarity(String left, String right) {
-        Cosine cosine = new Cosine(2);
-        def similarity =  cosine.similarity(left, right);
-        logger.info("Calculated cosine similarity between {} and {}: {}", left,right,similarity)
-        return similarity;
+    public static double cosineSimilarity(String left, String right) {
+      def arrayLeft = (String[]) left;
+      arrayLeft = arrayLeft.collect {it.toInteger()}
+      def arrayRight = (String[]) right;  
+      arrayRight = arrayRight.collect {it.toInteger()}
+
+      double dotProduct = 0.0;
+      double normA = 0.0;
+      double normB = 0.0;
+      for (int i = 0; i < arrayLeft.size(); i++) {
+          dotProduct += arrayLeft[i] * arrayRight[i];
+          normA += Math.pow(arrayLeft[i], 2)+0.0000000001;
+          normB += Math.pow(arrayRight[i], 2)+0.0000000001;
+      }
+      def similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+      logger.info("Calculated cosine similarity between {} and {}: {}", left,right,similarity)
+      return similarity
+    }
+
+    public static String createEvent(Map eventProperties) {
+      ObjectMapper mapper = new ObjectMapper();
+      String json = mapper.writeValueAsString(eventProperties);
+      logger.info("Converted object {} to JSON {}", eventProperties, json);
+      return json;
     }
 
 }

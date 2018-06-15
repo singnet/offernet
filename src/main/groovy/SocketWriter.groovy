@@ -21,10 +21,7 @@ public class SocketWriter extends UntypedAbstractActor {
   }
 
   public void onReceive(Object message) throws Exception {
-    if (message instanceof Event) {
-      this.sendSocket(message);
-      logger.info("received event {} from {}", message, getSender());
-    } else if (message instanceof Method) {
+    if (message instanceof Method) {
       logger.info("received Method message: {}",message.getMethodString())
       switch (message) {
         default: 
@@ -48,9 +45,9 @@ public class SocketWriter extends UntypedAbstractActor {
     logger.info("Created SocketWriter {}", s.toString());
   }
 
-  private writeSocket(Event event) {
+  private writeSocket(Object event) {
       OutputStreamWriter out = new OutputStreamWriter(s.getOutputStream(), StandardCharsets.UTF_8)
-      out.write(event.toJson());
-      logger.info("Wrote JSON string of an event {} to socket.", eventJson);
+      out.write(event);
+      logger.info("Wrote JSON string of an event {} to socket.", event);
     }
 }

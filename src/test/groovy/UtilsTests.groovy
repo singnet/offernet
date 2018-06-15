@@ -49,8 +49,10 @@ public class UtilsTests {
 
 		@Test
 		void calculateSimilarityTest() {
-			String value1 = "000000"
-			String value2 = "111111"
+//			String value1 = "000000"
+//			String value2 = "111111"
+			String value1 = "0111011001011100"
+			String value2 = "0111111010101000"
 			def d1 = Utils.calculateSimilarity(value1,value2);
 			assertNotNull(d1)
 			def agent = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
@@ -61,9 +63,9 @@ public class UtilsTests {
 			assertNotNull(item2)
 			def d2 = Utils.calculateSimilarity(item1,item2);
 			assertNotNull(d2)
-			def delta = 0.0001;
+			def delta = 0.00001;
 			assertEquals(d1,d2,delta);
-			assertEquals(0.0,d1,delta); // if the similarity calculation is 'cosine'
+			assertEquals(0.6666666666666666,d1,delta); // if the similarity calculation is 'cosine'
 		}
 
 }
