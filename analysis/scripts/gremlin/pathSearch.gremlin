@@ -1,0 +1,6 @@
+          g.V("~label":"work","community_id":1591539456,"member_id":1).as('source').repeat(
+                 __.outE('offers').inV().as('a').has(label,'item')                               // (1)
+                .bothE('similarity').has('similarity',gte(0.5))            // (2)
+                .bothV().as('b').where('a',neq('b'))                                              // (3)
+                .inE('demands').outV().has(label,'work')).until(simplePath().count().is(neq(0))).simplePath().path()
+
