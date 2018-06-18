@@ -7,7 +7,7 @@ High level goals of the programme are described below. These goals are further (
 1. [Computational framework](https://github.com/singnet/offernet/projects/3);
 1. [Conceptual framework](https://github.com/singnet/offernet/projects/2);
 1. [Simulation modelling](https://github.com/singnet/offernet/projects/1);
-1. [Analysis](https://github.com/singnet/offernet/projects/4);
+1. [Analysis engine](https://github.com/singnet/offernet/projects/4);
 1. [Documentation](https://github.com/singnet/offernet/projects/5);
 1. [Integration with SingularityNET prototype](https://github.com/singnet/offernet/projects/6);
 
