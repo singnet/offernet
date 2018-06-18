@@ -60,9 +60,9 @@ public class OfferNet implements AutoCloseable {
             logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
             if (Parameters.parameters.visualizationEngine) {
-              openVisualizationWindow();
-              Thread.sleep(2000);
               socketWriter = createSocketWriter();
+//              Thread.sleep(2000);
+//              openVisualizationWindow();
             }
 
         } catch (FileNotFoundException e) {
@@ -79,7 +79,7 @@ public class OfferNet implements AutoCloseable {
     private void openVisualizationWindow() {
       String visualizationPagePath = Parameters.parameters.visualizationPagePath;
       String path = System.getProperty("user.dir")+"/"+visualizationPagePath;
-      def builder = new ProcessBuilder( "sh", "firefox", path)
+      def builder = new ProcessBuilder( "firefox", path)
       builder.start()
       logger.info("Opened browser with visualization page: {}", path)
     }

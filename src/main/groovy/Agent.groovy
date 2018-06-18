@@ -92,6 +92,7 @@ public class Agent extends UntypedAbstractActor {
 
         logger.warn("Created a new {} with id {} and agentId {}", vertex.getLabel(), vertex.getId(), vertex.getProperty("agentId").getValue());
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        
 	}
 
   /**
@@ -343,6 +344,7 @@ public class Agent extends UntypedAbstractActor {
       return items;
     }
 
+
     private Integer searchAndConnect(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
       logger.warn('Search and connect all items of agent {} with its known agents at similarity {}', this.id(), maxReachDistance)
@@ -357,6 +359,31 @@ public class Agent extends UntypedAbstractActor {
       logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return totalConnectionsCreated;
     }
+
+    /* 
+    * maybe search and connect can be done more efficient by allowing to connect not only items similar to the one
+    * from which a search has bee initiated, but also all other along the way
+    * yet this requires to check if items of the same agent are getting connected
+    * on the other hand it is not clear whether that would be beneficial or not in the long term
+    * (yet it prevents current tests from passing..) 
+    */
+    private Integer searchAndConnect2(Object similarityThreshold, Integer maxReachDistance) {
+      def start = System.currentTimeMillis();
+      logger.warn('Search and connect items with similarity {} and distance {} from the perspective of agent {}', similarityThreshold, maxReachDistance, this.id())
+      def totalConnectionsCreated = 0;
+      def itemsToProcess = this.itemsOfKnownAgents(maxReachDistance);
+      itemsToProcess.addAll(this.allItems());
+      for (def i = 0; i<itemsToProcess.size();i++) {
+        def item = itemsToProcess.get(i)
+        def similarityEdges = this.connectAllSimilar(item,itemsToProcess.drop(i+1),similarityThreshold);
+        logger.warn("Found and connected {} similar items to the item {}",similarityEdges.size(),item.getId())
+        totalConnectionsCreated=totalConnectionsCreated+similarityEdges.size();
+      }
+      logger.warn("Created {} new similarity connections for agent {}", totalConnectionsCreated, this.id())
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      return totalConnectionsCreated;
+    }
+
 
     private List<Vertex> itemsOfKnownAgents(Integer maxReachDistance) {
       def start = System.currentTimeMillis()
@@ -500,7 +527,7 @@ public class Agent extends UntypedAbstractActor {
   I think the problem again is with types when getting 'similarity' property --
   Read DSE Graph tutorial before going further.
   */
-  private List<GraphNode> pathSearch(Vertex work, Integer cutoffValue, Integer similarityConstraint) {
+  private List<GraphNode> pathSearch(Vertex work, Integer cutoffValue, Object similarityConstraint) {
       def start = System.currentTimeMillis()
       Map params = new HashMap();
       params.put("thisWork", work.getId());
@@ -512,9 +539,9 @@ public class Agent extends UntypedAbstractActor {
       String query="""
           g.V(thisWork).as('source').repeat(
                  __.outE('offers').inV().as('a').has(label,'item')                               // (1)
-                .bothE('similarity').has('similarity',gte(similarityConstraint))            // (2)
+                .bothE('similarity').has('similarity',gte(0.5))            // (2)
                 .bothV().as('b').where('a',neq('b'))                                              // (3)
-                .inE('demands').outV().has(label,'work')).times(cutoffValue).range(0,1).simplePath().path()   // (4)
+                .inE('demands').outV().has(label,'work')).until(simplePath().count().is(neq(0))).simplePath().path()
       """
       /*
       (1) get the demand of the work as item
@@ -523,8 +550,9 @@ public class Agent extends UntypedAbstractActor {
       (4) get the item on the other side & get the work that has offers the item        
       */
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);
-
       GraphResultSet rs = session.executeGraph(s);
+      logger.info("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.info("With parameters: {}", params);
       def result = rs.one()
       logger.warn("Received result {}",result)
       List path=[]

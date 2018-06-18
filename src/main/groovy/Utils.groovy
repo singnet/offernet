@@ -219,7 +219,7 @@ public class Utils {
       ObjectMapper mapper = new ObjectMapper();
       String json = mapper.writeValueAsString(eventProperties);
       logger.info("Converted object {} to JSON {}", eventProperties, json);
-      return json;
+      return json+"\n";
     }
 
 }

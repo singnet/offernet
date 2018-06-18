@@ -47,22 +47,36 @@ public class DummySocketServer extends UntypedAbstractActor {
         logger = LoggerFactory.getLogger('DummySocketServer.class');
     }
 
-  	private startServer() {
-        server = new ServerSocket(Parameters.parameters.visualizationPort)
-      	logger.warn('Started Socket Server on port {}', Parameters.parameters.visualizationPort)
-          while(true) {
-              server.accept { socket ->
-                  socket.withStreams { input, output ->
-                      def reader = input.newReader()
-                      def buffer = reader.readLine()
-                      Map message = (Map) new JsonSlurper().parseText(buffer);
-                      logger.warn("Received message: {}",message)
-                      def classToRun = message.class;
-                      def data = message.data;
-                      logger.warn("Received data: {}",data)
-                  }
-              }
+    private startClient() {
+      String visualizationServer = InetAddress.getByName("visualization-server.host").getHostAddress(); 
+      def socket = new Socket(visualizationServer, Parameters.parameters.visualizationPort)
+      logger.info("connected to server from client with socket: {}", socket)
+      BufferedReader bin =new BufferedReader(new InputStreamReader(socket.getInputStream()));        
+      while(true) {
+        def buffer = bin.readLine()
+        //def message = (Map) new JsonSlurper().parseText(buffer);
+        logger.warn("Received buffer {}", buffer)
+      }
+    }
+
+    private startServer() {
+      server = new ServerSocket(Parameters.parameters.visualizationPort)
+      logger.info('Started Socket Server {}', server)
+
+      while(true) {
+        server.accept { socket ->
+          logger.info("processing new connection...")
+          socket.withStreams { input, output ->
+            def reader = input.newReader()
+            def buffer = reader.readLine()
+            logger.info("server received: $buffer")
+            output << buffer+'\n'
+            logger.info("end echoed: $buffer")
+          }
+          logger.info("processing/thread complete.")
         }
-  	}
+      }
+    }
+    
 }
 

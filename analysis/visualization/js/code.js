@@ -1,3 +1,8 @@
+var socket = io.connect('http://'+document.location.hostname+':7777');
+socket.on("event",function (message) {
+    console.log(message);
+});
+
 fetch('data/test_graph.json', {mode: 'no-cors'})
   .then(function(res) {
     return res.json()
@@ -10,8 +15,11 @@ fetch('data/test_graph.json', {mode: 'no-cors'})
       autounselectify: true,
 
       layout: {
-        name: 'cose-bilkent',
-        animate: false
+        name: 'cola',
+        fit: true,
+        animate: true,
+        refresh: 2,
+        maxSimulationTime: 1000
       },
 
       style: [

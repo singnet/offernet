@@ -38,10 +38,11 @@ public class SocketWriterTests {
 	@Test
 	void createSocketWriterTest() {
 		ActorRef socketServer = system.actorOf(DummySocketServer.props(),"DummySocketServer");
-		def msg = new Method("startServer",[])
-		socketServer.tell(msg,ActorRef.noSender());
 		Thread.sleep(1000)
-    	def socketWriter = TestActorRef.create(system, SocketWriter.props()).underlyingActor();
+    	def socketWriter = system.actorOf(SocketWriter.props(),"SocketWriter");
+		def msg = new Method("startServer",[])
+		socketWriter.tell(msg,ActorRef.noSender());
+		Thread.sleep(1000);
     	assertNotNull(socketWriter);
     	logger.info("created a new SocketWriter actor {}", socketWriter);
 	}
@@ -65,17 +66,60 @@ public class SocketWriterTests {
 
 	@Test
 	void writeSocketTest() {
-		ActorRef socketServer = system.actorOf(DummySocketServer.props(),"DummySocketServer");
+    	def socketWriter = system.actorOf(SocketWriter.props(),"SocketWriter");
+    	/*
 		def msg = new Method("startServer",[])
-		socketServer.tell(msg,ActorRef.noSender());
-		Thread.sleep(1000)
+		socketWriter.tell(msg,ActorRef.noSender());
+		Thread.sleep(1000);
+    	assertNotNull(socketWriter);
+    	logger.info("created a new SocketWriter actor {}", socketWriter);
+		*/
+		def socketClient = system.actorOf(DummySocketServer.props(),"SocketClient");
+		def msg = new Method("startServer",[])
+		socketClient.tell(msg,ActorRef.noSender());
+		Thread.sleep(1000);
+    	assertNotNull(socketClient);
+	
 		String agentUUID = UUID.randomUUID().toString()
 		def agent = TestActorRef.create(system, Agent.props(on.session, agentUUID),agentUUID).underlyingActor();
-		def socketWriterRef = system.actorOf(SocketWriter.props(),"SocketWriter");
 		def eventProperties = [eventName: "newAgent",agentId: agent.id(),vertexId: agent.vertexId().toString()]
 		def event = Utils.createEvent(eventProperties)
 		assertNotNull(event)
 		assertTrue(event instanceof String)
 		logger.info("Created event object {}", event);
+
+		for (int i=0;i<20;i++) {
+			msg = new Method("writeSocket",[event])
+			socketWriter.tell(msg,ActorRef.noSender());
+			Thread.sleep(200);
+			logger.info("sent a message for writing socket no {}",i)
+		}
+	}
+
+	@Test
+	void writeSocketTestToWebPage() {
+		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+		def socketWriter = system.actorOf(SocketWriter.props(),"SocketWriter");
+		def msg = new Method("startServer",[])
+		socketWriter.tell(msg,ActorRef.noSender());
+		Thread.sleep(1000);
+    	assertNotNull(socketWriter);
+    	logger.info("created a new SocketWriter actor {}", socketWriter);
+
+    	//sim.on.openVisualizationWindow();
+    	//Thread.sleep(1000);
+
+		String agentUUID = UUID.randomUUID().toString()
+		def agent = TestActorRef.create(system, Agent.props(on.session, agentUUID),agentUUID).underlyingActor();
+		def eventProperties = [eventName: "newAgent",agentId: agent.id(),vertexId: agent.vertexId().toString()]
+		def event = Utils.createEvent(eventProperties)
+		assertNotNull(event)
+		assertTrue(event instanceof String)
+		logger.info("Created event object {}", event);
+
+		msg = new Method("writeSocket",[event])
+		socketWriter.tell(msg,ActorRef.noSender());
+
+
 	}
 }

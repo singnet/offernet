@@ -372,4 +372,29 @@ public class AgentTests {
 
 	}
 
+
+	/*
+	@Test 
+	void pathSearchTest() {
+		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+		assertNotNull(sim);
+		sim.on.flushVertices();
+
+		def agents = sim.createAgentLine(5);
+		def agent1 = agents.get(0)
+		assertNotNull(agent1)
+		sim.addRandomWorksToAgents(6)
+		def chains = [Utils.createChain(3)]
+		sim.addChainToNetwork(chains);
+
+
+
+	    Method msg = new Method("searchPath", new ArrayList(){{add(linkName);}});
+	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+	   	Future<Object> future = Patterns.ask(actorOneRef, msg, timeout);
+  		List edges = (List<Edge>) Await.result(future, timeout.duration());
+  		assertTrue(edges.size() == 0);
+	}
+	*/
+
 }

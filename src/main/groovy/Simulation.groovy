@@ -80,7 +80,6 @@ class Simulation extends UntypedAbstractActor {
     vertexIdToActorRefTable = new Hashtable<String,ActorRef>();
     actorRefToVertexIdTable = new Hashtable<ActorRef,String>();
     agentIdToActorRefTable = new Hashtable<String,ActorRef>();
-
 	}
 
 	/*
@@ -158,9 +157,7 @@ class Simulation extends UntypedAbstractActor {
     return agentsList;
   }
 
-  /* done until here */
-
-	private Integer connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) throws Throwable{
+	private void connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) throws Throwable{
 
 		def start = System.currentTimeMillis();
 		logger.warn("Searching and connecting similar items of all agents in the graph:")
@@ -171,9 +168,9 @@ class Simulation extends UntypedAbstractActor {
         agentRef.tell(msg,getSelf());
 		}
 		logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-		return newConnectionsCreated
 	}
+
+/* finished until here */
 
   private void createAgentNetworkFromNetworkXDataFile(String fileName) throws Throwable {
         FileInputStream inStream = new FileInputStream(fileName);

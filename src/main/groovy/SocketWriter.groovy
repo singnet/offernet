@@ -8,8 +8,12 @@ import akka.actor.UntypedAbstractActor;
 import akka.actor.Props;
 import akka.japi.Creator;
 
+import groovy.json.JsonSlurper
+import java.nio.charset.StandardCharsets
+
 public class SocketWriter extends UntypedAbstractActor {
-  Socket s;
+  ServerSocket server;
+  Logger logger;
 
   public static Props props() {
     return Props.create(new Creator<SocketWriter>() {
@@ -27,7 +31,7 @@ public class SocketWriter extends UntypedAbstractActor {
         default: 
           def args = message.args
           def reply = this."$message.name"(*args)
-          getSender().tell(reply,getSelf());
+          //getSender().tell(reply,getSelf());
           break;
       }
     } else if (message instanceof String) {
@@ -37,17 +41,42 @@ public class SocketWriter extends UntypedAbstractActor {
     }
   }
 
-
   private SocketWriter() {
-    Logger logger = LoggerFactory.getLogger('SocketWriter.class');
-    String visualizationServer = InetAddress.getByName("visualization-server.host").getHostAddress(); 
-    s = new Socket(visualizationServer, Parameters.parameters.visualizationPort);
-    logger.info("Created SocketWriter {}", s.toString());
+    logger = LoggerFactory.getLogger('SocketWriter.class');
+//    startServer();
+  }
+
+  private startServer() {
+    server = new ServerSocket(Parameters.parameters.visualizationPort)
+    logger.info('Started Socket Server {}', server)
+
+    while(true) {
+      server.accept { socket ->
+        logger.info("processing new connection...")
+        socket.withStreams { input, output ->
+          def reader = input.newReader()
+          def buffer = reader.readLine()
+          logger.info("server received: $buffer")
+          output << buffer+'\n'
+          logger.info("end echoed: $buffer")
+        }
+        logger.info("processing/thread complete.")
+      }
+    }
+
   }
 
   private writeSocket(Object event) {
-      OutputStreamWriter out = new OutputStreamWriter(s.getOutputStream(), StandardCharsets.UTF_8)
-      out.write(event);
+      String visualizationServer = InetAddress.getByName("visualization-server.host").getHostAddress(); 
+      logger.info("visualizationServer address is {}",visualizationServer)
+      def s = new Socket(visualizationServer, Parameters.parameters.visualizationPort);
+      s.withStreams { input, output ->
+        output << event
+        //def buffer = input.newReader().readLine()
+        //logger.info("response = $buffer")
+      }
       logger.info("Wrote JSON string of an event {} to socket.", event);
-    }
+  }
+
+      
 }
