@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Offer Network: concept and implementation</title>
+  <meta name="description" content="Offer Network: concept and implementation">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Offer Network: concept and implementation" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="singnet/offernet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Offer Network: concept and implementation" />
+  
+  
+  
+
+<meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
+
+
+<meta name="date" content="2018-06-18">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="computational-framework.html">
+<link rel="next" href="implementation.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">OfferNet documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="conceptual-framework.html"><a href="conceptual-framework.html"><i class="fa fa-check"></i><b>2</b> Conceptual framework</a><ul>
+<li class="chapter" data-level="2.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#open-problems-features-to-consider"><i class="fa fa-check"></i><b>2.1</b> Open problems / features to consider</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#representation-theory-of-value"><i class="fa fa-check"></i><b>2.1.1</b> Representation / theory of value</a></li>
+<li class="chapter" data-level="2.1.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#description-of-items-of-exchange"><i class="fa fa-check"></i><b>2.1.2</b> Description of items of exchange</a></li>
+<li class="chapter" data-level="2.1.3" data-path="conceptual-framework.html"><a href="conceptual-framework.html#similarity-measure"><i class="fa fa-check"></i><b>2.1.3</b> Similarity measure</a></li>
+<li class="chapter" data-level="2.1.4" data-path="conceptual-framework.html"><a href="conceptual-framework.html#matching-algorithm-and-search"><i class="fa fa-check"></i><b>2.1.4</b> Matching algorithm and search</a></li>
+<li class="chapter" data-level="2.1.5" data-path="conceptual-framework.html"><a href="conceptual-framework.html#incomplete-preferences-and-selection-for-relevance"><i class="fa fa-check"></i><b>2.1.5</b> Incomplete preferences and selection for relevance</a></li>
+<li class="chapter" data-level="2.1.6" data-path="conceptual-framework.html"><a href="conceptual-framework.html#human-machine-interface"><i class="fa fa-check"></i><b>2.1.6</b> Human-machine interface</a></li>
+<li class="chapter" data-level="2.1.7" data-path="conceptual-framework.html"><a href="conceptual-framework.html#centralization-decentralization"><i class="fa fa-check"></i><b>2.1.7</b> Centralization / decentralization</a></li>
+<li class="chapter" data-level="2.1.8" data-path="conceptual-framework.html"><a href="conceptual-framework.html#memory-learning-emergence-of-identities"><i class="fa fa-check"></i><b>2.1.8</b> Memory / learning: emergence of identities</a></li>
+<li class="chapter" data-level="2.1.9" data-path="conceptual-framework.html"><a href="conceptual-framework.html#storage-of-value-timed-exchanges"><i class="fa fa-check"></i><b>2.1.9</b> Storage of value / timed exchanges</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#conceptual-architecture"><i class="fa fa-check"></i><b>2.2</b> Conceptual Architecture</a></li>
+<li class="chapter" data-level="2.3" data-path="conceptual-framework.html"><a href="conceptual-framework.html#performance-measure"><i class="fa fa-check"></i><b>2.3</b> Performance measure</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#information-integration"><i class="fa fa-check"></i><b>2.3.1</b> Information integration</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="computational-framework.html"><a href="computational-framework.html"><i class="fa fa-check"></i><b>3</b> Computational framework</a><ul>
+<li class="chapter" data-level="3.1" data-path="computational-framework.html"><a href="computational-framework.html#actor-model-of-computation"><i class="fa fa-check"></i><b>3.1</b> Actor model of computation</a></li>
+<li class="chapter" data-level="3.2" data-path="computational-framework.html"><a href="computational-framework.html#graph-computing-framework"><i class="fa fa-check"></i><b>3.2</b> Graph computing framework</a></li>
+<li class="chapter" data-level="3.3" data-path="computational-framework.html"><a href="computational-framework.html#simulation-engine"><i class="fa fa-check"></i><b>3.3</b> Simulation engine</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="computational-framework.html"><a href="computational-framework.html#data-structures-and-objects"><i class="fa fa-check"></i><b>3.3.1</b> Data structures and objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="computational-framework.html"><a href="computational-framework.html#processes-gremlin-dsl-pseudo-code"><i class="fa fa-check"></i><b>3.3.2</b> Processes (Gremlin DSL pseudo-code)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="computational-framework.html"><a href="computational-framework.html#expected-dynamics-graphical-depiction"><i class="fa fa-check"></i><b>3.3.3</b> Expected dynamics (graphical depiction)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="computational-framework.html"><a href="computational-framework.html#notes"><i class="fa fa-check"></i><b>3.4</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="functional-description.html"><a href="functional-description.html"><i class="fa fa-check"></i><b>4</b> Functional Description</a><ul>
+<li class="chapter" data-level="4.1" data-path="functional-description.html"><a href="functional-description.html#agent-behaviour"><i class="fa fa-check"></i><b>4.1</b> Agent behaviour</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="functional-description.html"><a href="functional-description.html#scenario-an-agent-can-introduce-a-new-agent-to-the-network-by-befriending-it"><i class="fa fa-check"></i><b>4.1.1</b> Scenario: an agent can introduce a new agent to the network by ‘befriending’ it</a></li>
+<li class="chapter" data-level="4.1.2" data-path="functional-description.html"><a href="functional-description.html#scenario-an-agent-can-befriend-another-agent-existing-in-the-network"><i class="fa fa-check"></i><b>4.1.2</b> Scenario: an agent can ‘befriend’ another agent existing in the network</a></li>
+<li class="chapter" data-level="4.1.3" data-path="functional-description.html"><a href="functional-description.html#scenario-an-agent-can-post-an-offer-demand-pair-to-the-offernet"><i class="fa fa-check"></i><b>4.1.3</b> Scenario: an agent can post an {offer-demand} pair to the OfferNet</a></li>
+<li class="chapter" data-level="4.1.4" data-path="functional-description.html"><a href="functional-description.html#scenario-outline-an-agent-can-access-all-posted-offers-and-demands-by-traversing-its-social-network"><i class="fa fa-check"></i><b>4.1.4</b> Scenario Outline: an agent can access all posted offers and demands by traversing its social network</a><ul>
+<li class="chapter" data-level="4.1.4.1" data-path="functional-description.html"><a href="functional-description.html#example-1"><i class="fa fa-check"></i><b>4.1.4.1</b> Example 1</a></li>
+<li class="chapter" data-level="4.1.4.2" data-path="functional-description.html"><a href="functional-description.html#example-2"><i class="fa fa-check"></i><b>4.1.4.2</b> Example 2</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="implementation.html"><a href="implementation.html"><i class="fa fa-check"></i><b>5</b> Implementation</a><ul>
+<li class="chapter" data-level="5.1" data-path="implementation.html"><a href="implementation.html#plans-goals-phases"><i class="fa fa-check"></i><b>5.1</b> Plans, goals &amp; phases</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="implementation.html"><a href="implementation.html#goals"><i class="fa fa-check"></i><b>5.1.1</b> Goals</a></li>
+<li class="chapter" data-level="5.1.2" data-path="implementation.html"><a href="implementation.html#phases"><i class="fa fa-check"></i><b>5.1.2</b> Phases</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="implementation.html"><a href="implementation.html#simulation-modelling"><i class="fa fa-check"></i><b>5.2</b> Simulation modelling</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="implementation.html"><a href="implementation.html#compare-decentralized-and-centralized-search"><i class="fa fa-check"></i><b>5.2.1</b> Compare decentralized and centralized search</a><ul>
+<li class="chapter" data-level="5.2.1.1" data-path="implementation.html"><a href="implementation.html#definitions"><i class="fa fa-check"></i><b>5.2.1.1</b> Definitions</a></li>
+<li class="chapter" data-level="5.2.1.2" data-path="implementation.html"><a href="implementation.html#research-question"><i class="fa fa-check"></i><b>5.2.1.2</b> Research question</a></li>
+<li class="chapter" data-level="5.2.1.3" data-path="implementation.html"><a href="implementation.html#set-up"><i class="fa fa-check"></i><b>5.2.1.3</b> Set-up</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2.2" data-path="implementation.html"><a href="implementation.html#design-and-demonstrate-learning-capabilities-of-the-network"><i class="fa fa-check"></i><b>5.2.2</b> Design and demonstrate learning capabilities of the network</a></li>
+<li class="chapter" data-level="5.2.3" data-path="implementation.html"><a href="implementation.html#complex-barter-transactions-on-top-of-monetary-economy"><i class="fa fa-check"></i><b>5.2.3</b> Complex barter transactions on top of monetary economy</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="implementation.html"><a href="implementation.html#implementation-and-configuration-reference"><i class="fa fa-check"></i><b>5.3</b> Implementation and Configuration Reference</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="implementation.html"><a href="implementation.html#description-of-items-of-exchange-implementation"><i class="fa fa-check"></i><b>5.3.1</b> Description of items of exchange (implementation)</a></li>
+<li class="chapter" data-level="5.3.2" data-path="implementation.html"><a href="implementation.html#similarity-measure-implementation"><i class="fa fa-check"></i><b>5.3.2</b> Similarity measure (implementation)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Offer Network: concept and implementation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functional-description" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Functional Description</h1>
+<p>Functional description of the software is automatically generated from behavioural test suite (latest build report available is <a href="../cucumber-html-reports/overview-features.html">here</a>). Every behaviour described below is already implemented and working. Note, therefore, that the aim of this section is to describe already <strong>implemented</strong> functionality, contrary to planned functionality, described elsewhere – e.g. <a href="conceptual-framework.html#conceptual-framework">Conceptual Framework</a>. Therefore #2, the contents of this section gets augmented every time the new behaviour is implemented and tested – so evolves in parallel with the <a href="https://github.com/singnet/offernet">codebase</a>.</p>
+<div id="agent-behaviour" class="section level2">
+<h2><span class="header-section-number">4.1</span> Agent behaviour</h2>
+<p>Agents can interact with the graph structure of OfferNet by issuing semantically constrained graph traversals which query or mutate the graph as needed. These define the API of the OfferNet graph.</p>
+<div id="scenario-an-agent-can-introduce-a-new-agent-to-the-network-by-befriending-it" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Scenario: an agent can introduce a new agent to the network by ‘befriending’ it</h3>
+<p>The only way for the OfferNet to grow in a decentralized manner (i.e. without central controlling repository) is for new agents to get introduced to the network via old agent’s recommendation.</p>
+<ul>
+<li><p>Given : Agent “AgentOne” is created on the OfferNet</p></li>
+<li><p>And : Agent “AgentTwo” does not exist on the OfferNet</p></li>
+<li><p>When : Agent “AgentOne” befriends Agent “AgentTwo”</p></li>
+<li><p>Then : Agent “AgentTwo” exists on the OfferNet</p></li>
+<li><p>Then : there is “knows” link between “AgentOne” and “AgentTwo”</p></li>
+<li><p>And : there is no “knows” link between “AgentTwo” and “AgentOne”</p></li>
+</ul>
+</div>
+<div id="scenario-an-agent-can-befriend-another-agent-existing-in-the-network" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Scenario: an agent can ‘befriend’ another agent existing in the network</h3>
+<p>OfferNet is a social network of Agents. Each agent has an ability to initiate creation of ‘knows’ link to another agent existing in the network. So if two unconnected agents exist on the network and one of them knows the identity of the other, then the first one can initiate creation of ‘knows’ link to another in the underlying graph which should result in the appropriate relation between them. Note that the ‘knows’ relation is not reciprocal.</p>
+<ul>
+<li><p>Given : Agent “AgentOne” is created on the OfferNet</p></li>
+<li><p>And : Agent “AgentTwo” is created on the OfferNet</p></li>
+<li><p>And : there is no “knows” link between “AgentOne” and “AgentTwo”</p></li>
+<li><p>And : there is no “knows” link between “AgentTwo” and “AgentOne”</p></li>
+<li><p>When : Agent “AgentOne” befriends Agent “AgentTwo”</p></li>
+<li><p>Then : there is “knows” link between “AgentOne” and “AgentTwo”</p></li>
+<li><p>And : there is no “knows” link between “AgentTwo” and “AgentOne”</p></li>
+</ul>
+</div>
+<div id="scenario-an-agent-can-post-an-offer-demand-pair-to-the-offernet" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> Scenario: an agent can post an {offer-demand} pair to the OfferNet</h3>
+<p>Agents in an Offer Network engage in exchange by publishing an offer-demand pairs, or ’work’s. See explanation of the Offer Network structure in <a href="computational-framework.html#data-structures-and-objects">Data structures and objects</a>.</p>
+<ul>
+<li><p>Given : Agent “AgentOne” is created on the OfferNet</p></li>
+<li><p>When : Agent “AgentOne” posts a pair of offer “offer-1” and demand of “demand-1”</p></li>
+<li><p>Then : Agent “AgentOne” owns a work which “demands” item “demand-1”</p></li>
+<li><p>And : Agent “AgentOne” owns a work which “offers” item “offer-1”</p></li>
+</ul>
+</div>
+<div id="scenario-outline-an-agent-can-access-all-posted-offers-and-demands-by-traversing-its-social-network" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> Scenario Outline: an agent can access all posted offers and demands by traversing its social network</h3>
+<p>In a distributed system where there is no global observer which has the registry of all agents and their items of offer and demand. In this case, the only way for an agent to access items of other agents is to traverse its social network (to a given depth) and ask all friends of friends to send information about their items. Since the OfferNet is fully connected (and hopefully is a small world network) the whole network can be scanned this way, depending on availability of time and resource constrains of an agent which initiates the search. The expected number of items that an agent has to find in its social network is calculated as follows: <span class="math inline">\((numberOfAgents -1) * pairsPerAgent * 2\)</span> (as every pair holds two items: one demand and one offer..).</p>
+<div id="example-1" class="section level4">
+<h4><span class="header-section-number">4.1.4.1</span> Example 1</h4>
+<ul>
+<li><p>Given : there exists an sequentially connected line of ‘4’ agents</p></li>
+<li><p>And : all agents have posted ‘1’ offer-demand pair each</p></li>
+<li><p>When : first agent initiates search of ‘3’ depth</p></li>
+<li><p>Then : agent finds ‘6’ demands and offers in its social network</p></li>
+</ul>
+</div>
+<div id="example-2" class="section level4">
+<h4><span class="header-section-number">4.1.4.2</span> Example 2</h4>
+<ul>
+<li><p>Given : there exists an sequentially connected line of ‘20’ agents</p></li>
+<li><p>And : all agents have posted ‘2’ offer-demand pair each</p></li>
+<li><p>When : first agent initiates search of ‘19’ depth</p></li>
+<li><p>Then : agent finds ‘76’ demands and offers in its social network</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="computational-framework.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="implementation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

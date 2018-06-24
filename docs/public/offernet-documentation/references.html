@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Offer Network: concept and implementation</title>
+  <meta name="description" content="Offer Network: concept and implementation">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Offer Network: concept and implementation" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="singnet/offernet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Offer Network: concept and implementation" />
+  
+  
+  
+
+<meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
+
+
+<meta name="date" content="2018-06-18">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="implementation.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">OfferNet documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="conceptual-framework.html"><a href="conceptual-framework.html"><i class="fa fa-check"></i><b>2</b> Conceptual framework</a><ul>
+<li class="chapter" data-level="2.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#open-problems-features-to-consider"><i class="fa fa-check"></i><b>2.1</b> Open problems / features to consider</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#representation-theory-of-value"><i class="fa fa-check"></i><b>2.1.1</b> Representation / theory of value</a></li>
+<li class="chapter" data-level="2.1.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#description-of-items-of-exchange"><i class="fa fa-check"></i><b>2.1.2</b> Description of items of exchange</a></li>
+<li class="chapter" data-level="2.1.3" data-path="conceptual-framework.html"><a href="conceptual-framework.html#similarity-measure"><i class="fa fa-check"></i><b>2.1.3</b> Similarity measure</a></li>
+<li class="chapter" data-level="2.1.4" data-path="conceptual-framework.html"><a href="conceptual-framework.html#matching-algorithm-and-search"><i class="fa fa-check"></i><b>2.1.4</b> Matching algorithm and search</a></li>
+<li class="chapter" data-level="2.1.5" data-path="conceptual-framework.html"><a href="conceptual-framework.html#incomplete-preferences-and-selection-for-relevance"><i class="fa fa-check"></i><b>2.1.5</b> Incomplete preferences and selection for relevance</a></li>
+<li class="chapter" data-level="2.1.6" data-path="conceptual-framework.html"><a href="conceptual-framework.html#human-machine-interface"><i class="fa fa-check"></i><b>2.1.6</b> Human-machine interface</a></li>
+<li class="chapter" data-level="2.1.7" data-path="conceptual-framework.html"><a href="conceptual-framework.html#centralization-decentralization"><i class="fa fa-check"></i><b>2.1.7</b> Centralization / decentralization</a></li>
+<li class="chapter" data-level="2.1.8" data-path="conceptual-framework.html"><a href="conceptual-framework.html#memory-learning-emergence-of-identities"><i class="fa fa-check"></i><b>2.1.8</b> Memory / learning: emergence of identities</a></li>
+<li class="chapter" data-level="2.1.9" data-path="conceptual-framework.html"><a href="conceptual-framework.html#storage-of-value-timed-exchanges"><i class="fa fa-check"></i><b>2.1.9</b> Storage of value / timed exchanges</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="conceptual-framework.html"><a href="conceptual-framework.html#conceptual-architecture"><i class="fa fa-check"></i><b>2.2</b> Conceptual Architecture</a></li>
+<li class="chapter" data-level="2.3" data-path="conceptual-framework.html"><a href="conceptual-framework.html#performance-measure"><i class="fa fa-check"></i><b>2.3</b> Performance measure</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="conceptual-framework.html"><a href="conceptual-framework.html#information-integration"><i class="fa fa-check"></i><b>2.3.1</b> Information integration</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="computational-framework.html"><a href="computational-framework.html"><i class="fa fa-check"></i><b>3</b> Computational framework</a><ul>
+<li class="chapter" data-level="3.1" data-path="computational-framework.html"><a href="computational-framework.html#actor-model-of-computation"><i class="fa fa-check"></i><b>3.1</b> Actor model of computation</a></li>
+<li class="chapter" data-level="3.2" data-path="computational-framework.html"><a href="computational-framework.html#graph-computing-framework"><i class="fa fa-check"></i><b>3.2</b> Graph computing framework</a></li>
+<li class="chapter" data-level="3.3" data-path="computational-framework.html"><a href="computational-framework.html#simulation-engine"><i class="fa fa-check"></i><b>3.3</b> Simulation engine</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="computational-framework.html"><a href="computational-framework.html#data-structures-and-objects"><i class="fa fa-check"></i><b>3.3.1</b> Data structures and objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="computational-framework.html"><a href="computational-framework.html#processes-gremlin-dsl-pseudo-code"><i class="fa fa-check"></i><b>3.3.2</b> Processes (Gremlin DSL pseudo-code)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="computational-framework.html"><a href="computational-framework.html#expected-dynamics-graphical-depiction"><i class="fa fa-check"></i><b>3.3.3</b> Expected dynamics (graphical depiction)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="computational-framework.html"><a href="computational-framework.html#notes"><i class="fa fa-check"></i><b>3.4</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="functional-description.html"><a href="functional-description.html"><i class="fa fa-check"></i><b>4</b> Functional Description</a><ul>
+<li class="chapter" data-level="4.1" data-path="functional-description.html"><a href="functional-description.html#agent-behaviour"><i class="fa fa-check"></i><b>4.1</b> Agent behaviour</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="functional-description.html"><a href="functional-description.html#scenario-an-agent-can-introduce-a-new-agent-to-the-network-by-befriending-it"><i class="fa fa-check"></i><b>4.1.1</b> Scenario: an agent can introduce a new agent to the network by ‘befriending’ it</a></li>
+<li class="chapter" data-level="4.1.2" data-path="functional-description.html"><a href="functional-description.html#scenario-an-agent-can-befriend-another-agent-existing-in-the-network"><i class="fa fa-check"></i><b>4.1.2</b> Scenario: an agent can ‘befriend’ another agent existing in the network</a></li>
+<li class="chapter" data-level="4.1.3" data-path="functional-description.html"><a href="functional-description.html#scenario-an-agent-can-post-an-offer-demand-pair-to-the-offernet"><i class="fa fa-check"></i><b>4.1.3</b> Scenario: an agent can post an {offer-demand} pair to the OfferNet</a></li>
+<li class="chapter" data-level="4.1.4" data-path="functional-description.html"><a href="functional-description.html#scenario-outline-an-agent-can-access-all-posted-offers-and-demands-by-traversing-its-social-network"><i class="fa fa-check"></i><b>4.1.4</b> Scenario Outline: an agent can access all posted offers and demands by traversing its social network</a><ul>
+<li class="chapter" data-level="4.1.4.1" data-path="functional-description.html"><a href="functional-description.html#example-1"><i class="fa fa-check"></i><b>4.1.4.1</b> Example 1</a></li>
+<li class="chapter" data-level="4.1.4.2" data-path="functional-description.html"><a href="functional-description.html#example-2"><i class="fa fa-check"></i><b>4.1.4.2</b> Example 2</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="implementation.html"><a href="implementation.html"><i class="fa fa-check"></i><b>5</b> Implementation</a><ul>
+<li class="chapter" data-level="5.1" data-path="implementation.html"><a href="implementation.html#plans-goals-phases"><i class="fa fa-check"></i><b>5.1</b> Plans, goals &amp; phases</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="implementation.html"><a href="implementation.html#goals"><i class="fa fa-check"></i><b>5.1.1</b> Goals</a></li>
+<li class="chapter" data-level="5.1.2" data-path="implementation.html"><a href="implementation.html#phases"><i class="fa fa-check"></i><b>5.1.2</b> Phases</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="implementation.html"><a href="implementation.html#simulation-modelling"><i class="fa fa-check"></i><b>5.2</b> Simulation modelling</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="implementation.html"><a href="implementation.html#compare-decentralized-and-centralized-search"><i class="fa fa-check"></i><b>5.2.1</b> Compare decentralized and centralized search</a><ul>
+<li class="chapter" data-level="5.2.1.1" data-path="implementation.html"><a href="implementation.html#definitions"><i class="fa fa-check"></i><b>5.2.1.1</b> Definitions</a></li>
+<li class="chapter" data-level="5.2.1.2" data-path="implementation.html"><a href="implementation.html#research-question"><i class="fa fa-check"></i><b>5.2.1.2</b> Research question</a></li>
+<li class="chapter" data-level="5.2.1.3" data-path="implementation.html"><a href="implementation.html#set-up"><i class="fa fa-check"></i><b>5.2.1.3</b> Set-up</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2.2" data-path="implementation.html"><a href="implementation.html#design-and-demonstrate-learning-capabilities-of-the-network"><i class="fa fa-check"></i><b>5.2.2</b> Design and demonstrate learning capabilities of the network</a></li>
+<li class="chapter" data-level="5.2.3" data-path="implementation.html"><a href="implementation.html#complex-barter-transactions-on-top-of-monetary-economy"><i class="fa fa-check"></i><b>5.2.3</b> Complex barter transactions on top of monetary economy</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="implementation.html"><a href="implementation.html#implementation-and-configuration-reference"><i class="fa fa-check"></i><b>5.3</b> Implementation and Configuration Reference</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="implementation.html"><a href="implementation.html#description-of-items-of-exchange-implementation"><i class="fa fa-check"></i><b>5.3.1</b> Description of items of exchange (implementation)</a></li>
+<li class="chapter" data-level="5.3.2" data-path="implementation.html"><a href="implementation.html#similarity-measure-implementation"><i class="fa fa-check"></i><b>5.3.2</b> Similarity measure (implementation)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Offer Network: concept and implementation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+
+<div id="refs" class="references">
+<div>
+<p>Agha, Gul A. 1986. <em>Actors: A Model of Concurrent Computation in Distributed Systems</em>. Mit Press.</p>
+</div>
+<div>
+<p>Ahmad, S., and J. Hawkins. 2015. “Properties of Sparse Distributed Representations and Their Application to Hierarchical Temporal Memory.” <em>ArXiv E-Prints</em>, March. <a href="http://adsabs.harvard.edu/abs/2015arXiv150307469A" class="uri">http://adsabs.harvard.edu/abs/2015arXiv150307469A</a>.</p>
+</div>
+<div>
+<p>Edelman, Gerald M., and Giulio Tononi. 2000. <em>A Universe of Consciousness: How Matter Becomes Imagination</em>. Basic Books.</p>
+</div>
+<div>
+<p>Goertzel, Ben. 2015a. “Matching Algorithm for Attention Offer Networks.”</p>
+</div>
+<div>
+<p>———. 2015b. “Beyond Money: Offer Networks, a Potential Infrastructure for a Post-Money Economy.” In <em>The End of the Beginning: Life, Society and Economy on the Brink of the Singularity</em>, edited by Ben Goertzel and Ted Goertzel, 1 edition, 522–54. Humanity+ Press.</p>
+</div>
+<div>
+<p>Goertzel, Zar. 2017. “Offer Networks Simulation and Dynamics.” Master’s thesis, Copenhagen. <a href="https://github.com/zariuq/offer-network-thesis/blob/master/Thesis/Zar_Thesis_Offer_Networks.pdf" class="uri">https://github.com/zariuq/offer-network-thesis/blob/master/Thesis/Zar_Thesis_Offer_Networks.pdf</a>.</p>
+</div>
+<div>
+<p>Hewitt, Carl. 1976. “Viewing Control Structures as Patterns of Passing Messages,” December. <a href="http://dspace.mit.edu/handle/1721.1/6272" class="uri">http://dspace.mit.edu/handle/1721.1/6272</a>.</p>
+</div>
+<div>
+<p>Hewitt, Carl, Peter Bishop, and Richard Steiger. 1973. “A Universal Modular ACTOR Formalism for Artificial Intelligence.” In <em>Proceedings of the 3rd International Joint Conference on Artificial Intelligence</em>, 235–45. IJCAI’73. San Francisco, CA, USA: Morgan Kaufmann Publishers Inc. <a href="http://dl.acm.org/citation.cfm?id=1624775.1624804" class="uri">http://dl.acm.org/citation.cfm?id=1624775.1624804</a>.</p>
+</div>
+<div>
+<p>McCune, Robert Ryan, Tim Weninger, and Greg Madey. 2015. “Thinking Like a Vertex: A Survey of Vertex-Centric Frameworks for Large-Scale Distributed Graph Processing.” <em>ACM Comput. Surv.</em> 48 (2): 25:1–25:39. <a href="https://doi.org/10.1145/2818185" class="uri">https://doi.org/10.1145/2818185</a>.</p>
+</div>
+<div>
+<p>Rodriguez, Marko. 2013. “On Graph Computing.” <em>Marko A. Rodriguez</em>. <a href="http://markorodriguez.com/2013/01/09/on-graph-computing/" class="uri">http://markorodriguez.com/2013/01/09/on-graph-computing/</a>.</p>
+</div>
+<div>
+<p>Rodriguez, Marko A. 2008. “Grammar-Based Random Walkers in Semantic Networks.” <em>Knowledge-Based Systems</em> 21 (7): 727–39. <a href="https://doi.org/10.1016/j.knosys.2008.03.030" class="uri">https://doi.org/10.1016/j.knosys.2008.03.030</a>.</p>
+</div>
+<div>
+<p>Rodriguez, Marko A., Marko. 2008. “A Collectively Generated Model of the World.” In <em>Collective Intelligence: Creating a Prosperous World at Peace</em>, edited by Tom Atlee, Yochai Benkler, Thomas Homer-Dixon, Pierre Levy, Thomas Malone, Rt Hon Paul Martin, Hassan Masum, Robert Steele, and Mark Tovey, 1st edition. Oakton, Va.: Earth Intelligence Network.</p>
+</div>
+<div>
+<p>Rodriguez, Marko A., and Peter Neubauer. 2010. “The Graph Traversal Pattern.” <em>arXiv:1004.1001 [Cs]</em>, April. <a href="http://arxiv.org/abs/1004.1001" class="uri">http://arxiv.org/abs/1004.1001</a>.</p>
+</div>
+<div>
+<p>Tononi, Giulio. 2004. “An Information Integration Theory of Consciousness.” <em>BMC Neuroscience</em> 5 (1): 42. <a href="https://doi.org/10.1186/1471-2202-5-42" class="uri">https://doi.org/10.1186/1471-2202-5-42</a>.</p>
+</div>
+<div>
+<p>Veitas, V., and D. Weinbaum. 2015. “Living Cognitive Society: A ’Digital’ World of Views.” <em>Submitted to: Technological Forecasting and Social Change</em>, October. <a href="https://vveitas.files.wordpress.com/2015/11/paper2.pdf" class="uri">https://vveitas.files.wordpress.com/2015/11/paper2.pdf</a>.</p>
+</div>
+<div>
+<p>Weinbaum (Weaver), David R. 2018. “Open-Ended Intelligence.” PhD Thesis, Brussels: Vrije Universiteit Brussel. <a href="https://www.academia.edu/36140514/Open-Ended_Intelligence_-_PhD_Thesis" class="uri">https://www.academia.edu/36140514/Open-Ended_Intelligence_-_PhD_Thesis</a>.</p>
+</div>
+<div>
+<p>Weinbaum (Weaver), David, and Viktoras Veitas. 2017. “Open Ended Intelligence: The Individuation of Intelligent Agents.” <em>Journal of Experimental &amp; Theoretical Artificial Intelligence</em> 29 (2): 371–96. <a href="https://doi.org/10.1080/0952813X.2016.1185748" class="uri">https://doi.org/10.1080/0952813X.2016.1185748</a>.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="implementation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
