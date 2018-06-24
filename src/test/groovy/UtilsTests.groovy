@@ -22,6 +22,8 @@ import akka.actor.ActorRef;
 import akka.testkit.TestActorRef
 import akka.testkit.JavaTestKit;
 
+import groovy.json.JsonSlurper;
+
 public class UtilsTests {
 		static private OfferNet on = new OfferNet().flushVertices();
 	    static private Logger logger;
@@ -68,4 +70,27 @@ public class UtilsTests {
 			assertEquals(0.6666666666666666,d1,delta); // if the similarity calculation is 'cosine'
 		}
 
+		@Test
+		void formatVertexLabelTest() {
+			def agent = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+			def agentId = agent.vertexId();
+			def agentLabel = Utils.formatVertexLabel(agentId);
+  		    def jsonSlurper = new JsonSlurper()
+	   		def fieldNames = jsonSlurper.parseText(agentId.toString());
+	   		def vertexLabel = fieldNames.get('~label')+':'+fieldNames.community_id+':'+fieldNames.member_id
+	   		assertTrue(vertexLabel == agentLabel)
+		}
+
+		@Test
+		void formatEdgeLabelTest() {
+			def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+			def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+			def edge = agent1.knowsAgent(agent2.vertexId())
+			def edgeId = edge.getId();
+			def edgeLabel = Utils.formatEdgeLabel(edgeId);
+  		    def jsonSlurper = new JsonSlurper()
+	   		def fieldNames = jsonSlurper.parseText(edgeId.toString());
+	   		def graphEdgeLabel = fieldNames.get('~local_id');
+	   		assertTrue(edgeLabel == graphEdgeLabel)
+		}
 }

@@ -97,7 +97,8 @@ class Simulation extends UntypedAbstractActor {
   }
 
   public ActorRef createAgentWithId(String agentId) {
-    def actorRef = getContext().actorOf(Agent.props(on.session,agentId),agentId);
+    //def actorRef = getContext().actorOf(Agent.props(on.session,agentId),agentId);
+    def actorRef = on.system.actorOf(Agent.props(on.session,agentId),agentId);
     def vertexId = this.getAgentVertexId(actorRef);
     vertexIdToActorRefTable.put(vertexId,actorRef);
     actorRefToVertexIdTable.put(actorRef,vertexId);

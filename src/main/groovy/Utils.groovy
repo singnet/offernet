@@ -17,6 +17,9 @@ import static org.junit.Assert.*
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import groovy.json.JsonOutput;
+import groovy.json.JsonSlurper;
+
 public class Utils {
     static Logger logger = LoggerFactory.getLogger('Utils.class');
 
@@ -215,11 +218,50 @@ public class Utils {
       return similarity
     }
 
-    public static String createEvent(Map eventProperties) {
-      ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(eventProperties);
-      logger.info("Converted object {} to JSON {}", eventProperties, json);
-      return json+"\n";
+    public static String createEvent(String eventType, Object object) {
+      logger.info("Got a call to format event {}: {}",eventType,object)
+      def json = [ eventType: eventType,
+                   data: []
+                 ]
+      switch(eventType) {
+        case "newVertex":
+          def id = formatVertexLabel(object.id)
+          json.data.add([
+            label: object.label,
+            id: id
+          ])
+          break;
+        case "newEdge":
+          def outVid = formatVertexLabel(object.outV)
+          def inVid = formatVertexLabel(object.inV)
+          def edgeId = formatEdgeLabel(object.id)
+          json.data.add([
+            label: object.label,
+            id: edgeId,
+            source: outVid,
+            target: inVid
+          ])
+        break;
+      }
+      def result = JsonOutput.toJson(json)
+      logger.info("Constructed event data structure: {}",result)
+      return result;
     }
 
+    public static String formatVertexLabel(Object nodeId) {
+      def jsonSlurper = new JsonSlurper()
+      logger.info("Parsing {} to json.",nodeId)
+      def fieldNames = jsonSlurper.parseText(nodeId.toString());
+      def vertexLabel = fieldNames.get('~label')+fieldNames.community_id+fieldNames.member_id
+      logger.info("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
+      return vertexLabel
+    }
+
+    public static String formatEdgeLabel(Object edgeId) {
+      def jsonSlurper = new JsonSlurper()
+      def fieldNames = jsonSlurper.parseText(edgeId.toString());
+      def edgeLabel = fieldNames.get('~local_id');
+      logger.info("Formatted vertex {} label as {}", edgeId.toString(),edgeLabel.toString())
+      return edgeLabel
+    }
 }

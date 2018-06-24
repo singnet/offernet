@@ -9,11 +9,19 @@ import akka.actor.Props;
 import akka.japi.Creator;
 
 import groovy.json.JsonSlurper
-import java.nio.charset.StandardCharsets
+import java.nio.charset.StandardCharsets;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+import java.io.*;
+
 
 public class SocketWriter extends UntypedAbstractActor {
   ServerSocket server;
   Logger logger;
+  Socket socket;
 
   public static Props props() {
     return Props.create(new Creator<SocketWriter>() {
@@ -46,37 +54,29 @@ public class SocketWriter extends UntypedAbstractActor {
 //    startServer();
   }
 
-  private startServer() {
-    server = new ServerSocket(Parameters.parameters.visualizationPort)
-    logger.info('Started Socket Server {}', server)
-
-    while(true) {
-      server.accept { socket ->
-        logger.info("processing new connection...")
-        socket.withStreams { input, output ->
-          def reader = input.newReader()
-          def buffer = reader.readLine()
-          logger.info("server received: $buffer")
-          output << buffer+'\n'
-          logger.info("end echoed: $buffer")
-        }
-        logger.info("processing/thread complete.")
+  private createSocket() {
+    try {
+      String serverName = InetAddress.getByName("visualization-server.host").getHostAddress(); 
+      int serverPort = Parameters.parameters.visualizationPort
+      this.socket = new Socket(serverName, serverPort);
+      Thread.sleep(100);
+      logger.info("Created a socket to ")
+      } catch (Exception e) {
+      logger.info("Server Closed..Something went Wrong..");
+          e.printStackTrace();
       }
+  }
+
+  private writeSocket(String event) {
+    logger.info("Writing event {} to socket {}",event,socket)
+    if (socket.isConnected()) {
+        socket.getOutputStream().write(event.getBytes("UTF-8"));
+        logger.info("Wrote event {} to socket {}", event, socket);
+        Thread.sleep(20)
+        socket.getOutputStream().flush();      
+    } else {
+      logger.info("Cannot send event {} --- socket {} disconnected", event, socket)
     }
-
   }
-
-  private writeSocket(Object event) {
-      String visualizationServer = InetAddress.getByName("visualization-server.host").getHostAddress(); 
-      logger.info("visualizationServer address is {}",visualizationServer)
-      def s = new Socket(visualizationServer, Parameters.parameters.visualizationPort);
-      s.withStreams { input, output ->
-        output << event
-        //def buffer = input.newReader().readLine()
-        //logger.info("response = $buffer")
-      }
-      logger.info("Wrote JSON string of an event {} to socket.", event);
-  }
-
-      
+   
 }

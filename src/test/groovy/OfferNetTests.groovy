@@ -8,6 +8,7 @@ import static org.junit.Assert.*
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
@@ -149,18 +150,7 @@ public class OfferNetTests {
 			assertNotNull(edge)
 		}
 
-		@Test
-		void createSocketWriterTest() {
-			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-			ActorRef socketServer = system.actorOf(DummySocketServer.props(),"DummySocketServer");
-			def msg = new Method("startServer",[])
-			socketServer.tell(msg,ActorRef.noSender());
-			Thread.sleep(1000)
-	    	def socketWriter = sim.on.createSocketWriter();
-    		assertNotNull(socketWriter);
-    		logger.info("created a new SocketWriter actor {}", socketWriter);
-		}
-
+		@Ignore
 		@Test
 		void openVisualizationWindowTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();

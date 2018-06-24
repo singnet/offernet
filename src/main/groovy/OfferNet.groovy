@@ -71,8 +71,9 @@ public class OfferNet implements AutoCloseable {
     }
 
     private Object createSocketWriter() {
-      ActorRef socketWriter = system.actorOf(SocketWriter.props(),"SocketWriter");
+      def socketWriter = system.actorOf(SocketWriter.props(),"SocketWriter");
       logger.info("created a new SocketWriter actor {}", socketWriter);
+      socketWriter.tell(new Method("createSocket",[]),ActorRef.noSender());
       return socketWriter;
     }
 

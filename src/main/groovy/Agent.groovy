@@ -17,10 +17,12 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import akka.actor.UntypedAbstractActor;
+import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.japi.Creator;
+import groovy.json.JsonSlurper;
 
-import java.util.UUID;
+//import java.util.UUID;
 
 public class Agent extends UntypedAbstractActor {
     private Vertex vertex;
@@ -76,7 +78,7 @@ public class Agent extends UntypedAbstractActor {
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('Agent.class');
 
-		    this.session= session;
+        this.session= session;
 
         Map params = new HashMap();
         params.put("labelValue", "agent");
@@ -92,8 +94,24 @@ public class Agent extends UntypedAbstractActor {
 
         logger.warn("Created a new {} with id {} and agentId {}", vertex.getLabel(), vertex.getId(), vertex.getProperty("agentId").getValue());
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-        
+
+        this.emitNewVertexEvent()
 	}
+
+  private emitNewVertexEvent() {
+      Map vertexProperties = [id:this.vertexId(),label:this.vertex.getLabel()]
+      def event = Utils.createEvent("newVertex",vertexProperties);
+      def socketWriter = getContext().actorSelection("/user/SocketWriter");
+      socketWriter.tell(new Method("writeSocket",[event]),ActorRef.noSender());
+  }
+
+  private emitNewEdgeEvent(Edge edge) {
+      Map edgeProperties = [id:edge.getId(),inV:edge.getInV(),outV: edge.getOutV(),label:edge.getLabel().toString()]
+      logger.info("edge properties are: {}",edgeProperties.toString());
+      def event = Utils.createEvent("newEdge",edgeProperties);
+      def socketWriter = getContext().actorSelection("/user/SocketWriter");
+      socketWriter.tell(new Method("writeSocket",[event]),ActorRef.noSender());
+  }
 
   /**
   * returns the agentId property on the vertex, which is the unique id (is also the actor name in akka system)
@@ -104,7 +122,7 @@ public class Agent extends UntypedAbstractActor {
   }
 
   /**
-  * returns the agentId property on the vertex, which is the unique id (is also the actor name in akka system)
+  * returns the agentId property on the vertex, which is the unique id in the graph
   */
   private Object vertexId() {
     return vertex.getId();
@@ -132,9 +150,12 @@ public class Agent extends UntypedAbstractActor {
 
         GraphResultSet rs = session.executeGraph(s);
         def edge = rs.one().asEdge();
+        //def jsonSlurper = new JsonSlurper()
+        //def jsonEdge = jsonSlurper.parseText(edge.toString())
         logger.info("Added knows edge {} to the network", edge);
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
+        emitNewEdgeEvent(edge);
         return edge;
     }
 
@@ -163,6 +184,8 @@ public class Agent extends UntypedAbstractActor {
         def edge = rs.one().asEdge();
         logger.info("Added knows edge {} to the network", edge);
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+
 
         return edge;
     }
