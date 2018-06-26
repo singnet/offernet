@@ -81,7 +81,7 @@ public class SocketWriterTests {
 		String agentUUID = UUID.randomUUID().toString()
 		def agent = TestActorRef.create(system, Agent.props(on.session, agentUUID),agentUUID).underlyingActor();
 		def eventProperties = [eventName: "newAgent",agentId: agent.id(),vertexId: agent.vertexId().toString()]
-		def event = Utils.createEvent("neAgent",eventProperties)
+		def event = Utils.createEvent("newAgent",eventProperties)
 		assertNotNull(event)
 		assertTrue(event instanceof String)
 		logger.info("Created event object {}", event);

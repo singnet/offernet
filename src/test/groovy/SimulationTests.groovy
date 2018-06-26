@@ -484,15 +484,15 @@ public class SimulationTests {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			sim.on.flushVertices();
 
-			sim.createAgentNetwork(10)
+			sim.createAgentNetwork(20)
 			def itemNo = sim.on.getIds("agent").size()
-			assertEquals(10,itemNo); // creates two items (demand and offer) when creating a random work;			
-			sim.addRandomWorksToAgents(10)
+			assertEquals(20,itemNo); // creates two items (demand and offer) when creating a random work;			
+			sim.addRandomWorksToAgents(20)
 			// since the above is asynchronous and works via messages, we have to wait some time until it does the job...
 			// it is a bit lousy as probably has to be implemented with futures...
 			sleep(2000)
 			itemNo = sim.on.getIds("item").size()
-			assertEquals(20,itemNo); // creates two items (demand and offer) when creating a random work;
+			assertEquals(40,itemNo); // creates two items (demand and offer) when creating a random work;
 		}
 
 }
