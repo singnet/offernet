@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">9.183s</div>
+<div class="counter">8.616s</div>
 <p>duration</p>
 </div>
 </td>
@@ -65,6 +65,9 @@
 </li>
 <li>
 <a href="#tab1">Tests</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
@@ -226,115 +229,149 @@
 </thead>
 <tr>
 <td class="success">addKnownDemandTest</td>
-<td>0.205s</td>
+<td>0.286s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">addKnownOfferTest</td>
-<td>0.142s</td>
+<td>0.205s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">addNewDemandTest</td>
-<td>0.241s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">addNewOfferTest</td>
-<td>0.209s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">agentKnowsAgentTest</td>
-<td>0.289s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">agentKnowsAgentViaMessageTest</td>
-<td>0.448s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">agentOwnsKnownWorkTest</td>
-<td>0.155s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">agentOwnsNewWorkTest</td>
-<td>0.300s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">allItemsTest</td>
 <td>0.201s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">addNewOfferTest</td>
+<td>0.277s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">agentKnowsAgentTest</td>
+<td>0.333s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">agentKnowsAgentViaMessageTest</td>
+<td>0.317s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">agentOwnsKnownWorkTest</td>
+<td>0.313s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">agentOwnsNewWorkTest</td>
+<td>0.243s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">allItemsTest</td>
+<td>0.301s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="failures">connectAllSimilarTest</td>
-<td>0.545s</td>
+<td>0.560s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="success">connectIfSimilarTest</td>
-<td>0.427s</td>
+<td>0.418s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">connectTest</td>
-<td>0.467s</td>
+<td>0.296s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAgentExistingVertexTest</td>
-<td>0.604s</td>
+<td>0.625s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAgentNewVertexTest</td>
-<td>0.216s</td>
+<td>0.186s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">existsSimilarityTest</td>
-<td>0.394s</td>
+<td>0.535s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getWorkItemsTest</td>
-<td>0.259s</td>
+<td>0.223s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getWorksTest</td>
-<td>0.302s</td>
+<td>0.335s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">idMessageTest</td>
-<td>0.270s</td>
+<td>0.151s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">idStaticTest</td>
-<td>0.996s</td>
+<td>0.260s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">itemsOfKnownAgentsTest</td>
-<td>1.080s</td>
+<td>1.125s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">reciprocalDistanceLinkTest</td>
-<td>0.476s</td>
+<td>0.529s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="failures">searchAndConnectTest</td>
-<td>0.957s</td>
+<td>0.897s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>java.net.UnknownHostException: visualization-server.host
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at java.net.InetAddress.getByName(InetAddress.java:1076)
+	at java_net_InetAddress$getByName.call(Unknown Source)
+	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
+	at sun.reflect.GeneratedMethodAccessor57.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
+	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
+	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
+	at akka.actor.Actor.aroundReceive(Actor.scala:517)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+</pre>
+</span>
 </div>
 </div>
 <div id="footer">
@@ -344,7 +381,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.6</a> at Jun 18, 2018 10:01:47 PM</p>
+<a href="http://www.gradle.org">Gradle 4.6</a> at Jun 24, 2018 2:05:34 PM</p>
 </div>
 </div>
 </body>
