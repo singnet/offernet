@@ -269,7 +269,7 @@ public class AgentBehaviorStepDefs {
         Integer allSimilarItems = 0;
         for (Object actor : actorRefs) {
             ActorRef agent = (ActorRef) actor;
-            int similarityThreshold = ( int ) 1;  
+            double similarityThreshold = 0.999d;  
             Method msg = new Method("searchAndConnect", new ArrayList(){{add(similarityThreshold); add(searchDepth);}});
             Timeout timeout = new Timeout(Duration.create(5, "seconds"));
             Future<Object> future = Patterns.ask(agent, msg, timeout);
