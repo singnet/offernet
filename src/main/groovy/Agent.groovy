@@ -95,11 +95,11 @@ public class Agent extends UntypedAbstractActor {
         logger.warn("Created a new {} with id {} and agentId {}", vertex.getLabel(), vertex.getId(), vertex.getProperty("agentId").getValue());
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-        this.emitNewVertexEvent()
+        this.emitNewVertexEvent(this.vertex)
 	}
 
-  private emitNewVertexEvent() {
-      Map vertexProperties = [id:this.vertexId(),label:this.vertex.getLabel()]
+  private emitNewVertexEvent(Vertex vertex) {
+      Map vertexProperties = [id:vertex.getId(),label:vertex.getLabel()]
       def event = Utils.createEvent("newVertex",vertexProperties);
       def socketWriter = getContext().actorSelection("/user/SocketWriter");
       socketWriter.tell(new Method("writeSocket",[event]),ActorRef.noSender());
@@ -159,60 +159,6 @@ public class Agent extends UntypedAbstractActor {
         return edge;
     }
 
-  /*
-  * Creates 'knows' edge between current agent and provided agent; returns that edge;
-  * Takes agent UUID as parameter
-  */
-  private Edge knowsAgent(String uuid) {
-
-        def start = System.currentTimeMillis();
-        Map params = new HashMap();
-        params.put("agent1", this.vertexId());
-        params.put("agent2",uuid);
-        params.put("agentIdLabel", "agentId")
-        params.put('edgeLabel','knows');
-
-        logger.warn("Creating knows edge from agent {} to agent {}", params.agent1, params.agent2)
-
-
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "def v1 = g.V(agent1).next()\n" +
-                "def v2 = g.V().has(agentIdLabel,agent2).next()\n" +
-                "v1.addEdge(edgeLabel, v2)", params)
-
-        GraphResultSet rs = session.executeGraph(s);
-        def edge = rs.one().asEdge();
-        logger.info("Added knows edge {} to the network", edge);
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-
-
-        return edge;
-    }
-
-    private Object ownsWork(Vertex work) {
-        def start = System.currentTimeMillis();
-        Map params = new HashMap();
-        params.put("agent", this.id());
-        params.put("work",work.getId());
-        params.put("edgeLabel","owns");
-
-        logger.warn("Creating owns edge from agent {} to work {}", params.agent, params.process)
-
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "def v1 = g.V(agent).next()\n" +
-                "def v2 = g.V(work).next()\n" +
-                "v1.addEdge(edgeLabel, v2)", params)
-
-        GraphResultSet rs = session.executeGraph(s);
-        def edge = rs.one().asEdge();
-        logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-        return edge;
-    }
-
-
     private Vertex ownsWork() {
         return this.ownsWork(Utils.generateBinaryString(Parameters.parameters.binaryStringLength),Utils.generateBinaryString(Parameters.parameters.binaryStringLength));
     }
@@ -234,13 +180,19 @@ public class Agent extends UntypedAbstractActor {
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(agent).next()\n" +
                 "def v2 = g.addV(label, labelValue).next()\n" +
-                "v1.addEdge(edgeLabel, v2)\n" +
-                "v2", params)
+                "def edge = v1.addEdge(edgeLabel, v2)\n" +
+                "[edge,v2]", params)
 
         GraphResultSet rs = session.executeGraph(s);
         logger.warn("Executed statement: {}", Utils.getStatement(rs));
         logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
-        Vertex work = rs.one().asVertex();
+        ArrayList result = (ArrayList) rs.all();
+        Edge edge = result[0].asEdge();
+        logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
+        Vertex work = result[1].asVertex();
+        emitNewVertexEvent(work);
+        Thread.sleep(100)
+        emitNewEdgeEvent(edge);
 
         logger.warn("Created a new {} with id {}", work.getLabel(), work.getId());
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
@@ -248,28 +200,6 @@ public class Agent extends UntypedAbstractActor {
         this.addItemToWork("demands",work,demandValue);
         this.addItemToWork("offers",work,offerValue);
         return work;
-    }
-
-    public Vertex addItemToWork(String labelName, Vertex work, Vertex item) {
-        def start = System.currentTimeMillis();
-        Map params = new HashMap();
-        params.put("thisVertex", work.getId());
-        params.put("edgeLabel", (String) labelName);
-        params.put("targetVertex",item.getId());
-
-        logger.info("Adding {}:{} to work:{}", params.edgeLabel, params.targetVertex, params.thisVertex);
-
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "def v1 = g.V(thisVertex).next()\n" +
-                "def v2 = g.V(targetVertex).next()\n" +
-                "v1.addEdge(edgeLabel, v2)", params);
-
-        GraphResultSet rs = session.executeGraph(s);
-        def edge = rs.one().asEdge();
-        logger.info("Added {} edge {} to the network", labelName, edge);
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-      return item;
     }
 
     public Vertex addItemToWork(String labelName, Vertex work) {
@@ -291,11 +221,20 @@ public class Agent extends UntypedAbstractActor {
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(thisVertex).next()\n" +
                 "def v2 = g.addV(label, labelValue).property(propertyKey ,propertyValue).next()\n" +
-                "v1.addEdge(edgeLabel, v2)\n"+
-                "v2", params);
+                "def edge = v1.addEdge(edgeLabel, v2)\n"+
+                "[edge,v2]", params);
 
         GraphResultSet rs = session.executeGraph(s);
-        def item = rs.one().asVertex();
+        ArrayList result = (ArrayList) rs.all();
+        Edge edge = result[0].asEdge();
+        logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
+        Vertex item = result[1].asVertex();
+
+        emitNewVertexEvent(item);
+        Thread.sleep(100)
+        emitNewEdgeEvent(edge);
+
+
         logger.info("Added item {}:{} to the network", labelName,item);
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
