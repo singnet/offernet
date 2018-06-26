@@ -13,9 +13,10 @@ import com.datastax.driver.dse.graph.Vertex
 
 import org.codehaus.groovy.runtime.StackTraceUtils
 
-import info.debatty.java.stringsimilarity.Cosine
-
 import static org.junit.Assert.*
+
+import groovy.json.JsonOutput;
+import groovy.json.JsonSlurper;
 
 public class Utils {
     static Logger logger = LoggerFactory.getLogger('Utils.class');
@@ -54,6 +55,14 @@ public class Utils {
 
     public static String getStatement(GraphResultSet rs) {
       String executionStatement = rs.getExecutionInfo().getStatement().toString();
+      return executionStatement;
+    }
+
+    public static String getStatement(GraphResultSet rs, Map params) {
+      String executionStatement = rs.getExecutionInfo().getStatement().toString();
+      params.each { labelName,labelValue ->
+        executionStatement = executionStatement.replaceAll(labelName.toString(), labelValue.toString());
+      }
       return executionStatement;
     }
 
@@ -108,6 +117,7 @@ public class Utils {
     }
 
     public static boolean convertToDotNotation(Object path, String label, String dotFilePath) {
+        
         def dotFile = new File(dotFilePath);
         dotFile.delete()
         // print heading
@@ -187,11 +197,69 @@ public class Utils {
         return map;
     }
 
-    public static Double cosineSimilarity(String left, String right) {
-        Cosine cosine = new Cosine(2);
-        def similarity =  cosine.similarity(left, right);
-        logger.info("Calculated cosine similarity between {} and {}: {}", left,right,similarity)
-        return similarity;
+    public static double cosineSimilarity(String left, String right) {
+      def arrayLeft = (String[]) left;
+      arrayLeft = arrayLeft.collect {it.toInteger()}
+      def arrayRight = (String[]) right;  
+      arrayRight = arrayRight.collect {it.toInteger()}
+
+      double dotProduct = 0.0;
+      double normA = 0.0;
+      double normB = 0.0;
+      for (int i = 0; i < arrayLeft.size(); i++) {
+          dotProduct += arrayLeft[i] * arrayRight[i];
+          normA += Math.pow(arrayLeft[i], 2)+0.0000000001;
+          normB += Math.pow(arrayRight[i], 2)+0.0000000001;
+      }
+      def similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+      logger.info("Calculated cosine similarity between {} and {}: {}", left,right,similarity)
+      return similarity
     }
 
+    public static String createEvent(String eventType, Object object) {
+      logger.info("Got a call to format event {}: {}",eventType,object)
+      def json = [ eventType: eventType,
+                   data: []
+                 ]
+      switch(eventType) {
+        case "newVertex":
+          def id = formatVertexLabel(object.id)
+          json.data.add([
+            label: object.label,
+            id: id
+          ])
+          break;
+        case "newEdge":
+          def outVid = formatVertexLabel(object.outV)
+          def inVid = formatVertexLabel(object.inV)
+          def edgeId = formatEdgeLabel(object.id)
+          json.data.add([
+            label: object.label,
+            id: edgeId,
+            source: outVid,
+            target: inVid
+          ])
+        break;
+      }
+      def result = JsonOutput.toJson(json)
+      logger.info("Constructed event data structure: {}",result)
+      return result;
+    }
+
+    public static String formatVertexLabel(Object nodeId) {
+      def jsonSlurper = new JsonSlurper()
+      logger.info("Parsing {} to json.",nodeId)
+      def fieldNames = jsonSlurper.parseText(nodeId.toString());
+      def vertexLabel = fieldNames.get('~label')+":"+fieldNames.community_id+":"+fieldNames.member_id
+      logger.info("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
+      return vertexLabel
+    }
+
+    public static String formatEdgeLabel(Object edgeId) {
+      def jsonSlurper = new JsonSlurper()
+      def fieldNames = jsonSlurper.parseText(edgeId.toString());
+      def edgeLabel = fieldNames.get('~local_id');
+      logger.info("Formatted vertex {} label as {}", edgeId.toString(),edgeLabel.toString())
+      return edgeLabel
+    }
 }

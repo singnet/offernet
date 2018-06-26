@@ -17,10 +17,12 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import akka.actor.UntypedAbstractActor;
+import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.japi.Creator;
+import groovy.json.JsonSlurper;
 
-import java.util.UUID;
+//import java.util.UUID;
 
 public class Agent extends UntypedAbstractActor {
     private Vertex vertex;
@@ -76,7 +78,7 @@ public class Agent extends UntypedAbstractActor {
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('Agent.class');
 
-		    this.session= session;
+        this.session= session;
 
         Map params = new HashMap();
         params.put("labelValue", "agent");
@@ -92,7 +94,24 @@ public class Agent extends UntypedAbstractActor {
 
         logger.warn("Created a new {} with id {} and agentId {}", vertex.getLabel(), vertex.getId(), vertex.getProperty("agentId").getValue());
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+        this.emitNewVertexEvent(this.vertex)
 	}
+
+  private emitNewVertexEvent(Vertex vertex) {
+      Map vertexProperties = [id:vertex.getId(),label:vertex.getLabel()]
+      def event = Utils.createEvent("newVertex",vertexProperties);
+      def socketWriter = getContext().actorSelection("/user/SocketWriter");
+      socketWriter.tell(new Method("writeSocket",[event]),ActorRef.noSender());
+  }
+
+  private emitNewEdgeEvent(Edge edge) {
+      Map edgeProperties = [id:edge.getId(),inV:edge.getInV(),outV: edge.getOutV(),label:edge.getLabel().toString()]
+      logger.info("edge properties are: {}",edgeProperties.toString());
+      def event = Utils.createEvent("newEdge",edgeProperties);
+      def socketWriter = getContext().actorSelection("/user/SocketWriter");
+      socketWriter.tell(new Method("writeSocket",[event]),ActorRef.noSender());
+  }
 
   /**
   * returns the agentId property on the vertex, which is the unique id (is also the actor name in akka system)
@@ -103,7 +122,7 @@ public class Agent extends UntypedAbstractActor {
   }
 
   /**
-  * returns the agentId property on the vertex, which is the unique id (is also the actor name in akka system)
+  * returns the agentId property on the vertex, which is the unique id in the graph
   */
   private Object vertexId() {
     return vertex.getId();
@@ -131,63 +150,14 @@ public class Agent extends UntypedAbstractActor {
 
         GraphResultSet rs = session.executeGraph(s);
         def edge = rs.one().asEdge();
+        //def jsonSlurper = new JsonSlurper()
+        //def jsonEdge = jsonSlurper.parseText(edge.toString())
         logger.info("Added knows edge {} to the network", edge);
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
+        emitNewEdgeEvent(edge);
         return edge;
     }
-
-  /*
-  * Creates 'knows' edge between current agent and provided agent; returns that edge;
-  * Takes agent UUID as parameter
-  */
-  private Edge knowsAgent(String uuid) {
-
-        def start = System.currentTimeMillis();
-        Map params = new HashMap();
-        params.put("agent1", this.vertexId());
-        params.put("agent2",uuid);
-        params.put("agentIdLabel", "agentId")
-        params.put('edgeLabel','knows');
-
-        logger.warn("Creating knows edge from agent {} to agent {}", params.agent1, params.agent2)
-
-
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "def v1 = g.V(agent1).next()\n" +
-                "def v2 = g.V().has(agentIdLabel,agent2).next()\n" +
-                "v1.addEdge(edgeLabel, v2)", params)
-
-        GraphResultSet rs = session.executeGraph(s);
-        def edge = rs.one().asEdge();
-        logger.info("Added knows edge {} to the network", edge);
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-        return edge;
-    }
-
-    private Object ownsWork(Vertex work) {
-        def start = System.currentTimeMillis();
-        Map params = new HashMap();
-        params.put("agent", this.id());
-        params.put("work",work.getId());
-        params.put("edgeLabel","owns");
-
-        logger.warn("Creating owns edge from agent {} to work {}", params.agent, params.process)
-
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "def v1 = g.V(agent).next()\n" +
-                "def v2 = g.V(work).next()\n" +
-                "v1.addEdge(edgeLabel, v2)", params)
-
-        GraphResultSet rs = session.executeGraph(s);
-        def edge = rs.one().asEdge();
-        logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-        return edge;
-    }
-
 
     private Vertex ownsWork() {
         return this.ownsWork(Utils.generateBinaryString(Parameters.parameters.binaryStringLength),Utils.generateBinaryString(Parameters.parameters.binaryStringLength));
@@ -210,13 +180,19 @@ public class Agent extends UntypedAbstractActor {
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(agent).next()\n" +
                 "def v2 = g.addV(label, labelValue).next()\n" +
-                "v1.addEdge(edgeLabel, v2)\n" +
-                "v2", params)
+                "def edge = v1.addEdge(edgeLabel, v2)\n" +
+                "[edge,v2]", params)
 
         GraphResultSet rs = session.executeGraph(s);
         logger.warn("Executed statement: {}", Utils.getStatement(rs));
         logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
-        Vertex work = rs.one().asVertex();
+        ArrayList result = (ArrayList) rs.all();
+        Edge edge = result[0].asEdge();
+        logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
+        Vertex work = result[1].asVertex();
+        emitNewVertexEvent(work);
+        Thread.sleep(100)
+        emitNewEdgeEvent(edge);
 
         logger.warn("Created a new {} with id {}", work.getLabel(), work.getId());
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
@@ -224,28 +200,6 @@ public class Agent extends UntypedAbstractActor {
         this.addItemToWork("demands",work,demandValue);
         this.addItemToWork("offers",work,offerValue);
         return work;
-    }
-
-    public Vertex addItemToWork(String labelName, Vertex work, Vertex item) {
-        def start = System.currentTimeMillis();
-        Map params = new HashMap();
-        params.put("thisVertex", work.getId());
-        params.put("edgeLabel", (String) labelName);
-        params.put("targetVertex",item.getId());
-
-        logger.info("Adding {}:{} to work:{}", params.edgeLabel, params.targetVertex, params.thisVertex);
-
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "def v1 = g.V(thisVertex).next()\n" +
-                "def v2 = g.V(targetVertex).next()\n" +
-                "v1.addEdge(edgeLabel, v2)", params);
-
-        GraphResultSet rs = session.executeGraph(s);
-        def edge = rs.one().asEdge();
-        logger.info("Added {} edge {} to the network", labelName, edge);
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-      return item;
     }
 
     public Vertex addItemToWork(String labelName, Vertex work) {
@@ -267,11 +221,20 @@ public class Agent extends UntypedAbstractActor {
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(thisVertex).next()\n" +
                 "def v2 = g.addV(label, labelValue).property(propertyKey ,propertyValue).next()\n" +
-                "v1.addEdge(edgeLabel, v2)\n"+
-                "v2", params);
+                "def edge = v1.addEdge(edgeLabel, v2)\n"+
+                "[edge,v2]", params);
 
         GraphResultSet rs = session.executeGraph(s);
-        def item = rs.one().asVertex();
+        ArrayList result = (ArrayList) rs.all();
+        Edge edge = result[0].asEdge();
+        logger.info("Added {} edge {} to the network", params.edgeLabel, edge);
+        Vertex item = result[1].asVertex();
+
+        emitNewVertexEvent(item);
+        Thread.sleep(100)
+        emitNewEdgeEvent(edge);
+
+
         logger.info("Added item {}:{} to the network", labelName,item);
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
@@ -343,6 +306,7 @@ public class Agent extends UntypedAbstractActor {
       return items;
     }
 
+
     private Integer searchAndConnect(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
       logger.warn('Search and connect all items of agent {} with its known agents at similarity {}', this.id(), maxReachDistance)
@@ -357,6 +321,31 @@ public class Agent extends UntypedAbstractActor {
       logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return totalConnectionsCreated;
     }
+
+    /* 
+    * maybe search and connect can be done more efficient by allowing to connect not only items similar to the one
+    * from which a search has bee initiated, but also all other along the way
+    * yet this requires to check if items of the same agent are getting connected
+    * on the other hand it is not clear whether that would be beneficial or not in the long term
+    * (yet it prevents current tests from passing..) 
+    */
+    private Integer searchAndConnect2(Object similarityThreshold, Integer maxReachDistance) {
+      def start = System.currentTimeMillis();
+      logger.warn('Search and connect items with similarity {} and distance {} from the perspective of agent {}', similarityThreshold, maxReachDistance, this.id())
+      def totalConnectionsCreated = 0;
+      def itemsToProcess = this.itemsOfKnownAgents(maxReachDistance);
+      itemsToProcess.addAll(this.allItems());
+      for (def i = 0; i<itemsToProcess.size();i++) {
+        def item = itemsToProcess.get(i)
+        def similarityEdges = this.connectAllSimilar(item,itemsToProcess.drop(i+1),similarityThreshold);
+        logger.warn("Found and connected {} similar items to the item {}",similarityEdges.size(),item.getId())
+        totalConnectionsCreated=totalConnectionsCreated+similarityEdges.size();
+      }
+      logger.warn("Created {} new similarity connections for agent {}", totalConnectionsCreated, this.id())
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      return totalConnectionsCreated;
+    }
+
 
     private List<Vertex> itemsOfKnownAgents(Integer maxReachDistance) {
       def start = System.currentTimeMillis()
@@ -500,7 +489,7 @@ public class Agent extends UntypedAbstractActor {
   I think the problem again is with types when getting 'similarity' property --
   Read DSE Graph tutorial before going further.
   */
-  private List<GraphNode> pathSearch(Vertex work, Integer cutoffValue, Integer similarityConstraint) {
+  private List<GraphNode> pathSearch(Vertex work, Integer cutoffValue, Object similarityConstraint) {
       def start = System.currentTimeMillis()
       Map params = new HashMap();
       params.put("thisWork", work.getId());
@@ -512,9 +501,9 @@ public class Agent extends UntypedAbstractActor {
       String query="""
           g.V(thisWork).as('source').repeat(
                  __.outE('offers').inV().as('a').has(label,'item')                               // (1)
-                .bothE('similarity').has('similarity',gte(similarityConstraint))            // (2)
+                .bothE('similarity').has('similarity',gte(0.5))            // (2)
                 .bothV().as('b').where('a',neq('b'))                                              // (3)
-                .inE('demands').outV().has(label,'work')).times(cutoffValue).range(0,1).simplePath().path()   // (4)
+                .inE('demands').outV().has(label,'work')).until(simplePath().count().is(neq(0))).simplePath().path()
       """
       /*
       (1) get the demand of the work as item
@@ -523,8 +512,9 @@ public class Agent extends UntypedAbstractActor {
       (4) get the item on the other side & get the work that has offers the item        
       */
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);
-
       GraphResultSet rs = session.executeGraph(s);
+      logger.info("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.info("With parameters: {}", params);
       def result = rs.one()
       logger.warn("Received result {}",result)
       List path=[]

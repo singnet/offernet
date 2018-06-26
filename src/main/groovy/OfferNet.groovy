@@ -16,6 +16,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import akka.actor.ActorSystem;
+import akka.actor.ActorRef;
 
 public class OfferNet implements AutoCloseable {
 
@@ -23,6 +24,7 @@ public class OfferNet implements AutoCloseable {
     private DseSession session; // creating one 'main' client and allowing to create more with the method
     private Logger logger;
     static ActorSystem system;
+    ActorRef socketWriter;
 
     public void ass() {
     Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -57,9 +59,30 @@ public class OfferNet implements AutoCloseable {
             logger.info("Created OfferNet instance with session {}", session);
             logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
+            if (Parameters.parameters.visualizationEngine) {
+              socketWriter = createSocketWriter();
+//              Thread.sleep(2000);
+//              openVisualizationWindow();
+            }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private Object createSocketWriter() {
+      def socketWriter = system.actorOf(SocketWriter.props(),"SocketWriter");
+      logger.info("created a new SocketWriter actor {}", socketWriter);
+      socketWriter.tell(new Method("createSocket",[]),ActorRef.noSender());
+      return socketWriter;
+    }
+
+    private void openVisualizationWindow() {
+      String visualizationPagePath = Parameters.parameters.visualizationPagePath;
+      String path = System.getProperty("user.dir")+"/"+visualizationPagePath;
+      def builder = new ProcessBuilder( "firefox", path)
+      builder.start()
+      logger.info("Opened browser with visualization page: {}", path)
     }
 
     @Override

@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Offer Network: concept and implementation</title>
   <meta name="description" content="Offer Network: concept and implementation">
-  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
 
   <meta property="og:title" content="Offer Network: concept and implementation" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
 
 
-<meta name="date" content="2018-06-07">
+<meta name="date" content="2018-06-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -222,7 +222,7 @@ owns(V1,V2) :\Leftrightarrow &amp; \forall V1 \forall V2 \forall E (type(V1,\tex
 \end{aligned}
 \end{equation}\]</span></p>
 <ul>
-<li>A work ‘demands’ and/or ‘offers’ data :</li>
+<li>A work ‘demands’ and/or ‘offers’ data:</li>
 </ul>
 <p><span class="math display">\[\begin{equation}
 \begin{aligned}
@@ -239,6 +239,7 @@ owns(V1,V2) :\Leftrightarrow &amp; \forall V1 \forall V2 \forall E (type(V1,\tex
 \forall V1 (type(V1,\text{work}) \, \exists V2 (demands(V1,V2) \lor \textit{offers}(V1,V2)))
 \end{aligned}
 \end{equation}\]</span></p>
+<p>Another way to look at the same structure is that a ‘work’ is a ‘function’, taking inputs and converting them to outputs. In principle it can be a generic function as defined in mathematics, but in the context of offer networks the function does not do anything except <em>exchanging</em> input for the output. An agent, which ‘owns’ a ‘work’ could be understood as a sort of a ‘process’ which provides resources and intention behind exercising a function connected to it.</p>
 <ul>
 <li>Items can be connected with similarity relation:</li>
 </ul>

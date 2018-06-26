@@ -82,7 +82,7 @@ owns(V1,V2) :\Leftrightarrow & \forall V1 \forall V2 \forall E (type(V1,\text{ag
 \end{aligned}
 \end{equation}$$
 
-* A work 'demands' and/or 'offers' data :
+* A work 'demands' and/or 'offers' data:
 
 $$\begin{equation}
 \begin{aligned}
@@ -101,6 +101,8 @@ $$\begin{equation}
 \forall V1 (type(V1,\text{work}) \, \exists V2 (demands(V1,V2) \lor \textit{offers}(V1,V2)))
 \end{aligned}
 \end{equation}$$
+
+Another way to look at the same structure is that a 'work' is a 'function', taking inputs and converting them to outputs. In principle it can be a generic function as defined in mathematics, but in the context of offer networks the function does not do anything except *exchanging* input for the output. An agent, which 'owns' a 'work' could be understood as a sort of a 'process' which provides resources and intention behind exercising a function connected to it.
 
 * Items can be connected with similarity relation:
 

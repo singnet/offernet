@@ -80,7 +80,6 @@ class Simulation extends UntypedAbstractActor {
     vertexIdToActorRefTable = new Hashtable<String,ActorRef>();
     actorRefToVertexIdTable = new Hashtable<ActorRef,String>();
     agentIdToActorRefTable = new Hashtable<String,ActorRef>();
-
 	}
 
 	/*
@@ -98,7 +97,8 @@ class Simulation extends UntypedAbstractActor {
   }
 
   public ActorRef createAgentWithId(String agentId) {
-    def actorRef = getContext().actorOf(Agent.props(on.session,agentId),agentId);
+    //def actorRef = getContext().actorOf(Agent.props(on.session,agentId),agentId);
+    def actorRef = on.system.actorOf(Agent.props(on.session,agentId),agentId);
     def vertexId = this.getAgentVertexId(actorRef);
     vertexIdToActorRefTable.put(vertexId,actorRef);
     actorRefToVertexIdTable.put(actorRef,vertexId);
@@ -158,21 +158,20 @@ class Simulation extends UntypedAbstractActor {
     return agentsList;
   }
 
-  /* done until here */
-
-	private Integer connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) {
+	private void connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) throws Throwable{
 
 		def start = System.currentTimeMillis();
 		logger.warn("Searching and connecting similar items of all agents in the graph:")
 		def newConnectionsCreated = 0;
 		agentList.each {agentRef ->
-        String method = "searchAndConnect"
         def args = [similarityThreshold,maxReachDistance];
+        Method msg = new Method("searchAndConnect", args);
+        agentRef.tell(msg,getSelf());
 		}
 		logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-		return newConnectionsCreated
 	}
+
+/* finished until here */
 
   private void createAgentNetworkFromNetworkXDataFile(String fileName) throws Throwable {
         FileInputStream inStream = new FileInputStream(fileName);

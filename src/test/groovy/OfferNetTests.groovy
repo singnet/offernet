@@ -8,6 +8,7 @@ import static org.junit.Assert.*
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
@@ -147,5 +148,12 @@ public class OfferNetTests {
 			assertNotNull(agent2)
 			def edge = sim.on.knowsAgent(agent1,agent2);
 			assertNotNull(edge)
+		}
+
+		@Ignore
+		@Test
+		void openVisualizationWindowTest() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			sim.on.openVisualizationWindow();
 		}
 }

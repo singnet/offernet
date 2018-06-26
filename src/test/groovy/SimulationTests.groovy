@@ -16,6 +16,7 @@ import com.datastax.driver.dse.graph.GraphStatement;
 import com.datastax.driver.dse.graph.SimpleGraphStatement;
 import com.datastax.driver.dse.graph.GraphResultSet
 import com.datastax.driver.dse.graph.GraphOptions
+import com.datastax.driver.dse.graph.GraphNode
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
 
@@ -37,6 +38,14 @@ import akka.actor.ActorRef;
 import akka.testkit.TestActorRef
 import akka.testkit.JavaTestKit;
 
+import akka.pattern.Patterns;
+import scala.concurrent.Future;
+import scala.concurrent.Await;
+import scala.concurrent.duration.Duration;
+import akka.util.Timeout;
+
+
+
 public class SimulationTests {
 		static ActorSystem system = ActorSystem.create("SimulationTests");
 		static private Logger logger;
@@ -45,7 +54,7 @@ public class SimulationTests {
 		static void initLogging() {
 		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
 	        PropertyConfigurator.configure(config.toProperties())
-    	    logger = LoggerFactory.getLogger('OfferNet.class');
+    	    logger = LoggerFactory.getLogger('SimulationTests.class');
 		}
 
 		@Test
@@ -109,7 +118,7 @@ public class SimulationTests {
 		}
 
 
-		//@Ignore // for now -- takes too much time
+		//	@Ignore // for now -- takes too much time
 		@Test
 		void cycleSearchTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -124,7 +133,8 @@ public class SimulationTests {
 			def similarityThreshold = Parameters.parameters.similarityThreshold
 			def maxDistance = 2;
 			def connections = sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
-			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance)
+			Thread.sleep(1000);
+			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", connections, similarityThreshold, maxDistance)
 
 			/*
 
@@ -241,20 +251,41 @@ public class SimulationTests {
 			def agentList = sim.createAgentNetwork(chainLength+2,0,chains);
 			logger.warn("added agent network with agents: {}", agentList)			
 
-			logger.warn("Running decentralized similarity search")
+			logger.warn("Running decentralized similarity search and connect")
 			def start = System.currentTimeMillis();
-			def similarityThreshold = Parameters.parameters.binaryStringLength
+			def similarityThreshold = 0.5
 			def maxDistance = 6;
 			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
 			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
+			logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 			
-	       	def cutoffValue = 7;
+			logger.warn("Running decentralized PathSearch")
+			start = System.currentTimeMillis();	
+	       	def cutoffValue = 4;
  	       	def uniquePaths = [] as Set;
+ 	       	def agentPaths = [] as Set;
  	       	agentList.each{ agent -> 
- 	       		def path = agent.pathSearch(agent.getWorks()[0], cutoffValue, similarityThreshold)
- 	       		logger.info("Found {} paths from agent {}",path.size(),agent.id())
- 	       		uniquePaths.add(path)
+ 	       		agentPaths = [];
+ 	       		logger.warn("Getting all works of an agent {}", agent)
+			    Method msg = new Method("getWorks", new ArrayList());
+			    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+			   	Future<Object> future = Patterns.ask(agent, msg, timeout);
+		  		List works = (List<Vertex>) Await.result(future, timeout.duration());
+		  		assertNotNull(works);
+		  		logger.warn("Retrieved {} works of agent {}", works.size(), agent)
+		  		works.each { work ->
+	 	       		logger.warn("Running decentralized PathSearch from work's {} perspective", work)
+				    msg = new Method("pathSearch", new ArrayList(){{add(work);add(cutoffValue);add(similarityThreshold)}});
+				    timeout = new Timeout(Duration.create(60, "seconds"));
+				   	future = Patterns.ask(agent, msg, timeout);
+			  		List path = (List<GraphNode>) Await.result(future, timeout.duration());
+		  			assertNotNull(path);
+	 	       		logger.info("Found path {} from work {}",path,work)
+	 	       		agentPaths.add(path)
+	 	       	}
+	 	       	logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
  	       	}
+ 	       	uniquePaths.addAll(agentPaths)
  	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
@@ -262,14 +293,13 @@ public class SimulationTests {
 
            	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
            	def methodName = Utils.getCurrentMethodName()
-           	//new File("resources/"+methodName+dirname).mkdir();
+           	new File("temp/"+methodName+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","temp/path"+index+".dot");
+ 	       		Utils.convertToDotNotation(path,"Path","temp/"+methodName+dirname+"/path"+index+".dot");
  	       	}
 		}
 
-		
 		@Test
 		void centralizedPathSimulationTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -454,15 +484,15 @@ public class SimulationTests {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			sim.on.flushVertices();
 
-			sim.createAgentNetwork(10)
+			sim.createAgentNetwork(20)
 			def itemNo = sim.on.getIds("agent").size()
-			assertEquals(10,itemNo); // creates two items (demand and offer) when creating a random work;			
-			sim.addRandomWorksToAgents(10)
+			assertEquals(20,itemNo); // creates two items (demand and offer) when creating a random work;			
+			sim.addRandomWorksToAgents(20)
 			// since the above is asynchronous and works via messages, we have to wait some time until it does the job...
 			// it is a bit lousy as probably has to be implemented with futures...
 			sleep(2000)
 			itemNo = sim.on.getIds("item").size()
-			assertEquals(20,itemNo); // creates two items (demand and offer) when creating a random work;
+			assertEquals(40,itemNo); // creates two items (demand and offer) when creating a random work;
 		}
 
 }

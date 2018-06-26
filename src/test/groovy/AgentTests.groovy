@@ -85,7 +85,7 @@ public class AgentTests {
 		def knownItemsList = on.getVertices('item')
 		def start = agent1.addItemToWork("demands",work2,'1110')
 		
-		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,0.5d)
+		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,0.7d)
 		assertEquals(3,similarityEdges.size())
 	}
 
@@ -281,16 +281,16 @@ public class AgentTests {
 	@Test
 	void searchAndConnectTest() {
 		on.flushVertices("agent");
-		String agent1Id = UUID.randomUUID().toString();
+		String agent1Id = UUID.randomUUID().toString()+"agent1";
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		agent1.ownsWork('111110','000000');
-		String agent2Id = UUID.randomUUID().toString();
+		String agent2Id = UUID.randomUUID().toString()+"agent2";
 		def agent2 = TestActorRef.create(system, Agent.props(on.session, agent2Id)).underlyingActor();
 		agent2.ownsWork('111100','110000');
-		String agent3Id = UUID.randomUUID().toString();
+		String agent3Id = UUID.randomUUID().toString()+"agent3";
 		def agent3 = TestActorRef.create(system, Agent.props(on.session, agent3Id)).underlyingActor();
 		agent3.ownsWork('100000','111100');
-		String agent4Id = UUID.randomUUID().toString();
+		String agent4Id = UUID.randomUUID().toString()+"agent4";
 		def agent4 = TestActorRef.create(system, Agent.props(on.session, agent4Id)).underlyingActor();
 		agent4.ownsWork('111110','000000');
 
@@ -301,8 +301,8 @@ public class AgentTests {
 		/*
 		The resulting graph has 4 agents, 4 works, 8 items and 6 reciprocal connections (12 links in total)
 		*/
-		assertEquals(4,agent1.searchAndConnect(0.5,2)) // this traverses part of the graph
-		assertEquals(2,agent1.searchAndConnect(0.5,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(0.5)
+		assertEquals(3,agent1.searchAndConnect(0.5,2)) // this traverses part of the graph
+		assertEquals(1,agent1.searchAndConnect(0.5,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(0.5)
 	}
 
 	@Test
@@ -371,5 +371,30 @@ public class AgentTests {
 		 assertEquals(1,offers.size());
 
 	}
+
+
+	/*
+	@Test 
+	void pathSearchTest() {
+		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+		assertNotNull(sim);
+		sim.on.flushVertices();
+
+		def agents = sim.createAgentLine(5);
+		def agent1 = agents.get(0)
+		assertNotNull(agent1)
+		sim.addRandomWorksToAgents(6)
+		def chains = [Utils.createChain(3)]
+		sim.addChainToNetwork(chains);
+
+
+
+	    Method msg = new Method("searchPath", new ArrayList(){{add(linkName);}});
+	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+	   	Future<Object> future = Patterns.ask(actorOneRef, msg, timeout);
+  		List edges = (List<Edge>) Await.result(future, timeout.duration());
+  		assertTrue(edges.size() == 0);
+	}
+	*/
 
 }
