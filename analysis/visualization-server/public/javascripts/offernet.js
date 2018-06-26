@@ -1,6 +1,6 @@
 const serverName = '127.0.0.1';
 const serverPort = '7777';
-const timeout = 200;
+const timeout = 1000;
 
 function listenToEvents(serverName,serverPort) {
 	const socket = io("http://"+serverName+":"+serverPort);	

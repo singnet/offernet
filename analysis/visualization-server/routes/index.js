@@ -54,8 +54,8 @@ function javaServer() {
 
 		var dataListenner = function (data) {
 			var json = JSON.parse(data.toString());
-//			console.log("javaServer received data:")
-//			console.log(json);
+			//console.log("javaServer received data:")
+			//console.log(json);
 	    	sendToFrontend(json);
 		}	
 

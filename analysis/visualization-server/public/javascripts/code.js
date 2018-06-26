@@ -13,17 +13,49 @@ var cy = window.cy = cytoscape({
 
     style: [
       {
-        selector: 'node',
+        selector: 'node[label="agent"]',
         style: {
-          'background-color': '#ad1a66'
+          'background-color': '#ffce66'
         }
       },
-
       {
-        selector: 'edge',
+        selector: 'node[label="work"]',
         style: {
-          'width': 3,
-          'line-color': '#ad1a66'
+          'background-color': '#7be452'
+        }
+      },
+      {
+        selector: 'node[label="item"]',
+        style: {
+          'background-color': ' #e60000'
+        }
+      },
+      {
+        selector: 'edge[label="knows"]',
+        style: {
+          'width': 2,
+          'line-color': '#ffce66'
+        }
+      },
+      {
+        selector: 'edge[label="owns"]',
+        style: {
+          'width': 2,
+          'line-color': '#7be452'
+        }
+      },
+      {
+        selector: 'edge[label="demands"]',
+        style: {
+          'width': 2,
+          'line-color': '#b30000'
+        }
+      },
+      {
+        selector: 'edge[label="offers"]',
+        style: {
+          'width': 2,
+          'line-color': '#663300'
         }
       }
     ],
