@@ -52,6 +52,8 @@ public class SocketWriterTests {
 		Thread.sleep(1000);
     	assertNotNull(socketWriter);
     	logger.info("created a new SocketWriter actor {}", socketWriter);
+    	socketWriter.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+    	Thread.sleep(100)
 	}
 
 
@@ -60,7 +62,7 @@ public class SocketWriterTests {
 		String agentUUID = UUID.randomUUID().toString()
 		def agent = TestActorRef.create(system, Agent.props(on.session, agentUUID),agentUUID).underlyingActor();
 		def eventProperties = [eventName: "newAgent",agentId: agent.id(),vertexId: agent.vertexId().toString()]
-		def event = Utils.createEvent(eventProperties)
+		def event = Utils.createEvent("newAgent",eventProperties)
 		assertNotNull(event)
 		assertTrue(event instanceof String)
 		logger.info("Created event object {}", event);
@@ -76,16 +78,10 @@ public class SocketWriterTests {
     	assertNotNull(socketWriter);
     	logger.info("created a new SocketWriter actor {}", socketWriter);
 		*/
-		def socketClient = system.actorOf(DummySocketServer.props(),"SocketClient");
-		def msg = new Method("startServer",[])
-		socketClient.tell(msg,ActorRef.noSender());
-		Thread.sleep(1000);
-    	assertNotNull(socketClient);
-	
 		String agentUUID = UUID.randomUUID().toString()
 		def agent = TestActorRef.create(system, Agent.props(on.session, agentUUID),agentUUID).underlyingActor();
 		def eventProperties = [eventName: "newAgent",agentId: agent.id(),vertexId: agent.vertexId().toString()]
-		def event = Utils.createEvent(eventProperties)
+		def event = Utils.createEvent("neAgent",eventProperties)
 		assertNotNull(event)
 		assertTrue(event instanceof String)
 		logger.info("Created event object {}", event);
@@ -95,13 +91,17 @@ public class SocketWriterTests {
 			//do nothing
 		}
 		*/
-
-		for (int i=0;i<1000;i++) {
+		def msg;
+		for (int i=0;i<10;i++) {
 			msg = new Method("writeSocket",[event])
 			socketWriter.tell(msg,ActorRef.noSender());
-			Thread.sleep(200);
+			Thread.sleep(100);
 			logger.info("sent a message for writing socket no {}",i)
 		}
+
+    	socketWriter.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+    	Thread.sleep(100)
+
 	}
 
 	@Test
@@ -113,7 +113,7 @@ public class SocketWriterTests {
 		String agentUUID = UUID.randomUUID().toString()
 		def agent = TestActorRef.create(system, Agent.props(on.session, agentUUID),agentUUID).underlyingActor();
 		def eventProperties = [eventName: "newAgent",agentId: agent.id(),vertexId: agent.vertexId().toString()]
-		def event = Utils.createEvent(eventProperties)
+		def event = Utils.createEvent("newAgent",eventProperties)
 		assertNotNull(event)
 		assertTrue(event instanceof String)
 		logger.info("Created event object {}", event);
@@ -123,9 +123,12 @@ public class SocketWriterTests {
 			Thread.sleep(200);
 			logger.info("sent a message for writing socket no {}",i)
 		}
+
+    	socketWriter.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
+    	Thread.sleep(100)
 	}
 
-    @Ignore
+//    @Ignore
 	@Test
 	void visualizationTest() {
 		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
