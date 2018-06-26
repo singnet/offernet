@@ -25,7 +25,7 @@
 <meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
 
 
-<meta name="date" content="2018-06-24">
+<meta name="date" content="2018-06-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -102,6 +102,10 @@
 <li class="chapter" data-level="4.1.4" data-path="functional-description.html"><a href="functional-description.html#scenario-outline-an-agent-can-access-all-posted-offers-and-demands-by-traversing-its-social-network"><i class="fa fa-check"></i><b>4.1.4</b> Scenario Outline: an agent can access all posted offers and demands by traversing its social network</a><ul>
 <li class="chapter" data-level="4.1.4.1" data-path="functional-description.html"><a href="functional-description.html#example-1"><i class="fa fa-check"></i><b>4.1.4.1</b> Example 1</a></li>
 <li class="chapter" data-level="4.1.4.2" data-path="functional-description.html"><a href="functional-description.html#example-2"><i class="fa fa-check"></i><b>4.1.4.2</b> Example 2</a></li>
+</ul></li>
+<li class="chapter" data-level="4.1.5" data-path="functional-description.html"><a href="functional-description.html#scenario-outline-an-agent-can-connect-similar-offers-and-demands-of-its-social-network"><i class="fa fa-check"></i><b>4.1.5</b> Scenario Outline: an agent can connect similar offers and demands of its social network</a><ul>
+<li class="chapter" data-level="4.1.5.1" data-path="functional-description.html"><a href="functional-description.html#example-1-1"><i class="fa fa-check"></i><b>4.1.5.1</b> Example 1</a></li>
+<li class="chapter" data-level="4.1.5.2" data-path="functional-description.html"><a href="functional-description.html#example-2-1"><i class="fa fa-check"></i><b>4.1.5.2</b> Example 2</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -205,6 +209,28 @@
 <li><p>And : all agents have posted ‘2’ offer-demand pair each</p></li>
 <li><p>When : first agent initiates search of ‘19’ depth</p></li>
 <li><p>Then : agent finds ‘76’ demands and offers in its social network</p></li>
+</ul>
+</div>
+</div>
+<div id="scenario-outline-an-agent-can-connect-similar-offers-and-demands-of-its-social-network" class="section level3">
+<h3><span class="header-section-number">4.1.5</span> Scenario Outline: an agent can connect similar offers and demands of its social network</h3>
+<p>After an agent finds offer and demand items posted by its social network which are similar to its own items, it can connect those items with weighted <span class="math inline">\(similarity\)</span> relations (edges in the graph). Weight of the relation represents the ‘strength’ of similarity. Definition and computing algorithm of a <span class="math inline">\(similarity\)</span> relation can be chosen by choosing configuration parameters of the OfferNet system during initialization – allowing to experiment with different approaches. This mechanism addresses these <a href="conceptual-framework.html#open-problems-features-to-consider">Open problems / features to consider</a> of the framework: <a href="conceptual-framework.html#representation-theory-of-value">Representation / theory of value</a>, <a href="conceptual-framework.html#description-of-items-of-exchange">Description of items of exchange</a>, <a href="conceptual-framework.html#similarity-measure">Similarity measure</a>;</p>
+<div id="example-1-1" class="section level4">
+<h4><span class="header-section-number">4.1.5.1</span> Example 1</h4>
+<ul>
+<li><p>Given : a connected network of ‘4’ agents</p></li>
+<li><p>Given : that ‘3’ similar item pairs exist in the network</p></li>
+<li><p>When : any agent finds similar items by executing search of ‘3’ depth</p></li>
+<li><p>Then : there are ‘3’ similarity relations in the network</p></li>
+</ul>
+</div>
+<div id="example-2-1" class="section level4">
+<h4><span class="header-section-number">4.1.5.2</span> Example 2</h4>
+<ul>
+<li><p>Given : a connected network of ‘20’ agents</p></li>
+<li><p>Given : that ‘5’ similar item pairs exist in the network</p></li>
+<li><p>When : any agent finds similar items by executing search of ‘19’ depth</p></li>
+<li><p>Then : there are ‘5’ similarity relations in the network</p></li>
 </ul>
 
 </div>

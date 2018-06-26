@@ -71,3 +71,26 @@ In a distributed system where there is no global observer which has the registry
 * When : first agent initiates search of '19' depth
 
 * Then : agent finds '76' demands and offers in its social network
+
+### Scenario Outline: an agent can connect similar offers and demands of its social network
+After an agent finds offer and demand items posted by its social network which are similar to its own items, it can connect those items with weighted $similarity$ relations (edges in the graph). Weight of the relation represents the 'strength' of similarity. Definition and computing algorithm of a $similarity$ relation can be chosen by choosing configuration parameters of the OfferNet system during initialization -- allowing to experiment with different approaches. This mechanism addresses these [Open problems / features to consider] of the framework: [Representation / theory of value], [Description of items of exchange], [Similarity measure];
+
+#### Example 1
+
+* Given : a connected network of '4' agents
+
+* Given : that '3' similar item pairs exist in the network
+
+* When : any agent finds similar items by executing search of '3' depth
+
+* Then : there are '3' similarity relations in the network
+
+#### Example 2
+
+* Given : a connected network of '20' agents
+
+* Given : that '5' similar item pairs exist in the network
+
+* When : any agent finds similar items by executing search of '19' depth
+
+* Then : there are '5' similarity relations in the network
