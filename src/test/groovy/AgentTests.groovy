@@ -85,7 +85,7 @@ public class AgentTests {
 		def knownItemsList = on.getVertices('item')
 		def start = agent1.addItemToWork("demands",work2,'1110')
 		
-		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,0.5d)
+		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,0.7d)
 		assertEquals(3,similarityEdges.size())
 	}
 
