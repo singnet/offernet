@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">41.153s</div>
+<div class="counter">37.513s</div>
 <p>duration</p>
 </div>
 </td>
@@ -76,7 +76,7 @@
 <a name="compareCentralizedAndDecentralizedSimilaritySearchTest"></a>
 <h3 class="failures">compareCentralizedAndDecentralizedSimilaritySearchTest</h3>
 <span class="code">
-<pre>java.lang.AssertionError: expected:&lt;[]&gt; but was:&lt;3&gt;
+<pre>java.lang.AssertionError: expected:&lt;[]&gt; but was:&lt;0&gt;
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:834)
 	at org.junit.Assert.assertEquals(Assert.java:118)
@@ -141,7 +141,7 @@
 <a name="decentralizedPathSimulationTest"></a>
 <h3 class="failures">decentralizedPathSimulationTest</h3>
 <span class="code">
-<pre>java.io.FileNotFoundException: temp/decentralizedPathSimulationTest0626110624/path1.dot (No such file or directory)
+<pre>java.io.FileNotFoundException: temp/decentralizedPathSimulationTest0626050146/path1.dot (No such file or directory)
 	at java.io.FileOutputStream.open0(Native Method)
 	at java.io.FileOutputStream.open(FileOutputStream.java:270)
 	at java.io.FileOutputStream.&lt;init&gt;(FileOutputStream.java:213)
@@ -306,72 +306,72 @@
 </thead>
 <tr>
 <td class="success">addRandomWorksToAgentsTest</td>
-<td>4.228s</td>
+<td>4.849s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">centralizedPathSimulationTest</td>
-<td>7.154s</td>
+<td>7.217s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="failures">compareCentralizedAndDecentralizedSimilaritySearchTest</td>
-<td>2.114s</td>
+<td>1.531s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="success">createAgentLineTest</td>
-<td>3.419s</td>
+<td>3.061s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAgentNetworkConnectedStarsTest</td>
-<td>1.130s</td>
+<td>1.016s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAgentNetworkCycleGraphTest</td>
-<td>1.920s</td>
+<td>1.721s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAgentNetworkPathGraphTest</td>
-<td>1.932s</td>
+<td>1.585s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAgentNetworkPreferentialAttachmentGraphTest</td>
-<td>3.797s</td>
+<td>3.040s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAgentNetworkSmallWorldTest</td>
-<td>3.015s</td>
+<td>2.123s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAgentNetworkTest</td>
-<td>3.949s</td>
+<td>3.478s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAgentTest</td>
-<td>0.648s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">createSimulationTest</td>
 <td>0.820s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">createSimulationTest</td>
+<td>0.557s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">cycleSearchTest</td>
-<td>2.095s</td>
+<td>2.127s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="failures">decentralizedPathSimulationTest</td>
-<td>3.269s</td>
+<td>2.743s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
@@ -381,7 +381,7 @@
 </tr>
 <tr>
 <td class="success">getAgentVertexIdTest</td>
-<td>1.215s</td>
+<td>1.183s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -391,7 +391,7 @@
 </tr>
 <tr>
 <td class="failures">pathSearchManualDecentralizedTest</td>
-<td>0.447s</td>
+<td>0.462s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
@@ -399,14 +399,129 @@
 <div id="tab2" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>java.net.UnknownHostException: visualization-server.host
+<pre>java.net.UnknownHostException: visualization-server.host: Name or service not known
+	at java.net.Inet4AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:928)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1323)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1276)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at java.net.InetAddress.getByName(InetAddress.java:1076)
+	at java_net_InetAddress$getByName.call(Unknown Source)
+	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
+	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
+	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
+	at akka.actor.Actor.aroundReceive(Actor.scala:517)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+java.net.UnknownHostException: visualization-server.host
 	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
 	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
 	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
+	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
+	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
+	at akka.actor.Actor.aroundReceive(Actor.scala:517)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+java.net.UnknownHostException: visualization-server.host
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at java.net.InetAddress.getByName(InetAddress.java:1076)
+	at java_net_InetAddress$getByName.call(Unknown Source)
+	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
+	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
+	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
+	at akka.actor.Actor.aroundReceive(Actor.scala:517)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+java.net.UnknownHostException: visualization-server.host
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at java.net.InetAddress.getByName(InetAddress.java:1076)
+	at java_net_InetAddress$getByName.call(Unknown Source)
+	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
+	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
+	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
+	at akka.actor.Actor.aroundReceive(Actor.scala:517)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+java.net.UnknownHostException: visualization-server.host
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at java.net.InetAddress.getByName(InetAddress.java:1076)
+	at java_net_InetAddress$getByName.call(Unknown Source)
+	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -437,7 +552,7 @@ java.net.UnknownHostException: visualization-server.host: Name or service not kn
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -465,7 +580,7 @@ java.net.UnknownHostException: visualization-server.host
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -493,7 +608,7 @@ java.net.UnknownHostException: visualization-server.host
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -521,7 +636,63 @@ java.net.UnknownHostException: visualization-server.host
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
+	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
+	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
+	at akka.actor.Actor.aroundReceive(Actor.scala:517)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+java.net.UnknownHostException: visualization-server.host
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at java.net.InetAddress.getByName(InetAddress.java:1076)
+	at java_net_InetAddress$getByName.call(Unknown Source)
+	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
+	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
+	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
+	at akka.actor.Actor.aroundReceive(Actor.scala:517)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+java.net.UnknownHostException: visualization-server.host
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at java.net.InetAddress.getByName(InetAddress.java:1076)
+	at java_net_InetAddress$getByName.call(Unknown Source)
+	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -552,7 +723,7 @@ java.net.UnknownHostException: visualization-server.host: Name or service not kn
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -580,7 +751,7 @@ java.net.UnknownHostException: visualization-server.host
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -608,7 +779,7 @@ java.net.UnknownHostException: visualization-server.host
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -636,35 +807,7 @@ java.net.UnknownHostException: visualization-server.host
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
-	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
-	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
-	at akka.actor.Actor.aroundReceive(Actor.scala:517)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
-	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
-	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-java.net.UnknownHostException: visualization-server.host
-	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
-	at java.net.InetAddress.getByName(InetAddress.java:1076)
-	at java_net_InetAddress$getByName.call(Unknown Source)
-	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -695,150 +838,7 @@ java.net.UnknownHostException: visualization-server.host: Name or service not kn
 	at java.net.InetAddress.getByName(InetAddress.java:1076)
 	at java_net_InetAddress$getByName.call(Unknown Source)
 	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
-	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
-	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
-	at akka.actor.Actor.aroundReceive(Actor.scala:517)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
-	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
-	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-java.net.UnknownHostException: visualization-server.host
-	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
-	at java.net.InetAddress.getByName(InetAddress.java:1076)
-	at java_net_InetAddress$getByName.call(Unknown Source)
-	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
-	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
-	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
-	at akka.actor.Actor.aroundReceive(Actor.scala:517)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
-	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
-	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-java.net.UnknownHostException: visualization-server.host
-	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
-	at java.net.InetAddress.getByName(InetAddress.java:1076)
-	at java_net_InetAddress$getByName.call(Unknown Source)
-	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
-	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
-	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
-	at akka.actor.Actor.aroundReceive(Actor.scala:517)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
-	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
-	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-java.net.UnknownHostException: visualization-server.host
-	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
-	at java.net.InetAddress.getByName(InetAddress.java:1076)
-	at java_net_InetAddress$getByName.call(Unknown Source)
-	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
-	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
-	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
-	at akka.actor.Actor.aroundReceive(Actor.scala:517)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
-	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
-	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-java.net.UnknownHostException: visualization-server.host
-	at java.net.InetAddress.getAllByName0(InetAddress.java:1280)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
-	at java.net.InetAddress.getByName(InetAddress.java:1076)
-	at java_net_InetAddress$getByName.call(Unknown Source)
-	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnCurrentN(ScriptBytecodeAdapter.java:82)
-	at io.singularitynet.offernet.SocketWriter.onReceive(SocketWriter.groovy:41)
-	at akka.actor.UntypedAbstractActor$$anonfun$receive$1.applyOrElse(AbstractActor.scala:258)
-	at akka.actor.Actor.aroundReceive(Actor.scala:517)
-	at akka.actor.Actor.aroundReceive$(Actor.scala:515)
-	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:147)
-	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:590)
-	at akka.actor.ActorCell.invoke(ActorCell.scala:559)
-	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
-	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
-	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
-	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-java.net.UnknownHostException: visualization-server.host: Name or service not known
-	at java.net.Inet4AddressImpl.lookupAllHostAddr(Native Method)
-	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:928)
-	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1323)
-	at java.net.InetAddress.getAllByName0(InetAddress.java:1276)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
-	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
-	at java.net.InetAddress.getByName(InetAddress.java:1076)
-	at java_net_InetAddress$getByName.call(Unknown Source)
-	at io.singularitynet.offernet.SocketWriter.createSocket(SocketWriter.groovy:59)
-	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor63.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
@@ -870,7 +870,7 @@ java.net.UnknownHostException: visualization-server.host: Name or service not kn
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.6</a> at Jun 26, 2018 11:06:31 AM</p>
+<a href="http://www.gradle.org">Gradle 4.6</a> at Jun 26, 2018 5:01:54 PM</p>
 </div>
 </div>
 </body>
