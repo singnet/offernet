@@ -15,8 +15,6 @@ import org.codehaus.groovy.runtime.StackTraceUtils
 
 import static org.junit.Assert.*
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import groovy.json.JsonOutput;
 import groovy.json.JsonSlurper;
 
@@ -252,7 +250,7 @@ public class Utils {
       def jsonSlurper = new JsonSlurper()
       logger.info("Parsing {} to json.",nodeId)
       def fieldNames = jsonSlurper.parseText(nodeId.toString());
-      def vertexLabel = fieldNames.get('~label')+fieldNames.community_id+fieldNames.member_id
+      def vertexLabel = fieldNames.get('~label')+":"+fieldNames.community_id+":"+fieldNames.member_id
       logger.info("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
       return vertexLabel
     }

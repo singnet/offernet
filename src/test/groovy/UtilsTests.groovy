@@ -78,7 +78,7 @@ public class UtilsTests {
   		    def jsonSlurper = new JsonSlurper()
 	   		def fieldNames = jsonSlurper.parseText(agentId.toString());
 	   		def vertexLabel = fieldNames.get('~label')+':'+fieldNames.community_id+':'+fieldNames.member_id
-	   		assertTrue(vertexLabel == agentLabel)
+	   		assertEquals(vertexLabel, agentLabel)
 		}
 
 		@Test
