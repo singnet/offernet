@@ -503,9 +503,19 @@ public class Agent extends UntypedAbstractActor {
                  __.outE('offers').inV().as('a').has(label,'item')                               // (1)
                 .bothE('similarity').has('similarity',gte(0.5))            // (2)
                 .bothV().as('b').where('a',neq('b'))                                              // (3)
-                .inE('demands').outV().has(label,'work')).until(simplePath().count().is(neq(0))).simplePath().path()
+                .inE('demands').outV().has(label,'work')).times(cutoffValue).simplePath().path()
       """
       /*
+      g.V("~label":"work","community_id":435106816,"member_id":15).as('source')
+                .outE('offers').inV().as('a').has(label,'item')                               // (1)
+                .bothE('similarity').has('similarity',gte(0.5))            // (2)
+                .bothV().as('b').where('a',neq('b'))                                              // (3)
+                .inE('demands').outV().has(label,'work').repeat(
+                 __.outE('offers').inV().as('a').has(label,'item')                               // (1)
+                .bothE('similarity').has('similarity',gte(0.5))            // (2)
+                .bothV().as('b').where('a',neq('b'))                                              // (3)
+                .inE('demands').outV().has(label,'work')).until(simplePath().count().is(0)).simplePath().count()
+
       (1) get the demand of the work as item
       (2) look for edges with perfect similarity
       (3) check that the items items are not the same (not sure this is needed)

@@ -44,7 +44,9 @@ import scala.concurrent.Await;
 import scala.concurrent.duration.Duration;
 import akka.util.Timeout;
 
-
+import kamon.Kamon;
+import kamon.prometheus.PrometheusReporter;
+import kamon.jaeger.JaegerReporter;
 
 public class SimulationTests {
 		static ActorSystem system = ActorSystem.create("SimulationTests");
@@ -55,6 +57,9 @@ public class SimulationTests {
 		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
 	        PropertyConfigurator.configure(config.toProperties())
     	    logger = LoggerFactory.getLogger('SimulationTests.class');
+
+    	    Kamon.addReporter(new PrometheusReporter());
+      		Kamon.addReporter(new JaegerReporter());
 		}
 
 		@Test
@@ -191,7 +196,7 @@ public class SimulationTests {
            	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","temp/path"+index+".dot");
+ 	       		Utils.convertToCyNotation(path,"Path","temp/path"+index+".dot");
  	       	}
 		}
 
@@ -261,9 +266,9 @@ public class SimulationTests {
 			
 			logger.warn("Running decentralized PathSearch")
 			start = System.currentTimeMillis();	
-	       	def cutoffValue = 4;
+	       	def cutoffValue = 3;
  	       	def uniquePaths = [] as Set;
- 	       	def agentPaths = [] as Set;
+ 	       	def agentPaths;
  	       	agentList.each{ agent -> 
  	       		agentPaths = [];
  	       		logger.warn("Getting all works of an agent {}", agent)
@@ -284,8 +289,8 @@ public class SimulationTests {
 	 	       		agentPaths.add(path)
 	 	       	}
 	 	       	logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
+	 	       	uniquePaths.addAll(agentPaths)
  	       	}
- 	       	uniquePaths.addAll(agentPaths)
  	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
@@ -296,7 +301,9 @@ public class SimulationTests {
            	new File("temp/"+methodName+dirname).mkdir();
  	       	uniquePaths.each {path -> 
  	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","temp/"+methodName+dirname+"/path"+index+".dot");
+ 	       		def pathName = "temp/"+methodName+dirname+"/path"+index+".dot"
+ 	       		Utils.convertToCYNotation(path,"Path",pathName);
+ 	       		logger.info("Wrote file to {}",pathName);
  	       	}
 		}
 

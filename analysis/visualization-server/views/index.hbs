@@ -1,5 +1,44 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid" id="dashboard-nav">
+		<div class="navbar-header">
+  			<div class="navbar-brand">
+    			<a href="#">OfferNet simulation</a>
+  			</div>
+		</div>
 
-<div id="cy"></div>
+		<div id="navbar" class="navbar-collapse collapse">
+
+	    	<ul id="navigate" class="nav navbar-nav navbar-right">
+	      		<li>
+	          		<a data-toggle="collapse" id="toggle-filters" href="#library-navigation" aria-expanded="true" role="button" class="margin-right"><span class="glyphicon glyphicon-eye-close" title="Toggle Filters"</span></a>
+	      		</li>	
+	    	</ul>
+		</div>
+	</div>
+</nav>
+
+
+<div class='container-fluid'>
+	<div id="cy"></div>
+</div>
+
+<div class="collapse" id="library-navigation">
+
+	<div class='col-md-12'>
+		<div class="row center"  class ="load-json">
+  			<div class="col-md-12">
+    			<div class="input-group"> 
+      				<textarea id="names-load-json" type="text" rows="4" class="form-control" placeholder="Paste your JSON here..." autocomplete="off"></textarea>
+      				
+      				<span class="input-group-btn">
+        				<button class="btn" type="button" onclick="loadJson()">Load</button>
+      				</span>
+    			</div>
+  			</div>
+		</div>
+	</div>
+
+</div>
 
 <script src="javascripts/code.js"></script>
 <script src="javascripts/graphio.js"></script>

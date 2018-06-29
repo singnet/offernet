@@ -116,6 +116,64 @@ public class Utils {
       return StackTraceUtils.sanitize(marker).stackTrace[1].methodName
     }
 
+    /* produces a data file for cytoscape.js -- to be visualized */
+    private static boolean convertToCYNotation(Object path, String label, String cyFilePath) {
+      logger.info("Converting a path {} to cytoscape notation",path)
+      def json = [ ]
+      path.each { item -> 
+        switch(item.type.asString()) {
+          case "vertex":
+            def vertexData = [  group: "nodes",
+                                data: [
+                                  label: item.label.asString(),
+                                  id: formatVertexLabel(item.id),
+                                  description: formatVertexLabel(item.id)
+                                ]
+                            ]
+            def js = new JsonSlurper()
+            def properties = js.parseText(item.get("properties").toString())
+            properties.each { property ->
+              switch(property.getKey().toString()) {
+                case "value":
+                  vertexData.put(property.getKey(), property.getValue())
+                  vertexData.data.description = vertexData.data.description + '\n' + property.getValue().value.toString()
+                  break;
+              }
+            }
+            json.add(vertexData)
+            logger.info("Added vertex {} to cy",vertexData)
+            break;
+          case "edge":
+            def edgeData = [  group: "edges",
+                              data: [
+                                label: item.label.asString(),
+                                id: formatEdgeLabel(item.id),
+                                source: formatVertexLabel(item.outV),
+                                target: formatVertexLabel(item.inV),
+                                description: item.label.asString()
+                              ],
+                            ]
+            def js = new JsonSlurper()
+            def properties = js.parseText(item.get("properties").toString())
+            properties.each { property ->
+              switch(property.getKey().toString()) {
+                case "similarity":
+                  edgeData.put(property.getKey(), property.getValue())
+                  edgeData.data.description = edgeData.data.description + '\n' + property.getValue()
+                  break;
+              }
+            }
+          json.add(edgeData)
+          logger.info("Added edge {} to cy",edgeData)
+          break;
+        }
+      }
+
+      def sortedJSON = json.sort { a,b -> b.group <=> a.group}
+      new File(cyFilePath).write(JsonOutput.toJson(json))
+    }
+
+    /* produces file in dot notation for visualization -- do not work well */
     public static boolean convertToDotNotation(Object path, String label, String dotFilePath) {
         
         def dotFile = new File(dotFilePath);
@@ -259,7 +317,7 @@ public class Utils {
       def jsonSlurper = new JsonSlurper()
       def fieldNames = jsonSlurper.parseText(edgeId.toString());
       def edgeLabel = fieldNames.get('~local_id');
-      logger.info("Formatted vertex {} label as {}", edgeId.toString(),edgeLabel.toString())
+      logger.info("Formatted edge {} label as {}", edgeId.toString(),edgeLabel.toString())
       return edgeLabel
     }
 }
