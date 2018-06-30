@@ -18,6 +18,8 @@ import org.slf4j.LoggerFactory
 import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
 
+import groovy.json.JsonBuilder
+
 public class OfferNet implements AutoCloseable {
 
     private DseCluster cluster;
@@ -148,6 +150,22 @@ public class OfferNet implements AutoCloseable {
       logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return agentIds;
     }
+
+    private Object getVertex(String id) {
+      Map params = new HashMap();
+      params.put("idName", id);
+
+      SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(id,idName)",params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.warn("Executed statement: {}", Utils.getStatement(rs));
+      logger.warn("Execution warnings from the server: {}", Utils.getWarnings(rs));
+
+      Vertex vertex = rs.one().asVertex();
+      Object jsonVertex = Utils.vertexToJson(vertex)
+      logger.info("Converted to json representation {}", jsonVertex)
+      return jsonVertex;
+    }
+
 
     private List getVertices(String labelName) {
       def start = System.currentTimeMillis()

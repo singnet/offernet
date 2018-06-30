@@ -261,14 +261,25 @@ class Simulation extends UntypedAbstractActor {
             while (!selected) {
               def random = new Random();
               def agentRef = actorRefs[random.nextInt(actorRefs.size())]
+              def work;
               if (! affectedActors.contains(agentRef)){
+                  /*
+                  * a chain is added to the network by sending messages to agents to add a work with 
+                  * specified demand and offer items
+                  * it has to return work in order to log it and then compare to search results
+                  * therefore messages are sent via ask pattern
+                  * and block until they get replies 
+                  */
                   selected = true;
+                  Timeout timeout = new Timeout(Duration.create(5, "seconds"));
                   String method = "ownsWork"
                   def args = [chain[x],chain[x+1]];
-                  agentRef.tell(new Method(method,args),getSelf())
+                  def msg = new Method(method,args)
+                  Future<Object> future = Patterns.ask(agentRef, msg, timeout);
+                  work = Await.result(future, timeout.duration());
+                  chainedWorks.add([work, [demands: chain[x]], [offers:chain[x+1]]])
+                  affectedActors.add(agentRef)
               }
-              chainedWorks.add([agentRef, chain[x], chain[x+1]])
-              affectedActors.add(agentRef)
             }
         }
         logger.info('Added chain to the network: {}', chainedWorks)

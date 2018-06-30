@@ -17,6 +17,9 @@ import static org.junit.Assert.*
 
 import groovy.json.JsonOutput;
 import groovy.json.JsonSlurper;
+import groovy.json.internal.LazyMap
+
+import org.json.JSONArray
 
 public class Utils {
     static Logger logger = LoggerFactory.getLogger('Utils.class');
@@ -116,21 +119,23 @@ public class Utils {
       return StackTraceUtils.sanitize(marker).stackTrace[1].methodName
     }
 
-    /* produces a data file for cytoscape.js -- to be visualized */
-    private static boolean convertToCYNotation(Object path, String label, String cyFilePath) {
-      logger.info("Converting a path {} to cytoscape notation",path)
+    /* produces a path file for cytoscape.js -- to be visualized */
+    private static boolean convertToCYNotation(Object path, String cyFilePath) {
+      logger.info("Converting a path {} of {} to cytoscape notation",path, path.class)
       def json = [ ]
       path.each { item -> 
-        switch(item.type.asString()) {
+        logger.info('got an item {} of class',item)
+        switch(item.get('type')) {
           case "vertex":
             def vertexData = [  group: "nodes",
                                 data: [
-                                  label: item.label.asString(),
-                                  id: formatVertexLabel(item.id),
-                                  description: formatVertexLabel(item.id)
+                                  label: item.get('label'),
+                                  id: formatVertexLabel(item.get('id')),
+                                  description: formatVertexLabel(item.get('id'))
                                 ]
                             ]
             def js = new JsonSlurper()
+
             def properties = js.parseText(item.get("properties").toString())
             properties.each { property ->
               switch(property.getKey().toString()) {
@@ -146,21 +151,25 @@ public class Utils {
           case "edge":
             def edgeData = [  group: "edges",
                               data: [
-                                label: item.label.asString(),
-                                id: formatEdgeLabel(item.id),
-                                source: formatVertexLabel(item.outV),
-                                target: formatVertexLabel(item.inV),
-                                description: item.label.asString()
+                                label: item.get('label'),
+                                id: formatEdgeLabel(item.get('id')),
+                                source: formatVertexLabel(item.get('outV')),
+                                target: formatVertexLabel(item.get('inV')),
+                                description: item.get('label')
                               ],
                             ]
             def js = new JsonSlurper()
-            def properties = js.parseText(item.get("properties").toString())
-            properties.each { property ->
-              switch(property.getKey().toString()) {
-                case "similarity":
-                  edgeData.put(property.getKey(), property.getValue())
-                  edgeData.data.description = edgeData.data.description + '\n' + property.getValue()
-                  break;
+            def properties;
+            if (item.has("properties")) {
+              properties = js.parseText(item.get("properties").toString())
+              properties.each { property ->
+                logger.info("got property {}",property)
+                switch(property.getKey().toString()) {
+                  case "similarity":
+                    edgeData.put(property.getKey(), property.getValue())
+                    edgeData.data.description = edgeData.data.description + '\n' + property.getValue()
+                    break;
+                }
               }
             }
           json.add(edgeData)
@@ -304,6 +313,16 @@ public class Utils {
       return result;
     }
 
+    public static String formatVertexLabel(String nodeId) {
+      return nodeId
+    }
+
+    public static String formatVertexLabel(LazyMap nodeId) {
+      def vertexLabel = nodeId.get('~label')+":"+nodeId.get('community_id')+":"+nodeId.get('member_id')
+      logger.info("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
+      return vertexLabel
+    }
+
     public static String formatVertexLabel(Object nodeId) {
       def jsonSlurper = new JsonSlurper()
       logger.info("Parsing {} to json.",nodeId)
@@ -313,11 +332,39 @@ public class Utils {
       return vertexLabel
     }
 
+    public static String formatEdgeLabel(LazyMap edgeId) {
+      def edgeLabel = edgeId.get('~local_id');
+      logger.info("Formatted edge {} label as {}", edgeId.toString(), edgeLabel.toString())
+      return edgeLabel
+    }
+
     public static String formatEdgeLabel(Object edgeId) {
       def jsonSlurper = new JsonSlurper()
       def fieldNames = jsonSlurper.parseText(edgeId.toString());
       def edgeLabel = fieldNames.get('~local_id');
       logger.info("Formatted edge {} label as {}", edgeId.toString(),edgeLabel.toString())
       return edgeLabel
+    }
+
+    public static Object vertexToJson(Vertex vertex) {
+      def properties = [:]
+      logger.info('converting to Json: {}', vertex)
+      logger.info("vertex.getPropertyNames().toArray() {}",vertex.getPropertyNames().toArray().getClass())
+      vertex.getPropertyNames().each{ propertyName ->
+        properties.put(propertyName,vertex.getProperty(propertyName).getValue().asString())
+      }
+      def mapVertex = [ id: formatVertexLabel(vertex.getId()),
+                         label: vertex.getLabel(),
+                         type: 'vertex',
+                         properties: properties
+                        ]
+      logger.info('mapVertex is {}',mapVertex)
+      def builder = new groovy.json.JsonBuilder()
+      def root = builder 
+
+      JSONArray jsonVertex = new JSONArray()
+      jsonVertex.put(mapVertex)
+      logger.info('jsonVertex is {}',jsonVertex)          
+      return jsonVertex
     }
 }

@@ -48,6 +48,9 @@ import kamon.Kamon;
 import kamon.prometheus.PrometheusReporter;
 import kamon.jaeger.JaegerReporter;
 
+import groovy.json.JsonSlurper;
+import org.json.JSONArray
+
 public class SimulationTests {
 		static ActorSystem system = ActorSystem.create("SimulationTests");
 		static private Logger logger;
@@ -57,9 +60,10 @@ public class SimulationTests {
 		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
 	        PropertyConfigurator.configure(config.toProperties())
     	    logger = LoggerFactory.getLogger('SimulationTests.class');
-
-    	    Kamon.addReporter(new PrometheusReporter());
-      		Kamon.addReporter(new JaegerReporter());
+    	    if (Parameters.parameters.visualizationEngine) {
+    	    	Kamon.addReporter(new PrometheusReporter());
+      			Kamon.addReporter(new JaegerReporter());
+      		}
 		}
 
 		@Test
@@ -249,24 +253,26 @@ public class SimulationTests {
 			assertNotNull(sim);
 			sim.on.flushVertices();
 			
-			def chainLength = 6
+			def chainLength = 15
 			def chains = [Utils.createChain(chainLength)]
-			logger.warn("Created chain to add to the network: {}", chains[0])
+			def chain = chains[0]
+			logger.warn("Created chain to add to the network: {}", chain)
 
 			def agentList = sim.createAgentNetwork(chainLength+2,0,chains);
 			logger.warn("added agent network with agents: {}", agentList)			
 
 			logger.warn("Running decentralized similarity search and connect")
 			def start = System.currentTimeMillis();
-			def similarityThreshold = 0.5
+			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
 			def maxDistance = 6;
-			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
-			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
+			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
+			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
 			logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 			
 			logger.warn("Running decentralized PathSearch")
 			start = System.currentTimeMillis();	
-	       	def cutoffValue = 3;
+			def similaritySearchThreshold = 0.99
+	       	def cutoffValue = 8;
  	       	def uniquePaths = [] as Set;
  	       	def agentPaths;
  	       	agentList.each{ agent -> 
@@ -280,29 +286,70 @@ public class SimulationTests {
 		  		logger.warn("Retrieved {} works of agent {}", works.size(), agent)
 		  		works.each { work ->
 	 	       		logger.warn("Running decentralized PathSearch from work's {} perspective", work)
-				    msg = new Method("pathSearch", new ArrayList(){{add(work);add(cutoffValue);add(similarityThreshold)}});
-				    timeout = new Timeout(Duration.create(60, "seconds"));
+				    msg = new Method("pathSearch", new ArrayList(){{add(work);add(cutoffValue);add(similaritySearchThreshold)}});
+				    timeout = new Timeout(Duration.create(120, "seconds"));
 				   	future = Patterns.ask(agent, msg, timeout);
 			  		List path = (List<GraphNode>) Await.result(future, timeout.duration());
 		  			assertNotNull(path);
 	 	       		logger.info("Found path {} from work {}",path,work)
-	 	       		agentPaths.add(path)
+	 	       		if (path.size()!=0) {agentPaths.add(path)}
 	 	       	}
 	 	       	logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
 	 	       	uniquePaths.addAll(agentPaths)
  	       	}
- 	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
+	      	def jsonSlurper = new JsonSlurper()
+    	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
+
+ 	       	logger.warn("Found uniquePaths: {}", uniquePathsJson.size())
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-           	def index = 0;
+           	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
+			generateCYFileForEachPath(allPaths)           	
+		}
 
-           	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
+		List getVerticesBelongingToSubgraph(Object subgraphs,Simulation sim) {
+			/*
+			subgraph dontains only edges
+			but we want to have both edges and vertices
+			*/
+			def uniquePaths = []
+			//logger.info("subgraphs {} class is {}",subgraphs, subgraphs.getClass())
+			def sbgsIterator = subgraphs.iterator()
+			while (sbgsIterator.hasNext()) {
+				def subgraph = sbgsIterator.next();
+				logger.info("subgraph  is {}",subgraph)
+				JSONArray uniquePath = new JSONArray()
+				subgraph.each { edge ->
+					uniquePath.put(edge)
+					logger.info("Getting vertexes of the edge {}",edge)
+					def inV = Utils.formatVertexLabel(edge.id.get('~in_vertex'))
+					logger.info("Getting vertex {}",inV)
+					def vertexIn = sim.on.getVertex(inV)
+					logger.info('got vertexIn {}',vertexIn)
+					def outV = Utils.formatVertexLabel(edge.id.get('~out_vertex'))
+					logger.info("Getting vertex {}",outV)
+					def vertexOut = sim.on.getVertex(outV)
+					logger.info('got vertexOut {}',vertexOut)
+					uniquePath.put(vertexIn[0])
+					uniquePath.put(vertexOut[0])
+				}
+				logger.info("formed a uniquePath with edges and vertices {}",uniquePath)
+				uniquePaths.add(uniquePath)
+			}
+			logger.info("subgraph enriched by vertices: {}", uniquePaths)
+			return uniquePaths
+
+		}
+
+		void generateCYFileForEachPath(Object uniquePaths) {
+			String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
            	def methodName = Utils.getCurrentMethodName()
            	new File("temp/"+methodName+dirname).mkdir();
+			def index = 0;
  	       	uniquePaths.each {path -> 
  	       		index +=1;
  	       		def pathName = "temp/"+methodName+dirname+"/path"+index+".dot"
- 	       		Utils.convertToCYNotation(path,"Path",pathName);
+ 	       		Utils.convertToCYNotation(path,pathName);
  	       		logger.info("Wrote file to {}",pathName);
  	       	}
 		}
