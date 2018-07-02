@@ -113,6 +113,32 @@ public class SimulationTests {
 		}
 
 		@Test
+		void createAgentNetworkWithChainTest() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+			int size = 20
+
+			def chainLength = 4
+			def chains = [Utils.createChain(chainLength)]
+			def chain = chains[0]
+			logger.warn("Created chain to add to the network: {}", chain)
+
+			def agentList = sim.createAgentNetwork(size)
+			assertEquals(agentList.size(), size)
+
+		    def chainedWorks = sim.addChainToNetwork(chains[0], true)  // add chain to network and return json structure...
+      		//assertEquals(chainedWorks.size(),chainLength)
+			def agentNumber = sim.on.getVertices('agent').size();
+			assertEquals(agentNumber, size);
+			def knowsEdgeNumber = sim.on.getEdges('knows').size();
+			assertEquals(knowsEdgeNumber, size-1);
+			def itemNumber = sim.on.getVertices('item').size();
+			
+		}
+
+
+		@Test
 		void createAgentLineTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
@@ -249,30 +275,44 @@ public class SimulationTests {
 
 		@Test
 		void decentralizedPathSimulationTest() {
+			/* run test with parameters: */
+			def agentNumber = 6 // number of agents in the network
+			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
+			def randomWorksNumber = 4 // number of random works (outside chain) to drop into the network;
+			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
+			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
+	       	def cutoffValue = 4; // maximum number of hops when doing path search;
+
+	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
 			sim.on.flushVertices();
 			
-			def chainLength = 15
+			// create agent network and put some random works into it
+			def agentList = sim.createAgentNetwork(agentNumber);
+			logger.warn("added agent network with agents: {}", agentList)			
+			sim.addRandomWorksToAgents(randomWorksNumber)
+
+			// create chain and assign its items to random agents
 			def chains = [Utils.createChain(chainLength)]
 			def chain = chains[0]
 			logger.warn("Created chain to add to the network: {}", chain)
+			
+			def chainedWorksJson = sim.addChainToNetwork(chain, true)  // add chain to network and return json structure...
 
-			def agentList = sim.createAgentNetwork(chainLength+2,0,chains);
-			logger.warn("added agent network with agents: {}", agentList)			
-
+      		// Connect similar items in the network (similarity > than similarityThreshold in parameters)
 			logger.warn("Running decentralized similarity search and connect")
 			def start = System.currentTimeMillis();
 			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
-			def maxDistance = 6;
+			
 			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
 			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
 			logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 			
+			// Search for path -- results should include the chain that was previously created
 			logger.warn("Running decentralized PathSearch")
 			start = System.currentTimeMillis();	
-			def similaritySearchThreshold = 0.99
-	       	def cutoffValue = 8;
+			
  	       	def uniquePaths = [] as Set;
  	       	def agentPaths;
  	       	agentList.each{ agent -> 
@@ -300,12 +340,127 @@ public class SimulationTests {
 	      	def jsonSlurper = new JsonSlurper()
     	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
 
- 	       	logger.warn("Found uniquePaths: {}", uniquePathsJson.size())
+ 	       	logger.warn("Found {} uniquePaths: {}", uniquePathsJson.size(), uniquePaths)
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
            	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
-			generateCYFileForEachPath(allPaths)           	
+           	// if visualization is set on, produce the properly formated json of the path (and save on disk for later usage)
+           	if (Parameters.parameters.reportMode) {
+				generateCYFileForEachPath(allPaths)           	
+      		}
+
+      		// all paths found should contain the previously created chain
+      		def pathsContainingChain = 0;
+      		allPaths.each { uniquePathJson ->
+      			boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
+      			int contains = containsChain ? 1 : 0;
+      			pathsContainingChain = pathsContainingChain + contains
+      		}
+      		logger.info("Found {} paths containing the chain", pathsContainingChain)
+      		assertTrue(pathsContainingChain > 0);
+
 		}
+
+		@Test
+		void pathContainsChainTest() {
+			/* run test with parameters: */
+			def agentNumber = 10 // number of agents in the network
+			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
+			def randomWorksNumber = 10 // number of random works (outside chain) to drop into the network;
+			def maxDistance = 6; // the maximum number of hops when doing decentralized similarity search;
+			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
+	       	def cutoffValue = 5; // maximum number of hops when doing path search;
+
+	       	// create simulation object
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+			
+			// create agent network and put some random works into it
+			def agentList = sim.createAgentNetwork(agentNumber);
+			logger.warn("added agent network with agents: {}", agentList)			
+			sim.addRandomWorksToAgents(randomWorksNumber)
+
+			// create chain and assign its items to random agents
+			def chains = [Utils.createChain(chainLength)]
+			def chain = chains[0]
+			logger.warn("Created chain to add to the network: {}", chain)
+			
+			def chainedWorksJson = sim.addChainToNetwork(chain, true)  // add chain to network and return json structure...
+
+      		// Connect similar items in the network (similarity > than similarityThreshold in parameters)
+			logger.warn("Running decentralized similarity search and connect")
+			def start = System.currentTimeMillis();
+			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
+			
+			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
+			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
+			logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+			
+			// Search for path -- results should include the chain that was previously created
+			logger.warn("Running decentralized PathSearch")
+			start = System.currentTimeMillis();	
+			
+ 	       	def uniquePaths = [] as Set;
+ 	       	def agentPaths;
+ 	       	agentList.each{ agent -> 
+ 	       		agentPaths = [];
+ 	       		logger.warn("Getting all works of an agent {}", agent)
+			    Method msg = new Method("getWorks", new ArrayList());
+			    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+			   	Future<Object> future = Patterns.ask(agent, msg, timeout);
+		  		List works = (List<Vertex>) Await.result(future, timeout.duration());
+		  		assertNotNull(works);
+		  		logger.warn("Retrieved {} works of agent {}", works.size(), agent)
+		  		works.each { work ->
+	 	       		logger.warn("Running decentralized PathSearch from work's {} perspective", work)
+				    msg = new Method("pathSearch", new ArrayList(){{add(work);add(cutoffValue);add(similaritySearchThreshold)}});
+				    timeout = new Timeout(Duration.create(120, "seconds"));
+				   	future = Patterns.ask(agent, msg, timeout);
+			  		List path = (List<GraphNode>) Await.result(future, timeout.duration());
+		  			assertNotNull(path);
+	 	       		logger.info("Found path {} from work {}",path,work)
+	 	       		if (path.size()!=0) {agentPaths.add(path)}
+	 	       	}
+	 	       	logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
+	 	       	uniquePaths.addAll(agentPaths)
+ 	       	}
+	      	def jsonSlurper = new JsonSlurper()
+    	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
+
+ 	       	logger.warn("Found {} uniquePaths: {}", uniquePathsJson.size(), uniquePaths)
+           	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+           	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
+
+           	// all paths found should contain the previously created chain (one or more)
+      		def pathsContainingChain = 0;
+      		allPaths.each { uniquePathJson ->
+      			boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
+      			int contains = containsChain ? 1 : 0;
+      			pathsContainingChain = pathsContainingChain + contains
+      		}
+      		logger.info("Found {} paths containing the chain", pathsContainingChain)
+      		assertTrue(pathsContainingChain > 0);
+
+           	// creating chain which will now be checked -- so the unique path should not contain it...
+ 			def chainsNoAdd = [Utils.createChain(chainLength)]
+			def chainNoAdd = chainsNoAdd[0]
+			logger.warn("Created chain NOT to add to the network: {}", chainNoAdd)
+			def chainedNoAddWorksJson = sim.addChainToNetwork(chainNoAdd, true) // this is a bit stupid, but have to get the correct format...
+
+          	// but they should NOT contain the chain that was not added...
+      		def pathsContainingChainNoAdd = 0;
+      		allPaths.each { uniquePathJson ->
+      			boolean containsChainNoAdd =  Utils.pathContainsChain(uniquePathJson, chainedNoAddWorksJson)
+      			int contains = containsChainNoAdd ? 1 : 0;
+      			pathsContainingChainNoAdd = pathsContainingChainNoAdd + contains
+      		}
+      		logger.info("Found {} paths containing the chainNoAdd", pathsContainingChainNoAdd)
+      		assertFalse(pathsContainingChainNoAdd > 0);
+
+
+		}		
 
 		List getVerticesBelongingToSubgraph(Object subgraphs,Simulation sim) {
 			/*
@@ -320,7 +475,8 @@ public class SimulationTests {
 				logger.info("subgraph  is {}",subgraph)
 				JSONArray uniquePath = new JSONArray()
 				subgraph.each { edge ->
-					uniquePath.put(edge)
+					JSONArray singleChain = new JSONArray()
+					singleChain.put(edge)
 					logger.info("Getting vertexes of the edge {}",edge)
 					def inV = Utils.formatVertexLabel(edge.id.get('~in_vertex'))
 					logger.info("Getting vertex {}",inV)
@@ -330,8 +486,9 @@ public class SimulationTests {
 					logger.info("Getting vertex {}",outV)
 					def vertexOut = sim.on.getVertex(outV)
 					logger.info('got vertexOut {}',vertexOut)
-					uniquePath.put(vertexIn[0])
-					uniquePath.put(vertexOut[0])
+					singleChain.put(vertexIn[0])
+					singleChain.put(vertexOut[0])
+					uniquePath.put(singleChain)
 				}
 				logger.info("formed a uniquePath with edges and vertices {}",uniquePath)
 				uniquePaths.add(uniquePath)
