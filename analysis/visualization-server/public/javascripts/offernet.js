@@ -17,7 +17,7 @@ listenToEvents(serverName,serverPort);
 
 function layoutUpdate() {
 	runLayoutCola(cy);
-	setTimeout(layoutUpdate,timeout)
+//	setTimeout(layoutUpdate,timeout)
 }
 
 function newVertex(vertex) {
@@ -35,3 +35,16 @@ function newEdge(edge) {
 }
 
 layoutUpdate()
+
+function toggleProperties(id) {
+	var ele = cy.getElementById(id)
+	var display = ele.data().display
+	if (display == null || display == "") {
+		var description = ele.data().description
+		console.log('description of element '+id+' is '+JSON.stringify(description))
+		console.log('JSON of element '+id+' is '+JSON.stringify(ele.json()))
+		ele.data('display',description)
+	} else {
+		ele.data('display',"")
+	}
+}

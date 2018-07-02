@@ -15,3 +15,42 @@ a {
 	height: 100%;
 	width: 100%;
 }
+
+#library-navigation {
+	padding-top: 58px;
+}
+
+#properties-table {
+	width: 100%;
+}
+
+td {
+  word-wrap: break-word;
+}
+
+.transparent{
+  background:rgba(255,255,255,0.5);
+}
+
+label {
+    font-weight: normal !important;
+}
+
+button {
+	font: inherit;
+	border: 0;
+	background: #4183C4;
+	border-radius: 0.25em;
+	color: #fff;
+	cursor: pointer;
+}
+
+button:active {
+	box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+button.outline {
+	border: 1px solid #4183C4;
+	color: #4183C4;
+	background: transparent;
+}

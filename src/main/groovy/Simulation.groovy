@@ -22,7 +22,7 @@ import scala.concurrent.Await;
 import akka.util.Timeout;
 import scala.concurrent.duration.Duration;
 import akka.pattern.Patterns;
-
+import groovy.json.JsonOutput;
 
 class Simulation extends UntypedAbstractActor {
 	public OfferNet on;
@@ -261,17 +261,86 @@ class Simulation extends UntypedAbstractActor {
             while (!selected) {
               def random = new Random();
               def agentRef = actorRefs[random.nextInt(actorRefs.size())]
+              Vertex work;
               if (! affectedActors.contains(agentRef)){
+                  /*
+                  * a chain is added to the network by sending messages to agents to add a work with 
+                  * specified demand and offer items
+                  * it has to return work in order to log it and then compare to search results
+                  * therefore messages are sent via ask pattern
+                  * and block until they get replies 
+                  */
                   selected = true;
+                  Timeout timeout = new Timeout(Duration.create(5, "seconds"));
                   String method = "ownsWork"
                   def args = [chain[x],chain[x+1]];
-                  agentRef.tell(new Method(method,args),getSelf())
+                  def msg = new Method(method,args)
+                  Future<Object> future = Patterns.ask(agentRef, msg, timeout);
+                  work = Await.result(future, timeout.duration());
+                  chainedWorks.add([work, [demands: chain[x]], [offers:chain[x+1]]])
+                  affectedActors.add(agentRef)
               }
-              chainedWorks.add([agentRef, chain[x], chain[x+1]])
-              affectedActors.add(agentRef)
             }
         }
         logger.info('Added chain to the network: {}', chainedWorks)
+        return chainedWorks;
+    }
+
+    /*
+    This method sort of replaces the simple addChainToNetwork, but since it returns complex Object (json)
+    rather than list it breaks quite a few test, so more complicated refactoring is needed...
+    so temporarily it is a kind of 'override'
+    */
+    public Object addChainToNetwork(List chain, boolean json) {
+        def start = System.currentTimeMillis();
+        def dataItemsWithDesignedSimilarities = new ArrayList()
+        def affectedActors = []
+        def chainedWorks = []
+        ArrayList actorRefs = actorRefToVertexIdTable.keySet().toArray();
+        for (int x=0;x<chain.size()-1;x++) {
+            boolean selected = false;
+            while (!selected) {
+              def random = new Random();
+              def agentRef = actorRefs[random.nextInt(actorRefs.size())]
+              Vertex work;
+              if (! affectedActors.contains(agentRef)){
+                  /*
+                  * a chain is added to the network by sending messages to agents to add a work with 
+                  * specified demand and offer items
+                  * it has to return work in order to log it and then compare to search results
+                  * therefore messages are sent via ask pattern
+                  * and block until they get replies 
+                  */
+                  selected = true;
+                  Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+                  String method = "ownsWork"
+                  def args = [chain[x],chain[x+1]];
+                  def msg = new Method(method,args)
+                  Future<Object> future = Patterns.ask(agentRef, msg, timeout);
+                  work = Await.result(future, timeout.duration());
+                  affectedActors.add(agentRef)
+
+                  def singleChain = [:]  
+                  def workLabel = Utils.formatVertexLabel(work.id)
+                  singleChain.put("work", workLabel)
+
+                  ['demands','offers'].each{ edgeLabel ->
+                    timeout = new Timeout(Duration.create(5, "seconds"));
+                    method = "getWorksItems"
+                    args = [work,edgeLabel];
+                    msg = new Method(method,args)
+                    future = Patterns.ask(agentRef, msg, timeout);
+                    List items = Await.result(future, timeout.duration());
+                    def z = x
+                    if (edgeLabel == "offers") { z = x+1 }
+                    singleChain.put("$edgeLabel", [ item: Utils.formatVertexLabel(items[0].id), value: chain[z] ] )
+                  }
+                chainedWorks.add(singleChain)
+              }
+            }
+        }
+        def jsonChainedWorks = JsonOutput.toJson(chainedWorks)
+        logger.info('Added chain to the network (json): {}', jsonChainedWorks)
         return chainedWorks;
     }
 

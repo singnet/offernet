@@ -17,6 +17,9 @@ import static org.junit.Assert.*
 
 import groovy.json.JsonOutput;
 import groovy.json.JsonSlurper;
+import groovy.json.internal.LazyMap
+
+import org.json.JSONArray
 
 public class Utils {
     static Logger logger = LoggerFactory.getLogger('Utils.class');
@@ -116,6 +119,72 @@ public class Utils {
       return StackTraceUtils.sanitize(marker).stackTrace[1].methodName
     }
 
+    /* produces a path file for cytoscape.js -- to be visualized */
+    private static boolean convertToCYNotation(Object path, String cyFilePath) {
+      logger.info("Converting a path {} of {} to cytoscape notation",path, path.class)
+      def json = [ ]
+      path.each { chain ->
+        chain.each { item -> 
+          logger.info('got an item {} of class',item)
+          switch(item.get('type')) {
+            case "vertex":
+              def vertexData = [  group: "nodes",
+                                  data: [
+                                    label: item.get('label'),
+                                    id: formatVertexLabel(item.get('id')),
+                                    description: formatVertexLabel(item.get('id'))
+                                  ]
+                              ]
+              def js = new JsonSlurper()
+
+              def properties = js.parseText(item.get("properties").toString())
+              properties.each { property ->
+                switch(property.getKey().toString()) {
+                  case "value":
+                    vertexData.put(property.getKey(), property.getValue())
+                    vertexData.data.description = vertexData.data.description + '\n' + property.getValue().value.toString()
+                    break;
+                }
+              }
+              json.add(vertexData)
+              logger.info("Added vertex {} to cy",vertexData)
+              break;
+            case "edge":
+              def edgeData = [  group: "edges",
+                                data: [
+                                  label: item.get('label'),
+                                  id: formatEdgeLabel(item.get('id')),
+                                  source: formatVertexLabel(item.get('outV')),
+                                  target: formatVertexLabel(item.get('inV')),
+                                  description: item.get('label')
+                                ],
+                              ]
+              def js = new JsonSlurper()
+              def properties;
+              if (item.has("properties")) {
+                properties = js.parseText(item.get("properties").toString())
+                properties.each { property ->
+                  logger.info("got property {}",property)
+                  switch(property.getKey().toString()) {
+                    case "similarity":
+                      edgeData.put(property.getKey(), property.getValue())
+                      edgeData.data.description = edgeData.data.description + '\n' + property.getValue()
+                      break;
+                  }
+                }
+              }
+            json.add(edgeData)
+            logger.info("Added edge {} to cy",edgeData)
+            break;
+          }
+        }
+      }
+
+      def sortedJSON = json.sort { a,b -> b.group <=> a.group}
+      new File(cyFilePath).write(JsonOutput.toJson(json))
+    }
+
+    /* produces file in dot notation for visualization -- do not work well */
     public static boolean convertToDotNotation(Object path, String label, String dotFilePath) {
         
         def dotFile = new File(dotFilePath);
@@ -246,6 +315,16 @@ public class Utils {
       return result;
     }
 
+    public static String formatVertexLabel(String nodeId) {
+      return nodeId
+    }
+
+    public static String formatVertexLabel(LazyMap nodeId) {
+      def vertexLabel = nodeId.get('~label')+":"+nodeId.get('community_id')+":"+nodeId.get('member_id')
+      logger.info("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
+      return vertexLabel
+    }
+
     public static String formatVertexLabel(Object nodeId) {
       def jsonSlurper = new JsonSlurper()
       logger.info("Parsing {} to json.",nodeId)
@@ -255,11 +334,92 @@ public class Utils {
       return vertexLabel
     }
 
+    public static String formatEdgeLabel(LazyMap edgeId) {
+      def edgeLabel = edgeId.get('~local_id');
+      logger.info("Formatted edge {} label as {}", edgeId.toString(), edgeLabel.toString())
+      return edgeLabel
+    }
+
     public static String formatEdgeLabel(Object edgeId) {
       def jsonSlurper = new JsonSlurper()
       def fieldNames = jsonSlurper.parseText(edgeId.toString());
       def edgeLabel = fieldNames.get('~local_id');
-      logger.info("Formatted vertex {} label as {}", edgeId.toString(),edgeLabel.toString())
+      logger.info("Formatted edge {} label as {}", edgeId.toString(),edgeLabel.toString())
       return edgeLabel
     }
+
+    public static Object vertexToJson(Vertex vertex) {
+      def properties = [:]
+      logger.info('converting to Json: {}', vertex)
+      logger.info("vertex.getPropertyNames().toArray() {}",vertex.getPropertyNames().toArray().getClass())
+      vertex.getPropertyNames().each{ propertyName ->
+        properties.put(propertyName,vertex.getProperty(propertyName).getValue().asString())
+      }
+      def mapVertex = [ id: formatVertexLabel(vertex.getId()),
+                         label: vertex.getLabel(),
+                         type: 'vertex',
+                         properties: properties
+                        ]
+      logger.info('mapVertex is {}',mapVertex)
+      def builder = new groovy.json.JsonBuilder()
+      def root = builder 
+
+      JSONArray jsonVertex = new JSONArray()
+      jsonVertex.put(mapVertex)
+      logger.info('jsonVertex is {}',jsonVertex)          
+      return jsonVertex
+    }
+
+    public static boolean pathContainsChain(Object uniquePathJson, Object chainedWorksJson) {
+      boolean pathDoesNotContainChain = true;
+      uniquePathJson.each {chain ->
+        logger.info("a chain of uniquepathJson is {}", chain)
+        def path_work = chain.findAll{it.label=='work'}
+        logger.info("path_work is {}", path_work)
+        if (path_work) {
+          logger.info('checking edge with path_work {}',path_work.id)
+          def path_item = chain.findAll{it.label=='item'}
+          logger.info('path_item is {}',path_item)
+          def path_itemId = path_item.id[0]
+          logger.info('with path_itemId {}',path_itemId)
+          def path_itemValue = path_item[0].get('properties').value[0]
+          logger.info('with path_itemValue {} of {}',path_itemValue, path_itemValue.getClass())
+          def path_edgeLabel = chain.findAll{it.type=='edge'}.label[0]
+          logger.info('with path_edgeLabel {}',path_edgeLabel)
+
+          logger.info('checking if chain {} contains edge with work {}',chainedWorksJson,path_work.id[0].toString())
+          def chained_work;
+          chainedWorksJson.each { chainedWork ->
+            logger.info("chainedWork {} of {}",chainedWork,chainedWork.getClass());
+            if (chainedWork.work == path_work.id[0].toString()) { chained_work = chainedWork.clone()}
+          } 
+          logger.info('chained work is: {}',chained_work)
+          if (chained_work) { 
+             logger.info('found chained_work with id {}',chained_work.work)
+             def chained_itemId = chained_work.get("$path_edgeLabel").item
+             logger.info('with chained_itemId {} related as {}',chained_itemId, "$path_edgeLabel")
+             def itemIdsMatch = chained_work.get("$path_edgeLabel").item == path_itemId;
+             logger.info('comparing chained_work."$path_edgeLabel".item {} and path_itemId {}: {}', chained_work.get("$path_edgeLabel").item, path_itemId, itemIdsMatch)
+             pathDoesNotContainChain = pathDoesNotContainChain & itemIdsMatch
+
+             def itemValuesMatch = chained_work.get("$path_edgeLabel").value == path_itemValue;
+             logger.info('comparing chained_work."$path_edgeLabel".value {} and path_itemValue {}: {}', chained_work.get("$path_edgeLabel").value, path_itemValue, itemValuesMatch)
+             pathDoesNotContainChain = pathDoesNotContainChain & itemValuesMatch
+          }
+        }
+      }
+      def pathContainsChain = ! pathDoesNotContainChain
+      logger.info('{} that path {} contains chain {}',pathContainsChain,uniquePathJson,chainedWorksJson)
+      // using inverted boolean variable to take advantage of boolean algebra
+      // i.e. that true can be turned into false by one addition of false
+      // but false cannot be turned to true by adding false or true...
+      return pathContainsChain
+    }
+
 }
+/*
+           properties = js.parseText(item.get("properties").toString())
+                properties.each { property ->
+                  logger.info("got property {}",property)
+                  switch(property.getKey().toString()) {
+*/   

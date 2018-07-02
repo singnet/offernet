@@ -29,6 +29,7 @@ before_install:
   - R -e "install.packages('devtools', repos = 'http://cran.cnr.berkeley.edu/', lib='$TRAVIS_BUILD_DIR/Rlibs')"
   - R -e "library('devtools', lib.loc='$TRAVIS_BUILD_DIR/Rlibs')"
   - R -e "devtools::install_github('rstudio/bookdown')"
+#  - host-manager -add visualization-server.host 127.0.0.1
 
 script:
   - "./gradlew check"

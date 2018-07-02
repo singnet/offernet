@@ -499,30 +499,21 @@ public class Agent extends UntypedAbstractActor {
       logger.warn("Searching for the cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
 
       String query="""
-          g.V(thisWork).as('source').repeat(
-                 __.outE('offers').inV().as('a').has(label,'item')                               // (1)
-                .bothE('similarity').has('similarity',gte(0.5))            // (2)
-                .bothV().as('b').where('a',neq('b'))                                              // (3)
-                .inE('demands').outV().has(label,'work')).until(simplePath().count().is(neq(0))).simplePath().path()
+         g.V(thisWork).as('source').repeat(
+                 __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')            // (2)
+                .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(cutoffValue).cap('subGraph').next().traversal().E()
       """
       /*
-      (1) get the demand of the work as item
-      (2) look for edges with perfect similarity
-      (3) check that the items items are not the same (not sure this is needed)
-      (4) get the item on the other side & get the work that has offers the item        
+      This query gets a list of edges which form a found path
+      In order to visualize it showing vertex properties, the list of edges has to be furher procesed
       */
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);
       GraphResultSet rs = session.executeGraph(s);
       logger.info("Executed statement: {}",Utils.getStatement(rs,params));
       logger.info("With parameters: {}", params);
-      def result = rs.one()
+      def result = rs.all()
       logger.warn("Received result {}",result)
-      List path=[]
-      if (result != null) { path = result.asPath().getObjects();}
-      logger.warn("Found path: {}",path);
-      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-      return path;
+      return result;
   }
 
 }

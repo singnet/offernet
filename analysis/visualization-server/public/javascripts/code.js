@@ -13,6 +13,22 @@ var cy = window.cy = cytoscape({
 
     style: [
       {
+        selector: 'node',
+        style: {
+          'content': 'data(display)',
+          'text-wrap' : 'wrap'
+        }
+      },
+      {
+        selector: 'edge',
+        style: {
+          'content': 'data(display)',
+          'text-wrap' : 'wrap',
+          'curve-style': 'bezier',
+          'target-arrow-shape': 'triangle'
+        }
+      },
+      {
         selector: 'node[label="agent"]',
         style: {
           'background-color': '#ffce66'
@@ -34,30 +50,37 @@ var cy = window.cy = cytoscape({
         selector: 'edge[label="knows"]',
         style: {
           'width': 2,
-          'line-color': '#ffce66'
+          'line-color': '#ffce66',
         }
       },
       {
         selector: 'edge[label="owns"]',
         style: {
           'width': 2,
-          'line-color': '#7be452'
+          'line-color': '#7be452',
         }
       },
       {
         selector: 'edge[label="demands"]',
         style: {
           'width': 2,
-          'line-color': '#b30000'
+          'line-color': '#b30000',
         }
       },
       {
         selector: 'edge[label="offers"]',
         style: {
           'width': 2,
-          'line-color': '#663300'
+          'line-color': '#663300',
+        }
+      },
+      {
+        selector: 'edge[label="similarity"]',
+        style: {
+          'width': 2,
         }
       }
+
     ],
 
     elements: {
@@ -66,3 +89,24 @@ var cy = window.cy = cytoscape({
       }
 
   });
+
+
+cy.on('tap', 'node', function(e){
+
+  // display node properties on top
+  // by this id
+  var nodeid = e.target.id();
+  console.log('nodeId is: ',nodeid)
+  toggleProperties(nodeid);
+
+});
+
+cy.on('tap', 'edge', function(e){
+
+  // display edge properties on the bottom
+  // by this id
+  var edgeid = e.target.id();
+  console.log(edgeid)
+  toggleProperties(edgeid);
+
+});
