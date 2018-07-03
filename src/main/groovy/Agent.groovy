@@ -438,11 +438,10 @@ public class Agent extends UntypedAbstractActor {
 
     GraphResultSet rs = session.executeGraph(s);
     List similarityEdges = rs.all().collect {it.asEdge()};
-    logger.info("Found {} items with explicit similarity from item {}",similarityEdges.size(),this.id());
+    logger.info("Found {} items with explicit similarity from item {}",similarityEdges.size(),item.getId());
     logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
     return similarityEdges;
-
   }
 
 
@@ -481,13 +480,8 @@ public class Agent extends UntypedAbstractActor {
   }
 
   /*
-  * params: cutoffValue stops the search if this depth is reached with no cycle discovered; similarityConstraint - all exceeding this value is considered as similar (so allows to connect items which are not EXACTLY similar) -- ideally this should be customizable for every item individually;
-  */
-
-  /*
-  Something is wrong with this query as it runs well when running from the gremlin console.
-  I think the problem again is with types when getting 'similarity' property --
-  Read DSE Graph tutorial before going further.
+  * starting from each work of the current agent traverses the graph via similarity links and looks for {offer,demand} matches and hopefully paths 
+  * params: cutoffValue stops the search if this depth is reached; similarityConstraint - all exceeding this value is considered as similar (so allows to connect items which are not EXACTLY similar) -- ideally this should be customizable for every item individually;
   */
   private List<GraphNode> pathSearch(Vertex work, Integer cutoffValue, Object similarityConstraint) {
       def start = System.currentTimeMillis()

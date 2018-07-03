@@ -110,7 +110,6 @@ class Simulation extends UntypedAbstractActor {
   * gets agent vertexId via asynchronous blocking message
   * not perfect: have to change to non -blocking message with probably future.onComplete...
   */
-
   private Object getAgentVertexId(ActorRef actorRef) {
     Timeout timeout = new Timeout(Duration.create(5, "seconds"));
     def msg = new Method("vertexId",[])
@@ -158,6 +157,10 @@ class Simulation extends UntypedAbstractActor {
     return agentsList;
   }
 
+  /**
+  * This method sends a single message to every agent in a system in a row instructing it to start searchAndConnect method on their behalf
+  * Used for testing purposes only. It is a semi-decentralized: decentralized because each agent gets a message and starts routines asynchronously. Centralized because a global list of agents is used. Complete decentralization could be achieved by randomly choosing agents in the network that start the discovery process.
+  */
 	private void connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) throws Throwable{
 
 		def start = System.currentTimeMillis();
@@ -168,8 +171,17 @@ class Simulation extends UntypedAbstractActor {
         Method msg = new Method("searchAndConnect", args);
         agentRef.tell(msg,getSelf());
 		}
+    // this  benchmarking is not correct as it measures only how much time it took to send messages to all agents in the network, but it does not say how long they are being processed...
 		logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 	}
+
+
+  private void connectIfSimilarCentralized(Object similarityThreshold) throws Throwable {
+    def start = System.currentTimeMillis();
+
+
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+  }
 
 /* finished until here */
 

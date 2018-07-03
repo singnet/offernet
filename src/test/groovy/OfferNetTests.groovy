@@ -110,29 +110,6 @@ public class OfferNetTests {
 		}
 
 		@Test
-		void connectMatchingPairsTest() {
-			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-			def chainLength = 4
-
-			def chains = [Utils.createChain(chainLength)]
-			logger.info("Created chains: {}",chains)
-
-			sim.createAgentNetwork(chainLength,0,chains);
-			Thread.sleep(1000)
-
-			def demandEdges = on.allWorkItemEdges("demands");
-			def offerEdges = on.allWorkItemEdges("offers")
-
-	        logger.info("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
-
-			def matchingOfferDemandPairs = Utils.getMatchingOfferDemandPairs(offerEdges,demandEdges)
-			logger.warn("Offer-Demand pairs found: {}",matchingOfferDemandPairs)
-
-			def connectedPairsCount = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
-			assertEquals((chainLength - 2).toInteger(),connectedPairsCount)
-		}
-
-		@Test
 		void createAgentTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			def agent = sim.on.createAgent();

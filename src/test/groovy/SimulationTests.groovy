@@ -513,11 +513,86 @@ public class SimulationTests {
 
 		@Test
 		void centralizedPathSimulationTest() {
+			/* run test with parameters: 
+			when comparing with decentralized counterpart obviously has to run with the same parameters...
+			*/
+			def agentNumber = 6 // number of agents in the network
+			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
+			def randomWorksNumber = 4 // number of random works (outside chain) to drop into the network;
+			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
+	       	def cutoffValue = 4; // maximum number of hops when doing path search;
+
+	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
 			sim.on.flushVertices();
 			
-			def chainLength = 6
+			// create agent network and put some random works into it
+			def agentList = sim.createAgentNetwork(agentNumber);
+			logger.warn("added agent network with agents: {}", agentList)			
+			sim.addRandomWorksToAgents(randomWorksNumber)
+
+			// create chain and assign its items to random agents
+			def chains = [Utils.createChain(chainLength)]
+			def chain = chains[0]
+			logger.warn("Created chain to add to the network: {}", chain)
+			
+			def chainedWorksJson = sim.addChainToNetwork(chain, true)  // add chain to network and return json structure...
+
+			// here things start to be different from decentralized version...
+      		// Connect similar items in the network (similarity > than similarityThreshold in parameters)
+      		// by simply getting ALL items in the network and checking mutual similarities
+			logger.warn("Running centralized similarity search and connect")
+			def start = System.currentTimeMillis();
+
+			def allItems = sim.on.getVertices('item');
+			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
+			
+			def similarityConnectionsCentralized = sim.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
+			logger.warn("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
+			logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+			
+			// Search for path -- results should include the chain that was previously created
+			logger.warn("Running centralized PathSearch")
+			start = System.currentTimeMillis();	
+
+			def uniquePaths = [] as Set;
+			def paths = sim.on.allPathsCentralized(similaritySearchThreshold);
+			uniquePaths.addAll(paths);
+
+			def jsonSlurper = new JsonSlurper()
+    	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
+
+ 	       	logger.warn("Found {} uniquePaths: {}", uniquePathsJson.size(), uniquePaths)
+           	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+           	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
+           	// if visualization is set on, produce the properly formated json of the path (and save on disk for later usage)
+           	if (Parameters.parameters.reportMode) {
+				generateCYFileForEachPath(allPaths)           	
+      		}
+
+      		// all paths found should contain the previously created chain
+      		def pathsContainingChain = 0;
+      		allPaths.each { uniquePathJson ->
+      			boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
+      			int contains = containsChain ? 1 : 0;
+      			pathsContainingChain = pathsContainingChain + contains
+      		}
+      		logger.info("Found {} paths containing the chain", pathsContainingChain)
+      		assertTrue(pathsContainingChain > 0);
+
+		}
+
+		@Ignore
+		/* old one -- delete after above starts to work */
+		@Test
+		void centralizedPathSimulationTestOld() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+			
+			def chainLength = 4
 			def chains = [Utils.createChain(chainLength)]
 			logger.warn("Created chain to add to the network: {}", chains[0])
 
@@ -527,7 +602,6 @@ public class SimulationTests {
 			logger.warn("Running centralized similarity search")
 			def start = System.currentTimeMillis();
 			def similarityThreshold = Parameters.parameters.binaryStringLength
-			def maxDistance = 3;
 
 			def demandEdges = sim.on.allWorkItemEdges("demands");
 			def offerEdges = sim.on.allWorkItemEdges("offers")
@@ -535,7 +609,7 @@ public class SimulationTests {
 			def matchingOfferDemandPairs = Utils.getMatchingOfferDemandPairs(offerEdges,demandEdges)
 			def similarityConnectionsCentralized = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
 
-			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
+			logger.warn("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized, similarityThreshold);
 			
 			def uniquePaths = [] as Set;
 			def paths = sim.on.allPathsCentralized(similarityThreshold);
@@ -555,6 +629,7 @@ public class SimulationTests {
  	       		Utils.convertToDotNotation(path,"Path","temp/path"+index+".dot");
  	       	}
 		}
+	
 
 		@Test
 		void compareCentralizedAndDecentralizedSimilaritySearchTest() {

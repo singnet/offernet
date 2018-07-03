@@ -256,7 +256,7 @@ public class OfferNet implements AutoCloseable {
 
     }
 
-    public List allPathsCentralized(Integer similarityThreshold) {
+    public List allPathsCentralized(Object similarityThreshold) {
         logger.warn("Centralized search of all paths in the network");
         def start = System.currentTimeMillis();
         Map params = new HashMap();
@@ -352,62 +352,6 @@ public class OfferNet implements AutoCloseable {
         logger.info("Removed all {} edges from the graph", edgeLabel);
     }
 
-
-    public Integer connectMatchingPairs(Map matchingPairs) {
-      def start = System.currentTimeMillis();
-      def connected = 0;
-      logger.info("Connecting all matching demand offer item pairs")
-      matchingPairs.each { key,value ->
-         def offers = value.get('offers');
-         offers.each {offerEdge -> 
-            offerEdge = offerEdge.asEdge()
-            logger.info("Offer edge: {}", offerEdge)
-            def item1 = offerEdge.getInV();
-            String item1Label = "item:"+item1.community_id+":"+item1.member_id;
-            logger.info("Offer item: {}", item1)
-            def demands = value.get('demands');
-            demands.each{demandEdge -> 
-              demandEdge = demandEdge.asEdge()
-              def item2 = demandEdge.getInV();
-              String item2Label = "item:"+item2.community_id+":"+item2.member_id;
-              logger.info("Demand item: {}", item2);
-              def similarity = Utils.calculateSimilarity(key.asString(),key.asString())
-              this.connectItems(item1Label,item2Label,similarity)
-              connected += 1
-            }
-         }
-      }
-      logger.info("Connected {} item pairs.", connected)
-      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-      return connected
-    }
-
-    public Edge connectItems(String item1Label, String item2Label, Object similarity) {
-      def start = System.currentTimeMillis();
-      Map params = new HashMap();
-      params.put("item1", item1Label);
-      params.put("item2",item2Label);
-      params.put('edgeLabel','similarity');
-      params.put('valueKey','similarity');
-      params.put('valueName',similarity);
-
-      logger.warn("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
-
-      SimpleGraphStatement s = new SimpleGraphStatement(
-              "def v1 = g.V(item1).next()\n" +
-              "def v2 = g.V(item2).next()\n" +
-              "def e = v1.addEdge(edgeLabel, v2)\n"+
-              "e.property(valueKey,valueName)\n"+
-              "e", params);
-
-      GraphResultSet rs = session.executeGraph(s);
-      def similarityEdge = rs.one().asEdge();
-      logger.info("Added similarity edge {} to the network", similarityEdge);
-      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-      return similarityEdge;
-    }
-
     public Vertex createAgent() {
         Map params = new HashMap();
         params.put("labelValue", "agent");
@@ -449,5 +393,140 @@ public class OfferNet implements AutoCloseable {
 
         return edge;
     }
+
+    private List connectAllSimilarCentralized(List<Vertex> allItems, Double similarityThreshold) {
+      def tail;
+      def similarityEdges=[];
+      def recursiveSimilaritySearch
+      recursiveSimilaritySearch = {List<Vertex> items ->
+        if (items.size > 0 ) {
+          def item = items[0];
+          tail = items.drop(1)
+          logger.info('tail of items is {}',tail)
+          similarityEdges.addAll(connectAllSimilar(item,tail,similarityThreshold))
+          tail = recursiveSimilaritySearch(tail);
+        } else {tail = []}
+        return tail;
+      }
+      logger.info('running recursiveSimilaritySearch')
+      recursiveSimilaritySearch(allItems);
+      logger.info('Added total {} similarity edges to the graph (centralized)',similarityEdges.size())
+      return similarityEdges;
+    }
+
+    /**
+    Exact copy of Agent.connectAllSimilar
+    */
+    private List connectAllSimilar(Vertex item, List<Vertex> itemsOfKnownAgents, Double similarityThreshold) {
+        def start = System.currentTimeMillis()
+        def similarityEdges = [];
+        itemsOfKnownAgents.each {knownItem ->
+            def edge = this.connectIfSimilar(item,knownItem,similarityThreshold)
+            if (edge != null) {similarityEdges.add(edge)}
+        }
+        logger.info("Added {} similarity Edges to graph", similarityEdges.size());
+        logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        return similarityEdges;
+    }
+
+    /**
+    Exact copy of Agent.connectIfSimilar
+    */
+    private Edge connectIfSimilar(Vertex item, Vertex knownItem, Double similarityThreshold) {
+      def start = System.currentTimeMillis()
+      def similarityEdge = null;
+      if (this.existsSimilarity(item,knownItem) == -1) {
+        def similarity = Utils.calculateSimilarity(item,knownItem);
+        logger.warn("The similarity between items {} and {} is {}", item.getId(),knownItem.getId(),similarity);
+        if (similarity >= similarityThreshold) {
+            logger.warn("similarity {}  >= similarityThreshold {}, therefore connecting", similarity, similarityThreshold)
+            similarityEdge = this.reciprocalDistanceLink(item,knownItem,similarity)
+        } else {
+           logger.warn("similarity {} < similarityThreshold {}, therefore not connecting", similarity, similarityThreshold)
+        }
+      }
+      logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      return similarityEdge;
+  }
+
+  /**
+  Exact copy of Agent.existsSimilarity
+  */
+  private Integer existsSimilarity(Vertex item, Vertex anotherItem) {
+    def start = System.currentTimeMillis();
+    logger.info("Checking if explicit similarity link exists between from {} to {}",item.getId(),anotherItem.getId())
+    List similarityList = []
+    this.similarityEdges(item).each { outEdge ->
+        if (outEdge.getInV() == anotherItem.getId()) {
+          similarityList.add(outEdge);
+          logger.info("Found similarity link {}",outEdge)
+        }
+    }
+    def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValue(similarityList[0],'similarity') : -1;
+    logger.info("Retrieved similarity value {} between item {} and {}",similarity,item.getId(),anotherItem.getId())
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+    return similarity;
+  }
+
+  /**
+  Exact copy of Agent.similarityEdges
+  */
+  private List<Edge> similarityEdges(Vertex item) {
+    def start = System.currentTimeMillis()
+    Map params = new HashMap();
+    params.put("thisItem", item.getId());
+
+    SimpleGraphStatement s = new SimpleGraphStatement(
+          "g.V(thisItem).outE('similarity')", params)
+
+    GraphResultSet rs = session.executeGraph(s);
+    List similarityEdges = rs.all().collect {it.asEdge()};
+    logger.info("Found {} items with explicit similarity from item {}",similarityEdges.size(),item.getId());
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+    return similarityEdges;
+
+  }
+
+  /**
+  Exact copy of Agent.reciprocalDistanceLink
+  */
+  private Edge reciprocalDistanceLink(Vertex item, Vertex knownItem, Object similarity) {
+     // every similarity edge created also triggers the creation of reciprocal edge with same parameters
+     //this.connect(knownItem,item,similarity);
+     return this.connect(item,knownItem, similarity);
+  }
+
+  /**
+  Exact copy of Agent.connect
+  */
+  private Object connect(Vertex item, Vertex knownItem, Object similarity) {
+    def start = System.currentTimeMillis();
+    Map params = new HashMap();
+    params.put("item1", item.getId());
+    params.put("item2",knownItem.getId());
+    params.put('edgeLabel','similarity');
+    params.put('valueKey','similarity');
+    params.put('valueName', (Double) similarity);
+
+    logger.warn("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
+
+    SimpleGraphStatement s = new SimpleGraphStatement(
+            "def v1 = g.V(item1).next()\n" +
+            "def v2 = g.V(item2).next()\n" +
+            "def e = v1.addEdge(edgeLabel, v2)\n"+
+            "e.property(valueKey,valueName)\n"+
+            "def e2 = v2.addEdge(edgeLabel, v1)\n"+
+            "e2.property(valueKey,valueName)\n"+
+            "e", params);
+
+    GraphResultSet rs = session.executeGraph(s);
+    def similarityEdge = rs.one().asEdge();
+    logger.info("Added similarity edge {} to the network", similarityEdge);
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+    return similarityEdge;
+  }
+
+
 
 }

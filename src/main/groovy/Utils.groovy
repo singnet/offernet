@@ -235,25 +235,6 @@ public class Utils {
         return dotString;
     }
 
-    public static Object getMatchingOfferDemandPairs(Object offerItemPairs, Object  demandItemPairs) {
-        def matchingPairs = [:]
-        Map offerPairs = listToMap(offerItemPairs);
-        Map demandPairs = listToMap(demandItemPairs);
-        offerPairs.each { key,value -> 
-          def matchingDemandPairs = demandPairs.get(key);
-          if (matchingDemandPairs!=null) {
-            Map matches = [:]
-            matches.put("offers",[value])
-            matches.put("demands",[matchingDemandPairs])
-            matchingPairs.find{ it.key == key } \
-              ? { matchingPairs.get(key).get('offers').add(value); matchingPairs.get(key).get('demands').add(matchingDemandPairs) } \
-              : matchingPairs.put(key,matches)
-          }
-        }
-        logger.warn("Found {} matching offer-demand pairs", matchingPairs.size())
-        return matchingPairs
-    }
-
     public static Map listToMap(List listOfItemPairs) {
         Map map = [:]
         listOfItemPairs.each { pair -> 
@@ -417,9 +398,3 @@ public class Utils {
     }
 
 }
-/*
-           properties = js.parseText(item.get("properties").toString())
-                properties.each { property ->
-                  logger.info("got property {}",property)
-                  switch(property.getKey().toString()) {
-*/   
