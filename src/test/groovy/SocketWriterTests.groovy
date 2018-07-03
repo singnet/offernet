@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory
 import org.junit.Test;
 import org.junit.Ignore;
 import org.junit.BeforeClass;
+import org.junit.AfterClass;
 import akka.testkit.TestActorRef
 import akka.testkit.JavaTestKit;
 import akka.actor.ActorSystem;
@@ -32,16 +33,31 @@ import static org.junit.Assert.*
 
 import org.json.JSONObject;
 
+import java.lang.ProcessBuilder
+
 public class SocketWriterTests {
 	static private OfferNet on = new OfferNet().flushVertices();
     static private Logger logger;
     static ActorSystem system = ActorSystem.create("EventTests");
+    static Process process;
 
 	@BeforeClass
 	static void initLogging() {
 	    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
 		PropertyConfigurator.configure(config.toProperties())
-		logger = LoggerFactory.getLogger('EventTests.class');
+		logger = LoggerFactory.getLogger('SocketWriterTests.class');
+		
+	  String visualizationServerPath = Parameters.parameters.visualizationServerPath;
+      String path = System.getProperty("user.dir")+"/"+visualizationServerPath;
+      ProcessBuilder builder = new ProcessBuilder("npm", "start")
+      builder.directory(new File(path))
+      process = builder.start()
+      logger.info("Started npm sever", path)
+	}
+
+	@AfterClass
+	static void stopNPM() {
+	  this.process.destroy()
 	}
 
 	@Test
@@ -135,4 +151,5 @@ public class SocketWriterTests {
 		sim.on.flushVertices();
 		sim.createAgentNetwork(100);
 	}
+
 }
