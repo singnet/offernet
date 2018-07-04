@@ -229,73 +229,147 @@ public class OfferNet implements AutoCloseable {
     }
 
     /* 
-    * Note that this function is for testing only - it calculates the perfect similarities between items
+    * gets all similarity edges and connected items and connected works by iterating through vertices
+    * in a centralized manner
     */ 
-    public List allConnectedSimilarPairsCentralized(Integer similarityThreshold) {
+    public List allSimilarityEdgesRich(Integer similarityThreshold, int version = 1) {
         logger.warn("Centralized search of all demand-offer pairs with perfect similarities in the network");
         def start = System.currentTimeMillis();
         Map params = new HashMap();
         params.put("similarityThreshold", similarityThreshold);
 
+        String query = """
+                g.V().match(
+                  __.as('g').has(label,'work').as('w').out('offers').as('o').properties('value').value().as('b')
+                ,__.as('o').outE('similarity').as('s').properties('similarity').value().is(gte(similarityThreshold))
+                ,__.as('s').inV().as('d')
+                ,__.as('d').properties('value').value().as('b')
+                ,__.as('d').in('demands').as('w2')
+                ).select('b','o','d')
+              """
 
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "g.V().match("+
-                "__.as('g').has(label,'work').as('w').out('offers').as('o').properties('value').value().as('b')"+
-                ",__.as('o').outE('similarity').as('s').properties('similarity').value().is(gte(similarityThreshold))"+
-                ",__.as('s').inV().as('d')"+
-                ",__.as('d').properties('value').value().as('b')"+
-                ",__.as('d').in('demands').as('w2')"+
-                ").select('b','o','d')",params);
-
+        SimpleGraphStatement s = new SimpleGraphStatement(query,params);
         GraphResultSet rs = session.executeGraph(s);
-        List pairs = rs.all();
-        logger.info("Found {} demand-offer pairs existing in the network", pairs.size());
+        List edges = rs.all();
+        logger.info("Found {} similarity edges in the network", edges.size());
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-        return pairs;
+        return edges;
 
     }
 
-    public List allPathsCentralized(Object similarityThreshold) {
-        logger.warn("Centralized search of all paths in the network");
+    /* 
+    * gets all similarity edges and connected items and connected works by iterating through edges
+    * in a centralized manner; version 1 theoretically should be more efficient
+    */ 
+    public List allSimilarityEdgesRich(Object similarityThreshold, int version = 2) {
+      logger.warn("Pulling all similarity edges and rich structure around them from the graph");
+      def start = System.currentTimeMillis();
+      Map params = new HashMap();
+      params.put("similarityConstraint", similarityThreshold);
+
+      String query = """
+            g.E().has(label,'similarity').as('s-edge').properties('similarity').value().is(similarityConstraint).as('s-value').match(
+                __.as('s-edge').inV().bothE('demands').as('demands')
+                ,__.as('demands').otherV().as('work1')
+                ,__.as('s-edge').outV().bothE('offers').as('offers')
+                ,__.as('offers').otherV().as('work2')
+                ,__.as('work2').where(neq('work1')))
+            .select(values)
+            """
+        SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+        GraphResultSet rs = session.executeGraph(s);
+        List edges = rs.all();
+        logger.info("Found {} demand-offer pairs existing in the network", edges.size());
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+        return edges;
+
+
+    }
+
+    /**
+    * Taking all similarity edges and calculating paths in a centralized way 
+    * ensuring completeness (i.e. all paths in the network will be found)
+    */
+    public List allPathsCentralized(List similarityEdges, int version=1){
+      // not implemented
+    }
+
+    /**
+    * Almost equivalent to the algorithm of agent, but iterates all agents within the graph -- so not using
+    * the fact that some vertices are better positioned and therefore can find the path faster;
+    */
+    public List allPathsCentralized(Object similarityThreshold, int version=3, Integer cutoffValue) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      params.put("cutoffValue", cutoffValue);
+      params.put("similarityConstraint", similarityConstraint);
+
+      logger.warn("Searching for a path starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
+
+      String query="""
+         g.V().has(label,'work').as('source').repeat(
+                 __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')            // (2)
+                .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(cutoffValue).cap('subGraph').next().traversal().E()
+      """
+      /*
+      This query gets a list of edges which form a found path
+      In order to visualize it showing vertex properties, the list of edges has to be furher procesed
+      */
+      SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.info("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.info("With parameters: {}", params);
+      def result = rs.all()
+      logger.warn("Received result {}",result)
+      return result;
+    }
+
+    /**
+    * Getting all paths via match query directly from the graph, without pulling all data to java and
+    * connecting paths there
+    * the problem is that in order to specify a pattern to match, a path length should be specified (in a quite ugly way within a query), 
+    * so at the end there is no completeness guarantee of this method...
+    * yet it is left as an example -- could be used for benchmarking performance when all work is done on graph back-end side
+    */
+    public List allPathsCentralized(Object similarityThreshold, int version=2) {
+        logger.warn("Centralized search of all paths in the network, maxPathLength=3");
         def start = System.currentTimeMillis();
         Map params = new HashMap();
-        params.put("similarityThreshold", similarityThreshold);
+        params.put("similarityConstraint", similarityThreshold);
+      
+        String query="""
+          g.V().has(label,'work').
+          match(__.as('w1').out('demands').as('d1')
+                ,__.as('d1').bothE('similarity').as('s1').otherV().as('o1')
+                ,__.as('o1').in('offers').as('w2')
+                ,__.as('w1').where(neq('w2'))
+                ,__.as('s1').properties('similarity').value().is(gte(0.99))
+                
+                ,__.as('w2').out('demands').as('d2')
+                ,__.as('d2').bothE('similarity').as('s2').otherV().as('o2')
+                ,__.as('o2').in('offers').as('w3')
+                ,__.as('w2').where(neq('w3'))
+                ,__.as('s2').properties('similarity').value().is(gte(0.99))          
 
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "g.V().has(label,'work').as('source')"+
-                ".until(outE('demands').inV().has(label,'item').bothE('similarity').has('similarity',gte(similarityThreshold)).count().is(0))"+
-                ".repeat(__.outE('demands').inV().as('a').has(label,'item')"+
-                  ".bothE('similarity').has('similarity',gte(similarityThreshold)).bothV().as('b').where('a',neq('b'))"+
-                  ".inE('offers').outV().has(label,'work')).simplePath().path()"+
-                  ".where(count(local).is(neq(1)))",params);
+                ,__.as('w3').out('demands').as('d3')
+                ,__.as('d3').bothE('similarity').as('s3').otherV().as('o3')
+                ,__.as('o3').in('offers').as('w4')
+                ,__.as('w3').where(neq('w4'))
+                ,__.as('s3').properties('similarity').value().is(gte(0.99))          
+                
+                )
+          .select(values)
+          """
 
+        SimpleGraphStatement s = new SimpleGraphStatement(query,params);
         GraphResultSet rs = session.executeGraph(s);
-        List paths = rs.all().collect{it.asPath().getObjects()}
+        List paths = rs.all()
         logger.warn("Found {} paths",paths);
         logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return paths
-    }
-
-    // this query mysteriously does not work -- looks like something is wrong with the type of 'v', as sometimes it works and sometimes not.
-
-    public List allSimilarPairsCentralized() {
-        logger.warn("Centralized search of connected demand-offer pairs with perfect similarities in the network");
-        def start = System.currentTimeMillis();
-
-        SimpleGraphStatement s = new SimpleGraphStatement(
-                "g.V().match("+
-                "__.as('g').has(label,'work').out('offers').as('o').properties('value').value().as('v')"+
-                ",__.as('g').has(label,'work').out('demands').as('d').properties('value').value().as('v')"+
-                ").select('o','d','v')");
-
-        GraphResultSet rs = session.executeGraph(s);
-        List pairs = rs.all();
-        logger.info("Found {} demand-offer pairs existing in the network", pairs.size());
-        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-
-        return pairs;
     }
 
     public List allWorkItemEdges(String itemName) {

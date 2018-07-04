@@ -490,7 +490,7 @@ public class Agent extends UntypedAbstractActor {
       params.put("cutoffValue", cutoffValue);
       params.put("similarityConstraint", similarityConstraint);
 
-      logger.warn("Searching for the cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
+      logger.warn("Searching for a path starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
 
       String query="""
          g.V(thisWork).as('source').repeat(

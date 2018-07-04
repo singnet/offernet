@@ -468,7 +468,7 @@ public class SimulationTests {
 			but we want to have both edges and vertices
 			*/
 			def uniquePaths = []
-			//logger.info("subgraphs {} class is {}",subgraphs, subgraphs.getClass())
+			logger.info("subgraphs {} class is {}",subgraphs, subgraphs.getClass())
 			def sbgsIterator = subgraphs.iterator()
 			while (sbgsIterator.hasNext()) {
 				def subgraph = sbgsIterator.next();
