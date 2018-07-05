@@ -19,11 +19,12 @@ import com.datastax.driver.dse.graph.GraphOptions
 import com.datastax.driver.dse.graph.GraphNode
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
-
+import com.datastax.driver.dse.graph.Vertex;
+import com.datastax.driver.dse.graph.Edge;
 import com.datastax.dse.graph.api.DseGraph;
+
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource
 import org.apache.tinkerpop.gremlin.structure.Direction
-import org.apache.tinkerpop.gremlin.structure.Vertex
 
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
@@ -512,6 +513,101 @@ public class SimulationTests {
  	       		//logger.info("Wrote file to {}",pathName);
  	       	}
 		}
+
+		@Test
+		void decentralizedCycleSearchTest() {
+			/* run test with parameters: */
+			def agentNumber = 6 // number of agents in the network
+			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
+			def randomWorksNumber = 4 // number of random works (outside chain) to drop into the network;
+			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
+			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
+	       	def cutoffValue = 4; // maximum number of hops when doing path search;
+	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date()) + Utils.generateRandomString(4) + Utils.getCurrentMethodName(); 
+
+	       	// write experiment Id to global variables in order to be able to access from everywhere
+	       	Parameters.parameters.experimentId = experimentId;
+
+	       	// create simulation object
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+			
+			// create agent network and put some random works into it
+			def agentList = sim.createAgentNetwork(agentNumber);
+			logger.warn("added agent network with agents: {}", agentList)			
+			sim.addRandomWorksToAgents(randomWorksNumber)
+
+			// create chain and assign its items to random agents
+			def chains = [Utils.createChain(chainLength)]
+			def chain = chains[0]
+			logger.warn("Created chain to add to the network: {}", chain)
+			
+			def chainedWorksJson = sim.addChainToNetwork(chain, true)  // add chain to network and return json structure...
+
+			// create agent that has a work which closes the chain into the cycle
+			// this agent will have the last item in he chain as demand
+			// and the first item in the chain as offer
+			def taskAgent = sim.createAgent()
+
+			def vertexIdList = new ArrayList(sim.vertexIdToActorRefTable.keySet())
+			logger.info('Created an agent {} for performing the cycle search',taskAgent)
+			def randomAgent = vertexIdList[new Random().nextInt(vertexIdList.size())]
+			Method msg = new Method("knowsAgent", new ArrayList(){{add(randomAgent)}});
+			Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+			Future<Object> future = Patterns.ask(taskAgent, msg, timeout);
+		  	def knowsEdge = (Edge) Await.result(future, timeout.duration());
+		  	assertNotNull(knowsEdge);
+		  	logger.info('agent {} knows agent {}', taskAgent, randomAgent)			
+			
+			msg = new Method("ownsWork", new ArrayList(){{add(chain[-1]);add(chain[0])}});
+			timeout = new Timeout(Duration.create(5, "seconds"));
+			future = Patterns.ask(taskAgent, msg, timeout);
+		  	Vertex testWork = (Vertex) Await.result(future, timeout.duration());
+		  	assertNotNull(testWork);
+		  	logger.info('Added the work {} which closes the chain', testWork)			
+
+      		// Connect similar items in the network (similarity > than similarityThreshold in parameters)
+			logger.warn("Running decentralized similarity search and connect")
+			def start = System.currentTimeMillis();
+			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
+			
+			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
+			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
+			logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+			
+			// Search for path -- results should include the chain that was previously created
+			start = System.currentTimeMillis();	
+			logger.warn("Running decentralized CycleSearch from agent {}, work {}", taskAgent, testWork)
+			msg = new Method("cycleSearch", new ArrayList(){{add(work);add(cutoffValue);add(similaritySearchThreshold)}});
+			timeout = new Timeout(Duration.create(5, "seconds"));
+			future = Patterns.ask(taskAgent, msg, timeout);
+			List path = (List<GraphNode>) Await.result(future, timeout.duration());
+		  	assertNotNull(path);
+	 	    logger.info("Found path {} from work {}",path,work)
+
+ 	       	def uniquePaths = [] as Set;
+			uniquePaths.addAll(path)
+	   	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
+	   	  	logger.info("Found path (json) {} from work {}",path,work)
+
+           	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+           	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
+
+      		// all paths found should contain the previously created chain
+      		def pathsContainingChain = 0;
+      		allPaths.each { uniquePathJson ->
+      			def pathId = Utils.generateRandomString(6)
+      			boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson, pathId)
+      			int contains = containsChain ? 1 : 0;
+      			pathsContainingChain = pathsContainingChain + contains
+      		}
+      		logger.info("Found {} paths containing the chain", pathsContainingChain)
+      		assertTrue(pathsContainingChain > 0);
+
+		}
+
 
 		@Test
 		void centralizedPathSearchTest() {

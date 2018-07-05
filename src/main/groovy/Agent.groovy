@@ -519,11 +519,11 @@ public class Agent extends UntypedAbstractActor {
 
       logger.warn("Searching for a path starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
 
+      // adapt this query for cycle search and make it run until cycle found
       String query="""
-         g.V(thisWork).as('source').repeat(
+            g.V(thisWork).as('source').repeat(
                  __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')            // (2)
-                .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(cutoffValue).cap('subGraph').next().traversal().E()
-      """
+                .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(cutoffValue).cap('subGraph').next().traversal().E()      """
       /*
       This query gets a list of edges which form a found path
       In order to visualize it showing vertex properties, the list of edges has to be furher procesed
