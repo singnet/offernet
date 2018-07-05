@@ -274,7 +274,7 @@ public class SimulationTests {
 		}
 
 		@Test
-		void decentralizedPathSimulationTest() {
+		void decentralizedPathSearchTest() {
 			/* run test with parameters: */
 			def agentNumber = 6 // number of agents in the network
 			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
@@ -514,7 +514,7 @@ public class SimulationTests {
 		}
 
 		@Test
-		void centralizedPathSimulationTest() {
+		void centralizedPathSearchTest() {
 			/* run test with parameters: 
 			when comparing with decentralized counterpart obviously has to run with the same parameters...
 			*/
