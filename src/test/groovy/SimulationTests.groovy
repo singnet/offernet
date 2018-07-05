@@ -126,7 +126,7 @@ public class SimulationTests {
 
 			def agentList = sim.createAgentNetwork(size)
 			assertEquals(agentList.size(), size)
-
+			Parameters.parameters.reportMode=false
 		    def chainedWorks = sim.addChainToNetwork(chains[0], true)  // add chain to network and return json structure...
       		//assertEquals(chainedWorks.size(),chainLength)
 			def agentNumber = sim.on.getVertices('agent').size();
@@ -282,6 +282,10 @@ public class SimulationTests {
 			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
 			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
+	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date()) + Utils.generateRandomString(4) + Utils.getCurrentMethodName(); 
+
+	       	// write experiment Id to global variables in order to be able to access from everywhere
+	       	Parameters.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -344,15 +348,12 @@ public class SimulationTests {
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
            	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
-           	// if visualization is set on, produce the properly formated json of the path (and save on disk for later usage)
-           	if (Parameters.parameters.reportMode) {
-				generateCYFileForEachPath(allPaths)           	
-      		}
 
       		// all paths found should contain the previously created chain
       		def pathsContainingChain = 0;
       		allPaths.each { uniquePathJson ->
-      			boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
+      			def pathId = Utils.generateRandomString(6)
+      			boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson, pathId)
       			int contains = containsChain ? 1 : 0;
       			pathsContainingChain = pathsContainingChain + contains
       		}
@@ -364,12 +365,17 @@ public class SimulationTests {
 		@Test
 		void pathContainsChainTest() {
 			/* run test with parameters: */
-			def agentNumber = 10 // number of agents in the network
+			def agentNumber = 6 // number of agents in the network
 			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
-			def randomWorksNumber = 10 // number of random works (outside chain) to drop into the network;
+			def randomWorksNumber = 0 // number of random works (outside chain) to drop into the network;
 			def maxDistance = 6; // the maximum number of hops when doing decentralized similarity search;
 			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 5; // maximum number of hops when doing path search;
+
+	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date()) + Utils.generateRandomString(4) + Utils.getCurrentMethodName(); 
+
+	       	// write experiment Id to global variables in order to be able to access from everywhere
+	       	Parameters.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -436,7 +442,8 @@ public class SimulationTests {
            	// all paths found should contain the previously created chain (one or more)
       		def pathsContainingChain = 0;
       		allPaths.each { uniquePathJson ->
-      			boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
+      			def pathId = Utils.generateRandomString(6)
+      			boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson, pathId)
       			int contains = containsChain ? 1 : 0;
       			pathsContainingChain = pathsContainingChain + contains
       		}
@@ -452,7 +459,8 @@ public class SimulationTests {
           	// but they should NOT contain the chain that was not added...
       		def pathsContainingChainNoAdd = 0;
       		allPaths.each { uniquePathJson ->
-      			boolean containsChainNoAdd =  Utils.pathContainsChain(uniquePathJson, chainedNoAddWorksJson)
+      			def pathId = Utils.generateRandomString(6)+"ChainNoAdd"
+      			boolean containsChainNoAdd =  Utils.pathContainsChain(uniquePathJson, chainedNoAddWorksJson, pathId)
       			int contains = containsChainNoAdd ? 1 : 0;
       			pathsContainingChainNoAdd = pathsContainingChainNoAdd + contains
       		}
@@ -499,15 +507,9 @@ public class SimulationTests {
 		}
 
 		void generateCYFileForEachPath(Object uniquePaths) {
-			String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
-           	def methodName = Utils.getCurrentMethodName()
-           	new File("temp/"+methodName+dirname).mkdir();
-			def index = 0;
  	       	uniquePaths.each {path -> 
- 	       		index +=1;
- 	       		def pathName = "temp/"+methodName+dirname+"/path"+index+".dot"
- 	       		Utils.convertToCYNotation(path,pathName);
- 	       		logger.info("Wrote file to {}",pathName);
+ 	       		Utils.convertToCYNotation(path,"allPaths");
+ 	       		//logger.info("Wrote file to {}",pathName);
  	       	}
 		}
 

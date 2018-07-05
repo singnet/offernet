@@ -510,4 +510,31 @@ public class Agent extends UntypedAbstractActor {
       return result;
   }
 
+  private List<GraphNode> cycleSearch(Vertex work, Integer cutoffValue, Object similarityConstraint) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      params.put("thisWork", work.getId());
+      params.put("cutoffValue", cutoffValue);
+      params.put("similarityConstraint", similarityConstraint);
+
+      logger.warn("Searching for a path starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
+
+      String query="""
+         g.V(thisWork).as('source').repeat(
+                 __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')            // (2)
+                .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(cutoffValue).cap('subGraph').next().traversal().E()
+      """
+      /*
+      This query gets a list of edges which form a found path
+      In order to visualize it showing vertex properties, the list of edges has to be furher procesed
+      */
+      SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.info("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.info("With parameters: {}", params);
+      def result = rs.all()
+      logger.warn("Received result {}",result)
+      return result;
+  }
+
 }

@@ -353,6 +353,14 @@ class Simulation extends UntypedAbstractActor {
         }
         def jsonChainedWorks = JsonOutput.toJson(chainedWorks)
         logger.info('Added chain to the network (json): {}', jsonChainedWorks)
+        if (Parameters.parameters.reportMode) {
+            String experimentDir = System.getProperty("user.dir")+"/"+Parameters.parameters.experimentDataDir + "/"+Parameters.parameters.experimentId
+            new File(experimentDir).mkdirs();
+            String chainFilePath = experimentDir + "/"+Utils.generateRandomString(3)+"-chain.json"
+            new File(chainFilePath).write(JsonOutput.toJson(chainedWorks))
+            logger.info('Wrote chain to file  {}', chainFilePath)
+        }
+
         return chainedWorks;
     }
 
