@@ -105,8 +105,8 @@ public class OfferNetTests {
 
 	        logger.info("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
 
-			assertEquals(size - 1,demandEdges.size())
-			assertEquals(size - 1,offerEdges.size())
+			assertEquals(size-1,demandEdges.size())
+			assertEquals(size-1,offerEdges.size())
 		}
 
 		@Test

@@ -20,6 +20,11 @@ import akka.actor.ActorRef;
 
 import groovy.json.JsonBuilder
 
+import kamon.Kamon;
+import kamon.prometheus.PrometheusReporter;
+import kamon.jaeger.JaegerReporter;
+
+
 public class OfferNet implements AutoCloseable {
 
     private DseCluster cluster;
@@ -31,7 +36,7 @@ public class OfferNet implements AutoCloseable {
     public void ass() {
     Runtime.getRuntime().addShutdownHook(new Thread() {
         public void run() {
-          sesion.close();
+          session.close();
           cluster.close();
         }
       });
@@ -66,6 +71,12 @@ public class OfferNet implements AutoCloseable {
 //              Thread.sleep(2000);
 //              openVisualizationWindow();
             }
+
+          if (Parameters.parameters.debugMode) {
+            Kamon.addReporter(new PrometheusReporter());
+            Kamon.addReporter(new JaegerReporter());
+            // wait until Kamon initializes -- 
+          }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

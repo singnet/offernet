@@ -333,7 +333,7 @@ public class Utils {
       def fieldNames = jsonSlurper.parseText(nodeId.toString());
       def vertexLabel = fieldNames.get('~label')+":"+fieldNames.community_id+":"+fieldNames.member_id
       logger.info("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
-      return vertexLabel
+      return vertexLabel.toString()
     }
 
     public static String formatEdgeLabel(LazyMap edgeId) {

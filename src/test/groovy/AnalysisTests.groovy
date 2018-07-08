@@ -33,25 +33,18 @@ import java.util.UUID;
 
 public class AnalysisTests {
 	static private OfferNet on = new OfferNet().flushVertices();
-    static ActorSystem system = ActorSystem.create("AnalysisTests");
 
-	@BeforeClass
-	static void initLogging() {
-	    //Kamon for tracing and debugging
-      	Kamon.addReporter(new PrometheusReporter());
-      	Kamon.addReporter(new JaegerReporter());
-	}
 
 	// this tests lasts forever -- for testing message tracing servers which take time to initialize
 	@Ignore
 	@Test
 	void sendMessages() {
 		ArrayList allActors = new ArrayList();
-		def actor1 = system.actorOf(Agent.props(on.session, UUID.randomUUID().toString()),UUID.randomUUID().toString());
+		def actor1 = on.system.actorOf(Agent.props(on.session, UUID.randomUUID().toString()),UUID.randomUUID().toString());
 		allActors.add(actor1)
-		def actor2 = system.actorOf(Agent.props(on.session, UUID.randomUUID().toString()),UUID.randomUUID().toString());
+		def actor2 = on.system.actorOf(Agent.props(on.session, UUID.randomUUID().toString()),UUID.randomUUID().toString());
 		allActors.add(actor2)
-		def actor3 = system.actorOf(Agent.props(on.session, UUID.randomUUID().toString()),UUID.randomUUID().toString());
+		def actor3 = on.system.actorOf(Agent.props(on.session, UUID.randomUUID().toString()),UUID.randomUUID().toString());
 		allActors.add(actor3)
 	    Random random = new Random();
 

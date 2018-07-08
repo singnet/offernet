@@ -1,0 +1,106 @@
+import com.datastax.driver.dse.DseCluster;
+import com.datastax.driver.dse.DseSession;
+
+import com.datastax.driver.dse.graph.GraphStatement;
+import com.datastax.driver.dse.graph.SimpleGraphStatement;
+import com.datastax.driver.dse.graph.GraphResultSet
+import com.datastax.driver.dse.graph.GraphOptions
+import com.datastax.dse.graph.api.DseGraph;
+
+import com.datastax.driver.dse.graph.Edge
+import com.datastax.driver.dse.graph.Vertex
+
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal
+import org.apache.tinkerpop.gremlin.structure.Graph
+
+import org.junit.Test;
+
+class MiscTests {
+
+	@Test
+	public void stringBasedQueryTest() {
+
+		println 'Running String based query (old)'
+        def cluster = DseCluster.builder().addContactPoint("dse-server.host").build();
+        cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
+
+
+		cluster = DseCluster.builder()
+			.addContactPoint("dse-server.host")
+			.withGraphOptions(new GraphOptions().setGraphName("offernet"))
+			.build();
+		def session = cluster.connect();
+		//session.executeGraph(new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')"))
+		def thisWorkString = 'work:1725837568:182';
+		println "thisWorkString =" +thisWorkString +"of" +thisWorkString.getClass()
+		Map params = new HashMap();
+      	params.put("thisWork", thisWorkString);
+      	params.put("cutoffValue", 4);
+      	params.put("similarityConstraint", 0.99);
+
+		String query="""
+         g.V(thisWork).as('source').repeat(
+                 __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')            // (2)
+                .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(cutoffValue).cap('subGraph').next().traversal().E()
+                """
+
+		SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+		GraphResultSet rs = session.executeGraph(s);
+		def result = rs.all()
+		println 'Executed statement: ' + rs.getExecutionInfo().getStatement().toString()
+		println 'Result: ' + result;
+
+	}
+
+	@Test
+	public void fluentAPITest() {
+
+		println 'Running query via Fluent API (new)'
+       	def cluster = DseCluster.builder().addContactPoint("dse-server.host").build();
+        cluster.connect().executeGraph("system.graph('STUDIO_TUTORIAL_GRAPH').ifNotExists().create()");
+
+
+		cluster = DseCluster.builder()
+			.addContactPoint("dse-server.host")
+			.withGraphOptions(new GraphOptions().setGraphName("STUDIO_TUTORIAL_GRAPH"))
+			.build();
+		def session = cluster.connect();
+
+		GraphTraversalSource g = DseGraph.traversal();
+		GraphStatement graphStatement = DseGraph.statementFromTraversal(g.V().has('name','jupiter').repeat(outE('brother').subgraph('sg').inV()).times(2).cap('sg').next().traversal().E());
+		GraphResultSet results = session.executeGraph(graphStatement);
+
+		def result = results.all()
+		println 'Executed statement: ' + results.getExecutionInfo().getStatement().toString()
+		println 'Result: ' + result;
+
+
+	}
+
+	@Test
+	public void fluentAPI2Test() {
+
+		println 'Running query via Fluent API Test 2'
+
+		DseCluster dseCluster = DseCluster.builder()
+                .withGraphOptions(new GraphOptions()
+                                .setGraphName("STUDIO_TUTORIAL_GRAPH")
+                )
+                .addContactPoint("192.168.1.101").build();
+
+        DseSession dseSession = dseCluster.connect();
+        GraphTraversalSource g = DseGraph.traversal(dseSession);
+
+        Graph graph = (Graph) g.V()
+        	.has('name','jupiter').repeat(
+        		outE('brother').subgraph('sg').inV())
+        	.times(2).cap('sg').next().traversal().E();
+
+        System.out.println("graph = " + graph);
+
+	}
+
+}
+
+

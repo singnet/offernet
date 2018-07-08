@@ -52,6 +52,8 @@ import kamon.jaeger.JaegerReporter;
 import groovy.json.JsonSlurper;
 import org.json.JSONArray
 
+import java.util.concurrent.TimeUnit;
+
 public class SimulationTests {
 		static ActorSystem system = ActorSystem.create("SimulationTests");
 		static private Logger logger;
@@ -61,10 +63,7 @@ public class SimulationTests {
 		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
 	        PropertyConfigurator.configure(config.toProperties())
     	    logger = LoggerFactory.getLogger('SimulationTests.class');
-    	    if (Parameters.parameters.visualizationEngine) {
-    	    	Kamon.addReporter(new PrometheusReporter());
-      			Kamon.addReporter(new JaegerReporter());
-      		}
+
 		}
 
 		@Test
@@ -184,94 +183,6 @@ public class SimulationTests {
 				}
 			}
 			*/
-		}
-
-		@Test
-		void pathSearchManualDecentralizedTest() {
-			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-			assertNotNull(sim);
-			sim.on.flushVertices();
-			sim.testNetworkSmallWithCycle();
-
-			def start = System.currentTimeMillis();
-
-    	    def similarityThreshold = 4;
-    	    def maxDistance = 3;
-    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[0].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[0].id(),similarityThreshold, maxDistance)
-    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[1].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[1].id(),similarityThreshold, maxDistance)
-    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[2].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[2].id(),similarityThreshold, maxDistance)
- 	       	logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[3].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[3].id(),similarityThreshold, maxDistance)
-
- 	       	def connectedPairs = sim.on.allConnectedSimilarPairsCentralized(4);
- 	       	logger.info("Calculated allConnectedSimilarPairs: {}",connectedPairs.size())
- 	       	def similarPairs = sim.on.allSimilarPairsCentralized();
- 	       	logger.info("Calculated allSimilarityPairs (not necessarily connected) --  (query does not work): {}",similarPairs.size())
- 	       	def similarityEdges = sim.on.allSimilarityEdges().size() / 2;
- 	       	def allSimilarityLinks = similarityEdges.toInteger();
- 	       	//assertEquals("similarityLinks is not correct",2,allSimilarityLinks);
- 	       	//assertEquals("similarityLinks is not equal to allConectedSimilarPairs",connectedPairs.size(),allSimilarityLinks)
- 	       	
- 	       	def cutoffValue = 2;
- 	       	def uniquePaths = [] as Set;
- 	       	sim.agentList.subList(0,2).each{ agent -> 
- 	       		def path = agent.pathSearch(agent.getWorks()[0],cutoffValue,similarityThreshold)
- 	       		logger.info("Found {} paths from agent {}",path.size(),agent.id())
- 	       		uniquePaths.add(path)
- 	       	}
- 	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
-           	def methodName = Utils.getCurrentMethodName();
-           	logger.warn("Method {} took {} seconds to complete", methodName, (System.currentTimeMillis()-start)/1000)
-
-           	def index = 0;
-           	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
-           	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
- 	       	uniquePaths.each {path -> 
- 	       		index +=1;
- 	       		Utils.convertToCyNotation(path,"Path","temp/path"+index+".dot");
- 	       	}
-		}
-
-		@Ignore // does not look as something with better than centralizedPathSearch
-		@Test
-		void pathSearchManualCentralizedTest() {
-			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-			assertNotNull(sim);
-			sim.on.flushVertices();
-			createSmallTestNetwork(sim);
-
-			def start = System.currentTimeMillis();
-
-    	    def similarityThreshold = 4;
-    	    def maxDistance = 2;
-    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[0].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[0].id(),similarityThreshold, maxDistance)
-    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[1].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[1].id(),similarityThreshold, maxDistance)
-    	    logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[2].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[2].id(),similarityThreshold, maxDistance)
- 	       	logger.info("made {} connections on agent {} with similarityThreshold {} and maxDistance {}",sim.agentList[3].searchAndConnect(similarityThreshold,maxDistance),sim.agentList[3].id(),similarityThreshold, maxDistance)
-
-			def demandEdges = sim.on.allWorkItemEdges("demands");
-			def offerEdges = sim.on.allWorkItemEdges("offers")
-
-			def matchingOfferDemandPairs = Utils.getMatchingOfferDemandPairs(offerEdges,demandEdges)
-			def similarityConnectionsCentralized = sim.on.connectMatchingPairs(matchingOfferDemandPairs);
-
-			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityThreshold, maxDistance);
-			
-			def uniquePaths = [] as Set;
-			def paths = sim.on.allPathsCentralized(similarityThreshold);
-			uniquePaths.addAll(paths);
-
- 	       	logger.warn("Found uniquePaths: {}", uniquePaths.size())
- 	       	def methodName = Utils.getCurrentMethodName();
-           	logger.warn("Method {} took {} seconds to complete", methodName, (System.currentTimeMillis()-start)/1000)
-
-           	def index = 0;
-
-           	String dirname = new SimpleDateFormat("MMddhhmmss").format(new Date());
-           	//new File("resources/"+Utils.getCurrentMethodName()+dirname).mkdir();
- 	       	uniquePaths.each {path -> 
- 	       		index +=1;
- 	       		Utils.convertToDotNotation(path,"Path","temp/path"+index+".dot");
- 	       	}
 		}
 
 		@Test
@@ -548,9 +459,9 @@ public class SimulationTests {
 			// create agent that has a work which closes the chain into the cycle
 			// this agent will have the last item in he chain as demand
 			// and the first item in the chain as offer
-			def taskAgent = sim.createAgent()
-
+			
 			def vertexIdList = new ArrayList(sim.vertexIdToActorRefTable.keySet())
+			def taskAgent = sim.createAgent()
 			logger.info('Created an agent {} for performing the cycle search',taskAgent)
 			def randomAgent = vertexIdList[new Random().nextInt(vertexIdList.size())]
 			Method msg = new Method("knowsAgent", new ArrayList(){{add(randomAgent)}});
@@ -559,15 +470,14 @@ public class SimulationTests {
 		  	def knowsEdge = (Edge) Await.result(future, timeout.duration());
 		  	assertNotNull(knowsEdge);
 		  	logger.info('agent {} knows agent {}', taskAgent, randomAgent)			
-			
+
 			msg = new Method("ownsWork", new ArrayList(){{add(chain[-1]);add(chain[0])}});
 			timeout = new Timeout(Duration.create(5, "seconds"));
 			future = Patterns.ask(taskAgent, msg, timeout);
-		  	Vertex testWork = (Vertex) Await.result(future, timeout.duration());
-		  	assertNotNull(testWork);
-		  	logger.info('Added the work {} which closes the chain', testWork)			
+		  	Vertex taskWork = (Vertex) Await.result(future, timeout.duration());
+		  	assertNotNull(taskWork);
+		  	logger.info('Added work {} to agent {}', taskWork, taskAgent)			
 
-      		// Connect similar items in the network (similarity > than similarityThreshold in parameters)
 			logger.warn("Running decentralized similarity search and connect")
 			def start = System.currentTimeMillis();
 			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
@@ -576,20 +486,41 @@ public class SimulationTests {
 			logger.warn("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
 			logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 			
-			// Search for path -- results should include the chain that was previously created
-			start = System.currentTimeMillis();	
-			logger.warn("Running decentralized CycleSearch from agent {}, work {}", taskAgent, testWork)
-			msg = new Method("cycleSearch", new ArrayList(){{add(work);add(cutoffValue);add(similaritySearchThreshold)}});
-			timeout = new Timeout(Duration.create(5, "seconds"));
-			future = Patterns.ask(taskAgent, msg, timeout);
-			List path = (List<GraphNode>) Await.result(future, timeout.duration());
-		  	assertNotNull(path);
-	 	    logger.info("Found path {} from work {}",path,work)
+			Thread.sleep(1000)
+			 // test fails without above line: 
+			 //it seems that connectIfSimilarForAllAgents takes a lot of time
+			 // need to debug
 
+			def taskAgentList = new ArrayList()
+			taskAgentList.add(taskAgent)
  	       	def uniquePaths = [] as Set;
-			uniquePaths.addAll(path)
+ 	       	def agentPaths;
+ 	       	taskAgentList.each{ agent -> 
+ 	       		agentPaths = [];
+ 	       		logger.warn("Getting all works of an agent {}", agent)
+			    msg = new Method("getWorks", new ArrayList());
+			    timeout = new Timeout(Duration.create(5, "seconds"));
+			   	future = Patterns.ask(agent, msg, timeout);
+		  		List works = (List<Vertex>) Await.result(future, timeout.duration());
+		  		assertNotNull(works);
+		  		logger.warn("Retrieved {} works of agent {}", works.size(), agent)
+		  		works.each { work ->
+	 	       		logger.warn("Running decentralized PathSearch from work's {} perspective", work)
+				    msg = new Method("pathSearch", new ArrayList(){{add(work);add(cutoffValue);add(similaritySearchThreshold)}});
+				    timeout = new Timeout(Duration.create(120, "seconds"));
+				   	future = Patterns.ask(agent, msg, timeout);
+			  		List path = (List<GraphNode>) Await.result(future, timeout.duration());
+		  			assertNotNull(path);
+	 	       		logger.info("Found path {} from work {}",path,work)
+	 	       		if (path.size()!=0) {agentPaths.add(path)}
+	 	       	}
+	 	       	logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
+	 	       	uniquePaths.addAll(agentPaths)
+ 	       	}
+
+			def jsonSlurper = new JsonSlurper()
 	   	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
-	   	  	logger.info("Found path (json) {} from work {}",path,work)
+	   	  	logger.info("Found path (json) {} from agent {}",uniquePathsJson,taskAgent)
 
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
