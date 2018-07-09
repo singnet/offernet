@@ -24,6 +24,18 @@ import scala.concurrent.duration.Duration;
 import akka.pattern.Patterns;
 import groovy.json.JsonOutput;
 
+
+import akka.pattern.Patterns;
+import scala.concurrent.Future;
+import scala.concurrent.Await;
+import scala.concurrent.duration.Duration;
+import akka.util.Timeout;
+
+
+import groovy.json.JsonSlurper;
+import org.json.JSONArray
+
+
 class Simulation extends UntypedAbstractActor {
 	public OfferNet on;
 	Logger logger;
@@ -110,7 +122,6 @@ class Simulation extends UntypedAbstractActor {
   * gets agent vertexId via asynchronous blocking message
   * not perfect: have to change to non -blocking message with probably future.onComplete...
   */
-
   private Object getAgentVertexId(ActorRef actorRef) {
     Timeout timeout = new Timeout(Duration.create(5, "seconds"));
     def msg = new Method("vertexId",[])
@@ -158,6 +169,10 @@ class Simulation extends UntypedAbstractActor {
     return agentsList;
   }
 
+  /**
+  * This method sends a single message to every agent in a system in a row instructing it to start searchAndConnect method on their behalf
+  * Used for testing purposes only. It is a semi-decentralized: decentralized because each agent gets a message and starts routines asynchronously. Centralized because a global list of agents is used. Complete decentralization could be achieved by randomly choosing agents in the network that start the discovery process.
+  */
 	private void connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) throws Throwable{
 
 		def start = System.currentTimeMillis();
@@ -168,8 +183,17 @@ class Simulation extends UntypedAbstractActor {
         Method msg = new Method("searchAndConnect", args);
         agentRef.tell(msg,getSelf());
 		}
+    // this  benchmarking is not correct as it measures only how much time it took to send messages to all agents in the network, but it does not say how long they are being processed...
 		logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 	}
+
+
+  private void connectIfSimilarCentralized(Object similarityThreshold) throws Throwable {
+    def start = System.currentTimeMillis();
+
+
+    logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+  }
 
 /* finished until here */
 
@@ -341,6 +365,14 @@ class Simulation extends UntypedAbstractActor {
         }
         def jsonChainedWorks = JsonOutput.toJson(chainedWorks)
         logger.info('Added chain to the network (json): {}', jsonChainedWorks)
+        if (Parameters.parameters.reportMode) {
+            String experimentDir = System.getProperty("user.dir")+"/"+Parameters.parameters.experimentDataDir + "/"+Parameters.parameters.experimentId
+            new File(experimentDir).mkdirs();
+            String chainFilePath = experimentDir + "/"+Utils.generateRandomString(3)+"-chain.json"
+            new File(chainFilePath).write(JsonOutput.toJson(chainedWorks))
+            logger.info('Wrote chain to file  {}', chainFilePath)
+        }
+
         return chainedWorks;
     }
 
@@ -353,5 +385,153 @@ class Simulation extends UntypedAbstractActor {
       return !vertices.isEmpty();
     }
 
+    public Set allCyclesCentralized(Object similarityThreshold, int version) {
+      switch(version) {
+        case 1:
+          this.naiveCentralizedSearch(similarityThreshold)
+          break
+        case 2:
+          this.depthFirstSearch(similarityThreshold)
+          break
+      }
+    }
 
+    /**
+    * This is a naive version of finding all cycles in the graph:
+    * it simply iterates over all agents and issues 'cycleSearch' method
+    * so that they all find a cycle that they belong to
+    * it is not efficient, since every vertex is traversed many times and more than 
+    * one similar cycle is returned
+    */
+    public Set naiveCentralizedSearch(Object similaritySearchThreshold) {
+      def start = System.currentTimeMillis()
+      def uniquePaths = [] as Set;
+      def agentPaths;
+      def actorRefList = new ArrayList(this.actorRefToVertexIdTable.keySet())
+      actorRefList.each{ agent -> 
+        agentPaths = [];
+        logger.warn("Getting all works of an agent {}", agent)
+        Method msg = new Method("getWorks", new ArrayList());
+        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+        Future<Object> future = Patterns.ask(agent, msg, timeout);
+        List works = (List<Vertex>) Await.result(future, timeout.duration());
+        logger.warn("Retrieved {} works of agent {}", works.size(), agent)
+        works.each { work ->
+          logger.warn("Running decentralized PathSearch from work's {} perspective", work)
+          msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
+          timeout = new Timeout(Duration.create(120, "seconds"));
+          future = Patterns.ask(agent, msg, timeout);
+          List path = (List<GraphNode>) Await.result(future, timeout.duration());
+          logger.info("Found path {} from work {}",path,work)
+          if (path.size()!=0) {agentPaths.add(path)}
+        }
+        logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
+          uniquePaths.addAll(agentPaths)
+      }
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      return uniquePaths;
+    }
+
+    /**
+    * Depth first centralized search is just a depth first search which works pretty much
+    * like the naive one, but checks visited agents and works prior to processing them
+    */
+    public Set depthFirstSearch(Object similaritySearchThreshold) {
+      def start = System.currentTimeMillis()
+      def uniquePaths = [] as Set;
+      def visitedWorks = [] as Set;
+      def allWorks = this.on.getVertices('work')
+      logger.info('allWorks are {}',allWorks)
+      def agentPaths;
+      def actorRefList = new ArrayList(this.actorRefToVertexIdTable.keySet())
+      actorRefList.find{ agent -> 
+        agentPaths = [];
+        logger.warn("Getting all works of an agent {}", agent)
+        Method msg = new Method("getWorks", new ArrayList());
+        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+        Future<Object> future = Patterns.ask(agent, msg, timeout);
+        List works = (List<Vertex>) Await.result(future, timeout.duration());
+        logger.warn("Retrieved {} works of agent {}", works.size(), agent)
+        works.each { work ->
+          if (!visitedWorks.contains(work)) {
+            logger.warn("Running decentralized PathSearch from work's {} perspective", work)
+            msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
+            timeout = new Timeout(Duration.create(120, "seconds"));
+            future = Patterns.ask(agent, msg, timeout);
+            List path = (List<GraphNode>) Await.result(future, timeout.duration());
+            logger.info("Found path {} from work {}",path,work)
+            if (path.size()!=0) {agentPaths.add(path)}
+            def verticesOfThePath = getTypeVerticesBelongingToSubgraph(path,['work']);
+            def worksVisitedBySearch = verticesOfThePath['work']
+            visitedWorks.addAll(worksVisitedBySearch)
+            logger.info('saving worksVisitedBySearch: {}',worksVisitedBySearch)
+          }
+        }
+        logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
+        uniquePaths.addAll(agentPaths)
+        logger.info('visitedWorks are {} of size()',visitedWorks.size())
+        logger.info('allWorks are {} of size()',allWorks.size())
+
+        if (visitedWorks.size() ==allWorks.size()) {
+          logger.info('Traversal already touched all works in the graph: aborting')
+          return true
+        } // break
+        else {return false}
+      }
+      logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      return uniquePaths;
+    }
+
+   
+    Object getVerticesBelongingToSubgraph(Object subgraph) {
+        def start = System.currentTimeMillis()
+        logger.info("subgraph is {}",subgraph)
+        JSONArray uniquePath = new JSONArray()
+        subgraph.each { edge ->
+          JSONArray singleChain = new JSONArray()
+          singleChain.put(edge)
+          logger.info("Getting vertexes of the edge {}",edge)
+          def inV = Utils.formatVertexLabel(edge.id.get('~in_vertex'))
+          logger.info("Getting vertex {}",inV)
+          def vertexIn = this.on.getVertex(inV)
+          logger.info('got vertexIn {}',vertexIn)
+          def outV = Utils.formatVertexLabel(edge.id.get('~out_vertex'))
+          logger.info("Getting vertex {}",outV)
+          def vertexOut = this.on.getVertex(outV)
+          logger.info('got vertexOut {}',vertexOut)
+          singleChain.put(vertexIn[0])
+          singleChain.put(vertexOut[0])
+          uniquePath.put(singleChain)
+        }
+        logger.info("formed a uniquePath with edges and vertices {}",uniquePath)
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        return uniquePath
+    }
+
+    Object getTypeVerticesBelongingToSubgraph(Object subgraph, ArrayList types) {
+        def start = System.currentTimeMillis()
+        logger.info("subgraph is {}",subgraph)
+        def visitedVertices = [:]
+        subgraph.each { edge ->
+          JSONArray singleChain = new JSONArray()
+          logger.info("Getting vertexes of the edge {}",edge)
+          def inV = Utils.formatVertexLabel(edge.id.get('~in_vertex'))
+          logger.info("Getting vertex {}",inV)
+          def vertexIn = this.on.getVertex(inV)[0]
+          logger.info('got vertexIn {}',vertexIn)
+          def outV = Utils.formatVertexLabel(edge.id.get('~out_vertex'))
+          logger.info("Getting vertex {}",outV)
+          def vertexOut = this.on.getVertex(outV)[0]
+          logger.info('got vertexOut {}',vertexOut)
+          if (types.contains(vertexIn.label)) {
+            visitedVertices[vertexIn.label] = vertexIn;
+          }
+          if (types.contains(vertexOut.label)) {
+            visitedVertices[vertexOut.label] = vertexOut;
+          }
+        }
+        logger.info("the path visited vertices {}",visitedVertices)
+        logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        return visitedVertices
+    }
 }

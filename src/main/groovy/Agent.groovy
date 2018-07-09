@@ -358,10 +358,11 @@ public class Agent extends UntypedAbstractActor {
 
       SimpleGraphStatement s = new SimpleGraphStatement(
             "g.V().has(agentIdLabel,thisAgentId).as('s').repeat("+
-              "both('knows').has(label,'agent')).times(repeats).emit().dedup().as('t')"+
+              "both('knows').has(label,'agent').dedup()).times(repeats).emit().as('t')"+
               ".where('t',neq('s')).out('owns').out()",params);
 
       GraphResultSet rs = session.executeGraph(s);
+      logger.info("Executed statement: {}",Utils.getStatement(rs,params));
       List items = rs.all().collect {it.asVertex() };
       logger.info("Returned {} items with maxReachDistance {} from item {}", items.size(), maxReachDistance, this.id());
       logger.info("Method {} complete time: {} seconds", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
@@ -438,11 +439,10 @@ public class Agent extends UntypedAbstractActor {
 
     GraphResultSet rs = session.executeGraph(s);
     List similarityEdges = rs.all().collect {it.asEdge()};
-    logger.info("Found {} items with explicit similarity from item {}",similarityEdges.size(),this.id());
+    logger.info("Found {} items with explicit similarity from item {}",similarityEdges.size(),item.getId());
     logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
     return similarityEdges;
-
   }
 
 
@@ -481,28 +481,25 @@ public class Agent extends UntypedAbstractActor {
   }
 
   /*
-  * params: cutoffValue stops the search if this depth is reached with no cycle discovered; similarityConstraint - all exceeding this value is considered as similar (so allows to connect items which are not EXACTLY similar) -- ideally this should be customizable for every item individually;
-  */
-
-  /*
-  Something is wrong with this query as it runs well when running from the gremlin console.
-  I think the problem again is with types when getting 'similarity' property --
-  Read DSE Graph tutorial before going further.
+  * starting from each work of the current agent traverses the graph via similarity links and looks for {offer,demand} matches and hopefully paths 
+  * params: cutoffValue stops the search if this depth is reached; similarityConstraint - all exceeding this value is considered as similar (so allows to connect items which are not EXACTLY similar) -- ideally this should be customizable for every item individually;
   */
   private List<GraphNode> pathSearch(Vertex work, Integer cutoffValue, Object similarityConstraint) {
       def start = System.currentTimeMillis()
+      def thisWorkString = Utils.formatVertexLabel(work.getId());
+      logger.info("thisWorkString = {} of {}",thisWorkString, thisWorkString.getClass())
       Map params = new HashMap();
-      params.put("thisWork", work.getId());
+      params.put("thisWork", thisWorkString);
       params.put("cutoffValue", cutoffValue);
       params.put("similarityConstraint", similarityConstraint);
 
-      logger.warn("Searching for the cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
+      logger.warn("Searching for a path starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
 
       String query="""
          g.V(thisWork).as('source').repeat(
                  __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')            // (2)
                 .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(cutoffValue).cap('subGraph').next().traversal().E()
-      """
+        """
       /*
       This query gets a list of edges which form a found path
       In order to visualize it showing vertex properties, the list of edges has to be furher procesed
@@ -512,6 +509,52 @@ public class Agent extends UntypedAbstractActor {
       logger.info("Executed statement: {}",Utils.getStatement(rs,params));
       logger.info("With parameters: {}", params);
       def result = rs.all()
+      logger.warn("Received result {}",result)
+      return result;
+  }
+
+  private List<GraphNode> cycleSearch(Vertex work, Object similarityConstraint) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      logger.info('cycleSearch: Work is : {}', work)
+      logger.info('cycleSearch: Work id is: {}', work.getId())
+      logger.info('cycleSearch: formatted label is: {}', Utils.formatVertexLabel(work.getId()))
+      params.put("thisWork", work.getId());
+      params.put("similarityConstraint", similarityConstraint);
+
+      logger.warn("Searching for a cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), similarityConstraint)
+
+      SimpleGraphStatement s = new SimpleGraphStatement(
+                "g.V(thisWork).as('source').until(eq('work')).repeat("+
+                 "__.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')"+            // (2)
+                ".otherV().inE('demands').subgraph('subGraph').outV().dedup()).cap('subGraph').next().traversal().E()", params)
+
+/*
+                 "g.V(thisWork).as('source').as('source').until(eq('work')).repeat("+
+                 "__.outE('offers').store('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).store('subGraph')"+            // (2)
+                 ".otherV().as('work').inE('demands').store('subGraph').outV().simplePath()).cap('subGraph')",params)
+
+      // adapt this query for cycle search and make it run until cycle found
+      /*String query="""
+         g.V(thisWork).as('source').as('source').until(eq('work')).repeat(
+                 __.outE('offers').store('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).store('subGraph')            // (2)
+                .otherV().as('work').inE('demands').store('subGraph').outV().dedup()).fold().cap('subGraph');
+        """
+      /*
+
+     g.V(thisWork).as('source').repeat(
+       __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')            // (2)
+      .otherV().as('work').inE('demands').subgraph('subGraph').outV().until(is(eq('source','work')))).times(cutoffValue).cap('subGraph').next().traversal().E()
+
+      This query gets a list of edges which form a found path
+      In order to visualize it showing vertex properties, the list of edges has to be furher procesed
+      */
+      //SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.info("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.info("With parameters: {}", params);
+      def result = rs.all()
+      logger.info("Graph results are exhausted {}", rs.isExhausted())
       logger.warn("Received result {}",result)
       return result;
   }

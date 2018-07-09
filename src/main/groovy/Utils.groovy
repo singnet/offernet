@@ -33,6 +33,14 @@ public class Utils {
         return randomString;
     }
 
+    public static String generateRandomString(int length) {
+      String alphabet = (('A'..'N')+('P'..'Z')+('a'..'k')+('m'..'z')+('2'..'9')).join() 
+      def randomString = new Random().with {
+                (1..length).collect { alphabet[ nextInt( alphabet.length() ) ] }.join()
+           }
+      return randomString;
+    }
+
     public static List toList(Iterator iterator) {
     	List list=[]
     	while (iterator.hasNext()) {
@@ -120,8 +128,18 @@ public class Utils {
     }
 
     /* produces a path file for cytoscape.js -- to be visualized */
-    private static boolean convertToCYNotation(Object path, String cyFilePath) {
-      logger.info("Converting a path {} of {} to cytoscape notation",path, path.class)
+    private static boolean convertToCYNotation(Object path, String keyword, String pathId) {
+      String experimentId = Parameters.parameters.experimentId
+      String fileName = pathId+".json"
+      String cyFileDir = System.getProperty("user.dir")+"/"+Parameters.parameters.experimentDataDir + "/" + experimentId +"/"+ keyword
+      def cyFilePath = cyFileDir +"/" +fileName 
+
+      if (Parameters.parameters.reportMode) {
+        logger.info('creating an experiment directory {}',cyFileDir)
+        new File(cyFileDir).mkdirs();
+      }
+
+      logger.info("Converting a {} path {} of {} to cytoscape notation",experimentId, path, path.class)
       def json = [ ]
       path.each { chain ->
         chain.each { item -> 
@@ -181,7 +199,10 @@ public class Utils {
       }
 
       def sortedJSON = json.sort { a,b -> b.group <=> a.group}
-      new File(cyFilePath).write(JsonOutput.toJson(json))
+      if (Parameters.parameters.reportMode) {
+        new File(cyFilePath).write(JsonOutput.toJson(json))
+      }
+      logger.info('Wrote path to file {}', cyFilePath)
     }
 
     /* produces file in dot notation for visualization -- do not work well */
@@ -233,25 +254,6 @@ public class Utils {
         }
         logger.info("Constructed {} dotString from edge {}",dotString,id);
         return dotString;
-    }
-
-    public static Object getMatchingOfferDemandPairs(Object offerItemPairs, Object  demandItemPairs) {
-        def matchingPairs = [:]
-        Map offerPairs = listToMap(offerItemPairs);
-        Map demandPairs = listToMap(demandItemPairs);
-        offerPairs.each { key,value -> 
-          def matchingDemandPairs = demandPairs.get(key);
-          if (matchingDemandPairs!=null) {
-            Map matches = [:]
-            matches.put("offers",[value])
-            matches.put("demands",[matchingDemandPairs])
-            matchingPairs.find{ it.key == key } \
-              ? { matchingPairs.get(key).get('offers').add(value); matchingPairs.get(key).get('demands').add(matchingDemandPairs) } \
-              : matchingPairs.put(key,matches)
-          }
-        }
-        logger.warn("Found {} matching offer-demand pairs", matchingPairs.size())
-        return matchingPairs
     }
 
     public static Map listToMap(List listOfItemPairs) {
@@ -331,7 +333,7 @@ public class Utils {
       def fieldNames = jsonSlurper.parseText(nodeId.toString());
       def vertexLabel = fieldNames.get('~label')+":"+fieldNames.community_id+":"+fieldNames.member_id
       logger.info("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
-      return vertexLabel
+      return vertexLabel.toString()
     }
 
     public static String formatEdgeLabel(LazyMap edgeId) {
@@ -370,56 +372,73 @@ public class Utils {
       return jsonVertex
     }
 
-    public static boolean pathContainsChain(Object uniquePathJson, Object chainedWorksJson) {
-      boolean pathDoesNotContainChain = true;
-      uniquePathJson.each {chain ->
-        logger.info("a chain of uniquepathJson is {}", chain)
-        def path_work = chain.findAll{it.label=='work'}
-        logger.info("path_work is {}", path_work)
-        if (path_work) {
-          logger.info('checking edge with path_work {}',path_work.id)
-          def path_item = chain.findAll{it.label=='item'}
-          logger.info('path_item is {}',path_item)
-          def path_itemId = path_item.id[0]
-          logger.info('with path_itemId {}',path_itemId)
-          def path_itemValue = path_item[0].get('properties').value[0]
-          logger.info('with path_itemValue {} of {}',path_itemValue, path_itemValue.getClass())
-          def path_edgeLabel = chain.findAll{it.type=='edge'}.label[0]
-          logger.info('with path_edgeLabel {}',path_edgeLabel)
+    public static boolean pathContainsChain(Object uniquePathJson, Object chainedWorksJson, String pathId) {
+      logger.info('checking if path {} contains the chain...', pathId)
+      logger.info('uniquePathJson is {}',uniquePathJson)
+      // a chain is actually a list of works which are related via similar {offer,demands} items
+      // we check by if a path contains it by looking if the path contains all works listed in the chain;
+      def sequenceInChain = 0;
+      def allMatches = [];
+      chainedWorksJson.each { chainedWork ->
+        sequenceInChain +=1;
+        logger.info("checking if chainedWork {} of sequence {} exists in the path",chainedWork, sequenceInChain);
+        // uniquePaths are formatted as a list of lists of {edges and vertexes on both end} of the path
+        // so we iterate the path each time and find a respective work and then check if the items it holds are the ones 
+        // indicated in the chain 
+        def matches = 0;
+        uniquePathJson.each { singleEdge -> 
+          logger.info('looking if singleEdge {} contains pathWorkId {}', singleEdge, chainedWork.work)
+          def pathedWorks = singleEdge.findAll{it.id==chainedWork.work}
+          pathedWorks.each { pathedWork ->
+            logger.info("found pathedWork {} in on singleEdge {}", pathedWork.id, singleEdge)
+            def pathedItem = singleEdge.findAll{it.label=='item'}
+            logger.info('item of the edge is {}',pathedItem)
+            def pathedItemId = pathedItem.id[0]
+            logger.info('having Id {}',pathedItemId)
+            def pathedEdgeLabel = singleEdge.findAll{it.type=='edge'}.label[0]
+            logger.info('with pathedEdgeLabel {}',pathedEdgeLabel)
 
-          logger.info('checking if chain {} contains edge with work {}',chainedWorksJson,path_work.id[0].toString())
-          def chained_work;
-          chainedWorksJson.each { chainedWork ->
-            logger.info("chainedWork {} of {}",chainedWork,chainedWork.getClass());
-            if (chainedWork.work == path_work.id[0].toString()) { chained_work = chainedWork.clone()}
-          } 
-          logger.info('chained work is: {}',chained_work)
-          if (chained_work) { 
-             logger.info('found chained_work with id {}',chained_work.work)
-             def chained_itemId = chained_work.get("$path_edgeLabel").item
-             logger.info('with chained_itemId {} related as {}',chained_itemId, "$path_edgeLabel")
-             def itemIdsMatch = chained_work.get("$path_edgeLabel").item == path_itemId;
-             logger.info('comparing chained_work."$path_edgeLabel".item {} and path_itemId {}: {}', chained_work.get("$path_edgeLabel").item, path_itemId, itemIdsMatch)
-             pathDoesNotContainChain = pathDoesNotContainChain & itemIdsMatch
-
-             def itemValuesMatch = chained_work.get("$path_edgeLabel").value == path_itemValue;
-             logger.info('comparing chained_work."$path_edgeLabel".value {} and path_itemValue {}: {}', chained_work.get("$path_edgeLabel").value, path_itemValue, itemValuesMatch)
-             pathDoesNotContainChain = pathDoesNotContainChain & itemValuesMatch
+            boolean itemIdsMatch = chainedWork.get("$pathedEdgeLabel").item == pathedItemId
+            if (itemIdsMatch) {
+              logger.info('pathedWork {} item {} exists in chainedWork {}',pathedWork, pathedItemId, chainedWork)
+            } else {
+              logger.info('pathedWork {} item {} does NOT exist in chainedWork {}',pathedWork, pathedItemId, chainedWork)
+            }
+            matches = matches + (itemIdsMatch ? 1:0)
           }
+          logger.info('singleEdge of sequence {} has {} matches in the path', sequenceInChain,matches)
         }
+        allMatches.add(matches)
       }
-      def pathContainsChain = ! pathDoesNotContainChain
+      logger.info('allMatches follow a pattern: {}',allMatches) 
+
+      // checking if the matching pattern is correct:
+      // first, the number of matches in the list should be the same as the number of chained works
+      boolean size = chainedWorksJson.size() == allMatches.size()
+      logger.info('{} that chainedWorksJson.size() == allMatches.size()', size, chainedWorksJson.size(), allMatches.size())
+      // then, the first item in the list should contain at least one matching item:
+      boolean firstItem = allMatches.take(1)[0] <= 2
+      logger.info('{} that firstItem {}  <= 2', firstItem, allMatches.take(1)[0])
+      allMatches = allMatches.drop(1) // we do not need this item any more
+      // then, the last item in the list should contain at least one matching item:
+      boolean lastItem = allMatches.pop() <= 2
+      logger.info('{} that lastItem {} <= 2', lastItem, allMatches.take(1)[0])
+      // finally, all remaining items in the list should be equal to 2..:
+      boolean innerItems = true
+      allMatches.collect {
+        boolean innerItem = it == 2;
+        innerItems = innerItems & innerItem
+        logger.info("{} that innerItem {} ==2", innerItem, it)
+      }
+      logger.info('{} that innerItems {} are all equal to 2', innerItems, allMatches)
+
+      // a path contains chain if all these conditions are true:
+
+      def pathContainsChain = size & firstItem & lastItem & innerItems
       logger.info('{} that path {} contains chain {}',pathContainsChain,uniquePathJson,chainedWorksJson)
-      // using inverted boolean variable to take advantage of boolean algebra
-      // i.e. that true can be turned into false by one addition of false
-      // but false cannot be turned to true by adding false or true...
+      def keyword = pathContainsChain ? "pathsWithChain":"pathsWithoutChain"
+      Utils.convertToCYNotation(uniquePathJson,keyword, pathId);
       return pathContainsChain
     }
 
 }
-/*
-           properties = js.parseText(item.get("properties").toString())
-                properties.each { property ->
-                  logger.info("got property {}",property)
-                  switch(property.getKey().toString()) {
-*/   
