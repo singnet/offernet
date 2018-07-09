@@ -304,6 +304,7 @@ public class OfferNet implements AutoCloseable {
     * ensuring completeness (i.e. all paths in the network will be found)
     */
     public List allPathsCentralized(List similarityEdges, int version=1){
+      logger.warn("Centralized search of all paths in the network, version 1");
       // not implemented
     }
 
@@ -312,17 +313,17 @@ public class OfferNet implements AutoCloseable {
     * the fact that some vertices are better positioned and therefore can find the path faster;
     */
     public List allPathsCentralized(Object similarityThreshold, int version=3, Integer cutoffValue) {
+      logger.warn("Centralized search of all paths in the network, version 3");
       def start = System.currentTimeMillis()
       Map params = new HashMap();
       params.put("cutoffValue", cutoffValue);
-      params.put("similarityConstraint", similarityConstraint);
-
-      logger.warn("Searching for a path starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
+      params.put("similarityConstraint", similarityThreshold);
 
       String query="""
          g.V().has(label,'work').as('source').repeat(
-                 __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')            // (2)
-                .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(cutoffValue).cap('subGraph').next().traversal().E()
+                 __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(0.99)).subgraph('subGraph')            // (2)
+                .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(10).emit().cap('subGraph').next().traversal().E()
+                .store('allsubGraphs').select('allsubGraphs')      
       """
       /*
       This query gets a list of edges which form a found path
@@ -345,7 +346,7 @@ public class OfferNet implements AutoCloseable {
     * yet it is left as an example -- could be used for benchmarking performance when all work is done on graph back-end side
     */
     public List allPathsCentralized(Object similarityThreshold, int version=2) {
-        logger.warn("Centralized search of all paths in the network, maxPathLength=3");
+        logger.warn("Centralized search of all paths in the network, version 2: maxPathLength=3");
         def start = System.currentTimeMillis();
         Map params = new HashMap();
         params.put("similarityConstraint", similarityThreshold);

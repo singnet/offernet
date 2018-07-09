@@ -528,7 +528,7 @@ public class Agent extends UntypedAbstractActor {
       SimpleGraphStatement s = new SimpleGraphStatement(
                  "g.V(thisWork).as('source').as('source').until(eq('work')).repeat("+
                  "__.outE('offers').store('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).store('subGraph')"+            // (2)
-                 ".otherV().as('work').inE('demands').store('subGraph').outV().dedup()).fold().cap('subGraph')",params)
+                 ".otherV().as('work').inE('demands').store('subGraph').outV().simplePath()).fold().cap('subGraph')",params)
 
       // adapt this query for cycle search and make it run until cycle found
       /*String query="""

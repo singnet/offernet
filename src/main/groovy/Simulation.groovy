@@ -373,5 +373,60 @@ class Simulation extends UntypedAbstractActor {
       return !vertices.isEmpty();
     }
 
+    /**
+    * Almost equivalent to the algorithm of agent, but iterates all agents within the graph -- so not using
+    * the fact that some vertices are better positioned and therefore can find the path faster;
+    public List allCyclesCentralized(Object similarityThreshold) {
+      logger.warn("Centralized search of all cycles in the network");
+      def agentList = vertexIdToActorRefTable.keySet()
+      agentList.each{ agent -> 
+        cycles = [];
+        logger.warn("Getting all works of an agent {}", agent)
+        Method msg = new Method("getWorks", new ArrayList());
+        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+        Future<Object> future = Patterns.ask(agent, msg, timeout);
+        List works = (List<Vertex>) Await.result(future, timeout.duration());
+        assertNotNull(works);
+        logger.warn("Retrieved {} works of agent {}", works.size(), agent)
+        works.each { work ->
+            logger.warn("Running decentralized PathSearch from work's {} perspective", work)
+        msg = new Method("pathSearch", new ArrayList(){{add(work);add(cutoffValue);add(similaritySearchThreshold)}});
+        timeout = new Timeout(Duration.create(120, "seconds"));
+        future = Patterns.ask(agent, msg, timeout);
+        List path = (List<GraphNode>) Await.result(future, timeout.duration());
+        assertNotNull(path);
+          logger.info("Found path {} from work {}",path,work)
+          if (path.size()!=0) {agentPaths.add(path)}
+        }
+        logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
+        uniquePaths.addAll(agentPaths)
+      }
+      
+
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      params.put("cutoffValue", cutoffValue);
+      params.put("similarityConstraint", similarityThreshold);
+
+      String query="""
+         g.V().has(label,'work').as('source').repeat(
+                 __.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')            // (2)
+                .otherV().inE('demands').subgraph('subGraph').outV().dedup()).times(cutoffValue).cap('subGraph').next().traversal().E()
+      """
+      /*
+      This query gets a list of edges which form a found path
+      In order to visualize it showing vertex properties, the list of edges has to be furher procesed
+      
+      SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+      GraphResultSet rs = session.executeGraph(s);
+      logger.info("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.info("With parameters: {}", params);
+      def result = rs.all()
+      logger.warn("Received result {}",result)
+      return result;
+    }
+
+    */
+
 
 }
