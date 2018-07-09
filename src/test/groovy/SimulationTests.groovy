@@ -259,7 +259,7 @@ public class SimulationTests {
  	       	logger.warn("Found {} uniquePaths: {}", uniquePathsJson.size(), uniquePaths)
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-           	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
+           	def allPaths = getVerticesBelongingToSubgraphs(uniquePathsJson, sim)
 
       		// all paths found should contain the previously created chain
       		def pathsContainingChain = 0;
@@ -349,7 +349,7 @@ public class SimulationTests {
  	       	logger.warn("Found {} uniquePaths: {}", uniquePathsJson.size(), uniquePaths)
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-           	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
+           	def allPaths = getVerticesBelongingToSubgraphs(uniquePathsJson, sim)
 
            	// all paths found should contain the previously created chain (one or more)
       		def pathsContainingChain = 0;
@@ -382,7 +382,7 @@ public class SimulationTests {
 
 		}		
 
-		List getVerticesBelongingToSubgraph(Object subgraphs,Simulation sim) {
+		List getVerticesBelongingToSubgraphs(Object subgraphs,Simulation sim) {
 			/*
 			subgraph dontains only edges
 			but we want to have both edges and vertices
@@ -391,26 +391,8 @@ public class SimulationTests {
 			logger.info("subgraphs {} class is {}",subgraphs, subgraphs.getClass())
 			def sbgsIterator = subgraphs.iterator()
 			while (sbgsIterator.hasNext()) {
-				def subgraph = sbgsIterator.next();
-				logger.info("subgraph  is {}",subgraph)
-				JSONArray uniquePath = new JSONArray()
-				subgraph.each { edge ->
-					JSONArray singleChain = new JSONArray()
-					singleChain.put(edge)
-					logger.info("Getting vertexes of the edge {}",edge)
-					def inV = Utils.formatVertexLabel(edge.id.get('~in_vertex'))
-					logger.info("Getting vertex {}",inV)
-					def vertexIn = sim.on.getVertex(inV)
-					logger.info('got vertexIn {}',vertexIn)
-					def outV = Utils.formatVertexLabel(edge.id.get('~out_vertex'))
-					logger.info("Getting vertex {}",outV)
-					def vertexOut = sim.on.getVertex(outV)
-					logger.info('got vertexOut {}',vertexOut)
-					singleChain.put(vertexIn[0])
-					singleChain.put(vertexOut[0])
-					uniquePath.put(singleChain)
-				}
-				logger.info("formed a uniquePath with edges and vertices {}",uniquePath)
+				def subgraph = sbgsIterator.next()
+				def uniquePath = sim.getVerticesBelongingToSubgraph(subgraph)
 				uniquePaths.add(uniquePath)
 			}
 			logger.info("subgraph enriched by vertices: {}", uniquePaths)
@@ -506,7 +488,7 @@ public class SimulationTests {
 		  		logger.warn("Retrieved {} works of agent {}", works.size(), agent)
 		  		works.each { work ->
 	 	       		logger.warn("Running decentralized PathSearch from work's {} perspective", work)
-				    msg = new Method("pathSearch", new ArrayList(){{add(work);add(cutoffValue);add(similaritySearchThreshold)}});
+				    msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
 				    timeout = new Timeout(Duration.create(120, "seconds"));
 				   	future = Patterns.ask(agent, msg, timeout);
 			  		List path = (List<GraphNode>) Await.result(future, timeout.duration());
@@ -514,7 +496,7 @@ public class SimulationTests {
 	 	       		logger.info("Found path {} from work {}",path,work)
 	 	       		if (path.size()!=0) {agentPaths.add(path)}
 	 	       	}
-	 	       	logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
+	 	       	logger.info("Found {} cycles from agent {} perspective", agentPaths.size(), agent)
 	 	       	uniquePaths.addAll(agentPaths)
  	       	}
 
@@ -524,7 +506,7 @@ public class SimulationTests {
 
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-           	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
+           	def allPaths = getVerticesBelongingToSubgraphs(uniquePathsJson, sim)
 
       		// all paths found should contain the previously created chain
       		def pathsContainingChain = 0;
@@ -539,8 +521,18 @@ public class SimulationTests {
 
 		}
 
+
 		@Test
-		void centralizedCycleSearchTest() {
+		void centralizedCycleSearchTestNaive() {
+			centralizedCycleSearchTest(1)
+		}
+
+		@Test
+		void centralizedCycleSearchTestDepthFirstSearch() {
+			centralizedCycleSearchTest(2)
+		}
+
+		void centralizedCycleSearchTest(int searchVersion) {
 			/* run test with parameters: */
 			def agentNumber = 6 // number of agents in the network
 			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
@@ -608,31 +600,7 @@ public class SimulationTests {
 			 // need to debug
 
 			 //running a centralized cycle search
- 	       	def uniquePaths = [] as Set;
- 	       	def agentPaths;
- 	       	def actorRefList = new ArrayList(sim.actorRefToVertexIdTable.keySet())
- 	       	actorRefList.each{ agent -> 
- 	       		agentPaths = [];
- 	       		logger.warn("Getting all works of an agent {}", agent)
-			    msg = new Method("getWorks", new ArrayList());
-			    timeout = new Timeout(Duration.create(5, "seconds"));
-			   	future = Patterns.ask(agent, msg, timeout);
-		  		List works = (List<Vertex>) Await.result(future, timeout.duration());
-		  		assertNotNull(works);
-		  		logger.warn("Retrieved {} works of agent {}", works.size(), agent)
-		  		works.each { work ->
-	 	       		logger.warn("Running decentralized PathSearch from work's {} perspective", work)
-				    msg = new Method("pathSearch", new ArrayList(){{add(work);add(cutoffValue);add(similaritySearchThreshold)}});
-				    timeout = new Timeout(Duration.create(120, "seconds"));
-				   	future = Patterns.ask(agent, msg, timeout);
-			  		List path = (List<GraphNode>) Await.result(future, timeout.duration());
-		  			assertNotNull(path);
-	 	       		logger.info("Found path {} from work {}",path,work)
-	 	       		if (path.size()!=0) {agentPaths.add(path)}
-	 	       	}
-	 	       	logger.info("Found {} paths from agent {} perspective", agentPaths.size(), agent)
-	 	       	uniquePaths.addAll(agentPaths)
- 	       	}
+			def uniquePaths = sim.allCyclesCentralized(similaritySearchThreshold,searchVersion)
 
 			def jsonSlurper = new JsonSlurper()
 	   	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
@@ -640,7 +608,7 @@ public class SimulationTests {
 
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-           	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
+           	def allPaths = getVerticesBelongingToSubgraphs(uniquePathsJson, sim)
 
       		// all paths found should contain the previously created chain
       		def pathsContainingChain = 0;
@@ -715,7 +683,7 @@ public class SimulationTests {
  	       	logger.warn("Found {} uniquePaths: {}", uniquePathsJson.size(), uniquePaths)
            	logger.warn("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-           	def allPaths = getVerticesBelongingToSubgraph(uniquePathsJson, sim)
+           	def allPaths = getVerticesBelongingToSubgraphs(uniquePathsJson, sim)
 
       		// all paths found should contain the previously created chain
       		def pathsContainingChain = 0;

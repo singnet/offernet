@@ -513,22 +513,26 @@ public class Agent extends UntypedAbstractActor {
       return result;
   }
 
-  private List<GraphNode> cycleSearch(Vertex work, Integer cutoffValue, Object similarityConstraint) {
+  private List<GraphNode> cycleSearch(Vertex work, Object similarityConstraint) {
       def start = System.currentTimeMillis()
       Map params = new HashMap();
       logger.info('cycleSearch: Work is : {}', work)
       logger.info('cycleSearch: Work id is: {}', work.getId())
       logger.info('cycleSearch: formatted label is: {}', Utils.formatVertexLabel(work.getId()))
       params.put("thisWork", work.getId());
-      params.put("cutoffValue", cutoffValue);
       params.put("similarityConstraint", similarityConstraint);
 
-      logger.warn("Searching for a cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
+      logger.warn("Searching for a cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), similarityConstraint)
 
       SimpleGraphStatement s = new SimpleGraphStatement(
+                "g.V(thisWork).as('source').until(eq('work')).repeat("+
+                 "__.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')"+            // (2)
+                ".otherV().inE('demands').subgraph('subGraph').outV().dedup()).cap('subGraph').next().traversal().E()", params)
+
+/*
                  "g.V(thisWork).as('source').as('source').until(eq('work')).repeat("+
                  "__.outE('offers').store('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).store('subGraph')"+            // (2)
-                 ".otherV().as('work').inE('demands').store('subGraph').outV().simplePath()).fold().cap('subGraph')",params)
+                 ".otherV().as('work').inE('demands').store('subGraph').outV().simplePath()).cap('subGraph')",params)
 
       // adapt this query for cycle search and make it run until cycle found
       /*String query="""
