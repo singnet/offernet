@@ -156,7 +156,7 @@ output:
     enabled: true
     # The Logstash hosts
     hosts: 
-      - monitoring-server.host:5044
+      - monitoring-server.host:5000
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
