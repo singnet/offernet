@@ -10,4 +10,4 @@ if [ ! -d $PWD/analysis/data/elasticsearch/data ];
 cd $PWD/analysis/monitoring-engine/
 
 # log to file
-docker-compose up >> ../../logs/elasticstack.log
+docker-compose up >> ../data/elasticstack.log
