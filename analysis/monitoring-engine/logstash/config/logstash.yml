@@ -1,0 +1,9 @@
+---
+## Default Logstash configuration from logstash-docker.
+## from https://github.com/elastic/logstash-docker/blob/master/build/logstash/config/logstash-oss.yml
+#
+http.host: "0.0.0.0"
+path.config: /usr/share/logstash/pipeline
+#path.logs: /usr/share/logstash/log
+xpack.monitoring.enabled: true
+xpack.monitoring.elasticsearch.url: ["http://elasticsearch:9200"]
