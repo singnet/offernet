@@ -12,3 +12,4 @@ docs/offernet-docs-bookdown/cucumber-json-report.json
 docs/offernet-docs-bookdown/cucumber-json-report-processed.json
 lib/
 analysis/experimentData/
+analysis/data/
