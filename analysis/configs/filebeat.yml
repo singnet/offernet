@@ -28,6 +28,7 @@ filebeat.inputs:
     - /home/kabir/repos/offernet/logs/OfferNet.log
     #- c:\programdata\elasticsearch\logs\*
 
+  encoding: utf-8
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.
   #exclude_lines: ['^DBG']
@@ -155,7 +156,7 @@ output:
     enabled: true
     # The Logstash hosts
     hosts: 
-      - monitoring-server.host:5000
+      - monitoring-server.host:5044
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
