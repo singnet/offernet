@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+
 # create elasticsearch persistent data directory
 
 if [ ! -d $PWD/analysis/data/elasticsearch/data ];
@@ -10,4 +11,4 @@ if [ ! -d $PWD/analysis/data/elasticsearch/data ];
 cd $PWD/analysis/monitoring-engine/
 
 # log to file
-docker-compose up >> ../data/elasticstack.log
+docker-compose up -d >> ../data/elasticstack.log
