@@ -46,7 +46,7 @@ public class AgentTests {
 	void idStaticTest() {
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		assertNotNull(agent1.id())
-		logger.info("id of the actor via static interface is {}",agent1.id())
+		logger.debug("id of the actor via static interface is {}",agent1.id())
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class AgentTests {
 			agentRef.tell(new Method("id",[]),getRef())
         	def agentId = receiveN(1)
 			assertNotNull(agentId)
-			logger.info("id of the actor via message is {}",agentId)
+			logger.debug("id of the actor via message is {}",agentId)
 		}}
 	}
 
@@ -180,8 +180,8 @@ public class AgentTests {
     	def agent1 = TestActorRef.create(system, Agent.props(on.session,agentId)).underlyingActor();
     	assertNotNull(agent1);
     	def agentIdFromVertex = agent1.id()
-    	logger.info("Original agent id {} is of type {}",agentId, agentId.getClass().getSimpleName())
-    	logger.info("Agent id extracted from vertex {} is of type {}",agentIdFromVertex, agentIdFromVertex.getClass().getSimpleName())
+    	logger.debug("Original agent id {} is of type {}",agentId, agentId.getClass().getSimpleName())
+    	logger.debug("Agent id extracted from vertex {} is of type {}",agentIdFromVertex, agentIdFromVertex.getClass().getSimpleName())
     	assertEquals(agentId,agentIdFromVertex)
 	}
 

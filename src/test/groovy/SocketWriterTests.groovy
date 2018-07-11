@@ -52,7 +52,7 @@ public class SocketWriterTests {
       ProcessBuilder builder = new ProcessBuilder("npm", "start")
       builder.directory(new File(path))
       process = builder.start()
-      logger.info("Started npm sever", path)
+      logger.debug("Started npm sever", path)
 	}
 
 	@AfterClass
@@ -67,7 +67,7 @@ public class SocketWriterTests {
 		socketWriter.tell(msg,ActorRef.noSender());
 		Thread.sleep(1000);
     	assertNotNull(socketWriter);
-    	logger.info("created a new SocketWriter actor {}", socketWriter);
+    	logger.debug("created a new SocketWriter actor {}", socketWriter);
     	socketWriter.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
     	Thread.sleep(100)
 	}
@@ -81,7 +81,7 @@ public class SocketWriterTests {
 		def event = Utils.createEvent("newAgent",eventProperties)
 		assertNotNull(event)
 		assertTrue(event instanceof String)
-		logger.info("Created event object {}", event);
+		logger.debug("Created event object {}", event);
 	}
 
 	@Test
@@ -92,7 +92,7 @@ public class SocketWriterTests {
 		socketWriter.tell(msg,ActorRef.noSender());
 		Thread.sleep(1000);
     	assertNotNull(socketWriter);
-    	logger.info("created a new SocketWriter actor {}", socketWriter);
+    	logger.debug("created a new SocketWriter actor {}", socketWriter);
 		*/
 		String agentUUID = UUID.randomUUID().toString()
 		def agent = TestActorRef.create(system, Agent.props(on.session, agentUUID),agentUUID).underlyingActor();
@@ -100,7 +100,7 @@ public class SocketWriterTests {
 		def event = Utils.createEvent("newAgent",eventProperties)
 		assertNotNull(event)
 		assertTrue(event instanceof String)
-		logger.info("Created event object {}", event);
+		logger.debug("Created event object {}", event);
 
 		/*
 		while(true) {
@@ -112,7 +112,7 @@ public class SocketWriterTests {
 			msg = new Method("writeSocket",[event])
 			socketWriter.tell(msg,ActorRef.noSender());
 			Thread.sleep(100);
-			logger.info("sent a message for writing socket no {}",i)
+			logger.debug("sent a message for writing socket no {}",i)
 		}
 
     	socketWriter.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());
@@ -132,12 +132,12 @@ public class SocketWriterTests {
 		def event = Utils.createEvent("newAgent",eventProperties)
 		assertNotNull(event)
 		assertTrue(event instanceof String)
-		logger.info("Created event object {}", event);
+		logger.debug("Created event object {}", event);
 
 		for (int i=0;i<10;i++) {
 			socketWriter.tell(new Method("writeSocket",[event]),ActorRef.noSender());
 			Thread.sleep(200);
-			logger.info("sent a message for writing socket no {}",i)
+			logger.debug("sent a message for writing socket no {}",i)
 		}
 
     	socketWriter.tell(akka.actor.PoisonPill.getInstance(), ActorRef.noSender());

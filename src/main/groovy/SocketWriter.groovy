@@ -34,7 +34,7 @@ public class SocketWriter extends UntypedAbstractActor {
 
   public void onReceive(Object message) throws Exception {
     if (message instanceof Method) {
-      logger.info("received Method message: {}",message.getMethodString())
+      logger.info("received Method message: {}",message.toString())
       switch (message) {
         default: 
           def args = message.args
