@@ -8,8 +8,9 @@ public class Method {
                 this.name = name;
                 this.args = args;
         }
-
-        public String getMethodString() {
+        
+        @Override
+        public String toString() {
                 return this.name+"( "+args.toString() +" ) ";
         }
 }
