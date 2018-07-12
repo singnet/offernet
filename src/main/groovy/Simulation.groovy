@@ -57,7 +57,7 @@ class Simulation extends UntypedAbstractActor {
     if (message instanceof Method) {
       logger.info("{}: {} : received message: {} of {}",
         Utils.getCurrentMethodName(),
-        Parameters.parameters.simulationId,
+        Global.parameters.simulationId,
         message,
         message.getClass())
       switch (message) {
@@ -70,12 +70,15 @@ class Simulation extends UntypedAbstractActor {
     }
   }
 
+  private Simulation() {
+    this('SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6));
+  }
 
-	private Simulation() {
+	private Simulation(String simulationId) {
 
 		def start = System.currentTimeMillis();
-		def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-		PropertyConfigurator.configure(config.toProperties())
+		//def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+		//PropertyConfigurator.configure(config.toProperties())
 		logger = LoggerFactory.getLogger('Simulation.class');
 
 		on = new OfferNet();
@@ -86,14 +89,12 @@ class Simulation extends UntypedAbstractActor {
     actorRefToVertexIdTable = new Hashtable<ActorRef,String>();
     agentIdToActorRefTable = new Hashtable<String,ActorRef>();
 
-    // create a unique number for each simulation which will be included into log entries
-    String simulationId = 'SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6); 
     // write simulation Id to global variables in order to be able to access from everywhere
-    Parameters.parameters.simulationId = simulationId;
+    Global.parameters.simulationId = simulationId;
 
-    logger.info('{} : {} : wallTime_ms={} msec.', 
+    logger.info('method={} : simulationId={} : wallTime_ms={} msec.', 
       Utils.getCurrentMethodName(), 
-      Parameters.parameters.simulationId,
+      Global.parameters.simulationId,
       (System.currentTimeMillis()-start))
 	}
 
@@ -149,9 +150,9 @@ class Simulation extends UntypedAbstractActor {
         agent1.tell(new Method("knowsAgent",[agent2vertexId]),getSelf())
         agentsList.add(agent2)
       }
-    logger.info('{} : {} : [numberOfAgents={}] : wallTime_ms={} sec.', 
+    logger.info('method={} : simulationId={} : numberOfAgents={} : wallTime_ms={} sec.', 
       Utils.getCurrentMethodName(), 
-      Parameters.parameters.simulationId,
+      Global.parameters.simulationId,
       numberOfAgents,
       (System.currentTimeMillis()-start)/1000)
     return agentsList;
@@ -192,7 +193,7 @@ class Simulation extends UntypedAbstractActor {
 
     logger.trace('{} : {} : agent count in the list={}; similarityThreshold={}; maxReachDistance={} : wallTime_ms={} sec.', 
       Utils.getCurrentMethodName(), 
-      Parameters.parameters.simulationId,
+      Global.parameters.simulationId,
       agentList.size(),
       similarityThreshold,
       maxReachDistance,
@@ -368,8 +369,8 @@ class Simulation extends UntypedAbstractActor {
         }
         def jsonChainedWorks = JsonOutput.toJson(chainedWorks)
         logger.trace('Added chain to the network (json): {}', jsonChainedWorks)
-        if (Parameters.parameters.reportMode) {
-            String experimentDir = System.getProperty("user.dir")+"/"+Parameters.parameters.experimentDataDir + "/"+Parameters.parameters.experimentId
+        if (Global.parameters.reportMode) {
+            String experimentDir = System.getProperty("user.dir")+"/"+Global.parameters.experimentDataDir + "/"+Global.parameters.experimentId
             new File(experimentDir).mkdirs();
             String chainFilePath = experimentDir + "/"+Utils.generateRandomString(3)+"-chain.json"
             new File(chainFilePath).write(JsonOutput.toJson(chainedWorks))
@@ -433,9 +434,9 @@ class Simulation extends UntypedAbstractActor {
           uniquePaths.addAll(agentPaths)
       }
       
-      logger.info('{} : {} : [similaritySearchThreshold={}; total_found_cycles_count={}; unique_found_cycles_count={}] : wallTime_ms={} msec.', 
+      logger.info('method={} : simulationId={} : similaritySearchThreshold={} ; total_found_cycles_count={} ; unique_found_cycles_count={} : wallTime_ms={} msec.', 
         Utils.getCurrentMethodName(), 
-        Parameters.parameters.simulationId,
+        Global.parameters.simulationId,
         similaritySearchThreshold,
         totalPaths,
         uniquePaths.size(),
@@ -493,9 +494,9 @@ class Simulation extends UntypedAbstractActor {
         else {return false}
       }
 
-      logger.info('{} : {} : similaritySearchThreshold={}; total_found_cycles_count={}; unique_found_cycles_count={}] : wallTime_ms={} msec.', 
+      logger.info('method={} : simulationId={} : similaritySearchThreshold={} ; total_found_cycles_count={} ; unique_found_cycles_count={} : wallTime_ms={} msec.', 
         Utils.getCurrentMethodName(), 
-        Parameters.parameters.simulationId,
+        Global.parameters.simulationId,
         similaritySearchThreshold,
         totalPaths,
         uniquePaths.size(),
@@ -528,7 +529,7 @@ class Simulation extends UntypedAbstractActor {
         logger.trace("formed a uniquePath with edges and vertices {}",uniquePath)
         logger.debug('{} : {} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
-          Parameters.parameters.simulationId,
+          Global.parameters.simulationId,
           (System.currentTimeMillis()-start))
 
         return uniquePath
@@ -559,7 +560,7 @@ class Simulation extends UntypedAbstractActor {
         logger.trace("the path visited vertices {}",visitedVertices)
         logger.debug('{} : {} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
-          Parameters.parameters.simulationId,
+          Global.parameters.simulationId,
           (System.currentTimeMillis()-start))
 
         return visitedVertices

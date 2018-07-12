@@ -53,7 +53,7 @@ public class Utils {
     public static List createChain(int length) {
         List chain = []
         length.times {
-            chain.add(generateBinaryString(Parameters.parameters.binaryStringLength))
+            chain.add(generateBinaryString(Global.parameters.binaryStringLength))
         }
         logger.trace("Created chain of length {} with: end: {}, start: {} ",length, chain.last(),chain.first())
         return chain
@@ -129,12 +129,12 @@ public class Utils {
 
     /* produces a path file for cytoscape.js -- to be visualized */
     private static boolean convertToCYNotation(Object path, String keyword, String pathId) {
-      String experimentId = Parameters.parameters.experimentId
+      String experimentId = Global.parameters.experimentId
       String fileName = pathId+".json"
-      String cyFileDir = System.getProperty("user.dir")+"/"+Parameters.parameters.experimentDataDir + "/" + experimentId +"/"+ keyword
+      String cyFileDir = System.getProperty("user.dir")+"/"+Global.parameters.experimentDataDir + "/" + experimentId +"/"+ keyword
       def cyFilePath = cyFileDir +"/" +fileName 
 
-      if (Parameters.parameters.reportMode) {
+      if (Global.parameters.reportMode) {
         logger.trace('creating an experiment directory {}',cyFileDir)
         new File(cyFileDir).mkdirs();
       }
@@ -199,7 +199,7 @@ public class Utils {
       }
 
       def sortedJSON = json.sort { a,b -> b.group <=> a.group}
-      if (Parameters.parameters.reportMode) {
+      if (Global.parameters.reportMode) {
         new File(cyFilePath).write(JsonOutput.toJson(json))
       }
       logger.trace('Wrote path to file {}', cyFilePath)

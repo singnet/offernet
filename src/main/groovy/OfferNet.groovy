@@ -45,8 +45,8 @@ public class OfferNet implements AutoCloseable {
     private OfferNet() {
         def start = System.currentTimeMillis()
         //loading log4j properties
-        def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-        PropertyConfigurator.configure(config.toProperties())
+        //def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+        //PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
         system =  ActorSystem.create("OfferNet");
 
@@ -65,13 +65,13 @@ public class OfferNet implements AutoCloseable {
             logger.trace("Created OfferNet instance with session {}", session);
             logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
-            if (Parameters.parameters.visualizationEngine) {
+            if (Global.parameters.visualizationEngine) {
               socketWriter = createSocketWriter();
 //              Thread.sleep(2000);
 //              openVisualizationWindow();
             }
 
-          if (Parameters.parameters.debugMode) {
+          if (Global.parameters.debugMode) {
             Kamon.addReporter(new PrometheusReporter());
             Kamon.addReporter(new JaegerReporter());
             // wait until Kamon initializes -- 
@@ -81,9 +81,9 @@ public class OfferNet implements AutoCloseable {
             e.printStackTrace();
         }
 
-        logger.info('{} : {} : wallTime_ms={} msec.', 
+        logger.info('method={} : simulationId={} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
-          Parameters.parameters.simulationId,
+          Global.parameters.simulationId,
           (System.currentTimeMillis()-start))
     }
 
@@ -95,7 +95,7 @@ public class OfferNet implements AutoCloseable {
     }
 
     private void openVisualizationWindow() {
-      String visualizationPagePath = Parameters.parameters.visualizationPagePath;
+      String visualizationPagePath = Global.parameters.visualizationPagePath;
       String path = System.getProperty("user.dir")+"/"+visualizationPagePath;
       def builder = new ProcessBuilder( "firefox", path)
       builder.start()
@@ -322,9 +322,9 @@ public class OfferNet implements AutoCloseable {
       def result = rs.all()
       logger.trace("Received result {}",result)
 
-      logger.info('{} : {} : [version={}; similarityThreshold={}; cutoffValue={}; paths_count={}] : wallTime_ms={} msec.', 
+      logger.info('method={} : simulationId={} : version={} ; similarityThreshold={} ; cutoffValue={} ; paths_count={} : wallTime_ms={} msec.', 
         Utils.getCurrentMethodName(), 
-        Parameters.parameters.simulationId,
+        Global.parameters.simulationId,
         version,
         similarityThreshold,
         cutoffValue,
@@ -376,9 +376,9 @@ public class OfferNet implements AutoCloseable {
         List paths = rs.all()
         logger.trace("Found {} paths",paths);
 
-        logger.info('{} : {} : [version={}; similarityThreshold={}; paths_count={}] : wallTime_ms={} msec.', 
+        logger.info('method={} : simulationId={} : version={} ; similarityThreshold={} ; paths_count={} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
-          Parameters.parameters.simulationId,
+          Global.parameters.simulationId,
           version,
           similarityThreshold,
           paths.size(),
@@ -404,9 +404,9 @@ public class OfferNet implements AutoCloseable {
         List edges = rs.all();
         logger.trace("Found {} allWorkItemEdges of {} existing in the network", edges.size(), itemName);
 
-        logger.info('{} : {} : [version={}; label={}; edges count={}] : wallTime_ms={} msec.', 
+        logger.info('method={} : simulationId={} : version={} ; label={} ; edges count={} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
-          Parameters.parameters.simulationId,
+          Global.parameters.simulationId,
           itemName,
           edges.size(),
           (System.currentTimeMillis()-start))
@@ -484,9 +484,9 @@ public class OfferNet implements AutoCloseable {
         GraphResultSet rs = session.executeGraph(s);
         def edge = rs.one().asEdge();
 
-        logger.info('{} : {} : [parameters={}; edge={}] : wallTime_ms={} msec.', 
+        logger.info('method={} : simulationId={} : parameters={} ; edge={} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
-          Parameters.parameters.simulationId,
+          Global.parameters.simulationId,
           params,
           edge.getId(),
           (System.currentTimeMillis()-start))
@@ -513,9 +513,9 @@ public class OfferNet implements AutoCloseable {
       recursiveSimilaritySearch(allItems);
       logger.trace('Added total {} similarity edges to the graph (centralized)',similarityEdges.size())
 
-      logger.info('{} : {} : [items_count={}; similarityThreshold={}; similarity_edges_count={}] : wallTime_ms={} msec.', 
+      logger.info('method={} : simulationId={} : items_count={} ; similarityThreshold={} ; similarity_edges_count={} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
-          Parameters.parameters.simulationId,
+          Global.parameters.simulationId,
           allItems.size(),
           similarityThreshold,
           similarityEdges.size(),
@@ -535,9 +535,9 @@ public class OfferNet implements AutoCloseable {
             if (edge != null) {similarityEdges.add(edge)}
         }
         
-        logger.info('{} : {} : [item={}; known_items_count={}; similarityThreshold={}; added_similarity_edges_count={}] : wallTime_ms={} msec.', 
+        logger.info('method={} : simulationId={} : item={}; known_items_count={} ; similarityThreshold={} ; added_similarity_edges_count={} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
-          Parameters.parameters.simulationId,
+          Global.parameters.simulationId,
           item.getId(),
           itemsOfKnownAgents.size(),
           similarityThreshold,
@@ -564,9 +564,9 @@ public class OfferNet implements AutoCloseable {
         }
       }
       
-      logger.info('{} : {} : [item={}; knownItem={}; similarityThreshold={}; added_similarity_edge={}] : wallTime_ms={} msec.', 
+      logger.info('method={} : simulationId={} : item={} ; knownItem={} ; similarityThreshold={} ; added_similarity_edge={} : wallTime_ms={} msec.', 
         Utils.getCurrentMethodName(), 
-        Parameters.parameters.simulationId,
+        Global.parameters.simulationId,
         item.getId(),
         knownItem.getId(),
         similarityThreshold,
@@ -591,9 +591,9 @@ public class OfferNet implements AutoCloseable {
     }
     def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValue(similarityList[0],'similarity') : -1;
 
-    logger.info('{} : {} : [item={}; anotherItem={}; similarity_value={}] : wallTime_ms={} msec.', 
+    logger.info('method={} : simulationId={} : item={} ; anotherItem={} ; similarity_value={} : wallTime_ms={} msec.', 
       Utils.getCurrentMethodName(), 
-      Parameters.parameters.simulationId,
+      Global.parameters.simulationId,
       item.getId(),
       anotherItem.getId(),
       similarity,
@@ -617,9 +617,9 @@ public class OfferNet implements AutoCloseable {
     GraphResultSet rs = session.executeGraph(s);
     List similarityEdges = rs.all().collect {it.asEdge()};
 
-    logger.info('{} : {} : [item={}; similarity_edges_count={}] : wallTime_ms={} msec.', 
+    logger.info('method={} : simulationId={} : item={} ; similarity_edges_count={} : wallTime_ms={} msec.', 
       Utils.getCurrentMethodName(), 
-      Parameters.parameters.simulationId,
+      Global.parameters.simulationId,
       item.getId(),
       similarityEdges.size(),
       (System.currentTimeMillis()-start))
@@ -663,9 +663,9 @@ public class OfferNet implements AutoCloseable {
     GraphResultSet rs = session.executeGraph(s);
     def similarityEdge = rs.one().asEdge();
 
-    logger.info('{} : {} : [item={}; knownItem={}; similarity={}; similarityEdge={}] : wallTime_ms={} msec.', 
+    logger.info('method={} : simulationId={} : item={} ; knownItem={} ; similarity={} ; similarityEdge={} : wallTime_ms={} msec.', 
       Utils.getCurrentMethodName(), 
-      Parameters.parameters.simulationId,
+      Global.parameters.simulationId,
       item.getId(),
       knownItem.getId(),
       similarity,

@@ -35,8 +35,8 @@ public class MethodTests {
 
 	@BeforeClass
 	static void initLogging() {
-	    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-		PropertyConfigurator.configure(config.toProperties())
+	    //def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+		//PropertyConfigurator.configure(config.toProperties())
 		logger = LoggerFactory.getLogger('MethodTests.class');
 	}
 

@@ -126,7 +126,7 @@ public class SimulationTests {
 
 			def agentList = sim.createAgentNetwork(size)
 			assertEquals(agentList.size(), size)
-			Parameters.parameters.reportMode=false
+			Global.parameters.reportMode=false
 		    def chainedWorks = sim.addChainToNetwork(chains[0], true)  // add chain to network and return json structure...
       		//assertEquals(chainedWorks.size(),chainLength)
 			def agentNumber = sim.on.getVertices('agent').size();
@@ -165,7 +165,7 @@ public class SimulationTests {
 
 			def agentList = sim.createAgentNetwork(5,0,chains);
 			logger.trace("added agent network with agents: {}", agentList)			
-			def similarityThreshold = Parameters.parameters.similarityThreshold
+			def similarityThreshold = Global.parameters.similarityThreshold
 			def maxDistance = 2;
 			def connections = sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
 			Thread.sleep(1000);
@@ -174,7 +174,7 @@ public class SimulationTests {
 			/*
 
 			def cutoffValue = 2;
-			def similarityConstraint = Parameters.parameters.binaryStringLength;
+			def similarityConstraint = Global.parameters.binaryStringLength;
 			def paths = []
 			agentList.each { agent ->
 				List works = agent.getWorks();
@@ -197,7 +197,7 @@ public class SimulationTests {
 	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date()) +"-"+ Utils.generateRandomString(4)+"-" + Utils.getCurrentMethodName(); 
 
 	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Parameters.parameters.experimentId = experimentId;
+	       	Global.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -219,7 +219,7 @@ public class SimulationTests {
       		// Connect similar items in the network (similarity > than similarityThreshold in parameters)
 			logger.trace("Running decentralized similarity search and connect")
 			def start = System.currentTimeMillis();
-			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
+			def similarityConnectThreshold = Global.parameters.similarityThreshold
 			
 			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
 			logger.trace("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
@@ -287,7 +287,7 @@ public class SimulationTests {
 	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date()) + "-"+Utils.generateRandomString(4)+ "-" + Utils.getCurrentMethodName(); 
 
 	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Parameters.parameters.experimentId = experimentId;
+	       	Global.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -309,7 +309,7 @@ public class SimulationTests {
       		// Connect similar items in the network (similarity > than similarityThreshold in parameters)
 			logger.trace("Running decentralized similarity search and connect")
 			def start = System.currentTimeMillis();
-			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
+			def similarityConnectThreshold = Global.parameters.similarityThreshold
 			
 			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
 			logger.trace("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
@@ -419,7 +419,7 @@ public class SimulationTests {
 	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date())+ "-" + Utils.generateRandomString(4)+ "-" + Utils.getCurrentMethodName(); 
 
 	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Parameters.parameters.experimentId = experimentId;
+	       	Global.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -462,7 +462,7 @@ public class SimulationTests {
 
 			logger.trace("Running decentralized similarity search and connect")
 			def start = System.currentTimeMillis();
-			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
+			def similarityConnectThreshold = Global.parameters.similarityThreshold
 			
 			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
 			logger.trace("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
@@ -543,7 +543,7 @@ public class SimulationTests {
 	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date())+ "-" + Utils.generateRandomString(4)+ "-" + Utils.getCurrentMethodName(); 
 
 	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Parameters.parameters.experimentId = experimentId;
+	       	Global.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -588,7 +588,7 @@ public class SimulationTests {
 			def start = System.currentTimeMillis();
 
 			def allItems = sim.on.getVertices('item');
-			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
+			def similarityConnectThreshold = Global.parameters.similarityThreshold
 			
 			def similarityConnectionsCentralized = sim.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
 			logger.trace("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
@@ -626,7 +626,7 @@ public class SimulationTests {
 		@Test
 		void centralizedPathSearchTest() {
 			/* run test with parameters: 
-			when comparing with decentralized counterpart obviously has to run with the same parameters...
+			when comparing with decentralized counterpart obviously has to run with the same Global...
 			*/
 			def agentNumber = 6 // number of agents in the network
 			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
@@ -636,7 +636,7 @@ public class SimulationTests {
 
 			String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date())+ "-" + Utils.generateRandomString(4)+ "-" + Utils.getCurrentMethodName(); 
 	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Parameters.parameters.experimentId = experimentId;
+	       	Global.parameters.experimentId = experimentId;
 
 
 	       	// create simulation object
@@ -663,7 +663,7 @@ public class SimulationTests {
 			def start = System.currentTimeMillis();
 
 			def allItems = sim.on.getVertices('item');
-			def similarityConnectThreshold = Parameters.parameters.similarityThreshold
+			def similarityConnectThreshold = Global.parameters.similarityThreshold
 			
 			def similarityConnectionsCentralized = sim.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
 			logger.trace("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
@@ -712,7 +712,7 @@ public class SimulationTests {
 
 			logger.trace("Running decentralized similarity search")
 			def timeStart = System.currentTimeMillis();
-			def similarityThreshold = Parameters.parameters.binaryStringLength
+			def similarityThreshold = Global.parameters.binaryStringLength
 			def maxDistance = 3;
 			sim.connectIfSimilarForAllAgents(agentList,similarityThreshold,maxDistance);
 			def timeDecentralized = System.currentTimeMillis() - timeStart;

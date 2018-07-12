@@ -1,9 +1,5 @@
 package io.singularitynet.offernet;
 
-import io.singularitynet.offernet.OfferNet;
-import io.singularitynet.offernet.Simulation;
-import io.singularitynet.offernet.Parameters;
-
 import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;

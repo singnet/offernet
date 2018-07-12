@@ -43,11 +43,11 @@ public class SocketWriterTests {
 
 	@BeforeClass
 	static void initLogging() {
-	    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-		PropertyConfigurator.configure(config.toProperties())
+	    //def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+		//PropertyConfigurator.configure(config.toProperties())
 		logger = LoggerFactory.getLogger('SocketWriterTests.class');
 		
-	  String visualizationServerPath = Parameters.parameters.visualizationServerPath;
+	  String visualizationServerPath = Global.parameters.visualizationServerPath;
       String path = System.getProperty("user.dir")+"/"+visualizationServerPath;
       ProcessBuilder builder = new ProcessBuilder("npm", "start")
       builder.directory(new File(path))
