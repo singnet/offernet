@@ -39,7 +39,7 @@ public class Agent extends UntypedAbstractActor {
   }
 
   public void onReceive(Object message) throws Exception {
-    logger.warn("{} : {} : agent {} received message: {} of {}",
+    logger.debug("{} : {} : agent {} received message: {} of {}",
       Utils.getCurrentMethodName(),
       Parameters.parameters.simulationId,
       this.id(),
@@ -107,7 +107,7 @@ public class Agent extends UntypedAbstractActor {
 
   private emitNewEdgeEvent(Edge edge) {
       Map edgeProperties = [id:edge.getId(),inV:edge.getInV(),outV: edge.getOutV(),label:edge.getLabel().toString()]
-      logger.debug("edge properties are: {}",edgeProperties.toString());
+      logger.trace("edge properties are: {}",edgeProperties.toString());
       def event = Utils.createEvent("newEdge",edgeProperties);
       def socketWriter = getContext().actorSelection("/user/SocketWriter");
       socketWriter.tell(new Method("writeSocket",[event]),ActorRef.noSender());
@@ -141,7 +141,7 @@ public class Agent extends UntypedAbstractActor {
         params.put("agent2",id);
         params.put('edgeLabel','knows');
 
-        logger.debug("Creating knows edge from agent {} to agent {}", params.agent1, params.agent2)
+        logger.trace("Creating knows edge from agent {} to agent {}", params.agent1, params.agent2)
 
 
         SimpleGraphStatement s = new SimpleGraphStatement(
@@ -182,7 +182,7 @@ public class Agent extends UntypedAbstractActor {
         params.put("agent", this.vertexId());
         params.put("edgeLabel","owns");
 
-        logger.debug("Creating new work for agent {}", params.agent)
+        logger.trace("Creating new work for agent {}", params.agent)
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(agent).next()\n" +
@@ -191,11 +191,11 @@ public class Agent extends UntypedAbstractActor {
                 "[edge,v2]", params)
 
         GraphResultSet rs = session.executeGraph(s);
-        logger.debug("Executed statement: {}", Utils.getStatement(rs));
-        logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
+        logger.trace("Executed statement: {}", Utils.getStatement(rs));
+        logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
         ArrayList result = (ArrayList) rs.all();
         Edge edge = result[0].asEdge();
-        logger.debug("Added {} edge {} to the network", params.edgeLabel, edge);
+        logger.trace("Added {} edge {} to the network", params.edgeLabel, edge);
         Vertex work = result[1].asVertex();
 
         if (Parameters.parameters.visualizationEngine) {
@@ -232,7 +232,7 @@ public class Agent extends UntypedAbstractActor {
         params.put("propertyKey", "value");
         params.put("propertyValue", value);
 
-        logger.debug("Adding {}:{} to work:{}", params.edgeLabel, value, params.thisVertex);
+        logger.trace("Adding {}:{} to work:{}", params.edgeLabel, value, params.thisVertex);
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(thisVertex).next()\n" +
@@ -243,7 +243,7 @@ public class Agent extends UntypedAbstractActor {
         GraphResultSet rs = session.executeGraph(s);
         ArrayList result = (ArrayList) rs.all();
         Edge edge = result[0].asEdge();
-        logger.debug("Added {} edge {} to the network", params.edgeLabel, edge);
+        logger.trace("Added {} edge {} to the network", params.edgeLabel, edge);
         Vertex item = result[1].asVertex();
 
         if (Parameters.parameters.visualizationEngine) {
@@ -317,7 +317,7 @@ public class Agent extends UntypedAbstractActor {
     }
 
     public List<Vertex> getWorksItems(Vertex work, String labelName) {
-      logger.debug("Retrieving {} from work {}",labelName,work);
+      logger.trace("Retrieving {} from work {}",labelName,work);
       def start = System.currentTimeMillis();
 
       Map params = new HashMap();
@@ -326,8 +326,8 @@ public class Agent extends UntypedAbstractActor {
 
       SimpleGraphStatement s = new SimpleGraphStatement("g.V(thisVertex).out(edgeLabel)",params);
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}", Utils.getStatement(rs));
-      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.trace("Executed statement: {}", Utils.getStatement(rs));
+      logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
 
       List<Vertex> items = rs.all().collect {it.asVertex()};
 
@@ -346,7 +346,7 @@ public class Agent extends UntypedAbstractActor {
 
     private Integer searchAndConnect(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
-      logger.debug('Search and connect all items of agent {} with its known agents at similarity {}', this.id(), maxReachDistance)
+      logger.trace('Search and connect all items of agent {} with its known agents at similarity {}', this.id(), maxReachDistance)
       def totalConnectionsCreated = 0;
       this.allItems().each {item ->
         def itemsOfKnownAgents = this.itemsOfKnownAgents(maxReachDistance);
@@ -375,18 +375,18 @@ public class Agent extends UntypedAbstractActor {
     */
     private Integer searchAndConnect2(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
-      logger.debug('Search and connect items with similarity {} and distance {} from the perspective of agent {}', similarityThreshold, maxReachDistance, this.id())
+      logger.trace('Search and connect items with similarity {} and distance {} from the perspective of agent {}', similarityThreshold, maxReachDistance, this.id())
       def totalConnectionsCreated = 0;
       def itemsToProcess = this.itemsOfKnownAgents(maxReachDistance);
       itemsToProcess.addAll(this.allItems());
       for (def i = 0; i<itemsToProcess.size();i++) {
         def item = itemsToProcess.get(i)
         def similarityEdges = this.connectAllSimilar(item,itemsToProcess.drop(i+1),similarityThreshold);
-        logger.debug("Found and connected {} similar items to the item {}",similarityEdges.size(),item.getId())
+        logger.trace("Found and connected {} similar items to the item {}",similarityEdges.size(),item.getId())
         totalConnectionsCreated=totalConnectionsCreated+similarityEdges.size();
       }
-      logger.debug("Created {} new similarity connections for agent {}", totalConnectionsCreated, this.id())
-      logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start))
+      logger.trace("Created {} new similarity connections for agent {}", totalConnectionsCreated, this.id())
+      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start))
       return totalConnectionsCreated;
     }
 
@@ -404,8 +404,8 @@ public class Agent extends UntypedAbstractActor {
               ".where('t',neq('s')).out('owns').out()",params);
 
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}",Utils.getStatement(rs,params));
-      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.trace("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
       List items = rs.all().collect {it.asVertex() };
       
       logger.info('{} : {} : [agentId={}; maxReachDistance={}; items_count={}] : wallTime_ms={} msec.', 
@@ -445,12 +445,12 @@ public class Agent extends UntypedAbstractActor {
       def similarityEdge = null;
       if (this.existsSimilarity(item,knownItem) == -1) {
         def similarity = Utils.calculateSimilarity(item,knownItem);
-        logger.debug("The similarity between items {} and {} is {}", item.getId(),knownItem.getId(),similarity);
+        logger.trace("The similarity between items {} and {} is {}", item.getId(),knownItem.getId(),similarity);
         if (similarity >= similarityThreshold) {
-            logger.warn("similarity {}  >= similarityThreshold {}, therefore connecting", similarity, similarityThreshold)
+            logger.debug("similarity {}  >= similarityThreshold {}, therefore connecting", similarity, similarityThreshold)
             similarityEdge = this.reciprocalDistanceLink(item,knownItem,similarity)
         } else {
-           logger.debug("similarity {} < similarityThreshold {}, therefore not connecting", similarity, similarityThreshold)
+           logger.trace("similarity {} < similarityThreshold {}, therefore not connecting", similarity, similarityThreshold)
         }
       }
 
@@ -469,12 +469,12 @@ public class Agent extends UntypedAbstractActor {
 
   private Integer existsSimilarity(Vertex item, Vertex anotherItem) {
     def start = System.currentTimeMillis();
-    logger.debug("Checking if explicit similarity link exists between from {} to {}",item.getId(),anotherItem.getId())
+    logger.trace("Checking if explicit similarity link exists between from {} to {}",item.getId(),anotherItem.getId())
     List similarityList = []
     this.similarityEdges(item).each { outEdge ->
         if (outEdge.getInV() == anotherItem.getId()) {
           similarityList.add(outEdge);
-          logger.debug("Found similarity link {}",outEdge)
+          logger.trace("Found similarity link {}",outEdge)
         }
     }
     def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValue(similarityList[0],'similarity') : -1;
@@ -552,7 +552,7 @@ public class Agent extends UntypedAbstractActor {
     params.put('valueKey','similarity');
     params.put('valueName', (Double) similarity);
 
-    logger.debug("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
+    logger.trace("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
 
     SimpleGraphStatement s = new SimpleGraphStatement(
             "def v1 = g.V(item1).next()\n" +
@@ -587,13 +587,13 @@ public class Agent extends UntypedAbstractActor {
   private List<GraphNode> pathSearch(Vertex work, Integer cutoffValue, Object similarityConstraint) {
       def start = System.currentTimeMillis()
       def thisWorkString = Utils.formatVertexLabel(work.getId());
-      logger.debug("thisWorkString = {} of {}",thisWorkString, thisWorkString.getClass())
+      logger.trace("thisWorkString = {} of {}",thisWorkString, thisWorkString.getClass())
       Map params = new HashMap();
       params.put("thisWork", thisWorkString);
       params.put("cutoffValue", cutoffValue);
       params.put("similarityConstraint", similarityConstraint);
 
-      logger.warn("Searching for a path starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
+      logger.debug("Searching for a path starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), cutoffValue, similarityConstraint)
 
       String query="""
          g.V(thisWork).as('source').repeat(
@@ -606,10 +606,10 @@ public class Agent extends UntypedAbstractActor {
       */
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}",Utils.getStatement(rs,params));
-      logger.debug("With parameters: {}", params);
+      logger.trace("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.trace("With parameters: {}", params);
       def result = rs.all()
-      logger.debug("Received result {}",result)
+      logger.trace("Received result {}",result)
 
       logger.info('{} : {} : [agentId={}; work={}; cutoffValue={}; similarityConstraint={}; paths_count={}] : wallTime_ms={} msec.', 
         Utils.getCurrentMethodName(), 
@@ -633,7 +633,7 @@ public class Agent extends UntypedAbstractActor {
       params.put("thisWork", work.getId());
       params.put("similarityConstraint", similarityConstraint);
 
-      logger.debug("Searching for a cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), similarityConstraint)
+      logger.trace("Searching for a cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), similarityConstraint)
 
       SimpleGraphStatement s = new SimpleGraphStatement(
                 "g.V(thisWork).as('source').until(eq('work')).repeat("+
@@ -641,11 +641,11 @@ public class Agent extends UntypedAbstractActor {
                 ".otherV().inE('demands').subgraph('subGraph').outV().dedup()).cap('subGraph').next().traversal().E()", params)
 
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}",Utils.getStatement(rs,params));
-      logger.debug("With parameters: {}", params);
+      logger.trace("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.trace("With parameters: {}", params);
       def result = rs.all()
-      logger.debug("Graph results are exhausted {}", rs.isExhausted())
-      logger.debug("Received result {}",result)
+      logger.trace("Graph results are exhausted {}", rs.isExhausted())
+      logger.trace("Received result {}",result)
 
       logger.info('{} : {} : [agentId={}; work={}; similarityConstraint={}; cycles_count={}] : wallTime_ms={} msec.', 
         Utils.getCurrentMethodName(), 

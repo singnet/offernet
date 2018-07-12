@@ -95,7 +95,7 @@ public class OfferNetTests {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			def size = 4
 			def chains = [Utils.createChain(size)]
-			logger.debug("Created chains: {}",chains)
+			logger.trace("Created chains: {}",chains)
 
 			sim.createAgentNetwork(size,0,chains);
 			Thread.sleep(1000)
@@ -103,7 +103,7 @@ public class OfferNetTests {
 			def demandEdges = on.allWorkItemEdges("demands");
 			def offerEdges = on.allWorkItemEdges("offers")
 
-	        logger.debug("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
+	        logger.trace("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
 
 			assertEquals(size-1,demandEdges.size())
 			assertEquals(size-1,offerEdges.size())

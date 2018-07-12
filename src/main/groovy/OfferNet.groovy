@@ -62,8 +62,8 @@ public class OfferNet implements AutoCloseable {
 
             session.executeGraph(new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')"))
 
-            logger.debug("Created OfferNet instance with session {}", session);
-            logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+            logger.trace("Created OfferNet instance with session {}", session);
+            logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
             if (Parameters.parameters.visualizationEngine) {
               socketWriter = createSocketWriter();
@@ -89,7 +89,7 @@ public class OfferNet implements AutoCloseable {
 
     private Object createSocketWriter() {
       def socketWriter = system.actorOf(SocketWriter.props(),"SocketWriter");
-      logger.debug("created a new SocketWriter actor {}", socketWriter);
+      logger.trace("created a new SocketWriter actor {}", socketWriter);
       socketWriter.tell(new Method("createSocket",[]),ActorRef.noSender());
       return socketWriter;
     }
@@ -99,7 +99,7 @@ public class OfferNet implements AutoCloseable {
       String path = System.getProperty("user.dir")+"/"+visualizationPagePath;
       def builder = new ProcessBuilder( "firefox", path)
       builder.start()
-      logger.debug("Opened browser with visualization page: {}", path)
+      logger.trace("Opened browser with visualization page: {}", path)
     }
 
     @Override
@@ -107,9 +107,9 @@ public class OfferNet implements AutoCloseable {
         String clusterName = cluster.toString()
         String sessionName = session.toString()
         this.session.close();
-        logger.debug("Closed session {}",sessionName);
+        logger.trace("Closed session {}",sessionName);
         this.cluster.close();
-        logger.debug("Closed cluster {}",clusterName);
+        logger.trace("Closed cluster {}",clusterName);
     }
 
     public void flushVertices(String labelName) {
@@ -118,17 +118,17 @@ public class OfferNet implements AutoCloseable {
 
       SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(label,labelName).drop()",params);
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}", Utils.getStatement(rs));
-      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
-      logger.debug("Dropped vertexes with label {} from OfferNet", labelName);
+      logger.trace("Executed statement: {}", Utils.getStatement(rs));
+      logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.trace("Dropped vertexes with label {} from OfferNet", labelName);
     }
 
     public Object flushVertices() {
       SimpleGraphStatement s = new SimpleGraphStatement("g.V().drop()");
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}", Utils.getStatement(rs));
-      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
-      logger.debug("Dropped all vertexes from OfferNet");
+      logger.trace("Executed statement: {}", Utils.getStatement(rs));
+      logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.trace("Dropped all vertexes from OfferNet");
       return this;
     }
 
@@ -139,12 +139,12 @@ public class OfferNet implements AutoCloseable {
 
       SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(label,labelName).id()",params);
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}", Utils.getStatement(rs));
-      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.trace("Executed statement: {}", Utils.getStatement(rs));
+      logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
 
       List<Object> agentIds = rs.all();
-      logger.debug("Retrieved list of {} vertices with label '{}' from OfferNet", agentIds.size(),labelName);
-      logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      logger.trace("Retrieved list of {} vertices with label '{}' from OfferNet", agentIds.size(),labelName);
+      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return agentIds;
     }
 
@@ -154,12 +154,12 @@ public class OfferNet implements AutoCloseable {
 
       SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(id,idName)",params);
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}", Utils.getStatement(rs));
-      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.trace("Executed statement: {}", Utils.getStatement(rs));
+      logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
 
       Vertex vertex = rs.one().asVertex();
       Object jsonVertex = Utils.vertexToJson(vertex)
-      logger.debug("Converted to json representation {}", jsonVertex)
+      logger.trace("Converted to json representation {}", jsonVertex)
       return jsonVertex;
     }
 
@@ -171,12 +171,12 @@ public class OfferNet implements AutoCloseable {
 
       SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(label,labelName)",params);
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}", Utils.getStatement(rs));
-      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.trace("Executed statement: {}", Utils.getStatement(rs));
+      logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
 
       List<Object> vertices = rs.all().collect{it.asVertex()};
-      logger.debug("Retrieved list of {} vertices from OfferNet",  vertices.size());
-      logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      logger.trace("Retrieved list of {} vertices from OfferNet",  vertices.size());
+      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return vertices;
     }
 
@@ -188,12 +188,12 @@ public class OfferNet implements AutoCloseable {
 
       SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(propertyName,propertyValue)",params);
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}", Utils.getStatement(rs));
-      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.trace("Executed statement: {}", Utils.getStatement(rs));
+      logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
 
       List<Object> vertices = rs.all().collect{it.asVertex()};
-      logger.debug("Retrieved list of {} vertices from OfferNet", vertices.size());
-      logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      logger.trace("Retrieved list of {} vertices from OfferNet", vertices.size());
+      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return vertices;
     }
 
@@ -204,12 +204,12 @@ public class OfferNet implements AutoCloseable {
 
       SimpleGraphStatement s = new SimpleGraphStatement("g.E().has(label,labelName)",params);
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}", Utils.getStatement(rs));
-      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      logger.trace("Executed statement: {}", Utils.getStatement(rs));
+      logger.trace("Execution warnings from the server: {}", Utils.getWarnings(rs));
 
       List<Object> agentIds = rs.all().collect{it.asEdge()};
-      logger.debug("Retrieved list of {} edges from OfferNet", agentIds.size());
-      logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      logger.trace("Retrieved list of {} edges from OfferNet", agentIds.size());
+      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
       return agentIds;
     }
 
@@ -230,7 +230,7 @@ public class OfferNet implements AutoCloseable {
     * in a centralized manner
     */ 
     public List allSimilarityEdgesRich(Integer similarityThreshold, int version = 1) {
-        logger.debug("Centralized search of all demand-offer pairs with perfect similarities in the network");
+        logger.trace("Centralized search of all demand-offer pairs with perfect similarities in the network");
         def start = System.currentTimeMillis();
         Map params = new HashMap();
         params.put("similarityThreshold", similarityThreshold);
@@ -248,8 +248,8 @@ public class OfferNet implements AutoCloseable {
         SimpleGraphStatement s = new SimpleGraphStatement(query,params);
         GraphResultSet rs = session.executeGraph(s);
         List edges = rs.all();
-        logger.debug("Found {} similarity edges in the network", edges.size());
-        logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        logger.trace("Found {} similarity edges in the network", edges.size());
+        logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return edges;
 
@@ -260,7 +260,7 @@ public class OfferNet implements AutoCloseable {
     * in a centralized manner; version 1 theoretically should be more efficient
     */ 
     public List allSimilarityEdgesRich(Object similarityThreshold, int version = 2) {
-      logger.debug("Pulling all similarity edges and rich structure around them from the graph");
+      logger.trace("Pulling all similarity edges and rich structure around them from the graph");
       def start = System.currentTimeMillis();
       Map params = new HashMap();
       params.put("similarityConstraint", similarityThreshold);
@@ -277,8 +277,8 @@ public class OfferNet implements AutoCloseable {
         SimpleGraphStatement s = new SimpleGraphStatement(query,params);
         GraphResultSet rs = session.executeGraph(s);
         List edges = rs.all();
-        logger.debug("Found {} demand-offer pairs existing in the network", edges.size());
-        logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        logger.trace("Found {} demand-offer pairs existing in the network", edges.size());
+        logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return edges;
 
@@ -290,7 +290,7 @@ public class OfferNet implements AutoCloseable {
     * ensuring completeness (i.e. all paths in the network will be found)
     */
     public List allPathsCentralized(List similarityEdges, int version=1){
-      logger.debug("Centralized search of all paths in the network, version 1");
+      logger.trace("Centralized search of all paths in the network, version 1");
       // not implemented
     }
 
@@ -299,7 +299,7 @@ public class OfferNet implements AutoCloseable {
     * the fact that some vertices are better positioned and therefore can find the path faster;
     */
     public List allPathsCentralized(Object similarityThreshold, int version=3, Integer cutoffValue) {
-      logger.debug("Centralized search of all paths in the network, version 3");
+      logger.trace("Centralized search of all paths in the network, version 3");
       def start = System.currentTimeMillis()
       Map params = new HashMap();
       params.put("cutoffValue", cutoffValue);
@@ -317,10 +317,10 @@ public class OfferNet implements AutoCloseable {
       */
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);
       GraphResultSet rs = session.executeGraph(s);
-      logger.debug("Executed statement: {}",Utils.getStatement(rs,params));
-      logger.debug("With parameters: {}", params);
+      logger.trace("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.trace("With parameters: {}", params);
       def result = rs.all()
-      logger.debug("Received result {}",result)
+      logger.trace("Received result {}",result)
 
       logger.info('{} : {} : [version={}; similarityThreshold={}; cutoffValue={}; paths_count={}] : wallTime_ms={} msec.', 
         Utils.getCurrentMethodName(), 
@@ -342,7 +342,7 @@ public class OfferNet implements AutoCloseable {
     * yet it is left as an example -- could be used for benchmarking performance when all work is done on graph back-end side
     */
     public List allPathsCentralized(Object similarityThreshold, int version=2) {
-        logger.debug("Centralized search of all paths in the network, version 2: maxPathLength=3");
+        logger.trace("Centralized search of all paths in the network, version 2: maxPathLength=3");
         def start = System.currentTimeMillis();
         Map params = new HashMap();
         params.put("similarityConstraint", similarityThreshold);
@@ -374,7 +374,7 @@ public class OfferNet implements AutoCloseable {
         SimpleGraphStatement s = new SimpleGraphStatement(query,params);
         GraphResultSet rs = session.executeGraph(s);
         List paths = rs.all()
-        logger.debug("Found {} paths",paths);
+        logger.trace("Found {} paths",paths);
 
         logger.info('{} : {} : [version={}; similarityThreshold={}; paths_count={}] : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
@@ -388,7 +388,7 @@ public class OfferNet implements AutoCloseable {
     }
 
     public List allWorkItemEdges(String itemName) {
-        logger.debug("Centralized search of work vertexes in the graph");
+        logger.trace("Centralized search of work vertexes in the graph");
         def start = System.currentTimeMillis();
 
         Map params = new HashMap();
@@ -402,7 +402,7 @@ public class OfferNet implements AutoCloseable {
 
         GraphResultSet rs = session.executeGraph(s);
         List edges = rs.all();
-        logger.debug("Found {} allWorkItemEdges of {} existing in the network", edges.size(), itemName);
+        logger.trace("Found {} allWorkItemEdges of {} existing in the network", edges.size(), itemName);
 
         logger.info('{} : {} : [version={}; label={}; edges count={}] : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
@@ -421,15 +421,15 @@ public class OfferNet implements AutoCloseable {
         Map params = new HashMap();
         params.put("labelName", "similarity");
 
-        logger.debug("Returning all similarity links");
+        logger.trace("Returning all similarity links");
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "g.E().has(label,labelName)",params);
 
         GraphResultSet rs = session.executeGraph(s);
         List edges = rs.all();
-        logger.debug("Found {} similarity Edges existing in the network", edges.size());
-        logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        logger.trace("Found {} similarity Edges existing in the network", edges.size());
+        logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
         return edges;
     }
@@ -438,13 +438,13 @@ public class OfferNet implements AutoCloseable {
         Map params = new HashMap();
         params.put("labelName", edgeLabel);
 
-        logger.debug("Removing all similarity links");
+        logger.trace("Removing all similarity links");
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "g.E().has(label,labelName).drop()",params);
 
         GraphResultSet rs = session.executeGraph(s);
-        logger.debug("Removed all {} edges from the graph", edgeLabel);
+        logger.trace("Removed all {} edges from the graph", edgeLabel);
     }
 
     public Vertex createAgent() {
@@ -459,8 +459,8 @@ public class OfferNet implements AutoCloseable {
         GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(label, labelValue)", params));
         def vertex = rs.one().asVertex();
 
-        logger.debug("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
-        logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        logger.trace("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
+        logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
         return vertex;
     }
 
@@ -474,7 +474,7 @@ public class OfferNet implements AutoCloseable {
 
     public Edge createEdge(Map params) {
         def start = System.currentTimeMillis();
-        logger.debug("Creating knows edge from agent {} to agent {}", params.agent1, params.agent2)
+        logger.trace("Creating knows edge from agent {} to agent {}", params.agent1, params.agent2)
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(agent1).next()\n" +
@@ -503,15 +503,15 @@ public class OfferNet implements AutoCloseable {
         if (items.size > 0 ) {
           def item = items[0];
           tail = items.drop(1)
-          logger.debug('tail of items is {}',tail)
+          logger.trace('tail of items is {}',tail)
           similarityEdges.addAll(connectAllSimilar(item,tail,similarityThreshold))
           tail = recursiveSimilaritySearch(tail);
         } else {tail = []}
         return tail;
       }
-      logger.debug('running recursiveSimilaritySearch')
+      logger.trace('running recursiveSimilaritySearch')
       recursiveSimilaritySearch(allItems);
-      logger.debug('Added total {} similarity edges to the graph (centralized)',similarityEdges.size())
+      logger.trace('Added total {} similarity edges to the graph (centralized)',similarityEdges.size())
 
       logger.info('{} : {} : [items_count={}; similarityThreshold={}; similarity_edges_count={}] : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
@@ -555,12 +555,12 @@ public class OfferNet implements AutoCloseable {
       def similarityEdge = null;
       if (this.existsSimilarity(item,knownItem) == -1) {
         def similarity = Utils.calculateSimilarity(item,knownItem);
-        logger.debug("The similarity between items {} and {} is {}", item.getId(),knownItem.getId(),similarity);
+        logger.trace("The similarity between items {} and {} is {}", item.getId(),knownItem.getId(),similarity);
         if (similarity >= similarityThreshold) {
-            logger.debug("similarity {}  >= similarityThreshold {}, therefore connecting", similarity, similarityThreshold)
+            logger.trace("similarity {}  >= similarityThreshold {}, therefore connecting", similarity, similarityThreshold)
             similarityEdge = this.reciprocalDistanceLink(item,knownItem,similarity)
         } else {
-           logger.debug("similarity {} < similarityThreshold {}, therefore not connecting", similarity, similarityThreshold)
+           logger.trace("similarity {} < similarityThreshold {}, therefore not connecting", similarity, similarityThreshold)
         }
       }
       
@@ -581,12 +581,12 @@ public class OfferNet implements AutoCloseable {
   */
   private Integer existsSimilarity(Vertex item, Vertex anotherItem) {
     def start = System.currentTimeMillis();
-    logger.debug("Checking if explicit similarity link exists between from {} to {}",item.getId(),anotherItem.getId())
+    logger.trace("Checking if explicit similarity link exists between from {} to {}",item.getId(),anotherItem.getId())
     List similarityList = []
     this.similarityEdges(item).each { outEdge ->
         if (outEdge.getInV() == anotherItem.getId()) {
           similarityList.add(outEdge);
-          logger.debug("Found similarity link {}",outEdge)
+          logger.trace("Found similarity link {}",outEdge)
         }
     }
     def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValue(similarityList[0],'similarity') : -1;
@@ -649,7 +649,7 @@ public class OfferNet implements AutoCloseable {
     params.put('valueKey','similarity');
     params.put('valueName', (Double) similarity);
 
-    logger.debug("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
+    logger.trace("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
 
     SimpleGraphStatement s = new SimpleGraphStatement(
             "def v1 = g.V(item1).next()\n" +
