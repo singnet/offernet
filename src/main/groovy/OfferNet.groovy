@@ -438,7 +438,7 @@ public class OfferNet implements AutoCloseable {
         Map params = new HashMap();
         params.put("labelName", edgeLabel);
 
-        logger.trace("Removing all similarity links");
+        logger.trace("Removing all {}} links", edgeLabel);
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "g.E().has(label,labelName).drop()",params);

@@ -194,10 +194,6 @@ public class SimulationTests {
 			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
 			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
-	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date()) +"-"+ Utils.generateRandomString(4)+"-" + Utils.getCurrentMethodName(); 
-
-	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Global.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -283,11 +279,6 @@ public class SimulationTests {
 			def maxDistance = 6; // the maximum number of hops when doing decentralized similarity search;
 			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 5; // maximum number of hops when doing path search;
-
-	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date()) + "-"+Utils.generateRandomString(4)+ "-" + Utils.getCurrentMethodName(); 
-
-	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Global.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -416,10 +407,6 @@ public class SimulationTests {
 			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
 			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
-	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date())+ "-" + Utils.generateRandomString(4)+ "-" + Utils.getCurrentMethodName(); 
-
-	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Global.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -460,45 +447,14 @@ public class SimulationTests {
 		  	assertNotNull(taskWork);
 		  	logger.trace('Added work {} to agent {}', taskWork, taskAgent)			
 
-			logger.trace("Running decentralized similarity search and connect")
-			def start = System.currentTimeMillis();
-			def similarityConnectThreshold = Global.parameters.similarityThreshold
-			
-			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
-			logger.trace("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
-			logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-			
+		  	sim.decentralizedSimilaritySearchAndConnect()
 			Thread.sleep(1000)
 			 // test fails without above line: 
 			 //it seems that connectIfSimilarForAllAgents takes a lot of time
 			 // need to debug
 
-			def taskAgentList = new ArrayList()
-			taskAgentList.add(taskAgent)
- 	       	def uniquePaths = [] as Set;
- 	       	def agentPaths;
- 	       	taskAgentList.each{ agent -> 
- 	       		agentPaths = [];
- 	       		logger.trace("Getting all works of an agent {}", agent)
-			    msg = new Method("getWorks", new ArrayList());
-			    timeout = new Timeout(Duration.create(5, "seconds"));
-			   	future = Patterns.ask(agent, msg, timeout);
-		  		List works = (List<Vertex>) Await.result(future, timeout.duration());
-		  		assertNotNull(works);
-		  		logger.trace("Retrieved {} works of agent {}", works.size(), agent)
-		  		works.each { work ->
-	 	       		logger.trace("Running decentralized PathSearch from work's {} perspective", work)
-				    msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
-				    timeout = new Timeout(Duration.create(120, "seconds"));
-				   	future = Patterns.ask(agent, msg, timeout);
-			  		List path = (List<GraphNode>) Await.result(future, timeout.duration());
-		  			assertNotNull(path);
-	 	       		logger.trace("Found path {} from work {}",path,work)
-	 	       		if (path.size()!=0) {agentPaths.add(path)}
-	 	       	}
-	 	       	logger.trace("Found {} cycles from agent {} perspective", agentPaths.size(), agent)
-	 	       	uniquePaths.addAll(agentPaths)
- 	       	}
+
+ 	       	Set agentPaths= sim.decentralizedCycleSearch(taskAgent);
 
 			def jsonSlurper = new JsonSlurper()
 	   	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
@@ -540,10 +496,6 @@ public class SimulationTests {
 			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
 			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
-	       	String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date())+ "-" + Utils.generateRandomString(4)+ "-" + Utils.getCurrentMethodName(); 
-
-	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Global.parameters.experimentId = experimentId;
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -584,16 +536,7 @@ public class SimulationTests {
 		  	assertNotNull(taskWork);
 		  	logger.trace('Added work {} to agent {}', taskWork, taskAgent)			
 
-			logger.trace("Running centralized similarity search and connect")
-			def start = System.currentTimeMillis();
-
-			def allItems = sim.on.getVertices('item');
-			def similarityConnectThreshold = Global.parameters.similarityThreshold
-			
-			def similarityConnectionsCentralized = sim.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
-			logger.trace("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
-			logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
-			
+			sim.centralizedSimilaritySearchAndConnect();			
 			Thread.sleep(1000)
 			 // test fails without above line: 
 			 //it seems that connectIfSimilarForAllAgents takes a lot of time
@@ -633,10 +576,6 @@ public class SimulationTests {
 			def randomWorksNumber = 4 // number of random works (outside chain) to drop into the network;
 			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
-
-			String experimentId = new SimpleDateFormat("MM-dd-hh-mm").format(new Date())+ "-" + Utils.generateRandomString(4)+ "-" + Utils.getCurrentMethodName(); 
-	       	// write experiment Id to global variables in order to be able to access from everywhere
-	       	Global.parameters.experimentId = experimentId;
 
 
 	       	// create simulation object

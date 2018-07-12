@@ -565,4 +565,53 @@ class Simulation extends UntypedAbstractActor {
 
         return visitedVertices
     }
+
+    void decentralizedSimilaritySearchAndConnect(maxDistance) {
+      logger.trace("Running decentralized similarity search and connect")
+      def start = System.currentTimeMillis();
+      def similarityConnectThreshold = Global.parameters.similarityThreshold
+      def agentList = new ArrayList(actorRefToVertexIdTable.keySet());
+      
+      def similarityConnectionsDecentralized = this.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
+      logger.trace("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
+      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+    }
+
+    void centralizedSimilaritySearchAndConnect() {
+      logger.trace("Running centralized similarity search and connect")
+      def start = System.currentTimeMillis();
+
+      def allItems = this.on.getVertices('item');
+      def similarityConnectThreshold = Global.parameters.similarityThreshold
+      
+      def similarityConnectionsCentralized = this.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
+      logger.trace("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
+      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+    }
+
+    Set decentralizedCycleSearch(ActorRef agent) {
+        def uniquePaths = [] as Set
+        agentPaths = [];
+        logger.trace("Getting all works of an agent {}", agent)
+        Method msg = new Method("getWorks", new ArrayList());
+        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+        Future<Object> future = Patterns.ask(agent, msg, timeout);
+        List works = (List<Vertex>) Await.result(future, timeout.duration());
+        assertNotNull(works);
+        logger.trace("Retrieved {} works of agent {}", works.size(), agent)
+        works.each { work ->
+          logger.trace("Running decentralized PathSearch from work's {} perspective", work)
+          msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
+          timeout = new Timeout(Duration.create(120, "seconds"));
+          future = Patterns.ask(agent, msg, timeout);
+          List path = (List<GraphNode>) Await.result(future, timeout.duration());
+          assertNotNull(path);
+            logger.trace("Found path {} from work {}",path,work)
+            if (path.size()!=0) {agentPaths.add(path)}
+          }
+        logger.trace("Found {} cycles from agent {} perspective", agentPaths.size(), agent)
+        
+        uniquePaths.addAll(agentPaths)
+        return uniquePaths;
+    }
 }
