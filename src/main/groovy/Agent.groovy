@@ -156,7 +156,7 @@ public class Agent extends UntypedAbstractActor {
           emitNewEdgeEvent(edge);
         }
  
-        logger.info('method={} : simulationId={} : agent={} ; knows_agent={} : wallTime_ms={} msec.', 
+        logger.info('method={} : simulationId={} : agentId={} ; knows_agentId={} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
           Global.parameters.simulationId,
           this.id(),
@@ -204,7 +204,7 @@ public class Agent extends UntypedAbstractActor {
           emitNewEdgeEvent(edge);
         }
 
-        logger.info('method={} : simulationId={} : agent={} ;  edge={} ; demand={} ; offer={} : wallTime_ms={} msec.', 
+        logger.info('method={} : simulationId={} : agentId={} ;  edge={} ; demand={} ; offer={} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
           Global.parameters.simulationId,
           this.id(),
@@ -252,7 +252,7 @@ public class Agent extends UntypedAbstractActor {
           emitNewEdgeEvent(edge);
         }
 
-        logger.info('method={} : simulationId={} : agent={} ; work={} ; label={} ; value={} ; edge={} : wallTime_ms={} msec.', 
+        logger.info('method={} : simulationId={} : agentId={} ; work={} ; label={} ; value={} ; edge={} : wallTime_ms={} msec.', 
           Utils.getCurrentMethodName(), 
           Global.parameters.simulationId,
           this.id(),

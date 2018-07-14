@@ -128,9 +128,9 @@ public class Utils {
     }
 
     /* produces a path file for cytoscape.js -- to be visualized */
-    private static boolean convertToCYNotation(Object path, String keyword, String pathId) {
+    private static Object convertToCYNotation(Object path, String keyword) {
       String experimentId = Global.parameters.experimentId
-      String fileName = pathId+".json"
+      String fileName = generateRandomString(6)+".json"
       String cyFileDir = System.getProperty("user.dir")+"/"+Global.parameters.experimentDataDir + "/" + experimentId +"/"+ keyword
       def cyFilePath = cyFileDir +"/" +fileName 
 
@@ -201,41 +201,9 @@ public class Utils {
       def sortedJSON = json.sort { a,b -> b.group <=> a.group}
       if (Global.parameters.reportMode) {
         new File(cyFilePath).write(JsonOutput.toJson(json))
+        logger.trace('Wrote path to file {}', cyFilePath)
       }
-      logger.trace('Wrote path to file {}', cyFilePath)
-    }
-
-    /* produces file in dot notation for visualization -- do not work well */
-    public static boolean convertToDotNotation(Object path, String label, String dotFilePath) {
-        
-        def dotFile = new File(dotFilePath);
-        dotFile.delete()
-        // print heading
-        dotFile << "graph G {\n"
-        dotFile << "\trankdir=\"TD\";\n"
-        dotFile << "\tsubgraph cluster_0 {\n"
-        dotFile << "\t\tcolor=lightgrey;\n"
-        dotFile << "\t\tnode [style=filled];\n"
-        dotFile << "\t\tlabel = \""+label+"\";\n"
-
-        logger.trace("Path object class: {}",path.getClass())
-        logger.trace("Path object contents: {}", path)
-        for (int i = 0; i < path.size() - 1; i+=2) {
-          def vertex1 = path[i].isVertex() ? path[i].asVertex() : null;
-          logger.trace("Got vertex1: {} with class {}",vertex1,vertex1.getClass())
-          assertNotNull(vertex1)
-          def vertex2 = path[i+2].isVertex() ? path[i+2].asVertex() : null;
-          logger.trace("Got vertex2: {} with class {}",vertex2,vertex2.getClass())
-          assertNotNull(vertex2)
-          def edge = path[i+1].isEdge() ? path[i+1].asEdge() : null;
-          logger.trace("Got edge: {} with class {}",edge,edge.getClass())
-          assertNotNull(edge)
-          dotFile << "\t\t\t\""+dotString(vertex1)+"\" -- \""+ dotString(vertex2) +"\" [label=\" "+dotString(edge)+"\"];\n"
-        }
-
-        dotFile << "\t}\n"
-        dotFile << "}\n"
-        logger.trace("Saved dotNotationFile to {}",dotFilePath);
+      return JsonOutput.toJson(json)
     }
 
     public static String dotString(Vertex vertex) {
@@ -372,9 +340,10 @@ public class Utils {
       return jsonVertex
     }
 
-    public static boolean pathContainsChain(Object uniquePathJson, Object chainedWorksJson, String pathId) {
-      logger.trace('checking if path {} contains the chain...', pathId)
+    public static boolean pathContainsChain(Object uniquePathJson, Object chainedWorksJson) {
+      logger.trace('checking if path contains the chain...')
       logger.trace('uniquePathJson is {}',uniquePathJson)
+      logger.trace('chainedWorksJson is {}', chainedWorksJson)
       // a chain is actually a list of works which are related via similar {offer,demands} items
       // we check by if a path contains it by looking if the path contains all works listed in the chain;
       def sequenceInChain = 0;
@@ -436,8 +405,6 @@ public class Utils {
 
       def pathContainsChain = size & firstItem & lastItem & innerItems
       logger.trace('{} that path {} contains chain {}',pathContainsChain,uniquePathJson,chainedWorksJson)
-      def keyword = pathContainsChain ? "pathsWithChain":"pathsWithoutChain"
-      Utils.convertToCYNotation(uniquePathJson,keyword, pathId);
       return pathContainsChain
     }
 

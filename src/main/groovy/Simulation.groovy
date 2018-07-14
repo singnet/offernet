@@ -42,6 +42,7 @@ class Simulation extends UntypedAbstractActor {
 	List agentList;
   public Hashtable<String,ActorRef> vertexIdToActorRefTable;
   public Hashtable<ActorRef,String> actorRefToVertexIdTable;
+  public Hashtable<ActorRef,String> actorRefToAgentIdTable;
   public Hashtable<String,ActorRef> agentIdToActorRefTable;
 
   public static Props props() {
@@ -88,6 +89,7 @@ class Simulation extends UntypedAbstractActor {
     vertexIdToActorRefTable = new Hashtable<String,ActorRef>();
     actorRefToVertexIdTable = new Hashtable<ActorRef,String>();
     agentIdToActorRefTable = new Hashtable<String,ActorRef>();
+    actorRefToAgentIdTable = new Hashtable<String,ActorRef>();
 
     // write simulation Id to global variables in order to be able to access from everywhere
     Global.parameters.simulationId = simulationId;
@@ -119,6 +121,7 @@ class Simulation extends UntypedAbstractActor {
     vertexIdToActorRefTable.put(vertexId,actorRef);
     actorRefToVertexIdTable.put(actorRef,vertexId);
     agentIdToActorRefTable.put(agentId,actorRef);
+    actorRefToAgentIdTable.put(actorRef,agentId);
     return actorRef
   }
 
@@ -389,15 +392,17 @@ class Simulation extends UntypedAbstractActor {
       return !vertices.isEmpty();
     }
 
-    public Set allCyclesCentralized(Object similarityThreshold, int version) {
+    public int allCyclesCentralized(Object similarityThreshold, List chain, int version) {
+      def foundCyclesCount = 0
       switch(version) {
         case 1:
-          this.naiveCentralizedCycleSearch(similarityThreshold)
+          foundCyclesCount = this.naiveCentralizedCycleSearch(similarityThreshold, chain)
           break
         case 2:
-          this.depthFirstCycleSearch(similarityThreshold)
+          foundCyclesCount = this.depthFirstCycleSearch(similarityThreshold, chain)
           break
       }
+      return foundCyclesCount
     }
 
     /**
@@ -407,8 +412,9 @@ class Simulation extends UntypedAbstractActor {
     * it is not efficient, since every vertex is traversed many times and more than 
     * one similar cycle is returned
     */
-    public Set naiveCentralizedCycleSearch(Object similaritySearchThreshold) {
+    public int naiveCentralizedCycleSearch(Object similaritySearchThreshold, List chainedWorksJson) {
       def start = System.currentTimeMillis()
+      def currentMethodName = Utils.getCurrentMethodName();
       int totalPaths = 0;
       def uniquePaths = [] as Set;
       def agentPaths;
@@ -431,26 +437,39 @@ class Simulation extends UntypedAbstractActor {
           if (path.size()!=0) {agentPaths.add(path);totalPaths += 1;}
         }
         logger.trace("Found {} paths from agent {} perspective", agentPaths.size(), agent)
-          uniquePaths.addAll(agentPaths)
+        uniquePaths.addAll(agentPaths)
       }
-      
-      logger.info('method={} : simulationId={} : similaritySearchThreshold={} ; total_found_cycles_count={} ; unique_found_cycles_count={} : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
-        Global.parameters.simulationId,
-        similaritySearchThreshold,
-        totalPaths,
-        uniquePaths.size(),
-        (System.currentTimeMillis()-start))
 
+      def jsonSlurper = new JsonSlurper()
+      def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
 
-      return uniquePaths;
+      def allPaths = this.getVerticesBelongingToSubgraphs(uniquePathsJson)
+
+      // all paths found should contain the previously created chain
+      def pathsContainingChain = 0;
+      allPaths.each { uniquePathJson ->
+        def pathId = Utils.generateRandomString(6)
+        boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
+        if (containsChain) {
+          def keyword = "foundCycle"
+          pathsContainingChain +=1;
+          logger.info('method={} : simulationId={} : cyGraph={} : wallTime_ms={} msec.', 
+            currentMethodName, 
+            Global.parameters.simulationId,
+            Utils.convertToCYNotation(uniquePathJson,keyword),
+            (System.currentTimeMillis()-start)
+          )
+        }
+      }
+      return pathsContainingChain;
     }
 
     /**
     * Depth first centralized search is just a depth first search which works pretty much
     * like the naive one, but checks visited agents and works prior to processing them
     */
-    public Set depthFirstCycleSearch(Object similaritySearchThreshold) {
+    public int depthFirstCycleSearch(Object similaritySearchThreshold, List chainedWorksJson) {
+      def currentMethodName = Utils.getCurrentMethodName();
       def start = System.currentTimeMillis()
       def totalPaths = 0;
       def uniquePaths = [] as Set;
@@ -494,18 +513,49 @@ class Simulation extends UntypedAbstractActor {
         else {return false}
       }
 
-      logger.info('method={} : simulationId={} : similaritySearchThreshold={} ; total_found_cycles_count={} ; unique_found_cycles_count={} : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
-        Global.parameters.simulationId,
-        similaritySearchThreshold,
-        totalPaths,
-        uniquePaths.size(),
-        (System.currentTimeMillis()-start))
+      def jsonSlurper = new JsonSlurper()
+      def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
 
-      return uniquePaths;
+      def allPaths = this.getVerticesBelongingToSubgraphs(uniquePathsJson)
+
+      // all paths found should contain the previously created chain
+      def pathsContainingChain = 0;
+      allPaths.each { uniquePathJson ->
+        def pathId = Utils.generateRandomString(6)
+        boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
+        if (containsChain) {
+          def keyword = "foundCycle"
+          pathsContainingChain +=1;
+          logger.info('method={} : simulationId={} : cyGraph={} : wallTime_ms={} msec.', 
+            currentMethodName, 
+            Global.parameters.simulationId,
+            Utils.convertToCYNotation(uniquePathJson,keyword),
+            (System.currentTimeMillis()-start)
+          )
+        }
+      }
+      return pathsContainingChain;
     }
 
-   
+    List getVerticesBelongingToSubgraphs(Object subgraphs) {
+      /*
+      subgraph dontains only edges
+      but we want to have both edges and vertices
+      */
+      def uniquePaths = []
+      logger.trace("subgraphs {} class is {}",subgraphs, subgraphs.getClass())
+      def sbgsIterator = subgraphs.iterator()
+      while (sbgsIterator.hasNext()) {
+        def subgraph = sbgsIterator.next()
+        def uniquePath = this.getVerticesBelongingToSubgraph(subgraph)
+        uniquePaths.add(uniquePath)
+      }
+      logger.trace("subgraph enriched by vertices: {}", uniquePaths)
+      return uniquePaths
+
+    }
+
+
     Object getVerticesBelongingToSubgraph(Object subgraph) {
         def start = System.currentTimeMillis()
         logger.trace("subgraph is {}",subgraph)
@@ -566,7 +616,7 @@ class Simulation extends UntypedAbstractActor {
         return visitedVertices
     }
 
-    void decentralizedSimilaritySearchAndConnect(maxDistance) {
+    void decentralizedSimilaritySearchAndConnect(int maxDistance) {
       logger.trace("Running decentralized similarity search and connect")
       def start = System.currentTimeMillis();
       def similarityConnectThreshold = Global.parameters.similarityThreshold
@@ -589,29 +639,96 @@ class Simulation extends UntypedAbstractActor {
       logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
     }
 
-    Set decentralizedCycleSearch(ActorRef agent) {
-        def uniquePaths = [] as Set
-        agentPaths = [];
+    int decentralizedCycleSearch(ActorRef agent, List chain) {
+        def currentMethodName = Utils.getCurrentMethodName();
+        def start = System.currentTimeMillis();
+        int foundCyclesCount = 0;
+        def uniqueCycles = [] as Set
+        def similaritySearchThreshold = Global.parameters.similaritySearchThreshold 
         logger.trace("Getting all works of an agent {}", agent)
         Method msg = new Method("getWorks", new ArrayList());
-        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+        Timeout timeout = new Timeout(Duration.create(10, "seconds"));
         Future<Object> future = Patterns.ask(agent, msg, timeout);
         List works = (List<Vertex>) Await.result(future, timeout.duration());
-        assertNotNull(works);
         logger.trace("Retrieved {} works of agent {}", works.size(), agent)
         works.each { work ->
           logger.trace("Running decentralized PathSearch from work's {} perspective", work)
           msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
-          timeout = new Timeout(Duration.create(120, "seconds"));
+          timeout = new Timeout(Duration.create(5, "seconds"));
           future = Patterns.ask(agent, msg, timeout);
-          List path = (List<GraphNode>) Await.result(future, timeout.duration());
-          assertNotNull(path);
-            logger.trace("Found path {} from work {}",path,work)
-            if (path.size()!=0) {agentPaths.add(path)}
+          List cycle = (List<GraphNode>) Await.result(future, timeout.duration());
+          logger.trace("Found path {} from work {}",cycle,work)
+          
+          def jsonSlurper = new JsonSlurper()
+          def cycleJson = jsonSlurper.parseText(cycle.toString());
+
+          def richCycle = getVerticesBelongingToSubgraph(cycleJson)
+          logger.trace("Got cycle enriched by vertices {}",richCycle)
+          def keyword = "";
+          if (richCycle.size()!=0) {
+              def cycleContainsChain = Utils.pathContainsChain(richCycle, chain)
+              if (cycleContainsChain) {
+                foundCyclesCount += 1;
+                keyword = "foundCycle"
+              } else {keyword = "foundPath"}
           }
-        logger.trace("Found {} cycles from agent {} perspective", agentPaths.size(), agent)
-        
-        uniquePaths.addAll(agentPaths)
-        return uniquePaths;
+       
+          logger.info('method={} : simulationId={} : agentId={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
+            currentMethodName, 
+            Global.parameters.simulationId,
+            this.actorRefToAgentIdTable.get(agent),
+            keyword,
+            Utils.convertToCYNotation(richCycle,keyword),
+            (System.currentTimeMillis()-start)
+          )
+        }
+        return foundCyclesCount;
     }
+
+    int decentralizedPathSearch(ActorRef agent, int maxDistance, List chain) {
+        def currentMethodName = Utils.getCurrentMethodName();
+        def start = System.currentTimeMillis();
+        int foundPathsCount = 0;
+        def similaritySearchThreshold = Global.parameters.similaritySearchThreshold 
+        logger.trace("Getting all works of an agent {}", agent)
+        Method msg = new Method("getWorks", new ArrayList());
+        Timeout timeout = new Timeout(Duration.create(10, "seconds"));
+        Future<Object> future = Patterns.ask(agent, msg, timeout);
+        List works = (List<Vertex>) Await.result(future, timeout.duration());
+        logger.trace("Retrieved {} works of agent {}", works.size(), agent)
+        works.each { work ->
+          logger.trace("Running decentralized PathSearch from work's {} perspective", work)
+          msg = new Method("pathSearch", new ArrayList(){{add(work);add(maxDistance);add(similaritySearchThreshold)}});
+          timeout = new Timeout(Duration.create(5, "seconds"));
+          future = Patterns.ask(agent, msg, timeout);
+          List cycle = (List<GraphNode>) Await.result(future, timeout.duration());
+          logger.trace("Found path {} from work {}",cycle,work)
+          
+          def jsonSlurper = new JsonSlurper()
+          def cycleJson = jsonSlurper.parseText(cycle.toString());
+
+          def richCycle = getVerticesBelongingToSubgraph(cycleJson)
+          logger.trace("Got cycle enriched by vertices {}",richCycle)
+          def keyword = "";
+          if (richCycle.size()!=0) {
+              def cycleContainsChain = Utils.pathContainsChain(richCycle, chain)
+              if (cycleContainsChain) {
+                foundPathsCount += 1;
+                keyword = "foundCycle"
+              } else {keyword = "foundPath"}
+          }
+       
+          logger.info('method={} : simulationId={} : agentId={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
+            currentMethodName, 
+            Global.parameters.simulationId,
+            this.actorRefToAgentIdTable.get(agent),
+            keyword,
+            Utils.convertToCYNotation(richCycle,keyword),
+            (System.currentTimeMillis()-start)
+          )
+        }
+        return foundPathsCount;
+    }
+
+
 }
