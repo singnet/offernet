@@ -18,6 +18,23 @@ import akka.actor.Props
 import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
 
+import java.text.SimpleDateFormat;
+import akka.pattern.Patterns;
+import scala.concurrent.Future;
+import scala.concurrent.Await;
+import scala.concurrent.duration.Duration;
+import akka.util.Timeout;
+
+import com.datastax.driver.dse.graph.Vertex;
+import com.datastax.driver.dse.graph.Edge;
+
+import groovy.json.JsonSlurper;
+
+import akka.testkit.TestActorRef
+import akka.testkit.JavaTestKit;
+
+
+
 public class Experiments {
 	static ActorSystem system = ActorSystem.create("SimulationTests");
 	static private Logger logger;
@@ -39,7 +56,7 @@ public class Experiments {
 		* permutation of these parameters;
 		*/
 
-		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6));
+		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
 		def agentNumbers = [10, 20, 30, 50, 150, 500] // number of agents in the network
 		def chainLengths = [5, 10, 30, 100] // the length of the chain to drop into the network;
@@ -57,7 +74,7 @@ public class Experiments {
       		similaritySearchThresholds,
       	)
 
-		agentNumber.each { agentNumber ->
+		agentNumbers.each { agentNumber ->
 			chainLengths.each { chainLength ->
 				randomWorksNumberMultipliers.each { randomWorksNumberMultiplier ->
 					def randomWorksNumber = agentNumber*randomWorksNumberMultiplier;
@@ -72,7 +89,7 @@ public class Experiments {
 							assertNotNull(sim);
 							sim.on.flushVertices();
 
-							logger.warn('experimentId={} : simulationId={} : agentNumber={} : chainLength={} : randomWorksNumberMultiplier={} : maxDistance={} : similaritySearchThreshold={}',
+							logger.info('experimentId={} : simulationId={} : agentNumber={} : chainLength={} : randomWorksNumberMultiplier={} : maxDistance={} : similaritySearchThreshold={}',
 								experimentId,
 								Global.parameters.simulationId,
 					     		agentNumber,
@@ -101,7 +118,7 @@ public class Experiments {
 								sim.decentralizedSimilaritySearchAndConnect(maxDistance)
 
 								// 6.1: looking for a cycle:
-								sim.decentralizedCycleSearch(taskAgent)
+								sim.decentralizedCycleSearch(taskAgent, chainedWorksJson)
 
 							// 7: removing all similarity connections
 							// So that centralized search could be run in full on the same network
