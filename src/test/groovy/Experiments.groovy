@@ -58,10 +58,10 @@ public class Experiments {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [10, 20, 30, 50, 150, 500] // number of agents in the network
-		def chainLengths = [5, 10, 30, 100] // the length of the chain to drop into the network;
-		def randomWorksNumberMultipliers = [0,1,2] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [2,4,6] // the maximum number of hops when doing decentralized similarity search;
+		def agentNumbers = [10, 150] // number of agents in the network
+		def chainLengths = [5, 10] // the length of the chain to drop into the network;
+		def randomWorksNumberMultipliers = [1] // number of random works (outside chain) to drop into the network;
+		def maxDistances = [6] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [0.99] // consider only items that are this similar when searching for path;
 
 		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}', 
@@ -83,6 +83,8 @@ public class Experiments {
 							// This is actual experiment code; 
 							// The choice is to construct the whole structure anew for each run
 							// It is not strictly necessary, yet may be good for equalizing performance
+
+							Global.parameters.similaritySearchThreshold = similaritySearchThreshold
 
 					       	// 1: create simulation object
 							def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -127,9 +129,10 @@ public class Experiments {
 							// 8: running centralizedCycleSearch
 								//8.1: connecting all similar items in centralized way:
 								sim.centralizedSimilaritySearchAndConnect()
-
-								//8.2: looking for a cycle:
-								sim.allCyclesCentralized(similaritySearchThreshold,searchVersion)
+								//8.2.1: looking for a cycle Naive:
+								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 1)
+								//8.2.2: looking for a cycle depthFirstSerch:
+								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 2)
 						}
 					}
 				}

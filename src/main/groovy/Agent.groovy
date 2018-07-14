@@ -629,11 +629,12 @@ public class Agent extends UntypedAbstractActor {
       Map params = new HashMap();
       logger.info('cycleSearch: Work is : {}', work)
       logger.info('cycleSearch: Work id is: {}', work.getId())
+      logger.info('cycleSearch: similarityConstraint is: {}', similarityConstraint)
       logger.info('cycleSearch: formatted label is: {}', Utils.formatVertexLabel(work.getId()))
       params.put("thisWork", work.getId());
       params.put("similarityConstraint", similarityConstraint);
 
-      logger.trace("Searching for a cycle starting from work {}, cutoffValue {}, similarityConstraint {}", work.getId(), similarityConstraint)
+      logger.trace("Searching for a cycle starting from work {}, similarityConstraint {}", work.getId(), similarityConstraint)
 
       SimpleGraphStatement s = new SimpleGraphStatement(
                 "g.V(thisWork).as('source').until(eq('work')).repeat("+
