@@ -11,4 +11,4 @@ docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --
 docker run -e DS_LICENSE=accept --name dse-studio -d -p 9091:9091 --link dse kabirkbr/dse-studio:working
 
 # start dse-opscenter
-# docker run -e DS_LICENSE=accept --name opscenter -d -p 8888:8888 datastax/dse-opscenter
+docker run -e DS_LICENSE=accept --name opscenter -d -p 8888:8888 datastax/dse-opscenter
