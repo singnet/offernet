@@ -47,7 +47,8 @@ import akka.util.Timeout;
 
 import kamon.Kamon;
 import kamon.prometheus.PrometheusReporter;
-import kamon.jaeger.JaegerReporter;
+//import kamon.jaeger.JaegerReporter;
+import kamon.zipkin.ZipkinReporter;
 
 import groovy.json.JsonSlurper;
 import org.json.JSONArray

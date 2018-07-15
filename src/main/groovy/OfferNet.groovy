@@ -22,7 +22,8 @@ import groovy.json.JsonBuilder
 
 import kamon.Kamon;
 import kamon.prometheus.PrometheusReporter;
-import kamon.jaeger.JaegerReporter;
+//import kamon.jaeger.JaegerReporter;
+import kamon.zipkin.ZipkinReporter;
 
 
 public class OfferNet implements AutoCloseable {
@@ -73,7 +74,8 @@ public class OfferNet implements AutoCloseable {
 
           if (Global.parameters.debugMode) {
             Kamon.addReporter(new PrometheusReporter());
-            Kamon.addReporter(new JaegerReporter());
+            //Kamon.addReporter(new JaegerReporter());
+            Kamon.addReporter(new ZipkinReporter())
             // wait until Kamon initializes -- 
           }
 
