@@ -35,8 +35,8 @@ public class MethodTests {
 
 	@BeforeClass
 	static void initLogging() {
-	    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-		PropertyConfigurator.configure(config.toProperties())
+	    //def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+		//PropertyConfigurator.configure(config.toProperties())
 		logger = LoggerFactory.getLogger('MethodTests.class');
 	}
 
@@ -48,12 +48,12 @@ public class MethodTests {
 			String method = "id"
 			def args = [];
 			agentRef.tell(new Method(method,args),getRef())
-			logger.debug("Sent method {} with arguments {} to actor {}", method, args, agentRef)
+			logger.trace("Sent method {} with arguments {} to actor {}", method, args, agentRef)
         	def agentId = receiveN(1)
 			assertNotNull(agentId)
-			logger.debug("Received message {} of type {}", agentId, agentId.getClass().getSimpleName())
+			logger.trace("Received message {} of type {}", agentId, agentId.getClass().getSimpleName())
 			assertEquals(agentId[0], agentUUID)
-			logger.debug("Received {} of the actor via message is {}",method, agentId)
+			logger.trace("Received {} of the actor via message is {}",method, agentId)
 		}}
 	}
 

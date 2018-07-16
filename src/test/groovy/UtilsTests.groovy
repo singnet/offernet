@@ -31,14 +31,14 @@ public class UtilsTests {
 
 		@BeforeClass
 		static void initLogging() {
-		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-    		PropertyConfigurator.configure(config.toProperties())
+		    //def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+    		//PropertyConfigurator.configure(config.toProperties())
     		logger = LoggerFactory.getLogger('Tests.class');
 		}
 
 		@Test
 		void generateBinaryStringTest() {
-				String string = Utils.generateBinaryString(Parameters.parameters.binaryStringLength);
+				String string = Utils.generateBinaryString(Global.parameters.binaryStringLength);
 				assertEquals(16,string.length());
 				assertTrue(string.toSet().sort().join() == '01' | string.toSet().sort().join() == '10');
 		}

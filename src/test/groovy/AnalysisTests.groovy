@@ -27,7 +27,8 @@ import akka.testkit.JavaTestKit;
 
 import kamon.Kamon;
 import kamon.prometheus.PrometheusReporter;
-import kamon.jaeger.JaegerReporter;
+//import kamon.jaeger.JaegerReporter;
+import kamon.zipkin.ZipkinReporter;
 
 import java.util.UUID;
 

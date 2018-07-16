@@ -3,7 +3,7 @@ package io.singularitynet.offernet
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-class Parameters {
+class Global {
 	/*
 	 * Following two lines are hardcoded absolute path and filename of the configuration file
 	 * It is possible to make searching relative to source folder, yet I am still not sure which way is better....
@@ -21,6 +21,5 @@ class Parameters {
 	static tempConfigFileName = System.getProperty('user.dir')+"/configs/offernet.conf"
 	public static Map parameters = new ConfigSlurper('config').parse(new File(tempConfigFileName).toURI().toURL())
 	public static Map simulationParameters = new HashMap<>()
-
 
 }

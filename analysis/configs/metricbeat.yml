@@ -1,75 +1,44 @@
-###################### Filebeat Configuration Example #########################
+###################### Metricbeat Configuration Example #######################
 
 # This file is an example configuration file highlighting only the most common
-# options. The filebeat.reference.yml file from the same directory contains all the
+# options. The metricbeat.reference.yml file from the same directory contains all the
 # supported options with more comments. You can use it as a reference.
 #
 # You can find the full configuration reference here:
-# https://www.elastic.co/guide/en/beats/filebeat/index.html
+# https://www.elastic.co/guide/en/beats/metricbeat/index.html
 
-# For more available modules and options, please see the filebeat.reference.yml sample
-# configuration file.
-
-#=========================== Filebeat inputs =============================
-
-filebeat.inputs:
-
-# Each - is an input. Most options can be set at the input level, so
-# you can use different inputs for various configurations.
-# Below are the input specific configurations.
-
-- type: log
-
-  # Change to true to enable this input configuration.
+metricbeat.modules:
+- module: system
+  metricsets:
+    - cpu
+    - filesystem
+    - memory
+    - network
+    - process
+  enabled: true
+  period: 10s
+  processes: ['.*']
+  cpu_ticks: false
+- module: docker
+  metricsets:
+    - "container"
+    - "cpu"
+    - "diskio"
+    - "healthcheck"
+    - "info"
+    #- "image"
+    - "memory"
+    - "network"
+  hosts: ["unix:///var/run/docker.sock"]
+  period: 10s
   enabled: true
 
-  # Paths that should be crawled and fetched. Glob based paths.
-  paths:
-    # local machine
-    - /home/kabir/repos/offernet/logs/OfferNet.log 
-    # gbi-server-2
-    - /media/data/offernet/logs/OfferNet.log
-    #- c:\programdata\elasticsearch\logs\*
+  # Replace dots in labels with `_`. Set to false to keep dots
+  labels.dedot: true
 
-  encoding: utf-8
-  # Exclude lines. A list of regular expressions to match. It drops the lines that are
-  # matching any regular expression from the list.
-  #exclude_lines: ['^DBG']
+#==========================  Modules configuration ============================
 
-  # Include lines. A list of regular expressions to match. It exports the lines that are
-  # matching any regular expression from the list.
-  #include_lines: ['^ERR', '^WARN']
-
-  # Exclude files. A list of regular expressions to match. Filebeat drops the files that
-  # are matching any regular expression from the list. By default, no files are dropped.
-  #exclude_files: ['.gz$']
-
-  # Optional additional fields. These fields can be freely picked
-  # to add additional information to the crawled log files for filtering
-  #fields:
-  #  level: debug
-  #  review: 1
-
-  ### Multiline options
-
-  # Mutiline can be used for log messages spanning multiple lines. This is common
-  # for Java Stack Traces or C-Line Continuation
-
-  # The regexp Pattern that has to be matched. The example pattern matches all lines starting with [
-  #multiline.pattern: ^\[
-
-  # Defines if the pattern set under pattern should be negated or not. Default is false.
-  #multiline.negate: false
-
-  # Match can be set to "after" or "before". It is used to define if lines should be append to a pattern
-  # that was (not) matched before or after or as long as a pattern is not matched based on negate.
-  # Note: After is the equivalent to previous and before is the equivalent to to next in Logstash
-  #multiline.match: after
-
-
-#============================= Filebeat modules ===============================
-
-filebeat.config.modules:
+metricbeat.config.modules:
   # Glob pattern for configuration loading
   path: ${path.config}/modules.d/*.yml
 
@@ -82,8 +51,8 @@ filebeat.config.modules:
 #==================== Elasticsearch template setting ==========================
 
 setup.template.settings:
-  index.number_of_shards: 3
-  #index.codec: best_compression
+  index.number_of_shards: 1
+  index.codec: best_compression
   #_source.enabled: false
 
 #================================ General =====================================
@@ -119,16 +88,16 @@ setup.dashboards.enabled: true
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.
 setup.kibana:
-  host: "monitoring-server.host:5601"
+
   # Kibana Host
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  #host: "localhost:5601"
+  host: "monitoring-server.host:5601"
 
 #============================= Elastic Cloud ==================================
 
-# These settings simplify using filebeat with the Elastic Cloud (https://cloud.elastic.co/).
+# These settings simplify using metricbeat with the Elastic Cloud (https://cloud.elastic.co/).
 
 # The cloud.id setting overwrites the `output.elasticsearch.hosts` and
 # `setup.kibana.host` options.
@@ -144,9 +113,9 @@ setup.kibana:
 # Configure what output to use when sending the data collected by the beat.
 
 #-------------------------- Elasticsearch output ------------------------------
-#output.elasticsearch:
+output.elasticsearch:
   # Array of hosts to connect to.
-  # hosts: ["localhost:9200"]
+  hosts: ["monitoring-server.host:9200"]
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
@@ -154,12 +123,9 @@ setup.kibana:
   #password: "changeme"
 
 #----------------------------- Logstash output --------------------------------
-output:
-  logstash:
-    enabled: true
-    # The Logstash hosts
-    hosts: 
-      - monitoring-server.host:5000
+#output.logstash:
+  # The Logstash hosts
+  #hosts: ["localhost:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
@@ -183,20 +149,16 @@ output:
 #logging.selectors: ["*"]
 
 #============================== Xpack Monitoring ===============================
-# filebeat can export internal metrics to a central Elasticsearch monitoring
+# metricbeat can export internal metrics to a central Elasticsearch monitoring
 # cluster.  This requires xpack monitoring to be enabled in Elasticsearch.  The
 # reporting is disabled by default.
 
 # Set to true to enable the monitoring reporter.
-xpack.monitoring:
-  enabled: true
-  elasticsearch:
-    elabled: true 
-    hosts:
-      - monitoring-server.host:9200
+xpack.monitoring.enabled: true
+
 # Uncomment to send the metrics to Elasticsearch. Most settings from the
 # Elasticsearch output are accepted here as well. Any setting that is not set is
 # automatically inherited from the Elasticsearch output configuration, so if you
 # have the Elasticsearch output configured, you can simply uncomment the
 # following line.
-#xpack.monitoring.elasticsearch: 
+xpack.monitoring.elasticsearch.enabled: true

@@ -57,7 +57,7 @@ public class SocketWriter extends UntypedAbstractActor {
   private createSocket() {
     try {
       String serverName = InetAddress.getByName("visualization-server.host").getHostAddress(); 
-      int serverPort = Parameters.parameters.visualizationPort
+      int serverPort = Global.parameters.visualizationPort
       this.socket = new Socket(serverName, serverPort);
       Thread.sleep(100);
       logger.info("Created a socket to ")
