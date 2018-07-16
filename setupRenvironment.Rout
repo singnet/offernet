@@ -1,0 +1,55 @@
+
+R version 3.2.3 (2015-12-10) -- "Wooden Christmas-Tree"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+>   install.packages('devtools', dependencies=TRUE, repos = 'https://cran.cnr.berkeley.edu/')
+Installing package into ‘/home/kabir/R/x86_64-pc-linux-gnu-library/3.2’
+(as ‘lib’ is unspecified)
+Warning: dependency ‘BiocInstaller’ is not available
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/devtools_1.13.5.tar.gz'
+Content type 'application/x-gzip' length 486555 bytes (475 KB)
+==================================================
+downloaded 475 KB
+
+* installing *source* package ‘devtools’ ...
+** package ‘devtools’ successfully unpacked and MD5 sums checked
+mv: cannot move '/home/kabir/R/x86_64-pc-linux-gnu-library/3.2/devtools' to '/home/kabir/R/x86_64-pc-linux-gnu-library/3.2/00LOCK-devtools/devtools': Permission denied
+Warning in file.copy(f, instdir, TRUE) :
+  problem copying ./NAMESPACE to /home/kabir/R/x86_64-pc-linux-gnu-library/3.2/devtools/NAMESPACE: Permission denied
+Warning in file.copy(f, instdir, TRUE) :
+  problem copying ./NEWS.md to /home/kabir/R/x86_64-pc-linux-gnu-library/3.2/devtools/NEWS.md: Permission denied
+Warning in file(file, ifelse(append, "a", "w")) :
+  cannot open file '/home/kabir/R/x86_64-pc-linux-gnu-library/3.2/devtools/DESCRIPTION': Permission denied
+Error in file(file, ifelse(append, "a", "w")) : 
+  cannot open the connection
+ERROR: installing package DESCRIPTION failed for package ‘devtools’
+* removing ‘/home/kabir/R/x86_64-pc-linux-gnu-library/3.2/devtools’
+
+The downloaded source packages are in
+	‘/tmp/Rtmp2UP2nK/downloaded_packages’
+Warning message:
+In install.packages("devtools", dependencies = TRUE, repos = "https://cran.cnr.berkeley.edu/") :
+  installation of package ‘devtools’ had non-zero exit status
+>   library(devtools)
+>   devtools::install_github('rstudio/bookdown')
+Skipping install of 'bookdown' from a github remote, the SHA1 (632da749) has not changed since last install.
+  Use `force = TRUE` to force installation
+> 
+> proc.time()
+   user  system elapsed 
+  2.181   0.155   7.067 

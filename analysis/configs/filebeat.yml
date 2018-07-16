@@ -25,10 +25,7 @@ filebeat.inputs:
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    # local machine
-    - /home/kabir/repos/offernet/logs/OfferNet.log 
-    # gbi-server-2
-    - /media/data/offernet/logs/OfferNet.log
+    - /home/kabir/repos/offernet/logs/OfferNet.log
     #- c:\programdata\elasticsearch\logs\*
 
   encoding: utf-8

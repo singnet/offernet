@@ -53,9 +53,9 @@ public class Utils {
     public static List createChain(int length) {
         List chain = []
         length.times {
-            chain.add(generateBinaryString(Global.parameters.binaryStringLength))
+            chain.add(generateBinaryString(Parameters.parameters.binaryStringLength))
         }
-        logger.trace("Created chain of length {} with: end: {}, start: {} ",length, chain.last(),chain.first())
+        logger.debug("Created chain of length {} with: end: {}, start: {} ",length, chain.last(),chain.first())
         return chain
     }
 
@@ -110,13 +110,13 @@ public class Utils {
   				similarity++;
   			}
   		}
-      logger.trace("Calculated veitas similarity between {} and {}: {}", left,right,similarity)
+      logger.debug("Calculated veitas similarity between {} and {}: {}", left,right,similarity)
   		return similarity;
   	}
 
 
     private static Object edgePropertyValue(Edge edge,String propertyName) {
-        logger.trace("Returning integer value of the property {} on edge {}", propertyName,edge.getId())
+        logger.debug("Returning integer value of the property {} on edge {}", propertyName,edge.getId())
         //def value = edge.getProperty('similarity').getValue().asInt()
         def value = edge.getProperty('similarity').getValue().asDouble()
         return value
@@ -128,22 +128,22 @@ public class Utils {
     }
 
     /* produces a path file for cytoscape.js -- to be visualized */
-    private static Object convertToCYNotation(Object path, String keyword) {
-      String experimentId = Global.parameters.experimentId
-      String fileName = generateRandomString(6)+".json"
-      String cyFileDir = System.getProperty("user.dir")+"/"+Global.parameters.experimentDataDir + "/" + experimentId +"/"+ keyword
+    private static boolean convertToCYNotation(Object path, String keyword, String pathId) {
+      String experimentId = Parameters.parameters.experimentId
+      String fileName = pathId+".json"
+      String cyFileDir = System.getProperty("user.dir")+"/"+Parameters.parameters.experimentDataDir + "/" + experimentId +"/"+ keyword
       def cyFilePath = cyFileDir +"/" +fileName 
 
-      if (Global.parameters.reportMode) {
-        logger.trace('creating an experiment directory {}',cyFileDir)
+      if (Parameters.parameters.reportMode) {
+        logger.debug('creating an experiment directory {}',cyFileDir)
         new File(cyFileDir).mkdirs();
       }
 
-      logger.trace("Converting a {} path {} of {} to cytoscape notation",experimentId, path, path.class)
+      logger.debug("Converting a {} path {} of {} to cytoscape notation",experimentId, path, path.class)
       def json = [ ]
       path.each { chain ->
         chain.each { item -> 
-          logger.trace('got an item {} of class',item)
+          logger.debug('got an item {} of class',item)
           switch(item.get('type')) {
             case "vertex":
               def vertexData = [  group: "nodes",
@@ -165,7 +165,7 @@ public class Utils {
                 }
               }
               json.add(vertexData)
-              logger.trace("Added vertex {} to cy",vertexData)
+              logger.debug("Added vertex {} to cy",vertexData)
               break;
             case "edge":
               def edgeData = [  group: "edges",
@@ -182,7 +182,7 @@ public class Utils {
               if (item.has("properties")) {
                 properties = js.parseText(item.get("properties").toString())
                 properties.each { property ->
-                  logger.trace("got property {}",property)
+                  logger.debug("got property {}",property)
                   switch(property.getKey().toString()) {
                     case "similarity":
                       edgeData.put(property.getKey(), property.getValue())
@@ -192,25 +192,57 @@ public class Utils {
                 }
               }
             json.add(edgeData)
-            logger.trace("Added edge {} to cy",edgeData)
+            logger.debug("Added edge {} to cy",edgeData)
             break;
           }
         }
       }
 
       def sortedJSON = json.sort { a,b -> b.group <=> a.group}
-      if (Global.parameters.reportMode) {
+      if (Parameters.parameters.reportMode) {
         new File(cyFilePath).write(JsonOutput.toJson(json))
-        logger.trace('Wrote path to file {}', cyFilePath)
       }
-      return JsonOutput.toJson(json)
+      logger.debug('Wrote path to file {}', cyFilePath)
+    }
+
+    /* produces file in dot notation for visualization -- do not work well */
+    public static boolean convertToDotNotation(Object path, String label, String dotFilePath) {
+        
+        def dotFile = new File(dotFilePath);
+        dotFile.delete()
+        // print heading
+        dotFile << "graph G {\n"
+        dotFile << "\trankdir=\"TD\";\n"
+        dotFile << "\tsubgraph cluster_0 {\n"
+        dotFile << "\t\tcolor=lightgrey;\n"
+        dotFile << "\t\tnode [style=filled];\n"
+        dotFile << "\t\tlabel = \""+label+"\";\n"
+
+        logger.debug("Path object class: {}",path.getClass())
+        logger.debug("Path object contents: {}", path)
+        for (int i = 0; i < path.size() - 1; i+=2) {
+          def vertex1 = path[i].isVertex() ? path[i].asVertex() : null;
+          logger.debug("Got vertex1: {} with class {}",vertex1,vertex1.getClass())
+          assertNotNull(vertex1)
+          def vertex2 = path[i+2].isVertex() ? path[i+2].asVertex() : null;
+          logger.debug("Got vertex2: {} with class {}",vertex2,vertex2.getClass())
+          assertNotNull(vertex2)
+          def edge = path[i+1].isEdge() ? path[i+1].asEdge() : null;
+          logger.debug("Got edge: {} with class {}",edge,edge.getClass())
+          assertNotNull(edge)
+          dotFile << "\t\t\t\""+dotString(vertex1)+"\" -- \""+ dotString(vertex2) +"\" [label=\" "+dotString(edge)+"\"];\n"
+        }
+
+        dotFile << "\t}\n"
+        dotFile << "}\n"
+        logger.debug("Saved dotNotationFile to {}",dotFilePath);
     }
 
     public static String dotString(Vertex vertex) {
         def id = vertex.getId()
         def dotString = vertex.getLabel()+":"+id.community_id+":"+id.member_id;
         if (vertex.getLabel().contains("item")) { dotString += "\nvalue: "+vertex.getProperty("value").getValue().asString()}
-        logger.trace("Constructed {} dotString from vertex {}",dotString,id);
+        logger.debug("Constructed {} dotString from vertex {}",dotString,id);
         return dotString;
     }
 
@@ -220,7 +252,7 @@ public class Utils {
         if (edge.getLabel().contains('similarity')) {
             dotString = dotString +": "+edge.getProperty('similarity').getValue().asString()
         }
-        logger.trace("Constructed {} dotString from edge {}",dotString,id);
+        logger.debug("Constructed {} dotString from edge {}",dotString,id);
         return dotString;
     }
 
@@ -230,9 +262,9 @@ public class Utils {
             def v = pair.get('v').get('value');
             def d = pair.get('d');
             map.find{it.key==v} ? map.find{it.key==v}.value.add(d) : map.put(v,d)
-            logger.trace("Added item {}",pair)
+            logger.debug("Added item {}",pair)
         }
-        logger.trace("Constructed map {}",map)
+        logger.debug("Constructed map {}",map)
         return map;
     }
 
@@ -251,12 +283,12 @@ public class Utils {
           normB += Math.pow(arrayRight[i], 2)+0.0000000001;
       }
       def similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
-      logger.trace("Calculated cosine similarity between {} and {}: {}", left,right,similarity)
+      logger.debug("Calculated cosine similarity between {} and {}: {}", left,right,similarity)
       return similarity
     }
 
     public static String createEvent(String eventType, Object object) {
-      logger.trace("Got a call to format event {}: {}",eventType,object)
+      logger.debug("Got a call to format event {}: {}",eventType,object)
       def json = [ eventType: eventType,
                    data: []
                  ]
@@ -281,7 +313,7 @@ public class Utils {
         break;
       }
       def result = JsonOutput.toJson(json)
-      logger.trace("Constructed event data structure: {}",result)
+      logger.debug("Constructed event data structure: {}",result)
       return result;
     }
 
@@ -291,22 +323,22 @@ public class Utils {
 
     public static String formatVertexLabel(LazyMap nodeId) {
       def vertexLabel = nodeId.get('~label')+":"+nodeId.get('community_id')+":"+nodeId.get('member_id')
-      logger.trace("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
+      logger.debug("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
       return vertexLabel
     }
 
     public static String formatVertexLabel(Object nodeId) {
       def jsonSlurper = new JsonSlurper()
-      logger.trace("Parsing {} to json.",nodeId)
+      logger.debug("Parsing {} to json.",nodeId)
       def fieldNames = jsonSlurper.parseText(nodeId.toString());
       def vertexLabel = fieldNames.get('~label')+":"+fieldNames.community_id+":"+fieldNames.member_id
-      logger.trace("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
+      logger.debug("Formatted vertex {} label as {}", nodeId.toString(), vertexLabel.toString())
       return vertexLabel.toString()
     }
 
     public static String formatEdgeLabel(LazyMap edgeId) {
       def edgeLabel = edgeId.get('~local_id');
-      logger.trace("Formatted edge {} label as {}", edgeId.toString(), edgeLabel.toString())
+      logger.debug("Formatted edge {} label as {}", edgeId.toString(), edgeLabel.toString())
       return edgeLabel
     }
 
@@ -314,14 +346,14 @@ public class Utils {
       def jsonSlurper = new JsonSlurper()
       def fieldNames = jsonSlurper.parseText(edgeId.toString());
       def edgeLabel = fieldNames.get('~local_id');
-      logger.trace("Formatted edge {} label as {}", edgeId.toString(),edgeLabel.toString())
+      logger.debug("Formatted edge {} label as {}", edgeId.toString(),edgeLabel.toString())
       return edgeLabel
     }
 
     public static Object vertexToJson(Vertex vertex) {
       def properties = [:]
-      logger.trace('converting to Json: {}', vertex)
-      logger.trace("vertex.getPropertyNames().toArray() {}",vertex.getPropertyNames().toArray().getClass())
+      logger.debug('converting to Json: {}', vertex)
+      logger.debug("vertex.getPropertyNames().toArray() {}",vertex.getPropertyNames().toArray().getClass())
       vertex.getPropertyNames().each{ propertyName ->
         properties.put(propertyName,vertex.getProperty(propertyName).getValue().asString())
       }
@@ -330,81 +362,82 @@ public class Utils {
                          type: 'vertex',
                          properties: properties
                         ]
-      logger.trace('mapVertex is {}',mapVertex)
+      logger.debug('mapVertex is {}',mapVertex)
       def builder = new groovy.json.JsonBuilder()
       def root = builder 
 
       JSONArray jsonVertex = new JSONArray()
       jsonVertex.put(mapVertex)
-      logger.trace('jsonVertex is {}',jsonVertex)          
+      logger.debug('jsonVertex is {}',jsonVertex)          
       return jsonVertex
     }
 
-    public static boolean pathContainsChain(Object uniquePathJson, Object chainedWorksJson) {
-      logger.trace('checking if path contains the chain...')
-      logger.trace('uniquePathJson is {}',uniquePathJson)
-      logger.trace('chainedWorksJson is {}', chainedWorksJson)
+    public static boolean pathContainsChain(Object uniquePathJson, Object chainedWorksJson, String pathId) {
+      logger.debug('checking if path {} contains the chain...', pathId)
+      logger.debug('uniquePathJson is {}',uniquePathJson)
       // a chain is actually a list of works which are related via similar {offer,demands} items
       // we check by if a path contains it by looking if the path contains all works listed in the chain;
       def sequenceInChain = 0;
       def allMatches = [];
       chainedWorksJson.each { chainedWork ->
         sequenceInChain +=1;
-        logger.trace("checking if chainedWork {} of sequence {} exists in the path",chainedWork, sequenceInChain);
+        logger.debug("checking if chainedWork {} of sequence {} exists in the path",chainedWork, sequenceInChain);
         // uniquePaths are formatted as a list of lists of {edges and vertexes on both end} of the path
         // so we iterate the path each time and find a respective work and then check if the items it holds are the ones 
         // indicated in the chain 
         def matches = 0;
         uniquePathJson.each { singleEdge -> 
-          logger.trace('looking if singleEdge {} contains pathWorkId {}', singleEdge, chainedWork.work)
+          logger.debug('looking if singleEdge {} contains pathWorkId {}', singleEdge, chainedWork.work)
           def pathedWorks = singleEdge.findAll{it.id==chainedWork.work}
           pathedWorks.each { pathedWork ->
-            logger.trace("found pathedWork {} in on singleEdge {}", pathedWork.id, singleEdge)
+            logger.debug("found pathedWork {} in on singleEdge {}", pathedWork.id, singleEdge)
             def pathedItem = singleEdge.findAll{it.label=='item'}
-            logger.trace('item of the edge is {}',pathedItem)
+            logger.debug('item of the edge is {}',pathedItem)
             def pathedItemId = pathedItem.id[0]
-            logger.trace('having Id {}',pathedItemId)
+            logger.debug('having Id {}',pathedItemId)
             def pathedEdgeLabel = singleEdge.findAll{it.type=='edge'}.label[0]
-            logger.trace('with pathedEdgeLabel {}',pathedEdgeLabel)
+            logger.debug('with pathedEdgeLabel {}',pathedEdgeLabel)
 
             boolean itemIdsMatch = chainedWork.get("$pathedEdgeLabel").item == pathedItemId
             if (itemIdsMatch) {
-              logger.trace('pathedWork {} item {} exists in chainedWork {}',pathedWork, pathedItemId, chainedWork)
+              logger.debug('pathedWork {} item {} exists in chainedWork {}',pathedWork, pathedItemId, chainedWork)
             } else {
-              logger.trace('pathedWork {} item {} does NOT exist in chainedWork {}',pathedWork, pathedItemId, chainedWork)
+              logger.debug('pathedWork {} item {} does NOT exist in chainedWork {}',pathedWork, pathedItemId, chainedWork)
             }
             matches = matches + (itemIdsMatch ? 1:0)
           }
-          logger.trace('singleEdge of sequence {} has {} matches in the path', sequenceInChain,matches)
+          logger.debug('singleEdge of sequence {} has {} matches in the path', sequenceInChain,matches)
         }
         allMatches.add(matches)
       }
-      logger.trace('allMatches follow a pattern: {}',allMatches) 
+      logger.debug('allMatches follow a pattern: {}',allMatches) 
 
       // checking if the matching pattern is correct:
       // first, the number of matches in the list should be the same as the number of chained works
       boolean size = chainedWorksJson.size() == allMatches.size()
-      logger.trace('{} that chainedWorksJson.size() == allMatches.size()', size, chainedWorksJson.size(), allMatches.size())
+      logger.debug('{} that chainedWorksJson.size() == allMatches.size()', size, chainedWorksJson.size(), allMatches.size())
       // then, the first item in the list should contain at least one matching item:
       boolean firstItem = allMatches.take(1)[0] <= 2
-      logger.trace('{} that firstItem {}  <= 2', firstItem, allMatches.take(1)[0])
+      logger.debug('{} that firstItem {}  <= 2', firstItem, allMatches.take(1)[0])
       allMatches = allMatches.drop(1) // we do not need this item any more
       // then, the last item in the list should contain at least one matching item:
       boolean lastItem = allMatches.pop() <= 2
-      logger.trace('{} that lastItem {} <= 2', lastItem, allMatches.take(1)[0])
+      logger.debug('{} that lastItem {} <= 2', lastItem, allMatches.take(1)[0])
       // finally, all remaining items in the list should be equal to 2..:
       boolean innerItems = true
       allMatches.collect {
         boolean innerItem = it == 2;
         innerItems = innerItems & innerItem
-        logger.trace("{} that innerItem {} ==2", innerItem, it)
+        logger.debug("{} that innerItem {} ==2", innerItem, it)
       }
-      logger.trace('{} that innerItems {} are all equal to 2', innerItems, allMatches)
+      logger.debug('{} that innerItems {} are all equal to 2', innerItems, allMatches)
 
       // a path contains chain if all these conditions are true:
 
       def pathContainsChain = size & firstItem & lastItem & innerItems
-      logger.trace('{} that path {} contains chain {}',pathContainsChain,uniquePathJson,chainedWorksJson)
+      logger.debug('{} that path {} contains chain {}',pathContainsChain,uniquePathJson,chainedWorksJson)
+      def keyword = pathContainsChain ? "pathsWithChain":"pathsWithoutChain"
+      Utils.convertToCYNotation(uniquePathJson,keyword, pathId);
       return pathContainsChain
     }
 

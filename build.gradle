@@ -80,7 +80,7 @@ dependencies {
   compile "io.kamon:kamon-akka-2.5_2.12:1.0.0"
   compile "io.kamon:kamon-akka-http-2.5_2.12:1.0.0"
   compile 'io.kamon:kamon-prometheus_2.12:1.1.1'
-  compile 'io.kamon:kamon-zipkin_2.12:1.0.0'
+  compile 'io.kamon:kamon-jaeger_2.12:1.0.2'
   compile 'junit:junit:4.12'
 	compile 'org.codehaus.groovy:groovy-all:2.4.11'
 	compile 'com.datastax.dse:dse-java-driver-graph:1.6.7'

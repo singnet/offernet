@@ -29,14 +29,14 @@ public class ParametersTests {
 
 		@BeforeClass
 		static void initLogging() {
-		    //def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-    		//PropertyConfigurator.configure(config.toProperties())
+		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+    		PropertyConfigurator.configure(config.toProperties())
     		logger = LoggerFactory.getLogger('Tests.class');
 		}
 
 		@Test
 		void parametersTest() {
-			assertNotNull(Global.parameters.binaryStringLength);
-			assertNotNull(Global.parameters.similarityThreshold);
+			assertNotNull(Parameters.parameters.binaryStringLength);
+			assertNotNull(Parameters.parameters.similarityThreshold);
 		}
 }

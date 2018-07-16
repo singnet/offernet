@@ -30,8 +30,8 @@ public class OfferNetTests {
 
 		@BeforeClass
 		static void initLogging() {
-		    //def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
-    		//PropertyConfigurator.configure(config.toProperties())
+		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
+    		PropertyConfigurator.configure(config.toProperties())
     		logger = LoggerFactory.getLogger('OfferNetTests.class');
 		}
 
@@ -95,7 +95,7 @@ public class OfferNetTests {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			def size = 4
 			def chains = [Utils.createChain(size)]
-			logger.trace("Created chains: {}",chains)
+			logger.debug("Created chains: {}",chains)
 
 			sim.createAgentNetwork(size,0,chains);
 			Thread.sleep(1000)
@@ -103,7 +103,7 @@ public class OfferNetTests {
 			def demandEdges = on.allWorkItemEdges("demands");
 			def offerEdges = on.allWorkItemEdges("offers")
 
-	        logger.trace("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
+	        logger.debug("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
 
 			assertEquals(size-1,demandEdges.size())
 			assertEquals(size-1,offerEdges.size())
