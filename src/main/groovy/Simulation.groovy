@@ -669,10 +669,11 @@ class Simulation extends UntypedAbstractActor {
               } else {keyword = "foundPath"}
           }
        
-          logger.info('method={} : simulationId={} : agentId={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
+          logger.info('method={} : simulationId={} : agentId={} : work={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
             currentMethodName, 
             Global.parameters.simulationId,
             this.actorRefToAgentIdTable.get(agent),
+            work.getId(),
             keyword,
             Utils.convertToCYNotation(richCycle,keyword),
             (System.currentTimeMillis()-start)
