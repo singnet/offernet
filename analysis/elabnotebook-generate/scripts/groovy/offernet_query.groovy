@@ -1,4 +1,6 @@
-package io.singularitynet.offernet
+@Grab(group='com.datastax.dse', module='dse-java-driver-graph', version='1.6.7')
+
+//package io.singularitynet.offernet
 
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
@@ -14,60 +16,54 @@ import com.datastax.driver.dse.graph.Edge
 
 import java.nio.file.Files
 
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
 
 // init time
 def start = System.currentTimeMillis();
 
-// init connection to the database
-def cluster = DseCluster.builder().addContactPoint("dse-server.host").build();
-cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
+// capture parameters
+def argNo = args.size();
+String name = args.size() > 0 ? args[0] : ''
+String simulationId = args.size() > 1 ? args[1] : ''
+Map params = args.size() > 2 ? new JsonSlurper().parseText(args[2]) : [:] 
 
-cluster = DseCluster.builder()
-    .addContactPoint("dse-server.host")
-    .withGraphOptions(new GraphOptions().setGraphName("offernet"))
-    .build();
-def session = cluster.connect();
+println "Running query:"
+println name
+println simulationId
+println params.toString()
 
-//issue queries
+String scriptDir = new File(getClass().protectionDomain.codeSource.location.path).getParentFile().getAbsolutePath()
+String queryFilePath = scriptDir+"/../gremlin/"+name+".gremlin"
+new File(scriptDir+"/../../tmp/"+simulationId).mkdir()
+String outFilePath = scriptDir+"/../../tmp/"+simulationId+"/"+name+".json"
+String query = new File(queryFilePath).text
 
-Map params = new HashMap();
-params.put("labelValue", "agent");
-params.put("agentId",agentId);
-params.put("agentIdLabel","agentId")
+DseCluster cluster = null 
+try {
+  // init connection to the database
+  cluster = DseCluster.builder().addContactPoint("dse-server.host").build();
+  cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
 
-GraphResultSet rs = session.executeGraph(new SimpleGraphStatement(
-  "if (g.V().has(agentIdLabel,agentId).toList().size() == 0)\n"+ 
-    "g.addV(label, labelValue).property(agentIdLabel,agentId)\n"+
-  "else\n"+
-    "g.V().has(agentIdLabel,agentId)", params));
-this.vertex = rs.one().asVertex();
+  cluster = DseCluster.builder()
+      .addContactPoint("dse-server.host")
+      .withGraphOptions(new GraphOptions().setGraphName("offernet"))
+      .build();
+  def session = cluster.connect();
 
+  //issue query
+  SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+  GraphResultSet rs = session.executeGraph(s);
+  def results = rs.one();
 
-start = System.currentTimeMillis()
-println "running analysis degrees.groovy"
-workdir = args[0]
-experimentNo = args[1]
-experimentDir = workdir +"/eln/"+experimentNo;
-println "experimentDir is: " + experimentDir
+  new File(outFilePath).write(results.toString())
 
-print "Opening graph database.."
-g = TitanFactory.open(experimentDir+"/titan")
-println "...Done"
+  println "...Done"
+  println "got results: "+results
+  println "Results written to file "+ outFilePath
+  println "Time of analysis (min): "+(System.currentTimeMillis() - start)/60000
 
-//get degrees
-print "Getting degree data from the graph database..."
-degreesFile = new FileWriter(experimentDir+'/degrees.dat')
-degreesFile<<"agent,outDegree,outWeightSum,inDegree,inWeightSum\n"
-g.V('type','agent')\
-	.sideEffect{degreesFile<<it.toString() +","}\
-	.sideEffect{degreesFile<<it.outE('knows').inV.has('type','agent').count().toString()+","}\
-	.sideEffect{degreesFile<<it.outE('knows').inV.has('type','agent').back(2).weight.sum().toString()+","}\
-	.sideEffect{degreesFile<<it.inE('knows').inV.has('type','agent').count().toString()+","}\
-	.sideEffect{degreesFile<<it.inE('knows').inV.has('type','agent').back(2).weight.sum().toString()+"\n"}\
-	.iterate()
-
-degreesFile.close()
-
-println "...Done"
-println "Time of analysis (min): "+(System.currentTimeMillis() - start)/60000
-
+} finally {
+  cluster.close()
+  System.exit(0)
+}

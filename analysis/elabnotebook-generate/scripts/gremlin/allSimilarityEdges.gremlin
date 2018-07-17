@@ -1,1 +1,1 @@
-g.E().has(label,'similarity').values('similarity')
+g.E().has(label,'similarity').groupCount().by(values('similarity').math("floor (_*1000)/1000"))
