@@ -129,9 +129,9 @@ public class Utils {
 
     /* produces a path file for cytoscape.js -- to be visualized */
     private static Object convertToCYNotation(Object path, String keyword) {
-      String experimentId = Global.parameters.experimentId
+      String simulationId = Global.parameters.simulationId
       String fileName = generateRandomString(6)+".json"
-      String cyFileDir = System.getProperty("user.dir")+"/"+Global.parameters.experimentDataDir + "/" + experimentId +"/"+ keyword
+      String cyFileDir = System.getProperty("user.dir")+"/"+Global.parameters.experimentDataDir + "/" + simulationId +"/"+ keyword
       def cyFilePath = cyFileDir +"/" +fileName 
 
       if (Global.parameters.reportMode) {
@@ -139,7 +139,7 @@ public class Utils {
         new File(cyFileDir).mkdirs();
       }
 
-      logger.trace("Converting a {} path {} of {} to cytoscape notation",experimentId, path, path.class)
+      logger.trace("Converting a {} path {} of {} to cytoscape notation",simulationId, path, path.class)
       def json = [ ]
       path.each { chain ->
         chain.each { item -> 
