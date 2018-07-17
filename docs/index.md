@@ -1,3 +1,6 @@
-[Unit Test Report](unit-tests/index.html)
-[Behaviour Test Report](cucumber-html-reports/overview-features.html)
-[OfferNet documentation](offernet-docs-bookdown/index.html)
+Available documentation pages:
+
+* [Unit Test Report](public/unit-tests/index.html)
+* [Behaviour Test Report](public/cucumber-html-reports/overview-features.html)
+* [Conceptual, computational background and implementation](public/offernet-documentation/index.html)
+* [Experiments](public/offernet-experiments.html)
