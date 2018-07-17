@@ -458,7 +458,7 @@ public class OfferNet implements AutoCloseable {
     private Vertex createVertex(Map params) {
         def start = System.currentTimeMillis();
 
-        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(label, labelValue)", params));
+        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(labelValue)", params));
         def vertex = rs.one().asVertex();
 
         logger.trace("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
