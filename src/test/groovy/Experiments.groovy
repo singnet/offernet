@@ -12,7 +12,8 @@ import org.junit.AfterClass;
 
 import kamon.Kamon;
 import kamon.prometheus.PrometheusReporter;
-import kamon.jaeger.JaegerReporter;
+//import kamon.jaeger.JaegerReporter;
+import kamon.zipkin.ZipkinReporter;
 
 import akka.actor.Props
 import akka.actor.ActorSystem;
@@ -58,10 +59,10 @@ public class Experiments {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [10, 150] // number of agents in the network
-		def chainLengths = [5, 10] // the length of the chain to drop into the network;
+		def agentNumbers = [2000] // number of agents in the network
+		def chainLengths = [5] // the length of the chain to drop into the network;
 		def randomWorksNumberMultipliers = [1] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [6] // the maximum number of hops when doing decentralized similarity search;
+		def maxDistances = [2] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [0.99] // consider only items that are this similar when searching for path;
 
 		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}', 
@@ -117,18 +118,21 @@ public class Experiments {
 
 							// 6: running decentralizedCycleSearch
 								// 6.1: connecting all similar items in decentralized way:
-								sim.decentralizedSimilaritySearchAndConnect(maxDistance)
+								sim.centralizedSimilaritySearchAndConnect()
+								//sim.decentralizedSimilaritySearchAndConnect(maxDistance)
+
+							//	Thread.sleep(3000)
 
 								// 6.1: looking for a cycle:
 								sim.decentralizedCycleSearch(taskAgent, chainedWorksJson)
 
 							// 7: removing all similarity connections
 							// So that centralized search could be run in full on the same network
-							sim.on.removeEdges("similarity")
+							//sim.on.removeEdges("similarity")
 
 							// 8: running centralizedCycleSearch
 								//8.1: connecting all similar items in centralized way:
-								sim.centralizedSimilaritySearchAndConnect()
+								//sim.centralizedSimilaritySearchAndConnect()
 								//8.2.1: looking for a cycle Naive:
 								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 1)
 								//8.2.2: looking for a cycle depthFirstSerch:

@@ -82,7 +82,7 @@ public class Agent extends UntypedAbstractActor {
 
         GraphResultSet rs = session.executeGraph(new SimpleGraphStatement(
           "if (g.V().has(agentIdLabel,agentId).toList().size() == 0)\n"+ 
-            "g.addV(label, labelValue).property(agentIdLabel,agentId)\n"+
+            "g.addV(labelValue).property(agentIdLabel,agentId)\n"+
           "else\n"+
             "g.V().has(agentIdLabel,agentId)", params));
         this.vertex = rs.one().asVertex();
@@ -186,7 +186,7 @@ public class Agent extends UntypedAbstractActor {
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(agent).next()\n" +
-                "def v2 = g.addV(label, labelValue).next()\n" +
+                "def v2 = g.addV(labelValue).next()\n" +
                 "def edge = v1.addEdge(edgeLabel, v2)\n" +
                 "[edge,v2]", params)
 
@@ -236,7 +236,7 @@ public class Agent extends UntypedAbstractActor {
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(thisVertex).next()\n" +
-                "def v2 = g.addV(label, labelValue).property(propertyKey ,propertyValue).next()\n" +
+                "def v2 = g.addV(labelValue).property(propertyKey ,propertyValue).next()\n" +
                 "def edge = v1.addEdge(edgeLabel, v2)\n"+
                 "[edge,v2]", params);
 

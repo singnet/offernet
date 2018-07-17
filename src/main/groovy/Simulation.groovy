@@ -194,7 +194,7 @@ class Simulation extends UntypedAbstractActor {
         agentRef.tell(msg,getSelf());
 		}
 
-    logger.trace('{} : {} : agent count in the list={}; similarityThreshold={}; maxReachDistance={} : wallTime_ms={} sec.', 
+    logger.info('{} : {} : agent count in the list={}; similarityThreshold={}; maxReachDistance={} : wallTime_ms={} sec.', 
       Utils.getCurrentMethodName(), 
       Global.parameters.simulationId,
       agentList.size(),
@@ -617,14 +617,10 @@ class Simulation extends UntypedAbstractActor {
     }
 
     void decentralizedSimilaritySearchAndConnect(int maxDistance) {
-      logger.trace("Running decentralized similarity search and connect")
-      def start = System.currentTimeMillis();
       def similarityConnectThreshold = Global.parameters.similarityThreshold
       def agentList = new ArrayList(actorRefToVertexIdTable.keySet());
       
-      def similarityConnectionsDecentralized = this.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
-      logger.trace("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
-      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      this.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
     }
 
     void centralizedSimilaritySearchAndConnect() {
@@ -673,10 +669,11 @@ class Simulation extends UntypedAbstractActor {
               } else {keyword = "foundPath"}
           }
        
-          logger.info('method={} : simulationId={} : agentId={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
+          logger.info('method={} : simulationId={} : agentId={} : work={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
             currentMethodName, 
             Global.parameters.simulationId,
             this.actorRefToAgentIdTable.get(agent),
+            work.getId(),
             keyword,
             Utils.convertToCYNotation(richCycle,keyword),
             (System.currentTimeMillis()-start)

@@ -22,7 +22,8 @@ import groovy.json.JsonBuilder
 
 import kamon.Kamon;
 import kamon.prometheus.PrometheusReporter;
-import kamon.jaeger.JaegerReporter;
+//import kamon.jaeger.JaegerReporter;
+import kamon.zipkin.ZipkinReporter;
 
 
 public class OfferNet implements AutoCloseable {
@@ -73,7 +74,8 @@ public class OfferNet implements AutoCloseable {
 
           if (Global.parameters.debugMode) {
             Kamon.addReporter(new PrometheusReporter());
-            Kamon.addReporter(new JaegerReporter());
+            //Kamon.addReporter(new JaegerReporter());
+            Kamon.addReporter(new ZipkinReporter())
             // wait until Kamon initializes -- 
           }
 
@@ -456,7 +458,7 @@ public class OfferNet implements AutoCloseable {
     private Vertex createVertex(Map params) {
         def start = System.currentTimeMillis();
 
-        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(label, labelValue)", params));
+        GraphResultSet rs = session.executeGraph(new SimpleGraphStatement("g.addV(labelValue)", params));
         def vertex = rs.one().asVertex();
 
         logger.trace("Created a new {} with id {}", vertex.getLabel(), vertex.getId());
