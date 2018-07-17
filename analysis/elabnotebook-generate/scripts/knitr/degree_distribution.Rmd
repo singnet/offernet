@@ -1,0 +1,27 @@
+# Degree distribution
+
+```{r a1, echo=FALSE}
+rm(list=ls())
+dataDir=Sys.getenv('R_dataDir')
+fullPath = Sys.getenv('R_fullPath') 
+setwd(fullPath)
+degrees.df <- read.table(file = "degrees.dat",header=T,sep=',');
+library(ggplot2);
+```
+
+```{r degree_density,echo=FALSE}
+frequency <-aggregate(degrees.df,by=list(degrees.df$outDegree),length)
+frequency$outDegree<-NULL
+frequency$inDegree<-NULL
+frequency$links <- frequency$Group.1 * frequency$agent
+cat(paste("Total number of outDegrees: ",sum(frequency$links)))
+
+ggplot(frequency,aes(x=Group.1,y=agent))+
+  geom_bar(col='black',stat='identity',fill='bisque3')+
+  geom_text(aes(label=sprintf("%.2f%%",agent/sum(agent)*100),vjust=-.5),size=3.2)+
+  scale_x_continuous(breaks=frequency$Group.1)+
+  xlab("outDegree")+
+  ylab("Number of agents\n(percentages on top)")
+```
+
+

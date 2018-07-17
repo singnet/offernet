@@ -1,0 +1,1 @@
+g.E().has(label,'similarity').values('similarity')

@@ -1,0 +1,56 @@
+Date: `r date()` <br/>
+Analysis version ([challprop-analytics](https://bitbucket.org/gbi/challprop-analytics)): {analysis_commitNo} <br/>
+(use `git checkout $commit$` if needed) 
+
+[Back to the experiment page]({% post_url 2014-12-09-experiment-2-10k-agents-slash-100-generations %})
+
+## The idea
+
+The reason for low average degree of the network is due to the parameters which regulate random link creation in the network ('randomJumpParameter'). Recall that: 
+
+* the simulation starts with unconnected network;
+* situations are randomly assigned to agents by 'generator of diversity' - see Analysis 3/2;
+* beginning from the second generation, agents start propagating challenges to each other in two ways: either creating new links randomly or, propagating a challenge via existing (learned links);
+* the probability of creating random link is defined by the formula $R(a_i)=\frac{1}{1+r_0 * \Sigma w(l_ij)}$ - see http://pespmc1.vub.ac.be/Papers/TowardsGB-model.pdf, p 22.
+
+$r_0$ is the what is above called `randomJumpParameter` and is set in advance for the whole simulation. For the current experiment it is set to 99. I would like to check how fast (or slow) the probability of random jump in this case changes with the introduction of new links. Note, that this is a general analysis - it does not really depend on the results of any simulation.
+
+## Probability of random link creation
+
+```{r, echo=FALSE}
+rm(list=ls())
+df <- data.frame(weigths=numeric(), 
+                 r0=numeric(),
+                 probabilityRJ=numeric(), 
+                 stringsAsFactors=FALSE) 
+randomJumpProbability <- function(r0,weights) {
+  return(1/(1+r0*weights))
+}
+
+for (r0 in seq(99,0,-1)) {
+  for (weights in seq(0.00001,6,0.1)) {
+    df <- rbind(df,c(weights,r0,randomJumpProbability(r0,weights)))
+  }
+}
+
+colnames(df) <- c('weights','r0','probabilityRJ')
+
+library(ggplot2)
+ggplot(data=df, aes(x=weights, y=probabilityRJ, group=r0, color = r0)) +
+    geom_line() +
+    geom_point( size=0.5, shape=21, fill="lightgray")+
+    ylab('probability of random jump')+
+    xlab('sum of weights to neighbours')+
+    scale_x_continuous(breaks=seq(0,6,0.5))
+    
+```
+
+## Discussion
+
+The above graph shows how the probability of creating random links (Y axit) changes when `randomJumpParameter` is changed from 99 (light blue) to 0 (black). X axis represents sum of link weights to all the neighbours of an agent ($\Sigma w(l_ij)$ component in the formula). It is easy to see that when $r_0$ parameter is close to 99 (as it is in current experiment), the probability of random link creation drops very fast - to around 0.1 or so when the $\Sigma w(l_ij)$ is 0.1. When $\Sigma w(l_ij)$ is 1.5, the probability of random link creation is almost zero. Remark: average link weight in the graph is a little less than 6..
+
+This analysis seems to show that the small number of links in the graph may be due to the fact that random links are not being created after a few iterations. Therefore the network cannot learn better ways to propagate and process situations - observed constant increase in average benefit may be related to that.
+
+Hm, now I have to think whether to do some more analysis on the result of experiment-3 (e.g. see how benefit increases depend on the 'social capical' of an agent) or set up another experiment with lower 'randomJumpParameter' and see whether it fairs better...
+
+By the way, the `randomJumpParameter` leading to the probability of creaing random links in the network seems to be very similar to the exploration/exploitation parameter in the MonteCarlo simulations. I would not be surprised to find out that this kind of challenge propagation simulation is quite similar to MC.

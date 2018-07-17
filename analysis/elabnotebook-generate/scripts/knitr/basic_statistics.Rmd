@@ -1,0 +1,77 @@
+```{r numbers, echo=FALSE}
+rm(list=ls())
+dataDir=Sys.getenv('R_dataDir')
+fullPath = Sys.getenv('R_fullPath') 
+setwd(fullPath)
+library(stringr)
+file <- "code.version"
+connection <- file(description=file, open="r")
+codeBase <- scan(file=connection, nlines=1, quiet=TRUE, what=character())
+
+```
+
+Date: `r date()` <br/>
+Analysis version ([challprop-analytics](https://bitbucket.org/gbi/challprop-analytics)): {analysis_commitNo} <br/>
+Experiment version ([challprop-experiments](https://bitbucket.org/gbi/challprop-experiments)): `r str_sub(dataDir,1,8)` <br/>
+Codebase version ([challprop-java](https://bitbucket.org/gbi/challprop-experiments)): `r str_sub(codeBase,1,8)` <br/>
+(use `git checkout $commit$` if needed)
+
+# Basic Statistics
+These very roughly characterize what kind of data structure we get out of simulation.
+
+```{r groovy-basic, engine='groovy', echo=FALSE}
+def env = System.getenv()
+fullPath = env['R_fullPath']
+def analysisDataFile = fullPath+'/analysisDataTemp.dat'
+Map analysisData = new ConfigSlurper('analysisData').parse(new File(analysisDataFile).toURI().toURL())
+
+println "\nNUMBER OF VERTIXES:"
+analysisData.vertexes.each{
+  println it.key + "=" + it.value
+}
+println "\nNUMBER OF EDGES:"
+analysisData.edges.each{
+  println it.key + "=" + it.value
+}
+
+println "\nPERFORMANCE:"
+def atomicEvents = 0
+analysisData.edges.each{atomicEvents += it.key =="knowsLinks"?0:it.value.toInteger()}
+println "Number of atomic events: "+ atomicEvents
+
+def parametersFile = fullPath+'/parameters.conf'
+Map params = new ConfigSlurper('parameters').parse(new File(parametersFile).toURI().toURL())
+simulationStartSec = params.simulationStartWall * 1.0E-9
+simulationFinishSec = params.simulationFinishWall * 1.0E-9
+simulationTimeSec = simulationFinishSec - simulationStartSec
+println "Total simulation time (secs): "+simulationTimeSec
+println "Total simulation time (hours): "+simulationTimeSec/3600
+averageTimePerEvent = simulationTimeSec / atomicEvents
+print "Average time per atomic event (secs): "+averageTimePerEvent
+
+```
+
+# Dynamics of  benefit
+
+```{r groovy-average, engine='groovy', echo=FALSE}
+def env = System.getenv()
+fullPath = env['R_fullPath']
+def analysisDataFile = fullPath+'/analysisDataTemp.dat'
+Map analysisData = new ConfigSlurper('analysisData').parse(new File(analysisDataFile).toURI().toURL())
+println "\nAVERAGE TOTAL BENEFIT:"
+println analysisData.averageBenefit
+println "\nAVERAGE BENEFIT:"
+println analysisData.benefit
+```
+
+## Average benefit
+
+```{r plot-benefit, echo=FALSE}
+source('/media/data/challprop-working/challprop-analytics/R/average_benefit.R')
+averageBenefit
+```
+
+## Average benefit change per unit of time
+```{r plot-benefit-per-time, echo=FALSE}
+averageBenefitPerUnitOfTime
+```
