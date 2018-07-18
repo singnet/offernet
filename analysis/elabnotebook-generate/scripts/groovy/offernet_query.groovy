@@ -19,6 +19,8 @@ import java.nio.file.Files
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 
+import java.security.MessageDigest;
+
 // init time
 def start = System.currentTimeMillis();
 
@@ -26,7 +28,15 @@ def start = System.currentTimeMillis();
 def argNo = args.size();
 String name = args.size() > 0 ? args[0] : ''
 String simulationId = args.size() > 1 ? args[1] : ''
+//Map params = args.size() > 2 ? args[2] : [:] 
 Map params = args.size() > 2 ? new JsonSlurper().parseText(args[2]) : [:] 
+
+// calculate parameters hash for file naming
+if (args.size() > 2 ) {
+  MessageDigest digest = MessageDigest.getInstance("MD5") ;
+  digest.update(args[2].bytes); 
+  parHash = new BigInteger(1, digest.digest()).toString(16)
+}
 
 println "Running query:"
 println name
@@ -36,7 +46,7 @@ println params.toString()
 String scriptDir = new File(getClass().protectionDomain.codeSource.location.path).getParentFile().getAbsolutePath()
 String queryFilePath = scriptDir+"/../gremlin/"+name+".gremlin"
 new File(scriptDir+"/../../tmp/"+simulationId).mkdir()
-String outFilePath = scriptDir+"/../../tmp/"+simulationId+"/"+name+".json"
+String outFilePath = scriptDir+"/../../tmp/"+simulationId+"/"+name+parHash+".json"
 String query = new File(queryFilePath).text
 
 DseCluster cluster = null 
