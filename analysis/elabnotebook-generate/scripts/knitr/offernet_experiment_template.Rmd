@@ -1,0 +1,55 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+Sys.setenv(ON_workdir = '/media/data/offernet/')
+```
+
+```{r git, engine='bash'}
+cd $ON_workdir
+export ON_codebase_version=$(git rev-parse --short HEAD)
+cd analysis/elabnotebook-generate/tmp
+echo $ON_codebase_version > ON_codebase_version.dat
+```
+
+```{r init}
+fileName <- paste(Sys.getenv('ON_workdir'),'analysis/elabnotebook-generate/tmp/','ON_codebase_version.dat', sep="")
+ON_codebase_version <- readLines(file(fileName,open="r"))[1]
+Sys.setenv(ON_codebase_version = ON_codebase_version)
+Sys.setenv(ON_experimentId = "3")
+dataFilePath = paste(Sys.getenv('ON_workdir'),'analysis/elnotebook-generate/tmp/',Sys.getenv('experimentId'),'.json', sep="")
+library(stringr)
+Sys.setenv(ON_dataFilePath = dataFilePath)
+
+
+
+#install.packages("jsonlite")
+```
+
+Date: `r date()` <br/>
+ExperimentId: `r str_sub(Sys.getenv('ON_experimentId'),1,8)` <br/>
+Codebase version: [`r Sys.getenv('ON_codebase_version')`](`r paste('https://github.com/singnet/offernet/commit/',Sys.getenv('ON_codebase_version'),sep="")`) <br/>
+
+## Network statistics:
+
+```{r collect-network-statistics, engine='bash', echo=FALSE}
+cd $ON_workdir
+cd analysis/elabnotebook-generate/
+groovy scripts/groovy/offernet_query.groovy allEdgesByLabel $ON_experimentId
+groovy scripts/groovy/offernet_query.groovy allVerticesByLabel $ON_experimentId
+groovy scripts/groovy/offernet_query.groovy similarityEdgesByWeight $ON_experimentId
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"agent","edgeLabel":"knows"}'
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"item","edgeLabel":"similarity"}'
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"agent","edgeLabel":"owns"}'
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"work","edgeLabel":"demands"}'
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"work","edgeLabel":"offers"}'
+```
+
+ ```{r load-network-statistics} -->
+library(jsonlite)
+json_string <- readLines(file(Sys.getenv('ON_dataFilePath')),open="r"))[1]
+json_data <- fromJSON(json_string, flatten=TRUE)
+```
+
+Experiment data is:
+
+json_data
+
