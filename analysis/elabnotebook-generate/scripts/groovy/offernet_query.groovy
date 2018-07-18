@@ -45,12 +45,11 @@ println params.toString()
 
 String scriptDir = new File(getClass().protectionDomain.codeSource.location.path).getParentFile().getAbsolutePath()
 String queryFilePath = scriptDir+"/../gremlin/"+name+".gremlin"
-new File(scriptDir+"/../../tmp/"+simulationId).mkdir()
-String outFilePath = scriptDir+"/../../tmp/"+simulationId+"/"+name+parHash+".json"
+String outFilePath = scriptDir+"/../../tmp/"+simulationId+".json"
 String query = new File(queryFilePath).text
 
 DseCluster cluster = null 
-try {
+
   // init connection to the database
   cluster = DseCluster.builder().addContactPoint("dse-server.host").build();
   cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
@@ -64,16 +63,26 @@ try {
   //issue query
   SimpleGraphStatement s = new SimpleGraphStatement(query,params);
   GraphResultSet rs = session.executeGraph(s);
-  def results = rs.one();
+  def results = rs.one().asMap();
+  //def json = [ : ]
 
-  new File(outFilePath).write(results.toString())
+  def outFile = new File(outFilePath)
+  def json = outFile.exists() ? new JsonSlurper().parseText(outFile.text) : [ : ]
+  if (name == 'degreeDistribution') {
+      if (! json.containsKey('degreeDistribution')) {json."$name" = [ ]}
+      json."$name".add([ params: params, data: results ]); 
+  } else {
+    json."$name" = [ : ] 
+    json."$name".params = params
+    json."$name".data = results
+  }
+
+  outFile.write(JsonOutput.toJson(json))
 
   println "...Done"
   println "got results: "+results
   println "Results written to file "+ outFilePath
   println "Time of analysis (min): "+(System.currentTimeMillis() - start)/60000
 
-} finally {
   cluster.close()
   System.exit(0)
-}

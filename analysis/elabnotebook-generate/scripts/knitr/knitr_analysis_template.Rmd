@@ -1,12 +1,9 @@
 ```{r numbers, echo=FALSE}
-dataDir='2911856a5e51a2818f44b637cf36418109f37847'
-fullPath = paste('/media/data/challprop-working/eln/',dataDir, sep="")
-setwd(fullPath)
+experimentId=""
+Sys.setenv(R_experimentId = experimentId)
+dataFilePath = paste(getwd(),'/analysis/tmp/',experimentId,'.json', sep="")
 library(stringr)
-Sys.setenv(R_dataDir=fullPath)
-file <- "code.version"
-connection <- file(description=file, open="r")
-codeBase <- scan(file=connection, nlines=1, quiet=TRUE, what=character())
+Sys.setenv(R_dataFilePath = dataFilePath)
 
 ```
 
