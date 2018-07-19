@@ -1,0 +1,123 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+Sys.setenv(ON_workdir = '/media/data/offernet/')
+```
+
+```{r git, engine='bash'}
+cd $ON_workdir
+export ON_codebase_version=$(git rev-parse --short HEAD)
+cd analysis/elabnotebook-generate/tmp
+echo $ON_codebase_version > ON_codebase_version.dat
+```
+
+```{r init}
+fileName <- paste(Sys.getenv('ON_workdir'),'analysis/elabnotebook-generate/tmp/','ON_codebase_version.dat', sep="")
+ON_codebase_version <- readLines(file(fileName,open="r"))[1]
+Sys.setenv(ON_codebase_version = ON_codebase_version)
+Sys.setenv(ON_experimentId = "15")
+dataFilePath = paste(Sys.getenv('ON_workdir'),'analysis/elabnotebook-generate/tmp/',Sys.getenv('ON_experimentId'),'.json', sep="")
+library(stringr)
+Sys.setenv(ON_dataFilePath = dataFilePath)
+
+#install.packages("jsonlite")
+#install.packages("kableExtra")
+#install.packages("ggplot2")
+```
+
+Date: `r date()` <br/>
+ExperimentId: `r str_sub(Sys.getenv('ON_experimentId'),1,8)` <br/>
+Codebase version: [`r Sys.getenv('ON_codebase_version')`](`r paste('https://github.com/singnet/offernet/commit/',Sys.getenv('ON_codebase_version'),sep="")`) <br/>
+
+## Network statistics:
+
+```{r collect-network-statistics, engine='bash', eval=FALSE}
+cd $ON_workdir
+cd analysis/elabnotebook-generate/
+groovy scripts/groovy/offernet_query.groovy allEdgesByLabel $ON_experimentId
+groovy scripts/groovy/offernet_query.groovy allVerticesByLabel $ON_experimentId
+groovy scripts/groovy/offernet_query.groovy similarityEdgesByWeight $ON_experimentId
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"agent","edgeLabel":"knows"}'
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"item","edgeLabel":"similarity"}'
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"agent","edgeLabel":"owns"}'
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"work","edgeLabel":"demands"}'
+groovy scripts/groovy/offernet_query.groovy degreeDistribution $ON_experimentId '{"labelValue":"work","edgeLabel":"offers"}'
+```
+
+```{r load-network-statistics, results="asis"}
+library(jsonlite)
+#json_string <- readLines(file(dataFilePath,open='r'))[1]
+json_data <- fromJSON(file(dataFilePath,open='r'), flatten=TRUE)
+```
+
+```{r basic-statistics, results="asis"}
+library(knitr)
+library(kableExtra)
+
+# allEdgesByLabel
+edges.df <- as.data.frame(json_data$allEdgesByLabel$data)
+edges.df[,"Total"] = rowSums(edges.df)
+#rownames(edges.df) <- c('Number of edges')
+cap <- "edges:"
+kable(edges.df, format.args = list(decimal.mark = '.', big.mark = ","), caption = cap) %>%
+  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+    column_spec(1:ncol(edges.df),width="5em") 
+    #add_header_above(c("labels"=5))
+
+# allVerticesByLabel
+vertices.df <- as.data.frame(json_data$allVerticesByLabel$data)
+vertices.df[,"Total"] = rowSums(vertices.df)
+cap <- "vertices:"
+kable(vertices.df, format.args = list(decimal.mark = '.', big.mark = ","), caption = cap) %>%
+  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+    column_spec(1:ncol(vertices.df),width="5em") 
+    #add_header_above(c("labels"=5))
+
+# similarityEdgesByWeight
+similarity <-json_data$similarityEdgesByWeight$data
+wghts <- as.numeric(unlist(names(similarity)))
+frequencies <- as.numeric(similarity)
+similarity.df <- data.frame(weight=wghts,edges=frequencies)
+
+library(ggplot2)
+se <- ggplot(data=similarity.df, aes(x=weight, y=frequencies)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  geom_text(aes(label=weight), vjust=1.6, color="white", size=3.5)+
+  ggtitle('Similarity edges by weight')+
+  xlab("Weght")+
+  ylab("Number of edges")+
+  theme_minimal()+
+  geom_line()
+se
+
+#degreeDistribution items-similarity
+degrees <- json_data$degreeDistributionitemsimilarity$data
+dgr <- as.numeric(unlist(names(degrees)))
+frequencies <- as.numeric(degrees)
+degrees.df <- data.frame(degrees=dgr,frequencies=frequencies)
+
+dd_is<-ggplot(degrees.df, aes(x=degrees)) +
+  geom_histogram(binwidth=20, fill="white", color="black")+
+  geom_vline(aes(xintercept=mean(dgr)), color="blue",
+             linetype="dashed")+
+  labs(title="Degree distribution of item->similarity->item edges",x="Degree", y = "Count")+
+  theme_classic()
+dd_is
+
+#degreeDistribution agent-knows
+
+degrees <- json_data$degreeDistributionagentknows$data
+dgr <- as.numeric(unlist(names(degrees)))
+frequencies <- as.numeric(degrees)
+degrees.df <- data.frame(degrees=dgr,frequencies=frequencies)
+
+se <- ggplot(data=degrees.df, aes(x=degrees, y=frequencies)) +
+  geom_bar(stat="identity")+
+  geom_text(aes(label=frequencies), vjust=1.6, color="white", size=3.5)+
+  ggtitle('Degree distribution of agent->knows->agent edges')+
+  scale_x_continuous(breaks=dgr)+
+  xlab("Number of knows edges")+
+  ylab("Number of agents")+
+  theme_classic()
+se
+
+```

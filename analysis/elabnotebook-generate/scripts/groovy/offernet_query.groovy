@@ -69,13 +69,14 @@ DseCluster cluster = null
   def outFile = new File(outFilePath)
   def json = outFile.exists() ? new JsonSlurper().parseText(outFile.text) : [ : ]
   if (name == 'degreeDistribution') {
-      if (! json.containsKey('degreeDistribution')) {json."$name" = [ ]}
-      json."$name".add([ params: params, data: results ]); 
-  } else {
+      name = name+params.labelValue+params.edgeLabel
+//      if (! json.containsKey('degreeDistribution')) {json."$name" = [ ]}
+//      json."$name".add([ params: params, data: results ]); 
+  } //else {
     json."$name" = [ : ] 
     json."$name".params = params
     json."$name".data = results
-  }
+//  }
 
   outFile.write(JsonOutput.toJson(json))
 
