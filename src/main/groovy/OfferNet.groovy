@@ -7,6 +7,7 @@ import com.datastax.driver.dse.graph.GraphStatement;
 import com.datastax.driver.dse.graph.SimpleGraphStatement;
 import com.datastax.driver.dse.graph.GraphResultSet
 import com.datastax.driver.dse.graph.GraphOptions
+import com.datastax.driver.dse.auth.DsePlainTextAuthProvider;
 
 import com.datastax.driver.dse.graph.Edge
 import com.datastax.driver.dse.graph.Vertex
@@ -50,13 +51,16 @@ public class OfferNet implements AutoCloseable {
         //PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
         system =  ActorSystem.create("OfferNet");
-
         try {
-            cluster = DseCluster.builder().addContactPoint("dse-server.host").build();
+            cluster = DseCluster.builder()
+              .addContactPoint("dse-server.host")
+              .withAuthProvider(new DsePlainTextAuthProvider(Global.parameters.cassandraUsername.trim(), Global.parameters.cassandraPassword.trim()))
+              .build();
             cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
             
             cluster = DseCluster.builder()
                 .addContactPoint("dse-server.host")
+                .withAuthProvider(new DsePlainTextAuthProvider(Global.parameters.cassandraUsername.trim(), Global.parameters.cassandraPassword.trim()))
                 .withGraphOptions(new GraphOptions().setGraphName("offernet"))
                 .build();
             session = cluster.connect();

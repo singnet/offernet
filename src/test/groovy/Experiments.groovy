@@ -59,7 +59,7 @@ public class Experiments {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [2000] // number of agents in the network
+		def agentNumbers = [150] // number of agents in the network
 		def chainLengths = [5] // the length of the chain to drop into the network;
 		def randomWorksNumberMultipliers = [1] // number of random works (outside chain) to drop into the network;
 		def maxDistances = [2] // the maximum number of hops when doing decentralized similarity search;
