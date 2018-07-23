@@ -1,21 +1,29 @@
 # System configuration for OfferNet(s)
-Following DSE 6.0 Administration guide:
-https://docs.datastax.com/en/pdf/dseadmin60.pdf
 
 ## Installing via OpsCenter 6.5.0
 0. change and save somewhere safe cassandra local password;
 1. Set SSH credentials to use private key of the local user; add public key of the same user to authenticated_keys file: this allows to for the user to access itself via ssh...;
 2. For the node configuration, native-transport-address: 0.0.0.0 and broadcast-native-transport-address: 127.0.0.1;
-
+3. In case running Ubuntu 18.04, which is not yet supported by DSE, add to opscenter.conf:
+```
+[lifecycle_manager]
+disable_platform_check = True
+```
 
 All the rest according to https://docs.datastax.com/en/opscenter/6.5/opsc/LCM/opscLCMgetStartedWorkflow.html
 
 ## System parameters tuning
-(on-hetzner.host)
 
-1. TCP settings (p. 70); - done;
-2. Disable CPU frequency scaling -- **not done**; use if CPU becomes a bottleneck: https://support.datastax.com/hc/en-us/articles/115003018063
-3. 
+Following DSE 6.0 Administration guide:
+https://docs.datastax.com/en/pdf/dseadmin60.pdf
+
+Done on on-hetzner.host:
+1. TCP settings (p. 70);
+2. Set user resource limits (p. 72);
+3. Disable swap
+4. Check the Java Hugepages setting
+5. Set the heap size for optional Java garbage collection in DataStax Enterprise
+* Heap settings -- 50% of system memory vial Opscenter / cluster profile jvm settings;
 
 ## Monitoring-engine
 
@@ -34,3 +42,14 @@ All the rest according to https://docs.datastax.com/en/opscenter/6.5/opsc/LCM/op
 
 ```
 2. Configure cassandra password to be used by actor system and put it into configs/offernet.conf
+* follow https://docs.datastax.com/en/dse/6.0/dse-admin/datastax_enterprise/security/Auth/secCreateRootAccount.html:
+* `cqlsh -u cassanra -p cassandra_pass` (use cassandra password that was set during installation of course)
+* `CREATE ROLE offernet_actor_system with SUPERUSER = true AND LOGIN = true and PASSWORD = 'singoffcass69585';
+EXIT;`
+
+## In-memory cassandra (opotional):
+
+* https://docs.datastax.com/en/dse/5.1/dse-admin/datastax_enterprise/inMemory/usingTables.html
+* use script network-backends/scripts/dse_in_memory.sh;
+
+
