@@ -277,7 +277,7 @@ public class AgentBehaviorStepDefs {
 
     @Then("^there are '(\\d+)' similarity relations in the network$")
     public void there_are_similarity_relations_in_the_network(int numberOfSimilarityRelations) throws Throwable {
-        ArrayList<Edge> edges = ( ArrayList<Edge> ) sim.on.getEdges("similarity");
+        ArrayList<Edge> edges = ( ArrayList<Edge> ) sim.on.getEdges("item","similarity");
         assertEquals(numberOfSimilarityRelations, edges.size()/2);
     }
 

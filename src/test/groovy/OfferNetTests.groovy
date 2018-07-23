@@ -95,7 +95,7 @@ public class OfferNetTests {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			def size = 4
 			def chains = [Utils.createChain(size)]
-			logger.trace("Created chains: {}",chains)
+			logger.debug("Created chains: {}",chains)
 
 			sim.createAgentNetwork(size,0,chains);
 			Thread.sleep(1000)
@@ -103,7 +103,7 @@ public class OfferNetTests {
 			def demandEdges = on.allWorkItemEdges("demands");
 			def offerEdges = on.allWorkItemEdges("offers")
 
-	        logger.trace("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
+	        logger.debug("demandEdges {} of class {}",demandEdges,demandEdges.getClass())
 
 			assertEquals(size-1,demandEdges.size())
 			assertEquals(size-1,offerEdges.size())
@@ -112,18 +112,19 @@ public class OfferNetTests {
 		@Test
 		void createAgentTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-			def agent = sim.on.createAgent();
+			def agent = sim.createAgent();
 			assertNotNull(agent);
 		}
 
 		@Test 
 		void createEdgeTest() {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-			def agent1 = sim.on.createAgent();
+			def agent1Id = UUID.randomUUID().toString()
+			def agent1 = TestActorRef.create(system, Agent.props(on.session,agent1Id),agent1Id).underlyingActor();
 			assertNotNull(agent1)
-			def agent2 = sim.on.createAgent();
+			def agent2 = sim.createAgent();
 			assertNotNull(agent2)
-			def edge = sim.on.knowsAgent(agent1,agent2);
+			def edge = agent1.knowsAgent(sim.getAgentVertexId(agent2));
 			assertNotNull(edge)
 		}
 
