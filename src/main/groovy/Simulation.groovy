@@ -98,15 +98,9 @@ class Simulation extends UntypedAbstractActor {
       Utils.getCurrentMethodName(), 
       Global.parameters.simulationId,
       (System.currentTimeMillis()-start))
+
 	}
 
-	/*
-	* TODO:
-	* With agents the logic of simulation changes considerably. What needs to bee done:
-	- OfferNetwork class should hold a map with agents / vertex labels and ways to query them;
-	- Simulation is an Actor, OfferNet is a normal class (encapsulated within Simulation);
-	- Simulations will be run by passing messages for running methods
-	*/
 
   private ActorRef createAgent() {
     String agentId = UUID.randomUUID().toString();

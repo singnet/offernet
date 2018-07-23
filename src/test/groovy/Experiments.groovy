@@ -59,10 +59,10 @@ public class Experiments {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [150] // number of agents in the network
-		def chainLengths = [5] // the length of the chain to drop into the network;
-		def randomWorksNumberMultipliers = [1] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [2] // the maximum number of hops when doing decentralized similarity search;
+		def agentNumbers = [10, 50, 100, 500, 1000] // number of agents in the network
+		def chainLengths = [2, 5, 10] // the length of the chain to drop into the network;
+		def randomWorksNumberMultipliers = [1,2] // number of random works (outside chain) to drop into the network;
+		def maxDistances = [2,4,6] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [0.99] // consider only items that are this similar when searching for path;
 
 		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}', 
@@ -104,9 +104,11 @@ public class Experiments {
 			
 							// 2: create agent network
 							def agentList = sim.createAgentNetwork(agentNumber);
+							sim.on.analyze("after: // 2: create agent network")
 
 							// 3: add random works to the agents in the network
 							sim.addRandomWorksToAgents(randomWorksNumber)
+							sim.on.analyze("after: // 3: add random works to the agents in the network")
 
 							// 4: create chain and assign its items to random agents
 							def chains = [Utils.createChain(chainLength)]
@@ -121,10 +123,13 @@ public class Experiments {
 								sim.centralizedSimilaritySearchAndConnect()
 								//sim.decentralizedSimilaritySearchAndConnect(maxDistance)
 
-							//	Thread.sleep(3000)
+								Thread.sleep(200)
+								sim.on.analyze("after: // 6.1: connecting all similar items in centralized way:")
 
-								// 6.1: looking for a cycle:
+								// 6.2: looking for a cycle:
 								sim.decentralizedCycleSearch(taskAgent, chainedWorksJson)
+								Thread.sleep(100)
+								sim.on.analyze("after: // 6.2: decentralizedCycleSearch")
 
 							// 7: removing all similarity connections
 							// So that centralized search could be run in full on the same network
@@ -135,13 +140,17 @@ public class Experiments {
 								//sim.centralizedSimilaritySearchAndConnect()
 								//8.2.1: looking for a cycle Naive:
 								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 1)
+								sim.on.analyze("after: // 8.2.1 naiveCentralizedCycleSearch")
 								//8.2.2: looking for a cycle depthFirstSerch:
 								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 2)
+								String message = "Final analysis (also after: // 8.2.2 depthFirstCycleSearch) of experimentId="+experimentId
+								sim.on.analyze(message)
 						}
 					}
 				}
 			}
 		}
+		Thread.sleep(10000)
 	}
 
 	ActorRef createTaskAgentInTheNetwork(Simulation sim, List chain) {

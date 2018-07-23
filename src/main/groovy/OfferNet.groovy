@@ -36,6 +36,7 @@ public class OfferNet implements AutoCloseable {
     private Logger logger;
     static ActorSystem system;
     ActorRef socketWriter;
+    ActorRef analyst;
 
     public void ass() {
     Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -146,10 +147,10 @@ public class OfferNet implements AutoCloseable {
             logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 
             if (Global.parameters.visualizationEngine) {
-              socketWriter = createSocketWriter();
-//              Thread.sleep(2000);
-//              openVisualizationWindow();
+              this.socketWriter = createSocketWriter();
             }
+
+            this.analyst = createAnalyst();
 
           if (Global.parameters.debugMode) {
             Kamon.addReporter(new PrometheusReporter());
@@ -173,6 +174,38 @@ public class OfferNet implements AutoCloseable {
       logger.debug("created a new SocketWriter actor {}", socketWriter);
       socketWriter.tell(new Method("createSocket",[]),ActorRef.noSender());
       return socketWriter;
+    }
+
+    private Object createAnalyst() {
+      def analyst = system.actorOf(Analyst.props(this.session),"Analyst");
+      logger.debug("created a new Analyst actor {}", analyst);
+      return analyst;
+    }
+
+    private analyze(String message) {
+      ArrayList parameters = ['agent','knows', 'both', message]
+      Method msg = new Method('degreeDistribution', parameters)
+      analyst.tell(msg,ActorRef.noSender());
+
+      parameters = ['agent','owns','both', message]
+      msg = new Method('degreeDistribution', parameters)
+      analyst.tell(msg,ActorRef.noSender());
+
+      parameters = ['item','similarity','out', message]
+      msg = new Method('degreeDistribution', parameters)
+      analyst.tell(msg,ActorRef.noSender());
+
+      parameters = ['work','demands','both', message]
+      msg = new Method('degreeDistribution', parameters)
+      analyst.tell(msg,ActorRef.noSender());
+
+      parameters = ['work','offers','both', message]
+      msg = new Method('degreeDistribution', parameters)
+      analyst.tell(msg,ActorRef.noSender());
+      
+      analyst.tell(new Method('allEdgesByLabel', [message]),ActorRef.noSender());
+      analyst.tell(new Method('allVerticesByLabel', [message]),ActorRef.noSender());
+      analyst.tell(new Method('similarityEdgesByWeight', [message]),ActorRef.noSender());
     }
 
     private void openVisualizationWindow() {
