@@ -627,21 +627,14 @@ public class OfferNet implements AutoCloseable {
 
     private List connectAllSimilarCentralized(List<Vertex> allItems, Double similarityThreshold) {
       def start = System.currentTimeMillis();
-      def tail;
       def similarityEdges=[];
-      def recursiveSimilaritySearch
-      recursiveSimilaritySearch = {List<Vertex> items ->
-        if (items.size > 0 ) {
-          def item = items[0];
-          tail = items.drop(1)
-          logger.debug('tail of items is {}',tail)
-          similarityEdges.addAll(connectAllSimilar(item,tail,similarityThreshold))
-          tail = recursiveSimilaritySearch(tail);
-        } else {tail = []}
-        return tail;
-      }
+      def tail = allItems;
       logger.debug('running recursiveSimilaritySearch')
-      recursiveSimilaritySearch(allItems);
+      for (int i =0; i<allItems.size();i++) {
+        def item = allItems[i];
+        tail = allItems.drop(1);
+        similarityEdges.addAll(connectAllSimilar(item,tail,similarityThreshold));
+      }
       logger.debug('Added total {} similarity edges to the graph (centralized)',similarityEdges.size())
 
       logger.info('method={} : simulationId={} : items_count={} ; similarityThreshold={} ; similarity_edges_count={} : wallTime_ms={} msec.', 
