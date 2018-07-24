@@ -353,6 +353,21 @@ public class Agent extends UntypedAbstractActor {
       return items;
     }
 
+    private Integer searchAndConnect3(Object similarityThreshold, Integer maxReachDistance) {
+      def start = System.currentTimeMillis();
+
+
+
+      logger.info('method={} : simulationId={} : agentId={} ; similarityThreshold={} ; maxReachDistance={} ; totalConnectionsCreated={} : wallTime_ms={} msec.', 
+        'searchAndConnect3', 
+        Global.parameters.simulationId,
+        this.id(),
+        similarityThreshold,
+        maxReachDistance,
+        totalConnectionsCreated,
+        (System.currentTimeMillis()-start))
+
+    }
 
     private Integer searchAndConnect(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
