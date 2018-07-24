@@ -48,6 +48,12 @@ jacocoTestReport {
 }
 
 test {
+    jvmArgs "-Dcom.sun.management.jmxremote"
+    jvmArgs "-Dcom.sun.management.jmxremote.port=5999"
+    jvmArgs "-Dcom.sun.management.jmxremote.local.only=false"
+    jvmArgs "-Dcom.sun.management.jmxremote.authenticate=false"
+    jvmArgs "-Dcom.sun.management.jmxremote.ssl=false"
+    jvmArgs "-Dcom.sun.management.jmxremote.rmi.port=5998"
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
     reports.junitXml.enabled = false
@@ -118,3 +124,4 @@ tasks.withType(JavaCompile) {
 //    options.compilerArgs << '-Xlint:unchecked'
     options.warnings = false
 }
+
