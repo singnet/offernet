@@ -82,7 +82,8 @@ class Simulation extends UntypedAbstractActor {
 		//PropertyConfigurator.configure(config.toProperties())
 		logger = LoggerFactory.getLogger('Simulation.class');
 
-		on = new OfferNet();
+    on = new OfferNet();  
+		
 		on.flushVertices();
 		logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
 

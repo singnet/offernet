@@ -368,11 +368,11 @@ public class SimulationTests {
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
 
 	       	Global.parameters.similaritySearchThreshold = similaritySearchThreshold
+	       	Global.parameters.persistence = false
 
 	       	// create simulation object
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			assertNotNull(sim);
-			sim.on.flushVertices();
 			
 			// create agent network and put some random works into it
 			def agentList = sim.createAgentNetwork(agentNumber);

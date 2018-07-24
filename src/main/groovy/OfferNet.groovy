@@ -55,12 +55,16 @@ public class OfferNet implements AutoCloseable {
         logger = LoggerFactory.getLogger('OfferNet.class');
         system =  ActorSystem.create("OfferNet");
         try {
+
             cluster = DseCluster.builder()
               .addContactPoint("dse-server.host")
               .withAuthProvider(new DsePlainTextAuthProvider(Global.parameters.cassandraUsername.trim(), Global.parameters.cassandraPassword.trim()))
               .build();
+            if (! Global.parameters.persistence) {
+              cluster.connect().executeGraph("system.graph('offernet').drop()");  
+            }
             cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
-           
+
             PoolingOptions poolingOptions = new PoolingOptions();
             poolingOptions
               .setCoreConnectionsPerHost(HostDistance.LOCAL,  4)
@@ -238,7 +242,8 @@ public class OfferNet implements AutoCloseable {
     }
 
     public Object flushVertices() {
-      SimpleGraphStatement s = new SimpleGraphStatement("g.V().has('type',within(['work','agent','item'])).drop()");
+      String query = "g.V().has('type',within(['work','agent','item'])).drop()" // delete all one by one -- may give errors if exceeds resource limits...
+      SimpleGraphStatement s = new SimpleGraphStatement(query);
       GraphResultSet rs = session.executeGraph(s);
       logger.debug("Executed statement: {}", Utils.getStatement(rs));
       logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
