@@ -41,7 +41,7 @@ public class Analyst extends UntypedAbstractActor {
 
   public void onReceive(Object message) throws Exception {
     logger.debug("{} : {} : analyst {} received message: {} of {}",
-      Utils.getCurrentMethodName(),
+      'onReceive',
       Global.parameters.simulationId,
       message,
       message.getClass())
@@ -93,7 +93,7 @@ public class Analyst extends UntypedAbstractActor {
       def resultsJson =  JsonOutput.toJson(results);
 
       logger.info('method={} :  simulationId={} : vertexType={} ; edgeLabel={} : direction={} : results={} : message=[{}] : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
+        'degreeDistribution', 
         Global.parameters.simulationId,
         vertexType,
         edgeLabel,
@@ -114,7 +114,7 @@ public class Analyst extends UntypedAbstractActor {
       def resultsJson =  JsonOutput.toJson(results);
 
       logger.info('method={} :  simulationId={} : results={} : message=[{}] : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
+        'allEdgesByLabel', 
         Global.parameters.simulationId,
         resultsJson,
         message,
@@ -132,7 +132,7 @@ public class Analyst extends UntypedAbstractActor {
       def resultsJson =  JsonOutput.toJson(results);
 
       logger.info('method={} :  simulationId={} : results={} : message=[{}] : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
+        'allVerticesByLabel', 
         Global.parameters.simulationId,
         resultsJson,
         message,
@@ -151,12 +151,11 @@ public class Analyst extends UntypedAbstractActor {
       def resultsJson =  JsonOutput.toJson(results);
 
       logger.info('method={} :  simulationId={} : results={} : message=[{}] : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
+        'similarityEdgesByWeight', 
         Global.parameters.simulationId,
         resultsJson,
         message,
         (System.currentTimeMillis()-start))
   }
-
 
 }

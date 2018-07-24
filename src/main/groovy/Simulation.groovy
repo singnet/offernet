@@ -57,7 +57,7 @@ class Simulation extends UntypedAbstractActor {
   public void onReceive(Object message) throws Exception {
     if (message instanceof Method) {
       logger.info("{}: {} : received message: {} of {}",
-        Utils.getCurrentMethodName(),
+        'onReceive',
         Global.parameters.simulationId,
         message,
         message.getClass())
@@ -85,7 +85,7 @@ class Simulation extends UntypedAbstractActor {
     on = new OfferNet();  
 		
 		on.flushVertices();
-		logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+		logger.debug("Method {} took {} seconds to complete", '<init>', (System.currentTimeMillis()-start)/1000)
 
     vertexIdToActorRefTable = new Hashtable<String,ActorRef>();
     actorRefToVertexIdTable = new Hashtable<ActorRef,String>();
@@ -96,7 +96,7 @@ class Simulation extends UntypedAbstractActor {
     Global.parameters.simulationId = simulationId;
 
     logger.info('method={} : simulationId={} : wallTime_ms={} msec.', 
-      Utils.getCurrentMethodName(), 
+      '<init>', 
       Global.parameters.simulationId,
       (System.currentTimeMillis()-start))
 
@@ -149,7 +149,7 @@ class Simulation extends UntypedAbstractActor {
         agentsList.add(agent2)
       }
     logger.info('method={} : simulationId={} : numberOfAgents={} : wallTime_ms={} sec.', 
-      Utils.getCurrentMethodName(), 
+      'createAgentNetwork', 
       Global.parameters.simulationId,
       numberOfAgents,
       (System.currentTimeMillis()-start)/1000)
@@ -170,7 +170,7 @@ class Simulation extends UntypedAbstractActor {
       agentsList.add(agent2)      
     }
     logger.debug("Created a line of {} agents",numberOfAgents);
-    logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
+    logger.debug("Method {} took {} seconds to complete", 'createAgentLine', (System.currentTimeMillis()-start)/1000)        
     return agentsList;
   }
 
@@ -190,7 +190,7 @@ class Simulation extends UntypedAbstractActor {
 		}
 
     logger.info('{} : {} : agent count in the list={}; similarityThreshold={}; maxReachDistance={} : wallTime_ms={} sec.', 
-      Utils.getCurrentMethodName(), 
+      'connectIfSimilarForAllAgents', 
       Global.parameters.simulationId,
       agentList.size(),
       similarityThreshold,
@@ -263,7 +263,7 @@ class Simulation extends UntypedAbstractActor {
             logger.debug("Added random work to actorRef {}", actorRef);
         }
         logger.debug("Added "+numberOfWorks+" of random processes to the network")
-        logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+        logger.debug("Method {} took {} seconds to complete", 'addRandomWorksToAgents', (System.currentTimeMillis()-start)/1000)
     }
 
     public List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
@@ -274,7 +274,7 @@ class Simulation extends UntypedAbstractActor {
         this.addChainToNetwork(chain)
       }
       logger.debug("Created agentNetwork with {} agents, {} randomWorks and {} chains",numberOfAgents,numberOfRandomWorks,chains.size())
-      logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      logger.debug("Method {} took {} seconds to complete", 'createAgentNetwork', (System.currentTimeMillis()-start)/1000)
 
       return agentList;
     }
@@ -412,7 +412,7 @@ class Simulation extends UntypedAbstractActor {
     */
     public int naiveCentralizedCycleSearch(Object similaritySearchThreshold, List chainedWorksJson) {
       def start = System.currentTimeMillis()
-      def currentMethodName = Utils.getCurrentMethodName();
+      def currentMethodName = 'naiveCentralizedCycleSearch';
       int totalPaths = 0;
       def uniquePaths = [] as Set;
       def agentPaths;
@@ -467,7 +467,7 @@ class Simulation extends UntypedAbstractActor {
     * like the naive one, but checks visited agents and works prior to processing them
     */
     public int depthFirstCycleSearch(Object similaritySearchThreshold, List chainedWorksJson) {
-      def currentMethodName = Utils.getCurrentMethodName();
+      def currentMethodName = 'depthFirstCycleSearch';
       def start = System.currentTimeMillis()
       def totalPaths = 0;
       def uniquePaths = [] as Set;
@@ -576,7 +576,7 @@ class Simulation extends UntypedAbstractActor {
         }
         logger.debug("formed a uniquePath with edges and vertices {}",uniquePath)
         logger.debug('{} : {} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'getVerticesBelongingToSubgraph', 
           Global.parameters.simulationId,
           (System.currentTimeMillis()-start))
 
@@ -607,7 +607,7 @@ class Simulation extends UntypedAbstractActor {
         }
         logger.debug("the path visited vertices {}",visitedVertices)
         logger.debug('{} : {} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'getVerticesBelongingToSubgraph', 
           Global.parameters.simulationId,
           (System.currentTimeMillis()-start))
 
@@ -630,11 +630,11 @@ class Simulation extends UntypedAbstractActor {
       
       def similarityConnectionsCentralized = this.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
       logger.debug("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
-      logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      logger.debug("Method {} took {} seconds to complete", 'decentralizedSimilaritySearchAndConnect', (System.currentTimeMillis()-start)/1000)
     }
 
     int decentralizedCycleSearch(ActorRef agent, List chain) {
-        def currentMethodName = Utils.getCurrentMethodName();
+        def currentMethodName = 'decentralizedCycleSearch';
         def start = System.currentTimeMillis();
         int foundCyclesCount = 0;
         def uniqueCycles = [] as Set
@@ -681,7 +681,7 @@ class Simulation extends UntypedAbstractActor {
     }
 
     int decentralizedPathSearch(ActorRef agent, int maxDistance, List chain) {
-        def currentMethodName = Utils.getCurrentMethodName();
+        def currentMethodName = 'decentralizedCycleSearch';
         def start = System.currentTimeMillis();
         int foundPathsCount = 0;
         def similaritySearchThreshold = Global.parameters.similaritySearchThreshold 

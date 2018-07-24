@@ -40,7 +40,7 @@ public class Agent extends UntypedAbstractActor {
 
   public void onReceive(Object message) throws Exception {
     logger.debug("{} : {} : agent {} received message: {} of {}",
-      Utils.getCurrentMethodName(),
+      'onReceive',
       Global.parameters.simulationId,
       this.id(),
       message,
@@ -94,7 +94,7 @@ public class Agent extends UntypedAbstractActor {
         }
 
         logger.info('method={} : simulationId={} : agentId={} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          '<init>', 
           Global.parameters.simulationId,
           agentId,
           (System.currentTimeMillis()-start))
@@ -159,7 +159,7 @@ public class Agent extends UntypedAbstractActor {
         }
  
         logger.info('method={} : simulationId={} : agentId={} ; knows_agentId={} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'knowsAgent', 
           Global.parameters.simulationId,
           this.id(),
           id,
@@ -209,7 +209,7 @@ public class Agent extends UntypedAbstractActor {
         }
 
         logger.info('method={} : simulationId={} : agentId={} ;  edge={} ; demand={} ; offer={} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'ownsWork', 
           Global.parameters.simulationId,
           this.id(),
           edge.getId(),
@@ -260,7 +260,7 @@ public class Agent extends UntypedAbstractActor {
         }
 
         logger.info('method={} : simulationId={} : agentId={} ; work={} ; label={} ; value={} ; edge={} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'addItemToWork', 
           Global.parameters.simulationId,
           this.id(),
           work.getId(),
@@ -290,7 +290,7 @@ public class Agent extends UntypedAbstractActor {
         List<Vertex> works = rs.all().collect {it.asVertex()};
 
         logger.info('method={} : simulationId={} : agentId={} ; works_count={} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'getWorks', 
           Global.parameters.simulationId,
           this.id(),
           works.size(),
@@ -317,7 +317,7 @@ public class Agent extends UntypedAbstractActor {
       List items = rs.all().collect {it.asVertex() };
 
       logger.info('method={} : simulationId={} : agentId={} ; items_count={} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'allItems', 
           Global.parameters.simulationId,
           this.id(),
           items.size(),
@@ -342,7 +342,7 @@ public class Agent extends UntypedAbstractActor {
       List<Vertex> items = rs.all().collect {it.asVertex()};
 
       logger.info('method={} : simulationId={} : agentId={} ; work={} ; label={} ; items_count={} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'getWorksItems', 
           Global.parameters.simulationId,
           this.id(),
           work.getId(),
@@ -365,7 +365,7 @@ public class Agent extends UntypedAbstractActor {
       }
 
       logger.info('method={} : simulationId={} : agentId={} ; similarityThreshold={} ; maxReachDistance={} ; totalConnectionsCreated={} : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
+        'searchAndConnect', 
         Global.parameters.simulationId,
         this.id(),
         similarityThreshold,
@@ -396,7 +396,7 @@ public class Agent extends UntypedAbstractActor {
         totalConnectionsCreated=totalConnectionsCreated+similarityEdges.size();
       }
       logger.debug("Created {} new similarity connections for agent {}", totalConnectionsCreated, this.id())
-      logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start))
+      logger.debug("Method {} took {} seconds to complete", 'searchAndConnect2', (System.currentTimeMillis()-start))
       return totalConnectionsCreated;
     }
 
@@ -421,7 +421,7 @@ public class Agent extends UntypedAbstractActor {
       List items = rs.all().collect {it.asVertex() };
       
       logger.info('method={} : simulationId={} : agentId={} ; maxReachDistance={} ; items_count={} : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
+        'itemsOfKnownAgents', 
         Global.parameters.simulationId,
         this.id(),
         maxReachDistance,
@@ -440,7 +440,7 @@ public class Agent extends UntypedAbstractActor {
         }
 
         logger.info('method={} : simulationId={} : agentId={} ; item={} ; known_items_count={} ; similarityThreshold={} ; added_similarity_edges count={} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'connectAllSimilar', 
           Global.parameters.simulationId,
           this.id(),
           item.getId(),
@@ -467,7 +467,7 @@ public class Agent extends UntypedAbstractActor {
       }
 
       logger.info('method={} : simulationId={} : agentId={} ; item={} ; knownItem={} ; similarityThreshold={} ; added_similarity_edge={} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'connectIfSimilar', 
           Global.parameters.simulationId,
           this.id(),
           item.getId(),
@@ -492,7 +492,7 @@ public class Agent extends UntypedAbstractActor {
     def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValue(similarityList[0],'similarity') : -1;
 
     logger.info('method={} : simulationId={} : agentId={} ; item={} ; anotherItem={} ; similarity_value={} : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
+        'existsSimilarity', 
         Global.parameters.simulationId,
         this.id(),
         item.getId(),
@@ -516,7 +516,7 @@ public class Agent extends UntypedAbstractActor {
     List outEdges = rs.all().collect {it.asEdge()};
 
     logger.info('method={} : simulationId={} : agentId={} ; label={} ; outEdges_count={} : wallTime_ms={} msec.', 
-      Utils.getCurrentMethodName(), 
+      'getAllOutEdges', 
       Global.parameters.simulationId,
       this.id(),
       labelName,
@@ -538,7 +538,7 @@ public class Agent extends UntypedAbstractActor {
     List similarityEdges = rs.all().collect {it.asEdge()};
 
     logger.info('method={} : simulationId={} : agentId={} ; item={} ; similarity_edges_count={} : wallTime_ms={} msec.', 
-      Utils.getCurrentMethodName(), 
+      'similarityEdges', 
       Global.parameters.simulationId,
       this.id(),
       item.getId(),
@@ -579,7 +579,7 @@ public class Agent extends UntypedAbstractActor {
     def similarityEdge = rs.one().asEdge();
 
     logger.info('method={} : simulationId={} : agentId={} ; item={} ; knownItem={} ; similarity={} ; similarityEdge={} : wallTime_ms={} msec.', 
-      Utils.getCurrentMethodName(), 
+      'connect', 
       Global.parameters.simulationId,
       this.id(),
       item.getId(),
@@ -624,7 +624,7 @@ public class Agent extends UntypedAbstractActor {
       logger.debug("Received result {}",result)
 
       logger.info('method={} : simulationId={} : agentId={} ; work={} ; cutoffValue={} ; similarityConstraint={} ; paths_count={} : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
+        'pathSearch', 
         Global.parameters.simulationId,
         this.id(),
         work.getId(),
@@ -661,7 +661,7 @@ public class Agent extends UntypedAbstractActor {
       logger.debug("Received result {}",result)
 
       logger.info('method={} : simulationId={} : agentId={} ; work={} ; similarityConstraint={} ; cycles_count={} : wallTime_ms={} msec.', 
-        Utils.getCurrentMethodName(), 
+        'cycleSearch', 
         Global.parameters.simulationId,
         this.id(),
         work.getId(),

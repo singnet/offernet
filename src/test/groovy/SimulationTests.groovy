@@ -220,7 +220,7 @@ public class SimulationTests {
 			
 			def similarityConnectionsDecentralized = sim.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
 			logger.debug("Created {} similarity connections of all agents with similarity {} and maxDistance {}", similarityConnectThreshold, maxDistance);
-			logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+			logger.debug("Method {} took {} seconds to complete", 'pathContainsChainTest', (System.currentTimeMillis()-start)/1000)
 			
 			// Search for path -- results should include the chain that was previously created
 			logger.debug("Running decentralized PathSearch")
@@ -254,7 +254,7 @@ public class SimulationTests {
     	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
 
  	       	logger.debug("Found {} uniquePaths: {}", uniquePathsJson.size(), uniquePaths)
-           	logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+           	logger.debug("Method {} took {} seconds to complete", 'pathContainsChainTest', (System.currentTimeMillis()-start)/1000)
 
            	def allPaths = sim.getVerticesBelongingToSubgraphs(uniquePathsJson)
 
@@ -530,7 +530,7 @@ public class SimulationTests {
 			
 			def similarityConnectionsCentralized = sim.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
 			logger.debug("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
-			logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+			logger.debug("Method {} took {} seconds to complete", 'centralizedPathSearchTest', (System.currentTimeMillis()-start)/1000)
 			
 			// Search for path -- results should include the chain that was previously created
 			logger.debug("Running centralized PathSearch")
@@ -544,7 +544,7 @@ public class SimulationTests {
     	  	def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
 
  	       	logger.debug("Found {} uniquePaths: {}", uniquePathsJson.size(), uniquePaths)
-           	logger.debug("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+           	logger.debug("Method {} took {} seconds to complete", 'centralizedPathSearchTest', (System.currentTimeMillis()-start)/1000)
 
            	def allPaths = sim.getVerticesBelongingToSubgraphs(uniquePathsJson)
 
