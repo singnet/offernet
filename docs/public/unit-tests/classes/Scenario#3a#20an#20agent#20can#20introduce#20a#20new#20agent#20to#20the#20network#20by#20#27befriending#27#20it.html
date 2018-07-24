@@ -29,19 +29,19 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">1</div>
 <p>failures</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="ignored">
-<div class="counter">0</div>
+<div class="counter">6</div>
 <p>ignored</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">22.194s</div>
+<div class="counter">13.121s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">0%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,13 +61,42 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Tests</a>
+<a href="#tab0">Failed tests</a>
 </li>
 <li>
-<a href="#tab1">Standard error</a>
+<a href="#tab1">Tests</a>
+</li>
+<li>
+<a href="#tab2">Standard output</a>
+</li>
+<li>
+<a href="#tab3">Standard error</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<div class="test">
+<a name="classMethod"></a>
+<h3 class="failures">classMethod</h3>
+<span class="code">
+<pre>akka.pattern.AskTimeoutException: Ask timed out on [TestActor[akka://AgentBehaviorStepDefs/user/$$a]] after [5000 ms]. Sender[null] sent message of type &quot;akka.testkit.TestActorRef$InternalGetActor$&quot;.
+	at akka.pattern.PromiseActorRef$.$anonfun$defaultOnTimeout$1(AskSupport.scala:595)
+	at akka.pattern.PromiseActorRef$.$anonfun$apply$1(AskSupport.scala:605)
+	at akka.actor.Scheduler$$anon$4.run(Scheduler.scala:140)
+	at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:866)
+	at scala.concurrent.BatchingExecutor.execute(BatchingExecutor.scala:109)
+	at scala.concurrent.BatchingExecutor.execute$(BatchingExecutor.scala:103)
+	at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:864)
+	at akka.actor.LightArrayRevolverScheduler$TaskHolder.executeTask(LightArrayRevolverScheduler.scala:328)
+	at akka.actor.LightArrayRevolverScheduler$$anon$4.executeBucket$1(LightArrayRevolverScheduler.scala:279)
+	at akka.actor.LightArrayRevolverScheduler$$anon$4.nextTick(LightArrayRevolverScheduler.scala:283)
+	at akka.actor.LightArrayRevolverScheduler$$anon$4.run(LightArrayRevolverScheduler.scala:235)
+	at java.lang.Thread.run(Thread.java:748)
+</pre>
+</span>
+</div>
+</div>
+<div id="tab1" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -78,43 +107,78 @@
 </tr>
 </thead>
 <tr>
-<td class="success">And Agent &quot;AgentTwo&quot; does not exist on the OfferNet</td>
-<td>0.005s</td>
-<td class="success">passed</td>
+<td class="skipped">And Agent &quot;AgentTwo&quot; does not exist on the OfferNet</td>
+<td>-</td>
+<td class="skipped">ignored</td>
 </tr>
 <tr>
-<td class="success">And there is no &quot;knows&quot; link between &quot;AgentTwo&quot; and &quot;AgentOne&quot;</td>
-<td>0s</td>
-<td class="success">passed</td>
+<td class="skipped">And there is no &quot;knows&quot; link between &quot;AgentTwo&quot; and &quot;AgentOne&quot;</td>
+<td>-</td>
+<td class="skipped">ignored</td>
 </tr>
 <tr>
-<td class="success">Given Agent &quot;AgentOne&quot; is created on the OfferNet</td>
-<td>0.001s</td>
-<td class="success">passed</td>
+<td class="skipped">Given Agent &quot;AgentOne&quot; is created on the OfferNet</td>
+<td>-</td>
+<td class="skipped">ignored</td>
 </tr>
 <tr>
-<td class="success">Then Agent &quot;AgentTwo&quot; exists on the OfferNet</td>
-<td>0s</td>
-<td class="success">passed</td>
+<td class="skipped">Then Agent &quot;AgentTwo&quot; exists on the OfferNet</td>
+<td>-</td>
+<td class="skipped">ignored</td>
 </tr>
 <tr>
-<td class="success">Then there is &quot;knows&quot; link between &quot;AgentOne&quot; and &quot;AgentTwo&quot;</td>
-<td>0s</td>
-<td class="success">passed</td>
+<td class="skipped">Then there is &quot;knows&quot; link between &quot;AgentOne&quot; and &quot;AgentTwo&quot;</td>
+<td>-</td>
+<td class="skipped">ignored</td>
 </tr>
 <tr>
-<td class="success">When Agent &quot;AgentOne&quot; befriends Agent &quot;AgentTwo&quot;</td>
-<td>0s</td>
-<td class="success">passed</td>
+<td class="skipped">When Agent &quot;AgentOne&quot; befriends Agent &quot;AgentTwo&quot;</td>
+<td>-</td>
+<td class="skipped">ignored</td>
 </tr>
 <tr>
-<td class="success">classMethod</td>
-<td>22.188s</td>
-<td class="success">passed</td>
+<td class="failures">classMethod</td>
+<td>13.121s</td>
+<td class="failures">failed</td>
 </tr>
 </table>
 </div>
-<div id="tab1" class="tab">
+<div id="tab2" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>?[31mFailure in before hook:?[0m?[31mAgentBehaviorStepDefs.before(Scenario)?[0m
+?[31mMessage: ?[0m?[31makka.pattern.AskTimeoutException: Ask timed out on [TestActor[akka://AgentBehaviorStepDefs/user/$$a]] after [5000 ms]. Sender[null] sent message of type &quot;akka.testkit.TestActorRef$InternalGetActor$&quot;.
+	at akka.pattern.PromiseActorRef$.$anonfun$defaultOnTimeout$1(AskSupport.scala:595)
+	at akka.pattern.PromiseActorRef$.$anonfun$apply$1(AskSupport.scala:605)
+	at akka.actor.Scheduler$$anon$4.run(Scheduler.scala:140)
+	at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:866)
+	at scala.concurrent.BatchingExecutor.execute(BatchingExecutor.scala:109)
+	at scala.concurrent.BatchingExecutor.execute$(BatchingExecutor.scala:103)
+	at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:864)
+	at akka.actor.LightArrayRevolverScheduler$TaskHolder.executeTask(LightArrayRevolverScheduler.scala:328)
+	at akka.actor.LightArrayRevolverScheduler$$anon$4.executeBucket$1(LightArrayRevolverScheduler.scala:279)
+	at akka.actor.LightArrayRevolverScheduler$$anon$4.nextTick(LightArrayRevolverScheduler.scala:283)
+	at akka.actor.LightArrayRevolverScheduler$$anon$4.run(LightArrayRevolverScheduler.scala:235)
+	at java.lang.Thread.run(Thread.java:748)
+?[0m
+      ?[31makka.pattern.AskTimeoutException: Ask timed out on [TestActor[akka://AgentBehaviorStepDefs/user/$$a]] after [5000 ms]. Sender[null] sent message of type &quot;akka.testkit.TestActorRef$InternalGetActor$&quot;.
+      	at akka.pattern.PromiseActorRef$.$anonfun$defaultOnTimeout$1(AskSupport.scala:595)
+      	at akka.pattern.PromiseActorRef$.$anonfun$apply$1(AskSupport.scala:605)
+      	at akka.actor.Scheduler$$anon$4.run(Scheduler.scala:140)
+      	at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:866)
+      	at scala.concurrent.BatchingExecutor.execute(BatchingExecutor.scala:109)
+      	at scala.concurrent.BatchingExecutor.execute$(BatchingExecutor.scala:103)
+      	at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:864)
+      	at akka.actor.LightArrayRevolverScheduler$TaskHolder.executeTask(LightArrayRevolverScheduler.scala:328)
+      	at akka.actor.LightArrayRevolverScheduler$$anon$4.executeBucket$1(LightArrayRevolverScheduler.scala:279)
+      	at akka.actor.LightArrayRevolverScheduler$$anon$4.nextTick(LightArrayRevolverScheduler.scala:283)
+      	at akka.actor.LightArrayRevolverScheduler$$anon$4.run(LightArrayRevolverScheduler.scala:235)
+      	at java.lang.Thread.run(Thread.java:748)
+      ?[0m
+</pre>
+</span>
+</div>
+<div id="tab3" class="tab">
 <h2>Standard error</h2>
 <span class="code">
 <pre>log4j:WARN No appenders could be found for logger (akka.event.slf4j.Slf4jLogger).
@@ -131,7 +195,7 @@ log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more in
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.6</a> at Jul 23, 2018 9:58:42 PM</p>
+<a href="http://www.gradle.org">Gradle 4.6</a> at Jul 24, 2018 6:08:41 PM</p>
 </div>
 </div>
 </body>
