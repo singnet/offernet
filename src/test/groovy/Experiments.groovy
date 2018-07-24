@@ -48,6 +48,7 @@ public class Experiments {
 
 	}
 
+	@Ignore
 	@Test
 	void compareDecentralizedAndCentralizedSearch() {
 
@@ -103,31 +104,90 @@ public class Experiments {
 					      	)								 
 			
 							// 2: create agent network
+							def start = System.currentTimeMillis();
+
 							def agentList = sim.createAgentNetwork(agentNumber);
+
+							logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
+								experimentId,
+								Global.parameters.simulationId,
+					     		'createAgentNetwork finished',
+					     		(System.currentTimeMillis()-start)
+					      	)								 
+
 							sim.on.analyze("after: // 2: create agent network")
 
 							// 3: add random works to the agents in the network
+							start = System.currentTimeMillis();
+
 							sim.addRandomWorksToAgents(randomWorksNumber)
+
+							logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
+								experimentId,
+								Global.parameters.simulationId,
+					     		'addRandomWorksToAgents finished',
+					     		(System.currentTimeMillis()-start)
+					      	)								 
+
 							sim.on.analyze("after: // 3: add random works to the agents in the network")
 
 							// 4: create chain and assign its items to random agents
+							start = System.currentTimeMillis();
+
 							def chains = [Utils.createChain(chainLength)]
 							def chain = chains[0]
 							def chainedWorksJson = sim.addChainToNetwork(chain, true)  // add chain to network and return json structure...
 
+							logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
+								experimentId,
+								Global.parameters.simulationId,
+					     		'addChainToNetwork finished',
+					     		(System.currentTimeMillis()-start)
+					      	)								 
+						
+
 							// 5: create taskAgent -- the one which closes the chain in the network
+							start = System.currentTimeMillis();
+
 							def taskAgent = createTaskAgentInTheNetwork(sim,chain)
+
+							logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
+								experimentId,
+								Global.parameters.simulationId,
+					     		'createTaskAgentInTheNetwork finished',
+					     		(System.currentTimeMillis()-start)
+					      	)								 
 
 							// 6: running decentralizedCycleSearch
 								// 6.1: connecting all similar items in decentralized way:
+								start = System.currentTimeMillis();
+
 								sim.centralizedSimilaritySearchAndConnect()
+
+								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
+									experimentId,
+									Global.parameters.simulationId,
+						     		'centralizedSimilaritySearchAndConnect finished',
+						     		(System.currentTimeMillis()-start)
+								)								 
+
 								//sim.decentralizedSimilaritySearchAndConnect(maxDistance)
 
 								Thread.sleep(200)
 								sim.on.analyze("after: // 6.1: connecting all similar items in centralized way:")
 
 								// 6.2: looking for a cycle:
+								start = System.currentTimeMillis();
+
 								sim.decentralizedCycleSearch(taskAgent, chainedWorksJson)
+
+								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
+									experimentId,
+									Global.parameters.simulationId,
+						     		'decentralizedCycleSearch finished',
+						     		(System.currentTimeMillis()-start)
+						      	)								 
+
 								Thread.sleep(100)
 								sim.on.analyze("after: // 6.2: decentralizedCycleSearch")
 
@@ -139,10 +199,30 @@ public class Experiments {
 								//8.1: connecting all similar items in centralized way:
 								//sim.centralizedSimilaritySearchAndConnect()
 								//8.2.1: looking for a cycle Naive:
+								start = System.currentTimeMillis();
+
 								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 1)
+
+								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
+									experimentId,
+									Global.parameters.simulationId,
+						     		'allCyclesCentralized: naiveCentralizedCycleSearch finished',
+						     		(System.currentTimeMillis()-start)
+						      	)								 
+
 								sim.on.analyze("after: // 8.2.1 naiveCentralizedCycleSearch")
 								//8.2.2: looking for a cycle depthFirstSerch:
+								start = System.currentTimeMillis();
+
 								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 2)
+
+								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
+									experimentId,
+									Global.parameters.simulationId,
+						     		'allCyclesCentralized: depthFirstCycleSearch finished',
+						     		(System.currentTimeMillis()-start)
+						      	)								 
+
 								String message = "Final analysis (also after: // 8.2.2 depthFirstCycleSearch) of experimentId="+experimentId
 								sim.on.analyze(message)
 						}
