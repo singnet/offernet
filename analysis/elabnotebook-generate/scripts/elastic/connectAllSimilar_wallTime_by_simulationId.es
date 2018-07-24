@@ -1,18 +1,18 @@
 GET /filebeat-*/_search
 {
-  "size": 0, 
-  "query": {"match": { "method" : "connectAllSimilar" }},
+  "_source": ["simulationId", "method", "avg_wallTime_ms", "@timestamp"], 
+  "query": {"match": { "method" : "connectIfSimilar" }},
   "aggs": {
     "group_by_SIM": {
       "terms": {
         "field": "simulationId.keyword",
         "order": {
-          "sumWallTime_ms": "desc"
+          "avg_wallTime_ms": "desc"
         }
       },
       "aggs": {
-        "sumWallTime_ms": {
-          "sum": {
+        "avg_wallTime_ms": {
+          "avg": {
             "field": "wallTime_ms"
           }
         }
