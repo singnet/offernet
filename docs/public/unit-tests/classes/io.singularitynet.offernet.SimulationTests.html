@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1m18.33s</div>
+<div class="counter">1m18.29s</div>
 <p>duration</p>
 </div>
 </td>
@@ -73,13 +73,9 @@
 <a name="addRandomWorksToAgentsTest"></a>
 <h3 class="failures">addRandomWorksToAgentsTest</h3>
 <span class="code">
-<pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
-	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
-	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
-	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
-	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
-	at scala.concurrent.Await$.result(package.scala:142)
-	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
+<pre>akka.actor.IllegalActorStateException: underlying actor is terminated
+	at akka.actor.IllegalActorStateException$.apply(Actor.scala:158)
+	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:89)
 	at akka.testkit.TestActorRef$underlyingActor$0.call(Unknown Source)
 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
@@ -407,13 +403,9 @@
 <a name="createAgentNetworkConnectedStarsTest"></a>
 <h3 class="failures">createAgentNetworkConnectedStarsTest</h3>
 <span class="code">
-<pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
-	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
-	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
-	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
-	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
-	at scala.concurrent.Await$.result(package.scala:142)
-	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
+<pre>akka.actor.IllegalActorStateException: underlying actor is terminated
+	at akka.actor.IllegalActorStateException$.apply(Actor.scala:158)
+	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:89)
 	at akka.testkit.TestActorRef$underlyingActor$0.call(Unknown Source)
 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
@@ -474,9 +466,13 @@
 <a name="createAgentNetworkCycleGraphTest"></a>
 <h3 class="failures">createAgentNetworkCycleGraphTest</h3>
 <span class="code">
-<pre>akka.actor.IllegalActorStateException: underlying actor is terminated
-	at akka.actor.IllegalActorStateException$.apply(Actor.scala:158)
-	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:89)
+<pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
+	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
+	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
+	at scala.concurrent.Await$.result(package.scala:142)
+	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
 	at akka.testkit.TestActorRef$underlyingActor$0.call(Unknown Source)
 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
@@ -671,9 +667,13 @@
 <a name="createAgentNetworkSmallWorldTest"></a>
 <h3 class="failures">createAgentNetworkSmallWorldTest</h3>
 <span class="code">
-<pre>akka.actor.IllegalActorStateException: underlying actor is terminated
-	at akka.actor.IllegalActorStateException$.apply(Actor.scala:158)
-	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:89)
+<pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
+	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
+	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
+	at scala.concurrent.Await$.result(package.scala:142)
+	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
 	at akka.testkit.TestActorRef$underlyingActor$0.call(Unknown Source)
 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
@@ -868,13 +868,9 @@
 <a name="createAgentTest"></a>
 <h3 class="failures">createAgentTest</h3>
 <span class="code">
-<pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
-	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
-	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
-	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
-	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
-	at scala.concurrent.Await$.result(package.scala:142)
-	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
+<pre>akka.actor.IllegalActorStateException: underlying actor is terminated
+	at akka.actor.IllegalActorStateException$.apply(Actor.scala:158)
+	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:89)
 	at akka.testkit.TestActorRef$underlyingActor$0.call(Unknown Source)
 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
@@ -1203,9 +1199,13 @@
 <a name="getAgentVertexIdTest"></a>
 <h3 class="failures">getAgentVertexIdTest</h3>
 <span class="code">
-<pre>akka.actor.IllegalActorStateException: underlying actor is terminated
-	at akka.actor.IllegalActorStateException$.apply(Actor.scala:158)
-	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:89)
+<pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
+	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
+	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
+	at scala.concurrent.Await$.result(package.scala:142)
+	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
 	at akka.testkit.TestActorRef$underlyingActor$0.call(Unknown Source)
 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
@@ -1338,97 +1338,97 @@
 </thead>
 <tr>
 <td class="failures">addRandomWorksToAgentsTest</td>
-<td>5.151s</td>
+<td>0.118s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">centralizedCycleSearchTestDepthFirstSearch</td>
-<td>5.169s</td>
+<td>5.178s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">centralizedCycleSearchTestNaive</td>
-<td>5.194s</td>
+<td>5.175s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">centralizedPathSearchTest</td>
-<td>5.215s</td>
+<td>5.158s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createAgentLineTest</td>
-<td>5.164s</td>
+<td>5.174s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createAgentNetworkConnectedStarsTest</td>
-<td>5.114s</td>
+<td>0.158s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createAgentNetworkCycleGraphTest</td>
-<td>0.277s</td>
+<td>5.245s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createAgentNetworkPathGraphTest</td>
-<td>5.143s</td>
+<td>5.157s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createAgentNetworkPreferentialAttachmentGraphTest</td>
-<td>5.153s</td>
+<td>5.159s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createAgentNetworkSmallWorldTest</td>
-<td>0.213s</td>
+<td>5.247s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createAgentNetworkTest</td>
-<td>5.094s</td>
+<td>5.141s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createAgentNetworkWithChainTest</td>
-<td>5.266s</td>
+<td>5.218s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createAgentTest</td>
-<td>5.099s</td>
+<td>0.138s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">createSimulationTest</td>
-<td>5.127s</td>
+<td>5.191s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">cycleSearchTest</td>
-<td>5.113s</td>
+<td>5.127s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">decentralizedCycleSearchTest</td>
-<td>5.341s</td>
+<td>5.241s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">decentralizedPathSearchTest</td>
-<td>5.192s</td>
+<td>5.168s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">getAgentVertexIdTest</td>
-<td>0.182s</td>
+<td>5.151s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">pathContainsChainTest</td>
-<td>0.126s</td>
+<td>0.150s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
@@ -1441,7 +1441,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.6</a> at Jul 25, 2018 1:20:34 PM</p>
+<a href="http://www.gradle.org">Gradle 4.6</a> at Jul 25, 2018 1:34:27 PM</p>
 </div>
 </div>
 </body>
