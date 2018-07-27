@@ -29,19 +29,19 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">1</div>
+<div class="counter">0</div>
 <p>failures</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="ignored">
-<div class="counter">4</div>
+<div class="counter">0</div>
 <p>ignored</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">5.710s</div>
+<div class="counter">5.131s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox failures" id="successRate">
-<div class="percent">0%</div>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,114 +61,10 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Failed tests</a>
-</li>
-<li>
-<a href="#tab1">Tests</a>
-</li>
-<li>
-<a href="#tab2">Standard output</a>
+<a href="#tab0">Tests</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
-<h2>Failed tests</h2>
-<div class="test">
-<a name="classMethod"></a>
-<h3 class="failures">classMethod</h3>
-<span class="code">
-<pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
-	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
-	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
-	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
-	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
-	at scala.concurrent.Await$.result(package.scala:142)
-	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
-	at io.singularitynet.offernet.AgentBehaviorStepDefs.before(AgentBehaviorStepDefs.java:48)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at cucumber.runtime.Utils$1.call(Utils.java:40)
-	at cucumber.runtime.Timeout.timeout(Timeout.java:16)
-	at cucumber.runtime.Utils.invoke(Utils.java:34)
-	at cucumber.runtime.java.JavaHookDefinition.execute(JavaHookDefinition.java:60)
-	at cucumber.runtime.Runtime.runHookIfTagsMatch(Runtime.java:224)
-	at cucumber.runtime.Runtime.runHooks(Runtime.java:212)
-	at cucumber.runtime.Runtime.runBeforeHooks(Runtime.java:202)
-	at cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:40)
-	at cucumber.runtime.junit.ExecutionUnitRunner.run(ExecutionUnitRunner.java:102)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at cucumber.runtime.junit.ExamplesRunner.run(ExamplesRunner.java:59)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at cucumber.runtime.junit.ScenarioOutlineRunner.run(ScenarioOutlineRunner.java:53)
-	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:63)
-	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:18)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:70)
-	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:95)
-	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:38)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at cucumber.api.junit.Cucumber.run(Cucumber.java:100)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:116)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:59)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:39)
-	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy4.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:109)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-</pre>
-</span>
-</div>
-</div>
-<div id="tab1" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -179,216 +75,31 @@
 </tr>
 </thead>
 <tr>
-<td class="skipped">And all agents have posted '1' offer-demand pair each</td>
-<td>-</td>
-<td class="skipped">ignored</td>
+<td class="success">And all agents have posted '1' offer-demand pair each</td>
+<td>0s</td>
+<td class="success">passed</td>
 </tr>
 <tr>
-<td class="skipped">Given there exists an sequentially connected line of '4' agents</td>
-<td>-</td>
-<td class="skipped">ignored</td>
+<td class="success">Given there exists an sequentially connected line of '4' agents</td>
+<td>0s</td>
+<td class="success">passed</td>
 </tr>
 <tr>
-<td class="skipped">Then agent finds '6' demands and offers in its social network</td>
-<td>-</td>
-<td class="skipped">ignored</td>
+<td class="success">Then agent finds '6' demands and offers in its social network</td>
+<td>0s</td>
+<td class="success">passed</td>
 </tr>
 <tr>
-<td class="skipped">When first agent initiates search of '3' depth</td>
-<td>-</td>
-<td class="skipped">ignored</td>
+<td class="success">When first agent initiates search of '3' depth</td>
+<td>0s</td>
+<td class="success">passed</td>
 </tr>
 <tr>
-<td class="failures">classMethod</td>
-<td>5.710s</td>
-<td class="failures">failed</td>
+<td class="success">classMethod</td>
+<td>5.131s</td>
+<td class="success">passed</td>
 </tr>
 </table>
-</div>
-<div id="tab2" class="tab">
-<h2>Standard output</h2>
-<span class="code">
-<pre>?[31mFailure in before hook:?[0m?[31mAgentBehaviorStepDefs.before(Scenario)?[0m
-?[31mMessage: ?[0m?[31mjava.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
-	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
-	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
-	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
-	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
-	at scala.concurrent.Await$.result(package.scala:142)
-	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
-	at io.singularitynet.offernet.AgentBehaviorStepDefs.before(AgentBehaviorStepDefs.java:48)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at cucumber.runtime.Utils$1.call(Utils.java:40)
-	at cucumber.runtime.Timeout.timeout(Timeout.java:16)
-	at cucumber.runtime.Utils.invoke(Utils.java:34)
-	at cucumber.runtime.java.JavaHookDefinition.execute(JavaHookDefinition.java:60)
-	at cucumber.runtime.Runtime.runHookIfTagsMatch(Runtime.java:224)
-	at cucumber.runtime.Runtime.runHooks(Runtime.java:212)
-	at cucumber.runtime.Runtime.runBeforeHooks(Runtime.java:202)
-	at cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:40)
-	at cucumber.runtime.junit.ExecutionUnitRunner.run(ExecutionUnitRunner.java:102)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at cucumber.runtime.junit.ExamplesRunner.run(ExamplesRunner.java:59)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at cucumber.runtime.junit.ScenarioOutlineRunner.run(ScenarioOutlineRunner.java:53)
-	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:63)
-	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:18)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:70)
-	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:95)
-	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:38)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at cucumber.api.junit.Cucumber.run(Cucumber.java:100)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:116)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:59)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:39)
-	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy4.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:109)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-?[0m
-      ?[31mjava.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
-      	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
-      	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
-      	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
-      	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
-      	at scala.concurrent.Await$.result(package.scala:142)
-      	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
-      	at io.singularitynet.offernet.AgentBehaviorStepDefs.before(AgentBehaviorStepDefs.java:48)
-      	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-      	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-      	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-      	at java.lang.reflect.Method.invoke(Method.java:498)
-      	at cucumber.runtime.Utils$1.call(Utils.java:40)
-      	at cucumber.runtime.Timeout.timeout(Timeout.java:16)
-      	at cucumber.runtime.Utils.invoke(Utils.java:34)
-      	at cucumber.runtime.java.JavaHookDefinition.execute(JavaHookDefinition.java:60)
-      	at cucumber.runtime.Runtime.runHookIfTagsMatch(Runtime.java:224)
-      	at cucumber.runtime.Runtime.runHooks(Runtime.java:212)
-      	at cucumber.runtime.Runtime.runBeforeHooks(Runtime.java:202)
-      	at cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:40)
-      	at cucumber.runtime.junit.ExecutionUnitRunner.run(ExecutionUnitRunner.java:102)
-      	at org.junit.runners.Suite.runChild(Suite.java:128)
-      	at org.junit.runners.Suite.runChild(Suite.java:27)
-      	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-      	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-      	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-      	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-      	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-      	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-      	at cucumber.runtime.junit.ExamplesRunner.run(ExamplesRunner.java:59)
-      	at org.junit.runners.Suite.runChild(Suite.java:128)
-      	at org.junit.runners.Suite.runChild(Suite.java:27)
-      	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-      	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-      	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-      	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-      	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-      	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-      	at cucumber.runtime.junit.ScenarioOutlineRunner.run(ScenarioOutlineRunner.java:53)
-      	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:63)
-      	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:18)
-      	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-      	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-      	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-      	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-      	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-      	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-      	at cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:70)
-      	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:95)
-      	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:38)
-      	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-      	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-      	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-      	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-      	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-      	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-      	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-      	at cucumber.api.junit.Cucumber.run(Cucumber.java:100)
-      	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:116)
-      	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:59)
-      	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:39)
-      	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:66)
-      	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-      	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-      	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-      	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-      	at java.lang.reflect.Method.invoke(Method.java:498)
-      	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-      	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-      	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-      	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-      	at com.sun.proxy.$Proxy4.processTestClass(Unknown Source)
-      	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:109)
-      	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-      	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-      	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-      	at java.lang.reflect.Method.invoke(Method.java:498)
-      	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-      	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-      	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-      	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-      	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-      	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-      	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-      	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-      	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-      	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-      	at java.lang.Thread.run(Thread.java:748)
-      ?[0m
-</pre>
-</span>
 </div>
 </div>
 <div id="footer">
@@ -398,7 +109,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.6</a> at Jul 25, 2018 1:34:27 PM</p>
+<a href="http://www.gradle.org">Gradle 4.6</a> at Jul 27, 2018 12:49:48 AM</p>
 </div>
 </div>
 </body>
