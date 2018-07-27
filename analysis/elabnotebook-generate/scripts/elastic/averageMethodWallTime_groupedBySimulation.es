@@ -27,3 +27,4 @@ GET /filebeat-*/_search
     }
   }
 }
+
