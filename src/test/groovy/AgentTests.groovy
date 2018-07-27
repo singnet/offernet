@@ -14,6 +14,7 @@ import static org.junit.Assert.*
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
@@ -60,6 +61,7 @@ public class AgentTests {
 		}}
 	}
 
+	@Ignore // delete when all tests pass -- this was needed for the old similarity calculation
 	@Test
 	void connectTest() {
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
@@ -74,6 +76,7 @@ public class AgentTests {
 		assertNotNull(similarityEdge);
 	}
 
+	@Ignore // delete after all tests pass -- this was needed for the old similarity calculation
 	@Test
 	void connectAllSimilarTest() {
 		on.flushVertices();
@@ -98,9 +101,7 @@ public class AgentTests {
 		def item1 = agent1.addItemToWork("demands",work1)
 		def item2 = agent2.addItemToWork("demands",work1)
 
-		def similarity = Utils.calculateSimilarity(item1,item2);
-		def similarityEdge = agent1.connect(item1, item2, similarity);
-		assertNotNull(similarityEdge);
+		agent1.searchAndConnect(0.0,2)
 
 		def d1 =agent1.existsSimilarity(item1,item2);
 		assertNotNull(d1)
@@ -118,15 +119,14 @@ public class AgentTests {
 		def item1 = agent1.addItemToWork("demands",work1)
 		def item2 = agent2.addItemToWork("demands",work1)
 
-		def similarity = Utils.calculateSimilarity(item1,item2);
-		def similarityEdge = agent1.connect(item1, item2, similarity);
-		assertNotNull(similarityEdge);
+		agent1.searchAndConnect(0.0,2)
 
 		def d2 = agent2.existsSimilarity(item1,item2);
 		assertNotNull(d2)
 
 	}
 
+	@Ignore // delete after all test pass -- this was needed fro the old similarity calculation
 	@Test
 	void connectIfSimilarTest() {
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
@@ -251,7 +251,7 @@ public class AgentTests {
 			def agent1 = TestActorRef.create(system, Agent.props(on.session,agent1Id)).underlyingActor();
 			assertNotNull(agent1);
 
-			def work = agent1.ownsWork("00011","00001")
+			def work = agent1.ownsWork(0.4,0.657)
 			assertNotNull(work);
 
 			def demand = agent1.getWorksItems(work,"demands")[0];
@@ -259,8 +259,8 @@ public class AgentTests {
 			def offer = agent1.getWorksItems(work,"offers")[0];
 			assertNotNull(offer)
 
-			assertEquals("00011",demand.getProperty("value").getValue().asString())
-			assertEquals("00001",offer.getProperty("value").getValue().asString())
+			assert 0.4 == demand.getProperty("value").getValue().asDouble()
+			assert 0.657 == offer.getProperty("value").getValue().asDouble()
 	}
 
 	@Test
@@ -283,16 +283,16 @@ public class AgentTests {
 		on.flushVertices("agent");
 		String agent1Id = UUID.randomUUID().toString()+"agent1";
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
-		agent1.ownsWork('111110','000000');
+		agent1.ownsWork(0.1,0.3);
 		String agent2Id = UUID.randomUUID().toString()+"agent2";
 		def agent2 = TestActorRef.create(system, Agent.props(on.session, agent2Id)).underlyingActor();
-		agent2.ownsWork('111100','110000');
+		agent2.ownsWork(0.81,0.3);
 		String agent3Id = UUID.randomUUID().toString()+"agent3";
 		def agent3 = TestActorRef.create(system, Agent.props(on.session, agent3Id)).underlyingActor();
-		agent3.ownsWork('100000','111100');
+		agent3.ownsWork(0.85,0.65);
 		String agent4Id = UUID.randomUUID().toString()+"agent4";
 		def agent4 = TestActorRef.create(system, Agent.props(on.session, agent4Id)).underlyingActor();
-		agent4.ownsWork('111110','000000');
+		agent4.ownsWork(0.9,0.1);
 
 		agent1.knowsAgent(agent2.vertex.getId());
 		agent2.knowsAgent(agent3.vertex.getId());
@@ -335,8 +335,8 @@ public class AgentTests {
 		String agent1Id = UUID.randomUUID().toString();
 		def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		def work = agent.ownsWork()
-		def offer = agent.addItemToWork("offers",work,"00000")
-		assertEquals("00000",offer.getProperty("value").getValue().asString());
+		def offer = agent.addItemToWork("offers",work,0.5)
+		assert 0.5 == offer.getProperty("value").getValue().asDouble();
 	}
 
 	@Test
@@ -353,8 +353,8 @@ public class AgentTests {
 		String agent1Id = UUID.randomUUID().toString();
 		def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		def work = agent.ownsWork()
-		def offer = agent.addItemToWork("demands",work,"00011")
-		assertEquals("00011",offer.getProperty("value").getValue().asString());
+		def offer = agent.addItemToWork("demands",work,0.236)
+		assert 0.236 == offer.getProperty("value").getValue().asDouble();
 	}
 
 	@Test

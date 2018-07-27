@@ -48,7 +48,6 @@ public class Experiments {
 
 	}
 
-	@Ignore
 	@Test
 	void compareDecentralizedAndCentralizedSearch() {
 
@@ -60,7 +59,7 @@ public class Experiments {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [100] // number of agents in the network
+		def agentNumbers = [500, 1000] // number of agents in the network
 		def chainLengths = [10] // the length of the chain to drop into the network (cannot be less than 3!)
 		def randomWorksNumberMultipliers = [1,2] // number of random works (outside chain) to drop into the network;
 		def maxDistances = [9] // the maximum number of hops when doing decentralized similarity search;

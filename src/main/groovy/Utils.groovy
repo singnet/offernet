@@ -33,6 +33,11 @@ public class Utils {
         return randomString;
     }
 
+    public static Double generateDouble() {
+      Random randomNum = new Random();
+      return randomNum.nextDouble();
+    }
+
     public static String generateRandomString(int length) {
       String alphabet = (('A'..'N')+('P'..'Z')+('a'..'k')+('m'..'z')+('2'..'9')).join() 
       def randomString = new Random().with {
@@ -53,9 +58,10 @@ public class Utils {
     public static List createChain(int length) {
         List chain = []
         length.times {
-            chain.add(generateBinaryString(Global.parameters.binaryStringLength))
+            chain.add(generateDouble())
+            //chain.add(generateBinaryString(Global.parameters.binaryStringLength))
         }
-        logger.debug("Created chain of length {} with: end: {}, start: {} ",length, chain.last(),chain.first())
+        logger.debug("Created chain {} of length {} with: end: {}, start: {} ",chain, length, chain.last(),chain.first())
         return chain
     }
 
@@ -76,45 +82,6 @@ public class Utils {
       }
       return executionStatement;
     }
-
-    public static Object calculateSimilarity(Vertex itemOne, Vertex itemTwo) {
-        return Utils.cosineSimilarity(itemOne.getProperty("value").getValue().asString(), itemTwo.getProperty("value").getValue().asString())
-//  		return Utils.veitasSimilarity(itemOne.getProperty("value").getValue().asString(), itemTwo.getProperty("value").getValue().asString())
-  	}
-
-    public static Object calculateSimilarity(String left, String right) {
-        return Utils.cosineSimilarity(left,right)
-//      return Utils.veitasSimilarity(left,right)
-    }
-
-    public static Integer veitasSimilarity(CharSequence left, CharSequence right) {
-      // this is simply a count of positions in the string where both strings have values
-      // the logic behind being that positions encode features and 1 means that feature exists
-
-  		if (left == null || right == null) {
-  			throw new IllegalArgumentException("Strings must not be null");
-  		}
-
-  		if (left.length() > right.length()) {
-        def temp = left;
-        left=right;
-        right=left;
-  			// strings can have different lengths, but the measuring should be based on the shorter string
-        // -- so we have to know which one is shorter..
-  		}
-
-  		int similarity = 0;
-
-  		for (int i = 0; i < left.length(); i++) {
-  			if (left.charAt(i) == right.charAt(i)) {
-  				similarity++;
-  			}
-  		}
-      logger.debug("Calculated veitas similarity between {} and {}: {}", left,right,similarity)
-  		return similarity;
-  	}
-
-
     private static Object edgePropertyValue(Edge edge,String propertyName) {
         logger.debug("Returning integer value of the property {} on edge {}", propertyName,edge.getId())
         //def value = edge.getProperty('similarity').getValue().asInt()

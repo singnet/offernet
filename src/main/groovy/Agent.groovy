@@ -169,17 +169,19 @@ public class Agent extends UntypedAbstractActor {
     }
 
     private Vertex ownsWork() {
-        return this.ownsWork(Utils.generateBinaryString(Global.parameters.binaryStringLength),Utils.generateBinaryString(Global.parameters.binaryStringLength));
+        return this.ownsWork(Utils.generateDouble(),Utils.generateDouble());
     }
 
     /*
     * Creates new work for an agent and returns it as Vertex
     */
-    private Vertex ownsWork(String demandValue, String offerValue) {
+    private Vertex ownsWork(Double demandValue, Double offerValue) {
 
         def start = System.currentTimeMillis();
 
         Map params = new HashMap();
+        params.put("idName", "workId");
+        params.put("idValue", UUID.randomUUID().toString());
         params.put("labelValue", "work");
         params.put("propertyKey1","type")
         params.put("propertyValue1","work")
@@ -190,7 +192,7 @@ public class Agent extends UntypedAbstractActor {
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(agent).next()\n" +
-                "def v2 = g.addV(labelValue).property(propertyKey1 ,propertyValue1).next()\n" +
+                "def v2 = g.addV(labelValue).property(idName, idValue).property(propertyKey1 ,propertyValue1).next()\n" +
                 "def edge = v1.addEdge(edgeLabel, v2)\n" +
                 "[edge,v2]", params)
 
@@ -223,13 +225,15 @@ public class Agent extends UntypedAbstractActor {
     }
 
     public Vertex addItemToWork(String labelName, Vertex work) {
-        return this.addItemToWork(labelName, work, Utils.generateBinaryString(Global.parameters.binaryStringLength));
+        return this.addItemToWork(labelName, work, Utils.generateDouble());
+        //return this.addItemToWork(labelName, work, Utils.generateBinaryString(Global.parameters.binaryStringLength));
     }
 
-
-    public Vertex addItemToWork(String labelName, Vertex work, String value) {
+    public Vertex addItemToWork(String labelName, Vertex work, Double value) {
         def start = System.currentTimeMillis();
         Map params = new HashMap();
+        params.put("idName", "itemId");
+        params.put("idValue", UUID.randomUUID().toString());
         params.put("labelValue","item");
         params.put("thisVertex", work.getId());
         params.put("edgeLabel", (String) labelName);
@@ -243,7 +247,7 @@ public class Agent extends UntypedAbstractActor {
 
         SimpleGraphStatement s = new SimpleGraphStatement(
                 "def v1 = g.V(thisVertex).next()\n" +
-                "def v2 = g.addV(labelValue).property(propertyKey1 ,propertyValue1).property(propertyKey2 ,propertyValue2).next()\n" +
+                "def v2 = g.addV(labelValue).property(idName,idValue).property(propertyKey1 ,propertyValue1).property(propertyKey2 ,propertyValue2).next()\n" +
                 "def edge = v1.addEdge(edgeLabel, v2)\n"+
                 "[edge,v2]", params);
 
@@ -353,22 +357,75 @@ public class Agent extends UntypedAbstractActor {
       return items;
     }
 
-    private Integer searchAndConnect3(Object similarityThreshold, Integer maxReachDistance) {
+    private Integer searchAndConnect(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
+      Map params = new HashMap();
+      params.put("thisAgentId", this.id());
+      params.put("maxReachDistance", maxReachDistance);
+      params.put("similarityThreshold", similarityThreshold);
 
 
+      String query = """      
+          g.V().has('type','agent').has('agentId',thisAgentId).as('source')
+                  .outE('owns').inV()
+                  .union(
+                    __.outE('demands').as('itemEdge')
+                    //.label().as('itemEdgeLabel').select('itemEdge') // for debugging
+                      .inV().has(label,'item').as('sitem').values('itemId').as('sitemId')
+                      .select('source')
+                      .repeat(
+                          both('knows').has("type","agent").as('target').dedup()
+                          .where('target',neq('source'))
+                      ).times(maxReachDistance).emit(),
+                    outE('offers').as('itemEdge')
+                    //.label().as('itemEdgeLabel').select('itemEdge') // for debugging
+                      .inV().has(label,'item').as('sitem').values('itemId').as('sitemId')
+                      .select('source')
+                      .repeat(
+                          both('knows').has("type","agent").as('target').dedup()
+                          .where('target',neq('source'))
+                      ).times(maxReachDistance).emit()
+                    )
+                  .out("owns").out().has('type','item').as('titem').id()
+                  .select('titem').values('value').as('titemValue')
+                  .select('sitem').values('value').as('sitemValue')
+                  //.select('titem').values('itemId').as('titemId') // for debugging
+                  //.select('source').values('agentId').as('sourceId') // for debugging
+                  .math("1 - abs(titemValue - sitemValue)").as('diff')
+                  .choose(select('diff').is(gte(similarityThreshold)),
+                      __.choose(select('titem').bothE('similarity').otherV().values('itemId').where(eq('sitemId')),
+                          __.select('diff'),
+                          __.select('sitem').union(
+                              __.addE('similarity').to('titem').property('similarity',select('diff')).as('sedge'),
+                                addE('similarity').from('titem').property('similarity',select('diff'))
+                          )
+                      )
+                  )
+                  //.select('sourceId', 'sitemId', 'itemEdge', 'sitemValue','titemId','titemValue','diff')
+                  .select('sedge').count().next()
+      """            
 
-      logger.info('method={} : simulationId={} : agentId={} ; similarityThreshold={} ; maxReachDistance={} ; totalConnectionsCreated={} : wallTime_ms={} msec.', 
-        'searchAndConnect3', 
+      SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+
+      GraphResultSet rs = session.executeGraph(s);
+      logger.debug("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
+      int connectionsCreated = rs.one().asInt();
+
+      logger.info('method={} : simulationId={} : agentId={} ; similarityThreshold={} ; maxReachDistance={} ; connectionsCreated={} : wallTime_ms={} msec.', 
+        'searchAndConnect', 
         Global.parameters.simulationId,
         this.id(),
         similarityThreshold,
         maxReachDistance,
-        totalConnectionsCreated,
+        connectionsCreated,
         (System.currentTimeMillis()-start))
+
+      return connectionsCreated
 
     }
 
+    /*
     private Integer searchAndConnect(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
       logger.debug('Search and connect all items of agent {} with its known agents at similarity {}', this.id(), maxReachDistance)
@@ -398,6 +455,7 @@ public class Agent extends UntypedAbstractActor {
     * on the other hand it is not clear whether that would be beneficial or not in the long term
     * (yet it prevents current tests from passing..) 
     */
+    /*
     private Integer searchAndConnect2(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
       logger.debug('Search and connect items with similarity {} and distance {} from the perspective of agent {}', similarityThreshold, maxReachDistance, this.id())
@@ -414,7 +472,7 @@ public class Agent extends UntypedAbstractActor {
       logger.debug("Method {} took {} seconds to complete", 'searchAndConnect2', (System.currentTimeMillis()-start))
       return totalConnectionsCreated;
     }
-
+    */
 
     private List<Vertex> itemsOfKnownAgents(Integer maxReachDistance) {
       def start = System.currentTimeMillis()

@@ -138,7 +138,7 @@ public class AgentBehaviorStepDefs {
     */
 
     @When("^Agent \"([^\"]*)\" posts a pair of offer \"([^\"]*)\" and demand of \"([^\"]*)\"$")
-    public void agent_publishes_a_pair_of_offer_and_demand_of(String agentLabel, String offerValue, String demandValue) throws Throwable {
+    public void agent_publishes_a_pair_of_offer_and_demand_of(String agentLabel, Double offerValue, Double demandValue) throws Throwable {
         ActorRef actorRef = this.sim.createAgentWithId(agentLabel);
         assertNotNull(actorRef);
 	    Method msg = new Method("ownsWork", new ArrayList(){{add(demandValue);add(offerValue);}});

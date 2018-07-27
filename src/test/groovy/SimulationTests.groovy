@@ -138,6 +138,33 @@ public class SimulationTests {
 			
 		}
 
+		@Test
+		void createAgentNetworkWithChainAndRandomWorks() {
+			
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+			int size = 30
+
+			def chainLength = 4
+			def chains = [Utils.createChain(chainLength)]
+			def chain = chains[0]
+
+			def agentList = sim.createAgentNetwork(size)
+			assertEquals(agentList.size(), size)
+			Global.parameters.reportMode=false
+		    def chainedWorks = sim.addChainToNetwork(chains[0], true)  // add chain to network and return json structure...
+		    def randomWorksNumber = size * 2
+		    sim.addRandomWorksToAgents(randomWorksNumber) 
+      		//assertEquals(chainedWorks.size(),chainLength)
+			def agentNumber = sim.on.getVertices('agent').size();
+			assertEquals(agentNumber, size);
+			def knowsEdgeNumber = sim.on.getEdges('agent','knows').size();
+			assertEquals(knowsEdgeNumber, size-1);
+			def itemNumber = sim.on.getVertices('item').size();
+
+		}
+
 
 		@Test
 		void createAgentLineTest() {
@@ -525,11 +552,10 @@ public class SimulationTests {
 			logger.debug("Running centralized similarity search and connect")
 			def start = System.currentTimeMillis();
 
-			def allItems = sim.on.getVertices('item');
 			def similarityConnectThreshold = Global.parameters.similarityThreshold
 			
-			def similarityConnectionsCentralized = sim.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
-			logger.debug("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
+			def similarityConnectionsCentralized = sim.on.searchAndConnect(similarityConnectThreshold);
+			logger.debug("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized,similarityConnectThreshold);
 			logger.debug("Method {} took {} seconds to complete", 'centralizedPathSearchTest', (System.currentTimeMillis()-start)/1000)
 			
 			// Search for path -- results should include the chain that was previously created
@@ -557,7 +583,7 @@ public class SimulationTests {
       			pathsContainingChain = pathsContainingChain + contains
       		}
       		logger.debug("Found {} paths containing the chain", pathsContainingChain)
-      		assertTrue(pathsContainingChain > 0);
+      		assert pathsContainingChain > 0;
 		}
 
 		private Integer numsimilarityEdgesNotLessSimilar(Integer similarityConstraint) {
