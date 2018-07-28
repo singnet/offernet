@@ -1,4 +1,4 @@
-log4j.rootLogger = "DEBUG, SIM, DB, TR"
+log4j.rootLogger = "INFO, SIM"
 
 log4j.appender.SIM = "org.apache.log4j.FileAppender"
 log4j.appender."SIM.File" = './logs/OfferNet.log'
