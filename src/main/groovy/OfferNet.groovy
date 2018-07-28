@@ -176,6 +176,12 @@ public class OfferNet implements AutoCloseable {
           (System.currentTimeMillis()-start))
     }
 
+    private Object setEvaluationTimeout(String timeout) {
+       String query = "schema.config().option('graph.traversal_sources.g.evaluation_timeout').set('$timeout')"
+       cluster.connect().executeGraph(query);
+
+    }
+
     private Object createSocketWriter() {
       def socketWriter = system.actorOf(SocketWriter.props(),"SocketWriter");
       logger.debug("created a new SocketWriter actor {}", socketWriter);
@@ -477,7 +483,7 @@ public class OfferNet implements AutoCloseable {
     * so at the end there is no completeness guarantee of this method...
     * yet it is left as an example -- could be used for benchmarking performance when all work is done on graph back-end side
     */
-    public List allPathsCentralized(Object similarityThreshold, int version=2) {
+    public List allPathsCentralized2(Object similarityThreshold) {
         logger.debug("Centralized search of all paths in the network, version 2: maxPathLength=3");
         def start = System.currentTimeMillis();
         Map params = new HashMap();
@@ -635,28 +641,34 @@ public class OfferNet implements AutoCloseable {
 
 
       String query = """      
-                g.V().has('type','agent')
-                    .match(
-                        __.as('agent1').out('owns').as('work1').out('offers').as('offer'),
-                        __.as('agent1').both('knows').as('agent2'),
-                        __.as('agent2').out('owns').as('work2'),
-                        __.as('work2').out('demands').as('demand'),
-                        __.as('agent1').where(neq('agent2')),
-                        __.as('work1').where(neq('work2'))
-                    )
-                .select('offer').values('itemId').as('offerId')
-                .select('offer').values('value').as('offerValue')
-                .select('demand').values('value').as('demandValue')
-                .math('1-abs(demandValue - offerValue)').as('similarity').where(is(gte(similarityThreshold)))
-                .choose(select('demand').bothE('similarity').otherV().values('itemId').where(eq('offerId')),
-                          __.select('somilarity'),
-                          __.select('offer').union(
-                              __.addE('similarity').to('demand').property('similarity',select('similarity')).as('sedge'),
-                                addE('similarity').from('demand').property('similarity',select('similarity'))
-                            )
-                        )
-                .select('sedge').count().next()
+          def itemsOne = g.V().has('type','item').values('itemId').toList() // gets all items in the graph by itemIds
+          def itemsTwo = itemsOne.clone() // 
+          def sedges = []
 
+          for (int i = 0; i<itemsOne.size(); i++) {
+              def itemOneId  = itemsOne[i]
+              itemsTwo = itemsTwo.drop(1)
+              def agentOne = g.V().has('type','item').has('itemId',itemOneId).inE('offers','demands').as('edgeOne').outV().as('workOne').in('owns').as('agentOne').next()
+
+              for (int z = 0; z<itemsTwo.size(); z++) {
+                  def itemTwoId = itemsTwo[z]
+                  def agentTwo = g.V().has('type','item').has('itemId',itemTwoId).inE('offers','demands').as('edgeOne').outV().as('workOne').in('owns').as('agentOne').next()
+                  if (!agentOne.equals(agentTwo)) {
+                      // connect if similar
+                      def valueOne = g.V().has('type','item').has('itemId',itemOneId).values('value').next()
+                      def valueTwo = g.V().has('type','item').has('itemId',itemTwoId).values('value').next()
+                      Double similarity = 1 - Math.abs(valueOne - valueTwo)
+                      if (similarity >= similarityThreshold) {
+                          if (!g.V().has('type','item').has('itemId',itemOneId).bothE('similarity').otherV().values('itemId').where(is(eq(itemTwoId))).hasNext()) {
+                              def sedge = g.V().has('type','item').has('itemId',itemOneId).addE('similarity').to(g.V().has('type','item').has('itemId',itemTwoId)).property('similarity',similarity).next()
+                              g.V().has('type','item').has('itemId',itemOneId).addE('similarity').from(g.V().has('type','item').has('itemId',itemTwoId)).property('similarity',similarity).next()
+                              sedges.add(sedge)
+                          }
+                      }
+                  }
+              }
+          }
+          sedges.size()
       """            
 
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);
@@ -676,4 +688,187 @@ public class OfferNet implements AutoCloseable {
       return connectionsCreated
 
     }
+
+    // all follwing methods are for centralized search:
+
+    private List connectAllSimilarCentralized() {
+      def similarityThreshold = Global.parameters.similarityThreshold
+      def allItems = this.getVertices('item')
+      def start = System.currentTimeMillis();
+      def similarityEdges=[];
+      def tail = allItems;
+      logger.debug('running recursiveSimilaritySearch')
+      for (int i =0; i<allItems.size();i++) {
+        def item = allItems[i];
+        tail = allItems.drop(1);
+        similarityEdges.addAll(connectAllSimilar(item,tail,similarityThreshold));
+      }
+      logger.debug('Added total {} similarity edges to the graph (centralized)',similarityEdges.size())
+
+      logger.info('method={} : simulationId={} : items_count={} ; similarityThreshold={} ; similarity_edges_count={} : wallTime_ms={} msec.', 
+          'connectAllSimilarCentralized', 
+          Global.parameters.simulationId,
+          allItems.size(),
+          similarityThreshold,
+          similarityEdges.size(),
+          (System.currentTimeMillis()-start))
+
+      return similarityEdges;
+    }
+
+
+    /**
+    Exact copy of Agent.connectAllSimilar
+    */
+    private List connectAllSimilar(Vertex item, List<Vertex> itemsOfKnownAgents, Double similarityThreshold) {
+        def start = System.currentTimeMillis()
+        def similarityEdges = [];
+        itemsOfKnownAgents.each {knownItem ->
+            def edge = this.connectIfSimilar(item,knownItem,similarityThreshold)
+            if (edge != null) {similarityEdges.add(edge)}
+        }
+        
+        logger.info('method={} : simulationId={} : item={}; known_items_count={} ; similarityThreshold={} ; added_similarity_edges_count={} : wallTime_ms={} msec.', 
+          'connectAllSimilar', 
+          Global.parameters.simulationId,
+          item.getId(),
+          itemsOfKnownAgents.size(),
+          similarityThreshold,
+          similarityEdges.size(),
+          (System.currentTimeMillis()-start))
+
+        return similarityEdges;
+    }
+
+    /**
+    Exact copy of Agent.connectIfSimilar
+    */
+    private Edge connectIfSimilar(Vertex item, Vertex knownItem, Double similarityThreshold) {
+      def start = System.currentTimeMillis()
+      def similarityEdge = null;
+      if (this.existsSimilarity(item,knownItem) == -1) {
+        def similarity = Utils.calculateSimilarity(item,knownItem);
+        logger.debug("The similarity between items {} and {} is {}", item.getId(),knownItem.getId(),similarity);
+        if (similarity >= similarityThreshold) {
+            logger.debug("similarity {}  >= similarityThreshold {}, therefore connecting", similarity, similarityThreshold)
+            similarityEdge = this.reciprocalDistanceLink(item,knownItem,similarity)
+        } else {
+           logger.debug("similarity {} < similarityThreshold {}, therefore not connecting", similarity, similarityThreshold)
+        }
+      }
+      
+      logger.info('method={} : simulationId={} : item={} ; knownItem={} ; similarityThreshold={} ; added_similarity_edge={} : wallTime_ms={} msec.', 
+        'connectIfSimilar', 
+        Global.parameters.simulationId,
+        item.getId(),
+        knownItem.getId(),
+        similarityThreshold,
+        similarityEdge ? similarityEdge.getId(): null,
+        (System.currentTimeMillis()-start))
+
+      return similarityEdge;
+  }
+
+  /**
+  Exact copy of Agent.existsSimilarity
+  */
+  private Integer existsSimilarity(Vertex item, Vertex anotherItem) {
+    def start = System.currentTimeMillis();
+    logger.debug("Checking if explicit similarity link exists between from {} to {}",item.getId(),anotherItem.getId())
+    List similarityList = []
+    this.similarityEdges(item).each { outEdge ->
+        if (outEdge.getInV() == anotherItem.getId()) {
+          similarityList.add(outEdge);
+          logger.debug("Found similarity link {}",outEdge)
+        }
+    }
+    def similarity = similarityList.isEmpty()!= true ? Utils.edgePropertyValue(similarityList[0],'similarity') : -1;
+
+    logger.info('method={} : simulationId={} : item={} ; anotherItem={} ; similarity_value={} : wallTime_ms={} msec.', 
+      'existsSimilarity', 
+      Global.parameters.simulationId,
+      item.getId(),
+      anotherItem.getId(),
+      similarity,
+      (System.currentTimeMillis()-start))
+
+
+    return similarity;
+  }
+
+  /**
+  Exact copy of Agent.similarityEdges
+  */
+  private List<Edge> similarityEdges(Vertex item) {
+    def start = System.currentTimeMillis()
+    Map params = new HashMap();
+    params.put("thisItem", item.getId());
+
+    SimpleGraphStatement s = new SimpleGraphStatement(
+          "g.V(thisItem).outE('similarity')", params)
+
+    GraphResultSet rs = session.executeGraph(s);
+    List similarityEdges = rs.all().collect {it.asEdge()};
+
+    logger.info('method={} : simulationId={} : item={} ; similarity_edges_count={} : wallTime_ms={} msec.', 
+      'similarityEdges', 
+      Global.parameters.simulationId,
+      item.getId(),
+      similarityEdges.size(),
+      (System.currentTimeMillis()-start))
+
+    return similarityEdges;
+
+  }
+
+  /**
+  Exact copy of Agent.reciprocalDistanceLink
+  */
+  private Edge reciprocalDistanceLink(Vertex item, Vertex knownItem, Object similarity) {
+     // every similarity edge created also triggers the creation of reciprocal edge with same parameters
+     //this.connect(knownItem,item,similarity);
+     return this.connect(item,knownItem, similarity);
+  }
+
+  /**
+  Exact copy of Agent.connect
+  */
+  private Object connect(Vertex item, Vertex knownItem, Object similarity) {
+    def start = System.currentTimeMillis();
+    Map params = new HashMap();
+    params.put("item1", item.getId());
+    params.put("item2",knownItem.getId());
+    params.put('edgeLabel','similarity');
+    params.put('valueKey','similarity');
+    params.put('valueName', (Double) similarity);
+
+    logger.debug("Creating similarity edge from item {} to item {} with value {}", params.item1, params.item2, similarity)
+
+    SimpleGraphStatement s = new SimpleGraphStatement(
+            "def v1 = g.V(item1).next()\n" +
+            "def v2 = g.V(item2).next()\n" +
+            "def e = v1.addEdge(edgeLabel, v2)\n"+
+            "e.property(valueKey,valueName)\n"+
+            "def e2 = v2.addEdge(edgeLabel, v1)\n"+
+            "e2.property(valueKey,valueName)\n"+
+            "e", params);
+
+    GraphResultSet rs = session.executeGraph(s);
+    def similarityEdge = rs.one().asEdge();
+
+    logger.info('method={} : simulationId={} : item={} ; knownItem={} ; similarity={} ; similarityEdge={} : wallTime_ms={} msec.', 
+      'connect', 
+      Global.parameters.simulationId,
+      item.getId(),
+      knownItem.getId(),
+      similarity,
+      similarityEdge.getId(),
+      (System.currentTimeMillis()-start))
+
+
+    return similarityEdge;
+  }
+
+
+
 }

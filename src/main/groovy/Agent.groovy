@@ -425,55 +425,6 @@ public class Agent extends UntypedAbstractActor {
 
     }
 
-    /*
-    private Integer searchAndConnect(Object similarityThreshold, Integer maxReachDistance) {
-      def start = System.currentTimeMillis();
-      logger.debug('Search and connect all items of agent {} with its known agents at similarity {}', this.id(), maxReachDistance)
-      def totalConnectionsCreated = 0;
-      this.allItems().each {item ->
-        def itemsOfKnownAgents = this.itemsOfKnownAgents(maxReachDistance);
-        def similarityEdges = this.connectAllSimilar(item,itemsOfKnownAgents,similarityThreshold);
-        totalConnectionsCreated=totalConnectionsCreated+similarityEdges.size();
-      }
-
-      logger.info('method={} : simulationId={} : agentId={} ; similarityThreshold={} ; maxReachDistance={} ; totalConnectionsCreated={} : wallTime_ms={} msec.', 
-        'searchAndConnect', 
-        Global.parameters.simulationId,
-        this.id(),
-        similarityThreshold,
-        maxReachDistance,
-        totalConnectionsCreated,
-        (System.currentTimeMillis()-start))
-
-      return totalConnectionsCreated;
-    }
-
-    /* 
-    * maybe search and connect can be done more efficient by allowing to connect not only items similar to the one
-    * from which a search has bee initiated, but also all other along the way
-    * yet this requires to check if items of the same agent are getting connected
-    * on the other hand it is not clear whether that would be beneficial or not in the long term
-    * (yet it prevents current tests from passing..) 
-    */
-    /*
-    private Integer searchAndConnect2(Object similarityThreshold, Integer maxReachDistance) {
-      def start = System.currentTimeMillis();
-      logger.debug('Search and connect items with similarity {} and distance {} from the perspective of agent {}', similarityThreshold, maxReachDistance, this.id())
-      def totalConnectionsCreated = 0;
-      def itemsToProcess = this.itemsOfKnownAgents(maxReachDistance);
-      itemsToProcess.addAll(this.allItems());
-      for (def i = 0; i<itemsToProcess.size();i++) {
-        def item = itemsToProcess.get(i)
-        def similarityEdges = this.connectAllSimilar(item,itemsToProcess.drop(i+1),similarityThreshold);
-        logger.debug("Found and connected {} similar items to the item {}",similarityEdges.size(),item.getId())
-        totalConnectionsCreated=totalConnectionsCreated+similarityEdges.size();
-      }
-      logger.debug("Created {} new similarity connections for agent {}", totalConnectionsCreated, this.id())
-      logger.debug("Method {} took {} seconds to complete", 'searchAndConnect2', (System.currentTimeMillis()-start))
-      return totalConnectionsCreated;
-    }
-    */
-
     private List<Vertex> itemsOfKnownAgents(Integer maxReachDistance) {
       def start = System.currentTimeMillis()
       Map params = new HashMap();

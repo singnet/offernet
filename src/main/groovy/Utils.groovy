@@ -308,6 +308,7 @@ public class Utils {
     }
 
     public static boolean pathContainsChain(Object uniquePathJson, Object chainedWorksJson) {
+      def start = System.currentTimeMillis();
       logger.debug('checking if path contains the chain...')
       logger.debug('uniquePathJson is {}',uniquePathJson)
       logger.debug('chainedWorksJson is {}', chainedWorksJson)
@@ -372,7 +373,20 @@ public class Utils {
 
       def pathContainsChain = size & firstItem & lastItem & innerItems
       logger.debug('{} that path {} contains chain {}',pathContainsChain,uniquePathJson,chainedWorksJson)
+      logger.info('method={} : simulationId={} : result={} : wallTime_ms={} msec.', 
+          'pathContainsChain', 
+          Global.parameters.simulationId,
+          pathContainsChain,
+          (System.currentTimeMillis()-start))
       return pathContainsChain
     }
 
+    public static Object calculateSimilarity(Vertex itemOne, Vertex itemTwo) {
+        return Utils.kabirSimilarity(itemOne.getProperty("value").getValue().asDouble(), itemTwo.getProperty("value").getValue().asDouble())
+//      return Utils.cosineSimilarity(itemOne.getProperty("value").getValue().asString(), itemTwo.getProperty("value").getValue().asString())
+    }
+
+    public static Object kabirSimilarity(Double valueOne, Double valueTwo) {
+        return 1-Math.abs(valueOne - valueTwo)
+    }
 }

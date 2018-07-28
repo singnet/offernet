@@ -59,11 +59,11 @@ public class Experiments {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [500, 1000] // number of agents in the network
-		def chainLengths = [10] // the length of the chain to drop into the network (cannot be less than 3!)
-		def randomWorksNumberMultipliers = [1,2] // number of random works (outside chain) to drop into the network;
+		def agentNumbers = [100,500,1000,2000] // number of agents in the network
+		def chainLengths = [5,10] // the length of the chain to drop into the network (cannot be less than 3!)
+		def randomWorksNumberMultipliers = [2] // number of random works (outside chain) to drop into the network;
 		def maxDistances = [9] // the maximum number of hops when doing decentralized similarity search;
-		def similaritySearchThresholds = [0.99] // consider only items that are this similar when searching for path;
+		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
 
 		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}', 
       		'compareDecentralizedAndCentralizedSearch', 

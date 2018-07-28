@@ -436,13 +436,14 @@ public class SimulationTests {
 		  	logger.debug('Added work {} to agent {}', taskWork, taskAgent)			
 
 		  	sim.decentralizedSimilaritySearchAndConnect(maxDistance)
+		  	//sim.centralizedSimilaritySearchAndConnect();
 			Thread.sleep(1500)
 			 // test fails without above line: 
 			 //it seems that connectIfSimilarForAllAgents takes a lot of time
 			 // need to debug
  	       	int foundCyclesCount = sim.decentralizedCycleSearch(taskAgent, chainedWorksJson);
       		logger.debug("Found {} paths containing the chain", foundCyclesCount)
-      		assertTrue(foundCyclesCount > 0);
+      		assert foundCyclesCount > 0;
 		}
 
 
@@ -458,11 +459,11 @@ public class SimulationTests {
 
 		void centralizedCycleSearchTest(int searchVersion) {
 			/* run test with parameters: */
-			def agentNumber = 6 // number of agents in the network
+			def agentNumber = 100 // number of agents in the network
 			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
 			def randomWorksNumber = 4 // number of random works (outside chain) to drop into the network;
 			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
-			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
+			def similaritySearchThreshold = 1 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
 
 	       	// create simulation object
@@ -504,16 +505,22 @@ public class SimulationTests {
 		  	assertNotNull(taskWork);
 		  	logger.debug('Added work {} to agent {}', taskWork, taskAgent)			
 
-			sim.centralizedSimilaritySearchAndConnect();			
+		  	
+		  	def t = System.currentTimeMillis()
+			//sim.on.connectAllSimilarCentralized(); def method = 'connectAllSimilarCentralized'
+			sim.decentralizedSimilaritySearchAndConnect(10); def method = 'decentralizedSimilaritySearchAndConnect(4)'
+			//sim.centralizedSimilaritySearchAndConnect(); def method = 'centralizedSimilaritySearchAndConnect'			
+			logger.debug('{} method of centralizedCycleSearch took {} ms for {} agents', method, System.currentTimeMillis()-t, agentNumber)						
 			Thread.sleep(1000)
 			 // test fails without above line: 
 			 //it seems that connectIfSimilarForAllAgents takes a lot of time
 			 // need to debug
 
 			 //running a centralized cycle search
+			
 			def foundCyclesCount = sim.allCyclesCentralized(similaritySearchThreshold,chainedWorksJson,searchVersion)
      		logger.debug("Found {} cycles containing the chain", foundCyclesCount)
-      		assertTrue(foundCyclesCount > 0);
+      		assert foundCyclesCount > 0;
 
 		}		
 
@@ -525,7 +532,7 @@ public class SimulationTests {
 			def agentNumber = 6 // number of agents in the network
 			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
 			def randomWorksNumber = 4 // number of random works (outside chain) to drop into the network;
-			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
+			def similaritySearchThreshold = 1 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
 
 

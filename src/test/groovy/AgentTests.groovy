@@ -117,7 +117,7 @@ public class AgentTests {
 		def work1 = agent1.ownsWork();
 		def work2 = agent2.ownsWork();
 		def item1 = agent1.addItemToWork("demands",work1)
-		def item2 = agent2.addItemToWork("demands",work1)
+		def item2 = agent2.addItemToWork("offers",work2)
 
 		agent1.searchAndConnect(0.0,2)
 
@@ -302,7 +302,7 @@ public class AgentTests {
 		The resulting graph has 4 agents, 4 works, 8 items and 6 reciprocal connections (12 links in total)
 		*/
 		assertEquals(3,agent1.searchAndConnect(0.5,2)) // this traverses part of the graph
-		assertEquals(1,agent1.searchAndConnect(0.5,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(0.5)
+		assertEquals(2,agent1.searchAndConnect(0.5,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(0.5)
 	}
 
 	@Test

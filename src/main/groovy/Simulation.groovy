@@ -448,16 +448,18 @@ class Simulation extends UntypedAbstractActor {
       allPaths.each { uniquePathJson ->
         def pathId = Utils.generateRandomString(6)
         boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
+        def keyword='foundPath'
         if (containsChain) {
-          def keyword = "foundCycle"
+          keyword = "foundCycle"
           pathsContainingChain +=1;
-          logger.info('method={} : simulationId={} : cyGraph={} : wallTime_ms={} msec.', 
-            currentMethodName, 
-            Global.parameters.simulationId,
-            Utils.convertToCYNotation(uniquePathJson,keyword),
-            (System.currentTimeMillis()-start)
-          )
         }
+        logger.info('method={} : simulationId={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
+          currentMethodName, 
+          Global.parameters.simulationId,
+          keyword,
+          Utils.convertToCYNotation(uniquePathJson,keyword),
+          (System.currentTimeMillis()-start)
+        )
       }
       return pathsContainingChain;
     }
@@ -521,16 +523,18 @@ class Simulation extends UntypedAbstractActor {
       allPaths.each { uniquePathJson ->
         def pathId = Utils.generateRandomString(6)
         boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
+        def keyword = "foundPath"
         if (containsChain) {
-          def keyword = "foundCycle"
-          pathsContainingChain +=1;
-          logger.info('method={} : simulationId={} : cyGraph={} : wallTime_ms={} msec.', 
-            currentMethodName, 
-            Global.parameters.simulationId,
-            Utils.convertToCYNotation(uniquePathJson,keyword),
-            (System.currentTimeMillis()-start)
-          )
+          keyword = "foundCycle"
         }
+        pathsContainingChain +=1;
+        logger.info('method={} : simulationId={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
+          currentMethodName, 
+          Global.parameters.simulationId,
+          keyword,
+          Utils.convertToCYNotation(uniquePathJson,keyword),
+          (System.currentTimeMillis()-start)
+        )
       }
       return pathsContainingChain;
     }
@@ -624,12 +628,14 @@ class Simulation extends UntypedAbstractActor {
     void centralizedSimilaritySearchAndConnect() {
       logger.debug("Running centralized similarity search and connect")
       def start = System.currentTimeMillis();
+      this.on.setEvaluationTimeout('PT2H')
 
-      def allItems = this.on.getVertices('item');
+      //def allItems = this.on.getVertices('item');
       def similarityConnectThreshold = Global.parameters.similarityThreshold
       
-      def similarityConnectionsCentralized = this.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
-      logger.debug("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
+      def similarityConnectionsCentralized = this.on.searchAndConnect(similarityConnectThreshold);
+      this.on.setEvaluationTimeout('30 s')
+      logger.debug("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized,similarityConnectThreshold);
       logger.debug("Method {} took {} seconds to complete", 'decentralizedSimilaritySearchAndConnect', (System.currentTimeMillis()-start)/1000)
     }
 

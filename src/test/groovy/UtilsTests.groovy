@@ -78,4 +78,12 @@ public class UtilsTests {
 	   		def graphEdgeLabel = fieldNames.get('~local_id');
 	   		assertTrue(edgeLabel == graphEdgeLabel)
 		}
+
+		@Test
+		void kabirSimilarityTest() {
+			def valueOne = 0.7
+			def valueTwo = 0.1
+			def kabirSimilarity = Utils.kabirSimilarity(valueOne, valueTwo)
+			assert kabirSimilarity == 0.4
+		}
 }
