@@ -288,7 +288,11 @@ public class Agent extends UntypedAbstractActor {
         params.put("propertyValue1","agent")      
         params.put("edgeLabel","owns");
 
-        SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(propertyKey1, propertyValue1).has('agentId',agent).out(edgeLabel)",params);
+        String query = "g.V().has(propertyKey1, propertyValue1).has('agentId',agent).out(edgeLabel)"
+          
+        SimpleGraphStatement s = new SimpleGraphStatement(query,params);
+
+        logger.debug("Executing statement: {}", Utils.getStatement(query, params))
 
         GraphResultSet rs = session.executeGraph(s);
         List<Vertex> works = rs.all().collect {it.asVertex()};
@@ -657,6 +661,16 @@ public class Agent extends UntypedAbstractActor {
         (System.currentTimeMillis()-start))
 
       return result;
+  }
+
+  private List<GraphNode> cycleSearch(Object similarityConstraint) {
+      def itemWorks = this.getWorks();
+      List<GraphNode> agentCycles = []
+      itemWorks.each { work ->
+          List<GraphNode> workCycles = this.cycleSearch(work, similarityConstraint);
+          agentCycles.addAll(workCycles)
+      }
+      return agentCycles
   }
 
   private List<GraphNode> cycleSearch(Vertex work, Object similarityConstraint) {

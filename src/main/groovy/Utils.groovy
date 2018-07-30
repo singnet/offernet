@@ -82,6 +82,15 @@ public class Utils {
       }
       return executionStatement;
     }
+
+    public static String getStatement(String query, Map params) {
+      params.each { labelName,labelValue ->
+        query = query.replaceAll(labelName.toString(), labelValue.toString());
+      }
+      return query;
+    }
+
+
     private static Object edgePropertyValue(Edge edge,String propertyName) {
         logger.debug("Returning integer value of the property {} on edge {}", propertyName,edge.getId())
         //def value = edge.getProperty('similarity').getValue().asInt()

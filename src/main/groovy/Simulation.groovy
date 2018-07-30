@@ -415,26 +415,17 @@ class Simulation extends UntypedAbstractActor {
       def start = System.currentTimeMillis()
       def currentMethodName = 'naiveCentralizedCycleSearch';
       int totalPaths = 0;
+      def agentPaths =  []
       def uniquePaths = [] as Set;
-      def agentPaths;
       def actorRefList = new ArrayList(this.actorRefToVertexIdTable.keySet())
       actorRefList.each{ agent -> 
-        agentPaths = [];
-        logger.debug("Getting all works of an agent {}", agent)
-        Method msg = new Method("getWorks", new ArrayList());
-        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+        logger.debug("Running decentralized PathSearch from agent's {} perspective", agent)
+        Method msg = new Method("cycleSearch", new ArrayList(){{add(similaritySearchThreshold)}});
+        Timeout timeout = new Timeout(Duration.create(120, "seconds"));
         Future<Object> future = Patterns.ask(agent, msg, timeout);
-        List works = (List<Vertex>) Await.result(future, timeout.duration());
-        logger.debug("Retrieved {} works of agent {}", works.size(), agent)
-        works.each { work ->
-          logger.debug("Running decentralized PathSearch from work's {} perspective", work)
-          msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
-          timeout = new Timeout(Duration.create(120, "seconds"));
-          future = Patterns.ask(agent, msg, timeout);
-          List path = (List<GraphNode>) Await.result(future, timeout.duration());
-          logger.debug("Found path {} from work {}",path,work)
-          if (path.size()!=0) {agentPaths.add(path);totalPaths += 1;}
-        }
+        List paths = (List<GraphNode>) Await.result(future, timeout.duration());
+        logger.debug("Found paths {} from agent {}",paths,agent)
+        if (paths.size()!=0) {agentPaths.add(paths);totalPaths += 1;}
         logger.debug("Found {} paths from agent {} perspective", agentPaths.size(), agent)
         uniquePaths.addAll(agentPaths)
       }
@@ -468,6 +459,7 @@ class Simulation extends UntypedAbstractActor {
     /**
     * Depth first centralized search is just a depth first search which works pretty much
     * like the naive one, but checks visited agents and works prior to processing them
+    * NOT GOOD - HAVE TO REWRITE
     */
     public int depthFirstCycleSearch(Object similaritySearchThreshold, List chainedWorksJson) {
       def currentMethodName = 'depthFirstCycleSearch';
@@ -647,19 +639,13 @@ class Simulation extends UntypedAbstractActor {
         def uniqueCycles = [] as Set
         def similaritySearchThreshold = Global.parameters.similaritySearchThreshold 
         logger.debug("Getting all works of an agent {}", agent)
-        Method msg = new Method("getWorks", new ArrayList());
+        logger.debug("Running decentralized PathSearch from agent's {} perspective", agent)
+        Method msg = new Method("cycleSearch", new ArrayList(){{add(similaritySearchThreshold)}});
         Timeout timeout = new Timeout(Duration.create(120, "seconds"));
         Future<Object> future = Patterns.ask(agent, msg, timeout);
-        List works = (List<Vertex>) Await.result(future, timeout.duration());
-        logger.debug("Retrieved {} works of agent {}", works.size(), agent)
-        works.each { work ->
-          logger.debug("Running decentralized PathSearch from work's {} perspective", work)
-          msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
-          timeout = new Timeout(Duration.create(5, "seconds"));
-          future = Patterns.ask(agent, msg, timeout);
-          List cycle = (List<GraphNode>) Await.result(future, timeout.duration());
-          logger.debug("Found path {} from work {}",cycle,work)
-          
+        List cycle = (List<GraphNode>) Await.result(future, timeout.duration());
+        logger.debug("Found paths {} from agent {}",cycle,agent)
+        
           def jsonSlurper = new JsonSlurper()
           def cycleJson = jsonSlurper.parseText(cycle.toString());
 
@@ -674,16 +660,14 @@ class Simulation extends UntypedAbstractActor {
               } else {keyword = "foundPath"}
           }
        
-          logger.info('method={} : simulationId={} : agentId={} : work={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
+          logger.info('method={} : simulationId={} : agentId={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
             currentMethodName, 
             Global.parameters.simulationId,
             this.actorRefToAgentIdTable.get(agent),
-            work.getId(),
             keyword,
             Utils.convertToCYNotation(richCycle,keyword),
             (System.currentTimeMillis()-start)
           )
-        }
         return foundCyclesCount;
     }
 
