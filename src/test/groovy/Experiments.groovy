@@ -33,6 +33,7 @@ import groovy.json.JsonSlurper;
 
 import akka.testkit.TestActorRef
 import akka.testkit.JavaTestKit;
+import akka.testkit.javadsl.TestKit;
 
 
 
@@ -48,6 +49,12 @@ public class Experiments {
 
 	}
 
+	@AfterClass
+  	static void teardown() {
+    	TestKit.shutdownActorSystem(system);
+    	system = null;
+  	}
+
 	@Test
 	void compareDecentralizedAndCentralizedSearch() {
 
@@ -59,10 +66,10 @@ public class Experiments {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [50, 100, 500]//, 1000, 2000, 5000] // number of agents in the network
-		def chainLengths = [5 ,10] // the length of the chain to drop into the network (cannot be less than 3!)
+		def agentNumbers = [100]//, 1000, 2000, 5000] // number of agents in the network
+		def chainLengths = [10] // the length of the chain to drop into the network (cannot be less than 3!)
 		def randomWorksNumberMultipliers = [2] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [10, 50]//100, 250] // the maximum number of hops when doing decentralized similarity search;
+		def maxDistances = [10]//100, 250] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
 
 		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}', 
@@ -92,9 +99,10 @@ public class Experiments {
 							assertNotNull(sim);
 							sim.on.flushVertices();
 
-							logger.info('experimentId={} : simulationId={} : agentNumber={} : chainLength={} : randomWorksNumberMultiplier={} : maxDistance={} : similaritySearchThreshold={}',
+							logger.info('experimentId={} : simulationId={} : keyword={} : agentNumber={} : chainLength={} : randomWorksNumberMultiplier={} : maxDistance={} : similaritySearchThreshold={}',
 								experimentId,
 								Global.parameters.simulationId,
+								'simulationParameters',
 					     		agentNumber,
 					      		chainLength,
 					      		randomWorksNumberMultiplier,
@@ -212,10 +220,12 @@ public class Experiments {
 						      	)								 
 
 								sim.on.analyze("after: // 8.2.1 naiveCentralizedCycleSearch")
+								/*
 								//8.2.2: looking for a cycle depthFirstSerch:
 								start = System.currentTimeMillis();
 
 								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 2)
+								*/
 
 								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
 									experimentId,
@@ -224,10 +234,9 @@ public class Experiments {
 						     		(System.currentTimeMillis()-start)
 						      	)								 
 
-								String message = "Final analysis (also after: // 8.2.2 depthFirstCycleSearch) of experimentId="+experimentId
+								String message = "Final analysis (also after: // 8.2.1 naiveCentralizedCycleSearch) of experimentId="+experimentId
 								sim.on.analyze(message)
 
-								sim.stop()
 						}
 					}
 				}
