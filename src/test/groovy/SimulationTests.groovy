@@ -330,7 +330,7 @@ public class SimulationTests {
 			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
 			def randomWorksNumber = 4 // number of random works (outside chain) to drop into the network;
 			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
-			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
+			def similaritySearchThreshold = 1 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
 
 	       	Global.parameters.similaritySearchThreshold = similaritySearchThreshold
@@ -387,12 +387,11 @@ public class SimulationTests {
 		@Test
 		void decentralizedCycleSearchTest() {
 			/* run test with parameters: */
-			def agentNumber = 6 // number of agents in the network
-			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
-			def randomWorksNumber = 4 // number of random works (outside chain) to drop into the network;
-			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
-			def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
-	       	def cutoffValue = 4; // maximum number of hops when doing path search;
+			def agentNumber = 200 // number of agents in the network
+			def chainLength = 10 // the length of the chain to drop into the network;
+			def randomWorksNumber = 50*2 // number of random works (outside chain) to drop into the network;
+			def maxDistance = 50; // the maximum number of hops when doing decentralized similarity search;
+			def similaritySearchThreshold = 1 // consider only items that are this similar when searching for path;
 
 	       	Global.parameters.similaritySearchThreshold = similaritySearchThreshold
 	       	Global.parameters.persistence = false
@@ -437,7 +436,7 @@ public class SimulationTests {
 
 		  	sim.decentralizedSimilaritySearchAndConnect(maxDistance)
 		  	//sim.centralizedSimilaritySearchAndConnect();
-			Thread.sleep(1500)
+			Thread.sleep(3000)
 			 // test fails without above line: 
 			 //it seems that connectIfSimilarForAllAgents takes a lot of time
 			 // need to debug
@@ -459,11 +458,11 @@ public class SimulationTests {
 
 		void centralizedCycleSearchTest(int searchVersion) {
 			/* run test with parameters: */
-			def agentNumber = 100 // number of agents in the network
+			def agentNumber = 50 // number of agents in the network
 			def chainLength = agentNumber -2 // the length of the chain to drop into the network;
 			def randomWorksNumber = 4 // number of random works (outside chain) to drop into the network;
 			def maxDistance = 4; // the maximum number of hops when doing decentralized similarity search;
-			def similaritySearchThreshold = 1 // consider only items that are this similar when searching for path;
+			def similaritySearchThreshold = 0.99999 // consider only items that are this similar when searching for path;
 	       	def cutoffValue = 4; // maximum number of hops when doing path search;
 
 	       	// create simulation object
@@ -508,7 +507,7 @@ public class SimulationTests {
 		  	
 		  	def t = System.currentTimeMillis()
 			//sim.on.connectAllSimilarCentralized(); def method = 'connectAllSimilarCentralized'
-			sim.decentralizedSimilaritySearchAndConnect(10); def method = 'decentralizedSimilaritySearchAndConnect(4)'
+			sim.decentralizedSimilaritySearchAndConnect(20); def method = 'decentralizedSimilaritySearchAndConnect(10)'
 			//sim.centralizedSimilaritySearchAndConnect(); def method = 'centralizedSimilaritySearchAndConnect'			
 			logger.debug('{} method of centralizedCycleSearch took {} ms for {} agents', method, System.currentTimeMillis()-t, agentNumber)						
 			Thread.sleep(1000)

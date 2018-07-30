@@ -373,10 +373,12 @@ public class Utils {
 
       def pathContainsChain = size & firstItem & lastItem & innerItems
       logger.debug('{} that path {} contains chain {}',pathContainsChain,uniquePathJson,chainedWorksJson)
-      logger.info('method={} : simulationId={} : result={} : wallTime_ms={} msec.', 
+      logger.info('method={} : simulationId={} :  result={}: path={} : chain={} : wallTime_ms={} msec.', 
           'pathContainsChain', 
           Global.parameters.simulationId,
           pathContainsChain,
+          uniquePathJson,
+          chainedWorksJson,
           (System.currentTimeMillis()-start))
       return pathContainsChain
     }

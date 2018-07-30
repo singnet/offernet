@@ -176,7 +176,8 @@ class Simulation extends UntypedAbstractActor {
 
   /**
   * This method sends a single message to every agent in a system in a row instructing it to start searchAndConnect method on their behalf
-  * Used for testing purposes only. It is a semi-decentralized: decentralized because each agent gets a message and starts routines asynchronously. Centralized because a global list of agents is used. Complete decentralization could be achieved by randomly choosing agents in the network that start the discovery process.
+  * Used for testing purposes only. It is a semi-decentralized: decentralized because each agent gets a message and starts routines asynchronously. The only that miss from making it centralized is the check that all items in the graph are visited -- this should not be very difficult to do.
+  Centralized because a global list of agents is used. Complete decentralization could be achieved by randomly choosing agents in the network that start the discovery process.
   */
 	private void connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) throws Throwable{
 
@@ -189,7 +190,7 @@ class Simulation extends UntypedAbstractActor {
         agentRef.tell(msg,getSelf());
 		}
 
-    logger.info('{} : {} : agent count in the list={}; similarityThreshold={}; maxReachDistance={} : wallTime_ms={} sec.', 
+    logger.info('{} : {} : agentNumber={}; similarityThreshold={}; maxReachDistance={} : wallTime_ms={} sec.', 
       'connectIfSimilarForAllAgents', 
       Global.parameters.simulationId,
       agentList.size(),
@@ -628,7 +629,7 @@ class Simulation extends UntypedAbstractActor {
     void centralizedSimilaritySearchAndConnect() {
       logger.debug("Running centralized similarity search and connect")
       def start = System.currentTimeMillis();
-      this.on.setEvaluationTimeout('PT2H')
+      //this.on.setEvaluationTimeout('PT2H')
 
       //def allItems = this.on.getVertices('item');
       def similarityConnectThreshold = Global.parameters.similarityThreshold
@@ -647,7 +648,7 @@ class Simulation extends UntypedAbstractActor {
         def similaritySearchThreshold = Global.parameters.similaritySearchThreshold 
         logger.debug("Getting all works of an agent {}", agent)
         Method msg = new Method("getWorks", new ArrayList());
-        Timeout timeout = new Timeout(Duration.create(10, "seconds"));
+        Timeout timeout = new Timeout(Duration.create(120, "seconds"));
         Future<Object> future = Patterns.ask(agent, msg, timeout);
         List works = (List<Vertex>) Await.result(future, timeout.duration());
         logger.debug("Retrieved {} works of agent {}", works.size(), agent)

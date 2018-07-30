@@ -643,7 +643,7 @@ public class OfferNet implements AutoCloseable {
       String query = """      
           def itemsOne = g.V().has('type','item').values('itemId').toList() // gets all items in the graph by itemIds
           def itemsTwo = itemsOne.clone() // 
-          def sedges = []
+          def sedges = 0
 
           for (int i = 0; i<itemsOne.size(); i++) {
               def itemOneId  = itemsOne[i]
@@ -662,13 +662,13 @@ public class OfferNet implements AutoCloseable {
                           if (!g.V().has('type','item').has('itemId',itemOneId).bothE('similarity').otherV().values('itemId').where(is(eq(itemTwoId))).hasNext()) {
                               def sedge = g.V().has('type','item').has('itemId',itemOneId).addE('similarity').to(g.V().has('type','item').has('itemId',itemTwoId)).property('similarity',similarity).next()
                               g.V().has('type','item').has('itemId',itemOneId).addE('similarity').from(g.V().has('type','item').has('itemId',itemTwoId)).property('similarity',similarity).next()
-                              sedges.add(sedge)
+                              sedges +=1
                           }
                       }
                   }
               }
           }
-          sedges.size()
+          sedges
       """            
 
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);

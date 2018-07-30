@@ -59,10 +59,10 @@ public class Experiments {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [100,500,1000,2000] // number of agents in the network
-		def chainLengths = [5,10] // the length of the chain to drop into the network (cannot be less than 3!)
+		def agentNumbers = [50, 100, 500]//, 1000, 2000, 5000] // number of agents in the network
+		def chainLengths = [5 ,10] // the length of the chain to drop into the network (cannot be less than 3!)
 		def randomWorksNumberMultipliers = [2] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [9] // the maximum number of hops when doing decentralized similarity search;
+		def maxDistances = [10, 50]//100, 250] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
 
 		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}', 
@@ -161,7 +161,9 @@ public class Experiments {
 								// 6.1: connecting all similar items in decentralized way:
 								start = System.currentTimeMillis();
 
-								sim.centralizedSimilaritySearchAndConnect()
+
+								sim.decentralizedSimilaritySearchAndConnect(maxDistance)
+								//sim.centralizedSimilaritySearchAndConnect()
 
 								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
 									experimentId,
@@ -170,9 +172,9 @@ public class Experiments {
 						     		(System.currentTimeMillis()-start)
 								)								 
 
-								//sim.decentralizedSimilaritySearchAndConnect(maxDistance)
+								
 
-								Thread.sleep(200)
+								Thread.sleep(3000)
 								sim.on.analyze("after: // 6.1: connecting all similar items in centralized way:")
 
 								// 6.2: looking for a cycle:
@@ -224,6 +226,8 @@ public class Experiments {
 
 								String message = "Final analysis (also after: // 8.2.2 depthFirstCycleSearch) of experimentId="+experimentId
 								sim.on.analyze(message)
+
+								sim.stop()
 						}
 					}
 				}

@@ -366,7 +366,7 @@ public class Agent extends UntypedAbstractActor {
 
 
       String query = """      
-          g.V().has('type','agent').has('agentId',thisAgentId).as('source')
+          g.withSack(0).V().has('type','agent').has('agentId',thisAgentId).as('source')
                   .outE('owns').inV()
                   .union(
                     __.outE('demands').as('itemEdge')
@@ -396,13 +396,12 @@ public class Agent extends UntypedAbstractActor {
                       __.choose(select('titem').bothE('similarity').otherV().values('itemId').where(eq('sitemId')),
                           __.select('diff'),
                           __.select('sitem').union(
-                              __.addE('similarity').to('titem').property('similarity',select('diff')).as('sedge'),
+                              __.addE('similarity').to('titem').property('similarity',select('diff')).sack(sum).by(constant(1)),
                                 addE('similarity').from('titem').property('similarity',select('diff'))
                           )
                       )
                   )
-                  //.select('sourceId', 'sitemId', 'itemEdge', 'sitemValue','titemId','titemValue','diff')
-                  .select('sedge').count().next()
+                  .sack().sum()
       """            
 
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);
@@ -673,8 +672,9 @@ public class Agent extends UntypedAbstractActor {
       logger.debug("Searching for a cycle starting from work {}, similarityConstraint {}", work.getId(), similarityConstraint)
 
       SimpleGraphStatement s = new SimpleGraphStatement(
-                "g.V(thisWork).as('source').until(eq('work')).repeat("+
-                 "__.outE('offers').subgraph('subGraph').inV().bothE('similarity').has('similarity',gte(similarityConstraint)).subgraph('subGraph')"+            // (2)
+                "g.V(thisWork).as('source').until(eq('source')).repeat("+
+                 "__.outE('offers').subgraph('subGraph').inV().bothE('similarity')"+
+                 ".has('similarity',gte(similarityConstraint)).subgraph('subGraph')"+            // (2)
                 ".otherV().inE('demands').subgraph('subGraph').outV().dedup()).cap('subGraph').next().traversal().E()", params)
 
       GraphResultSet rs = session.executeGraph(s);
