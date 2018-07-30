@@ -74,7 +74,7 @@ $(document).ready(function() {
         <tbody>
           <tr class="info">
             <td>io.singularitynet.offernet</td>
-                        <td>30 Jul 2018, 18:50</td>
+                        <td>30 Jul 2018, 20:19</td>
           </tr>
         </tbody>
       </table>
@@ -228,7 +228,7 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
             <span class="keyword indention">Before</span>
                           <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">12s 097ms</span>
+  <span class="lead-duration duration">14s 332ms</span>
 
           </div>
 
@@ -562,7 +562,7 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
             <span class="keyword indention">Before</span>
                           <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 499ms</span>
+  <span class="lead-duration duration">849ms</span>
 
           </div>
 
@@ -574,13 +574,9 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
           <a>Error message</a>
       </div>
       <div id="msg-8" class="collapse collapsable-details">
-        <pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
-	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
-	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
-	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
-	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
-	at scala.concurrent.Await$.result(package.scala:142)
-	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
+        <pre>akka.actor.IllegalActorStateException: underlying actor is terminated
+	at akka.actor.IllegalActorStateException$.apply(Actor.scala:158)
+	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:89)
 	at io.singularitynet.offernet.AgentBehaviorStepDefs.before(AgentBehaviorStepDefs.java:48)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -917,7 +913,7 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
             <span class="keyword indention">Before</span>
                           <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 652ms</span>
+  <span class="lead-duration duration">490ms</span>
 
           </div>
 
@@ -929,12 +925,9 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
           <a>Error message</a>
       </div>
       <div id="msg-13" class="collapse collapsable-details">
-        <pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
-	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
-	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
-	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
-	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
-	at scala.concurrent.Await$.result(package.scala:142)
+        <pre>akka.pattern.AskTimeoutException: Recipient[TestActor[akka://AgentBehaviorStepDefs/user/$$c]] had already been terminated. Sender[null] sent the message of type &quot;akka.testkit.TestActorRef$InternalGetActor$&quot;.
+	at akka.pattern.AskableActorRef$.internalAsk$extension(AskSupport.scala:290)
+	at akka.pattern.AskableActorRef$.$qmark$extension1(AskSupport.scala:282)
 	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
 	at io.singularitynet.offernet.AgentBehaviorStepDefs.before(AgentBehaviorStepDefs.java:48)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -1209,7 +1202,7 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
             <span class="keyword indention">Before</span>
                           <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 431ms</span>
+  <span class="lead-duration duration">5s 609ms</span>
 
           </div>
 
@@ -1519,7 +1512,7 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
             <span class="keyword indention">Before</span>
                           <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">399ms</span>
+  <span class="lead-duration duration">5s 555ms</span>
 
           </div>
 
@@ -1531,9 +1524,12 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
           <a>Error message</a>
       </div>
       <div id="msg-23" class="collapse collapsable-details">
-        <pre>akka.pattern.AskTimeoutException: Recipient[TestActor[akka://AgentBehaviorStepDefs/user/$$e]] had already been terminated. Sender[null] sent the message of type &quot;akka.testkit.TestActorRef$InternalGetActor$&quot;.
-	at akka.pattern.AskableActorRef$.internalAsk$extension(AskSupport.scala:290)
-	at akka.pattern.AskableActorRef$.$qmark$extension1(AskSupport.scala:282)
+        <pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
+	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
+	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
+	at scala.concurrent.Await$.result(package.scala:142)
 	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
 	at io.singularitynet.offernet.AgentBehaviorStepDefs.before(AgentBehaviorStepDefs.java:48)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -1826,7 +1822,7 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
             <span class="keyword indention">Before</span>
                           <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 349ms</span>
+  <span class="lead-duration duration">5s 675ms</span>
 
           </div>
 
@@ -2121,7 +2117,7 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
             <span class="keyword indention">Before</span>
                           <span class="location name">SimulationBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">016ms</span>
 
           </div>
 
@@ -2136,7 +2132,7 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
             <span class="keyword indention">Before</span>
                           <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 340ms</span>
+  <span class="lead-duration duration">499ms</span>
 
           </div>
 
@@ -2148,12 +2144,9 @@ Agents can interact with the graph structure of OfferNet by issuing semantically
           <a>Error message</a>
       </div>
       <div id="msg-33" class="collapse collapsable-details">
-        <pre>java.util.concurrent.TimeoutException: Futures timed out after [5000 milliseconds]
-	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:255)
-	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:259)
-	at scala.concurrent.Await$.$anonfun$result$1(package.scala:215)
-	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
-	at scala.concurrent.Await$.result(package.scala:142)
+        <pre>akka.pattern.AskTimeoutException: Recipient[TestActor[akka://AgentBehaviorStepDefs/user/$$g]] had already been terminated. Sender[null] sent the message of type &quot;akka.testkit.TestActorRef$InternalGetActor$&quot;.
+	at akka.pattern.AskableActorRef$.internalAsk$extension(AskSupport.scala:290)
+	at akka.pattern.AskableActorRef$.$qmark$extension1(AskSupport.scala:282)
 	at akka.testkit.TestActorRef.underlyingActor(TestActorRef.scala:93)
 	at io.singularitynet.offernet.AgentBehaviorStepDefs.before(AgentBehaviorStepDefs.java:48)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
