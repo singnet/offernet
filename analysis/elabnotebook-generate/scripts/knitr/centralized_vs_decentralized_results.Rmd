@@ -2,7 +2,7 @@
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, error=FALSE, output=FALSE, source = FALSE)
-Sys.setenv(ON_workdir = '~/offernet/')
+Sys.setenv(ON_workdir = '/home/kabir/offernet/')
 ```
 
 ```{r git, engine='bash'}
@@ -14,7 +14,7 @@ echo $ON_codebase_version > ON_codebase_version.dat
 fileName <- 'ON_codebase_version.dat'
 ON_codebase_version <- readLines(file(fileName,open="r"))[1]
 Sys.setenv(ON_codebase_version = ON_codebase_version)
-Sys.setenv(ON_experimentId = "EXP07-17-08-45-CP4PT2")
+Sys.setenv(ON_experimentId = "EXP07-30-02-12-EEUp4P")
 dataFilePath = paste(Sys.getenv('ON_workdir'),'analysis/elabnotebook-generate/tmp/',Sys.getenv('ON_experimentId'),'.json', sep="")
 library(stringr)
 Sys.setenv(ON_dataFilePath = dataFilePath)
@@ -44,9 +44,15 @@ We are conceiving a decantralized system that supports dynamic bottom-up self-or
 The experiment documented here is a step towards this direction with the goal of gaining deeper understanding of tradeoffs between centralized matching and decentralized search algorithms. For this purpose it is enough to consider only simple works `demand`ing single input and `offer`ing single output without any energies required for the exchange to happen. A workflow in this case is a simple chain of an arbitrary number of works connected via their `demands` and `offers`. Since agents initially do not know anything apart from one or more other agents which they `know` (by the virtue of participation in a social network) and there is no "omniscient" agency (repository, database, global agent, etc.) which could provide such information, the best an only action for each agent is to search for "matches" to their `offers` and `demands` by asking neighbours to ask their neighbours to ask if they know somebody who has corresponding `demands` or `offers` on their own.  
 
 We start by considering a static social network of `agents` with `works` and `items` :
-```{r architecture, fig.cap='Offer Network -- initial structure', fig.show = "hold", fig.ncol = 1, fig.subcap = c("one plot", "the other one"), out.width='49%', fig.align='center', echo=FALSE, eval=TRUE}
-knitr::include_graphics(c("../../images/network_before_processes_birdeye.png","../../images/initial_network_close.png"))
+```{r architecture-big, fig.cap='Offer Network -- initial structure', fig.show = "hold", fig.ncol = 1, out.width='49%', fig.align='center', echo=FALSE, eval=TRUE}
+knitr::include_graphics("../../images/network_before_processes_birdeye.png")
 ```
+
+```{r architecture-small, fig.cap='Offer Network -- initial structure', fig.show = "hold", fig.ncol = 1, out.width='49%', fig.align='center', echo=FALSE, eval=TRUE}
+knitr::include_graphics("../../images/initial_network_close.png")
+```
+
+
 This data structure is a [property graph](https://github.com/opencypher/openCypher/blob/master/docs/property-graph-model.adoc), defined "in graph theoretical terms as a directed, vertex-labelled, edge-labelled multigraph with self-edges, where edges have their own identity" [^1]. Additionally to the initial OfferNet graph pictured above the schema features `similarity` links between `items` representing a measure of their semantic similarity which is used in determining if an agent can consider an `item` found in the network `similar` enough to its `offered` or `demanded` item in order for the exchange to happen. In the current simulation `similarity` measure is represented as a real number in the range $[0,1]$, but it can be an arbitrary complex relationship depending on the practical application of the framework -- see [conceptual framework](https://singnet.github.io/offernet/public/offernet-documentation/conceptual-framework.html#description-of-items-of-exchange) for the discussion of possibilities.  
 
 [^1]: GitHub repository of OpenCypher project  https://github.com/opencypher/openCypher/blob/master/docs/property-graph-model.adoc
@@ -67,7 +73,7 @@ Decentralized similarity search is achieved when a number of agents launch a 'gr
 
 #### Centralized flavour
 
-Centralized similarity search in its current incarnation simply iterates though all permutations of item pairs in the network, checks their similarity and connects the ones which exceeds the `similarityThreshold value. It guarantees that all agents are visited and all their `works` and `items` are considered. The current implementation is [`Integer searchAndConnect(Object similarityThreshold)`](https://github.com/kabirkbr/offernet/blob/master/src/main/groovy/OfferNet.groovy#L637). Note that it takes only `similarityThreshold` parameter, since it does centrally controlled full graph scan and therefore there is no need to stop the traversal when a certain depth is reached. The cost of this is that full graph scans are very inefficient and hardly practical with large graphs. 
+Centralized similarity search in its current incarnation simply iterates though all permutations of item pairs in the network, checks their similarity and connects the ones which exceeds the `similarityThreshold` value. It guarantees that all agents are visited and all their `works` and `items` are considered. The current implementation is [`Integer searchAndConnect(Object similarityThreshold)`](https://github.com/kabirkbr/offernet/blob/master/src/main/groovy/OfferNet.groovy#L637). Note that it takes only `similarityThreshold` parameter, since it does centrally controlled full graph scan and therefore there is no need to stop the traversal when a certain depth is reached. The cost of this is that full graph scans are very inefficient and hardly practical with large graphs. 
 
 ### Cycle search
 
@@ -126,6 +132,9 @@ template <- '{
           "experimentId": "%s"
           }
         },
+        { "match" :{
+          "keyword": "simulationParameters"
+        }},
         { "exists": { "field": "simulationId" } }
       ]
     }
@@ -147,11 +156,8 @@ kable(simulations.df) %>%
     column_spec(1:1,width="20em") %>%
     column_spec(2:ncol(simulations.df),width="15em")
     #add_header_above(c("variables"))
-
-
 ```
 
-`knitr::opts_chunk$set(echo = FALSE)`
 
 ### Network
 

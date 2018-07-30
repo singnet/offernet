@@ -10,6 +10,7 @@ import com.datastax.driver.dse.graph.GraphNode;
 import com.datastax.driver.dse.graph.SimpleGraphStatement;
 import com.datastax.driver.dse.graph.GraphResultSet
 import com.datastax.driver.dse.graph.GraphOptions
+import com.datastax.driver.dse.auth.DsePlainTextAuthProvider;
 
 import com.datastax.driver.dse.graph.Vertex
 import com.datastax.driver.dse.graph.Edge
@@ -46,14 +47,20 @@ String query = new File(queryFilePath).text
 DseCluster cluster = null 
 
   // init connection to the database
-  cluster = DseCluster.builder().addContactPoint("dse-server.host").build();
+  cluster = DseCluster.builder()
+    .addContactPoint("dse-server.host")
+    .withAuthProvider(new DsePlainTextAuthProvider("offernet_actor_system", "singoffcass69585"))
+    .build();
   cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
 
   cluster = DseCluster.builder()
       .addContactPoint("dse-server.host")
+      .withAuthProvider(new DsePlainTextAuthProvider("offernet_actor_system", "singoffcass69585"))
       .withGraphOptions(new GraphOptions().setGraphName("offernet"))
       .build();
   def session = cluster.connect();
+  SimpleGraphStatement developmentMode = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
+  session.executeGraph(developmentMode)
 
   //issue query
   SimpleGraphStatement s = new SimpleGraphStatement(query,params);
