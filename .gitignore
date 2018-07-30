@@ -15,4 +15,6 @@ analysis/experimentData/
 analysis/data/
 analysis/elabnotebook-generate/octopress-2.0/
 analysis/elabnotebook-generate/tmp/
-analysis/elabnotebook-generate/static-generator/_site
+analysis/elabnotebook-generate/
+analysis/elabnotebook-generate/scripts/knitr/*.md
+analysis/elabnotebook-generate/scripts/knitr/*.dat

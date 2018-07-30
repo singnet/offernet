@@ -34,6 +34,11 @@ task buildBook(type: Exec) {
     args "-c", "scripts/build-offernet-documentation.sh"
 }
 
+task buildLabNotebook(type: Exec) {
+    executable "sh"
+    args "-c", "scripts/build-elabnotebook.sh"
+}
+
 task copyUnitTestReport(type: Copy) {
     from "${buildDir}/reports/tests/test"
     into "docs/public/unit-tests/"
