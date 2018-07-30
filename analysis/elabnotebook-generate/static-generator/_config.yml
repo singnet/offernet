@@ -1,6 +1,7 @@
 # Dependencies
 markdown:         redcarpet
 highlighter:      rouge
+baseurl:          /public/elabnotebook
 
 # Permalinks
 permalink:        pretty
