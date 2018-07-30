@@ -36,7 +36,7 @@ task buildBook(type: Exec) {
 
 task buildLabNotebook(type: Exec) {
     executable "sh"
-    args "-c", "scripts/build-elabnotebook.sh"
+    args "-c", "scripts/build_elabnotebook.sh"
 }
 
 task copyUnitTestReport(type: Copy) {
@@ -70,7 +70,7 @@ test {
 task buildDocumentation {
   dependsOn 'buildBook'
   dependsOn 'copyUnitTestReport'
-  dependsON 'buildLabNotebook'
+  dependsOn 'buildLabNotebook'
   tasks.findByName('copyUnitTestReport').mustRunAfter 'buildBook'
 }
 
