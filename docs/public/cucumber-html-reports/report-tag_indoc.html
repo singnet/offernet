@@ -74,7 +74,11 @@ $(document).ready(function() {
         <tbody>
           <tr class="info">
             <td>io.singularitynet.offernet</td>
+<<<<<<< Updated upstream
                         <td>01 Aug 2018, 19:15</td>
+=======
+                        <td>02 Aug 2018, 00:41</td>
+>>>>>>> Stashed changes
           </tr>
         </tbody>
       </table>
@@ -127,19 +131,19 @@ $(document).ready(function() {
         <tbody>
         <tr>
           <td class="tagname">@indoc</td>
-                    <td >0</td>
+                    <td      class="passed"    >33</td>
           <td >0</td>
-          <td     class="skipped"   >33</td>
+          <td >0</td>
           <td >0</td>
           <td >0</td>
           <td class="total">33</td>
 
+          <td  class="passed"    >7</td>
           <td >0</td>
-          <td  class="failed"    >7</td>
           <td class="total">7</td>
 
-          <td class="duration" data-value="0">000ms</td>
-          <td class="failed">Failed</td>
+          <td class="duration" data-value="24735877220">24s 735ms</td>
+          <td class="passed">Passed</td>
         </tr>
         </tbody>
 
@@ -167,9 +171,9 @@ $(document).ready(function() {
   </div>
 
 
-    <span data-toggle="collapse" class=" collapsable-control" data-target="#element-1">
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Scenario</span>
   <span class="name">an agent can introduce a new agent to the network by 'befriending' it</span>
   
@@ -180,12 +184,12 @@ $(document).ready(function() {
   </span>
   <div class="description indention">The only way for the OfferNet to grow in a decentralized manner (i.e. without central controlling repository) is for new agents to get introduced to the network via old agent's recommendation.</div>
 
-  <div id="element-1" class="collapse collapsable-details  in ">
+  <div id="element-1" class="collapse collapsable-details ">
     
   <div class="inner-level hooks-before">
-        <div data-toggle="collapse" class=" collapsable-control" data-target="#before-2">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-2">
       
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Hooks</span>
   <span class="name"></span>
   
@@ -195,41 +199,40 @@ $(document).ready(function() {
 
     </div>
 
-    <div id="before-2" class="inner-level collapse collapsable-details  in ">
+    <div id="before-2" class="inner-level collapse collapsable-details ">
               <div class="hook">
+<<<<<<< Updated upstream
           <div class="brief failed">
             <span class="keyword indention">Before</span>
                           <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
                         
   <span class="lead-duration duration">14s 476ms</span>
+=======
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">SimulationBehaviorStepDefs.before(Scenario)</span>
+                        
+  <span class="lead-duration duration">000ms</span>
 
           </div>
 
                       
 
-  <div class="inner-level">
-    <div class="message indention">
-      <div data-toggle="collapse" class="collapsable-control" data-target="#msg-3">
-          <a>Error message</a>
-      </div>
-      <div id="msg-3" class="collapse collapsable-details">
-        <pre>akka.pattern.AskTimeoutException: Ask timed out on [TestActor[akka://AgentBehaviorStepDefs/user/$$a]] after [5000 ms]. Sender[null] sent message of type &quot;akka.testkit.TestActorRef$InternalGetActor$&quot;.
-	at akka.pattern.PromiseActorRef$.$anonfun$defaultOnTimeout$1(AskSupport.scala:595)
-	at akka.pattern.PromiseActorRef$.$anonfun$apply$1(AskSupport.scala:605)
-	at akka.actor.Scheduler$$anon$4.run(Scheduler.scala:140)
-	at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:866)
-	at scala.concurrent.BatchingExecutor.execute(BatchingExecutor.scala:109)
-	at scala.concurrent.BatchingExecutor.execute$(BatchingExecutor.scala:103)
-	at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:864)
-	at akka.actor.LightArrayRevolverScheduler$TaskHolder.executeTask(LightArrayRevolverScheduler.scala:328)
-	at akka.actor.LightArrayRevolverScheduler$$anon$4.executeBucket$1(LightArrayRevolverScheduler.scala:279)
-	at akka.actor.LightArrayRevolverScheduler$$anon$4.nextTick(LightArrayRevolverScheduler.scala:283)
-	at akka.actor.LightArrayRevolverScheduler$$anon$4.run(LightArrayRevolverScheduler.scala:235)
-	at java.lang.Thread.run(Thread.java:748)
-</pre>
-      </div>
-    </div>
-  </div>
+          
+          
+
+        </div>
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                        
+  <span class="lead-duration duration">2s 375ms</span>
+>>>>>>> Stashed changes
+
+          </div>
+
+                      
 
           
           
@@ -256,9 +259,9 @@ $(document).ready(function() {
 
     
 <div class="steps inner-level">
-    <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-4">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-3">
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Steps</span>
   <span class="name"></span>
   
@@ -268,14 +271,14 @@ $(document).ready(function() {
 
   </div>
 
-  <div id="steps-4" class="inner-level collapse collapsable-details  in ">
+  <div id="steps-3" class="inner-level collapse collapsable-details ">
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Given</span>
   <span class="name">Agent "AgentOne" is created on the OfferNet</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 334ms</span>
 
   </div>
 
@@ -292,11 +295,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">And</span>
   <span class="name">Agent "AgentTwo" does not exist on the OfferNet</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">049ms</span>
 
   </div>
 
@@ -313,11 +316,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">When</span>
   <span class="name">Agent "AgentOne" befriends Agent "AgentTwo"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 102ms</span>
 
   </div>
 
@@ -334,11 +337,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Then</span>
   <span class="name">Agent "AgentTwo" exists on the OfferNet</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">019ms</span>
 
   </div>
 
@@ -355,11 +358,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Then</span>
   <span class="name">there is "knows" link between "AgentOne" and "AgentTwo"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 105ms</span>
 
   </div>
 
@@ -376,11 +379,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">And</span>
   <span class="name">there is no "knows" link between "AgentTwo" and "AgentOne"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 075ms</span>
 
   </div>
 
@@ -401,7 +404,11 @@ $(document).ready(function() {
 
     
   <div class="inner-level hooks-after">
+<<<<<<< Updated upstream
         <div data-toggle="collapse" class=" collapsable-control" data-target="#after-5">
+=======
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-4">
+>>>>>>> Stashed changes
       
 <div class="brief failed">
   <span class="keyword indention">Hooks</span>
@@ -413,13 +420,17 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="after-5" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="after-4" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
               <div class="hook">
           <div class="brief failed">
             <span class="keyword indention">After</span>
                           <span class="location name">AgentBehaviorStepDefs.after(Scenario)</span>
                         
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">021ms</span>
 
           </div>
 
@@ -522,9 +533,13 @@ $(document).ready(function() {
   </div>
 
 
+<<<<<<< Updated upstream
     <span data-toggle="collapse" class=" collapsable-control" data-target="#element-7">
+=======
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-5">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Scenario</span>
   <span class="name">an agent can 'befriend' another agent existing in the network</span>
   
@@ -535,12 +550,19 @@ $(document).ready(function() {
   </span>
   <div class="description indention">OfferNet is a social network of Agents. Each agent has an ability to initiate creation of 'knows' link to another agent existing in the network. So if two unconnected agents exist on the network and one of them knows the identity of the other, then the first one can initiate creation of 'knows' link to another in the underlying graph which should result in the appropriate relation between them. Note that the 'knows' relation is not reciprocal.</div>
 
+<<<<<<< Updated upstream
   <div id="element-7" class="collapse collapsable-details  in ">
     
   <div class="inner-level hooks-before">
         <div data-toggle="collapse" class=" collapsable-control" data-target="#before-8">
+=======
+  <div id="element-5" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-6">
+>>>>>>> Stashed changes
       
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Hooks</span>
   <span class="name"></span>
   
@@ -550,18 +572,42 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="before-8" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="before-6" class="inner-level collapse collapsable-details ">
               <div class="hook">
-          <div class="brief failed">
+          <div class="brief passed">
             <span class="keyword indention">Before</span>
-                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                          <span class="location name">SimulationBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 650ms</span>
+  <span class="lead-duration duration">000ms</span>
 
           </div>
 
                       
 
+          
+          
+
+        </div>
+>>>>>>> Stashed changes
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                        
+<<<<<<< Updated upstream
+  <span class="lead-duration duration">5s 650ms</span>
+=======
+  <span class="lead-duration duration">343ms</span>
+>>>>>>> Stashed changes
+
+          </div>
+
+                      
+
+<<<<<<< Updated upstream
   <div class="inner-level">
     <div class="message indention">
       <div data-toggle="collapse" class="collapsable-control" data-target="#msg-9">
@@ -643,6 +689,8 @@ $(document).ready(function() {
     </div>
   </div>
 
+=======
+>>>>>>> Stashed changes
           
           
 
@@ -668,9 +716,13 @@ $(document).ready(function() {
 
     
 <div class="steps inner-level">
+<<<<<<< Updated upstream
     <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-10">
+=======
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-7">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Steps</span>
   <span class="name"></span>
   
@@ -680,14 +732,18 @@ $(document).ready(function() {
 
   </div>
 
+<<<<<<< Updated upstream
   <div id="steps-10" class="inner-level collapse collapsable-details  in ">
+=======
+  <div id="steps-7" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Given</span>
   <span class="name">Agent "AgentOne" is created on the OfferNet</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 038ms</span>
 
   </div>
 
@@ -704,11 +760,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">And</span>
   <span class="name">Agent "AgentTwo" is created on the OfferNet</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 037ms</span>
 
   </div>
 
@@ -725,11 +781,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">And</span>
   <span class="name">there is no "knows" link between "AgentOne" and "AgentTwo"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 073ms</span>
 
   </div>
 
@@ -746,11 +802,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">And</span>
   <span class="name">there is no "knows" link between "AgentTwo" and "AgentOne"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 075ms</span>
 
   </div>
 
@@ -767,11 +823,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">When</span>
   <span class="name">Agent "AgentOne" befriends Agent "AgentTwo"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 072ms</span>
 
   </div>
 
@@ -788,11 +844,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Then</span>
   <span class="name">there is "knows" link between "AgentOne" and "AgentTwo"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 077ms</span>
 
   </div>
 
@@ -809,11 +865,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">And</span>
   <span class="name">there is no "knows" link between "AgentTwo" and "AgentOne"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 072ms</span>
 
   </div>
 
@@ -834,7 +890,11 @@ $(document).ready(function() {
 
     
   <div class="inner-level hooks-after">
+<<<<<<< Updated upstream
         <div data-toggle="collapse" class=" collapsable-control" data-target="#after-11">
+=======
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-8">
+>>>>>>> Stashed changes
       
 <div class="brief failed">
   <span class="keyword indention">Hooks</span>
@@ -846,13 +906,17 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="after-11" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="after-8" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
               <div class="hook">
           <div class="brief failed">
             <span class="keyword indention">After</span>
                           <span class="location name">AgentBehaviorStepDefs.after(Scenario)</span>
                         
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">034ms</span>
 
           </div>
 
@@ -955,9 +1019,13 @@ $(document).ready(function() {
   </div>
 
 
+<<<<<<< Updated upstream
     <span data-toggle="collapse" class=" collapsable-control" data-target="#element-13">
+=======
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-9">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Scenario</span>
   <span class="name">an agent can post an {offer-demand} pair to the OfferNet</span>
   
@@ -968,12 +1036,19 @@ $(document).ready(function() {
   </span>
   <div class="description indention">Agents in an Offer Network engage in exchange by publishing an offer-demand pairs, or 'work's. See explanation of the Offer Network structure in [Data structures and objects].</div>
 
+<<<<<<< Updated upstream
   <div id="element-13" class="collapse collapsable-details  in ">
     
   <div class="inner-level hooks-before">
         <div data-toggle="collapse" class=" collapsable-control" data-target="#before-14">
+=======
+  <div id="element-9" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-10">
+>>>>>>> Stashed changes
       
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Hooks</span>
   <span class="name"></span>
   
@@ -983,18 +1058,42 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="before-14" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="before-10" class="inner-level collapse collapsable-details ">
               <div class="hook">
-          <div class="brief failed">
+          <div class="brief passed">
             <span class="keyword indention">Before</span>
-                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                          <span class="location name">SimulationBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">725ms</span>
+  <span class="lead-duration duration">000ms</span>
 
           </div>
 
                       
 
+          
+          
+
+        </div>
+>>>>>>> Stashed changes
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                        
+<<<<<<< Updated upstream
+  <span class="lead-duration duration">725ms</span>
+=======
+  <span class="lead-duration duration">349ms</span>
+>>>>>>> Stashed changes
+
+          </div>
+
+                      
+
+<<<<<<< Updated upstream
   <div class="inner-level">
     <div class="message indention">
       <div data-toggle="collapse" class="collapsable-control" data-target="#msg-15">
@@ -1072,6 +1171,8 @@ $(document).ready(function() {
     </div>
   </div>
 
+=======
+>>>>>>> Stashed changes
           
           
 
@@ -1097,9 +1198,13 @@ $(document).ready(function() {
 
     
 <div class="steps inner-level">
+<<<<<<< Updated upstream
     <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-16">
+=======
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-11">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Steps</span>
   <span class="name"></span>
   
@@ -1109,14 +1214,18 @@ $(document).ready(function() {
 
   </div>
 
+<<<<<<< Updated upstream
   <div id="steps-16" class="inner-level collapse collapsable-details  in ">
+=======
+  <div id="steps-11" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Given</span>
   <span class="name">Agent "AgentOne" is created on the OfferNet</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 039ms</span>
 
   </div>
 
@@ -1133,11 +1242,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">When</span>
   <span class="name">Agent "AgentOne" posts a pair of offer "0.15" and demand of "0.57"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 104ms</span>
 
   </div>
 
@@ -1154,11 +1263,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Then</span>
   <span class="name">Agent "AgentOne" owns a work which "demands" item "0.57"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 081ms</span>
 
   </div>
 
@@ -1175,11 +1284,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">And</span>
   <span class="name">Agent "AgentOne" owns a work which "offers" item "0.15"</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 086ms</span>
 
   </div>
 
@@ -1200,7 +1309,11 @@ $(document).ready(function() {
 
     
   <div class="inner-level hooks-after">
+<<<<<<< Updated upstream
         <div data-toggle="collapse" class=" collapsable-control" data-target="#after-17">
+=======
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-12">
+>>>>>>> Stashed changes
       
 <div class="brief failed">
   <span class="keyword indention">Hooks</span>
@@ -1212,13 +1325,21 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="after-17" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="after-12" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
               <div class="hook">
           <div class="brief failed">
             <span class="keyword indention">After</span>
                           <span class="location name">AgentBehaviorStepDefs.after(Scenario)</span>
                         
+<<<<<<< Updated upstream
   <span class="lead-duration duration">003ms</span>
+=======
+  <span class="lead-duration duration">021ms</span>
+>>>>>>> Stashed changes
 
           </div>
 
@@ -1321,9 +1442,13 @@ $(document).ready(function() {
   </div>
 
 
+<<<<<<< Updated upstream
     <span data-toggle="collapse" class=" collapsable-control" data-target="#element-19">
+=======
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-13">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
   <span class="name">an agent can access all posted offers and demands by traversing its social network</span>
   
@@ -1334,12 +1459,19 @@ $(document).ready(function() {
   </span>
   <div class="description indention">In a distributed system where there is no global observer which has the registry of all agents and their items of offer and demand. In this case, the only way for an agent to access items of other agents is to traverse its social network (to a given depth) and ask all friends of friends to send information about their items. Since the OfferNet is fully connected (and hopefully is a small world network) the whole network can be scanned this way, depending on availability of time and resource constrains of an agent which initiates the search. The expected number of items that an agent has to find in its social network is calculated as follows: $(numberOfAgents -1) * pairsPerAgent * 2$ (as every pair holds two items: one demand and one offer..).</div>
 
+<<<<<<< Updated upstream
   <div id="element-19" class="collapse collapsable-details  in ">
     
   <div class="inner-level hooks-before">
         <div data-toggle="collapse" class=" collapsable-control" data-target="#before-20">
+=======
+  <div id="element-13" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-14">
+>>>>>>> Stashed changes
       
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Hooks</span>
   <span class="name"></span>
   
@@ -1349,18 +1481,42 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="before-20" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="before-14" class="inner-level collapse collapsable-details ">
               <div class="hook">
-          <div class="brief failed">
+          <div class="brief passed">
             <span class="keyword indention">Before</span>
-                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                          <span class="location name">SimulationBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 361ms</span>
+  <span class="lead-duration duration">000ms</span>
 
           </div>
 
                       
 
+          
+          
+
+        </div>
+>>>>>>> Stashed changes
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                        
+<<<<<<< Updated upstream
+  <span class="lead-duration duration">5s 361ms</span>
+=======
+  <span class="lead-duration duration">306ms</span>
+>>>>>>> Stashed changes
+
+          </div>
+
+                      
+
+<<<<<<< Updated upstream
   <div class="inner-level">
     <div class="message indention">
       <div data-toggle="collapse" class="collapsable-control" data-target="#msg-21">
@@ -1460,6 +1616,8 @@ $(document).ready(function() {
     </div>
   </div>
 
+=======
+>>>>>>> Stashed changes
           
           
 
@@ -1485,9 +1643,13 @@ $(document).ready(function() {
 
     
 <div class="steps inner-level">
+<<<<<<< Updated upstream
     <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-22">
+=======
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-15">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Steps</span>
   <span class="name"></span>
   
@@ -1497,14 +1659,18 @@ $(document).ready(function() {
 
   </div>
 
+<<<<<<< Updated upstream
   <div id="steps-22" class="inner-level collapse collapsable-details  in ">
+=======
+  <div id="steps-15" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Given</span>
   <span class="name">there exists an sequentially connected line of '4' agents</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">132ms</span>
 
   </div>
 
@@ -1521,11 +1687,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">And</span>
   <span class="name">all agents have posted '1' offer-demand pair each</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 041ms</span>
 
   </div>
 
@@ -1542,11 +1708,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">When</span>
   <span class="name">first agent initiates search of '3' depth</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">2s 016ms</span>
 
   </div>
 
@@ -1563,7 +1729,7 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Then</span>
   <span class="name">agent finds '6' demands and offers in its social network</span>
   
@@ -1588,7 +1754,11 @@ $(document).ready(function() {
 
     
   <div class="inner-level hooks-after">
+<<<<<<< Updated upstream
         <div data-toggle="collapse" class=" collapsable-control" data-target="#after-23">
+=======
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-16">
+>>>>>>> Stashed changes
       
 <div class="brief failed">
   <span class="keyword indention">Hooks</span>
@@ -1600,13 +1770,21 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="after-23" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="after-16" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
               <div class="hook">
           <div class="brief failed">
             <span class="keyword indention">After</span>
                           <span class="location name">AgentBehaviorStepDefs.after(Scenario)</span>
                         
+<<<<<<< Updated upstream
   <span class="lead-duration duration">001ms</span>
+=======
+  <span class="lead-duration duration">025ms</span>
+>>>>>>> Stashed changes
 
           </div>
 
@@ -1727,9 +1905,13 @@ $(document).ready(function() {
   </div>
 
 
+<<<<<<< Updated upstream
     <span data-toggle="collapse" class=" collapsable-control" data-target="#element-25">
+=======
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-17">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
   <span class="name">an agent can access all posted offers and demands by traversing its social network</span>
   
@@ -1740,12 +1922,19 @@ $(document).ready(function() {
   </span>
   <div class="description indention">In a distributed system where there is no global observer which has the registry of all agents and their items of offer and demand. In this case, the only way for an agent to access items of other agents is to traverse its social network (to a given depth) and ask all friends of friends to send information about their items. Since the OfferNet is fully connected (and hopefully is a small world network) the whole network can be scanned this way, depending on availability of time and resource constrains of an agent which initiates the search. The expected number of items that an agent has to find in its social network is calculated as follows: $(numberOfAgents -1) * pairsPerAgent * 2$ (as every pair holds two items: one demand and one offer..).</div>
 
+<<<<<<< Updated upstream
   <div id="element-25" class="collapse collapsable-details  in ">
     
   <div class="inner-level hooks-before">
         <div data-toggle="collapse" class=" collapsable-control" data-target="#before-26">
+=======
+  <div id="element-17" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-18">
+>>>>>>> Stashed changes
       
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Hooks</span>
   <span class="name"></span>
   
@@ -1755,18 +1944,42 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="before-26" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="before-18" class="inner-level collapse collapsable-details ">
               <div class="hook">
-          <div class="brief failed">
+          <div class="brief passed">
             <span class="keyword indention">Before</span>
-                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                          <span class="location name">SimulationBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 579ms</span>
+  <span class="lead-duration duration">000ms</span>
 
           </div>
 
                       
 
+          
+          
+
+        </div>
+>>>>>>> Stashed changes
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                        
+<<<<<<< Updated upstream
+  <span class="lead-duration duration">5s 579ms</span>
+=======
+  <span class="lead-duration duration">313ms</span>
+>>>>>>> Stashed changes
+
+          </div>
+
+                      
+
+<<<<<<< Updated upstream
   <div class="inner-level">
     <div class="message indention">
       <div data-toggle="collapse" class="collapsable-control" data-target="#msg-27">
@@ -1866,6 +2079,8 @@ $(document).ready(function() {
     </div>
   </div>
 
+=======
+>>>>>>> Stashed changes
           
           
 
@@ -1891,9 +2106,13 @@ $(document).ready(function() {
 
     
 <div class="steps inner-level">
+<<<<<<< Updated upstream
     <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-28">
+=======
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-19">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Steps</span>
   <span class="name"></span>
   
@@ -1903,14 +2122,18 @@ $(document).ready(function() {
 
   </div>
 
+<<<<<<< Updated upstream
   <div id="steps-28" class="inner-level collapse collapsable-details  in ">
+=======
+  <div id="steps-19" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Given</span>
   <span class="name">there exists an sequentially connected line of '20' agents</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">636ms</span>
 
   </div>
 
@@ -1927,11 +2150,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">And</span>
   <span class="name">all agents have posted '2' offer-demand pair each</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">1s 316ms</span>
 
   </div>
 
@@ -1948,11 +2171,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">When</span>
   <span class="name">first agent initiates search of '19' depth</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">2s 022ms</span>
 
   </div>
 
@@ -1969,7 +2192,7 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Then</span>
   <span class="name">agent finds '76' demands and offers in its social network</span>
   
@@ -1994,7 +2217,11 @@ $(document).ready(function() {
 
     
   <div class="inner-level hooks-after">
+<<<<<<< Updated upstream
         <div data-toggle="collapse" class=" collapsable-control" data-target="#after-29">
+=======
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-20">
+>>>>>>> Stashed changes
       
 <div class="brief failed">
   <span class="keyword indention">Hooks</span>
@@ -2006,13 +2233,17 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="after-29" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="after-20" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
               <div class="hook">
           <div class="brief failed">
             <span class="keyword indention">After</span>
                           <span class="location name">AgentBehaviorStepDefs.after(Scenario)</span>
                         
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">238ms</span>
 
           </div>
 
@@ -2133,9 +2364,13 @@ $(document).ready(function() {
   </div>
 
 
+<<<<<<< Updated upstream
     <span data-toggle="collapse" class=" collapsable-control" data-target="#element-31">
+=======
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-21">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
   <span class="name">an agent can connect similar offers and demands of its social network</span>
   
@@ -2146,12 +2381,19 @@ $(document).ready(function() {
   </span>
   <div class="description indention">After an agent finds offer and demand items posted by its social network which are similar to its own items, it can connect those items with weighted $similarity$ relations (edges in the graph). Weight of the relation represents the 'strength' of similarity. Definition and computing algorithm of a $similarity$ relation can be chosen by choosing configuration parameters of the OfferNet system during initialization -- allowing to experiment with different approaches. This mechanism addresses these [Open problems / features to consider] of the framework: [Representation / theory of value], [Description of items of exchange], [Similarity measure];</div>
 
+<<<<<<< Updated upstream
   <div id="element-31" class="collapse collapsable-details  in ">
     
   <div class="inner-level hooks-before">
         <div data-toggle="collapse" class=" collapsable-control" data-target="#before-32">
+=======
+  <div id="element-21" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-22">
+>>>>>>> Stashed changes
       
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Hooks</span>
   <span class="name"></span>
   
@@ -2161,18 +2403,42 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="before-32" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="before-22" class="inner-level collapse collapsable-details ">
               <div class="hook">
-          <div class="brief failed">
+          <div class="brief passed">
             <span class="keyword indention">Before</span>
-                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                          <span class="location name">SimulationBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 622ms</span>
+  <span class="lead-duration duration">000ms</span>
 
           </div>
 
                       
 
+          
+          
+
+        </div>
+>>>>>>> Stashed changes
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                        
+<<<<<<< Updated upstream
+  <span class="lead-duration duration">5s 622ms</span>
+=======
+  <span class="lead-duration duration">336ms</span>
+>>>>>>> Stashed changes
+
+          </div>
+
+                      
+
+<<<<<<< Updated upstream
   <div class="inner-level">
     <div class="message indention">
       <div data-toggle="collapse" class="collapsable-control" data-target="#msg-33">
@@ -2272,6 +2538,8 @@ $(document).ready(function() {
     </div>
   </div>
 
+=======
+>>>>>>> Stashed changes
           
           
 
@@ -2297,9 +2565,13 @@ $(document).ready(function() {
 
     
 <div class="steps inner-level">
+<<<<<<< Updated upstream
     <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-34">
+=======
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-23">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Steps</span>
   <span class="name"></span>
   
@@ -2309,14 +2581,18 @@ $(document).ready(function() {
 
   </div>
 
+<<<<<<< Updated upstream
   <div id="steps-34" class="inner-level collapse collapsable-details  in ">
+=======
+  <div id="steps-23" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Given</span>
   <span class="name">a connected network of '4' agents</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">120ms</span>
 
   </div>
 
@@ -2333,11 +2609,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Given</span>
   <span class="name">that '3' similar item pairs exist in the network</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">035ms</span>
 
   </div>
 
@@ -2354,11 +2630,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">When</span>
   <span class="name">any agent finds similar items by executing search of '3' depth</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">041ms</span>
 
   </div>
 
@@ -2375,11 +2651,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Then</span>
   <span class="name">there are '3' similarity relations in the network</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">008ms</span>
 
   </div>
 
@@ -2400,7 +2676,11 @@ $(document).ready(function() {
 
     
   <div class="inner-level hooks-after">
+<<<<<<< Updated upstream
         <div data-toggle="collapse" class=" collapsable-control" data-target="#after-35">
+=======
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-24">
+>>>>>>> Stashed changes
       
 <div class="brief failed">
   <span class="keyword indention">Hooks</span>
@@ -2412,13 +2692,21 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="after-35" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="after-24" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
               <div class="hook">
           <div class="brief failed">
             <span class="keyword indention">After</span>
                           <span class="location name">AgentBehaviorStepDefs.after(Scenario)</span>
                         
+<<<<<<< Updated upstream
   <span class="lead-duration duration">001ms</span>
+=======
+  <span class="lead-duration duration">019ms</span>
+>>>>>>> Stashed changes
 
           </div>
 
@@ -2539,9 +2827,13 @@ $(document).ready(function() {
   </div>
 
 
+<<<<<<< Updated upstream
     <span data-toggle="collapse" class=" collapsable-control" data-target="#element-37">
+=======
+    <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-25">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Scenario Outline</span>
   <span class="name">an agent can connect similar offers and demands of its social network</span>
   
@@ -2552,12 +2844,19 @@ $(document).ready(function() {
   </span>
   <div class="description indention">After an agent finds offer and demand items posted by its social network which are similar to its own items, it can connect those items with weighted $similarity$ relations (edges in the graph). Weight of the relation represents the 'strength' of similarity. Definition and computing algorithm of a $similarity$ relation can be chosen by choosing configuration parameters of the OfferNet system during initialization -- allowing to experiment with different approaches. This mechanism addresses these [Open problems / features to consider] of the framework: [Representation / theory of value], [Description of items of exchange], [Similarity measure];</div>
 
+<<<<<<< Updated upstream
   <div id="element-37" class="collapse collapsable-details  in ">
     
   <div class="inner-level hooks-before">
         <div data-toggle="collapse" class=" collapsable-control" data-target="#before-38">
+=======
+  <div id="element-25" class="collapse collapsable-details ">
+    
+  <div class="inner-level hooks-before">
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-26">
+>>>>>>> Stashed changes
       
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Hooks</span>
   <span class="name"></span>
   
@@ -2567,18 +2866,42 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="before-38" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="before-26" class="inner-level collapse collapsable-details ">
               <div class="hook">
-          <div class="brief failed">
+          <div class="brief passed">
             <span class="keyword indention">Before</span>
-                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                          <span class="location name">SimulationBehaviorStepDefs.before(Scenario)</span>
                         
-  <span class="lead-duration duration">5s 720ms</span>
+  <span class="lead-duration duration">000ms</span>
 
           </div>
 
                       
 
+          
+          
+
+        </div>
+>>>>>>> Stashed changes
+              <div class="hook">
+          <div class="brief passed">
+            <span class="keyword indention">Before</span>
+                          <span class="location name">AgentBehaviorStepDefs.before(Scenario)</span>
+                        
+<<<<<<< Updated upstream
+  <span class="lead-duration duration">5s 720ms</span>
+=======
+  <span class="lead-duration duration">295ms</span>
+>>>>>>> Stashed changes
+
+          </div>
+
+                      
+
+<<<<<<< Updated upstream
   <div class="inner-level">
     <div class="message indention">
       <div data-toggle="collapse" class="collapsable-control" data-target="#msg-39">
@@ -2678,6 +3001,8 @@ $(document).ready(function() {
     </div>
   </div>
 
+=======
+>>>>>>> Stashed changes
           
           
 
@@ -2703,9 +3028,13 @@ $(document).ready(function() {
 
     
 <div class="steps inner-level">
+<<<<<<< Updated upstream
     <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-40">
+=======
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-27">
+>>>>>>> Stashed changes
     
-<div class="brief failed">
+<div class="brief passed">
   <span class="keyword indention">Steps</span>
   <span class="name"></span>
   
@@ -2715,14 +3044,18 @@ $(document).ready(function() {
 
   </div>
 
+<<<<<<< Updated upstream
   <div id="steps-40" class="inner-level collapse collapsable-details  in ">
+=======
+  <div id="steps-27" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Given</span>
   <span class="name">a connected network of '20' agents</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">719ms</span>
 
   </div>
 
@@ -2739,11 +3072,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Given</span>
   <span class="name">that '5' similar item pairs exist in the network</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">043ms</span>
 
   </div>
 
@@ -2760,11 +3093,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">When</span>
   <span class="name">any agent finds similar items by executing search of '19' depth</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">144ms</span>
 
   </div>
 
@@ -2781,11 +3114,11 @@ $(document).ready(function() {
       </div>
           <div class="step">
         
-<div class="brief skipped">
+<div class="brief passed">
   <span class="keyword indention">Then</span>
   <span class="name">there are '5' similarity relations in the network</span>
   
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">007ms</span>
 
   </div>
 
@@ -2806,7 +3139,11 @@ $(document).ready(function() {
 
     
   <div class="inner-level hooks-after">
+<<<<<<< Updated upstream
         <div data-toggle="collapse" class=" collapsable-control" data-target="#after-41">
+=======
+        <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-28">
+>>>>>>> Stashed changes
       
 <div class="brief failed">
   <span class="keyword indention">Hooks</span>
@@ -2818,13 +3155,17 @@ $(document).ready(function() {
 
     </div>
 
+<<<<<<< Updated upstream
     <div id="after-41" class="inner-level collapse collapsable-details  in ">
+=======
+    <div id="after-28" class="inner-level collapse collapsable-details ">
+>>>>>>> Stashed changes
               <div class="hook">
           <div class="brief failed">
             <span class="keyword indention">After</span>
                           <span class="location name">AgentBehaviorStepDefs.after(Scenario)</span>
                         
-  <span class="lead-duration duration">000ms</span>
+  <span class="lead-duration duration">027ms</span>
 
           </div>
 
