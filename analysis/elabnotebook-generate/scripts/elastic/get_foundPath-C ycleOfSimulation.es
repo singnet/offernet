@@ -1,6 +1,6 @@
 GET /filebeat-*/_search
 { 
-  "_source": ["simulationId", "method","wallTime_ms", "keyword"], 
+  "_source": ["simulationId", "method","wallTime_ms", "keyword", "cyGraph"], 
   "query": {
     "bool": {
       "must": [
