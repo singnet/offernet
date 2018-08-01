@@ -10,8 +10,8 @@ addons:
       - libssl-dev
       - wget
 before_install:
-  - docker pull datastax/dse-server:6.0.2
-  - docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:6.0.2 -g
+  - docker pull datastax/dse-server:6.0.1
+  - docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:6.0.1 -g
   - docker ps -a
   - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
   - sudo add-apt-repository "deb https://cran.cnr.berkeley.edu/bin/linux/ubuntu trusty/"
