@@ -61,7 +61,6 @@ public class AgentTests {
 		}}
 	}
 
-	@Ignore // delete when all tests pass -- this was needed for the old similarity calculation
 	@Test
 	void connectTest() {
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
@@ -76,20 +75,19 @@ public class AgentTests {
 		assertNotNull(similarityEdge);
 	}
 
-	@Ignore // delete after all tests pass -- this was needed for the old similarity calculation
 	@Test
 	void connectAllSimilarTest() {
 		on.flushVertices();
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		agent1.knowsAgent(agent2.vertexId());
-		def work1 = agent1.ownsWork('1111','1110');
-		def work2 = agent2.ownsWork('1100','1000');
+		def work1 = agent1.ownsWork(0.2,0.8);
+		def work2 = agent2.ownsWork(0.5,0.8);
 		def knownItemsList = on.getVertices('item')
-		def start = agent1.addItemToWork("demands",work2,'1110')
+		def start = agent1.addItemToWork("demands",work2,0.9)
 		
-		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,0.7d)
-		assertEquals(3,similarityEdges.size())
+		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,0.5d)
+		assert similarityEdges.size() == 3
 	}
 
 	@Test
@@ -126,7 +124,6 @@ public class AgentTests {
 
 	}
 
-	@Ignore // delete after all test pass -- this was needed fro the old similarity calculation
 	@Test
 	void connectIfSimilarTest() {
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();

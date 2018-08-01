@@ -51,7 +51,9 @@ public class Agent extends UntypedAbstractActor {
         default: 
           def args = message.args
           def reply = this."$message.name"(*args)
-          getSender().tell(reply,getSelf());
+          if (reply != null) { 
+            getSender().tell(reply,getSelf());
+          }
           break;
       }
     }
@@ -361,6 +363,7 @@ public class Agent extends UntypedAbstractActor {
       return items;
     }
 
+
     private Integer searchAndConnect(Object similarityThreshold, Integer maxReachDistance) {
       def start = System.currentTimeMillis();
       Map params = new HashMap();
@@ -372,41 +375,41 @@ public class Agent extends UntypedAbstractActor {
       String query = """      
           g.withSack(0).V().has('type','agent').has('agentId',thisAgentId).as('source')
                   .outE('owns').inV()
-                  .union(
-                    __.outE('demands').as('itemEdge')
-                    //.label().as('itemEdgeLabel').select('itemEdge') // for debugging
-                      .inV().has(label,'item').as('sitem').values('itemId').as('sitemId')
-                      .select('source')
-                      .repeat(
-                          both('knows').has("type","agent").as('target').dedup()
-                          .where('target',neq('source'))
-                      ).times(maxReachDistance).emit(),
-                    outE('offers').as('itemEdge')
-                    //.label().as('itemEdgeLabel').select('itemEdge') // for debugging
-                      .inV().has(label,'item').as('sitem').values('itemId').as('sitemId')
-                      .select('source')
-                      .repeat(
-                          both('knows').has("type","agent").as('target').dedup()
-                          .where('target',neq('source'))
-                      ).times(maxReachDistance).emit()
-                    )
-                  .out("owns").out().has('type','item').as('titem').id()
-                  .select('titem').values('value').as('titemValue')
-                  .select('sitem').values('value').as('sitemValue')
-                  //.select('titem').values('itemId').as('titemId') // for debugging
-                  //.select('source').values('agentId').as('sourceId') // for debugging
-                  .math("1 - abs(titemValue - sitemValue)").as('diff')
-                  .choose(select('diff').is(gte(similarityThreshold)),
-                      __.choose(select('titem').bothE('similarity').otherV().values('itemId').where(eq('sitemId')),
-                          __.select('diff'),
-                          __.select('sitem').union(
-                              __.addE('similarity').to('titem').property('similarity',select('diff')).sack(sum).by(constant(1)),
-                                addE('similarity').from('titem').property('similarity',select('diff'))
-                          )
+                  .local(
+                    union(
+                      __.outE('demands').as('itemEdge')
+                      //.label().as('itemEdgeLabel').select('itemEdge') // for debugging
+                        .inV().has(label,'item').as('sitem').values('itemId').as('sitemId')
+                        .select('source')
+                        .repeat(
+                            both('knows').has("type","agent").as('target').dedup()
+                            .where('target',neq('source'))
+                        ).times(maxReachDistance).emit(),
+                      outE('offers').as('itemEdge')
+                      //.label().as('itemEdgeLabel').select('itemEdge') // for debugging
+                        .inV().has(label,'item').as('sitem').values('itemId').as('sitemId')
+                        .select('source')
+                        .repeat(
+                            both('knows').has("type","agent").as('target').dedup()
+                            .where('target',neq('source'))
+                        ).times(maxReachDistance).emit()
                       )
-                  )
+                    .out("owns").out().has('type','item').as('titem').id()
+                    .select('titem').values('value').as('titemValue')
+                    .select('sitem').values('value').as('sitemValue')
+                    //.select('titem').values('itemId').as('titemId') // for debugging
+                    //.select('source').values('agentId').as('sourceId') // for debugging
+                    .math("1 - abs(titemValue - sitemValue)").as('diff')
+                    .select('diff').is(gte(similarityThreshold)).choose(select('titem').outE('similarity').otherV().values('itemId').where(eq('sitemId')),
+                            __.select('diff'),
+                            __.select('sitem').union(
+                                __.addE('similarity').to('titem').property('similarity',select('diff')).sack(sum).by(constant(1)),
+                                  addE('similarity').from('titem').property('similarity',select('diff'))
+                            )
+                        )
                   .sack().sum()
-      """            
+                ).sum()
+            """            
 
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);
 
@@ -663,23 +666,37 @@ public class Agent extends UntypedAbstractActor {
       return result;
   }
 
-  private List<GraphNode> cycleSearch(Object similarityConstraint) {
+  private List<GraphNode> cycleSearchSynchronous(Object similarityConstraint, List chain) {
       def itemWorks = this.getWorks();
       List<GraphNode> agentCycles = []
       itemWorks.each { work ->
           List<GraphNode> workCycles = this.cycleSearch(work, similarityConstraint);
           agentCycles.addAll(workCycles)
       }
+      logger.debug('agent {} found {} cycles', this.id(), agentCycles)
       return agentCycles
+  }
+
+
+  private List<GraphNode> cycleSearch(Object similarityConstraint, List chain) {
+      def itemWorks = this.getWorks();
+      List<GraphNode> agentCycles = []
+      itemWorks.each { work ->
+          List<GraphNode> workCycles = this.cycleSearch(work, similarityConstraint);
+          agentCycles.addAll(workCycles)
+      }
+      logger.debug('agent {} found {} cycles', this.id(), agentCycles)
+      def reply = new Method("checkFoundPaths", new ArrayList(){{add(agentCycles);add(chain)}})
+      getSender().tell(reply,getSelf());
   }
 
   private List<GraphNode> cycleSearch(Vertex work, Object similarityConstraint) {
       def start = System.currentTimeMillis()
       Map params = new HashMap();
-      logger.info('cycleSearch: Work is : {}', work)
-      logger.info('cycleSearch: Work id is: {}', work.getId())
-      logger.info('cycleSearch: similarityConstraint is: {}', similarityConstraint)
-      logger.info('cycleSearch: formatted label is: {}', Utils.formatVertexLabel(work.getId()))
+      logger.debug('cycleSearch: Work is : {}', work)
+      logger.debug('cycleSearch: Work id is: {}', work.getId())
+      logger.debug('cycleSearch: similarityConstraint is: {}', similarityConstraint)
+      logger.debug('cycleSearch: formatted label is: {}', Utils.formatVertexLabel(work.getId()))
       params.put("thisWork", work.getId());
       params.put("similarityConstraint", similarityConstraint);
 

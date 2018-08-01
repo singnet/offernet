@@ -74,7 +74,7 @@ public class ExperimentsCentralized {
 		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
 
 		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}', 
-      		'compareDecentralizedAndCentralizedSearch', 
+      		'centralizedVersion', 
       		experimentId,
       		agentNumbers,
       		chainLengths,
@@ -96,7 +96,8 @@ public class ExperimentsCentralized {
 							Global.parameters.similaritySearchThreshold = similaritySearchThreshold
 
 					       	// 1: create simulation object
-							sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+					       	String simulationId = 'SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6)+"--CV"
+							sim = TestActorRef.create(system, Simulation.props(simulationId)).underlyingActor();
 							assertNotNull(sim);
 							sim.on.flushVertices();
 
@@ -126,18 +127,6 @@ public class ExperimentsCentralized {
 							def taskAgent = createTaskAgentInTheNetwork(sim,chain)
 
 							String simulationIdGeneral = Global.parameters.simulationId
-							// 6: running decentralized version...
-
-							ArrayList allAgentIds = sim.agentIdToActorRefTable.keySet().toArray()
-							recreateActorSystem(allAgentIds,simulationIdGeneral+"--DV")
-
-							runDecentralizedVersion(maxDistance, taskAgent, chainedWorksJson);
-							sim.on.analyze("Analysis after runDecentralizedVersion")
-							
-							// 7: removing edges created by decentralized version
-							//sim.on.removeEdges("item","similarity")
-							allAgentIds = sim.agentIdToActorRefTable.keySet().toArray()
-							recreateActorSystem(allAgentIds,simulationIdGeneral+"--CV")
 
 							// 8: running centralized version...
 							runCentralizedVersion(taskAgent, maxDistance, chainedWorksJson);
@@ -150,41 +139,19 @@ public class ExperimentsCentralized {
 		}
 	}
 
-	void recreateActorSystem(ArrayList agentIdList, String simulationId) {
-		def on = sim.on;
-		// recreating simulation object with the same graph for the centralizedSearch
-		this.teardown();
-		System.gc();
-		Thread.sleep(1000)
-		assertNull(system)
-		system = ActorSystem.create("SimulationTests");
-		sim = TestActorRef.create(system, Simulation.props(on, simulationId)).underlyingActor();
-		assertNotNull(sim);
-		sim.recreateAgents(agentIdList);
-	}
-
-	void runDecentralizedVersion(Object maxDistance, Object taskAgent, Object chainedWorksJson) {
-		sim.decentralizedSimilaritySearchAndConnect(maxDistance)
-
-		// since the  decentralizedSimilaritySearchAndConnect is asynchronous and exists 
-		// as soon as messages are sent to agents,
-		// running cycle search immediately after does not guarantee that all agents did 
-		// finished the searchAndConnect routines
-		// therefore we mus loop on decentralized search until cycle is found...
-		Global.parameters.terminate_all = false;
-		while (!Global.parameters.terminate_all) {
-			sim.individualCycleSearch(sim.agentIdToActorRefTable.get(taskAgent), chainedWorksJson)
-		}
-	}
 
 	void runCentralizedVersion(Object taskAgent, Object maxDistance, Object chainedWorksJson) {
 		// sim.centralizedSimilaritySearchAndConnect()  // runs search purely in Gremlin, dse throws a timeout...
 		//sim.decentralizedSimilaritySearchAndConnect(maxDistance)
-		//sim.on.connectAllSimilarCentralized() // runs search in java
+		sim.on.connectAllSimilarCentralized() // runs search in java
 		//8.2.1: looking for a cycle in Naive way:
-		//sim.allCyclesCentralized(chainedWorksJson, 1)
-		//sim.individualCycleSearch(sim.agentIdToActorRefTable.get(taskAgent), chainedWorksJson)
-		sim.individualCycleSearch(sim.agentIdToActorRefTable.get(taskAgent), chainedWorksJson)
+		/*
+		Global.parameters.terminate_all = false;
+		while (!Global.parameters.terminate_all) {
+			sim.individualCycleSearch(sim.agentIdToActorRefTable.get(taskAgent), chainedWorksJson)
+		}
+		*/
+		def cycles = sim.allCyclesCentralized(chainedWorksJson,1)
 	}
 
 

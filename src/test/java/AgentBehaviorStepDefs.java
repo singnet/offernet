@@ -51,7 +51,7 @@ public class AgentBehaviorStepDefs {
 
     @After
     public void after(Scenario scenario) throws Throwable {
-		// this.on.flushVertices();
+		  this.sim.on.flushVertices();
     }
 
     /*

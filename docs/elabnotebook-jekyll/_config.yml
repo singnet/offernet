@@ -1,5 +1,8 @@
 # Dependencies
-markdown:         redcarpet
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  
 highlighter:      rouge
 baseurl:          offernet/public/elabnotebook
 
@@ -26,3 +29,4 @@ github:
 
 plugins_dir:      [jekyll-paginate]
 gems:             [jekyll-paginate]
+

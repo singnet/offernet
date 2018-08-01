@@ -281,7 +281,7 @@ public class OfferNet implements AutoCloseable {
       Map params = new HashMap();
       params.put("idName", id);
 
-      SimpleGraphStatement s = new SimpleGraphStatement("g.V().has(id,idName)",params);
+      SimpleGraphStatement s = new SimpleGraphStatement("g.V(idName)",params);
       GraphResultSet rs = session.executeGraph(s);
       logger.debug("Executed statement: {}", Utils.getStatement(rs));
       logger.debug("Execution warnings from the server: {}", Utils.getWarnings(rs));
@@ -580,14 +580,15 @@ public class OfferNet implements AutoCloseable {
         return edges;
     }
 
-    public void removeEdges(String edgeLabel) {
+    public void removeEdges(String vertexType, String edgeLabel) {
         Map params = new HashMap();
-        params.put("labelName", edgeLabel);
+        params.put("edgeLabel", edgeLabel);
+        params.put("vertexType", vertexType);
 
-        logger.debug("Removing all {}} links", edgeLabel);
+        logger.debug("Removing all {} links", edgeLabel);
 
         SimpleGraphStatement s = new SimpleGraphStatement(
-                "g.E().has(label,labelName).drop()",params);
+                "g.V().has('type',vertexType).outE(edgeLabel).drop()",params);
 
         GraphResultSet rs = session.executeGraph(s);
         logger.debug("Removed all {} edges from the graph", edgeLabel);
@@ -668,7 +669,7 @@ public class OfferNet implements AutoCloseable {
                   }
               }
           }
-          sedges
+          sedges.size()
       """            
 
       SimpleGraphStatement s = new SimpleGraphStatement(query,params);
@@ -689,18 +690,21 @@ public class OfferNet implements AutoCloseable {
 
     }
 
-    // all follwing methods are for centralized search:
+    // all following methods are for centralized search:
 
     private List connectAllSimilarCentralized() {
       def similarityThreshold = Global.parameters.similarityThreshold
       def allItems = this.getVertices('item')
       def start = System.currentTimeMillis();
       def similarityEdges=[];
-      def tail = allItems;
-      logger.debug('running recursiveSimilaritySearch')
+      def tail = allItems.clone();
+      logger.debug('initiating similarity search from every agent in the network')
       for (int i =0; i<allItems.size();i++) {
+        logger.debug('similaritySearchLoop: allItems size is {} ', allItems.size())
         def item = allItems[i];
-        tail = allItems.drop(1);
+        logger.debug('similaritySearchLoop:  currentItem {} ', item)
+        tail = tail.drop(1);
+        logger.debug('similaritySearchLoop: tail {} ', tail)
         similarityEdges.addAll(connectAllSimilar(item,tail,similarityThreshold));
       }
       logger.debug('Added total {} similarity edges to the graph (centralized)',similarityEdges.size())

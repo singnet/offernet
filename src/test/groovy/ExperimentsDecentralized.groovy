@@ -37,9 +37,10 @@ import akka.testkit.javadsl.TestKit;
 
 
 
-public class Experiments {
+public class ExperimentsDecentralized {
 	static ActorSystem system = ActorSystem.create("SimulationTests");
 	static private Logger logger;
+	private Simulation sim;
 
 	@BeforeClass
 	static void initLogging() {
@@ -51,12 +52,12 @@ public class Experiments {
 
 	@AfterClass
   	static void teardown() {
-    	TestKit.shutdownActorSystem(system);
+    	TestKit.shutdownActorSystem(system, true);
     	system = null;
   	}
 
 	@Test
-	void compareDecentralizedAndCentralizedSearch() {
+	void run() {
 
 		/*
 		* Constructing the parameter matrix:
@@ -66,14 +67,14 @@ public class Experiments {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [100]//, 1000, 2000, 5000] // number of agents in the network
+		def agentNumbers = [200]//, 1000, 2000, 5000] // number of agents in the network
 		def chainLengths = [10] // the length of the chain to drop into the network (cannot be less than 3!)
 		def randomWorksNumberMultipliers = [2] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [10]//100, 250] // the maximum number of hops when doing decentralized similarity search;
+		def maxDistances = [30]//100, 250] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
 
 		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}', 
-      		'compareDecentralizedAndCentralizedSearch', 
+      		'decentralizedVersion', 
       		experimentId,
       		agentNumbers,
       		chainLengths,
@@ -95,7 +96,8 @@ public class Experiments {
 							Global.parameters.similaritySearchThreshold = similaritySearchThreshold
 
 					       	// 1: create simulation object
-							def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+					       	String simulationId = 'SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6)+"--DV"
+							sim = TestActorRef.create(system, Simulation.props(simulationId)).underlyingActor();
 							assertNotNull(sim);
 							sim.on.flushVertices();
 
@@ -111,146 +113,56 @@ public class Experiments {
 					      	)								 
 			
 							// 2: create agent network
-							def start = System.currentTimeMillis();
-
 							def agentList = sim.createAgentNetwork(agentNumber);
 
-							logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
-								experimentId,
-								Global.parameters.simulationId,
-					     		'createAgentNetwork finished',
-					     		(System.currentTimeMillis()-start)
-					      	)								 
-
-							sim.on.analyze("after: // 2: create agent network")
-
 							// 3: add random works to the agents in the network
-							start = System.currentTimeMillis();
-
 							sim.addRandomWorksToAgents(randomWorksNumber)
 
-							logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
-								experimentId,
-								Global.parameters.simulationId,
-					     		'addRandomWorksToAgents finished',
-					     		(System.currentTimeMillis()-start)
-					      	)								 
-
-							sim.on.analyze("after: // 3: add random works to the agents in the network")
-
-							// 4: create chain and assign its items to random agents
-							start = System.currentTimeMillis();
-
+							// 4. add chain to the network
 							def chains = [Utils.createChain(chainLength)]
 							def chain = chains[0]
 							def chainedWorksJson = sim.addChainToNetwork(chain, true)  // add chain to network and return json structure...
 
-							logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
-								experimentId,
-								Global.parameters.simulationId,
-					     		'addChainToNetwork finished',
-					     		(System.currentTimeMillis()-start)
-					      	)								 
-						
-
 							// 5: create taskAgent -- the one which closes the chain in the network
-							start = System.currentTimeMillis();
-
 							def taskAgent = createTaskAgentInTheNetwork(sim,chain)
 
-							logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
-								experimentId,
-								Global.parameters.simulationId,
-					     		'createTaskAgentInTheNetwork finished',
-					     		(System.currentTimeMillis()-start)
-					      	)								 
+							String simulationIdGeneral = Global.parameters.simulationId
+							// 6: running decentralized version...
 
-							// 6: running decentralizedCycleSearch
-								// 6.1: connecting all similar items in decentralized way:
-								start = System.currentTimeMillis();
-
-
-								sim.decentralizedSimilaritySearchAndConnect(maxDistance)
-								//sim.centralizedSimilaritySearchAndConnect()
-
-								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
-									experimentId,
-									Global.parameters.simulationId,
-						     		'centralizedSimilaritySearchAndConnect finished',
-						     		(System.currentTimeMillis()-start)
-								)								 
-
-								
-
-								Thread.sleep(3000)
-								sim.on.analyze("after: // 6.1: connecting all similar items in centralized way:")
-
-								// 6.2: looking for a cycle:
-								start = System.currentTimeMillis();
-
-								sim.decentralizedCycleSearch(taskAgent, chainedWorksJson)
-
-								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
-									experimentId,
-									Global.parameters.simulationId,
-						     		'decentralizedCycleSearch finished',
-						     		(System.currentTimeMillis()-start)
-						      	)								 
-
-								Thread.sleep(100)
-								sim.on.analyze("after: // 6.2: decentralizedCycleSearch")
-
-							// 7: removing all similarity connections
-							// So that centralized search could be run in full on the same network
-							//sim.on.removeEdges("similarity")
-
-							// 8: running centralizedCycleSearch
-								//8.1: connecting all similar items in centralized way:
-								//sim.centralizedSimilaritySearchAndConnect()
-								//8.2.1: looking for a cycle Naive:
-								start = System.currentTimeMillis();
-
-								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 1)
-
-								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
-									experimentId,
-									Global.parameters.simulationId,
-						     		'allCyclesCentralized: naiveCentralizedCycleSearch finished',
-						     		(System.currentTimeMillis()-start)
-						      	)								 
-
-								sim.on.analyze("after: // 8.2.1 naiveCentralizedCycleSearch")
-								/*
-								//8.2.2: looking for a cycle depthFirstSerch:
-								start = System.currentTimeMillis();
-
-								sim.allCyclesCentralized(similaritySearchThreshold, chainedWorksJson, 2)
-								*/
-
-								logger.info('experimentId={} : simulationId={} : message=[{}] : wallTime_ms={}',
-									experimentId,
-									Global.parameters.simulationId,
-						     		'allCyclesCentralized: depthFirstCycleSearch finished',
-						     		(System.currentTimeMillis()-start)
-						      	)								 
-
-								String message = "Final analysis (also after: // 8.2.1 naiveCentralizedCycleSearch) of experimentId="+experimentId
-								sim.on.analyze(message)
+							// 8: running centralized version...
+							runDecentralizedVersion(maxDistance, taskAgent, chainedWorksJson);
+							sim.on.analyze("Analysis after runDecentralizedVersion")
 
 						}
 					}
 				}
 			}
 		}
-		Thread.sleep(10000)
 	}
 
-	ActorRef createTaskAgentInTheNetwork(Simulation sim, List chain) {
+	void runDecentralizedVersion(Object maxDistance, Object taskAgent, Object chainedWorksJson) {
+		sim.decentralizedSimilaritySearchAndConnect(maxDistance)
+
+		// since the  decentralizedSimilaritySearchAndConnect is asynchronous and exists 
+		// as soon as messages are sent to agents,
+		// running cycle search immediately after does not guarantee that all agents did 
+		// finished the searchAndConnect routines
+		// therefore we mus loop on decentralized search until cycle is found...
+		Global.parameters.terminate_all = false;
+		while (!Global.parameters.terminate_all) {
+			sim.individualCycleSearch(sim.agentIdToActorRefTable.get(taskAgent), chainedWorksJson)
+			Thread.sleep(1000)
+		}
+	}
+
+	String createTaskAgentInTheNetwork(Simulation sim, List chain) {
+	  def start = System.currentTimeMillis()
+	  def currentMethodName = "createTaskAgentInTheNetwork"
       // create agent that has a work which closes the chain into the cycle
       // this agent will have the last item in he chain as demand
       // and the first item in the chain as offer
       def vertexIdList = new ArrayList(sim.vertexIdToActorRefTable.keySet())
-      def taskAgent = sim.createAgent()
+      ActorRef taskAgent = sim.createAgent()
       def randomAgent = vertexIdList[new Random().nextInt(vertexIdList.size())]
       Method msg = new Method("knowsAgent", new ArrayList(){{add(randomAgent)}});
       Timeout timeout = new Timeout(Duration.create(5, "seconds"));
@@ -264,7 +176,13 @@ public class Experiments {
       Vertex taskWork = (Vertex) Await.result(future, timeout.duration());
       assertNotNull(taskWork);
 
-      return taskAgent
+	  logger.info('method={} : simulationId={} : wallTime_ms={}',
+		currentMethodName,
+		Global.parameters.simulationId,
+ 	    (System.currentTimeMillis()-start)
+	  )	
+
+      return sim.actorRefToAgentIdTable.get(taskAgent)
     }
 
 

@@ -134,4 +134,98 @@ public class OfferNetTests {
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 			sim.on.openVisualizationWindow();
 		}
+
+	@Test
+	void connectAllSimilarTest() {
+		on.flushVertices();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		agent1.knowsAgent(agent2.vertexId());
+		def work1 = agent1.ownsWork(0.2,0.8);
+		def work2 = agent2.ownsWork(0.5,0.8);
+		def knownItemsList = on.getVertices('item')
+		def start = agent1.addItemToWork("demands",work2,0.9)
+		def allItems = on.getVertices('item')
+		def tail = allItems.clone();
+		def allSmilarityEdges=[]
+		allItems.each { item ->
+			 tail = tail.drop(1)
+			 def similarityEdges= on.connectAllSimilar(item, tail,0.5d)
+	         logger.debug('similaritySearchLoop: allItems size is {} ', allItems.size())
+		     logger.debug('similaritySearchLoop:  currentItem {} ', item)
+        	 logger.debug('similaritySearchLoop: tail {} ', tail.size())
+			 logger.debug('found similarity edges {} for item {}', similarityEdges, item)
+			 allSmilarityEdges.addAll(similarityEdges)
+		}
+		assert allSmilarityEdges.size() == 7 // founds more than from agent perspective because it does not check if an item belongs to the same work/agent;
+	}
+
+	@Test
+	void connectAllSimilarCentralized() {
+		on.flushVertices();
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		agent1.knowsAgent(agent2.vertexId());
+		def work1 = agent1.ownsWork(0.2,0.8);
+		def work2 = agent2.ownsWork(0.5,0.8);
+		def knownItemsList = on.getVertices('item')
+		def start = agent1.addItemToWork("demands",work2,0.9)
+		def allSmilarityEdges = on.connectAllSimilarCentralized()
+		assert allSmilarityEdges.size() == 7 // founds more than from agent perspective because it does not check if an item belongs to the same work/agent;
+	}
+
+	@Test
+	void connectIfSimilarTest() {
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def work1 = agent1.ownsWork();
+		def work2 = agent2.ownsWork();
+		def item1 = agent1.addItemToWork("demands",work1)
+		def item2 = agent2.addItemToWork("demands",work1)
+
+		def similarity = Utils.calculateSimilarity(item1,item2);
+		def connectedEdge = on.connectIfSimilar(item1, item2, similarity);
+		assertNotNull(connectedEdge);
+		assertEquals(similarity,Utils.edgePropertyValue(connectedEdge,'value'),0.0001)
+
+		def item3 = agent1.addItemToWork("offers",work1)
+		def item4 = agent2.addItemToWork("offers",work1)
+
+		similarity = Utils.calculateSimilarity(item3,item4);
+
+		connectedEdge = on.connectIfSimilar(item3, item4, similarity*2);
+		assertNull(connectedEdge);
+	}
+
+	@Test
+	void existsSimilarityTest() {
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def work1 = agent1.ownsWork();
+		def work2 = agent2.ownsWork();
+		def item1 = agent1.addItemToWork("demands",work1)
+		def item2 = agent2.addItemToWork("offers",work2)
+
+		agent1.searchAndConnect(0.0,2)
+
+		def d2 = on.existsSimilarity(item1,item2);
+		assertNotNull(d2)
+
+	}
+
+	@Test
+	void connectTest() {
+		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
+		def work1 = agent1.ownsWork();
+		def work2 = agent2.ownsWork();
+		def item1 = agent1.addItemToWork("demands",work1)
+		def item2 = agent2.addItemToWork("demands",work1)
+
+		def similarity = Utils.calculateSimilarity(item1,item2);
+		def similarityEdge = on.connect(item1,item2, similarity);
+		assertNotNull(similarityEdge);
+	}
+
+
 }

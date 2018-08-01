@@ -51,7 +51,9 @@ public class Analyst extends UntypedAbstractActor {
         default: 
           def args = message.args
           def reply = this."$message.name"(*args)
-          //getSender().tell(reply,getSelf());
+          if (reply) { 
+            getSender().tell(reply,getSelf());
+          }
           break;
       }
     }
