@@ -105,7 +105,7 @@ public class ExperimentsAll {
 							Global.parameters.persistence=true
 							assertNotNull(sim);
 							sim.on.flushVertices();
-							this.on.setEvaluationTimeout('PT2H') // setting timeout to max for cassandra...
+							sim.on.setEvaluationTimeout('PT2H') // setting timeout to max for cassandra...
 			
 							// 2: create agent network
 							def agentList = sim.createAgentNetwork(agentNumber);
@@ -173,7 +173,7 @@ public class ExperimentsAll {
 		system = ActorSystem.create("SimulationTests");
 		sim = TestActorRef.create(system, Simulation.props(simulationId)).underlyingActor();
 		assertNotNull(sim);
-		this.on.setEvaluationTimeout('PT2H') // setting timeout to max for cassandra...
+		sim.on.setEvaluationTimeout('PT2H') // setting timeout to max for cassandra...
 		sim.recreateAgents(agentIdList);
 	}
 
