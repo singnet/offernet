@@ -67,7 +67,7 @@ public class ExperimentsCentralized {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [20]//, 1000, 2000, 5000] // number of agents in the network
+		def agentNumbers = [100]//, 1000, 2000, 5000] // number of agents in the network
 		def chainLengths = [10] // the length of the chain to drop into the network (cannot be less than 3!)
 		def randomWorksNumberMultipliers = [2] // number of random works (outside chain) to drop into the network;
 		def maxDistances = [10]//100, 250] // the maximum number of hops when doing decentralized similarity search;
@@ -141,17 +141,17 @@ public class ExperimentsCentralized {
 
 
 	void runCentralizedVersion(Object taskAgent, Object maxDistance, Object chainedWorksJson) {
-		// sim.centralizedSimilaritySearchAndConnect()  // runs search purely in Gremlin, dse throws a timeout...
+		sim.centralizedSimilaritySearchAndConnect()  // runs search purely in Gremlin, dse throws a timeout...
 		//sim.decentralizedSimilaritySearchAndConnect(maxDistance)
-		sim.on.connectAllSimilarCentralized() // runs search in java
-		//8.2.1: looking for a cycle in Naive way:
-		/*
+		//sim.on.connectAllSimilarCentralized() // runs search in java
+
 		Global.parameters.terminate_all = false;
 		while (!Global.parameters.terminate_all) {
 			sim.individualCycleSearch(sim.agentIdToActorRefTable.get(taskAgent), chainedWorksJson)
+			Thread.sleep(1000)
 		}
-		*/
-		def cycles = sim.allCyclesCentralized(chainedWorksJson,1)
+
+		//def cycles = sim.allCyclesCentralized(chainedWorksJson,1)
 	}
 
 

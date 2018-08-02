@@ -578,13 +578,12 @@ class Simulation extends UntypedAbstractActor {
     void centralizedSimilaritySearchAndConnect() {
       logger.debug("Running centralized similarity search and connect")
       def start = System.currentTimeMillis();
-      //this.on.setEvaluationTimeout('PT2H')
+      this.on.setEvaluationTimeout('PT2H') // setting timeout to max for cassandra...
 
       //def allItems = this.on.getVertices('item');
       def similarityConnectThreshold = Global.parameters.similarityThreshold
       
       def similarityConnectionsCentralized = this.on.searchAndConnect(similarityConnectThreshold);
-      this.on.setEvaluationTimeout('30 s')
       logger.debug("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized,similarityConnectThreshold);
       logger.debug("Method {} took {} seconds to complete", 'decentralizedSimilaritySearchAndConnect', (System.currentTimeMillis()-start)/1000)
     }

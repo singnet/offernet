@@ -693,6 +693,7 @@ public class OfferNet implements AutoCloseable {
     // all following methods are for centralized search:
 
     private List connectAllSimilarCentralized() {
+      def timeout = Global.parameters.simulationTimeout
       def similarityThreshold = Global.parameters.similarityThreshold
       def allItems = this.getVertices('item')
       def start = System.currentTimeMillis();
@@ -706,6 +707,9 @@ public class OfferNet implements AutoCloseable {
         tail = tail.drop(1);
         logger.debug('similaritySearchLoop: tail {} ', tail)
         similarityEdges.addAll(connectAllSimilar(item,tail,similarityThreshold));
+        if ((System.currentTimeMillis() - start )>timeout*1000) {
+          break;
+        }
       }
       logger.debug('Added total {} similarity edges to the graph (centralized)',similarityEdges.size())
 
