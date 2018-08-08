@@ -553,8 +553,8 @@ public class SimulationTests {
 			assertNotNull(sim);
 			sim.on.flushVertices();
 
-			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/smallWorld50.dat");
-			assertEquals(50,sim.on.getVertices('agent').size());
+			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/smallWorld500.dat");
+			assertEquals(500,sim.on.getVertices('agent').size());
 		}
 
 		@Test
