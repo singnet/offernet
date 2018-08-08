@@ -60,10 +60,12 @@ public class OfferNet implements AutoCloseable {
               .addContactPoint("dse-server.host")
               .withAuthProvider(new DsePlainTextAuthProvider(Global.parameters.cassandraUsername.trim(), Global.parameters.cassandraPassword.trim()))
               .build();
+            cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
             if (! Global.parameters.persistence) {
               cluster.connect().executeGraph("system.graph('offernet').drop()");  
+              cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
             }
-            cluster.connect().executeGraph("system.graph('offernet').ifNotExists().create()");
+            
 
             PoolingOptions poolingOptions = new PoolingOptions();
             poolingOptions
