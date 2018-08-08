@@ -41,7 +41,7 @@ public class ExperimentsAll {
 	static ActorSystem system = ActorSystem.create("SimulationTests");
 	static private Logger logger;
 	private Simulation sim;
-	Integer timeout = 3600//18000 // timeout of a simulation in seconds (5 hours );
+	Integer timeout = 10800//18000 // timeout of a simulation in seconds (5 hours );
 
 	@BeforeClass
 	static void initLogging() {
@@ -68,14 +68,14 @@ public class ExperimentsAll {
 
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 	
-		def agentNumbers = [100, 200, 500]//, 1000, 2000, 5000] // number of agents in the network
-		def chainLengths = [10, 20] // the length of the chain to drop into the network (cannot be less than 3!)
+		def agentNumbers = [500, 1000, 2000. 5000]//, 1000, 2000, 5000] // number of agents in the network
+		def chainLengths = [20] // the length of the chain to drop into the network (cannot be less than 3!)
 		def randomWorksNumberMultipliers = [2] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [10, 30] // the maximum number of hops when doing decentralized similarity search;
+		def maxDistances = [10] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
 		 
 
-		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}', 
+		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={} : message={}', 
       		'decentralizedVersion', 
       		experimentId,
       		agentNumbers,
@@ -83,6 +83,7 @@ public class ExperimentsAll {
       		randomWorksNumberMultipliers,
       		maxDistances,
       		similaritySearchThresholds,
+      		'pre-generated smallWorld graph of agents with known diameters < 10'
       	)
 
 		agentNumbers.each { agentNumber ->
@@ -99,8 +100,8 @@ public class ExperimentsAll {
 							Global.parameters.simulationTimeout = this.timeout
 
 					       	// 1: create simulation object
+							Global.parameters.persistence=false
 					       	String simulationIdGeneral = 'SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6)
-
 							sim = TestActorRef.create(system, Simulation.props(simulationIdGeneral+"--DV")).underlyingActor();
 							Global.parameters.persistence=true
 							assertNotNull(sim);
@@ -108,8 +109,9 @@ public class ExperimentsAll {
 							sim.on.setEvaluationTimeout('PT2H') // setting timeout to max for cassandra...
 			
 							// 2: create agent network
-							def agentList = sim.createAgentNetwork(agentNumber);
-
+							//def agentList = sim.createAgentNetwork(agentNumber);
+							String fileName = "graphs/data/smallWorld"+agentNumber+".dat"
+							def agentList = sim.createAgentNetworkFromNetworkXDataFile(fileName)
 							// 3: add random works to the agents in the network
 							sim.addRandomWorksToAgents(randomWorksNumber)
 
@@ -178,9 +180,8 @@ public class ExperimentsAll {
 	}
 
 	void runDecentralizedVersion(Object maxDistance, Object taskAgent, Object chainedWorksJson, Object experimentId) {
-		def start = System.currentTimeMillis()
 		sim.decentralizedSimilaritySearchAndConnect(maxDistance)
-
+		def start = System.currentTimeMillis()
 		// since the  decentralizedSimilaritySearchAndConnect is asynchronous and exists 
 		// as soon as messages are sent to agents,
 		// running cycle search immediately after does not guarantee that all agents did 
@@ -215,9 +216,9 @@ public class ExperimentsAll {
 		(4) since we know task agent, we can run the cycle search directly from it; it is more comparable to the decentralized search,
 			albeit not generalizable... default.
 		*/
-		def start = System.currentTimeMillis()
 		// sim.centralizedSimilaritySearchAndConnect()  //  (1)
 		sim.on.connectAllSimilarCentralized() //  (2)
+		def start = System.currentTimeMillis()
 		//def cycles = sim.allCyclesCentralized(chainedWorksJson,1) // (3)
 		def outOfTime = false
 		Global.parameters.terminate_all = false; 
