@@ -36,7 +36,7 @@ task buildBook(type: Exec) {
 
 task buildLabNotebook(type: Exec) {
     executable "sh"
-    args "-c", "scripts/build_elabnotebook.sh"
+    args "-c", "scripts/build-elabnotebook-bookdown.sh"
 }
 
 task copyUnitTestReport(type: Copy) {
