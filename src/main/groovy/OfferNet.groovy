@@ -710,7 +710,7 @@ public class OfferNet implements AutoCloseable {
         tail = tail.drop(1);
         logger.debug('similaritySearchLoop: tail {} ', tail)
         similarityEdges.addAll(connectAllSimilar(item,tail,similarityThreshold));
-        if ((System.currentTimeMillis() - start )>timeout*1000) {
+        if ((System.currentTimeMillis() - start )> timeout*1000 ) {
           break;
         }
       }

@@ -453,6 +453,7 @@ public class SimulationTests {
 		}
 
 		void centralizedCycleSearchTest(int searchVersion) {
+			Global.parameters.simulationTimeout = 500
 			/* run test with parameters: */
 			def agentNumber = 50 // number of agents in the network
 			def chainLength = 20 // the length of the chain to drop into the network;
@@ -553,8 +554,8 @@ public class SimulationTests {
 			assertNotNull(sim);
 			sim.on.flushVertices();
 
-			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/smallWorld500.dat");
-			assertEquals(500,sim.on.getVertices('agent').size());
+			sim.createAgentNetworkFromNetworkXDataFile("graphs/data/smallWorld50.dat");
+			assertEquals(50,sim.on.getVertices('agent').size());
 		}
 
 		@Test
