@@ -27,9 +27,12 @@ before_install:
   - export R_LIBS=$TRAVIS_BUILD_DIR/Rlibs
   - R -e "install.packages('git2r', repos = 'http://cran.cnr.berkeley.edu/', lib='$TRAVIS_BUILD_DIR/Rlibs')"
   - R -e "install.packages('devtools', repos = 'http://cran.cnr.berkeley.edu/', lib='$TRAVIS_BUILD_DIR/Rlibs')"
+  - R -e "install.packages('jsonlite')"
+  - R -e "install.packages('kableExtra')"
+  - R -e "install.packages('ggplot2')"
+  - R -e "install.packages('elastic')"
   - R -e "library('devtools', lib.loc='$TRAVIS_BUILD_DIR/Rlibs')"
   - R -e "devtools::install_github('rstudio/bookdown')"
-  - sudo apt install -y jekyll
 #  - host-manager -add visualization-server.host 127.0.0.1
 
 script:
