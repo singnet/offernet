@@ -162,6 +162,7 @@ public class OfferNetTests {
 
 	@Test
 	void connectAllSimilarCentralized() {
+		Global.parameters.simulationTimeout = 500
 		on.flushVertices();
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
