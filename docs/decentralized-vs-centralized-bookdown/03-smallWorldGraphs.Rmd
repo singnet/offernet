@@ -56,12 +56,16 @@ result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=
 experiment.df <- result[,-c(1:4)]
 vars=sapply(strsplit(colnames(experiment.df), split='.', fixed=TRUE), function(x) (x[2]))
 colnames(experiment.df) <- vars
+experiment.df <- experiment.df[c(3,1,2,4,5,6)]
+experiment.df <- t(experiment.df)
+colnames(experiment.df) <- c('Values')
 
 # print Experiment data
-kable(experiment.df[c(3,1,2,4,5,6)]) %>%
-  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
-    column_spec(1:ncol(experiment.df),width="10em") 
+kable(experiment.df) %>%
+  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
+    #column_spec(0:ncol(experiment.df),width="10em") 
     #add_header_above(c("labels"=5))
+
 
 ```
 
@@ -301,9 +305,7 @@ for (simulationId in simulationIds) {
   cat('\n\n')  
   
 }
-  
-  
-  
+
 ```
 
 
