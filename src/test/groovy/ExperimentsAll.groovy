@@ -65,7 +65,7 @@ public class ExperimentsAll {
 		* both centralized and decentralized search will be run on every 
 		* permutation of these parameters;
 		*/
-
+		Global.parameters.similarityThreshold = 0.9
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 		Global.parameters.experimentId = experimentId
 		def agentNumbers = [200]//, 1000, 2000, 5000] // number of agents in the network
