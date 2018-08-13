@@ -56,6 +56,7 @@ public class ExperimentsCentralized {
     	system = null;
   	}
 
+  	@Ignore
 	@Test
 	void run() {
 
