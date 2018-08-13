@@ -107,7 +107,10 @@ public class Utils {
     private static Object convertToCYNotation(Object path, String keyword) {
       String simulationId = Global.parameters.simulationId
       String fileName = generateRandomString(6)+".json"
-      String cyFileDir = System.getProperty("user.dir")+"/"+Global.parameters.experimentDataDir + "/" + simulationId +"/"+ keyword
+      String cyFileDir = System.getProperty("user.dir")+"/"+
+              Global.parameters.experimentDataDir + "/" + 
+              Global.parameters.experimentId + "/" +
+              simulationId +"/"+ keyword
       def cyFilePath = cyFileDir +"/" +fileName 
 
       if (Global.parameters.reportMode) {

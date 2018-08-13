@@ -69,7 +69,7 @@ public class Analyst extends UntypedAbstractActor {
 
 	}
 
-  private degreeDistribution(String vertexType, String edgeLabel, String direction, String message) {
+  private degreeDistribution(String vertexType, String edgeLabel, String direction, String message, String simulationId) {
       def start = System.currentTimeMillis();
       Map params = new HashMap();
       params.put("propertyKey", "type");
@@ -96,7 +96,7 @@ public class Analyst extends UntypedAbstractActor {
 
       logger.info('method={} :  simulationId={} : vertexType={} ; edgeLabel={} : direction={} : results={} : message=[{}] : wallTime_ms={} msec.', 
         'degreeDistribution', 
-        Global.parameters.simulationId,
+        simulationId,
         vertexType,
         edgeLabel,
         direction,
@@ -105,7 +105,7 @@ public class Analyst extends UntypedAbstractActor {
         (System.currentTimeMillis()-start))
   }
 
-  private allEdgesByLabel(String message) {
+  private allEdgesByLabel(String message, String simulationId) {
       def start = System.currentTimeMillis();
 
       String query = "g.V().has('type',within(['agent','item','work'])).outE().dedup().groupCount().by(label)"
@@ -117,13 +117,13 @@ public class Analyst extends UntypedAbstractActor {
 
       logger.info('method={} :  simulationId={} : results={} : message=[{}] : wallTime_ms={} msec.', 
         'allEdgesByLabel', 
-        Global.parameters.simulationId,
+        simulationId,
         resultsJson,
         message,
         (System.currentTimeMillis()-start))
   }
 
-  private allVerticesByLabel(String message) {
+  private allVerticesByLabel(String message, String simulationId) {
       def start = System.currentTimeMillis();
 
       String query = "g.V().has('type',within(['agent','item','work'])).dedup().groupCount().by(label)"
@@ -135,14 +135,14 @@ public class Analyst extends UntypedAbstractActor {
 
       logger.info('method={} :  simulationId={} : results={} : message=[{}] : wallTime_ms={} msec.', 
         'allVerticesByLabel', 
-        Global.parameters.simulationId,
+        simulationId,
         resultsJson,
         message,
         (System.currentTimeMillis()-start))
   }
 
 
-  private similarityEdgesByWeight(String message) {
+  private similarityEdgesByWeight(String message, String simulationId) {
       def start = System.currentTimeMillis();
 
       String query = "g.V().has('type','item').dedup().outE().has(label,'similarity').groupCount().by(values('similarity').math('floor (_*1000)/1000'))"
@@ -154,7 +154,7 @@ public class Analyst extends UntypedAbstractActor {
 
       logger.info('method={} :  simulationId={} : results={} : message=[{}] : wallTime_ms={} msec.', 
         'similarityEdgesByWeight', 
-        Global.parameters.simulationId,
+        simulationId,
         resultsJson,
         message,
         (System.currentTimeMillis()-start))

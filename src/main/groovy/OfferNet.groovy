@@ -28,6 +28,7 @@ import kamon.prometheus.PrometheusReporter;
 //import kamon.jaeger.JaegerReporter;
 import kamon.zipkin.ZipkinReporter;
 
+import java.io.File;
 
 public class OfferNet implements AutoCloseable {
 
@@ -198,29 +199,29 @@ public class OfferNet implements AutoCloseable {
     }
 
     private analyze(String message) {
-      ArrayList parameters = ['agent','knows', 'both', message]
+      ArrayList parameters = ['agent','knows', 'both', message, Global.parameters.simulationId]
       Method msg = new Method('degreeDistribution', parameters)
       analyst.tell(msg,ActorRef.noSender());
 
-      parameters = ['agent','owns','both', message]
+      parameters = ['agent','owns','both', message, Global.parameters.simulationId]
       msg = new Method('degreeDistribution', parameters)
       analyst.tell(msg,ActorRef.noSender());
 
-      parameters = ['item','similarity','out', message]
+      parameters = ['item','similarity','out', message, Global.parameters.simulationId]
       msg = new Method('degreeDistribution', parameters)
       analyst.tell(msg,ActorRef.noSender());
 
-      parameters = ['work','demands','both', message]
+      parameters = ['work','demands','both', message, Global.parameters.simulationId]
       msg = new Method('degreeDistribution', parameters)
       analyst.tell(msg,ActorRef.noSender());
 
-      parameters = ['work','offers','both', message]
+      parameters = ['work','offers','both', message, Global.parameters.simulationId]
       msg = new Method('degreeDistribution', parameters)
       analyst.tell(msg,ActorRef.noSender());
       
-      analyst.tell(new Method('allEdgesByLabel', [message]),ActorRef.noSender());
-      analyst.tell(new Method('allVerticesByLabel', [message]),ActorRef.noSender());
-      analyst.tell(new Method('similarityEdgesByWeight', [message]),ActorRef.noSender());
+      analyst.tell(new Method('allEdgesByLabel', [message, Global.parameters.simulationId]),ActorRef.noSender());
+      analyst.tell(new Method('allVerticesByLabel', [message, Global.parameters.simulationId]),ActorRef.noSender());
+      analyst.tell(new Method('similarityEdgesByWeight', [message, Global.parameters.simulationId]),ActorRef.noSender());
     }
 
     private void openVisualizationWindow() {
@@ -879,6 +880,30 @@ public class OfferNet implements AutoCloseable {
     return similarityEdge;
   }
 
+  private boolean archive() {
+    SimpleGraphStatement developmentModeOn = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
+    session.executeGraph(developmentModeOn)
 
+    String outFileDir = System.getProperty("user.dir")+"/"+
+              Global.parameters.experimentDataDir + "/" + 
+              Global.parameters.experimentId + "/" +
+              Global.parameters.simulationId
+    File dir = new File(outFileDir)
+    dir.mkdirs()
+    dir.setWritable(true,false)
+    def outputFilePath = outFileDir +"/graph.graphml" 
+
+    Map params = new HashMap();
+    params.put("outputFilePath", outputFilePath);
+
+    SimpleGraphStatement s = new SimpleGraphStatement(
+            "g.getGraph().io(IoCore.graphml()).writeGraph(outputFilePath)", params);
+
+    session.executeGraph(s);
+
+    SimpleGraphStatement developmentModeOff = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Production')")
+    session.executeGraph(developmentModeOff)
+
+  }
 
 }
