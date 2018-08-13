@@ -13,5 +13,7 @@ Apart from the code, the following documentation is available:
   	* [Implementation](https://singnet.github.io/offernet/public/offernet-documentation/implementation.html);
 * [Unit rest report](https://singnet.github.io/offernet/public/unit-tests/index.html);
 * [Behavioural test report](https://singnet.github.io/offernet/public/cucumber-html-reports/overview-features.html);
+* Electronic Laboratory Notebook:
+	* [Experiment 1: decentralized vs centralized search](https://singnet.github.io/offernet/public/experiment-decentralized-vs-centralized/index.html);
 
 Please submit suggestions, questions, bug reports are more via [GitHub issues](https://github.com/singnet/offernet/issues). 
