@@ -33,9 +33,9 @@ Scenario: an agent can post an {offer-demand} pair to the OfferNet
 	Agents in an Offer Network engage in exchange by publishing an offer-demand pairs, or 'work's. See explanation of the Offer Network structure in [Data structures and objects].
 
 	Given Agent "AgentOne" is created on the OfferNet
-	When Agent "AgentOne" posts a pair of offer "offer-1" and demand of "demand-1"
-	Then Agent "AgentOne" owns a work which "demands" item "demand-1"
-	And Agent "AgentOne" owns a work which "offers" item "offer-1"
+	When Agent "AgentOne" posts a pair of offer "0.15" and demand of "0.57"
+	Then Agent "AgentOne" owns a work which "demands" item "0.57"
+	And Agent "AgentOne" owns a work which "offers" item "0.15"
 
 #@ignore
 @indoc

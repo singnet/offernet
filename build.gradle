@@ -34,6 +34,11 @@ task buildBook(type: Exec) {
     args "-c", "scripts/build-offernet-documentation.sh"
 }
 
+task buildLabNotebook(type: Exec) {
+    executable "sh"
+    args "-c", "scripts/build-elabnotebook-bookdown.sh"
+}
+
 task copyUnitTestReport(type: Copy) {
     from "${buildDir}/reports/tests/test"
     into "docs/public/unit-tests/"
@@ -48,6 +53,13 @@ jacocoTestReport {
 }
 
 test {
+    exclude '**/*Experiments*'
+    jvmArgs "-Dcom.sun.management.jmxremote"
+    jvmArgs "-Dcom.sun.management.jmxremote.port=5999"
+    jvmArgs "-Dcom.sun.management.jmxremote.local.only=false"
+    jvmArgs "-Dcom.sun.management.jmxremote.authenticate=false"
+    jvmArgs "-Dcom.sun.management.jmxremote.ssl=false"
+    jvmArgs "-Dcom.sun.management.jmxremote.rmi.port=5998"
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
     reports.junitXml.enabled = false
@@ -118,3 +130,4 @@ tasks.withType(JavaCompile) {
 //    options.compilerArgs << '-Xlint:unchecked'
     options.warnings = false
 }
+

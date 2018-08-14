@@ -10,8 +10,8 @@ addons:
       - libssl-dev
       - wget
 before_install:
-  - docker pull datastax/dse-server:5.1.6
-  - docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:5.1.6 -g
+  - docker pull datastax/dse-server:6.0.1
+  - docker run -e DS_LICENSE=accept -e LISTEN_ADDRESS=127.0.0.1 -e START_RPC=true --name dse -d -p 8182:8182 -p 9042:9042 datastax/dse-server:6.0.1 -g
   - docker ps -a
   - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
   - sudo add-apt-repository "deb https://cran.cnr.berkeley.edu/bin/linux/ubuntu trusty/"
@@ -27,6 +27,10 @@ before_install:
   - export R_LIBS=$TRAVIS_BUILD_DIR/Rlibs
   - R -e "install.packages('git2r', repos = 'http://cran.cnr.berkeley.edu/', lib='$TRAVIS_BUILD_DIR/Rlibs')"
   - R -e "install.packages('devtools', repos = 'http://cran.cnr.berkeley.edu/', lib='$TRAVIS_BUILD_DIR/Rlibs')"
+  - R -e "install.packages('jsonlite')"
+  - R -e "install.packages('kableExtra')"
+  - R -e "install.packages('ggplot2')"
+  - R -e "install.packages('elastic')"
   - R -e "library('devtools', lib.loc='$TRAVIS_BUILD_DIR/Rlibs')"
   - R -e "devtools::install_github('rstudio/bookdown')"
 #  - host-manager -add visualization-server.host 127.0.0.1

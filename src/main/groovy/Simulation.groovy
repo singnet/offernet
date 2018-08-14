@@ -54,10 +54,19 @@ class Simulation extends UntypedAbstractActor {
     });
   }
 
+  public static Props props(String simulationId) {
+    return Props.create(new Creator<Simulation>() {
+      @Override
+      public Simulation create() throws Exception {
+        return new Simulation(simulationId);
+      }
+    });
+  }
+
   public void onReceive(Object message) throws Exception {
     if (message instanceof Method) {
       logger.info("{}: {} : received message: {} of {}",
-        Utils.getCurrentMethodName(),
+        'onReceive',
         Global.parameters.simulationId,
         message,
         message.getClass())
@@ -65,7 +74,9 @@ class Simulation extends UntypedAbstractActor {
         default: 
           def args = message.args
           def reply = this."$message.name"(*args)
-          getSender().tell(reply,getSelf());
+          if (reply) { 
+            getSender().tell(reply,getSelf());
+          }
           break;
       }
     }
@@ -82,9 +93,9 @@ class Simulation extends UntypedAbstractActor {
 		//PropertyConfigurator.configure(config.toProperties())
 		logger = LoggerFactory.getLogger('Simulation.class');
 
-		on = new OfferNet();
-		on.flushVertices();
-		logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+    on = new OfferNet();  
+    
+		logger.debug("Method {} took {} seconds to complete", '<init>', (System.currentTimeMillis()-start)/1000)
 
     vertexIdToActorRefTable = new Hashtable<String,ActorRef>();
     actorRefToVertexIdTable = new Hashtable<ActorRef,String>();
@@ -95,18 +106,12 @@ class Simulation extends UntypedAbstractActor {
     Global.parameters.simulationId = simulationId;
 
     logger.info('method={} : simulationId={} : wallTime_ms={} msec.', 
-      Utils.getCurrentMethodName(), 
+      '<init>', 
       Global.parameters.simulationId,
       (System.currentTimeMillis()-start))
+
 	}
 
-	/*
-	* TODO:
-	* With agents the logic of simulation changes considerably. What needs to bee done:
-	- OfferNetwork class should hold a map with agents / vertex labels and ways to query them;
-	- Simulation is an Actor, OfferNet is a normal class (encapsulated within Simulation);
-	- Simulations will be run by passing messages for running methods
-	*/
 
   private ActorRef createAgent() {
     String agentId = UUID.randomUUID().toString();
@@ -126,6 +131,16 @@ class Simulation extends UntypedAbstractActor {
   }
 
   /**
+  This method is used when the simulation object is recreated with the same underlying graph
+  */
+  public void recreateAgents(ArrayList agentIdList) {
+    agentIdList.each { agentId -> 
+      this.createAgentWithId(agentId)
+    }
+    logger.debug('recreated {} actors in simulation {}', agentIdList.size(), Global.parameters.simulationId)
+  }
+
+  /**
   * gets agent vertexId via asynchronous blocking message
   * not perfect: have to change to non -blocking message with probably future.onComplete...
   */
@@ -134,7 +149,7 @@ class Simulation extends UntypedAbstractActor {
     def msg = new Method("vertexId",[])
     Future<Object> future = Patterns.ask(actorRef, msg, timeout);
     def vertexId = Await.result(future, timeout.duration());
-    logger.trace('Got actorRefs {} vertexId {} via blocking future', actorRef, vertexId)
+    logger.debug('Got actorRefs {} vertexId {} via blocking future', actorRef, vertexId)
     return vertexId;
   }
 
@@ -154,7 +169,7 @@ class Simulation extends UntypedAbstractActor {
         agentsList.add(agent2)
       }
     logger.info('method={} : simulationId={} : numberOfAgents={} : wallTime_ms={} sec.', 
-      Utils.getCurrentMethodName(), 
+      'createAgentNetwork', 
       Global.parameters.simulationId,
       numberOfAgents,
       (System.currentTimeMillis()-start)/1000)
@@ -174,19 +189,20 @@ class Simulation extends UntypedAbstractActor {
       agent1.tell(new Method("knowsAgent",[agent2vertexId]),getSelf())
       agentsList.add(agent2)      
     }
-    logger.trace("Created a line of {} agents",numberOfAgents);
-    logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)        
+    logger.debug("Created a line of {} agents",numberOfAgents);
+    logger.debug("Method {} took {} seconds to complete", 'createAgentLine', (System.currentTimeMillis()-start)/1000)        
     return agentsList;
   }
 
   /**
   * This method sends a single message to every agent in a system in a row instructing it to start searchAndConnect method on their behalf
-  * Used for testing purposes only. It is a semi-decentralized: decentralized because each agent gets a message and starts routines asynchronously. Centralized because a global list of agents is used. Complete decentralization could be achieved by randomly choosing agents in the network that start the discovery process.
+  * Used for testing purposes only. It is a semi-decentralized: decentralized because each agent gets a message and starts routines asynchronously. The only that miss from making it centralized is the check that all items in the graph are visited -- this should not be very difficult to do.
+  Centralized because a global list of agents is used. Complete decentralization could be achieved by randomly choosing agents in the network that start the discovery process.
   */
 	private void connectIfSimilarForAllAgents(List agentList, Object similarityThreshold, Integer maxReachDistance) throws Throwable{
-
+    def currentMethodName = 'connectIfSimilarForAllAgents'
 		def start = System.currentTimeMillis();
-		logger.trace("Searching and connecting similar items of all agents in the graph:")
+		logger.debug("Searching and connecting similar items of all agents in the graph:")
 		def newConnectionsCreated = 0;
 		agentList.each {agentRef ->
         def args = [similarityThreshold,maxReachDistance];
@@ -194,8 +210,8 @@ class Simulation extends UntypedAbstractActor {
         agentRef.tell(msg,getSelf());
 		}
 
-    logger.info('{} : {} : agent count in the list={}; similarityThreshold={}; maxReachDistance={} : wallTime_ms={} sec.', 
-      Utils.getCurrentMethodName(), 
+    logger.info('method={} : simulationId={} : agentNumber={}; similarityThreshold={}; maxReachDistance={} : wallTime_ms={} sec.', 
+      currentMethodName,
       Global.parameters.simulationId,
       agentList.size(),
       similarityThreshold,
@@ -216,37 +232,40 @@ class Simulation extends UntypedAbstractActor {
         for (int i = 0; i < numberOfEdges; i++) {
             int x, y;
             x = scanner.nextInt();
-            logger.trace("Agent {}",x)
+            logger.debug("Agent {}",x)
             y = scanner.nextInt();
-            logger.trace("knows agent {}",y)
+            logger.debug("knows agent {}",y)
             adj[x - 1].add(y - 1);
             adj[y - 1].add(x - 1);
         }
-        logger.trace("Imported adjacency list: {}",adj)
+        logger.debug("Imported adjacency list: {}",adj)
 
         def agentsList = [];
         numberOfAgents.times {
-        	agentsList.add( on.createAgent() );
+        	agentsList.add( this.createAgent() );
         }
-        logger.trace("Created {} agents list: {}", agentsList.size(), agentsList)
+        logger.debug("Created {} agents list: {}", agentsList.size(), agentsList)
 
         def edges = 0;
         for (int i = 0; i<adj.size(); i++) {
         	def agent1 = agentsList[i]
         	adj[i].each { i2 ->
         		def agent2 = agentsList[i2]
-        		on.knowsAgent(agent1, agent2)	
+            def agent2vertexId = this.getAgentVertexId(agent2)
+            agent1.tell(new Method("knowsAgent",[agent2vertexId]),getSelf())
+            agentsList.add(agent2)      
         		edges +=1
         	}
         }
-        logger.trace("Created {} edges in the network",edges)
+        logger.debug("Created {} edges in the network",edges)
     }
 
-    private void createAgentNetworkConnectedStars(Vertex center, Integer radius, Integer branchingFactor) {
+    private void createAgentNetworkConnectedStars(ActorRef center, Integer radius, Integer branchingFactor) {
     	if (radius > 0 ) {
     		branchingFactor.times {
-    			def spike = on.createAgent()	
-    			on.knowsAgent(center,spike)
+    			def spike = this.createAgent()	
+          def spikeVertexId = this.getAgentVertexId(spike)
+          center.tell(new Method("knowsAgent",[spikeVertexId]),getSelf())
     			createAgentNetworkConnectedStars(spike,radius -1,branchingFactor);
     		}
     	}
@@ -254,18 +273,25 @@ class Simulation extends UntypedAbstractActor {
 
     private void addRandomWorksToAgents(int numberOfWorks) {
         def start=System.currentTimeMillis();
+        def currentMethodName = "addRandomWorksToAgents"
         /* here should randomly select actor from the system instead of the next line*/
         ArrayList actorRefs = actorRefToVertexIdTable.keySet().toArray();
-        logger.trace("ActorRefs array is of size {}: {}", actorRefs.size(), actorRefs)
+        logger.debug("ActorRefs array is of size {}: {}", actorRefs.size(), actorRefs)
         numberOfWorks.times {
             def random = new Random();
             def id = random.nextInt(actorRefs.size()-1)
             def actorRef = actorRefs[id]
             actorRef.tell(new Method("ownsWork",[]),getSelf());
-            logger.trace("Added random work to actorRef {}", actorRef);
+            logger.debug("Added random work to actorRef {}", actorRef);
         }
-        logger.trace("Added "+numberOfWorks+" of random processes to the network")
-        logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+
+        logger.info('method={} : simulationId={} : numberOfWorks={} : wallTime_ms={} msec.', 
+          currentMethodName, 
+          Global.parameters.simulationId,
+          numberOfWorks,
+          (System.currentTimeMillis()-start)
+        )
+         
     }
 
     public List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
@@ -275,8 +301,8 @@ class Simulation extends UntypedAbstractActor {
       chains.each {chain ->
         this.addChainToNetwork(chain)
       }
-      logger.trace("Created agentNetwork with {} agents, {} randomWorks and {} chains",numberOfAgents,numberOfRandomWorks,chains.size())
-      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      logger.debug("Created agentNetwork with {} agents, {} randomWorks and {} chains",numberOfAgents,numberOfRandomWorks,chains.size())
+      logger.debug("Method {} took {} seconds to complete", 'createAgentNetwork', (System.currentTimeMillis()-start)/1000)
 
       return agentList;
     }
@@ -313,16 +339,17 @@ class Simulation extends UntypedAbstractActor {
               }
             }
         }
-        logger.trace('Added chain to the network: {}', chainedWorks)
+        logger.debug('Added chain to the network: {}', chainedWorks)
         return chainedWorks;
     }
 
     /*
     This method sort of replaces the simple addChainToNetwork, but since it returns complex Object (json)
     rather than list it breaks quite a few test, so more complicated refactoring is needed...
-    so temporarily it is a kind of 'override'
+    so temporarily it is a kind of an 'override'
     */
     public Object addChainToNetwork(List chain, boolean json) {
+        def currentMethodName = "addChainToNetwork"
         def start = System.currentTimeMillis();
         def dataItemsWithDesignedSimilarities = new ArrayList()
         def affectedActors = []
@@ -371,15 +398,21 @@ class Simulation extends UntypedAbstractActor {
             }
         }
         def jsonChainedWorks = JsonOutput.toJson(chainedWorks)
-        logger.trace('Added chain to the network (json): {}', jsonChainedWorks)
+        logger.debug('Added chain to the network (json): {}', jsonChainedWorks)
         if (Global.parameters.reportMode) {
             String experimentDir = System.getProperty("user.dir")+"/"+Global.parameters.experimentDataDir + "/"+Global.parameters.experimentId
             new File(experimentDir).mkdirs();
             String chainFilePath = experimentDir + "/"+Utils.generateRandomString(3)+"-chain.json"
             new File(chainFilePath).write(JsonOutput.toJson(chainedWorks))
-            logger.trace('Wrote chain to file  {}', chainFilePath)
+            logger.debug('Wrote chain to file  {}', chainFilePath)
         }
 
+        logger.info('method={} : simulationId={} : wallTime_ms={}',
+          currentMethodName,
+          Global.parameters.simulationId,
+            'addChainToNetwork finished',
+            (System.currentTimeMillis()-start)
+        ) 
         return chainedWorks;
     }
 
@@ -388,21 +421,22 @@ class Simulation extends UntypedAbstractActor {
     **/
 
     public boolean agentExists(String agentId) {
-      def vertices = this.on.getVertices('agentId',agentId);
+      def vertices = this.on.getVertices('agent','agentId',agentId);
       return !vertices.isEmpty();
     }
 
-    public int allCyclesCentralized(Object similarityThreshold, List chain, int version) {
+    public void allCyclesCentralized(List chain, int version) {
+      def similaritySearchThreshold = Global.parameters.similaritySearchThreshold
+      logger.debug('running all cycles centralized routine... similaritySearchThreshold={}, chain={}', similaritySearchThreshold, chain)
       def foundCyclesCount = 0
       switch(version) {
         case 1:
-          foundCyclesCount = this.naiveCentralizedCycleSearch(similarityThreshold, chain)
+          this.naiveCentralizedCycleSearch(chain)
           break
         case 2:
-          foundCyclesCount = this.depthFirstCycleSearch(similarityThreshold, chain)
+          this.depthFirstCycleSearch(similaritySearchThreshold, chain)
           break
       }
-      return foundCyclesCount
     }
 
     /**
@@ -412,129 +446,38 @@ class Simulation extends UntypedAbstractActor {
     * it is not efficient, since every vertex is traversed many times and more than 
     * one similar cycle is returned
     */
-    public int naiveCentralizedCycleSearch(Object similaritySearchThreshold, List chainedWorksJson) {
+    public int naiveCentralizedCycleSearch(List chainedWorksJson) {
+      def similaritySearchThreshold = Global.parameters.similaritySearchThreshold
       def start = System.currentTimeMillis()
-      def currentMethodName = Utils.getCurrentMethodName();
+      def currentMethodName = 'naiveCentralizedCycleSearch';
       int totalPaths = 0;
       def uniquePaths = [] as Set;
-      def agentPaths;
       def actorRefList = new ArrayList(this.actorRefToVertexIdTable.keySet())
+      logger.debug('actorRefList in naiveCentralizeCycleSearch: {}', actorRefList)
       actorRefList.each{ agent -> 
-        agentPaths = [];
-        logger.trace("Getting all works of an agent {}", agent)
-        Method msg = new Method("getWorks", new ArrayList());
-        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+        Timeout timeout = new Timeout(Duration.create(10, "seconds"));
+        Method msg = new Method("cycleSearchSynchronous", new ArrayList(){{add(similaritySearchThreshold);add(chainedWorksJson)}});
         Future<Object> future = Patterns.ask(agent, msg, timeout);
-        List works = (List<Vertex>) Await.result(future, timeout.duration());
-        logger.trace("Retrieved {} works of agent {}", works.size(), agent)
-        works.each { work ->
-          logger.trace("Running decentralized PathSearch from work's {} perspective", work)
-          msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
-          timeout = new Timeout(Duration.create(120, "seconds"));
-          future = Patterns.ask(agent, msg, timeout);
-          List path = (List<GraphNode>) Await.result(future, timeout.duration());
-          logger.trace("Found path {} from work {}",path,work)
-          if (path.size()!=0) {agentPaths.add(path);totalPaths += 1;}
-        }
-        logger.trace("Found {} paths from agent {} perspective", agentPaths.size(), agent)
+        List<GraphNode> agentPaths = Await.result(future, timeout.duration());
         uniquePaths.addAll(agentPaths)
       }
 
-      def jsonSlurper = new JsonSlurper()
-      def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
-
-      def allPaths = this.getVerticesBelongingToSubgraphs(uniquePathsJson)
-
-      // all paths found should contain the previously created chain
-      def pathsContainingChain = 0;
-      allPaths.each { uniquePathJson ->
-        def pathId = Utils.generateRandomString(6)
-        boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
-        if (containsChain) {
-          def keyword = "foundCycle"
-          pathsContainingChain +=1;
-          logger.info('method={} : simulationId={} : cyGraph={} : wallTime_ms={} msec.', 
-            currentMethodName, 
-            Global.parameters.simulationId,
-            Utils.convertToCYNotation(uniquePathJson,keyword),
-            (System.currentTimeMillis()-start)
-          )
-        }
-      }
-      return pathsContainingChain;
-    }
-
-    /**
-    * Depth first centralized search is just a depth first search which works pretty much
-    * like the naive one, but checks visited agents and works prior to processing them
-    */
-    public int depthFirstCycleSearch(Object similaritySearchThreshold, List chainedWorksJson) {
-      def currentMethodName = Utils.getCurrentMethodName();
-      def start = System.currentTimeMillis()
-      def totalPaths = 0;
-      def uniquePaths = [] as Set;
-      def visitedWorks = [] as Set;
-      def allWorks = this.on.getVertices('work')
-      logger.trace('allWorks are {}',allWorks)
-      def agentPaths;
-      def actorRefList = new ArrayList(this.actorRefToVertexIdTable.keySet())
-      actorRefList.find{ agent -> 
-        agentPaths = [];
-        logger.trace("Getting all works of an agent {}", agent)
-        Method msg = new Method("getWorks", new ArrayList());
-        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
-        Future<Object> future = Patterns.ask(agent, msg, timeout);
-        List works = (List<Vertex>) Await.result(future, timeout.duration());
-        logger.trace("Retrieved {} works of agent {}", works.size(), agent)
-        works.each { work ->
-          if (!visitedWorks.contains(work)) {
-            logger.trace("Running decentralized PathSearch from work's {} perspective", work)
-            msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
-            timeout = new Timeout(Duration.create(120, "seconds"));
-            future = Patterns.ask(agent, msg, timeout);
-            List path = (List<GraphNode>) Await.result(future, timeout.duration());
-            logger.trace("Found path {} from work {}",path,work)
-            if (path.size()!=0) {agentPaths.add(path);totalPaths +=1;}
-            def verticesOfThePath = getTypeVerticesBelongingToSubgraph(path,['work']);
-            def worksVisitedBySearch = verticesOfThePath['work']
-            visitedWorks.addAll(worksVisitedBySearch)
-            logger.trace('saving worksVisitedBySearch: {}',worksVisitedBySearch)
-          }
-        }
-        logger.trace("Found {} paths from agent {} perspective", agentPaths.size(), agent)
-        uniquePaths.addAll(agentPaths)
-        logger.trace('visitedWorks are {} of size()',visitedWorks.size())
-        logger.trace('allWorks are {} of size()',allWorks.size())
-
-        if (visitedWorks.size() ==allWorks.size()) {
-          logger.trace('Traversal already touched all works in the graph: aborting')
-          return true
-        } // break
-        else {return false}
+      def uniquePathsList = []
+      uniquePathsList.addAll(uniquePaths)
+      int foundCycles = 0
+      uniquePaths.each { uniquePath -> 
+        foundCycles = foundCycles + this.checkFoundPaths(uniquePathsList,chainedWorksJson)
       }
 
-      def jsonSlurper = new JsonSlurper()
-      def uniquePathsJson = jsonSlurper.parseText(uniquePaths.toString());
-
-      def allPaths = this.getVerticesBelongingToSubgraphs(uniquePathsJson)
-
-      // all paths found should contain the previously created chain
-      def pathsContainingChain = 0;
-      allPaths.each { uniquePathJson ->
-        def pathId = Utils.generateRandomString(6)
-        boolean containsChain =  Utils.pathContainsChain(uniquePathJson, chainedWorksJson)
-        if (containsChain) {
-          def keyword = "foundCycle"
-          pathsContainingChain +=1;
-          logger.info('method={} : simulationId={} : cyGraph={} : wallTime_ms={} msec.', 
-            currentMethodName, 
-            Global.parameters.simulationId,
-            Utils.convertToCYNotation(uniquePathJson,keyword),
-            (System.currentTimeMillis()-start)
-          )
-        }
-      }
-      return pathsContainingChain;
+      logger.info('method={} : simulationId={} : foundCycles={} : similaritySearchThreshold={} : chainedWorksJson={} : wallTime_ms={} msec.', 
+        currentMethodName, 
+        Global.parameters.simulationId,
+        foundCycles,
+        similaritySearchThreshold,
+        chainedWorksJson,
+        (System.currentTimeMillis()-start)
+      )
+      return foundCycles
     }
 
     List getVerticesBelongingToSubgraphs(Object subgraphs) {
@@ -543,14 +486,14 @@ class Simulation extends UntypedAbstractActor {
       but we want to have both edges and vertices
       */
       def uniquePaths = []
-      logger.trace("subgraphs {} class is {}",subgraphs, subgraphs.getClass())
+      logger.debug("subgraphs {} class is {}",subgraphs, subgraphs.getClass())
       def sbgsIterator = subgraphs.iterator()
       while (sbgsIterator.hasNext()) {
         def subgraph = sbgsIterator.next()
         def uniquePath = this.getVerticesBelongingToSubgraph(subgraph)
         uniquePaths.add(uniquePath)
       }
-      logger.trace("subgraph enriched by vertices: {}", uniquePaths)
+      logger.debug("subgraph enriched by vertices: {}", uniquePaths)
       return uniquePaths
 
     }
@@ -558,27 +501,27 @@ class Simulation extends UntypedAbstractActor {
 
     Object getVerticesBelongingToSubgraph(Object subgraph) {
         def start = System.currentTimeMillis()
-        logger.trace("subgraph is {}",subgraph)
+        logger.debug("subgraph is {}",subgraph)
         JSONArray uniquePath = new JSONArray()
         subgraph.each { edge ->
           JSONArray singleChain = new JSONArray()
           singleChain.put(edge)
-          logger.trace("Getting vertexes of the edge {}",edge)
+          logger.debug("Getting vertexes of the edge {}",edge)
           def inV = Utils.formatVertexLabel(edge.id.get('~in_vertex'))
-          logger.trace("Getting vertex {}",inV)
+          logger.debug("Getting vertex {}",inV)
           def vertexIn = this.on.getVertex(inV)
-          logger.trace('got vertexIn {}',vertexIn)
+          logger.debug('got vertexIn {}',vertexIn)
           def outV = Utils.formatVertexLabel(edge.id.get('~out_vertex'))
-          logger.trace("Getting vertex {}",outV)
+          logger.debug("Getting vertex {}",outV)
           def vertexOut = this.on.getVertex(outV)
-          logger.trace('got vertexOut {}',vertexOut)
+          logger.debug('got vertexOut {}',vertexOut)
           singleChain.put(vertexIn[0])
           singleChain.put(vertexOut[0])
           uniquePath.put(singleChain)
         }
-        logger.trace("formed a uniquePath with edges and vertices {}",uniquePath)
+        logger.debug("formed a uniquePath with edges and vertices {}",uniquePath)
         logger.debug('{} : {} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'getVerticesBelongingToSubgraph', 
           Global.parameters.simulationId,
           (System.currentTimeMillis()-start))
 
@@ -587,19 +530,19 @@ class Simulation extends UntypedAbstractActor {
 
     Object getTypeVerticesBelongingToSubgraph(Object subgraph, ArrayList types) {
         def start = System.currentTimeMillis()
-        logger.trace("subgraph is {}",subgraph)
+        logger.debug("subgraph is {}",subgraph)
         def visitedVertices = [:]
         subgraph.each { edge ->
           JSONArray singleChain = new JSONArray()
-          logger.trace("Getting vertexes of the edge {}",edge)
+          logger.debug("Getting vertexes of the edge {}",edge)
           def inV = Utils.formatVertexLabel(edge.id.get('~in_vertex'))
-          logger.trace("Getting vertex {}",inV)
+          logger.debug("Getting vertex {}",inV)
           def vertexIn = this.on.getVertex(inV)[0]
-          logger.trace('got vertexIn {}',vertexIn)
+          logger.debug('got vertexIn {}',vertexIn)
           def outV = Utils.formatVertexLabel(edge.id.get('~out_vertex'))
-          logger.trace("Getting vertex {}",outV)
+          logger.debug("Getting vertex {}",outV)
           def vertexOut = this.on.getVertex(outV)[0]
-          logger.trace('got vertexOut {}',vertexOut)
+          logger.debug('got vertexOut {}',vertexOut)
           if (types.contains(vertexIn.label)) {
             visitedVertices[vertexIn.label] = vertexIn;
           }
@@ -607,9 +550,9 @@ class Simulation extends UntypedAbstractActor {
             visitedVertices[vertexOut.label] = vertexOut;
           }
         }
-        logger.trace("the path visited vertices {}",visitedVertices)
+        logger.debug("the path visited vertices {}",visitedVertices)
         logger.debug('{} : {} : wallTime_ms={} msec.', 
-          Utils.getCurrentMethodName(), 
+          'getVerticesBelongingToSubgraph', 
           Global.parameters.simulationId,
           (System.currentTimeMillis()-start))
 
@@ -617,95 +560,106 @@ class Simulation extends UntypedAbstractActor {
     }
 
     void decentralizedSimilaritySearchAndConnect(int maxDistance) {
+      def start = System.currentTimeMillis();
+      def currentMethodName = "decentralizedSimilaritySearchAndConnect"
       def similarityConnectThreshold = Global.parameters.similarityThreshold
       def agentList = new ArrayList(actorRefToVertexIdTable.keySet());
       
       this.connectIfSimilarForAllAgents(agentList,similarityConnectThreshold,maxDistance);
+
+      logger.info('method={} : simulationId={} : agentNumber={}; maxDistance={} : wallTime_ms={} sec.', 
+        currentMethodName,
+        Global.parameters.simulationId,
+        agentList.size(),
+        maxDistance,
+        (System.currentTimeMillis()-start)/1000)
     }
 
     void centralizedSimilaritySearchAndConnect() {
-      logger.trace("Running centralized similarity search and connect")
+      logger.debug("Running centralized similarity search and connect")
       def start = System.currentTimeMillis();
+      this.on.setEvaluationTimeout('PT2H') // setting timeout to max for cassandra...
 
-      def allItems = this.on.getVertices('item');
+      //def allItems = this.on.getVertices('item');
       def similarityConnectThreshold = Global.parameters.similarityThreshold
       
-      def similarityConnectionsCentralized = this.on.connectAllSimilarCentralized(allItems,similarityConnectThreshold);
-      logger.trace("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized.size(),similarityConnectThreshold);
-      logger.trace("Method {} took {} seconds to complete", Utils.getCurrentMethodName(), (System.currentTimeMillis()-start)/1000)
+      def similarityConnectionsCentralized = this.on.searchAndConnect(similarityConnectThreshold);
+      logger.debug("Created {} similarity connections of all agents with similarity {}", similarityConnectionsCentralized,similarityConnectThreshold);
+      logger.debug("Method {} took {} seconds to complete", 'decentralizedSimilaritySearchAndConnect', (System.currentTimeMillis()-start)/1000)
     }
 
-    int decentralizedCycleSearch(ActorRef agent, List chain) {
-        def currentMethodName = Utils.getCurrentMethodName();
+    void individualCycleSearch(ActorRef agent, List chain) {
         def start = System.currentTimeMillis();
-        int foundCyclesCount = 0;
         def uniqueCycles = [] as Set
         def similaritySearchThreshold = Global.parameters.similaritySearchThreshold 
-        logger.trace("Getting all works of an agent {}", agent)
-        Method msg = new Method("getWorks", new ArrayList());
-        Timeout timeout = new Timeout(Duration.create(10, "seconds"));
-        Future<Object> future = Patterns.ask(agent, msg, timeout);
-        List works = (List<Vertex>) Await.result(future, timeout.duration());
-        logger.trace("Retrieved {} works of agent {}", works.size(), agent)
-        works.each { work ->
-          logger.trace("Running decentralized PathSearch from work's {} perspective", work)
-          msg = new Method("cycleSearch", new ArrayList(){{add(work);add(similaritySearchThreshold)}});
-          timeout = new Timeout(Duration.create(5, "seconds"));
-          future = Patterns.ask(agent, msg, timeout);
-          List cycle = (List<GraphNode>) Await.result(future, timeout.duration());
-          logger.trace("Found path {} from work {}",cycle,work)
-          
+        Method msg = new Method("cycleSearch", new ArrayList(){{add(similaritySearchThreshold);add(chain)}});
+        agent.tell(msg, getSelf());
+        def currentMethodName = 'individualCycleSearch'
+        logger.info('method={} : simulationId={} : agentId={} : similaritySearchThreshold={} :  wallTime_ms={} msec.', 
+            currentMethodName, 
+            Global.parameters.simulationId,
+            this.actorRefToAgentIdTable.get(agent),
+            similaritySearchThreshold,
+            (System.currentTimeMillis()-start)
+        )
+    }
+
+    int checkFoundPaths(List cycle, List chain) {
+          def start = System.currentTimeMillis();
+          def currentMethodName = 'checkFoundPaths'
           def jsonSlurper = new JsonSlurper()
           def cycleJson = jsonSlurper.parseText(cycle.toString());
+          def foundCyclesCount = 0;
 
           def richCycle = getVerticesBelongingToSubgraph(cycleJson)
-          logger.trace("Got cycle enriched by vertices {}",richCycle)
+          logger.debug("Got cycle enriched by vertices {}",richCycle)
           def keyword = "";
           if (richCycle.size()!=0) {
               def cycleContainsChain = Utils.pathContainsChain(richCycle, chain)
               if (cycleContainsChain) {
                 foundCyclesCount += 1;
-                keyword = "foundCycle"
-              } else {keyword = "foundPath"}
+                keyword = "foundCycle";
+                Global.parameters.terminate_all = true
+              } else {
+                keyword = "foundPath"
+              }
           }
        
-          logger.info('method={} : simulationId={} : agentId={} : work={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
+          logger.info('method={} : simulationId={} : agentId={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
             currentMethodName, 
             Global.parameters.simulationId,
-            this.actorRefToAgentIdTable.get(agent),
-            work.getId(),
+            this.actorRefToAgentIdTable.get(getSender()),
             keyword,
             Utils.convertToCYNotation(richCycle,keyword),
             (System.currentTimeMillis()-start)
           )
-        }
         return foundCyclesCount;
     }
 
     int decentralizedPathSearch(ActorRef agent, int maxDistance, List chain) {
-        def currentMethodName = Utils.getCurrentMethodName();
+        def currentMethodName = 'decentralizedCycleSearch';
         def start = System.currentTimeMillis();
         int foundPathsCount = 0;
         def similaritySearchThreshold = Global.parameters.similaritySearchThreshold 
-        logger.trace("Getting all works of an agent {}", agent)
+        logger.debug("Getting all works of an agent {}", agent)
         Method msg = new Method("getWorks", new ArrayList());
         Timeout timeout = new Timeout(Duration.create(10, "seconds"));
         Future<Object> future = Patterns.ask(agent, msg, timeout);
         List works = (List<Vertex>) Await.result(future, timeout.duration());
-        logger.trace("Retrieved {} works of agent {}", works.size(), agent)
+        logger.debug("Retrieved {} works of agent {}", works.size(), agent)
         works.each { work ->
-          logger.trace("Running decentralized PathSearch from work's {} perspective", work)
+          logger.debug("Running decentralized PathSearch from work's {} perspective", work)
           msg = new Method("pathSearch", new ArrayList(){{add(work);add(maxDistance);add(similaritySearchThreshold)}});
           timeout = new Timeout(Duration.create(5, "seconds"));
           future = Patterns.ask(agent, msg, timeout);
           List cycle = (List<GraphNode>) Await.result(future, timeout.duration());
-          logger.trace("Found path {} from work {}",cycle,work)
+          logger.debug("Found path {} from work {}",cycle,work)
           
           def jsonSlurper = new JsonSlurper()
           def cycleJson = jsonSlurper.parseText(cycle.toString());
 
           def richCycle = getVerticesBelongingToSubgraph(cycleJson)
-          logger.trace("Got cycle enriched by vertices {}",richCycle)
+          logger.debug("Got cycle enriched by vertices {}",richCycle)
           def keyword = "";
           if (richCycle.size()!=0) {
               def cycleContainsChain = Utils.pathContainsChain(richCycle, chain)

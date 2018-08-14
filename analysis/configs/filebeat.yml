@@ -29,7 +29,12 @@ filebeat.inputs:
     - /home/kabir/repos/offernet/logs/OfferNet.log 
     # gbi-server-2
     - /media/data/offernet/logs/OfferNet.log
+    # on-hetzner.host
+    - /home/kabir/offernet/logs/OfferNet.log 
+
     #- c:\programdata\elasticsearch\logs\*
+
+
 
   encoding: utf-8
   # Exclude lines. A list of regular expressions to match. It drops the lines that are

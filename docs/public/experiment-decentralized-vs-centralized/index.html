@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Offer Network: e-Lab Notebook</title>
+  <meta name="description" content="Offer Network: e-Lab Notebook">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Offer Network: e-Lab Notebook" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="singnet/offernet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Offer Network: e-Lab Notebook" />
+  
+  
+  
+
+<meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
+
+
+<meta name="date" content="2018-08-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="decentralized-vs-centralized-search-in-offernet.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">OfferNet(s) e-Lab notebook</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="decentralized-vs-centralized-search-in-offernet.html"><a href="decentralized-vs-centralized-search-in-offernet.html"><i class="fa fa-check"></i><b>2</b> Decentralized vs centralized search in OfferNet</a><ul>
+<li class="chapter" data-level="2.1" data-path="decentralized-vs-centralized-search-in-offernet.html"><a href="decentralized-vs-centralized-search-in-offernet.html#offernet-system"><i class="fa fa-check"></i><b>2.1</b> OfferNet system</a></li>
+<li class="chapter" data-level="2.2" data-path="decentralized-vs-centralized-search-in-offernet.html"><a href="decentralized-vs-centralized-search-in-offernet.html#similarity-search"><i class="fa fa-check"></i><b>2.2</b> Similarity search</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="decentralized-vs-centralized-search-in-offernet.html"><a href="decentralized-vs-centralized-search-in-offernet.html#decentralized-flavour"><i class="fa fa-check"></i><b>2.2.1</b> Decentralized flavour</a></li>
+<li class="chapter" data-level="2.2.2" data-path="decentralized-vs-centralized-search-in-offernet.html"><a href="decentralized-vs-centralized-search-in-offernet.html#centralized-flavour"><i class="fa fa-check"></i><b>2.2.2</b> Centralized flavour</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="decentralized-vs-centralized-search-in-offernet.html"><a href="decentralized-vs-centralized-search-in-offernet.html#cycle-search"><i class="fa fa-check"></i><b>2.3</b> Cycle search</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="decentralized-vs-centralized-search-in-offernet.html"><a href="decentralized-vs-centralized-search-in-offernet.html#decentralized-flavour-1"><i class="fa fa-check"></i><b>2.3.1</b> Decentralized flavour</a></li>
+<li class="chapter" data-level="2.3.2" data-path="decentralized-vs-centralized-search-in-offernet.html"><a href="decentralized-vs-centralized-search-in-offernet.html#centralized-flavour-1"><i class="fa fa-check"></i><b>2.3.2</b> Centralized flavour</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html"><i class="fa fa-check"></i><b>3</b> Experiment 2: pre-generated ‘small world’ graphs</a><ul>
+<li class="chapter" data-level="3.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#experimental-set-up"><i class="fa fa-check"></i><b>3.1</b> Experimental set up</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#descriptive-analysis-of-each-simulation"><i class="fa fa-check"></i><b>3.1.1</b> Descriptive analysis of each simulation</a></li>
+<li class="chapter" data-level="3.1.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-05-azferxcv"><i class="fa fa-check"></i><b>3.1.2</b> SIM08-11-01-05-AZFerX–CV</a><ul>
+<li class="chapter" data-level="3.1.2.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters"><i class="fa fa-check"></i><b>3.1.2.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.2.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel"><i class="fa fa-check"></i><b>3.1.2.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.2.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype"><i class="fa fa-check"></i><b>3.1.2.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.2.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight"><i class="fa fa-check"></i><b>3.1.2.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.2.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges"><i class="fa fa-check"></i><b>3.1.2.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.2.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges"><i class="fa fa-check"></i><b>3.1.2.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-05-azferxdv"><i class="fa fa-check"></i><b>3.1.3</b> SIM08-11-01-05-AZFerX–DV</a><ul>
+<li class="chapter" data-level="3.1.3.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-1"><i class="fa fa-check"></i><b>3.1.3.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.3.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-1"><i class="fa fa-check"></i><b>3.1.3.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.3.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-1"><i class="fa fa-check"></i><b>3.1.3.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.3.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-1"><i class="fa fa-check"></i><b>3.1.3.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.3.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-1"><i class="fa fa-check"></i><b>3.1.3.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.3.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-1"><i class="fa fa-check"></i><b>3.1.3.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-12-59-aktekacv"><i class="fa fa-check"></i><b>3.1.4</b> SIM08-11-12-59-AkTEKa–CV</a><ul>
+<li class="chapter" data-level="3.1.4.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-2"><i class="fa fa-check"></i><b>3.1.4.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.4.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-2"><i class="fa fa-check"></i><b>3.1.4.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.4.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-2"><i class="fa fa-check"></i><b>3.1.4.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.4.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-2"><i class="fa fa-check"></i><b>3.1.4.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.4.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-2"><i class="fa fa-check"></i><b>3.1.4.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.4.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-2"><i class="fa fa-check"></i><b>3.1.4.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-12-59-aktekadv"><i class="fa fa-check"></i><b>3.1.5</b> SIM08-11-12-59-AkTEKa–DV</a><ul>
+<li class="chapter" data-level="3.1.5.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-3"><i class="fa fa-check"></i><b>3.1.5.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.5.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-3"><i class="fa fa-check"></i><b>3.1.5.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.5.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-3"><i class="fa fa-check"></i><b>3.1.5.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.5.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-3"><i class="fa fa-check"></i><b>3.1.5.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.5.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-3"><i class="fa fa-check"></i><b>3.1.5.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.5.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-3"><i class="fa fa-check"></i><b>3.1.5.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-01-9svhyucv"><i class="fa fa-check"></i><b>3.1.6</b> SIM08-11-01-01-9svHYu–CV</a><ul>
+<li class="chapter" data-level="3.1.6.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-4"><i class="fa fa-check"></i><b>3.1.6.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.6.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-4"><i class="fa fa-check"></i><b>3.1.6.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.6.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-4"><i class="fa fa-check"></i><b>3.1.6.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.6.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-4"><i class="fa fa-check"></i><b>3.1.6.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.6.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-4"><i class="fa fa-check"></i><b>3.1.6.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.6.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-4"><i class="fa fa-check"></i><b>3.1.6.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.7" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-01-9svhyudv"><i class="fa fa-check"></i><b>3.1.7</b> SIM08-11-01-01-9svHYu–DV</a><ul>
+<li class="chapter" data-level="3.1.7.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-5"><i class="fa fa-check"></i><b>3.1.7.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.7.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-5"><i class="fa fa-check"></i><b>3.1.7.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.7.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-5"><i class="fa fa-check"></i><b>3.1.7.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.7.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-5"><i class="fa fa-check"></i><b>3.1.7.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.7.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-5"><i class="fa fa-check"></i><b>3.1.7.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.7.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-5"><i class="fa fa-check"></i><b>3.1.7.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.8" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-12-58-5zeba6cv"><i class="fa fa-check"></i><b>3.1.8</b> SIM08-11-12-58-5ZEBa6–CV</a><ul>
+<li class="chapter" data-level="3.1.8.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-6"><i class="fa fa-check"></i><b>3.1.8.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.8.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-6"><i class="fa fa-check"></i><b>3.1.8.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.8.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-6"><i class="fa fa-check"></i><b>3.1.8.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.8.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-6"><i class="fa fa-check"></i><b>3.1.8.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.8.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-6"><i class="fa fa-check"></i><b>3.1.8.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.8.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-6"><i class="fa fa-check"></i><b>3.1.8.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.9" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-12-58-5zeba6dv"><i class="fa fa-check"></i><b>3.1.9</b> SIM08-11-12-58-5ZEBa6–DV</a><ul>
+<li class="chapter" data-level="3.1.9.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-7"><i class="fa fa-check"></i><b>3.1.9.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.9.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-7"><i class="fa fa-check"></i><b>3.1.9.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.9.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-7"><i class="fa fa-check"></i><b>3.1.9.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.9.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-7"><i class="fa fa-check"></i><b>3.1.9.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.9.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-7"><i class="fa fa-check"></i><b>3.1.9.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.9.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-7"><i class="fa fa-check"></i><b>3.1.9.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.10" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-11-j9xclmcv"><i class="fa fa-check"></i><b>3.1.10</b> SIM08-11-01-11-j9XCLm–CV</a><ul>
+<li class="chapter" data-level="3.1.10.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-8"><i class="fa fa-check"></i><b>3.1.10.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.10.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-8"><i class="fa fa-check"></i><b>3.1.10.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.10.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-8"><i class="fa fa-check"></i><b>3.1.10.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.10.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-8"><i class="fa fa-check"></i><b>3.1.10.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.10.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-8"><i class="fa fa-check"></i><b>3.1.10.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.10.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-8"><i class="fa fa-check"></i><b>3.1.10.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.11" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-11-j9xclmdv"><i class="fa fa-check"></i><b>3.1.11</b> SIM08-11-01-11-j9XCLm–DV</a><ul>
+<li class="chapter" data-level="3.1.11.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-9"><i class="fa fa-check"></i><b>3.1.11.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.11.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-9"><i class="fa fa-check"></i><b>3.1.11.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.11.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-9"><i class="fa fa-check"></i><b>3.1.11.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.11.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-9"><i class="fa fa-check"></i><b>3.1.11.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.11.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-9"><i class="fa fa-check"></i><b>3.1.11.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.11.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-9"><i class="fa fa-check"></i><b>3.1.11.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.12" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-18-bwxlydcv"><i class="fa fa-check"></i><b>3.1.12</b> SIM08-11-01-18-bWXLYd–CV</a><ul>
+<li class="chapter" data-level="3.1.12.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-10"><i class="fa fa-check"></i><b>3.1.12.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.12.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-10"><i class="fa fa-check"></i><b>3.1.12.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.12.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-10"><i class="fa fa-check"></i><b>3.1.12.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.12.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-10"><i class="fa fa-check"></i><b>3.1.12.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.12.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-10"><i class="fa fa-check"></i><b>3.1.12.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.12.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-10"><i class="fa fa-check"></i><b>3.1.12.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.13" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-18-bwxlyddv"><i class="fa fa-check"></i><b>3.1.13</b> SIM08-11-01-18-bWXLYd–DV</a><ul>
+<li class="chapter" data-level="3.1.13.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-11"><i class="fa fa-check"></i><b>3.1.13.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.13.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-11"><i class="fa fa-check"></i><b>3.1.13.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.13.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-11"><i class="fa fa-check"></i><b>3.1.13.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.13.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-11"><i class="fa fa-check"></i><b>3.1.13.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.13.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-11"><i class="fa fa-check"></i><b>3.1.13.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.13.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-11"><i class="fa fa-check"></i><b>3.1.13.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.14" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-10-bcm5fkcv"><i class="fa fa-check"></i><b>3.1.14</b> SIM08-11-01-10-bCM5fk–CV</a><ul>
+<li class="chapter" data-level="3.1.14.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-12"><i class="fa fa-check"></i><b>3.1.14.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.14.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-12"><i class="fa fa-check"></i><b>3.1.14.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.14.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-12"><i class="fa fa-check"></i><b>3.1.14.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.14.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-12"><i class="fa fa-check"></i><b>3.1.14.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.14.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-12"><i class="fa fa-check"></i><b>3.1.14.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.14.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-12"><i class="fa fa-check"></i><b>3.1.14.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.15" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-10-bcm5fkdv"><i class="fa fa-check"></i><b>3.1.15</b> SIM08-11-01-10-bCM5fk–DV</a><ul>
+<li class="chapter" data-level="3.1.15.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-13"><i class="fa fa-check"></i><b>3.1.15.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.15.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-13"><i class="fa fa-check"></i><b>3.1.15.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.15.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-13"><i class="fa fa-check"></i><b>3.1.15.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.15.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-13"><i class="fa fa-check"></i><b>3.1.15.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.15.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-13"><i class="fa fa-check"></i><b>3.1.15.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.15.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-13"><i class="fa fa-check"></i><b>3.1.15.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.16" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-13-7mwjnkcv"><i class="fa fa-check"></i><b>3.1.16</b> SIM08-11-01-13-7mwJNk–CV</a><ul>
+<li class="chapter" data-level="3.1.16.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-14"><i class="fa fa-check"></i><b>3.1.16.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.16.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-14"><i class="fa fa-check"></i><b>3.1.16.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.16.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-14"><i class="fa fa-check"></i><b>3.1.16.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.16.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-14"><i class="fa fa-check"></i><b>3.1.16.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.16.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-14"><i class="fa fa-check"></i><b>3.1.16.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.16.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-14"><i class="fa fa-check"></i><b>3.1.16.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.17" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-13-7mwjnkdv"><i class="fa fa-check"></i><b>3.1.17</b> SIM08-11-01-13-7mwJNk–DV</a><ul>
+<li class="chapter" data-level="3.1.17.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-15"><i class="fa fa-check"></i><b>3.1.17.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.17.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-15"><i class="fa fa-check"></i><b>3.1.17.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.17.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-15"><i class="fa fa-check"></i><b>3.1.17.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.17.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-15"><i class="fa fa-check"></i><b>3.1.17.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.17.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-15"><i class="fa fa-check"></i><b>3.1.17.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.17.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-15"><i class="fa fa-check"></i><b>3.1.17.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.18" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-28-2mwnj9cv"><i class="fa fa-check"></i><b>3.1.18</b> SIM08-11-01-28-2mwNJ9–CV</a><ul>
+<li class="chapter" data-level="3.1.18.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-16"><i class="fa fa-check"></i><b>3.1.18.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.18.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-16"><i class="fa fa-check"></i><b>3.1.18.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.18.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-16"><i class="fa fa-check"></i><b>3.1.18.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.18.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-16"><i class="fa fa-check"></i><b>3.1.18.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.18.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-16"><i class="fa fa-check"></i><b>3.1.18.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.18.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-16"><i class="fa fa-check"></i><b>3.1.18.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.19" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-28-2mwnj9dv"><i class="fa fa-check"></i><b>3.1.19</b> SIM08-11-01-28-2mwNJ9–DV</a><ul>
+<li class="chapter" data-level="3.1.19.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-17"><i class="fa fa-check"></i><b>3.1.19.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.19.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-17"><i class="fa fa-check"></i><b>3.1.19.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.19.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-17"><i class="fa fa-check"></i><b>3.1.19.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.19.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-17"><i class="fa fa-check"></i><b>3.1.19.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.19.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-17"><i class="fa fa-check"></i><b>3.1.19.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.19.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-17"><i class="fa fa-check"></i><b>3.1.19.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.20" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-58-qocsnrcv"><i class="fa fa-check"></i><b>3.1.20</b> SIM08-11-01-58-qocSnR–CV</a><ul>
+<li class="chapter" data-level="3.1.20.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-18"><i class="fa fa-check"></i><b>3.1.20.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.20.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-18"><i class="fa fa-check"></i><b>3.1.20.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.20.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-18"><i class="fa fa-check"></i><b>3.1.20.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.20.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-18"><i class="fa fa-check"></i><b>3.1.20.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.20.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-18"><i class="fa fa-check"></i><b>3.1.20.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.20.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-18"><i class="fa fa-check"></i><b>3.1.20.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.21" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-58-qocsnrdv"><i class="fa fa-check"></i><b>3.1.21</b> SIM08-11-01-58-qocSnR–DV</a><ul>
+<li class="chapter" data-level="3.1.21.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-19"><i class="fa fa-check"></i><b>3.1.21.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.21.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-19"><i class="fa fa-check"></i><b>3.1.21.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.21.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-19"><i class="fa fa-check"></i><b>3.1.21.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.21.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-19"><i class="fa fa-check"></i><b>3.1.21.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.21.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-19"><i class="fa fa-check"></i><b>3.1.21.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.21.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-19"><i class="fa fa-check"></i><b>3.1.21.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.22" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-23-lu7jpscv"><i class="fa fa-check"></i><b>3.1.22</b> SIM08-11-01-23-LU7jps–CV</a><ul>
+<li class="chapter" data-level="3.1.22.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-20"><i class="fa fa-check"></i><b>3.1.22.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.22.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-20"><i class="fa fa-check"></i><b>3.1.22.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.22.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-20"><i class="fa fa-check"></i><b>3.1.22.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.22.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-20"><i class="fa fa-check"></i><b>3.1.22.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.22.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-20"><i class="fa fa-check"></i><b>3.1.22.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.22.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-20"><i class="fa fa-check"></i><b>3.1.22.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.23" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-23-lu7jpsdv"><i class="fa fa-check"></i><b>3.1.23</b> SIM08-11-01-23-LU7jps–DV</a><ul>
+<li class="chapter" data-level="3.1.23.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-21"><i class="fa fa-check"></i><b>3.1.23.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.23.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-21"><i class="fa fa-check"></i><b>3.1.23.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.23.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-21"><i class="fa fa-check"></i><b>3.1.23.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.23.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-21"><i class="fa fa-check"></i><b>3.1.23.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.23.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-21"><i class="fa fa-check"></i><b>3.1.23.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.23.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-21"><i class="fa fa-check"></i><b>3.1.23.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.24" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-33-2tryyrcv"><i class="fa fa-check"></i><b>3.1.24</b> SIM08-11-01-33-2tryyr–CV</a><ul>
+<li class="chapter" data-level="3.1.24.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-22"><i class="fa fa-check"></i><b>3.1.24.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.24.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-22"><i class="fa fa-check"></i><b>3.1.24.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.24.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-22"><i class="fa fa-check"></i><b>3.1.24.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.24.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-22"><i class="fa fa-check"></i><b>3.1.24.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.24.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-22"><i class="fa fa-check"></i><b>3.1.24.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.24.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-22"><i class="fa fa-check"></i><b>3.1.24.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.25" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-33-2tryyrdv"><i class="fa fa-check"></i><b>3.1.25</b> SIM08-11-01-33-2tryyr–DV</a><ul>
+<li class="chapter" data-level="3.1.25.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-23"><i class="fa fa-check"></i><b>3.1.25.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.25.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-23"><i class="fa fa-check"></i><b>3.1.25.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.25.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-23"><i class="fa fa-check"></i><b>3.1.25.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.25.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-23"><i class="fa fa-check"></i><b>3.1.25.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.25.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-23"><i class="fa fa-check"></i><b>3.1.25.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.25.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-23"><i class="fa fa-check"></i><b>3.1.25.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.26" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-02-29-wnun7pcv"><i class="fa fa-check"></i><b>3.1.26</b> SIM08-11-02-29-wnUn7p–CV</a><ul>
+<li class="chapter" data-level="3.1.26.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-24"><i class="fa fa-check"></i><b>3.1.26.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.26.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-24"><i class="fa fa-check"></i><b>3.1.26.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.26.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-24"><i class="fa fa-check"></i><b>3.1.26.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.26.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-24"><i class="fa fa-check"></i><b>3.1.26.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.26.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-24"><i class="fa fa-check"></i><b>3.1.26.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.26.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-24"><i class="fa fa-check"></i><b>3.1.26.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.27" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-02-29-wnun7pdv"><i class="fa fa-check"></i><b>3.1.27</b> SIM08-11-02-29-wnUn7p–DV</a><ul>
+<li class="chapter" data-level="3.1.27.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-25"><i class="fa fa-check"></i><b>3.1.27.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.27.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-25"><i class="fa fa-check"></i><b>3.1.27.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.27.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-25"><i class="fa fa-check"></i><b>3.1.27.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.27.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-25"><i class="fa fa-check"></i><b>3.1.27.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.27.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-25"><i class="fa fa-check"></i><b>3.1.27.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.27.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-25"><i class="fa fa-check"></i><b>3.1.27.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.28" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-03-02-jq4xgacv"><i class="fa fa-check"></i><b>3.1.28</b> SIM08-11-03-02-JQ4Xga–CV</a><ul>
+<li class="chapter" data-level="3.1.28.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-26"><i class="fa fa-check"></i><b>3.1.28.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.28.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-26"><i class="fa fa-check"></i><b>3.1.28.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.28.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-26"><i class="fa fa-check"></i><b>3.1.28.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.28.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-26"><i class="fa fa-check"></i><b>3.1.28.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.28.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-26"><i class="fa fa-check"></i><b>3.1.28.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.28.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-26"><i class="fa fa-check"></i><b>3.1.28.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.29" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-03-02-jq4xgadv"><i class="fa fa-check"></i><b>3.1.29</b> SIM08-11-03-02-JQ4Xga–DV</a><ul>
+<li class="chapter" data-level="3.1.29.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-27"><i class="fa fa-check"></i><b>3.1.29.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.29.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-27"><i class="fa fa-check"></i><b>3.1.29.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.29.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-27"><i class="fa fa-check"></i><b>3.1.29.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.29.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-27"><i class="fa fa-check"></i><b>3.1.29.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.29.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-27"><i class="fa fa-check"></i><b>3.1.29.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.29.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-27"><i class="fa fa-check"></i><b>3.1.29.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.30" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-02-24-ht69z4cv"><i class="fa fa-check"></i><b>3.1.30</b> SIM08-11-02-24-HT69z4–CV</a><ul>
+<li class="chapter" data-level="3.1.30.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-28"><i class="fa fa-check"></i><b>3.1.30.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.30.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-28"><i class="fa fa-check"></i><b>3.1.30.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.30.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-28"><i class="fa fa-check"></i><b>3.1.30.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.30.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-28"><i class="fa fa-check"></i><b>3.1.30.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.30.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-28"><i class="fa fa-check"></i><b>3.1.30.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.30.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-28"><i class="fa fa-check"></i><b>3.1.30.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.31" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-02-24-ht69z4dv"><i class="fa fa-check"></i><b>3.1.31</b> SIM08-11-02-24-HT69z4–DV</a><ul>
+<li class="chapter" data-level="3.1.31.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-29"><i class="fa fa-check"></i><b>3.1.31.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.31.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-29"><i class="fa fa-check"></i><b>3.1.31.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.31.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-29"><i class="fa fa-check"></i><b>3.1.31.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.31.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-29"><i class="fa fa-check"></i><b>3.1.31.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.31.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-29"><i class="fa fa-check"></i><b>3.1.31.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.31.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-29"><i class="fa fa-check"></i><b>3.1.31.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.32" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-02-34-qv6kk7cv"><i class="fa fa-check"></i><b>3.1.32</b> SIM08-11-02-34-qV6kk7–CV</a><ul>
+<li class="chapter" data-level="3.1.32.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-30"><i class="fa fa-check"></i><b>3.1.32.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.32.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-30"><i class="fa fa-check"></i><b>3.1.32.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.32.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-30"><i class="fa fa-check"></i><b>3.1.32.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.32.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-30"><i class="fa fa-check"></i><b>3.1.32.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.32.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-30"><i class="fa fa-check"></i><b>3.1.32.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.32.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-30"><i class="fa fa-check"></i><b>3.1.32.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.33" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-02-34-qv6kk7dv"><i class="fa fa-check"></i><b>3.1.33</b> SIM08-11-02-34-qV6kk7–DV</a><ul>
+<li class="chapter" data-level="3.1.33.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-31"><i class="fa fa-check"></i><b>3.1.33.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.33.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-31"><i class="fa fa-check"></i><b>3.1.33.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.33.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-31"><i class="fa fa-check"></i><b>3.1.33.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.33.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-31"><i class="fa fa-check"></i><b>3.1.33.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.33.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-31"><i class="fa fa-check"></i><b>3.1.33.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.33.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-31"><i class="fa fa-check"></i><b>3.1.33.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.34" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-03-55-uloei8cv"><i class="fa fa-check"></i><b>3.1.34</b> SIM08-11-03-55-uLoEi8–CV</a><ul>
+<li class="chapter" data-level="3.1.34.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-32"><i class="fa fa-check"></i><b>3.1.34.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.34.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-32"><i class="fa fa-check"></i><b>3.1.34.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.34.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-32"><i class="fa fa-check"></i><b>3.1.34.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.34.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-32"><i class="fa fa-check"></i><b>3.1.34.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.34.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-32"><i class="fa fa-check"></i><b>3.1.34.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.34.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-32"><i class="fa fa-check"></i><b>3.1.34.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.35" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-03-55-uloei8dv"><i class="fa fa-check"></i><b>3.1.35</b> SIM08-11-03-55-uLoEi8–DV</a><ul>
+<li class="chapter" data-level="3.1.35.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-33"><i class="fa fa-check"></i><b>3.1.35.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.35.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-33"><i class="fa fa-check"></i><b>3.1.35.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.35.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-33"><i class="fa fa-check"></i><b>3.1.35.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.35.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-33"><i class="fa fa-check"></i><b>3.1.35.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.35.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-33"><i class="fa fa-check"></i><b>3.1.35.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.35.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-33"><i class="fa fa-check"></i><b>3.1.35.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.36" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-06-21-3rt7tacv"><i class="fa fa-check"></i><b>3.1.36</b> SIM08-11-06-21-3RT7tA–CV</a><ul>
+<li class="chapter" data-level="3.1.36.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-34"><i class="fa fa-check"></i><b>3.1.36.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.36.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-34"><i class="fa fa-check"></i><b>3.1.36.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.36.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-34"><i class="fa fa-check"></i><b>3.1.36.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.36.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-34"><i class="fa fa-check"></i><b>3.1.36.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.36.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-34"><i class="fa fa-check"></i><b>3.1.36.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.36.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-34"><i class="fa fa-check"></i><b>3.1.36.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.37" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-06-21-3rt7tadv"><i class="fa fa-check"></i><b>3.1.37</b> SIM08-11-06-21-3RT7tA–DV</a><ul>
+<li class="chapter" data-level="3.1.37.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-35"><i class="fa fa-check"></i><b>3.1.37.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.37.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-35"><i class="fa fa-check"></i><b>3.1.37.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.37.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-35"><i class="fa fa-check"></i><b>3.1.37.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.37.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-35"><i class="fa fa-check"></i><b>3.1.37.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.37.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-35"><i class="fa fa-check"></i><b>3.1.37.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.37.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-35"><i class="fa fa-check"></i><b>3.1.37.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.38" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-03-29-rephnwcv"><i class="fa fa-check"></i><b>3.1.38</b> SIM08-11-03-29-rephNw–CV</a><ul>
+<li class="chapter" data-level="3.1.38.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-36"><i class="fa fa-check"></i><b>3.1.38.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.38.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-36"><i class="fa fa-check"></i><b>3.1.38.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.38.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-36"><i class="fa fa-check"></i><b>3.1.38.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.38.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-36"><i class="fa fa-check"></i><b>3.1.38.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.38.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-36"><i class="fa fa-check"></i><b>3.1.38.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.38.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-36"><i class="fa fa-check"></i><b>3.1.38.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.39" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-03-29-rephnwdv"><i class="fa fa-check"></i><b>3.1.39</b> SIM08-11-03-29-rephNw–DV</a><ul>
+<li class="chapter" data-level="3.1.39.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-37"><i class="fa fa-check"></i><b>3.1.39.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.39.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-37"><i class="fa fa-check"></i><b>3.1.39.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.39.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-37"><i class="fa fa-check"></i><b>3.1.39.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.39.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-37"><i class="fa fa-check"></i><b>3.1.39.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.39.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-37"><i class="fa fa-check"></i><b>3.1.39.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.39.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-37"><i class="fa fa-check"></i><b>3.1.39.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.40" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-04-21-pcvzuycv"><i class="fa fa-check"></i><b>3.1.40</b> SIM08-11-04-21-PcvZuy–CV</a><ul>
+<li class="chapter" data-level="3.1.40.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-38"><i class="fa fa-check"></i><b>3.1.40.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.40.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-38"><i class="fa fa-check"></i><b>3.1.40.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.40.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-38"><i class="fa fa-check"></i><b>3.1.40.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.40.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-38"><i class="fa fa-check"></i><b>3.1.40.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.40.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-38"><i class="fa fa-check"></i><b>3.1.40.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.40.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-38"><i class="fa fa-check"></i><b>3.1.40.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.41" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-04-21-pcvzuydv"><i class="fa fa-check"></i><b>3.1.41</b> SIM08-11-04-21-PcvZuy–DV</a><ul>
+<li class="chapter" data-level="3.1.41.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-39"><i class="fa fa-check"></i><b>3.1.41.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.41.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-39"><i class="fa fa-check"></i><b>3.1.41.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.41.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-39"><i class="fa fa-check"></i><b>3.1.41.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.41.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-39"><i class="fa fa-check"></i><b>3.1.41.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.41.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-39"><i class="fa fa-check"></i><b>3.1.41.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.41.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-39"><i class="fa fa-check"></i><b>3.1.41.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.42" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-08-52-e9mxsbcv"><i class="fa fa-check"></i><b>3.1.42</b> SIM08-11-08-52-e9mxSB–CV</a><ul>
+<li class="chapter" data-level="3.1.42.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-40"><i class="fa fa-check"></i><b>3.1.42.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.42.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-40"><i class="fa fa-check"></i><b>3.1.42.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.42.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-40"><i class="fa fa-check"></i><b>3.1.42.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.42.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-40"><i class="fa fa-check"></i><b>3.1.42.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.42.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-40"><i class="fa fa-check"></i><b>3.1.42.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.42.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-40"><i class="fa fa-check"></i><b>3.1.42.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.43" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-08-52-e9mxsbdv"><i class="fa fa-check"></i><b>3.1.43</b> SIM08-11-08-52-e9mxSB–DV</a><ul>
+<li class="chapter" data-level="3.1.43.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-41"><i class="fa fa-check"></i><b>3.1.43.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.43.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-41"><i class="fa fa-check"></i><b>3.1.43.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.43.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-41"><i class="fa fa-check"></i><b>3.1.43.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.43.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-41"><i class="fa fa-check"></i><b>3.1.43.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.43.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-41"><i class="fa fa-check"></i><b>3.1.43.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.43.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-41"><i class="fa fa-check"></i><b>3.1.43.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.44" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-12-21-b9wemtcv"><i class="fa fa-check"></i><b>3.1.44</b> SIM08-11-12-21-b9wEmt–CV</a><ul>
+<li class="chapter" data-level="3.1.44.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-42"><i class="fa fa-check"></i><b>3.1.44.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.44.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-42"><i class="fa fa-check"></i><b>3.1.44.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.44.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-42"><i class="fa fa-check"></i><b>3.1.44.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.44.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-42"><i class="fa fa-check"></i><b>3.1.44.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.44.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-42"><i class="fa fa-check"></i><b>3.1.44.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.44.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-42"><i class="fa fa-check"></i><b>3.1.44.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.45" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-12-21-b9wemtdv"><i class="fa fa-check"></i><b>3.1.45</b> SIM08-11-12-21-b9wEmt–DV</a><ul>
+<li class="chapter" data-level="3.1.45.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-43"><i class="fa fa-check"></i><b>3.1.45.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.45.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-43"><i class="fa fa-check"></i><b>3.1.45.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.45.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-43"><i class="fa fa-check"></i><b>3.1.45.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.45.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-43"><i class="fa fa-check"></i><b>3.1.45.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.45.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-43"><i class="fa fa-check"></i><b>3.1.45.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.45.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-43"><i class="fa fa-check"></i><b>3.1.45.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.46" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-07-25-jpehevcv"><i class="fa fa-check"></i><b>3.1.46</b> SIM08-11-07-25-JPeHEv–CV</a><ul>
+<li class="chapter" data-level="3.1.46.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-44"><i class="fa fa-check"></i><b>3.1.46.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.46.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-44"><i class="fa fa-check"></i><b>3.1.46.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.46.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-44"><i class="fa fa-check"></i><b>3.1.46.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.46.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-44"><i class="fa fa-check"></i><b>3.1.46.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.46.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-44"><i class="fa fa-check"></i><b>3.1.46.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.46.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-44"><i class="fa fa-check"></i><b>3.1.46.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.47" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-07-25-jpehevdv"><i class="fa fa-check"></i><b>3.1.47</b> SIM08-11-07-25-JPeHEv–DV</a><ul>
+<li class="chapter" data-level="3.1.47.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-45"><i class="fa fa-check"></i><b>3.1.47.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.47.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-45"><i class="fa fa-check"></i><b>3.1.47.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.47.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-45"><i class="fa fa-check"></i><b>3.1.47.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.47.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-45"><i class="fa fa-check"></i><b>3.1.47.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.47.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-45"><i class="fa fa-check"></i><b>3.1.47.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.47.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-45"><i class="fa fa-check"></i><b>3.1.47.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.48" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-09-20-5ocizrcv"><i class="fa fa-check"></i><b>3.1.48</b> SIM08-11-09-20-5oCIZR–CV</a><ul>
+<li class="chapter" data-level="3.1.48.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-46"><i class="fa fa-check"></i><b>3.1.48.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.48.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-46"><i class="fa fa-check"></i><b>3.1.48.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.48.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-46"><i class="fa fa-check"></i><b>3.1.48.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.48.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-46"><i class="fa fa-check"></i><b>3.1.48.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.48.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-46"><i class="fa fa-check"></i><b>3.1.48.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.48.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-46"><i class="fa fa-check"></i><b>3.1.48.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.49" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-09-20-5ocizrdv"><i class="fa fa-check"></i><b>3.1.49</b> SIM08-11-09-20-5oCIZR–DV</a><ul>
+<li class="chapter" data-level="3.1.49.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-47"><i class="fa fa-check"></i><b>3.1.49.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.49.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-47"><i class="fa fa-check"></i><b>3.1.49.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.49.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-47"><i class="fa fa-check"></i><b>3.1.49.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.49.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-47"><i class="fa fa-check"></i><b>3.1.49.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.49.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-47"><i class="fa fa-check"></i><b>3.1.49.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.49.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-47"><i class="fa fa-check"></i><b>3.1.49.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.50" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-25-9f8vyucv"><i class="fa fa-check"></i><b>3.1.50</b> SIM08-11-01-25-9f8vyU–CV</a><ul>
+<li class="chapter" data-level="3.1.50.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-48"><i class="fa fa-check"></i><b>3.1.50.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.50.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-48"><i class="fa fa-check"></i><b>3.1.50.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.50.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-48"><i class="fa fa-check"></i><b>3.1.50.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.50.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-48"><i class="fa fa-check"></i><b>3.1.50.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.50.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-48"><i class="fa fa-check"></i><b>3.1.50.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.50.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-48"><i class="fa fa-check"></i><b>3.1.50.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.1.51" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#sim08-11-01-25-9f8vyudv"><i class="fa fa-check"></i><b>3.1.51</b> SIM08-11-01-25-9f8vyU–DV</a><ul>
+<li class="chapter" data-level="3.1.51.1" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#simulationparameters-49"><i class="fa fa-check"></i><b>3.1.51.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.1.51.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#alledgesbylabel-49"><i class="fa fa-check"></i><b>3.1.51.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.1.51.3" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#allverticesbytype-49"><i class="fa fa-check"></i><b>3.1.51.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.1.51.4" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#distribution-of-similarityedgesbyweight-49"><i class="fa fa-check"></i><b>3.1.51.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.1.51.5" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-item-similarity-item-edges-49"><i class="fa fa-check"></i><b>3.1.51.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.1.51.6" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#degree-distribution-of-agent-knows-agent-edges-49"><i class="fa fa-check"></i><b>3.1.51.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="experiment-2-pre-generated-small-world-graphs.html"><a href="experiment-2-pre-generated-small-world-graphs.html#discussion-and-notes"><i class="fa fa-check"></i><b>3.2</b> Discussion and notes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Offer Network: e-Lab Notebook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Offer Network: e-Lab Notebook</h1>
+<p class="author"><em>Kabir Veitas (<a href="mailto:kabir@singularitynet.io">kabir@singularitynet.io</a>)</em></p>
+<p class="date"><em>2018-08-14</em></p>
+</div>
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>The goal of OfferNet experiments is to produce data in order to understand the dynamics of the system and ‘computationally-prove’ dynamic properties of the network. Experiments are run as tests given a list of parameters (or rather a list of lists). Each experiment consists of a number of simulations – a concrete set of parameters. This ‘e-Lab Notebook’ tries to collect and document these simulations and analyse their results in a systematic way so that further experiments could be designed based on what is learned.</p>
+
+<p>Date: Tue Aug 14 10:05:35 2018 <br/>
+ExperimentId: EXP08-11-12-58-3BvMSL <br/>
+Codebase version: <a href="https://github.com/singnet/offernet/commit/a6f9dfc">a6f9dfc</a> <br/></p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="decentralized-vs-centralized-search-in-offernet.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

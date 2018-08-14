@@ -1,0 +1,32 @@
+# Dependencies
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  
+highlighter:      rouge
+baseurl:          offernet/public/elabnotebook
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            OfferNet(s)
+tagline:          'Electronic Lab Notebook'
+description:      'Technical writings on computational experiments of OfferNets: a research project of SingularityNET'
+url:              https://singularitynet.io/research-initiatives/
+host:		          0.0.0.0
+author:
+  name:           'Kabir Veitas'
+  url:            https://community.singularitynet.io/t/hello-from-kabir/692?u=kabir
+
+paginate:         5
+
+# Custom vars
+version:          2.0.0
+
+github:
+  repo:           https://github.com/singnet/offernet
+
+plugins_dir:      [jekyll-paginate]
+gems:             [jekyll-paginate]
+

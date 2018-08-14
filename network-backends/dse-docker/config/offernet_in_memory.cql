@@ -1,0 +1,12 @@
+ALTER TABLE offernet.work_p WITH compaction= { 'class': 'MemoryOnlyStrategy' }
+  AND caching = {'keys':'NONE', 'rows_per_partition':'NONE'};
+ALTER TABLE offernet.item_e WITH compaction= { 'class': 'MemoryOnlyStrategy' }
+  AND caching = {'keys':'NONE', 'rows_per_partition':'NONE'};
+ALTER TABLE offernet.agent_p WITH compaction= { 'class': 'MemoryOnlyStrategy' }
+  AND caching = {'keys':'NONE', 'rows_per_partition':'NONE'};
+ALTER TABLE offernet.item_p WITH compaction= { 'class': 'MemoryOnlyStrategy' }
+  AND caching = {'keys':'NONE', 'rows_per_partition':'NONE'};
+ALTER TABLE offernet.agent_e WITH compaction= { 'class': 'MemoryOnlyStrategy' }
+  AND caching = {'keys':'NONE', 'rows_per_partition':'NONE'};
+ALTER TABLE offernet.id_allocation WITH compaction= { 'class': 'MemoryOnlyStrategy' }
+  AND caching = {'keys':'NONE', 'rows_per_partition':'NONE'};

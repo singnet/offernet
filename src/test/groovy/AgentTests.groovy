@@ -14,6 +14,7 @@ import static org.junit.Assert.*
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
@@ -46,7 +47,7 @@ public class AgentTests {
 	void idStaticTest() {
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		assertNotNull(agent1.id())
-		logger.trace("id of the actor via static interface is {}",agent1.id())
+		logger.debug("id of the actor via static interface is {}",agent1.id())
 	}
 
 	@Test
@@ -56,7 +57,7 @@ public class AgentTests {
 			agentRef.tell(new Method("id",[]),getRef())
         	def agentId = receiveN(1)
 			assertNotNull(agentId)
-			logger.trace("id of the actor via message is {}",agentId)
+			logger.debug("id of the actor via message is {}",agentId)
 		}}
 	}
 
@@ -80,13 +81,13 @@ public class AgentTests {
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		def agent2 = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
 		agent1.knowsAgent(agent2.vertexId());
-		def work1 = agent1.ownsWork('1111','1110');
-		def work2 = agent2.ownsWork('1100','1000');
+		def work1 = agent1.ownsWork(0.2,0.8);
+		def work2 = agent2.ownsWork(0.5,0.8);
 		def knownItemsList = on.getVertices('item')
-		def start = agent1.addItemToWork("demands",work2,'1110')
+		def start = agent1.addItemToWork("demands",work2,0.9)
 		
-		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,0.7d)
-		assertEquals(3,similarityEdges.size())
+		List similarityEdges = agent1.connectAllSimilar(start, knownItemsList,0.5d)
+		assert similarityEdges.size() == 3
 	}
 
 	@Test
@@ -98,9 +99,7 @@ public class AgentTests {
 		def item1 = agent1.addItemToWork("demands",work1)
 		def item2 = agent2.addItemToWork("demands",work1)
 
-		def similarity = Utils.calculateSimilarity(item1,item2);
-		def similarityEdge = agent1.connect(item1, item2, similarity);
-		assertNotNull(similarityEdge);
+		agent1.searchAndConnect(0.0,2)
 
 		def d1 =agent1.existsSimilarity(item1,item2);
 		assertNotNull(d1)
@@ -116,11 +115,9 @@ public class AgentTests {
 		def work1 = agent1.ownsWork();
 		def work2 = agent2.ownsWork();
 		def item1 = agent1.addItemToWork("demands",work1)
-		def item2 = agent2.addItemToWork("demands",work1)
+		def item2 = agent2.addItemToWork("offers",work2)
 
-		def similarity = Utils.calculateSimilarity(item1,item2);
-		def similarityEdge = agent1.connect(item1, item2, similarity);
-		assertNotNull(similarityEdge);
+		agent1.searchAndConnect(0.0,2)
 
 		def d2 = agent2.existsSimilarity(item1,item2);
 		assertNotNull(d2)
@@ -180,8 +177,8 @@ public class AgentTests {
     	def agent1 = TestActorRef.create(system, Agent.props(on.session,agentId)).underlyingActor();
     	assertNotNull(agent1);
     	def agentIdFromVertex = agent1.id()
-    	logger.trace("Original agent id {} is of type {}",agentId, agentId.getClass().getSimpleName())
-    	logger.trace("Agent id extracted from vertex {} is of type {}",agentIdFromVertex, agentIdFromVertex.getClass().getSimpleName())
+    	logger.debug("Original agent id {} is of type {}",agentId, agentId.getClass().getSimpleName())
+    	logger.debug("Agent id extracted from vertex {} is of type {}",agentIdFromVertex, agentIdFromVertex.getClass().getSimpleName())
     	assertEquals(agentId,agentIdFromVertex)
 	}
 
@@ -251,7 +248,7 @@ public class AgentTests {
 			def agent1 = TestActorRef.create(system, Agent.props(on.session,agent1Id)).underlyingActor();
 			assertNotNull(agent1);
 
-			def work = agent1.ownsWork("00011","00001")
+			def work = agent1.ownsWork(0.4,0.657)
 			assertNotNull(work);
 
 			def demand = agent1.getWorksItems(work,"demands")[0];
@@ -259,8 +256,8 @@ public class AgentTests {
 			def offer = agent1.getWorksItems(work,"offers")[0];
 			assertNotNull(offer)
 
-			assertEquals("00011",demand.getProperty("value").getValue().asString())
-			assertEquals("00001",offer.getProperty("value").getValue().asString())
+			assert 0.4 == demand.getProperty("value").getValue().asDouble()
+			assert 0.657 == offer.getProperty("value").getValue().asDouble()
 	}
 
 	@Test
@@ -283,16 +280,16 @@ public class AgentTests {
 		on.flushVertices("agent");
 		String agent1Id = UUID.randomUUID().toString()+"agent1";
 		def agent1 = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
-		agent1.ownsWork('111110','000000');
+		agent1.ownsWork(0.1,0.3);
 		String agent2Id = UUID.randomUUID().toString()+"agent2";
 		def agent2 = TestActorRef.create(system, Agent.props(on.session, agent2Id)).underlyingActor();
-		agent2.ownsWork('111100','110000');
+		agent2.ownsWork(0.81,0.3);
 		String agent3Id = UUID.randomUUID().toString()+"agent3";
 		def agent3 = TestActorRef.create(system, Agent.props(on.session, agent3Id)).underlyingActor();
-		agent3.ownsWork('100000','111100');
+		agent3.ownsWork(0.85,0.65);
 		String agent4Id = UUID.randomUUID().toString()+"agent4";
 		def agent4 = TestActorRef.create(system, Agent.props(on.session, agent4Id)).underlyingActor();
-		agent4.ownsWork('111110','000000');
+		agent4.ownsWork(0.9,0.1);
 
 		agent1.knowsAgent(agent2.vertex.getId());
 		agent2.knowsAgent(agent3.vertex.getId());
@@ -302,7 +299,7 @@ public class AgentTests {
 		The resulting graph has 4 agents, 4 works, 8 items and 6 reciprocal connections (12 links in total)
 		*/
 		assertEquals(3,agent1.searchAndConnect(0.5,2)) // this traverses part of the graph
-		assertEquals(1,agent1.searchAndConnect(0.5,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(0.5)
+		assertEquals(2,agent1.searchAndConnect(0.5,3)) // traverses the whole graph, and finds the rest of connections with similarity gte(0.5)
 	}
 
 	@Test
@@ -335,8 +332,8 @@ public class AgentTests {
 		String agent1Id = UUID.randomUUID().toString();
 		def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		def work = agent.ownsWork()
-		def offer = agent.addItemToWork("offers",work,"00000")
-		assertEquals("00000",offer.getProperty("value").getValue().asString());
+		def offer = agent.addItemToWork("offers",work,0.5)
+		assert 0.5 == offer.getProperty("value").getValue().asDouble();
 	}
 
 	@Test
@@ -353,8 +350,8 @@ public class AgentTests {
 		String agent1Id = UUID.randomUUID().toString();
 		def agent = TestActorRef.create(system, Agent.props(on.session, agent1Id)).underlyingActor();
 		def work = agent.ownsWork()
-		def offer = agent.addItemToWork("demands",work,"00011")
-		assertEquals("00011",offer.getProperty("value").getValue().asString());
+		def offer = agent.addItemToWork("demands",work,0.236)
+		assert 0.236 == offer.getProperty("value").getValue().asDouble();
 	}
 
 	@Test

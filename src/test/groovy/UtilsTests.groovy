@@ -44,30 +44,15 @@ public class UtilsTests {
 		}
 
 		@Test
-		void createChainTest() {
-			List chain = Utils.createChain(5)
-			assertEquals(5,chain.size());
+		void generateDoubleTest() {
+			Double dbl = Utils.generateDouble();
+			assert dbl.getClass().getSimpleName() =="Double"
 		}
 
 		@Test
-		void calculateSimilarityTest() {
-//			String value1 = "000000"
-//			String value2 = "111111"
-			String value1 = "0111011001011100"
-			String value2 = "0111111010101000"
-			def d1 = Utils.calculateSimilarity(value1,value2);
-			assertNotNull(d1)
-			def agent = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString())).underlyingActor();
-            def work = agent.ownsWork(value1,value2);
-            def item1 = agent.getWorksItems(work,"demands")[0]
-            def item2 = agent.getWorksItems(work,"offers")[0]
-			assertNotNull(item1)
-			assertNotNull(item2)
-			def d2 = Utils.calculateSimilarity(item1,item2);
-			assertNotNull(d2)
-			def delta = 0.00001;
-			assertEquals(d1,d2,delta);
-			assertEquals(0.6666666666666666,d1,delta); // if the similarity calculation is 'cosine'
+		void createChainTest() {
+			List chain = Utils.createChain(5)
+			assertEquals(5,chain.size());
 		}
 
 		@Test
@@ -92,5 +77,13 @@ public class UtilsTests {
 	   		def fieldNames = jsonSlurper.parseText(edgeId.toString());
 	   		def graphEdgeLabel = fieldNames.get('~local_id');
 	   		assertTrue(edgeLabel == graphEdgeLabel)
+		}
+
+		@Test
+		void kabirSimilarityTest() {
+			def valueOne = 0.7
+			def valueTwo = 0.1
+			def kabirSimilarity = Utils.kabirSimilarity(valueOne, valueTwo)
+			assert kabirSimilarity == 0.4
 		}
 }

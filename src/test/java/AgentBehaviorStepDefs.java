@@ -51,7 +51,7 @@ public class AgentBehaviorStepDefs {
 
     @After
     public void after(Scenario scenario) throws Throwable {
-		// this.on.flushVertices();
+		  this.sim.on.flushVertices();
     }
 
     /*
@@ -138,7 +138,7 @@ public class AgentBehaviorStepDefs {
     */
 
     @When("^Agent \"([^\"]*)\" posts a pair of offer \"([^\"]*)\" and demand of \"([^\"]*)\"$")
-    public void agent_publishes_a_pair_of_offer_and_demand_of(String agentLabel, String offerValue, String demandValue) throws Throwable {
+    public void agent_publishes_a_pair_of_offer_and_demand_of(String agentLabel, Double offerValue, Double demandValue) throws Throwable {
         ActorRef actorRef = this.sim.createAgentWithId(agentLabel);
         assertNotNull(actorRef);
 	    Method msg = new Method("ownsWork", new ArrayList(){{add(demandValue);add(offerValue);}});
@@ -277,7 +277,7 @@ public class AgentBehaviorStepDefs {
 
     @Then("^there are '(\\d+)' similarity relations in the network$")
     public void there_are_similarity_relations_in_the_network(int numberOfSimilarityRelations) throws Throwable {
-        ArrayList<Edge> edges = ( ArrayList<Edge> ) sim.on.getEdges("similarity");
+        ArrayList<Edge> edges = ( ArrayList<Edge> ) sim.on.getEdges("item","similarity");
         assertEquals(numberOfSimilarityRelations, edges.size()/2);
     }
 

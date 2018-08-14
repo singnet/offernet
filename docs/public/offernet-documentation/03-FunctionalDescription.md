@@ -43,11 +43,11 @@ Agents in an Offer Network engage in exchange by publishing an offer-demand pair
 
 * Given : Agent "AgentOne" is created on the OfferNet
 
-* When : Agent "AgentOne" posts a pair of offer "offer-1" and demand of "demand-1"
+* When : Agent "AgentOne" posts a pair of offer "0.15" and demand of "0.57"
 
-* Then : Agent "AgentOne" owns a work which "demands" item "demand-1"
+* Then : Agent "AgentOne" owns a work which "demands" item "0.57"
 
-* And : Agent "AgentOne" owns a work which "offers" item "offer-1"
+* And : Agent "AgentOne" owns a work which "offers" item "0.15"
 
 ### Scenario Outline: an agent can access all posted offers and demands by traversing its social network
 In a distributed system where there is no global observer which has the registry of all agents and their items of offer and demand. In this case, the only way for an agent to access items of other agents is to traverse its social network (to a given depth) and ask all friends of friends to send information about their items. Since the OfferNet is fully connected (and hopefully is a small world network) the whole network can be scanned this way, depending on availability of time and resource constrains of an agent which initiates the search. The expected number of items that an agent has to find in its social network is calculated as follows: $(numberOfAgents -1) * pairsPerAgent * 2$ (as every pair holds two items: one demand and one offer..).

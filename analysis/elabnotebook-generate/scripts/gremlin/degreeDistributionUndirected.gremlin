@@ -1,0 +1,1 @@
+g.V().has(label,labelValue).groupCount().by(bothE(edgeLabel).count())
