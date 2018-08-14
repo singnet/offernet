@@ -6,7 +6,9 @@ temp/
 src/main/java/
 target/
 .Rproj.user
-docs/public/
+docs/public/cucumber-html-reports
+docs/public/offernet-documentation
+docs/public/unit-tests
 docs/cucumber-json-report.json
 docs/offernet-docs-bookdown/cucumber-json-report.json
 docs/offernet-docs-bookdown/cucumber-json-report-processed.json
