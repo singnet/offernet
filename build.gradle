@@ -71,7 +71,6 @@ test {
 task buildDocumentation {
   dependsOn 'buildBook'
   dependsOn 'copyUnitTestReport'
-  dependsOn 'buildLabNotebook'
   tasks.findByName('copyUnitTestReport').mustRunAfter 'buildBook'
 }
 
