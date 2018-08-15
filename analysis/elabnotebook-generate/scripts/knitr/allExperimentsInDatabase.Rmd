@@ -1,0 +1,138 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, error=FALSE, output=FALSE, source = FALSE)
+Sys.setenv(ON_workdir = '/home/kabir/offernet/')
+```
+
+<!--#### variables: -->
+```{r get-experiment-info, results = 'asis', eval=TRUE}
+library(elastic)
+library(jsonlite)
+library(knitr)
+library(kableExtra)
+conn <-connect(es_port = 9200)
+template <- '{
+    "query": {
+        "bool": {
+          "must": [
+            {"exists" : { "field" : "experimentId" }}
+          ],
+          "must_not": [
+            {"exists" : { "field" : "simulationId"}}
+          ]
+        }
+    },
+    "sort": [
+      {
+        "@timestamp": {
+          "order": "asc"
+        }
+      }
+    ]
+}'
+query <- sprintf(template)
+source=c('experimentId','@timestamp','agentNumbers','chainLengths','randomWorksNumberMultipliers','maxDistances','similaritySearchThresholds')
+experiment.result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=1000)$hits$hits
+conn<-NULL
+experiment.df <- experiment.result[,-c(1:5)]
+vars=sapply(strsplit(colnames(experiment.df), split='.', fixed=TRUE), function(x) (x[2]))
+colnames(experiment.df) <- vars
+experiment.df <- experiment.df[c(4,3,1,2,5,6,7)]
+# print Experiment data
+cat(paste('## All experiments in database \n\n'))
+kable(experiment.df) %>%
+  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
+    #column_spec(0:ncol(experiment.df),width="10em") 
+    #add_header_above(c("labels"=5))
+
+cat(paste('## Simulations of each experiment \n\n'))
+experimentIds = experiment.df$experimentId
+
+for (experimentId in experimentIds) {
+  cat(paste('### ',experimentId,'\n\n'))
+  conn <-connect(es_port = 9200)
+  template <- '
+        {
+            "query": {
+                "bool": {
+                  "must": [
+                    {"exists" : { "field" : "experimentId" }},
+                    {"exists" : { "field" : "simulationId" }},
+                    {"match_phrase": {
+                      "experimentId": "%s"
+                    }}
+                  ],
+                  "must_not": [
+                    {"exists" : { "field" : "timeout_ms" }}
+                  ]
+                }
+            },
+            "sort": [
+              {
+                "@timestamp": {
+                  "order": "asc"
+                }
+              }
+            ]
+        }  
+  '
+
+  query <- sprintf(template, experimentId)
+  source=c('simulationId','randomWorksNumberMultiplier', 'similaritySearchThreshold','maxDistance','agentNumber','@timestamp','chainLength')
+  exp.result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=10000)$hits$hits
+  conn<-NULL
+  cat('\n\n')
+  cat('\n\n')
+  if (is.list(exp.result) & length(exp.result) != 0) {
+    exp.df <- exp.result[,-c(1:5)]
+    vars=sapply(strsplit(colnames(exp.df), split='.', fixed=TRUE), function(x) (x[2]))
+    colnames(exp.df) <- vars
+    exp.df <- exp.df[c(6,1,2,3,4,5,7)]
+    template <- '
+        {
+            "query": {
+                "bool": {
+                  "must": [
+                    {"exists" : { "field" : "experimentId" }},
+                    {"exists" : { "field" : "simulationId" }},
+                    {"exists" : { "field" : "timeout_ms" }},
+                    {"match_phrase": {
+                      "experimentId": "%s"
+                    }}
+                  ]
+                }
+            },
+            "sort": [
+              {
+                "@timestamp": {
+                  "order": "asc"
+                }
+              }
+            ]
+        }
+    '
+  query <- sprintf(template, experimentId)
+  source=c('simulationId','timeout_ms')
+  timeout.result <- Search(index="filebeat-*", body=query, source = source, asdf=TRUE, size=10000)$hits$hits
+  conn<-NULL
+  sims.df <- exp.df
+  if (is.list(timeout.result) & length(timeout.result) != 0) {
+    timeouts.df <- timeout.result[,-c(1:5)]
+    vars=sapply(strsplit(colnames(timeouts.df), split='.', fixed=TRUE), function(x) (x[2]))
+    colnames(timeouts.df) <- vars
+    sims.df <- merge(x = exp.df, y = timeouts.df, by = "simulationId", all = TRUE)
+  }
+  
+  ee <- kable(sims.df) %>%
+    kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
+      #column_spec(0:ncol(experiment.df),width="10em") 
+      #add_header_above(c("labels"=5))
+  print(ee)
+  }
+
+timeout.result <-NULL
+experiment.result <-NULL
+exp.result <-NULL
+
+}
+```
