@@ -10,6 +10,9 @@ library(elastic)
 library(jsonlite)
 library(knitr)
 library(kableExtra)
+library(plyr)
+library(stringi)
+
 conn <-connect(es_port = 9200)
 template <- '{
     "query": {
@@ -128,7 +131,148 @@ for (experimentId in experimentIds) {
       #column_spec(0:ncol(experiment.df),width="10em") 
       #add_header_above(c("labels"=5))
   print(ee)
+  
+  
+  cat(paste('## Running time of each simulation by method \n\n'))
+  simulationIds = sims.df$simulationId
+  
+  for (simulationId in simulationIds) {1
+      cat(paste('### ',simulationId, '\n\n'))
+      
+      params <- sims.df[which(sims.df$simulationId == simulationId),]
+      params <- params[,-c(1,2)]
+      rownames(params) <- c()
+      simp <- kable(params) %>%
+        kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
+      print(simp)
+
+      
+      conn <-connect(es_port = 9200)
+      template <- '
+            {
+              "_source": false, 
+              "query": {
+                "match_phrase": { "simulationId" : "%s" }},
+              "aggs": {
+                "group_by_method": {
+                  "terms": {
+                    "field": "method.keyword"
+                  },
+                  "aggs": {
+                    "group_by_method": {
+                      "terms": {
+                        "field": "method.keyword",
+                        "order": {
+                          "avg_wallTime_ms": "desc"
+                        }
+                      },
+                      "aggs": {
+                        "sum_wallTime_ms": {
+                          "sum": {
+                            "field": "wallTime_ms"
+                          }
+                        },
+                        "avg_wallTime_ms": {
+                          "avg": {
+                            "field": "wallTime_ms"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }      
+      '
+
+      query <- sprintf(template, simulationId)
+      sim.result <- Search(index="filebeat-*", body=query, asdf=TRUE, size=10000)
+      sim.df <- sim.result$aggregations$group_by_method$buckets$group_by_method.buckets
+      methods.df <- ldply(sim.df, data.frame)
+      conn<-NULL
+      func <- function(z) if (is.numeric(z)) sum(z) else ''
+      sumrow <- as.data.frame(lapply(methods.df, func))      
+      sumrow$avg_wallTime_ms.value <- ''
+      sumrow$key <- "Total"
+      last_row <- nrow(methods.df) +1
+      m <- kable(rbind(methods.df,sumrow),format.args = list(decimal.mark = '.', big.mark = ",")) %>%
+        kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+        row_spec(last_row, bold = TRUE)
+          #column_spec(0:ncol(experiment.df),width="10em") 
+          #add_header_above(c("labels"=5))
+      print(m)
+      
+      keyword <- 'foundCycle'
+      cat(paste('### ',keyword, '\n\n'))
+      
+      conn <-connect(es_port = 9200)
+      template <- '
+            { 
+              "query": {
+                "bool": {
+                  "must": [
+                    { "match_phrase": {
+                      "simulationId": "%s"
+                      }
+                    },
+                    { "bool": {
+                      "should": [
+                        { "match": {
+                          "keyword": "%s"
+                        }}
+                      ]
+                    }}
+                  ]
+                }
+              }
+            }
+  '
+
+      query <- sprintf(template, simulationId, keyword)
+      cycle.result <- Search(index="filebeat-*", body=query, asdf=TRUE, size=10000)
+      cat(paste("Number of cycles found: ", cycle.result$hits$total),'\n\n')
+      blockNo <- stri_rand_strings(1, 10, '[A-Z]')
+      full_query <- sprintf("%s %s", '     GET /filebeat-*/_search', query)
+      cat(paste('<button class="btn btn-primary" data-toggle="collapse" data-target="#',blockNo,'"> Show/Hide ',keyword,' query </button> \n <div id="',blockNo,'" class="collapse">  \n',sep=''))
+            cat(paste(full_query,'\n'))
+        cat('\n</div>\n')
+        
+      keyword <- 'foundPath'
+      cat(paste('### ',keyword, '\n\n'))
+      
+      conn <-connect(es_port = 9200)
+      template <- '
+            { 
+              "query": {
+                "bool": {
+                  "must": [
+                    { "match_phrase": {
+                      "simulationId": "%s"
+                      }
+                    },
+                    { "bool": {
+                      "should": [
+                        { "match": {
+                          "keyword": "%s"
+                        }}
+                      ]
+                    }}
+                  ]
+                }
+              }
+            }
+  '
+
+      query <- sprintf(template, simulationId, keyword)
+      path.result <- Search(index="filebeat-*", body=query)
+      cat(paste("Number of paths found: ", path.result$hits$total),'\n\n')
+      blockNo <- stri_rand_strings(1, 10, '[A-Z]')
+      full_query <- sprintf("%s %s", '     GET /filebeat-*/_search', query)
+      cat(paste('<button class="btn btn-primary" data-toggle="collapse" data-target="#',blockNo,'"> Show/Hide ',keyword,' query </button> \n <div id="',blockNo,'" class="collapse">  \n',sep=''))
+            cat(paste(full_query,'\n'))
+        cat('\n</div>\n')        
   }
+}
 
 timeout.result <-NULL
 experiment.result <-NULL
