@@ -10,11 +10,11 @@ Here we dump data of all experiments that were run in the period between April 2
 
 |No. | expermentId | Comment |
 |:--|:--|:--|
-|1 | EXP08-05-12-48-qrNbzW | |
-|2 | EXP08-09-05-27-BmCFH6 | |
-|3 | EXP08-10-01-33-JYSw5Z | |
-|4 | EXP08-11-12-58-3BvMSL | pre-generated smallWorld graph of agents with known diameters < 10; similarityThreshold = 0.9 |
-|5 | EXP08-12-11-17-5tvhCK | pre-generated smallWorld graph of agents with known diameters < 10; different similarity search thresholds |
+|1 | EXP08-05-12-48-qrNbzW | randomly connected social network of agents, unknown diameter; similarityConnectThreshold = 0.5 |
+|2 | EXP08-09-05-27-BmCFH6 | same as above |
+|3 | EXP08-10-01-33-JYSw5Z | same as above |
+|4 | EXP08-11-12-58-3BvMSL | pre-generated smallWorld social network of agents with known diameters < 10; similarityThreshold = 0.9 |
+|5 | EXP08-12-11-17-5tvhCK | pre-generated smallWorld social network of agents with known diameters < 10; different similarity search thresholds |
 
 <!--#### variables: -->
 ```{r get-experiment-info, results = 'asis', eval=TRUE}
@@ -46,19 +46,20 @@ template <- '{
     ]
 }'
 query <- sprintf(template)
-source=c('experimentId','@timestamp','agentNumbers','chainLengths','randomWorksNumberMultipliers','maxDistances','similaritySearchThresholds')
+source=c('experimentId','@timestamp','agentNumbers','chainLengths','randomWorksNumberMultipliers','maxDistances','similaritySearchThresholds', 'similarityConnectThreshold')
 experiment.result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=1000)$hits$hits
 conn<-NULL
 experiment.df <- experiment.result[,-c(1:5)]
 vars=sapply(strsplit(colnames(experiment.df), split='.', fixed=TRUE), function(x) (x[2]))
 colnames(experiment.df) <- vars
 colnames(experiment.df)[3] <- 'timestamp' # for some reason this is needed when running from bookdown...
-experiment.df <- experiment.df[c(4,3,1,2,5,6,7)]
+refcols <- c("experimentId", "timestamp")
+experiment.df <- experiment.df[, c(refcols, setdiff(names(experiment.df), refcols))]
 # print Experiment data
 cat(paste('## All experiments in database \n\n'))
 kable(experiment.df) %>%
   kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
-    scroll_box(height = NULL, width = '1200px',
+    scroll_box(height = NULL, width = '1300px',
         box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
     #column_spec(0:ncol(experiment.df),width="10em") 
     #add_header_above(c("labels"=5))
@@ -95,7 +96,7 @@ for (experimentId in experimentIds) {
   '
 
   query <- sprintf(template, experimentId)
-  source=c('simulationId','randomWorksNumberMultiplier', 'similaritySearchThreshold','maxDistance','agentNumber','@timestamp','chainLength')
+  source=c('simulationId','randomWorksNumberMultiplier', 'similaritySearchThreshold','similarityConnectThreshold','maxDistance','agentNumber','@timestamp','chainLength')
   exp.result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=10000)$hits$hits
   conn<-NULL
   
@@ -104,9 +105,12 @@ for (experimentId in experimentIds) {
   if (is.list(exp.result) & length(exp.result) != 0) {
     exp.df <- exp.result[,-c(1:5)]
     vars=sapply(strsplit(colnames(exp.df), split='.', fixed=TRUE), function(x) (x[2]))
+    index <- match('@timestamp',vars)
+    vars[index] <- 'timestamp'
     colnames(exp.df) <- vars
-    colnames(exp.df)[1] <- 'timestamp' # for some reason this is needed when running from bookdown...    
-    exp.df <- exp.df[c(6,1,2,3,4,5,7)]
+    refcols <- c("simulationId", "timestamp")
+    exp.df <- exp.df[, c(refcols, setdiff(names(exp.df), refcols))]
+    
     template <- '
         {
             "query": {
@@ -143,7 +147,9 @@ for (experimentId in experimentIds) {
   }
 
   ee <- kable(sims.df) %>%
-    kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
+    kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+      scroll_box(height = NULL, width = '1300px',
+        box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
       #column_spec(0:ncol(experiment.df),width="10em") 
       #add_header_above(c("labels"=5))
   print(ee)
@@ -156,7 +162,7 @@ for (experimentId in experimentIds) {
       cat(paste('##### simulationParameters \n\n'))
       
       params <- sims.df[which(sims.df$simulationId == simulationId),]
-      params <- params[,-c(1,2)]
+      params <- params[,-c(1,3)]
       rownames(params) <- c()
       simp <- kable(params) %>%
         kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
@@ -323,10 +329,11 @@ exp.result <-NULL
 }
 
 cat(paste('## Summary or running times \n\n'))
-summary.df <- summary.df[c(7,8,1,2,3,4,5,6,9,10,11,12)]
+refcols <- c("experimentId", "simulationId", "timestamp")
+summary.df <- summary.df[, c(refcols, setdiff(names(summary.df), refcols))]
 summary <- kable(summary.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
   kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
-    scroll_box(height = NULL, width = '1200px',
+    scroll_box(height = NULL, width = '1300px',
       box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
     #column_spec(0:ncol(experiment.df),width="10em") 
     #add_header_above(c("labels"=5))

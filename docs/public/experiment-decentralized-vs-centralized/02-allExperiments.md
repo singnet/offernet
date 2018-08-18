@@ -6,16 +6,16 @@ Here we dump data of all experiments that were run in the period between April 2
 
 |No. | expermentId | Comment |
 |:--|:--|:--|
-|1 | EXP08-05-12-48-qrNbzW | |
-|2 | EXP08-09-05-27-BmCFH6 | |
-|3 | EXP08-10-01-33-JYSw5Z | |
-|4 | EXP08-11-12-58-3BvMSL | pre-generated smallWorld graph of agents with known diameters < 10; similarityThreshold = 0.9 |
-|5 | EXP08-12-11-17-5tvhCK | pre-generated smallWorld graph of agents with known diameters < 10; different similarity search thresholds |
+|1 | EXP08-05-12-48-qrNbzW | randomly connected social network of agents, unknown diameter; similarityConnectThreshold = 0.5 |
+|2 | EXP08-09-05-27-BmCFH6 | same as above |
+|3 | EXP08-10-01-33-JYSw5Z | same as above |
+|4 | EXP08-11-12-58-3BvMSL | pre-generated smallWorld social network of agents with known diameters < 10; similarityThreshold = 0.9 |
+|5 | EXP08-12-11-17-5tvhCK | pre-generated smallWorld social network of agents with known diameters < 10; different similarity search thresholds |
 
 <!--#### variables: -->
 ## All experiments in database 
 
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1200px; "><table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> experimentId </th>
@@ -25,6 +25,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <th style="text-align:left;"> similaritySearchThresholds </th>
    <th style="text-align:left;"> agentNumbers </th>
    <th style="text-align:left;"> chainLengths </th>
+   <th style="text-align:right;"> similarityConnectThreshold </th>
   </tr>
  </thead>
 <tbody>
@@ -36,6 +37,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 100, 200, 500 </td>
    <td style="text-align:left;"> 10, 20 </td>
+   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
@@ -45,6 +47,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 100, 200, 500 </td>
    <td style="text-align:left;"> 10, 20 </td>
+   <td style="text-align:right;"> 0.5 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-07-05-04-95KIBv </td>
@@ -54,6 +57,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 500, 1000, 2000 </td>
    <td style="text-align:left;"> 20 </td>
+   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-01-35-9owMuE </td>
@@ -63,6 +67,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 500, 1000, 2000, 5000 </td>
    <td style="text-align:left;"> 20 </td>
+   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-05-27-BmCFH6 </td>
@@ -72,6 +77,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 500, 1000, 2000 </td>
    <td style="text-align:left;"> 20 </td>
+   <td style="text-align:right;"> 0.5 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-10-01-33-JYSw5Z </td>
@@ -81,6 +87,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 1000 </td>
    <td style="text-align:left;"> 20 </td>
+   <td style="text-align:right;"> 0.5 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-10-10-15-t7WP6v </td>
@@ -90,6 +97,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 0.95, 1 </td>
    <td style="text-align:left;"> 100, 200, 400, 800 </td>
    <td style="text-align:left;"> 10, 20 </td>
+   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-38-3dSVwT </td>
@@ -99,6 +107,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 0.95, 1 </td>
    <td style="text-align:left;"> 100, 200, 400, 800 </td>
    <td style="text-align:left;"> 10, 20 </td>
+   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-44-BoTBgN </td>
@@ -108,6 +117,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 0.95, 1 </td>
    <td style="text-align:left;"> 100, 200, 400, 800 </td>
    <td style="text-align:left;"> 10, 20 </td>
+   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-51-GTpv9p </td>
@@ -117,6 +127,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 0.95, 1 </td>
    <td style="text-align:left;"> 100, 200, 400, 800 </td>
    <td style="text-align:left;"> 10, 20 </td>
+   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-52-NkSjvw </td>
@@ -126,6 +137,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 0.95, 1 </td>
    <td style="text-align:left;"> 100, 200, 400, 800 </td>
    <td style="text-align:left;"> 10, 20 </td>
+   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-54-LgXUNA </td>
@@ -135,6 +147,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 0.95, 1 </td>
    <td style="text-align:left;"> 100, 200, 400, 800 </td>
    <td style="text-align:left;"> 10, 20 </td>
+   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
@@ -144,6 +157,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 100, 200, 400, 800 </td>
    <td style="text-align:left;"> 10, 20 </td>
+   <td style="text-align:right;"> 0.9 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
@@ -153,6 +167,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 0.9, 0.95 </td>
    <td style="text-align:left;"> 200 </td>
    <td style="text-align:left;"> 10 </td>
+   <td style="text-align:right;"> 0.9 </td>
   </tr>
 </tbody>
 </table></div>
@@ -165,7 +180,7 @@ Here we dump data of all experiments that were run in the period between April 2
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
@@ -370,7 +385,7 @@ Here we dump data of all experiments that were run in the period between April 2
    <td style="text-align:left;"> 3600911 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-02-01-31-R9x4ai--DV 
@@ -380,7 +395,7 @@ Here we dump data of all experiments that were run in the period between April 2
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -390,7 +405,7 @@ Here we dump data of all experiments that were run in the period between April 2
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T11:31:38.605Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 500 </td>
@@ -481,8 +496,8 @@ Here we dump data of all experiments that were run in the period between April 2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FYJEGKDXBF"> Show/Hide foundCycle query </button> 
- <div id="FYJEGKDXBF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DNKHRNGFCW"> Show/Hide foundCycle query </button> 
+ <div id="DNKHRNGFCW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -510,8 +525,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DOLROBWGAN"> Show/Hide foundPath query </button> 
- <div id="DOLROBWGAN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MPJDVTNXGG"> Show/Hide foundPath query </button> 
+ <div id="MPJDVTNXGG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -542,7 +557,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -552,7 +567,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T01:31:43.637Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -643,8 +658,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FNLLQDLDKF"> Show/Hide foundCycle query </button> 
- <div id="FNLLQDLDKF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ETRXFGRHXH"> Show/Hide foundCycle query </button> 
+ <div id="ETRXFGRHXH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -672,8 +687,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZIZSJDICRS"> Show/Hide foundPath query </button> 
- <div id="ZIZSJDICRS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KQWEZHGOJI"> Show/Hide foundPath query </button> 
+ <div id="KQWEZHGOJI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -704,7 +719,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -714,7 +729,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T01:31:20.619Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -805,8 +820,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YQVMWLZMLP"> Show/Hide foundCycle query </button> 
- <div id="YQVMWLZMLP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VRQIJDFERC"> Show/Hide foundCycle query </button> 
+ <div id="VRQIJDFERC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -834,8 +849,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UNNGKNOBOR"> Show/Hide foundPath query </button> 
- <div id="UNNGKNOBOR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GSXDWYLWYX"> Show/Hide foundPath query </button> 
+ <div id="GSXDWYLWYX" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -866,7 +881,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -876,7 +891,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T01:43:45.505Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -967,8 +982,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XCQOFMZUTZ"> Show/Hide foundCycle query </button> 
- <div id="XCQOFMZUTZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TDBAQCBSLH"> Show/Hide foundCycle query </button> 
+ <div id="TDBAQCBSLH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -996,8 +1011,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KQWVEMKNST"> Show/Hide foundPath query </button> 
- <div id="KQWVEMKNST" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MQSODTPIHF"> Show/Hide foundPath query </button> 
+ <div id="MQSODTPIHF" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1028,7 +1043,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -1038,7 +1053,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T01:43:19.484Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -1129,8 +1144,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZSBKZJWHIF"> Show/Hide foundCycle query </button> 
- <div id="ZSBKZJWHIF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SWYFKBWFKN"> Show/Hide foundCycle query </button> 
+ <div id="SWYFKBWFKN" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1158,8 +1173,8 @@ Number of cycles found:  5
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TTKWCZLJAM"> Show/Hide foundPath query </button> 
- <div id="TTKWCZLJAM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EIRKUPPDFO"> Show/Hide foundPath query </button> 
+ <div id="EIRKUPPDFO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1190,7 +1205,7 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -1200,7 +1215,7 @@ Number of paths found:  1
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T02:55:37.713Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -1291,8 +1306,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HBREDQSGJQ"> Show/Hide foundCycle query </button> 
- <div id="HBREDQSGJQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SICYMRXIFO"> Show/Hide foundCycle query </button> 
+ <div id="SICYMRXIFO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1320,8 +1335,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KNDKJAMYYM"> Show/Hide foundPath query </button> 
- <div id="KNDKJAMYYM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CLKFJDJQLT"> Show/Hide foundPath query </button> 
+ <div id="CLKFJDJQLT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1352,7 +1367,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -1362,7 +1377,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T01:55:32.346Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -1453,8 +1468,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IKNDKSGOFQ"> Show/Hide foundCycle query </button> 
- <div id="IKNDKSGOFQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NMZVDSIXUH"> Show/Hide foundCycle query </button> 
+ <div id="NMZVDSIXUH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1482,8 +1497,8 @@ Number of cycles found:  0
 
 Number of paths found:  3599 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CNJRQEIYNS"> Show/Hide foundPath query </button> 
- <div id="CNJRQEIYNS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PDWZPVVTSS"> Show/Hide foundPath query </button> 
+ <div id="PDWZPVVTSS" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1514,7 +1529,7 @@ Number of paths found:  3599
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -1524,7 +1539,7 @@ Number of paths found:  3599
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T03:09:16.811Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -1615,8 +1630,8 @@ Number of paths found:  3599
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OJFIBWBVDV"> Show/Hide foundCycle query </button> 
- <div id="OJFIBWBVDV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VBQTEHPWGF"> Show/Hide foundCycle query </button> 
+ <div id="VBQTEHPWGF" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1644,8 +1659,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KWPDWECKTS"> Show/Hide foundPath query </button> 
- <div id="KWPDWECKTS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VDVVZBNTAB"> Show/Hide foundPath query </button> 
+ <div id="VDVVZBNTAB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1676,7 +1691,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -1686,7 +1701,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T03:08:49.791Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -1777,8 +1792,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JWEHWZMFDH"> Show/Hide foundCycle query </button> 
- <div id="JWEHWZMFDH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EGOLGVFWJC"> Show/Hide foundCycle query </button> 
+ <div id="EGOLGVFWJC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1806,8 +1821,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SAGQNNRKLT"> Show/Hide foundPath query </button> 
- <div id="SAGQNNRKLT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DQWYTHLPWG"> Show/Hide foundPath query </button> 
+ <div id="DQWYTHLPWG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1838,7 +1853,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -1848,7 +1863,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T04:22:44.696Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -1939,8 +1954,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VNEMVKBEQN"> Show/Hide foundCycle query </button> 
- <div id="VNEMVKBEQN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LHRWMUXUKH"> Show/Hide foundCycle query </button> 
+ <div id="LHRWMUXUKH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1968,8 +1983,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RRRZKMOPSA"> Show/Hide foundPath query </button> 
- <div id="RRRZKMOPSA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DPQRXGSHEM"> Show/Hide foundPath query </button> 
+ <div id="DPQRXGSHEM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2000,7 +2015,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -2010,7 +2025,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T03:22:37.906Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -2101,8 +2116,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QLLRHQALWI"> Show/Hide foundCycle query </button> 
- <div id="QLLRHQALWI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SAXUDLIVRO"> Show/Hide foundCycle query </button> 
+ <div id="SAXUDLIVRO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2130,8 +2145,8 @@ Number of cycles found:  0
 
 Number of paths found:  3599 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GQHNKAXMKJ"> Show/Hide foundPath query </button> 
- <div id="GQHNKAXMKJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ULCRKEEVWS"> Show/Hide foundPath query </button> 
+ <div id="ULCRKEEVWS" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2162,7 +2177,7 @@ Number of paths found:  3599
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -2172,7 +2187,7 @@ Number of paths found:  3599
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T05:25:59.351Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -2263,8 +2278,8 @@ Number of paths found:  3599
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TXFLJIKFAO"> Show/Hide foundCycle query </button> 
- <div id="TXFLJIKFAO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KGLRBILGIK"> Show/Hide foundCycle query </button> 
+ <div id="KGLRBILGIK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2292,8 +2307,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LQLUXJVLJF"> Show/Hide foundPath query </button> 
- <div id="LQLUXJVLJF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BDFOLTDPRZ"> Show/Hide foundPath query </button> 
+ <div id="BDFOLTDPRZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2324,7 +2339,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -2334,7 +2349,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T05:22:59.258Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -2425,8 +2440,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PYCCPHLERP"> Show/Hide foundCycle query </button> 
- <div id="PYCCPHLERP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TBQFPUIBKM"> Show/Hide foundCycle query </button> 
+ <div id="TBQFPUIBKM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2454,8 +2469,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AUZGYCVBKP"> Show/Hide foundPath query </button> 
- <div id="AUZGYCVBKP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZHHYUXFLND"> Show/Hide foundPath query </button> 
+ <div id="ZHHYUXFLND" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2486,7 +2501,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -2496,7 +2511,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T07:26:25.297Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -2587,8 +2602,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZJOGBGNFET"> Show/Hide foundCycle query </button> 
- <div id="ZJOGBGNFET" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ODQXLOWZDD"> Show/Hide foundCycle query </button> 
+ <div id="ODQXLOWZDD" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2616,8 +2631,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RVMIAMYRFG"> Show/Hide foundPath query </button> 
- <div id="RVMIAMYRFG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QFBTGYHWYB"> Show/Hide foundPath query </button> 
+ <div id="QFBTGYHWYB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2648,7 +2663,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -2658,7 +2673,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T06:26:16.327Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -2749,8 +2764,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PSGZMHCUOF"> Show/Hide foundCycle query </button> 
- <div id="PSGZMHCUOF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QFHKLEPFPP"> Show/Hide foundCycle query </button> 
+ <div id="QFHKLEPFPP" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2778,8 +2793,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NMZAKINMFO"> Show/Hide foundPath query </button> 
- <div id="NMZAKINMFO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PRBXHAIDJV"> Show/Hide foundPath query </button> 
+ <div id="PRBXHAIDJV" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2810,7 +2825,7 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -2820,7 +2835,7 @@ Number of paths found:  3600
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T08:29:56.260Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -2911,8 +2926,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TYSLQURTBL"> Show/Hide foundCycle query </button> 
- <div id="TYSLQURTBL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XSFTRFBRFY"> Show/Hide foundCycle query </button> 
+ <div id="XSFTRFBRFY" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2940,8 +2955,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CPMQXDUMOQ"> Show/Hide foundPath query </button> 
- <div id="CPMQXDUMOQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IYZITOGTJN"> Show/Hide foundPath query </button> 
+ <div id="IYZITOGTJN" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2972,7 +2987,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -2982,7 +2997,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T08:26:41.157Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -3073,8 +3088,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VASJTKFBMV"> Show/Hide foundCycle query </button> 
- <div id="VASJTKFBMV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PZTZATLXWH"> Show/Hide foundCycle query </button> 
+ <div id="PZTZATLXWH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3102,8 +3117,8 @@ Number of cycles found:  2
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NYYUBYCUDT"> Show/Hide foundPath query </button> 
- <div id="NYYUBYCUDT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HWKZPZXFRI"> Show/Hide foundPath query </button> 
+ <div id="HWKZPZXFRI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3134,7 +3149,7 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -3144,7 +3159,7 @@ Number of paths found:  1
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T10:30:40.302Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -3235,8 +3250,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MGAZXULAYA"> Show/Hide foundCycle query </button> 
- <div id="MGAZXULAYA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XLIJUHSPRT"> Show/Hide foundCycle query </button> 
+ <div id="XLIJUHSPRT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3264,8 +3279,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SBAWCDDKIV"> Show/Hide foundPath query </button> 
- <div id="SBAWCDDKIV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HIIKJNKLPL"> Show/Hide foundPath query </button> 
+ <div id="HIIKJNKLPL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3296,7 +3311,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -3306,7 +3321,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T09:30:19.306Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -3397,8 +3412,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EMQFHRJDGV"> Show/Hide foundCycle query </button> 
- <div id="EMQFHRJDGV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RTWTZDJIPX"> Show/Hide foundCycle query </button> 
+ <div id="RTWTZDJIPX" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3426,8 +3441,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GVARZOAAFZ"> Show/Hide foundPath query </button> 
- <div id="GVARZOAAFZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZUKFQUOAZB"> Show/Hide foundPath query </button> 
+ <div id="ZUKFQUOAZB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3459,11 +3474,12 @@ Number of paths found:  3600
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
    <th style="text-align:left;"> timestamp </th>
+   <th style="text-align:right;"> similarityConnectThreshold </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -3476,6 +3492,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-01-00-fbyPmL--CV </td>
    <td style="text-align:left;"> 2018-08-05T11:01:17.807Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3486,6 +3503,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-01-00-fbyPmL--DV </td>
    <td style="text-align:left;"> 2018-08-05T11:00:52.790Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3496,6 +3514,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-01-13-Rou4Mt--CV </td>
    <td style="text-align:left;"> 2018-08-05T14:13:24.240Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3506,6 +3525,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-01-13-Rou4Mt--DV </td>
    <td style="text-align:left;"> 2018-08-05T11:13:19.674Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3516,6 +3536,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-04-27-jTgnYK--CV </td>
    <td style="text-align:left;"> 2018-08-05T14:28:07.361Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3526,6 +3547,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-04-27-jTgnYK--DV </td>
    <td style="text-align:left;"> 2018-08-05T14:27:35.344Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3536,6 +3558,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-04-41-DCfxMF--CV </td>
    <td style="text-align:left;"> 2018-08-05T17:42:07.489Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3546,6 +3569,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-04-41-DCfxMF--DV </td>
    <td style="text-align:left;"> 2018-08-05T14:41:59.492Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3556,6 +3580,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-08-55-pe7AVI--CV </td>
    <td style="text-align:left;"> 2018-08-05T18:59:00.958Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3566,6 +3591,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-08-55-pe7AVI--DV </td>
    <td style="text-align:left;"> 2018-08-05T18:56:11.882Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3576,6 +3602,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-10-13-wTf6Ij--CV </td>
    <td style="text-align:left;"> 2018-08-05T23:14:21.849Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3586,6 +3613,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-10-13-wTf6Ij--DV </td>
    <td style="text-align:left;"> 2018-08-05T20:14:12.641Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3596,6 +3624,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-12-48-xsitDp--CV </td>
    <td style="text-align:left;"> 2018-08-05T10:49:09.789Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3606,6 +3635,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-05-12-48-xsitDp--DV </td>
    <td style="text-align:left;"> 2018-08-05T10:48:48.770Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3616,6 +3646,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-01-49-ubMTmD--CV </td>
    <td style="text-align:left;"> 2018-08-06T14:49:57.661Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3626,6 +3657,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-01-49-ubMTmD--DV </td>
    <td style="text-align:left;"> 2018-08-06T11:49:37.603Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3636,6 +3668,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-02-34-XiXore--CV </td>
    <td style="text-align:left;"> 2018-08-06T00:37:38.531Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3646,6 +3679,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-02-34-XiXore--DV </td>
    <td style="text-align:left;"> 2018-08-06T00:34:31.427Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3656,6 +3690,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-03-59-3M733K--CV </td>
    <td style="text-align:left;"> 2018-08-06T05:00:02.484Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3666,6 +3701,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-03-59-3M733K--DV </td>
    <td style="text-align:left;"> 2018-08-06T01:59:42.727Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -3676,6 +3712,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-07-50-iBjLoU--CV </td>
    <td style="text-align:left;"> 2018-08-06T18:40:19.061Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3686,6 +3723,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-07-50-iBjLoU--DV </td>
    <td style="text-align:left;"> 2018-08-06T17:50:33.727Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3696,6 +3734,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-10-00-gUuNrz--CV </td>
    <td style="text-align:left;"> 2018-08-06T08:48:11.899Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3706,6 +3745,7 @@ Number of paths found:  3600
   <tr>
    <td style="text-align:left;"> SIM08-06-10-00-gUuNrz--DV </td>
    <td style="text-align:left;"> 2018-08-06T08:00:37.801Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3714,7 +3754,7 @@ Number of paths found:  3600
    <td style="text-align:left;"> NA </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-05-01-00-fbyPmL--CV 
@@ -3724,6 +3764,7 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -3734,6 +3775,7 @@ Number of paths found:  3600
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T11:01:17.807Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3825,8 +3867,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PWOVFBAJBA"> Show/Hide foundCycle query </button> 
- <div id="PWOVFBAJBA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UMNLVBTBPN"> Show/Hide foundCycle query </button> 
+ <div id="UMNLVBTBPN" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3854,8 +3896,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WHGTMTFZLB"> Show/Hide foundPath query </button> 
- <div id="WHGTMTFZLB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RAPPXVRJNC"> Show/Hide foundPath query </button> 
+ <div id="RAPPXVRJNC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3886,6 +3928,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -3896,6 +3939,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T11:00:52.790Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -3987,8 +4031,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NCEKMRHGAT"> Show/Hide foundCycle query </button> 
- <div id="NCEKMRHGAT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RURYSJFTSR"> Show/Hide foundCycle query </button> 
+ <div id="RURYSJFTSR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4016,8 +4060,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LOCRSEOZUO"> Show/Hide foundPath query </button> 
- <div id="LOCRSEOZUO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RWTMVNUCST"> Show/Hide foundPath query </button> 
+ <div id="RWTMVNUCST" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4048,6 +4092,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -4058,6 +4103,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T14:13:24.240Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -4149,8 +4195,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OJUKQTYOVT"> Show/Hide foundCycle query </button> 
- <div id="OJUKQTYOVT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XYJCLTLZHB"> Show/Hide foundCycle query </button> 
+ <div id="XYJCLTLZHB" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4178,8 +4224,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YYVEFGCAVV"> Show/Hide foundPath query </button> 
- <div id="YYVEFGCAVV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DXLCKXCOFH"> Show/Hide foundPath query </button> 
+ <div id="DXLCKXCOFH" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4210,6 +4256,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -4220,6 +4267,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T11:13:19.674Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -4311,8 +4359,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TVFLWXQGHU"> Show/Hide foundCycle query </button> 
- <div id="TVFLWXQGHU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HBQJIZGSNW"> Show/Hide foundCycle query </button> 
+ <div id="HBQJIZGSNW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4340,8 +4388,8 @@ Number of cycles found:  0
 
 Number of paths found:  10797 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GLJZJNRTGG"> Show/Hide foundPath query </button> 
- <div id="GLJZJNRTGG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EAZYWPPFDT"> Show/Hide foundPath query </button> 
+ <div id="EAZYWPPFDT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4372,6 +4420,7 @@ Number of paths found:  10797
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -4382,6 +4431,7 @@ Number of paths found:  10797
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T14:28:07.361Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -4473,8 +4523,8 @@ Number of paths found:  10797
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PLCHUXNMXD"> Show/Hide foundCycle query </button> 
- <div id="PLCHUXNMXD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MZJOAVHCOM"> Show/Hide foundCycle query </button> 
+ <div id="MZJOAVHCOM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4502,8 +4552,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TKTPZHYJCX"> Show/Hide foundPath query </button> 
- <div id="TKTPZHYJCX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UOMBVDLHYI"> Show/Hide foundPath query </button> 
+ <div id="UOMBVDLHYI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4534,6 +4584,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -4544,6 +4595,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T14:27:35.344Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -4635,8 +4687,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WJOPNAYGSH"> Show/Hide foundCycle query </button> 
- <div id="WJOPNAYGSH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LZVQLVVYDA"> Show/Hide foundCycle query </button> 
+ <div id="LZVQLVVYDA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4664,8 +4716,8 @@ Number of cycles found:  4
 
 Number of paths found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PWJYXCFFRV"> Show/Hide foundPath query </button> 
- <div id="PWJYXCFFRV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MHIDPBFAVZ"> Show/Hide foundPath query </button> 
+ <div id="MHIDPBFAVZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4696,6 +4748,7 @@ Number of paths found:  4
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -4706,6 +4759,7 @@ Number of paths found:  4
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T17:42:07.489Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -4797,8 +4851,8 @@ Number of paths found:  4
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ITDTSKLYBU"> Show/Hide foundCycle query </button> 
- <div id="ITDTSKLYBU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HVZRQHAUSZ"> Show/Hide foundCycle query </button> 
+ <div id="HVZRQHAUSZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4826,8 +4880,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FJBVHQGIKB"> Show/Hide foundPath query </button> 
- <div id="FJBVHQGIKB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KIERYHQZUO"> Show/Hide foundPath query </button> 
+ <div id="KIERYHQZUO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4858,6 +4912,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -4868,6 +4923,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T14:41:59.492Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -4959,8 +5015,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BSEFQPOFWF"> Show/Hide foundCycle query </button> 
- <div id="BSEFQPOFWF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AMXXBJQYPJ"> Show/Hide foundCycle query </button> 
+ <div id="AMXXBJQYPJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4988,8 +5044,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SSWNECFRJM"> Show/Hide foundPath query </button> 
- <div id="SSWNECFRJM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MHAULYQGYS"> Show/Hide foundPath query </button> 
+ <div id="MHAULYQGYS" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5020,6 +5076,7 @@ Number of paths found:  10798
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -5030,6 +5087,7 @@ Number of paths found:  10798
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T18:59:00.958Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -5121,8 +5179,8 @@ Number of paths found:  10798
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ONWNTFTOEH"> Show/Hide foundCycle query </button> 
- <div id="ONWNTFTOEH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CCUEIRKBDE"> Show/Hide foundCycle query </button> 
+ <div id="CCUEIRKBDE" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5150,8 +5208,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AZWBEOMZCR"> Show/Hide foundPath query </button> 
- <div id="AZWBEOMZCR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LSNNDTWNKA"> Show/Hide foundPath query </button> 
+ <div id="LSNNDTWNKA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5182,6 +5240,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -5192,6 +5251,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T18:56:11.882Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -5283,8 +5343,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JWBTHQPKCV"> Show/Hide foundCycle query </button> 
- <div id="JWBTHQPKCV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SBAQBMVQGU"> Show/Hide foundCycle query </button> 
+ <div id="SBAQBMVQGU" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5312,8 +5372,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UWUCMPNIBA"> Show/Hide foundPath query </button> 
- <div id="UWUCMPNIBA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BUEEZIZMPZ"> Show/Hide foundPath query </button> 
+ <div id="BUEEZIZMPZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5344,6 +5404,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -5354,6 +5415,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T23:14:21.849Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -5445,8 +5507,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CGTHDQQGZP"> Show/Hide foundCycle query </button> 
- <div id="CGTHDQQGZP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DTIPKFVWRX"> Show/Hide foundCycle query </button> 
+ <div id="DTIPKFVWRX" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5474,8 +5536,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KGKHZDVYRN"> Show/Hide foundPath query </button> 
- <div id="KGKHZDVYRN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OSGOTXQRXE"> Show/Hide foundPath query </button> 
+ <div id="OSGOTXQRXE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5506,6 +5568,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -5516,6 +5579,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T20:14:12.641Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -5607,8 +5671,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KEWWMTEUQH"> Show/Hide foundCycle query </button> 
- <div id="KEWWMTEUQH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RMAKQTONZQ"> Show/Hide foundCycle query </button> 
+ <div id="RMAKQTONZQ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5636,8 +5700,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YFGZTOXWGC"> Show/Hide foundPath query </button> 
- <div id="YFGZTOXWGC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JHBJEFRSOK"> Show/Hide foundPath query </button> 
+ <div id="JHBJEFRSOK" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5668,6 +5732,7 @@ Number of paths found:  10798
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -5678,6 +5743,7 @@ Number of paths found:  10798
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T10:49:09.789Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -5769,8 +5835,8 @@ Number of paths found:  10798
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UDMTBOVDXO"> Show/Hide foundCycle query </button> 
- <div id="UDMTBOVDXO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HJWFREPIOT"> Show/Hide foundCycle query </button> 
+ <div id="HJWFREPIOT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5798,8 +5864,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RVADNOUUQR"> Show/Hide foundPath query </button> 
- <div id="RVADNOUUQR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KGZOENEKVO"> Show/Hide foundPath query </button> 
+ <div id="KGZOENEKVO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5830,6 +5896,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -5840,6 +5907,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-05T10:48:48.770Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -5931,8 +5999,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LPNQUJPJMG"> Show/Hide foundCycle query </button> 
- <div id="LPNQUJPJMG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KBKDCZJOIB"> Show/Hide foundCycle query </button> 
+ <div id="KBKDCZJOIB" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5960,8 +6028,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XTERWXPXGL"> Show/Hide foundPath query </button> 
- <div id="XTERWXPXGL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PJVQNOHIQM"> Show/Hide foundPath query </button> 
+ <div id="PJVQNOHIQM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5992,6 +6060,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -6002,6 +6071,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T14:49:57.661Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -6093,8 +6163,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KUWOURYCXV"> Show/Hide foundCycle query </button> 
- <div id="KUWOURYCXV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WJIXYATDUL"> Show/Hide foundCycle query </button> 
+ <div id="WJIXYATDUL" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6122,8 +6192,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ETZVXMXBHZ"> Show/Hide foundPath query </button> 
- <div id="ETZVXMXBHZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AOPSTWDEWR"> Show/Hide foundPath query </button> 
+ <div id="AOPSTWDEWR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6154,6 +6224,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -6164,6 +6235,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T11:49:37.603Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -6255,8 +6327,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LPWUBGOCGX"> Show/Hide foundCycle query </button> 
- <div id="LPWUBGOCGX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SJFZEARNHD"> Show/Hide foundCycle query </button> 
+ <div id="SJFZEARNHD" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6284,8 +6356,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JRXOMSGHHP"> Show/Hide foundPath query </button> 
- <div id="JRXOMSGHHP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AGWMGVMRJH"> Show/Hide foundPath query </button> 
+ <div id="AGWMGVMRJH" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6316,6 +6388,7 @@ Number of paths found:  10798
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -6326,6 +6399,7 @@ Number of paths found:  10798
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T00:37:38.531Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -6417,8 +6491,8 @@ Number of paths found:  10798
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FAHPIMZFEB"> Show/Hide foundCycle query </button> 
- <div id="FAHPIMZFEB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ENHDXTGNJD"> Show/Hide foundCycle query </button> 
+ <div id="ENHDXTGNJD" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6446,8 +6520,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UQWOQHONDF"> Show/Hide foundPath query </button> 
- <div id="UQWOQHONDF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XFPCSLLPWF"> Show/Hide foundPath query </button> 
+ <div id="XFPCSLLPWF" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6478,6 +6552,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -6488,6 +6563,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T00:34:31.427Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -6579,8 +6655,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RZJOMVBXXV"> Show/Hide foundCycle query </button> 
- <div id="RZJOMVBXXV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XQGGFHAITY"> Show/Hide foundCycle query </button> 
+ <div id="XQGGFHAITY" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6608,8 +6684,8 @@ Number of cycles found:  2
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AEPWMXOEMH"> Show/Hide foundPath query </button> 
- <div id="AEPWMXOEMH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WPNFLTFMAI"> Show/Hide foundPath query </button> 
+ <div id="WPNFLTFMAI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6640,6 +6716,7 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -6650,6 +6727,7 @@ Number of paths found:  1
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T05:00:02.484Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -6741,8 +6819,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MKIYQEPCMY"> Show/Hide foundCycle query </button> 
- <div id="MKIYQEPCMY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RRDHMIOGQS"> Show/Hide foundCycle query </button> 
+ <div id="RRDHMIOGQS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6770,8 +6848,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NIWSBTKKIZ"> Show/Hide foundPath query </button> 
- <div id="NIWSBTKKIZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LYDPOEJSAR"> Show/Hide foundPath query </button> 
+ <div id="LYDPOEJSAR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6802,6 +6880,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -6812,6 +6891,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T01:59:42.727Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -6903,8 +6983,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HSDPYHPIFP"> Show/Hide foundCycle query </button> 
- <div id="HSDPYHPIFP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IJZMFOEDSZ"> Show/Hide foundCycle query </button> 
+ <div id="IJZMFOEDSZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6932,8 +7012,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EBKSFNWQVT"> Show/Hide foundPath query </button> 
- <div id="EBKSFNWQVT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HCBJVGRXDI"> Show/Hide foundPath query </button> 
+ <div id="HCBJVGRXDI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6964,6 +7044,7 @@ Number of paths found:  10798
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -6974,6 +7055,7 @@ Number of paths found:  10798
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T18:40:19.061Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -7065,8 +7147,8 @@ Number of paths found:  10798
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RADDVXOBIC"> Show/Hide foundCycle query </button> 
- <div id="RADDVXOBIC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KNFHOSBBOW"> Show/Hide foundCycle query </button> 
+ <div id="KNFHOSBBOW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7094,8 +7176,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GJEAGVFOWP"> Show/Hide foundPath query </button> 
- <div id="GJEAGVFOWP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WXHXZHJODA"> Show/Hide foundPath query </button> 
+ <div id="WXHXZHJODA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7126,6 +7208,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -7136,6 +7219,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T17:50:33.727Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -7227,8 +7311,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GXOLPMMDLD"> Show/Hide foundCycle query </button> 
- <div id="GXOLPMMDLD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LQVULNFHFP"> Show/Hide foundCycle query </button> 
+ <div id="LQVULNFHFP" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7256,8 +7340,8 @@ Number of cycles found:  1
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LKXBAFFVVR"> Show/Hide foundPath query </button> 
- <div id="LKXBAFFVVR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DZONLLMAVF"> Show/Hide foundPath query </button> 
+ <div id="DZONLLMAVF" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7288,6 +7372,7 @@ Number of paths found:  3
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -7298,6 +7383,7 @@ Number of paths found:  3
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T08:48:11.899Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -7389,8 +7475,8 @@ Number of paths found:  3
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZGRBLUPODR"> Show/Hide foundCycle query </button> 
- <div id="ZGRBLUPODR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KZIFAWADGP"> Show/Hide foundCycle query </button> 
+ <div id="KZIFAWADGP" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7418,8 +7504,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QMIIRBSGII"> Show/Hide foundPath query </button> 
- <div id="QMIIRBSGII" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZTFMECSJMW"> Show/Hide foundPath query </button> 
+ <div id="ZTFMECSJMW" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7450,6 +7536,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -7460,6 +7547,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-06T08:00:37.801Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
@@ -7551,8 +7639,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XOPHTRLOYK"> Show/Hide foundCycle query </button> 
- <div id="XOPHTRLOYK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YYBXBAVBCZ"> Show/Hide foundCycle query </button> 
+ <div id="YYBXBAVBCZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7580,8 +7668,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ODWFPJUXXZ"> Show/Hide foundPath query </button> 
- <div id="ODWFPJUXXZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AHEENIELJQ"> Show/Hide foundPath query </button> 
+ <div id="AHEENIELJQ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7613,7 +7701,7 @@ Number of paths found:  0
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
@@ -7688,7 +7776,7 @@ Number of paths found:  0
    <td style="text-align:left;"> 10800192 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-07-05-04-gVussF--CV 
@@ -7698,7 +7786,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -7708,7 +7796,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-07T17:51:06.112Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -7799,8 +7887,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VVQPZIJLRB"> Show/Hide foundCycle query </button> 
- <div id="VVQPZIJLRB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ELANLQKBAR"> Show/Hide foundCycle query </button> 
+ <div id="ELANLQKBAR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7828,8 +7916,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CBNJNLXNKV"> Show/Hide foundPath query </button> 
- <div id="CBNJNLXNKV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JWSQQQRLVU"> Show/Hide foundPath query </button> 
+ <div id="JWSQQQRLVU" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7860,7 +7948,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -7870,7 +7958,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-07T15:04:48.682Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -7961,8 +8049,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NCXGPJTHDD"> Show/Hide foundCycle query </button> 
- <div id="NCXGPJTHDD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KMGKPHJPIG"> Show/Hide foundCycle query </button> 
+ <div id="KMGKPHJPIG" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7990,8 +8078,8 @@ Number of cycles found:  1
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ACDLMAMQNG"> Show/Hide foundPath query </button> 
- <div id="ACDLMAMQNG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GVAGJVTCMU"> Show/Hide foundPath query </button> 
+ <div id="GVAGJVTCMU" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8022,7 +8110,7 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -8032,7 +8120,7 @@ Number of paths found:  1
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-07T23:52:48.363Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -8123,8 +8211,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CIZITSZZIA"> Show/Hide foundCycle query </button> 
- <div id="CIZITSZZIA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DIMXGGOXCP"> Show/Hide foundCycle query </button> 
+ <div id="DIMXGGOXCP" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8152,8 +8240,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HMZXVBKTNW"> Show/Hide foundPath query </button> 
- <div id="HMZXVBKTNW" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BVEQFYIOAT"> Show/Hide foundPath query </button> 
+ <div id="BVEQFYIOAT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8184,7 +8272,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -8194,7 +8282,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-07T20:52:30.898Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -8285,8 +8373,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KKDMECPGAF"> Show/Hide foundCycle query </button> 
- <div id="KKDMECPGAF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HOKETAVJNN"> Show/Hide foundCycle query </button> 
+ <div id="HOKETAVJNN" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8314,8 +8402,8 @@ Number of cycles found:  0
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QSNLBAVZLV"> Show/Hide foundPath query </button> 
- <div id="QSNLBAVZLV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YRGPLWNIFJ"> Show/Hide foundPath query </button> 
+ <div id="YRGPLWNIFJ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8346,7 +8434,7 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -8356,7 +8444,7 @@ Number of paths found:  1
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-08T05:57:34.262Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 2000 </td>
@@ -8447,8 +8535,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LVUKJWWDVE"> Show/Hide foundCycle query </button> 
- <div id="LVUKJWWDVE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MHQEQOIRXO"> Show/Hide foundCycle query </button> 
+ <div id="MHQEQOIRXO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8476,8 +8564,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BTZTONKPGF"> Show/Hide foundPath query </button> 
- <div id="BTZTONKPGF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SZHOYHEMEY"> Show/Hide foundPath query </button> 
+ <div id="SZHOYHEMEY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8508,7 +8596,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -8518,7 +8606,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-08T02:56:06.957Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 2000 </td>
@@ -8609,8 +8697,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BTBGYAJYYW"> Show/Hide foundCycle query </button> 
- <div id="BTBGYAJYYW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BJGIGEMXSK"> Show/Hide foundCycle query </button> 
+ <div id="BJGIGEMXSK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8638,8 +8726,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#APOVYRWZYS"> Show/Hide foundPath query </button> 
- <div id="APOVYRWZYS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BPAKKESCPY"> Show/Hide foundPath query </button> 
+ <div id="BPAKKESCPY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8671,7 +8759,7 @@ Number of paths found:  0
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
@@ -8716,7 +8804,7 @@ Number of paths found:  0
    <td style="text-align:left;"> 3600818 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-09-01-35-DxaCjz--CV 
@@ -8726,7 +8814,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -8736,7 +8824,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-09T00:23:56.608Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -8827,8 +8915,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UFYKXOIYXW"> Show/Hide foundCycle query </button> 
- <div id="UFYKXOIYXW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HGXIQVLXGJ"> Show/Hide foundCycle query </button> 
+ <div id="HGXIQVLXGJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8856,8 +8944,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZQUYFHWPIL"> Show/Hide foundPath query </button> 
- <div id="ZQUYFHWPIL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#URHFAQKYBV"> Show/Hide foundPath query </button> 
+ <div id="URHFAQKYBV" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8888,7 +8976,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -8898,7 +8986,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-08T23:35:39.376Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -8989,8 +9077,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LNSOPXVCMK"> Show/Hide foundCycle query </button> 
- <div id="LNSOPXVCMK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JRTPOKRCSX"> Show/Hide foundCycle query </button> 
+ <div id="JRTPOKRCSX" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9018,8 +9106,8 @@ Number of cycles found:  1
 
 Number of paths found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QXXFPSCFBR"> Show/Hide foundPath query </button> 
- <div id="QXXFPSCFBR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UTTUOYAZIS"> Show/Hide foundPath query </button> 
+ <div id="UTTUOYAZIS" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9050,7 +9138,7 @@ Number of paths found:  5
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -9060,7 +9148,7 @@ Number of paths found:  5
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-09T01:25:28.948Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -9151,8 +9239,8 @@ Number of paths found:  5
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HVLPRBYYGD"> Show/Hide foundCycle query </button> 
- <div id="HVLPRBYYGD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KJPZLXOEEY"> Show/Hide foundCycle query </button> 
+ <div id="KJPZLXOEEY" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9180,8 +9268,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KFZEAVXNTA"> Show/Hide foundPath query </button> 
- <div id="KFZEAVXNTA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WHHGDHAVOZ"> Show/Hide foundPath query </button> 
+ <div id="WHHGDHAVOZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9213,11 +9301,12 @@ Number of paths found:  0
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
    <th style="text-align:left;"> timestamp </th>
+   <th style="text-align:right;"> similarityConnectThreshold </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -9230,6 +9319,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-09-05-27-CLiEJf--CV </td>
    <td style="text-align:left;"> 2018-08-09T16:18:22.030Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9240,6 +9330,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-09-05-27-CLiEJf--DV </td>
    <td style="text-align:left;"> 2018-08-09T15:28:04.626Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9250,6 +9341,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-09-09-20-UidsEi--CV </td>
    <td style="text-align:left;"> 2018-08-09T22:23:27.219Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9260,6 +9352,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-09-09-20-UidsEi--DV </td>
    <td style="text-align:left;"> 2018-08-09T19:20:57.571Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9270,6 +9363,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-10-06-29-jKDYmz--CV </td>
    <td style="text-align:left;"> 2018-08-10T07:34:52.894Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9280,6 +9374,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-10-06-29-jKDYmz--DV </td>
    <td style="text-align:left;"> 2018-08-10T04:30:29.719Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9288,7 +9383,7 @@ Number of paths found:  0
    <td style="text-align:left;"> 10800228 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-09-05-27-CLiEJf--CV 
@@ -9298,6 +9393,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -9308,6 +9404,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-09T16:18:22.030Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9399,8 +9496,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EBHLAFUXSP"> Show/Hide foundCycle query </button> 
- <div id="EBHLAFUXSP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FRSKICVTZT"> Show/Hide foundCycle query </button> 
+ <div id="FRSKICVTZT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9428,8 +9525,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SMNOULBLXG"> Show/Hide foundPath query </button> 
- <div id="SMNOULBLXG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XTOYMRQTIO"> Show/Hide foundPath query </button> 
+ <div id="XTOYMRQTIO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9460,6 +9557,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -9470,6 +9568,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-09T15:28:04.626Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9561,8 +9660,8 @@ Number of paths found:  0
 
 Number of cycles found:  87 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WZMXLOCNVD"> Show/Hide foundCycle query </button> 
- <div id="WZMXLOCNVD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KNVJQVQWMN"> Show/Hide foundCycle query </button> 
+ <div id="KNVJQVQWMN" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9590,8 +9689,8 @@ Number of cycles found:  87
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KUKKPDRAYA"> Show/Hide foundPath query </button> 
- <div id="KUKKPDRAYA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GMUIOXBMKO"> Show/Hide foundPath query </button> 
+ <div id="GMUIOXBMKO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9622,6 +9721,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -9632,6 +9732,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-09T22:23:27.219Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9723,8 +9824,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CAGQRNDNHO"> Show/Hide foundCycle query </button> 
- <div id="CAGQRNDNHO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LTFLFIWAAJ"> Show/Hide foundCycle query </button> 
+ <div id="LTFLFIWAAJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9752,8 +9853,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QSJOFYPAWI"> Show/Hide foundPath query </button> 
- <div id="QSJOFYPAWI" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BWZHQBXXMG"> Show/Hide foundPath query </button> 
+ <div id="BWZHQBXXMG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9784,6 +9885,7 @@ Number of paths found:  10798
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -9794,6 +9896,7 @@ Number of paths found:  10798
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-09T19:20:57.571Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -9885,8 +9988,8 @@ Number of paths found:  10798
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UHWRQOEMNA"> Show/Hide foundCycle query </button> 
- <div id="UHWRQOEMNA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RYQSGLFTTF"> Show/Hide foundCycle query </button> 
+ <div id="RYQSGLFTTF" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9914,8 +10017,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LVFUOPNIYC"> Show/Hide foundPath query </button> 
- <div id="LVFUOPNIYC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BGQCBIPQWE"> Show/Hide foundPath query </button> 
+ <div id="BGQCBIPQWE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9946,6 +10049,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -9956,6 +10060,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-10T07:34:52.894Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -10023,8 +10128,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RVTYUHZXJZ"> Show/Hide foundCycle query </button> 
- <div id="RVTYUHZXJZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YAWMTFSELJ"> Show/Hide foundCycle query </button> 
+ <div id="YAWMTFSELJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10052,8 +10157,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LZEILMNDGX"> Show/Hide foundPath query </button> 
- <div id="LZEILMNDGX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YJOYGYETSS"> Show/Hide foundPath query </button> 
+ <div id="YJOYGYETSS" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10084,6 +10189,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -10094,6 +10200,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-10T04:30:29.719Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -10185,8 +10292,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LZBMNYEEVU"> Show/Hide foundCycle query </button> 
- <div id="LZBMNYEEVU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IGFXXRNBWB"> Show/Hide foundCycle query </button> 
+ <div id="IGFXXRNBWB" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10214,8 +10321,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#POLTOWCJSI"> Show/Hide foundPath query </button> 
- <div id="POLTOWCJSI" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TYUNEDCXIR"> Show/Hide foundPath query </button> 
+ <div id="TYUNEDCXIR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10247,11 +10354,12 @@ Number of paths found:  0
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
    <th style="text-align:left;"> timestamp </th>
+   <th style="text-align:right;"> similarityConnectThreshold </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -10263,6 +10371,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-10-01-33-niVTL7--DV </td>
    <td style="text-align:left;"> 2018-08-10T11:34:01.056Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -10272,6 +10381,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-10-01-33-niVTL7--CV </td>
    <td style="text-align:left;"> 2018-08-10T12:13:38.104Z </td>
+   <td style="text-align:right;"> 0.5 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -10279,7 +10389,7 @@ Number of paths found:  0
    <td style="text-align:left;"> 2 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-10-01-33-niVTL7--DV 
@@ -10289,6 +10399,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -10298,6 +10409,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-10T11:34:01.056Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -10388,8 +10500,8 @@ Number of paths found:  0
 
 Number of cycles found:  138 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LOFOBFIHDR"> Show/Hide foundCycle query </button> 
- <div id="LOFOBFIHDR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UPBWGQSCJU"> Show/Hide foundCycle query </button> 
+ <div id="UPBWGQSCJU" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10417,8 +10529,8 @@ Number of cycles found:  138
 
 Number of paths found:  15 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZXTJLYADBB"> Show/Hide foundPath query </button> 
- <div id="ZXTJLYADBB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IMAAZPILKG"> Show/Hide foundPath query </button> 
+ <div id="IMAAZPILKG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10449,6 +10561,7 @@ Number of paths found:  15
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -10458,6 +10571,7 @@ Number of paths found:  15
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-10T12:13:38.104Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -10548,8 +10662,8 @@ Number of paths found:  15
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BNXDJBVQQQ"> Show/Hide foundCycle query </button> 
- <div id="BNXDJBVQQQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DVJMFNMZRV"> Show/Hide foundCycle query </button> 
+ <div id="DVJMFNMZRV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10577,8 +10691,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DKPMBJZSPV"> Show/Hide foundPath query </button> 
- <div id="DKPMBJZSPV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FBMSEPIDYL"> Show/Hide foundPath query </button> 
+ <div id="FBMSEPIDYL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10610,11 +10724,12 @@ Number of paths found:  0
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
    <th style="text-align:left;"> timestamp </th>
+   <th style="text-align:left;"> similarityConnectThreshold </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -10626,6 +10741,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-10-10-15-26LQ2S--DV </td>
    <td style="text-align:left;"> 2018-08-10T20:16:04.569Z </td>
+   <td style="text-align:left;"> 0.85 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
@@ -10635,6 +10751,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-10-10-15-26LQ2S--CV </td>
    <td style="text-align:left;"> 2018-08-10T20:16:32.668Z </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
@@ -10642,7 +10759,7 @@ Number of paths found:  0
    <td style="text-align:left;"> 1 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-10-10-15-26LQ2S--DV 
@@ -10652,6 +10769,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -10661,6 +10779,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-10T20:16:04.569Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
@@ -10751,8 +10870,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OXLSWSFXOF"> Show/Hide foundCycle query </button> 
- <div id="OXLSWSFXOF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RPHPJQLOSV"> Show/Hide foundCycle query </button> 
+ <div id="RPHPJQLOSV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10780,8 +10899,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PKWQMHNJBF"> Show/Hide foundPath query </button> 
- <div id="PKWQMHNJBF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NLWPZSBSGB"> Show/Hide foundPath query </button> 
+ <div id="NLWPZSBSGB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10812,6 +10931,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -10821,6 +10941,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-10T20:16:32.668Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
@@ -10911,8 +11032,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MJNOSZJCUV"> Show/Hide foundCycle query </button> 
- <div id="MJNOSZJCUV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NTXPTFGZDL"> Show/Hide foundCycle query </button> 
+ <div id="NTXPTFGZDL" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10940,8 +11061,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZXCPUAHXWR"> Show/Hide foundPath query </button> 
- <div id="ZXCPUAHXWR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XMTLTJFYBT"> Show/Hide foundPath query </button> 
+ <div id="XMTLTJFYBT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10973,7 +11094,7 @@ Number of paths found:  0
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
@@ -11005,7 +11126,7 @@ Number of paths found:  0
    <td style="text-align:left;"> 1 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-11-12-38-Ea8VAf--DV 
@@ -11015,7 +11136,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -11024,7 +11145,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:38:12.778Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -11114,8 +11235,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UPYVDKJHUP"> Show/Hide foundCycle query </button> 
- <div id="UPYVDKJHUP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SODFQJOPQC"> Show/Hide foundCycle query </button> 
+ <div id="SODFQJOPQC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11143,8 +11264,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZWHROCQUAP"> Show/Hide foundPath query </button> 
- <div id="ZWHROCQUAP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GOEQGFYWCZ"> Show/Hide foundPath query </button> 
+ <div id="GOEQGFYWCZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11175,7 +11296,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -11184,7 +11305,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:38:41.883Z </td>
    <td style="text-align:left;"> 0.95, </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -11274,8 +11395,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FGMUPIJCKX"> Show/Hide foundCycle query </button> 
- <div id="FGMUPIJCKX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NSECIUIQKJ"> Show/Hide foundCycle query </button> 
+ <div id="NSECIUIQKJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11303,8 +11424,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XPKBTRDKUC"> Show/Hide foundPath query </button> 
- <div id="XPKBTRDKUC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UVTKEXDZBC"> Show/Hide foundPath query </button> 
+ <div id="UVTKEXDZBC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11336,7 +11457,7 @@ Number of paths found:  0
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
@@ -11368,7 +11489,7 @@ Number of paths found:  0
    <td style="text-align:left;"> 1 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-11-12-44-neSDUd--DV 
@@ -11378,7 +11499,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -11387,7 +11508,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:45:05.486Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -11477,8 +11598,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SWORWKNNBQ"> Show/Hide foundCycle query </button> 
- <div id="SWORWKNNBQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UCAWQYJPRM"> Show/Hide foundCycle query </button> 
+ <div id="UCAWQYJPRM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11506,8 +11627,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GBEMSELIGY"> Show/Hide foundPath query </button> 
- <div id="GBEMSELIGY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CNOSZNBPCK"> Show/Hide foundPath query </button> 
+ <div id="CNOSZNBPCK" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11538,7 +11659,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -11547,7 +11668,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:45:24.535Z </td>
    <td style="text-align:left;"> 0.95, </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -11637,8 +11758,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UFAOGUYATB"> Show/Hide foundCycle query </button> 
- <div id="UFAOGUYATB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TNTFEQMDYA"> Show/Hide foundCycle query </button> 
+ <div id="TNTFEQMDYA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11666,8 +11787,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LWTWHSVDLB"> Show/Hide foundPath query </button> 
- <div id="LWTWHSVDLB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FCWNRMEGOL"> Show/Hide foundPath query </button> 
+ <div id="FCWNRMEGOL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11715,7 +11836,7 @@ Number of paths found:  0
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
@@ -11747,7 +11868,7 @@ Number of paths found:  0
    <td style="text-align:left;"> 1 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-11-12-54-ykmwIK--DV 
@@ -11757,7 +11878,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -11766,7 +11887,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:55:00.244Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -11856,8 +11977,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ETCYDNDZKD"> Show/Hide foundCycle query </button> 
- <div id="ETCYDNDZKD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HHTPQOAAZF"> Show/Hide foundCycle query </button> 
+ <div id="HHTPQOAAZF" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11885,8 +12006,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZYOTTFISLZ"> Show/Hide foundPath query </button> 
- <div id="ZYOTTFISLZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RUKAGDNHSI"> Show/Hide foundPath query </button> 
+ <div id="RUKAGDNHSI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11917,7 +12038,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -11926,7 +12047,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:55:26.344Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -12016,8 +12137,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GNUCQUUHHW"> Show/Hide foundCycle query </button> 
- <div id="GNUCQUUHHW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GVGOQBFAWA"> Show/Hide foundCycle query </button> 
+ <div id="GVGOQBFAWA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12045,8 +12166,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ILVKPSNKJC"> Show/Hide foundPath query </button> 
- <div id="ILVKPSNKJC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GFSMMIFCIT"> Show/Hide foundPath query </button> 
+ <div id="GFSMMIFCIT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12078,11 +12199,12 @@ Number of paths found:  0
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
    <th style="text-align:left;"> timestamp </th>
+   <th style="text-align:right;"> similarityConnectThreshold </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -12095,6 +12217,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-01-9svHYu--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12105,6 +12228,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-01-9svHYu--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12115,6 +12239,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-05-AZFerX--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12125,6 +12250,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-05-AZFerX--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12135,6 +12261,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-10-bCM5fk--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12145,6 +12272,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-10-bCM5fk--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12155,6 +12283,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-11-j9XCLm--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12165,6 +12294,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-11-j9XCLm--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12175,6 +12305,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-13-7mwJNk--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12185,6 +12316,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-13-7mwJNk--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12195,6 +12327,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-18-bWXLYd--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12205,6 +12338,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-18-bWXLYd--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12215,6 +12349,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-23-LU7jps--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12225,6 +12360,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-23-LU7jps--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12235,6 +12371,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-25-9f8vyU--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12245,6 +12382,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-25-9f8vyU--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12255,6 +12393,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-28-2mwNJ9--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12265,6 +12404,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-28-2mwNJ9--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12275,6 +12415,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-33-2tryyr--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12285,6 +12426,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-33-2tryyr--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12295,6 +12437,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-58-qocSnR--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12305,6 +12448,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-01-58-qocSnR--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12315,6 +12459,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-02-24-HT69z4--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12325,6 +12470,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-02-24-HT69z4--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12335,6 +12481,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-02-29-wnUn7p--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12345,6 +12492,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-02-29-wnUn7p--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12355,6 +12503,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-02-34-qV6kk7--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12365,6 +12514,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-02-34-qV6kk7--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12375,6 +12525,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-03-02-JQ4Xga--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12385,6 +12536,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-03-02-JQ4Xga--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12395,6 +12547,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-03-29-rephNw--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12405,6 +12558,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-03-29-rephNw--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12415,6 +12569,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-03-55-uLoEi8--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12425,6 +12580,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-03-55-uLoEi8--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12435,6 +12591,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-04-21-PcvZuy--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12445,6 +12602,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-04-21-PcvZuy--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12455,6 +12613,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-04-26-tNxY4J--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12465,6 +12624,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-06-21-3RT7tA--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12475,6 +12635,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-06-21-3RT7tA--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12485,6 +12646,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-07-25-JPeHEv--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12495,6 +12657,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-07-25-JPeHEv--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12505,6 +12668,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-08-52-e9mxSB--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12515,6 +12679,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-08-52-e9mxSB--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12525,6 +12690,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-09-20-5oCIZR--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12535,6 +12701,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-09-20-5oCIZR--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12545,6 +12712,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-12-21-b9wEmt--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12555,6 +12723,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-12-21-b9wEmt--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12565,6 +12734,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-12-58-5ZEBa6--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12575,6 +12745,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-12-58-5ZEBa6--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.978Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12585,6 +12756,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-12-59-AkTEKa--CV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12595,6 +12767,7 @@ Number of paths found:  0
   <tr>
    <td style="text-align:left;"> SIM08-11-12-59-AkTEKa--DV </td>
    <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -12603,7 +12776,7 @@ Number of paths found:  0
    <td style="text-align:left;"> NA </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-11-01-01-9svHYu--CV 
@@ -12613,6 +12786,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -12623,6 +12797,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12714,8 +12889,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EBLLDCWIRO"> Show/Hide foundCycle query </button> 
- <div id="EBLLDCWIRO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BCTYYYUXQM"> Show/Hide foundCycle query </button> 
+ <div id="BCTYYYUXQM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12743,8 +12918,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BNSNUWMLDT"> Show/Hide foundPath query </button> 
- <div id="BNSNUWMLDT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SHLPPPEHFZ"> Show/Hide foundPath query </button> 
+ <div id="SHLPPPEHFZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12775,6 +12950,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -12785,6 +12961,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -12876,8 +13053,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VFDOHSISPL"> Show/Hide foundCycle query </button> 
- <div id="VFDOHSISPL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VOAMQXETUX"> Show/Hide foundCycle query </button> 
+ <div id="VOAMQXETUX" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12905,8 +13082,8 @@ Number of cycles found:  5
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XTJYIIBXVZ"> Show/Hide foundPath query </button> 
- <div id="XTJYIIBXVZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GXHQBQBSLJ"> Show/Hide foundPath query </button> 
+ <div id="GXHQBQBSLJ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12937,6 +13114,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -12947,6 +13125,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -13038,8 +13217,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#THBFWPQXXQ"> Show/Hide foundCycle query </button> 
- <div id="THBFWPQXXQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MYGWQKGIJJ"> Show/Hide foundCycle query </button> 
+ <div id="MYGWQKGIJJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13067,8 +13246,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UZKACZYQCS"> Show/Hide foundPath query </button> 
- <div id="UZKACZYQCS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DXKEFNIBSD"> Show/Hide foundPath query </button> 
+ <div id="DXKEFNIBSD" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13099,6 +13278,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -13109,6 +13289,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -13200,8 +13381,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KPLPXZRKTK"> Show/Hide foundCycle query </button> 
- <div id="KPLPXZRKTK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NFMCVHGJTI"> Show/Hide foundCycle query </button> 
+ <div id="NFMCVHGJTI" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13229,8 +13410,8 @@ Number of cycles found:  4
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PGATZQICEK"> Show/Hide foundPath query </button> 
- <div id="PGATZQICEK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FTDJAFRKJP"> Show/Hide foundPath query </button> 
+ <div id="FTDJAFRKJP" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13261,6 +13442,7 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -13271,6 +13453,7 @@ Number of paths found:  1
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -13362,8 +13545,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ACGNNNJAVB"> Show/Hide foundCycle query </button> 
- <div id="ACGNNNJAVB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OGGEZQKNHM"> Show/Hide foundCycle query </button> 
+ <div id="OGGEZQKNHM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13391,8 +13574,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IICUKMJEXF"> Show/Hide foundPath query </button> 
- <div id="IICUKMJEXF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VSXMKNXMWN"> Show/Hide foundPath query </button> 
+ <div id="VSXMKNXMWN" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13423,6 +13606,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -13433,6 +13617,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -13524,8 +13709,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FWKAWFILEW"> Show/Hide foundCycle query </button> 
- <div id="FWKAWFILEW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MFPHRBCKWJ"> Show/Hide foundCycle query </button> 
+ <div id="MFPHRBCKWJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13553,8 +13738,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BXRXXROGAV"> Show/Hide foundPath query </button> 
- <div id="BXRXXROGAV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BEQBATNTTE"> Show/Hide foundPath query </button> 
+ <div id="BEQBATNTTE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13585,6 +13770,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -13595,6 +13781,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -13686,8 +13873,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MXYZMQDFWN"> Show/Hide foundCycle query </button> 
- <div id="MXYZMQDFWN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WTYBVYMDYK"> Show/Hide foundCycle query </button> 
+ <div id="WTYBVYMDYK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13715,8 +13902,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CGBQYTFUEL"> Show/Hide foundPath query </button> 
- <div id="CGBQYTFUEL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RUZUSCXTHR"> Show/Hide foundPath query </button> 
+ <div id="RUZUSCXTHR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13747,6 +13934,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -13757,6 +13945,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -13848,8 +14037,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TGGHOAKVXU"> Show/Hide foundCycle query </button> 
- <div id="TGGHOAKVXU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HLCKUZUODQ"> Show/Hide foundCycle query </button> 
+ <div id="HLCKUZUODQ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13877,8 +14066,8 @@ Number of cycles found:  1
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FVASUFEQNZ"> Show/Hide foundPath query </button> 
- <div id="FVASUFEQNZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZDSEDWJIBN"> Show/Hide foundPath query </button> 
+ <div id="ZDSEDWJIBN" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13909,6 +14098,7 @@ Number of paths found:  2
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -13919,6 +14109,7 @@ Number of paths found:  2
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -14010,8 +14201,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YQUGILBGAV"> Show/Hide foundCycle query </button> 
- <div id="YQUGILBGAV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HZNXJVDCLU"> Show/Hide foundCycle query </button> 
+ <div id="HZNXJVDCLU" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14039,8 +14230,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YPARDSCRCG"> Show/Hide foundPath query </button> 
- <div id="YPARDSCRCG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SQUNEJKIVJ"> Show/Hide foundPath query </button> 
+ <div id="SQUNEJKIVJ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14071,6 +14262,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -14081,6 +14273,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -14172,8 +14365,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XCEDTWHIOI"> Show/Hide foundCycle query </button> 
- <div id="XCEDTWHIOI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GHTXQGBKRD"> Show/Hide foundCycle query </button> 
+ <div id="GHTXQGBKRD" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14201,8 +14394,8 @@ Number of cycles found:  5
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JMDPGTTOQO"> Show/Hide foundPath query </button> 
- <div id="JMDPGTTOQO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LFKEFBOFNW"> Show/Hide foundPath query </button> 
+ <div id="LFKEFBOFNW" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14233,6 +14426,7 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -14243,6 +14437,7 @@ Number of paths found:  1
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -14334,8 +14529,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AWPZMFGSZJ"> Show/Hide foundCycle query </button> 
- <div id="AWPZMFGSZJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HBTSISSZIR"> Show/Hide foundCycle query </button> 
+ <div id="HBTSISSZIR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14363,8 +14558,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NOPRTLHUDV"> Show/Hide foundPath query </button> 
- <div id="NOPRTLHUDV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JNZEIMRYUH"> Show/Hide foundPath query </button> 
+ <div id="JNZEIMRYUH" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14395,6 +14590,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -14405,6 +14601,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -14496,8 +14693,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GTGYMCPNSO"> Show/Hide foundCycle query </button> 
- <div id="GTGYMCPNSO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DXGBEDCFQT"> Show/Hide foundCycle query </button> 
+ <div id="DXGBEDCFQT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14525,8 +14722,8 @@ Number of cycles found:  4
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XCPHQKVAIH"> Show/Hide foundPath query </button> 
- <div id="XCPHQKVAIH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HMYEQXMZXE"> Show/Hide foundPath query </button> 
+ <div id="HMYEQXMZXE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14557,6 +14754,7 @@ Number of paths found:  2
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -14567,6 +14765,7 @@ Number of paths found:  2
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -14658,8 +14857,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VPMIDJOIAI"> Show/Hide foundCycle query </button> 
- <div id="VPMIDJOIAI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CHNOUDJEFW"> Show/Hide foundCycle query </button> 
+ <div id="CHNOUDJEFW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14687,8 +14886,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IGSLZBPVLK"> Show/Hide foundPath query </button> 
- <div id="IGSLZBPVLK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PCMGCWUGMM"> Show/Hide foundPath query </button> 
+ <div id="PCMGCWUGMM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14719,6 +14918,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -14729,6 +14929,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -14820,8 +15021,8 @@ Number of paths found:  0
 
 Number of cycles found:  7 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ANPHDHFWCS"> Show/Hide foundCycle query </button> 
- <div id="ANPHDHFWCS" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ABCZNVUOLY"> Show/Hide foundCycle query </button> 
+ <div id="ABCZNVUOLY" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14849,8 +15050,8 @@ Number of cycles found:  7
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZNGTKEWJPL"> Show/Hide foundPath query </button> 
- <div id="ZNGTKEWJPL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZZLEBRGSSC"> Show/Hide foundPath query </button> 
+ <div id="ZZLEBRGSSC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14881,6 +15082,7 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -14891,6 +15093,7 @@ Number of paths found:  1
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -14982,8 +15185,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KITLXLCWME"> Show/Hide foundCycle query </button> 
- <div id="KITLXLCWME" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JNQGTHVNVV"> Show/Hide foundCycle query </button> 
+ <div id="JNQGTHVNVV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15011,8 +15214,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FWIXJHVFBB"> Show/Hide foundPath query </button> 
- <div id="FWIXJHVFBB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KQQGBVFFFN"> Show/Hide foundPath query </button> 
+ <div id="KQQGBVFFFN" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15043,6 +15246,7 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -15053,6 +15257,7 @@ Number of paths found:  3600
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -15144,8 +15349,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZOEDFEZBPT"> Show/Hide foundCycle query </button> 
- <div id="ZOEDFEZBPT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WRHZOUXEAA"> Show/Hide foundCycle query </button> 
+ <div id="WRHZOUXEAA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15173,8 +15378,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HYTPGHJHFY"> Show/Hide foundPath query </button> 
- <div id="HYTPGHJHFY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YFKQIQQHBE"> Show/Hide foundPath query </button> 
+ <div id="YFKQIQQHBE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15205,6 +15410,7 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -15215,6 +15421,7 @@ Number of paths found:  3600
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -15306,8 +15513,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OPDRYXKHEJ"> Show/Hide foundCycle query </button> 
- <div id="OPDRYXKHEJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GVFQBWSOEO"> Show/Hide foundCycle query </button> 
+ <div id="GVFQBWSOEO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15335,8 +15542,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZPNCXTINWW"> Show/Hide foundPath query </button> 
- <div id="ZPNCXTINWW" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HCITQVOAKJ"> Show/Hide foundPath query </button> 
+ <div id="HCITQVOAKJ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15367,6 +15574,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -15377,6 +15585,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -15468,8 +15677,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EMJIJKJQCE"> Show/Hide foundCycle query </button> 
- <div id="EMJIJKJQCE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GWXFHGAEQA"> Show/Hide foundCycle query </button> 
+ <div id="GWXFHGAEQA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15497,8 +15706,8 @@ Number of cycles found:  5
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NEOQSYEJQE"> Show/Hide foundPath query </button> 
- <div id="NEOQSYEJQE" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZQJLIUKHEY"> Show/Hide foundPath query </button> 
+ <div id="ZQJLIUKHEY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15529,6 +15738,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -15539,6 +15749,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -15630,8 +15841,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LIPLTZMCYP"> Show/Hide foundCycle query </button> 
- <div id="LIPLTZMCYP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FJFZCOBFGB"> Show/Hide foundCycle query </button> 
+ <div id="FJFZCOBFGB" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15659,8 +15870,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VYNLCKDWJA"> Show/Hide foundPath query </button> 
- <div id="VYNLCKDWJA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IGVQHVYKCX"> Show/Hide foundPath query </button> 
+ <div id="IGVQHVYKCX" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15691,6 +15902,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -15701,6 +15913,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -15792,8 +16005,8 @@ Number of paths found:  0
 
 Number of cycles found:  24 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OXPKVDZJRW"> Show/Hide foundCycle query </button> 
- <div id="OXPKVDZJRW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LJYDQXCWUC"> Show/Hide foundCycle query </button> 
+ <div id="LJYDQXCWUC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15821,8 +16034,8 @@ Number of cycles found:  24
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EYOPWRXTAM"> Show/Hide foundPath query </button> 
- <div id="EYOPWRXTAM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GRYTBRTRHA"> Show/Hide foundPath query </button> 
+ <div id="GRYTBRTRHA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15853,6 +16066,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -15863,6 +16077,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -15954,8 +16169,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SSBXIVCPZC"> Show/Hide foundCycle query </button> 
- <div id="SSBXIVCPZC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WRFEQGIUUG"> Show/Hide foundCycle query </button> 
+ <div id="WRFEQGIUUG" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15983,8 +16198,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#COTXPMPHIT"> Show/Hide foundPath query </button> 
- <div id="COTXPMPHIT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GPTYGXGDLH"> Show/Hide foundPath query </button> 
+ <div id="GPTYGXGDLH" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16015,6 +16230,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -16025,6 +16241,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -16116,8 +16333,8 @@ Number of paths found:  0
 
 Number of cycles found:  23 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UVVFGDXAJR"> Show/Hide foundCycle query </button> 
- <div id="UVVFGDXAJR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JBZEETAOIV"> Show/Hide foundCycle query </button> 
+ <div id="JBZEETAOIV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16145,8 +16362,8 @@ Number of cycles found:  23
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NHARGVSARG"> Show/Hide foundPath query </button> 
- <div id="NHARGVSARG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LBJOLPPLMT"> Show/Hide foundPath query </button> 
+ <div id="LBJOLPPLMT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16177,6 +16394,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -16187,6 +16405,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -16278,8 +16497,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BMBXHAUVWT"> Show/Hide foundCycle query </button> 
- <div id="BMBXHAUVWT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AUTHYQLWHL"> Show/Hide foundCycle query </button> 
+ <div id="AUTHYQLWHL" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16307,8 +16526,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LDPYWBQMVR"> Show/Hide foundPath query </button> 
- <div id="LDPYWBQMVR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BHKCRWXABU"> Show/Hide foundPath query </button> 
+ <div id="BHKCRWXABU" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16339,6 +16558,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -16349,6 +16569,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -16440,8 +16661,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LRFTVJCCYI"> Show/Hide foundCycle query </button> 
- <div id="LRFTVJCCYI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HVGZIWELFT"> Show/Hide foundCycle query </button> 
+ <div id="HVGZIWELFT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16469,8 +16690,8 @@ Number of cycles found:  1
 
 Number of paths found:  8 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ITRFVWDTVR"> Show/Hide foundPath query </button> 
- <div id="ITRFVWDTVR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NXCTBORHHR"> Show/Hide foundPath query </button> 
+ <div id="NXCTBORHHR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16501,6 +16722,7 @@ Number of paths found:  8
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -16511,6 +16733,7 @@ Number of paths found:  8
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -16602,8 +16825,8 @@ Number of paths found:  8
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UVWBNOBMBI"> Show/Hide foundCycle query </button> 
- <div id="UVWBNOBMBI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NYMTEGJJVW"> Show/Hide foundCycle query </button> 
+ <div id="NYMTEGJJVW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16631,8 +16854,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SULWAFGTRW"> Show/Hide foundPath query </button> 
- <div id="SULWAFGTRW" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZMABYXKTQT"> Show/Hide foundPath query </button> 
+ <div id="ZMABYXKTQT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16663,6 +16886,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -16673,6 +16897,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -16764,8 +16989,8 @@ Number of paths found:  0
 
 Number of cycles found:  6 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SPJGMPWRFQ"> Show/Hide foundCycle query </button> 
- <div id="SPJGMPWRFQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DWMPYJMNSK"> Show/Hide foundCycle query </button> 
+ <div id="DWMPYJMNSK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16793,8 +17018,8 @@ Number of cycles found:  6
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SIVLVUULZQ"> Show/Hide foundPath query </button> 
- <div id="SIVLVUULZQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KNZYNAXHMK"> Show/Hide foundPath query </button> 
+ <div id="KNZYNAXHMK" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16825,6 +17050,7 @@ Number of paths found:  2
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -16835,6 +17061,7 @@ Number of paths found:  2
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -16926,8 +17153,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EOKVISCFRV"> Show/Hide foundCycle query </button> 
- <div id="EOKVISCFRV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SIYOXRATPT"> Show/Hide foundCycle query </button> 
+ <div id="SIYOXRATPT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16955,8 +17182,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SYFOEDYTCD"> Show/Hide foundPath query </button> 
- <div id="SYFOEDYTCD" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TIIBAOFZFE"> Show/Hide foundPath query </button> 
+ <div id="TIIBAOFZFE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16987,6 +17214,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -16997,6 +17225,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -17088,8 +17317,8 @@ Number of paths found:  0
 
 Number of cycles found:  14 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IINHIVUWGQ"> Show/Hide foundCycle query </button> 
- <div id="IINHIVUWGQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ADYGWLAFRU"> Show/Hide foundCycle query </button> 
+ <div id="ADYGWLAFRU" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17117,8 +17346,8 @@ Number of cycles found:  14
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QLRKNTRWOL"> Show/Hide foundPath query </button> 
- <div id="QLRKNTRWOL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WWFYKZQHRH"> Show/Hide foundPath query </button> 
+ <div id="WWFYKZQHRH" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17149,6 +17378,7 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -17159,6 +17389,7 @@ Number of paths found:  1
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -17250,8 +17481,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FJNTOOJJYN"> Show/Hide foundCycle query </button> 
- <div id="FJNTOOJJYN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IQHBPMWCLC"> Show/Hide foundCycle query </button> 
+ <div id="IQHBPMWCLC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17279,8 +17510,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CXOHTHAJLB"> Show/Hide foundPath query </button> 
- <div id="CXOHTHAJLB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UDNNEFYPIR"> Show/Hide foundPath query </button> 
+ <div id="UDNNEFYPIR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17311,6 +17542,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -17321,6 +17553,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -17412,8 +17645,8 @@ Number of paths found:  0
 
 Number of cycles found:  15 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LSVUZQIWFV"> Show/Hide foundCycle query </button> 
- <div id="LSVUZQIWFV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BUYAFCWROD"> Show/Hide foundCycle query </button> 
+ <div id="BUYAFCWROD" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17441,8 +17674,8 @@ Number of cycles found:  15
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NIBQUDCLTX"> Show/Hide foundPath query </button> 
- <div id="NIBQUDCLTX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YIAXTPZXAK"> Show/Hide foundPath query </button> 
+ <div id="YIAXTPZXAK" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17473,6 +17706,7 @@ Number of paths found:  3
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -17483,6 +17717,7 @@ Number of paths found:  3
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -17574,8 +17809,8 @@ Number of paths found:  3
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JJEYOBOFUV"> Show/Hide foundCycle query </button> 
- <div id="JJEYOBOFUV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KTQUMRMHZZ"> Show/Hide foundCycle query </button> 
+ <div id="KTQUMRMHZZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17603,8 +17838,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VGVXOVYRKL"> Show/Hide foundPath query </button> 
- <div id="VGVXOVYRKL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GJAVACIQTI"> Show/Hide foundPath query </button> 
+ <div id="GJAVACIQTI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17635,6 +17870,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -17645,6 +17881,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -17736,8 +17973,8 @@ Number of paths found:  0
 
 Number of cycles found:  25 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BEKMVKBPIE"> Show/Hide foundCycle query </button> 
- <div id="BEKMVKBPIE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DXGHQHPIUD"> Show/Hide foundCycle query </button> 
+ <div id="DXGHQHPIUD" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17765,8 +18002,8 @@ Number of cycles found:  25
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XRWXFJREWQ"> Show/Hide foundPath query </button> 
- <div id="XRWXFJREWQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NZVOBORYFR"> Show/Hide foundPath query </button> 
+ <div id="NZVOBORYFR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17797,6 +18034,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -17807,6 +18045,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -17898,8 +18137,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JRZGHZTFVY"> Show/Hide foundCycle query </button> 
- <div id="JRZGHZTFVY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FRAIJUFKOW"> Show/Hide foundCycle query </button> 
+ <div id="FRAIJUFKOW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17927,8 +18166,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LLXFKTQZQX"> Show/Hide foundPath query </button> 
- <div id="LLXFKTQZQX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JZGLOUROES"> Show/Hide foundPath query </button> 
+ <div id="JZGLOUROES" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17959,6 +18198,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -17969,6 +18209,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -18060,8 +18301,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DCYKKRBQKA"> Show/Hide foundCycle query </button> 
- <div id="DCYKKRBQKA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZQTSJADXVV"> Show/Hide foundCycle query </button> 
+ <div id="ZQTSJADXVV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18089,8 +18330,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SDYXDAYWMR"> Show/Hide foundPath query </button> 
- <div id="SDYXDAYWMR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WGFHTJSWZM"> Show/Hide foundPath query </button> 
+ <div id="WGFHTJSWZM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18121,6 +18362,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -18131,6 +18373,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -18222,8 +18465,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VRQTFOJJNA"> Show/Hide foundCycle query </button> 
- <div id="VRQTFOJJNA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LAKAMGBQRZ"> Show/Hide foundCycle query </button> 
+ <div id="LAKAMGBQRZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18251,8 +18494,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KQKJMZARZJ"> Show/Hide foundPath query </button> 
- <div id="KQKJMZARZJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UNVATKTFCC"> Show/Hide foundPath query </button> 
+ <div id="UNVATKTFCC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18283,6 +18526,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -18293,6 +18537,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -18384,8 +18629,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EUXXDDXRYW"> Show/Hide foundCycle query </button> 
- <div id="EUXXDDXRYW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SBKHNHNHJK"> Show/Hide foundCycle query </button> 
+ <div id="SBKHNHNHJK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18413,8 +18658,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RWLPETHEDV"> Show/Hide foundPath query </button> 
- <div id="RWLPETHEDV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XBJNNYZIPN"> Show/Hide foundPath query </button> 
+ <div id="XBJNNYZIPN" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18445,6 +18690,7 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -18455,6 +18701,7 @@ Number of paths found:  3600
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -18546,8 +18793,8 @@ Number of paths found:  3600
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ECAUJEDFOR"> Show/Hide foundCycle query </button> 
- <div id="ECAUJEDFOR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RFWIQNUARE"> Show/Hide foundCycle query </button> 
+ <div id="RFWIQNUARE" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18575,8 +18822,8 @@ Number of cycles found:  3
 
 Number of paths found:  7 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SGPJRZFCJE"> Show/Hide foundPath query </button> 
- <div id="SGPJRZFCJE" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZAZJYCIYFC"> Show/Hide foundPath query </button> 
+ <div id="ZAZJYCIYFC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18607,6 +18854,7 @@ Number of paths found:  7
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -18617,6 +18865,7 @@ Number of paths found:  7
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -18708,8 +18957,8 @@ Number of paths found:  7
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HYFWXLIZSD"> Show/Hide foundCycle query </button> 
- <div id="HYFWXLIZSD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LDPRZBTOVS"> Show/Hide foundCycle query </button> 
+ <div id="LDPRZBTOVS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18737,8 +18986,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LNMOSZHEOQ"> Show/Hide foundPath query </button> 
- <div id="LNMOSZHEOQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZZGMUTRPLY"> Show/Hide foundPath query </button> 
+ <div id="ZZGMUTRPLY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18769,6 +19018,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -18779,6 +19029,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -18870,8 +19121,8 @@ Number of paths found:  0
 
 Number of cycles found:  73 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RYKYGXVBJN"> Show/Hide foundCycle query </button> 
- <div id="RYKYGXVBJN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QWYOKQYTXI"> Show/Hide foundCycle query </button> 
+ <div id="QWYOKQYTXI" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18899,8 +19150,8 @@ Number of cycles found:  73
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZFJHQAKMCU"> Show/Hide foundPath query </button> 
- <div id="ZFJHQAKMCU" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PDCRDVBORS"> Show/Hide foundPath query </button> 
+ <div id="PDCRDVBORS" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18931,6 +19182,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -18941,6 +19193,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -19032,8 +19285,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UWUCVAIBPA"> Show/Hide foundCycle query </button> 
- <div id="UWUCVAIBPA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VQTEHXQUKQ"> Show/Hide foundCycle query </button> 
+ <div id="VQTEHXQUKQ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19061,8 +19314,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TTDKEUDBEL"> Show/Hide foundPath query </button> 
- <div id="TTDKEUDBEL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LNSYGJVLYQ"> Show/Hide foundPath query </button> 
+ <div id="LNSYGJVLYQ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19093,6 +19346,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -19103,6 +19357,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -19194,8 +19449,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CMOAHQHMVM"> Show/Hide foundCycle query </button> 
- <div id="CMOAHQHMVM" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QIPRHYDTIJ"> Show/Hide foundCycle query </button> 
+ <div id="QIPRHYDTIJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19223,8 +19478,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VQSRQNISDQ"> Show/Hide foundPath query </button> 
- <div id="VQSRQNISDQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WVGZYJSSTL"> Show/Hide foundPath query </button> 
+ <div id="WVGZYJSSTL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19255,6 +19510,7 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -19265,6 +19521,7 @@ Number of paths found:  3600
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -19356,8 +19613,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BDQCQXDTRU"> Show/Hide foundCycle query </button> 
- <div id="BDQCQXDTRU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JVHKHVMNXS"> Show/Hide foundCycle query </button> 
+ <div id="JVHKHVMNXS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19385,8 +19642,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WKMMEVKNSH"> Show/Hide foundPath query </button> 
- <div id="WKMMEVKNSH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KJLWMRFISA"> Show/Hide foundPath query </button> 
+ <div id="KJLWMRFISA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19417,6 +19674,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -19427,6 +19685,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -19518,8 +19777,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TWMUQUXPBZ"> Show/Hide foundCycle query </button> 
- <div id="TWMUQUXPBZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FPCSDNQKKS"> Show/Hide foundCycle query </button> 
+ <div id="FPCSDNQKKS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19547,8 +19806,8 @@ Number of cycles found:  3
 
 Number of paths found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PJBNGGHHUK"> Show/Hide foundPath query </button> 
- <div id="PJBNGGHHUK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IYIRUVMLZU"> Show/Hide foundPath query </button> 
+ <div id="IYIRUVMLZU" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19579,6 +19838,7 @@ Number of paths found:  4
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -19589,6 +19849,7 @@ Number of paths found:  4
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -19680,8 +19941,8 @@ Number of paths found:  4
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AFTSENAMPH"> Show/Hide foundCycle query </button> 
- <div id="AFTSENAMPH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FLAASHHBCK"> Show/Hide foundCycle query </button> 
+ <div id="FLAASHHBCK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19709,8 +19970,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OIDKMEBWXY"> Show/Hide foundPath query </button> 
- <div id="OIDKMEBWXY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QPFIOOZYQM"> Show/Hide foundPath query </button> 
+ <div id="QPFIOOZYQM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19741,6 +20002,7 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -19751,6 +20013,7 @@ Number of paths found:  3600
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -19842,8 +20105,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QWYFDTJSKR"> Show/Hide foundCycle query </button> 
- <div id="QWYFDTJSKR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RXXGCUXNZH"> Show/Hide foundCycle query </button> 
+ <div id="RXXGCUXNZH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19871,8 +20134,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FTHMNNZZAF"> Show/Hide foundPath query </button> 
- <div id="FTHMNNZZAF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JLADAIEECV"> Show/Hide foundPath query </button> 
+ <div id="JLADAIEECV" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19903,6 +20166,7 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -19913,6 +20177,7 @@ Number of paths found:  3600
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -20004,8 +20269,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BNJLVTTUPI"> Show/Hide foundCycle query </button> 
- <div id="BNJLVTTUPI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BHUQFRKTXT"> Show/Hide foundCycle query </button> 
+ <div id="BHUQFRKTXT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20033,8 +20298,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZAMGHOTBYF"> Show/Hide foundPath query </button> 
- <div id="ZAMGHOTBYF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XIKVTEBKUI"> Show/Hide foundPath query </button> 
+ <div id="XIKVTEBKUI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20065,6 +20330,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -20075,6 +20341,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 20 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -20166,8 +20433,8 @@ Number of paths found:  0
 
 Number of cycles found:  34 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ESPHMENKBV"> Show/Hide foundCycle query </button> 
- <div id="ESPHMENKBV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FQVQEWFBBW"> Show/Hide foundCycle query </button> 
+ <div id="FQVQEWFBBW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20195,8 +20462,8 @@ Number of cycles found:  34
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JXOZYZSBKP"> Show/Hide foundPath query </button> 
- <div id="JXOZYZSBKP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YGSFAMMDZC"> Show/Hide foundPath query </button> 
+ <div id="YGSFAMMDZC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20227,6 +20494,7 @@ Number of paths found:  3
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -20237,6 +20505,7 @@ Number of paths found:  3
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -20328,8 +20597,8 @@ Number of paths found:  3
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UPKWKXUPMN"> Show/Hide foundCycle query </button> 
- <div id="UPKWKXUPMN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QSCSZWUZRR"> Show/Hide foundCycle query </button> 
+ <div id="QSCSZWUZRR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20357,8 +20626,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XNJZUQGDMN"> Show/Hide foundPath query </button> 
- <div id="XNJZUQGDMN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TTQOTYVODR"> Show/Hide foundPath query </button> 
+ <div id="TTQOTYVODR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20389,6 +20658,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -20399,6 +20669,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.978Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
@@ -20490,8 +20761,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FPIHDYKFXP"> Show/Hide foundCycle query </button> 
- <div id="FPIHDYKFXP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EQCKAQONGZ"> Show/Hide foundCycle query </button> 
+ <div id="EQCKAQONGZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20519,8 +20790,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JMBCTSIANJ"> Show/Hide foundPath query </button> 
- <div id="JMBCTSIANJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BYVXENUWDX"> Show/Hide foundPath query </button> 
+ <div id="BYVXENUWDX" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20551,6 +20822,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -20561,6 +20833,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -20652,8 +20925,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OSQAKBXQIZ"> Show/Hide foundCycle query </button> 
- <div id="OSQAKBXQIZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KUGCWSEUUL"> Show/Hide foundCycle query </button> 
+ <div id="KUGCWSEUUL" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20681,8 +20954,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HFGJQSVWJL"> Show/Hide foundPath query </button> 
- <div id="HFGJQSVWJL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PCDKTBQJNF"> Show/Hide foundPath query </button> 
+ <div id="PCDKTBQJNF" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20713,6 +20986,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -20723,6 +20997,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
@@ -20814,8 +21089,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KCXUDUBHXU"> Show/Hide foundCycle query </button> 
- <div id="KCXUDUBHXU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ISTDNXGOFK"> Show/Hide foundCycle query </button> 
+ <div id="ISTDNXGOFK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20843,8 +21118,8 @@ Number of cycles found:  1
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LRVEHGJISX"> Show/Hide foundPath query </button> 
- <div id="LRVEHGJISX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZRLEQRKKIE"> Show/Hide foundPath query </button> 
+ <div id="ZRLEQRKKIE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20876,11 +21151,12 @@ Number of paths found:  2
 
 
 
-<table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> simulationId </th>
    <th style="text-align:left;"> timestamp </th>
+   <th style="text-align:right;"> similarityConnectThreshold </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -20892,6 +21168,7 @@ Number of paths found:  2
   <tr>
    <td style="text-align:left;"> SIM08-12-11-17-FUJWvx--DV </td>
    <td style="text-align:left;"> 2018-08-16T09:23:50.708Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 5 </td>
@@ -20901,6 +21178,7 @@ Number of paths found:  2
   <tr>
    <td style="text-align:left;"> SIM08-12-11-17-FUJWvx--CV </td>
    <td style="text-align:left;"> 2018-08-16T09:23:51.743Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 5 </td>
@@ -20910,6 +21188,7 @@ Number of paths found:  2
   <tr>
    <td style="text-align:left;"> SIM08-12-11-52-Upza75--DV </td>
    <td style="text-align:left;"> 2018-08-16T09:24:50.442Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
@@ -20919,6 +21198,7 @@ Number of paths found:  2
   <tr>
    <td style="text-align:left;"> SIM08-12-11-52-Upza75--CV </td>
    <td style="text-align:left;"> 2018-08-16T09:24:50.992Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
@@ -20928,6 +21208,7 @@ Number of paths found:  2
   <tr>
    <td style="text-align:left;"> SIM08-12-12-23-DDd6WJ--DV </td>
    <td style="text-align:left;"> 2018-08-16T09:25:59.871Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
@@ -20937,6 +21218,7 @@ Number of paths found:  2
   <tr>
    <td style="text-align:left;"> SIM08-12-12-23-DDd6WJ--CV </td>
    <td style="text-align:left;"> 2018-08-16T09:26:13.917Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
@@ -20946,6 +21228,7 @@ Number of paths found:  2
   <tr>
    <td style="text-align:left;"> SIM08-12-12-59-7pHkve--DV </td>
    <td style="text-align:left;"> 2018-08-16T09:27:17.909Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 10 </td>
@@ -20955,6 +21238,7 @@ Number of paths found:  2
   <tr>
    <td style="text-align:left;"> SIM08-12-12-59-7pHkve--CV </td>
    <td style="text-align:left;"> 2018-08-16T09:27:18.161Z </td>
+   <td style="text-align:right;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 10 </td>
@@ -20962,7 +21246,7 @@ Number of paths found:  2
    <td style="text-align:left;"> 2 </td>
   </tr>
 </tbody>
-</table>
+</table></div>
 ### Running time of each simulation by method 
 
 ####  SIM08-12-11-17-FUJWvx--DV 
@@ -20972,6 +21256,7 @@ Number of paths found:  2
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -20981,6 +21266,7 @@ Number of paths found:  2
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-16T09:23:50.708Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 5 </td>
@@ -21071,8 +21357,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VARTNXXKNH"> Show/Hide foundCycle query </button> 
- <div id="VARTNXXKNH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CCLMKJYBDR"> Show/Hide foundCycle query </button> 
+ <div id="CCLMKJYBDR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21100,8 +21386,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YLAWKWPUGI"> Show/Hide foundPath query </button> 
- <div id="YLAWKWPUGI" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZJPMPAWLDE"> Show/Hide foundPath query </button> 
+ <div id="ZJPMPAWLDE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21132,6 +21418,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -21141,6 +21428,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-16T09:23:51.743Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 5 </td>
@@ -21231,8 +21519,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UACNHYTFOK"> Show/Hide foundCycle query </button> 
- <div id="UACNHYTFOK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VXGBUHHGWJ"> Show/Hide foundCycle query </button> 
+ <div id="VXGBUHHGWJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21260,8 +21548,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JKMEMEMHKL"> Show/Hide foundPath query </button> 
- <div id="JKMEMEMHKL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UZQRQWKNFA"> Show/Hide foundPath query </button> 
+ <div id="UZQRQWKNFA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21292,6 +21580,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -21301,6 +21590,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-16T09:24:50.442Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
@@ -21391,8 +21681,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MJGNZYLYRN"> Show/Hide foundCycle query </button> 
- <div id="MJGNZYLYRN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GOOULOJXTH"> Show/Hide foundCycle query </button> 
+ <div id="GOOULOJXTH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21420,8 +21710,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XHPQMXHYMQ"> Show/Hide foundPath query </button> 
- <div id="XHPQMXHYMQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PAPQMSJQMC"> Show/Hide foundPath query </button> 
+ <div id="PAPQMSJQMC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21452,6 +21742,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -21461,6 +21752,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-16T09:24:50.992Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
@@ -21551,8 +21843,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LKXWUFEYDH"> Show/Hide foundCycle query </button> 
- <div id="LKXWUFEYDH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OTPWZRHEAK"> Show/Hide foundCycle query </button> 
+ <div id="OTPWZRHEAK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21580,8 +21872,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LNWQTKZBVS"> Show/Hide foundPath query </button> 
- <div id="LNWQTKZBVS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NDPUIQSYSK"> Show/Hide foundPath query </button> 
+ <div id="NDPUIQSYSK" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21612,6 +21904,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -21621,6 +21914,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-16T09:25:59.871Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
@@ -21711,8 +22005,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FANWJWAPWH"> Show/Hide foundCycle query </button> 
- <div id="FANWJWAPWH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QXGLXGTIYB"> Show/Hide foundCycle query </button> 
+ <div id="QXGLXGTIYB" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21740,8 +22034,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IIWPRQXMKU"> Show/Hide foundPath query </button> 
- <div id="IIWPRQXMKU" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BGWLQYPEVL"> Show/Hide foundPath query </button> 
+ <div id="BGWLQYPEVL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21772,6 +22066,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -21781,6 +22076,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-16T09:26:13.917Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
@@ -21871,8 +22167,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BGFPSDXLDU"> Show/Hide foundCycle query </button> 
- <div id="BGFPSDXLDU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PTKSQXBJHZ"> Show/Hide foundCycle query </button> 
+ <div id="PTKSQXBJHZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21900,8 +22196,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TAHQGJIZEM"> Show/Hide foundPath query </button> 
- <div id="TAHQGJIZEM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WMBBZQAFWE"> Show/Hide foundPath query </button> 
+ <div id="WMBBZQAFWE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21932,6 +22228,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -21941,6 +22238,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-16T09:27:17.909Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 10 </td>
@@ -22031,8 +22329,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VFJVUNVXKY"> Show/Hide foundCycle query </button> 
- <div id="VFJVUNVXKY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DQMPJBWIXL"> Show/Hide foundCycle query </button> 
+ <div id="DQMPJBWIXL" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22060,8 +22358,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZBZPBAJXOJ"> Show/Hide foundPath query </button> 
- <div id="ZBZPBAJXOJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WFDCERAMQE"> Show/Hide foundPath query </button> 
+ <div id="WFDCERAMQE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22092,6 +22390,7 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
@@ -22101,6 +22400,7 @@ Number of paths found:  0
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:left;"> 2018-08-16T09:27:18.161Z </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 10 </td>
@@ -22191,8 +22491,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OAFFKLBLMJ"> Show/Hide foundCycle query </button> 
- <div id="OAFFKLBLMJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LQEJDVKKCK"> Show/Hide foundCycle query </button> 
+ <div id="LQEJDVKKCK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22220,8 +22520,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NQBMBYKLXL"> Show/Hide foundPath query </button> 
- <div id="NQBMBYKLXL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VWEBCHQZZQ"> Show/Hide foundPath query </button> 
+ <div id="VWEBCHQZZQ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22247,12 +22547,12 @@ Number of paths found:  0
 </div>
 ## Summary or running times 
 
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1200px; "><table class="table table-condensed" style="width: auto !important; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> experimentId </th>
    <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:left;"> chainLength </th>
+   <th style="text-align:left;"> timestamp </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
    <th style="text-align:left;"> agentNumber </th>
@@ -22262,13 +22562,14 @@ Number of paths found:  0
    <th style="text-align:right;"> processes </th>
    <th style="text-align:right;"> foundCycles </th>
    <th style="text-align:right;"> foundPaths </th>
+   <th style="text-align:left;"> chainLength </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-01-31-R9x4ai--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T11:31:38.605Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22278,11 +22579,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 5,775 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-03-31-FfrhJ9--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T01:31:43.637Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22292,11 +22594,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 267,231 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-03-31-FfrhJ9--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T01:31:20.619Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22306,11 +22609,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,013 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-03-43-3iwnzW--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T01:43:45.505Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22320,11 +22624,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 265,303 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-03-43-3iwnzW--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T01:43:19.484Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22334,11 +22639,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,020 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-03-55-5gpeBJ--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T02:55:37.713Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22348,11 +22654,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 295,531 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-03-55-5gpeBJ--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T01:55:32.346Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22362,11 +22669,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 18,959 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,599 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-05-08-HpL6gr--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T03:09:16.811Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22376,11 +22684,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 291,188 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-05-08-HpL6gr--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T03:08:49.791Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22390,11 +22699,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,069 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-05-22-PxKDei--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T04:22:44.696Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22404,11 +22714,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 851,932 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-05-22-PxKDei--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T03:22:37.906Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22418,11 +22729,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 19,829 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,599 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-07-22-JYcIUB--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T05:25:59.351Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22432,11 +22744,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 788,985 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-07-22-JYcIUB--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T05:22:59.258Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22446,11 +22759,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,031 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-08-26-9uC2Mm--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T07:26:25.297Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22460,11 +22774,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 898,254 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-08-26-9uC2Mm--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T06:26:16.327Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22474,11 +22789,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 19,864 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-10-26-8wMSwZ--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T08:29:56.260Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22488,11 +22804,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 792,763 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-10-26-8wMSwZ--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-02T08:26:41.157Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22502,11 +22819,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,109 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-11-29-JjmpZp--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T10:30:40.302Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22516,11 +22834,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 516,321 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-02-03-31-H5aVtH </td>
    <td style="text-align:left;"> SIM08-02-11-29-JjmpZp--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-02T09:30:19.306Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22530,11 +22849,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 22,534 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-01-00-fbyPmL--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-05T11:01:17.807Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22544,11 +22864,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 265,287 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-01-00-fbyPmL--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-05T11:00:52.790Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22558,11 +22879,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,017 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-01-13-Rou4Mt--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-05T14:13:24.240Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22572,11 +22894,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 294,287 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-01-13-Rou4Mt--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-05T11:13:19.674Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22586,11 +22909,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 54,949 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 10,797 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-04-27-jTgnYK--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-05T14:28:07.361Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22600,11 +22924,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 291,165 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-04-27-jTgnYK--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-05T14:27:35.344Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22614,11 +22939,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,091 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-04-41-DCfxMF--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-05T17:42:07.489Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22628,11 +22954,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,072,548 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-04-41-DCfxMF--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-05T14:41:59.492Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22642,11 +22969,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 55,824 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 10,798 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-08-55-pe7AVI--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-05T18:59:00.958Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22656,11 +22984,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,010,275 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-08-55-pe7AVI--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-05T18:56:11.882Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22670,11 +22999,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,030 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-10-13-wTf6Ij--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-05T23:14:21.849Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22684,11 +23014,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,107,383 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-10-13-wTf6Ij--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-05T20:14:12.641Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22698,11 +23029,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 55,854 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 10,798 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-12-48-xsitDp--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-05T10:49:09.789Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22712,11 +23044,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 278,468 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-05-12-48-xsitDp--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-05T10:48:48.770Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -22726,11 +23059,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 970 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-01-49-ubMTmD--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-06T14:49:57.661Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22740,11 +23074,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,437,076 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-01-49-ubMTmD--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-06T11:49:37.603Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22754,11 +23089,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 58,554 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 10,798 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-02-34-XiXore--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-06T00:37:38.531Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22768,11 +23104,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,060,169 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-02-34-XiXore--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-06T00:34:31.427Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 200 </td>
@@ -22782,11 +23119,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,091 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-03-59-3M733K--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-06T05:00:02.484Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22796,11 +23134,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,494,815 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-03-59-3M733K--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-06T01:59:42.727Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22810,11 +23149,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 58,524 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 10,798 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-07-50-iBjLoU--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-06T18:40:19.061Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22824,11 +23164,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,087,866 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-07-50-iBjLoU--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-06T17:50:33.727Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22838,11 +23179,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 7,547 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-10-00-gUuNrz--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-06T08:48:11.899Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22852,11 +23194,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,113,827 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-05-12-48-qrNbzW </td>
    <td style="text-align:left;"> SIM08-06-10-00-gUuNrz--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-06T08:00:37.801Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 30 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22866,11 +23209,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 6,811 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-07-05-04-95KIBv </td>
    <td style="text-align:left;"> SIM08-07-05-04-gVussF--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-07T17:51:06.112Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22880,11 +23224,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,096,073 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-07-05-04-95KIBv </td>
    <td style="text-align:left;"> SIM08-07-05-04-gVussF--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-07T15:04:48.682Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22894,11 +23239,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 15,947 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-07-05-04-95KIBv </td>
    <td style="text-align:left;"> SIM08-07-10-52-xUntt9--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-07T23:52:48.363Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -22908,11 +23254,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 765,818 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-07-05-04-95KIBv </td>
    <td style="text-align:left;"> SIM08-07-10-52-xUntt9--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-07T20:52:30.898Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -22922,11 +23269,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 19,555 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-07-05-04-95KIBv </td>
    <td style="text-align:left;"> SIM08-08-04-54-3b98M6--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-08T05:57:34.262Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 2000 </td>
@@ -22936,11 +23284,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 702,315 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-07-05-04-95KIBv </td>
    <td style="text-align:left;"> SIM08-08-04-54-3b98M6--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-08T02:56:06.957Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 2000 </td>
@@ -22950,11 +23299,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 33,068 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-01-35-9owMuE </td>
    <td style="text-align:left;"> SIM08-09-01-35-DxaCjz--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-09T00:23:56.608Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22964,11 +23314,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 350,033 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-01-35-9owMuE </td>
    <td style="text-align:left;"> SIM08-09-01-35-DxaCjz--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-08T23:35:39.376Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -22978,11 +23329,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 9,827 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-01-35-9owMuE </td>
    <td style="text-align:left;"> SIM08-09-03-24-FsJcdE--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-09T01:25:28.948Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -22992,11 +23344,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 16,990 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-05-27-BmCFH6 </td>
    <td style="text-align:left;"> SIM08-09-05-27-CLiEJf--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-09T16:18:22.030Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -23006,11 +23359,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,036,768 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-05-27-BmCFH6 </td>
    <td style="text-align:left;"> SIM08-09-05-27-CLiEJf--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-09T15:28:04.626Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 500 </td>
@@ -23020,11 +23374,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 10,070 </td>
    <td style="text-align:right;"> 87 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-05-27-BmCFH6 </td>
    <td style="text-align:left;"> SIM08-09-09-20-UidsEi--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-09T22:23:27.219Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -23034,11 +23389,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 797,847 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 10,798 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-05-27-BmCFH6 </td>
    <td style="text-align:left;"> SIM08-09-09-20-UidsEi--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-09T19:20:57.571Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -23048,11 +23404,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 24,187 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-05-27-BmCFH6 </td>
    <td style="text-align:left;"> SIM08-10-06-29-jKDYmz--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-10T07:34:52.894Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 2000 </td>
@@ -23062,11 +23419,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 579,531 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-09-05-27-BmCFH6 </td>
    <td style="text-align:left;"> SIM08-10-06-29-jKDYmz--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-10T04:30:29.719Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 2000 </td>
@@ -23076,11 +23434,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 37,076 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-10-01-33-JYSw5Z </td>
    <td style="text-align:left;"> SIM08-10-01-33-niVTL7--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-10T11:34:01.056Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -23090,11 +23449,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 16,979 </td>
    <td style="text-align:right;"> 138 </td>
    <td style="text-align:right;"> 15 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-10-01-33-JYSw5Z </td>
    <td style="text-align:left;"> SIM08-10-01-33-niVTL7--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-10T12:13:38.104Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 1000 </td>
@@ -23104,11 +23464,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 643,380 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-10-10-15-t7WP6v </td>
    <td style="text-align:left;"> SIM08-10-10-15-26LQ2S--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T20:16:04.569Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23118,11 +23479,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,184 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-10-10-15-t7WP6v </td>
    <td style="text-align:left;"> SIM08-10-10-15-26LQ2S--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T20:16:32.668Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23132,11 +23494,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 72,714 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-38-3dSVwT </td>
    <td style="text-align:left;"> SIM08-11-12-38-Ea8VAf--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:38:12.778Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23146,11 +23509,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,184 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-38-3dSVwT </td>
    <td style="text-align:left;"> SIM08-11-12-38-Ea8VAf--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:38:41.883Z </td>
    <td style="text-align:left;"> 0.95, </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23160,11 +23524,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 72,714 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-44-BoTBgN </td>
    <td style="text-align:left;"> SIM08-11-12-44-neSDUd--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:45:05.486Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23174,11 +23539,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,184 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-44-BoTBgN </td>
    <td style="text-align:left;"> SIM08-11-12-44-neSDUd--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:45:24.535Z </td>
    <td style="text-align:left;"> 0.95, </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23188,11 +23554,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 72,735 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-54-LgXUNA </td>
    <td style="text-align:left;"> SIM08-11-12-54-ykmwIK--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:55:00.244Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23202,11 +23569,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,182 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-54-LgXUNA </td>
    <td style="text-align:left;"> SIM08-11-12-54-ykmwIK--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-10T22:55:26.344Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23216,11 +23584,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 72,679 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-01-9svHYu--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23230,11 +23599,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 264,723 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-01-9svHYu--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23244,11 +23614,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,473 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-05-AZFerX--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23258,11 +23629,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 264,693 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-05-AZFerX--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23272,11 +23644,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,473 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-10-bCM5fk--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23286,11 +23659,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 86,458 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-10-bCM5fk--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23300,11 +23674,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,217 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-11-j9XCLm--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23314,11 +23689,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 86,473 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-11-j9XCLm--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23328,11 +23704,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,217 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-13-7mwJNk--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23342,11 +23719,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 290,529 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-13-7mwJNk--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23356,11 +23734,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,527 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-18-bWXLYd--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23370,11 +23749,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 290,529 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-18-bWXLYd--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23384,11 +23764,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,527 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-23-LU7jps--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23398,11 +23779,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 264,752 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-23-LU7jps--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23412,11 +23794,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,285 </td>
    <td style="text-align:right;"> 7 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-25-9f8vyU--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 800 </td>
@@ -23426,11 +23809,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,543,361 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-25-9f8vyU--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 800 </td>
@@ -23440,11 +23824,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 26,835 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-28-2mwNJ9--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23454,11 +23839,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 264,731 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-28-2mwNJ9--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23468,11 +23854,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,273 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-33-2tryyr--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23482,11 +23869,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,008,939 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-33-2tryyr--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23496,11 +23884,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,955 </td>
    <td style="text-align:right;"> 24 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-58-qocSnR--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23510,11 +23899,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,008,795 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-58-qocSnR--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23524,11 +23914,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,956 </td>
    <td style="text-align:right;"> 23 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-24-HT69z4--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23538,11 +23929,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 290,572 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-24-HT69z4--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23552,11 +23944,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,339 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-29-wnUn7p--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23566,11 +23959,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 290,524 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-29-wnUn7p--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23580,11 +23974,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,335 </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-34-qV6kk7--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23594,11 +23989,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,058,758 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-34-qV6kk7--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23608,11 +24004,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,996 </td>
    <td style="text-align:right;"> 14 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-02-JQ4Xga--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23622,11 +24019,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,058,587 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-02-JQ4Xga--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23636,11 +24034,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 3,002 </td>
    <td style="text-align:right;"> 15 </td>
    <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-29-rephNw--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23650,11 +24049,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,010,320 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-29-rephNw--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23664,11 +24064,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 4,575 </td>
    <td style="text-align:right;"> 25 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-55-uLoEi8--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23678,11 +24079,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,008,859 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-55-uLoEi8--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23692,11 +24094,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 4,486 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-04-21-PcvZuy--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23706,11 +24109,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,505,040 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-04-21-PcvZuy--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23720,11 +24124,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 23,635 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-04-26-tNxY4J--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 800 </td>
@@ -23734,11 +24139,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 8,912 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-06-21-3RT7tA--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23748,11 +24154,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,471,959 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-06-21-3RT7tA--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23762,11 +24169,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 6,165 </td>
    <td style="text-align:right;"> 73 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-07-25-JPeHEv--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23776,11 +24184,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,060,608 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-07-25-JPeHEv--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23790,11 +24199,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 22,465 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-08-52-e9mxSB--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23804,11 +24214,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,058,642 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-08-52-e9mxSB--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23818,11 +24229,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 4,588 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-09-20-5oCIZR--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23832,11 +24244,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,461,517 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-09-20-5oCIZR--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23846,11 +24259,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 23,665 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-21-b9wEmt--CV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23860,11 +24274,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,433,378 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-21-b9wEmt--DV </td>
-   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 400 </td>
@@ -23874,11 +24289,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 6,004 </td>
    <td style="text-align:right;"> 34 </td>
    <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> 20 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-58-5ZEBa6--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23888,11 +24304,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 72,661 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-58-5ZEBa6--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.978Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23902,11 +24319,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,164 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-59-AkTEKa--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23916,11 +24334,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 72,666 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-59-AkTEKa--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-12T10:22:56.979Z </td>
    <td style="text-align:left;"> 1 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 100 </td>
@@ -23930,11 +24349,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,167 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-11-17-FUJWvx--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-16T09:23:50.708Z </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23944,11 +24364,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 3,085 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-11-17-FUJWvx--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-16T09:23:51.743Z </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23958,11 +24379,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,009,608 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-11-52-Upza75--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-16T09:24:50.442Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23972,11 +24394,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 3,023 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-11-52-Upza75--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-16T09:24:50.992Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> 200 </td>
@@ -23986,11 +24409,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,009,421 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-12-23-DDd6WJ--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-16T09:25:59.871Z </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -24000,11 +24424,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 3,147 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-12-23-DDd6WJ--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-16T09:26:13.917Z </td>
    <td style="text-align:left;"> 0.9 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -24014,11 +24439,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,009,615 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-12-59-7pHkve--DV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-16T09:27:17.909Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -24028,11 +24454,12 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,930 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-12-59-7pHkve--CV </td>
-   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> 2018-08-16T09:27:18.161Z </td>
    <td style="text-align:left;"> 0.95 </td>
    <td style="text-align:left;"> 10 </td>
    <td style="text-align:left;"> 200 </td>
@@ -24042,6 +24469,7 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,009,073 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:left;"> 10 </td>
   </tr>
 </tbody>
 </table></div>
