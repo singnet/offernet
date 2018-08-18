@@ -4,6 +4,18 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE, error=FALSE, output=FALS
 Sys.setenv(ON_workdir = '/home/kabir/offernet/')
 ```
 
+# All experiments
+
+Here we dump data of all experiments that were run in the period between April 2, 2018 and April 14, 2018. Some of the simulations crashed, some were duplicated with different timeout values, yet the data is preserved (in the report as well as database). From all these only the following experiments are selected to be analyzed further:
+
+|No. | expermentId | Comment |
+|:--|:--|:--|
+|1 | EXP08-05-12-48-qrNbzW | |
+|2 | EXP08-09-05-27-BmCFH6 | |
+|3 | EXP08-10-01-33-JYSw5Z | |
+|4 | EXP08-11-12-58-3BvMSL | pre-generated smallWorld graph of agents with known diameters < 10; similarityThreshold = 0.9 |
+|5 | EXP08-12-11-17-5tvhCK | pre-generated smallWorld graph of agents with known diameters < 10; different similarity search thresholds |
+
 <!--#### variables: -->
 ```{r get-experiment-info, results = 'asis', eval=TRUE}
 library(elastic)
@@ -40,18 +52,21 @@ conn<-NULL
 experiment.df <- experiment.result[,-c(1:5)]
 vars=sapply(strsplit(colnames(experiment.df), split='.', fixed=TRUE), function(x) (x[2]))
 colnames(experiment.df) <- vars
+colnames(experiment.df)[3] <- 'timestamp' # for some reason this is needed when running from bookdown...
 experiment.df <- experiment.df[c(4,3,1,2,5,6,7)]
 # print Experiment data
 cat(paste('## All experiments in database \n\n'))
 kable(experiment.df) %>%
-  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
+  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+    scroll_box(height = NULL, width = '1200px',
+        box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
     #column_spec(0:ncol(experiment.df),width="10em") 
     #add_header_above(c("labels"=5))
 
-cat(paste('## Simulations of each experiment \n\n'))
 experimentIds = experiment.df$experimentId
 for (experimentId in experimentIds) {
-  cat(paste('### ',experimentId,'\n\n'))
+  cat(paste('## ',experimentId,'\n\n'))
+  cat(paste('### All simulations of experiment \n\n'))
   conn <-connect(es_port = 9200)
   template <- '
         {
@@ -90,6 +105,7 @@ for (experimentId in experimentIds) {
     exp.df <- exp.result[,-c(1:5)]
     vars=sapply(strsplit(colnames(exp.df), split='.', fixed=TRUE), function(x) (x[2]))
     colnames(exp.df) <- vars
+    colnames(exp.df)[1] <- 'timestamp' # for some reason this is needed when running from bookdown...    
     exp.df <- exp.df[c(6,1,2,3,4,5,7)]
     template <- '
         {
@@ -132,12 +148,12 @@ for (experimentId in experimentIds) {
       #add_header_above(c("labels"=5))
   print(ee)
 
-  cat(paste('## Running time of each simulation by method \n\n'))
+  cat(paste('### Running time of each simulation by method \n\n'))
   simulationIds = sims.df$simulationId
   
   for (simulationId in simulationIds) {1
-      cat(paste('### ',simulationId, '\n\n'))
-      cat(paste('#### simulationParameters \n\n'))
+      cat(paste('#### ',simulationId, '\n\n'))
+      cat(paste('##### simulationParameters \n\n'))
       
       params <- sims.df[which(sims.df$simulationId == simulationId),]
       params <- params[,-c(1,2)]
@@ -209,7 +225,7 @@ for (experimentId in experimentIds) {
       print(m)
       
       keyword <- 'foundCycle'
-      cat(paste('####  Found cycles \n\n'))
+      cat(paste('#####  Found cycles \n\n'))
       
       conn <-connect(es_port = 9200)
       template <- '
@@ -246,7 +262,7 @@ for (experimentId in experimentIds) {
         cat('\n</div>\n')
         
       keyword <- 'foundPath'
-      cat(paste('####  Found paths \n\n'))
+      cat(paste('#####  Found paths \n\n'))
       
       conn <-connect(es_port = 9200)
       template <- '
@@ -277,11 +293,11 @@ for (experimentId in experimentIds) {
       for_sum.df$foundPaths <- path.result$hits$total
       blockNo <- stri_rand_strings(1, 10, '[A-Z]')
       full_query <- sprintf("%s %s", '     GET /filebeat-*/_search', query)
-      cat(paste('<button class="btn btn-primary" data-toggle="collapse" data-target="#',blockNo,'"> Show/Hide ',keyword,' query </button> \n <div id="',blockNo,'" class="collapse" ">  \n',sep=''))
+      cat(paste('<button class="btn btn-primary" data-toggle="collapse" data-target="#',blockNo,'"> Show/Hide ',keyword,' query </button> \n <div id="',blockNo,'" class="collapse">  \n',sep=''))
             cat(paste(full_query,'\n'))
         cat('\n</div>\n')        
 
-      #cat(paste('### Sumary of simulation','\n\n'))
+      #cat(paste('#### Sumary of simulation','\n\n'))
       
       #sum <- kable(for_sum.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
       #  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
@@ -309,7 +325,9 @@ exp.result <-NULL
 cat(paste('## Summary or running times \n\n'))
 summary.df <- summary.df[c(7,8,1,2,3,4,5,6,9,10,11,12)]
 summary <- kable(summary.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
-  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
+  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+    scroll_box(height = NULL, width = '1200px',
+      box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
     #column_spec(0:ncol(experiment.df),width="10em") 
     #add_header_above(c("labels"=5))
 print(summary)
