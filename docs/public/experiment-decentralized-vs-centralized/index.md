@@ -1,7 +1,7 @@
 --- 
 title: "Decentralized vs centralized search in OfferNet"
 author: "Kabir Veitas (kabir@singularitynet.io)"
-date: "2018-08-18"
+date: "2018-08-19"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -18,8 +18,8 @@ url: 'http\://seankross.com/bookdown-start/'
 
 # General idea and setup
 
-Date: Sat Aug 18 23:39:53 2018 <br/>
-Codebase version: [2566780](https://github.com/singnet/offernet/commit/2566780) <br/>
+Date: Sun Aug 19 02:42:08 2018 <br/>
+Codebase version: [e130638](https://github.com/singnet/offernet/commit/e130638) <br/>
 
 ## OfferNet system
 

@@ -10,11 +10,9 @@ Here we dump data of all experiments that were run in the period between April 2
 
 |No. | expermentId | Comment |
 |:--|:--|:--|
-|1 | EXP08-05-12-48-qrNbzW | randomly connected social network of agents, unknown diameter; similarityConnectThreshold = 0.5 |
-|2 | EXP08-09-05-27-BmCFH6 | same as above |
-|3 | EXP08-10-01-33-JYSw5Z | same as above |
-|4 | EXP08-11-12-58-3BvMSL | pre-generated smallWorld social network of agents with known diameters < 10; similarityThreshold = 0.9 |
-|5 | EXP08-12-11-17-5tvhCK | pre-generated smallWorld social network of agents with known diameters < 10; different similarity search thresholds |
+|1 | EXP08-10-01-33-JYSw5Z | randomly connected social network of agents, unknown diameter; similarityConnectThreshold = 0.5 |
+|2 | EXP08-11-12-58-3BvMSL | pre-generated smallWorld social network of agents with known diameters < 10; similarityThreshold = 0.9 |
+|3 | EXP08-12-11-17-5tvhCK | pre-generated smallWorld social network of agents with known diameters < 10; different similarity search thresholds |
 
 <!--#### variables: -->
 ```{r get-experiment-info, results = 'asis', eval=TRUE}

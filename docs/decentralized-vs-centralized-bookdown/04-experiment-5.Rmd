@@ -13,7 +13,7 @@ echo $ON_codebase_version > ON_codebase_version.dat
 fileName <- 'ON_codebase_version.dat'
 ON_codebase_version <- readLines(file(fileName,open="r"))[1]
 Sys.setenv(ON_codebase_version = ON_codebase_version)
-Sys.setenv(ON_experimentId = "EXP08-11-12-58-3BvMSL")
+Sys.setenv(ON_experimentId = "EXP08-12-11-17-5tvhCK")
 
 #install.packages("jsonlite")
 #install.packages("kableExtra")
@@ -25,7 +25,9 @@ library(knitr)
 library(kableExtra)
 ```
 
-# Experiment 2: pre-generated 'small world' graphs
+# Experiment 3
+
+Pre-generated smallWorld social network of agents with known diameters < 10; different similarity search thresholds.
 
 ## Experimental set up
 
