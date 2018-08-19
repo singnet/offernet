@@ -218,8 +218,10 @@ for (experimentId in experimentIds) {
       sumrow <- as.data.frame(lapply(methods.df, func))      
       sumrow$avg_wallTime_ms.value <- ''
       sumrow$key <- "Total"
-      for_sum.df$time_ms <- sumrow$sum_wallTime_ms
-      for_sum.df$processes <- sumrow$doc_count
+
+      
+      for_sum.df$sum_wallTime_ms_total <- sumrow$sum_wallTime_ms
+      for_sum.df$rocess_total <- sumrow$doc_count
       last_row <- nrow(methods.df) +1
       m <- kable(rbind(methods.df,sumrow),format.args = list(decimal.mark = '.', big.mark = ",")) %>%
         kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%

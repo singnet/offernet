@@ -24,6 +24,10 @@ Randomly connected social network of agents of unknown diameter; similarityConne
    <td style="text-align:left;"> EXP08-10-01-33-JYSw5Z </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> agentNumbers </td>
+   <td style="text-align:left;"> 1000 </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> maxDistances </td>
    <td style="text-align:left;"> 10 </td>
   </tr>
@@ -32,12 +36,12 @@ Randomly connected social network of agents of unknown diameter; similarityConne
    <td style="text-align:left;"> 2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> similaritySearchThresholds </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:left;"> similarityConnectThreshold </td>
+   <td style="text-align:left;"> 0.5 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> agentNumbers </td>
-   <td style="text-align:left;"> 1000 </td>
+   <td style="text-align:left;"> similaritySearchThresholds </td>
+   <td style="text-align:left;"> 1 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> chainLengths </td>
@@ -55,18 +59,20 @@ Randomly connected social network of agents of unknown diameter; similarityConne
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> agentNumber </th>
+   <th style="text-align:right;"> similarityConnectThreshold </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> agentNumber </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;width: 20em; "> 20 </td>
+   <td style="text-align:left;width: 20em; "> 1000 </td>
+   <td style="text-align:right;width: 15em; "> 0.5 </td>
+   <td style="text-align:left;width: 15em; "> 20 </td>
    <td style="text-align:left;width: 15em; "> 1 </td>
    <td style="text-align:left;width: 15em; "> 10 </td>
-   <td style="text-align:left;width: 15em; "> 1000 </td>
   </tr>
 </tbody>
 </table>
@@ -133,18 +139,20 @@ Randomly connected social network of agents of unknown diameter; similarityConne
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
+   <th style="text-align:left;"> agentNumber </th>
+   <th style="text-align:right;"> similarityConnectThreshold </th>
    <th style="text-align:left;"> chainLength </th>
    <th style="text-align:left;"> similaritySearchThreshold </th>
    <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> agentNumber </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;width: 20em; "> 20 </td>
+   <td style="text-align:left;width: 20em; "> 1000 </td>
+   <td style="text-align:right;width: 15em; "> 0.5 </td>
+   <td style="text-align:left;width: 15em; "> 20 </td>
    <td style="text-align:left;width: 15em; "> 1 </td>
    <td style="text-align:left;width: 15em; "> 10 </td>
-   <td style="text-align:left;width: 15em; "> 1000 </td>
   </tr>
 </tbody>
 </table>
