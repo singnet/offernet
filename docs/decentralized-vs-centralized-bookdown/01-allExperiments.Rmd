@@ -328,14 +328,14 @@ exp.result <-NULL
 
 }
 
-cat(paste('## Summary or running times \n\n'))
-refcols <- c("experimentId", "simulationId", "timestamp")
-summary.df <- summary.df[, c(refcols, setdiff(names(summary.df), refcols))]
-summary <- kable(summary.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
-  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
-    scroll_box(height = NULL, width = '1300px',
-      box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
+#cat(paste('## Summary or running times \n\n'))
+#refcols <- c("experimentId", "simulationId", "timestamp")
+#summary.df <- summary.df[, c(refcols, setdiff(names(summary.df), refcols))]
+#summary <- kable(summary.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
+#  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+#    scroll_box(height = NULL, width = '1300px',
+#      box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
     #column_spec(0:ncol(experiment.df),width="10em") 
     #add_header_above(c("labels"=5))
-print(summary)
+#print(summary)
 ```

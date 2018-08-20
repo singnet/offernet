@@ -18,8 +18,8 @@ url: 'http\://seankross.com/bookdown-start/'
 
 # General idea and setup
 
-Date: Mon Aug 20 02:14:27 2018 <br/>
-Codebase version: [0929654](https://github.com/singnet/offernet/commit/0929654) <br/>
+Date: Mon Aug 20 18:45:05 2018 <br/>
+Codebase version: [dddda68](https://github.com/singnet/offernet/commit/dddda68) <br/>
 
 ## OfferNet system
 

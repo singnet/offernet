@@ -4,6 +4,8 @@
 
 
 <!--#### variables: -->
+   
+
 # Experiment  1 
 
 Randomly connected social network of agents, unknown diameter; similarityConnectThreshold = 0.5 
@@ -206,8 +208,8 @@ Randomly connected social network of agents, unknown diameter; similarityConnect
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CYSOUODERW"> Show/Hide foundCycle query </button> 
- <div id="CYSOUODERW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JGUTMJKADD"> Show/Hide foundCycle query </button> 
+ <div id="JGUTMJKADD" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -235,8 +237,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SNJJPFWOUJ"> Show/Hide foundPath query </button> 
- <div id="SNJJPFWOUJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SBQSVPCDHE"> Show/Hide foundPath query </button> 
+ <div id="SBQSVPCDHE" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -260,62 +262,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 1000 </td>
-   <td style="text-align:right;"> 0.5 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-10-01-33-JYSw5Z </td>
-   <td style="text-align:left;"> SIM08-10-01-33-niVTL7--CV </td>
-   <td style="text-align:right;"> 2,020 </td>
-   <td style="text-align:right;"> 3,154,142 </td>
-   <td style="text-align:right;"> 2,020 </td>
-   <td style="text-align:right;"> 2,020 </td>
-   <td style="text-align:right;"> 6,001 </td>
-   <td style="text-align:right;"> 3,166,203 </td>
-   <td style="text-align:right;"> 1,001 </td>
-   <td style="text-align:right;"> 4,040 </td>
-   <td style="text-align:right;"> 2,020 </td>
-   <td style="text-align:right;"> 7,061 </td>
-   <td style="text-align:right;"> 14,583,477 </td>
-   <td style="text-align:right;"> 643,374 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-10-01-33-niVTL7--DV 
 
 #### simulationParameters 
@@ -472,8 +418,8 @@ Number of paths found:  0
 
 Number of cycles found:  138 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SWVLYAYEDH"> Show/Hide foundCycle query </button> 
- <div id="SWVLYAYEDH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SEYOXUHAZK"> Show/Hide foundCycle query </button> 
+ <div id="SEYOXUHAZK" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -501,8 +447,8 @@ Number of cycles found:  138
 
 Number of paths found:  15 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PBNAIDSHID"> Show/Hide foundPath query </button> 
- <div id="PBNAIDSHID" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OYEBUCHVHK"> Show/Hide foundPath query </button> 
+ <div id="OYEBUCHVHK" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -526,62 +472,10 @@ Number of paths found:  15
      
 
 </div>
-#### Summary of simulation 
+## Scatterplots of experiment 
 
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 1000 </td>
-   <td style="text-align:right;"> 0.5 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-10-01-33-JYSw5Z </td>
-   <td style="text-align:left;"> SIM08-10-01-33-niVTL7--DV </td>
-   <td style="text-align:right;"> 2,020 </td>
-   <td style="text-align:right;"> 3,154,029 </td>
-   <td style="text-align:right;"> 2,020 </td>
-   <td style="text-align:right;"> 2,020 </td>
-   <td style="text-align:right;"> 6,001 </td>
-   <td style="text-align:right;"> 3,166,090 </td>
-   <td style="text-align:right;"> 1,001 </td>
-   <td style="text-align:right;"> 4,040 </td>
-   <td style="text-align:right;"> 2,020 </td>
-   <td style="text-align:right;"> 7,061 </td>
-   <td style="text-align:right;"> 69,528,919 </td>
-   <td style="text-align:right;"> 16,673 </td>
-   <td style="text-align:right;"> 138 </td>
-   <td style="text-align:right;"> 15 </td>
-  </tr>
-</tbody>
-</table></div>
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-7.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-8.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-9.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-10.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-11.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-12.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-13.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-14.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-15.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-16.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-17.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-18.png" width="672" />   
+
 # Experiment  2 
 
 Pre-generated smallWorld social network of agents with known diameters < 10; similarityThreshold = 0.9 
@@ -700,15 +594,15 @@ Pre-generated smallWorld social network of agents with known diameters < 10; sim
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-7.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-19.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-8.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-20.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-9.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-21.png" width="672" />
 
 #### Runing time by method 
 
@@ -772,8 +666,8 @@ Pre-generated smallWorld social network of agents with known diameters < 10; sim
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TLBGCZBAVY"> Show/Hide foundCycle query </button> 
- <div id="TLBGCZBAVY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FHRHWHUEVS"> Show/Hide foundCycle query </button> 
+ <div id="FHRHWHUEVS" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -801,8 +695,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XTJTUUNXCA"> Show/Hide foundPath query </button> 
- <div id="XTJTUUNXCA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LCDLKWBYNV"> Show/Hide foundPath query </button> 
+ <div id="LCDLKWBYNV" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -826,62 +720,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-05-AZFerX--CV </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 37,332 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 38,563 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 731 </td>
-   <td style="text-align:right;"> 1,021,681 </td>
-   <td style="text-align:right;"> 264,685 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-05-AZFerX--DV 
 
 #### simulationParameters 
@@ -954,15 +792,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-10.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-22.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-11.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-23.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-12.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-24.png" width="672" />
 
 #### Runing time by method 
 
@@ -1048,8 +886,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BXBEXOKPMD"> Show/Hide foundCycle query </button> 
- <div id="BXBEXOKPMD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KAWKQHICAO"> Show/Hide foundCycle query </button> 
+ <div id="KAWKQHICAO" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1077,8 +915,8 @@ Number of cycles found:  4
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OOHOVJHRUH"> Show/Hide foundPath query </button> 
- <div id="OOHOVJHRUH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MSUBZPEBAH"> Show/Hide foundPath query </button> 
+ <div id="MSUBZPEBAH" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1102,62 +940,6 @@ Number of paths found:  1
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-05-AZFerX--DV </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 36,948 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 38,179 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 731 </td>
-   <td style="text-align:right;"> 173,051 </td>
-   <td style="text-align:right;"> 1,463 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-12-59-AkTEKa--CV 
 
 #### simulationParameters 
@@ -1230,15 +1012,15 @@ Number of paths found:  1
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-13.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-25.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-14.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-26.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-15.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-27.png" width="672" />
 
 #### Runing time by method 
 
@@ -1302,8 +1084,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VOKZOOOABE"> Show/Hide foundCycle query </button> 
- <div id="VOKZOOOABE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RMQETDQZYM"> Show/Hide foundCycle query </button> 
+ <div id="RMQETDQZYM" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1331,8 +1113,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YFWYNDYXJS"> Show/Hide foundPath query </button> 
- <div id="YFWYNDYXJS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#URTNSGDLUF"> Show/Hide foundPath query </button> 
+ <div id="URTNSGDLUF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1356,62 +1138,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-12-59-AkTEKa--CV </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 10,192 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 11,123 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 431 </td>
-   <td style="text-align:right;"> 215,332 </td>
-   <td style="text-align:right;"> 72,658 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-12-59-AkTEKa--DV 
 
 #### simulationParameters 
@@ -1484,15 +1210,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-16.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-28.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-17.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-29.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-18.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-30.png" width="672" />
 
 #### Runing time by method 
 
@@ -1578,8 +1304,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RBMSCLBYCF"> Show/Hide foundCycle query </button> 
- <div id="RBMSCLBYCF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FFMJKSFQTW"> Show/Hide foundCycle query </button> 
+ <div id="FFMJKSFQTW" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1607,8 +1333,8 @@ Number of cycles found:  1
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KWCXXGEZBH"> Show/Hide foundPath query </button> 
- <div id="KWCXXGEZBH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GBWLVVWQGG"> Show/Hide foundPath query </button> 
+ <div id="GBWLVVWQGG" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1632,62 +1358,6 @@ Number of paths found:  2
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-12-59-AkTEKa--DV </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 10,062 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 10,993 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 431 </td>
-   <td style="text-align:right;"> 71,591 </td>
-   <td style="text-align:right;"> 1,159 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-01-9svHYu--CV 
 
 #### simulationParameters 
@@ -1760,15 +1430,15 @@ Number of paths found:  2
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-19.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-31.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-20.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-32.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-21.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-33.png" width="672" />
 
 #### Runing time by method 
 
@@ -1832,8 +1502,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KBJAUIYZYF"> Show/Hide foundCycle query </button> 
- <div id="KBJAUIYZYF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UVFQNRAIYV"> Show/Hide foundCycle query </button> 
+ <div id="UVFQNRAIYV" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1861,8 +1531,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SAUIBBLCFG"> Show/Hide foundPath query </button> 
- <div id="SAUIBBLCFG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FWCJVDXGXQ"> Show/Hide foundPath query </button> 
+ <div id="FWCJVDXGXQ" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1886,62 +1556,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-01-9svHYu--CV </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 37,300 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 38,531 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 731 </td>
-   <td style="text-align:right;"> 1,014,477 </td>
-   <td style="text-align:right;"> 264,715 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-01-9svHYu--DV 
 
 #### simulationParameters 
@@ -2014,15 +1628,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-22.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-34.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-23.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-35.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-24.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-36.png" width="672" />
 
 #### Runing time by method 
 
@@ -2108,8 +1722,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OQRLWKICNT"> Show/Hide foundCycle query </button> 
- <div id="OQRLWKICNT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BBQHNZGKBX"> Show/Hide foundCycle query </button> 
+ <div id="BBQHNZGKBX" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2137,8 +1751,8 @@ Number of cycles found:  5
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TARRHYPLPY"> Show/Hide foundPath query </button> 
- <div id="TARRHYPLPY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YZNUUPXCTO"> Show/Hide foundPath query </button> 
+ <div id="YZNUUPXCTO" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2162,62 +1776,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-01-9svHYu--DV </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 36,856 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 38,087 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 731 </td>
-   <td style="text-align:right;"> 166,535 </td>
-   <td style="text-align:right;"> 1,463 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-12-58-5ZEBa6--CV 
 
 #### simulationParameters 
@@ -2290,15 +1848,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-25.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-37.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-26.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-38.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-27.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-39.png" width="672" />
 
 #### Runing time by method 
 
@@ -2362,8 +1920,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SKRELRMZWH"> Show/Hide foundCycle query </button> 
- <div id="SKRELRMZWH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SVXVUIFZIY"> Show/Hide foundCycle query </button> 
+ <div id="SVXVUIFZIY" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2391,8 +1949,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WCLOVGXZPH"> Show/Hide foundPath query </button> 
- <div id="WCLOVGXZPH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LEHUHFALRF"> Show/Hide foundPath query </button> 
+ <div id="LEHUHFALRF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2416,62 +1974,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-12-58-5ZEBa6--CV </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 9,864 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 10,795 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 431 </td>
-   <td style="text-align:right;"> 212,517 </td>
-   <td style="text-align:right;"> 72,653 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-12-58-5ZEBa6--DV 
 
 #### simulationParameters 
@@ -2544,15 +2046,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-28.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-40.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-29.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-41.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-30.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-42.png" width="672" />
 
 #### Runing time by method 
 
@@ -2638,8 +2140,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ROMSTVCBHC"> Show/Hide foundCycle query </button> 
- <div id="ROMSTVCBHC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MJVDXUULWM"> Show/Hide foundCycle query </button> 
+ <div id="MJVDXUULWM" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2667,8 +2169,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GKXORITKSU"> Show/Hide foundPath query </button> 
- <div id="GKXORITKSU" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GYFOECSWBF"> Show/Hide foundPath query </button> 
+ <div id="GYFOECSWBF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2692,62 +2194,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-12-58-5ZEBa6--DV </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 9,744 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 10,675 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 431 </td>
-   <td style="text-align:right;"> 67,172 </td>
-   <td style="text-align:right;"> 1,157 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-11-j9XCLm--CV 
 
 #### simulationParameters 
@@ -2820,15 +2266,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-31.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-43.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-32.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-44.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-33.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-45.png" width="672" />
 
 #### Runing time by method 
 
@@ -2892,8 +2338,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OCWJRABNDJ"> Show/Hide foundCycle query </button> 
- <div id="OCWJRABNDJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NPCWPWRFNF"> Show/Hide foundCycle query </button> 
+ <div id="NPCWPWRFNF" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2921,8 +2367,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OJTTPSKZKL"> Show/Hide foundPath query </button> 
- <div id="OJTTPSKZKL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AXUUJCFMHM"> Show/Hide foundPath query </button> 
+ <div id="AXUUJCFMHM" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2946,62 +2392,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-11-j9XCLm--CV </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 12,624 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 13,585 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 240 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 461 </td>
-   <td style="text-align:right;"> 271,307 </td>
-   <td style="text-align:right;"> 86,465 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-11-j9XCLm--DV 
 
 #### simulationParameters 
@@ -3074,15 +2464,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-34.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-46.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-35.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-47.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-36.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-48.png" width="672" />
 
 #### Runing time by method 
 
@@ -3168,8 +2558,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YHRFCAEVEZ"> Show/Hide foundCycle query </button> 
- <div id="YHRFCAEVEZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YBIFESKHJH"> Show/Hide foundCycle query </button> 
+ <div id="YBIFESKHJH" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3197,8 +2587,8 @@ Number of cycles found:  1
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LMLAAQSAVI"> Show/Hide foundPath query </button> 
- <div id="LMLAAQSAVI" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HCEMMSCZCF"> Show/Hide foundPath query </button> 
+ <div id="HCEMMSCZCF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3222,62 +2612,6 @@ Number of paths found:  2
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-11-j9XCLm--DV </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 12,460 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 13,421 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 240 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 461 </td>
-   <td style="text-align:right;"> 71,959 </td>
-   <td style="text-align:right;"> 1,209 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-18-bWXLYd--CV 
 
 #### simulationParameters 
@@ -3350,15 +2684,15 @@ Number of paths found:  2
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-37.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-49.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-38.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-50.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-39.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-51.png" width="672" />
 
 #### Runing time by method 
 
@@ -3422,8 +2756,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GWXBUXLWNC"> Show/Hide foundCycle query </button> 
- <div id="GWXBUXLWNC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SMPXIQURZM"> Show/Hide foundCycle query </button> 
+ <div id="SMPXIQURZM" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3451,8 +2785,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CBQBVBSKFX"> Show/Hide foundPath query </button> 
- <div id="CBQBVBSKFX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZNCONCXTNL"> Show/Hide foundPath query </button> 
+ <div id="ZNCONCXTNL" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3476,62 +2810,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-18-bWXLYd--CV </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 42,070 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 43,331 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 440 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 761 </td>
-   <td style="text-align:right;"> 1,180,158 </td>
-   <td style="text-align:right;"> 290,521 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-18-bWXLYd--DV 
 
 #### simulationParameters 
@@ -3604,15 +2882,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-40.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-52.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-41.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-53.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-42.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-54.png" width="672" />
 
 #### Runing time by method 
 
@@ -3705,8 +2983,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZFEAKKVFEX"> Show/Hide foundCycle query </button> 
- <div id="ZFEAKKVFEX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KEPTWFLOIQ"> Show/Hide foundCycle query </button> 
+ <div id="KEPTWFLOIQ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3734,8 +3012,8 @@ Number of cycles found:  4
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KLDLALBSFF"> Show/Hide foundPath query </button> 
- <div id="KLDLALBSFF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YLQKACJQEU"> Show/Hide foundPath query </button> 
+ <div id="YLQKACJQEU" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3759,62 +3037,6 @@ Number of paths found:  2
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-18-bWXLYd--DV </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 41,594 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 42,855 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 440 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 761 </td>
-   <td style="text-align:right;"> 192,381 </td>
-   <td style="text-align:right;"> 1,521 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-10-bCM5fk--CV 
 
 #### simulationParameters 
@@ -3887,15 +3109,15 @@ Number of paths found:  2
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-43.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-55.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-44.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-56.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-45.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-57.png" width="672" />
 
 #### Runing time by method 
 
@@ -3959,8 +3181,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KPZKIHMALH"> Show/Hide foundCycle query </button> 
- <div id="KPZKIHMALH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZHQACFTJWK"> Show/Hide foundCycle query </button> 
+ <div id="ZHQACFTJWK" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3988,8 +3210,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KBFLJZRDDW"> Show/Hide foundPath query </button> 
- <div id="KBFLJZRDDW" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LTIPUSIIYC"> Show/Hide foundPath query </button> 
+ <div id="LTIPUSIIYC" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4013,62 +3235,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-10-bCM5fk--CV </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 12,316 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 13,277 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 240 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 461 </td>
-   <td style="text-align:right;"> 265,668 </td>
-   <td style="text-align:right;"> 86,450 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-10-bCM5fk--DV 
 
 #### simulationParameters 
@@ -4141,15 +3307,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-46.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-58.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-47.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-59.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-48.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-60.png" width="672" />
 
 #### Runing time by method 
 
@@ -4235,8 +3401,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OILSKTVRGZ"> Show/Hide foundCycle query </button> 
- <div id="OILSKTVRGZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OXOMWCHLBG"> Show/Hide foundCycle query </button> 
+ <div id="OXOMWCHLBG" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4264,8 +3430,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UGEPGAGXNZ"> Show/Hide foundPath query </button> 
- <div id="UGEPGAGXNZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XUGKYBCJFA"> Show/Hide foundPath query </button> 
+ <div id="XUGKYBCJFA" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4289,62 +3455,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-10-bCM5fk--DV </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 12,182 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 13,143 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 240 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 461 </td>
-   <td style="text-align:right;"> 78,407 </td>
-   <td style="text-align:right;"> 1,209 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-13-7mwJNk--CV 
 
 #### simulationParameters 
@@ -4417,15 +3527,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-49.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-61.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-50.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-62.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-51.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-63.png" width="672" />
 
 #### Runing time by method 
 
@@ -4489,8 +3599,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZHCZIFCUUB"> Show/Hide foundCycle query </button> 
- <div id="ZHCZIFCUUB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UJDQLUZGVG"> Show/Hide foundCycle query </button> 
+ <div id="UJDQLUZGVG" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4518,8 +3628,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DYPVDAEJUR"> Show/Hide foundPath query </button> 
- <div id="DYPVDAEJUR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DTQOILQFJD"> Show/Hide foundPath query </button> 
+ <div id="DTQOILQFJD" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4543,62 +3653,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-13-7mwJNk--CV </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 41,772 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 43,033 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 440 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 761 </td>
-   <td style="text-align:right;"> 1,178,073 </td>
-   <td style="text-align:right;"> 290,521 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-13-7mwJNk--DV 
 
 #### simulationParameters 
@@ -4671,15 +3725,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-52.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-64.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-53.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-65.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-54.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-66.png" width="672" />
 
 #### Runing time by method 
 
@@ -4772,8 +3826,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NLKLGXEGYL"> Show/Hide foundCycle query </button> 
- <div id="NLKLGXEGYL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LYHSBYYJXW"> Show/Hide foundCycle query </button> 
+ <div id="LYHSBYYJXW" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4801,8 +3855,8 @@ Number of cycles found:  5
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RGHGPOQJAQ"> Show/Hide foundPath query </button> 
- <div id="RGHGPOQJAQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PFQHCPKOKM"> Show/Hide foundPath query </button> 
+ <div id="PFQHCPKOKM" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4826,62 +3880,6 @@ Number of paths found:  1
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 100 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-13-7mwJNk--DV </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 41,296 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 601 </td>
-   <td style="text-align:right;"> 42,557 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 440 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 761 </td>
-   <td style="text-align:right;"> 181,920 </td>
-   <td style="text-align:right;"> 1,521 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-28-2mwNJ9--CV 
 
 #### simulationParameters 
@@ -4954,15 +3952,15 @@ Number of paths found:  1
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-55.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-67.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-56.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-68.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-57.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-69.png" width="672" />
 
 #### Runing time by method 
 
@@ -5026,8 +4024,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FDATWVUIKT"> Show/Hide foundCycle query </button> 
- <div id="FDATWVUIKT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EJARXGZFFL"> Show/Hide foundCycle query </button> 
+ <div id="EJARXGZFFL" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5055,8 +4053,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ABBPXHDHIV"> Show/Hide foundPath query </button> 
- <div id="ABBPXHDHIV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VNUDZCMTQK"> Show/Hide foundPath query </button> 
+ <div id="VNUDZCMTQK" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5080,62 +4078,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-28-2mwNJ9--CV </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 35,300 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 37,131 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 831 </td>
-   <td style="text-align:right;"> 1,020,410 </td>
-   <td style="text-align:right;"> 264,723 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-28-2mwNJ9--DV 
 
 #### simulationParameters 
@@ -5208,15 +4150,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-58.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-70.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-59.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-71.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-60.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-72.png" width="672" />
 
 #### Runing time by method 
 
@@ -5302,8 +4244,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DJSFHSPVGP"> Show/Hide foundCycle query </button> 
- <div id="DJSFHSPVGP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BFAOAQGJDS"> Show/Hide foundCycle query </button> 
+ <div id="BFAOAQGJDS" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5331,8 +4273,8 @@ Number of cycles found:  5
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RKMDPYPEKK"> Show/Hide foundPath query </button> 
- <div id="RKMDPYPEKK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AEPEVTKJDP"> Show/Hide foundPath query </button> 
+ <div id="AEPEVTKJDP" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5356,62 +4298,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-28-2mwNJ9--DV </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 34,939 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 36,770 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 831 </td>
-   <td style="text-align:right;"> 226,641 </td>
-   <td style="text-align:right;"> 2,263 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-58-qocSnR--CV 
 
 #### simulationParameters 
@@ -5484,15 +4370,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-61.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-73.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-62.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-74.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-63.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-75.png" width="672" />
 
 #### Runing time by method 
 
@@ -5556,8 +4442,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GPZZMVYUBR"> Show/Hide foundCycle query </button> 
- <div id="GPZZMVYUBR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AWYYPBGRDO"> Show/Hide foundCycle query </button> 
+ <div id="AWYYPBGRDO" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5585,8 +4471,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WVQWGUOYCR"> Show/Hide foundPath query </button> 
- <div id="WVQWGUOYCR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KXULUIAJDX"> Show/Hide foundPath query </button> 
+ <div id="KXULUIAJDX" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5610,62 +4496,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-58-qocSnR--CV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 136,918 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 139,349 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 5,899,798 </td>
-   <td style="text-align:right;"> 1,008,787 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-58-qocSnR--DV 
 
 #### simulationParameters 
@@ -5738,15 +4568,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-64.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-76.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-65.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-77.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-66.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-78.png" width="672" />
 
 #### Runing time by method 
 
@@ -5822,8 +4652,8 @@ Number of paths found:  0
 
 Number of cycles found:  23 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UFMCSUJQOS"> Show/Hide foundCycle query </button> 
- <div id="UFMCSUJQOS" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MVDYJIEMUM"> Show/Hide foundCycle query </button> 
+ <div id="MVDYJIEMUM" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5851,8 +4681,8 @@ Number of cycles found:  23
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RGNAXKKMWG"> Show/Hide foundPath query </button> 
- <div id="RGNAXKKMWG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EXVTOBSXOF"> Show/Hide foundPath query </button> 
+ <div id="EXVTOBSXOF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5876,62 +4706,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-58-qocSnR--DV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 136,130 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 138,561 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 867,861 </td>
-   <td style="text-align:right;"> 2,910 </td>
-   <td style="text-align:right;"> 23 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-23-LU7jps--CV 
 
 #### simulationParameters 
@@ -6004,15 +4778,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-67.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-79.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-68.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-80.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-69.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-81.png" width="672" />
 
 #### Runing time by method 
 
@@ -6076,8 +4850,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PRHSHAXQGT"> Show/Hide foundCycle query </button> 
- <div id="PRHSHAXQGT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GOGWZNXYFA"> Show/Hide foundCycle query </button> 
+ <div id="GOGWZNXYFA" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6105,8 +4879,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MUAMYZLXSF"> Show/Hide foundPath query </button> 
- <div id="MUAMYZLXSF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RYMRDOYDVI"> Show/Hide foundPath query </button> 
+ <div id="RYMRDOYDVI" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6130,62 +4904,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-23-LU7jps--CV </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 36,494 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 38,325 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 831 </td>
-   <td style="text-align:right;"> 1,037,684 </td>
-   <td style="text-align:right;"> 264,744 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-23-LU7jps--DV 
 
 #### simulationParameters 
@@ -6258,15 +4976,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-70.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-82.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-71.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-83.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-72.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-84.png" width="672" />
 
 #### Runing time by method 
 
@@ -6359,8 +5077,8 @@ Number of paths found:  0
 
 Number of cycles found:  7 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JJCPRJGEDL"> Show/Hide foundCycle query </button> 
- <div id="JJCPRJGEDL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GRUFFTPFWU"> Show/Hide foundCycle query </button> 
+ <div id="GRUFFTPFWU" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6388,8 +5106,8 @@ Number of cycles found:  7
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ABMYWOFTLP"> Show/Hide foundPath query </button> 
- <div id="ABMYWOFTLP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NCABYVCOYK"> Show/Hide foundPath query </button> 
+ <div id="NCABYVCOYK" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6413,62 +5131,6 @@ Number of paths found:  1
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-23-LU7jps--DV </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 36,192 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 38,023 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 210 </td>
-   <td style="text-align:right;"> 831 </td>
-   <td style="text-align:right;"> 253,008 </td>
-   <td style="text-align:right;"> 2,277 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-33-2tryyr--CV 
 
 #### simulationParameters 
@@ -6541,15 +5203,15 @@ Number of paths found:  1
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-73.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-85.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-74.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-86.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-75.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-87.png" width="672" />
 
 #### Runing time by method 
 
@@ -6613,8 +5275,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WBXVONIEMI"> Show/Hide foundCycle query </button> 
- <div id="WBXVONIEMI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BPMHVJFBXS"> Show/Hide foundCycle query </button> 
+ <div id="BPMHVJFBXS" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6642,8 +5304,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HKNFLSSNZA"> Show/Hide foundPath query </button> 
- <div id="HKNFLSSNZA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MSJMRUWXBT"> Show/Hide foundPath query </button> 
+ <div id="MSJMRUWXBT" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6667,62 +5329,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-33-2tryyr--CV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 133,544 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 135,975 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 5,730,773 </td>
-   <td style="text-align:right;"> 1,008,931 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-33-2tryyr--DV 
 
 #### simulationParameters 
@@ -6795,15 +5401,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-76.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-88.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-77.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-89.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-78.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-90.png" width="672" />
 
 #### Runing time by method 
 
@@ -6889,8 +5495,8 @@ Number of paths found:  0
 
 Number of cycles found:  24 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DCEZZVRSAB"> Show/Hide foundCycle query </button> 
- <div id="DCEZZVRSAB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZOHYDKNEBZ"> Show/Hide foundCycle query </button> 
+ <div id="ZOHYDKNEBZ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6918,8 +5524,8 @@ Number of cycles found:  24
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KSPWEZHOXA"> Show/Hide foundPath query </button> 
- <div id="KSPWEZHOXA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KKIZIGHQAA"> Show/Hide foundPath query </button> 
+ <div id="KKIZIGHQAA" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6943,62 +5549,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-33-2tryyr--DV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 132,468 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 134,899 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 822,821 </td>
-   <td style="text-align:right;"> 2,907 </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-02-29-wnUn7p--CV 
 
 #### simulationParameters 
@@ -7071,15 +5621,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-79.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-91.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-80.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-92.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-81.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-93.png" width="672" />
 
 #### Runing time by method 
 
@@ -7143,8 +5693,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#STULDQSDCI"> Show/Hide foundCycle query </button> 
- <div id="STULDQSDCI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WKBEAZUEGP"> Show/Hide foundCycle query </button> 
+ <div id="WKBEAZUEGP" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7172,8 +5722,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VUJWVGZEIY"> Show/Hide foundPath query </button> 
- <div id="VUJWVGZEIY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NXTJLYWZMD"> Show/Hide foundPath query </button> 
+ <div id="NXTJLYWZMD" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7197,62 +5747,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-02-29-wnUn7p--CV </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 39,760 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 41,621 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 440 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 861 </td>
-   <td style="text-align:right;"> 1,163,806 </td>
-   <td style="text-align:right;"> 290,516 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-02-29-wnUn7p--DV 
 
 #### simulationParameters 
@@ -7325,15 +5819,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-82.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-94.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-83.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-95.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-84.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-96.png" width="672" />
 
 #### Runing time by method 
 
@@ -7426,8 +5920,8 @@ Number of paths found:  0
 
 Number of cycles found:  6 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MYKTJFNWCL"> Show/Hide foundCycle query </button> 
- <div id="MYKTJFNWCL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NOJZVDGGWX"> Show/Hide foundCycle query </button> 
+ <div id="NOJZVDGGWX" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7455,8 +5949,8 @@ Number of cycles found:  6
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DKIIMTPFPD"> Show/Hide foundPath query </button> 
- <div id="DKIIMTPFPD" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KGAIUPWWTY"> Show/Hide foundPath query </button> 
+ <div id="KGAIUPWWTY" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7480,62 +5974,6 @@ Number of paths found:  2
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-02-29-wnUn7p--DV </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 39,494 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 41,355 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 440 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 861 </td>
-   <td style="text-align:right;"> 249,190 </td>
-   <td style="text-align:right;"> 2,327 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-03-02-JQ4Xga--CV 
 
 #### simulationParameters 
@@ -7608,15 +6046,15 @@ Number of paths found:  2
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-85.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-97.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-86.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-98.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-87.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-99.png" width="672" />
 
 #### Runing time by method 
 
@@ -7680,8 +6118,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YLVJIAWOBC"> Show/Hide foundCycle query </button> 
- <div id="YLVJIAWOBC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ATQGVIRBOV"> Show/Hide foundCycle query </button> 
+ <div id="ATQGVIRBOV" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7709,8 +6147,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YPHXORMLVT"> Show/Hide foundPath query </button> 
- <div id="YPHXORMLVT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DSATILXEFI"> Show/Hide foundPath query </button> 
+ <div id="DSATILXEFI" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7734,62 +6172,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-03-02-JQ4Xga--CV </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 143,002 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 145,463 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 840 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,461 </td>
-   <td style="text-align:right;"> 6,324,895 </td>
-   <td style="text-align:right;"> 1,058,579 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-03-02-JQ4Xga--DV 
 
 #### simulationParameters 
@@ -7862,15 +6244,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-88.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-100.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-89.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-101.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-90.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-102.png" width="672" />
 
 #### Runing time by method 
 
@@ -7952,8 +6334,8 @@ Number of paths found:  0
 
 Number of cycles found:  15 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FIUJZIHFTW"> Show/Hide foundCycle query </button> 
- <div id="FIUJZIHFTW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TZIVUEVYLJ"> Show/Hide foundCycle query </button> 
+ <div id="TZIVUEVYLJ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7981,8 +6363,8 @@ Number of cycles found:  15
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NWMVXAOSES"> Show/Hide foundPath query </button> 
- <div id="NWMVXAOSES" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EYDULOKMUV"> Show/Hide foundPath query </button> 
+ <div id="EYDULOKMUV" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8006,62 +6388,6 @@ Number of paths found:  3
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-03-02-JQ4Xga--DV </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 142,210 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 144,671 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 840 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,461 </td>
-   <td style="text-align:right;"> 777,539 </td>
-   <td style="text-align:right;"> 2,984 </td>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-02-24-HT69z4--CV 
 
 #### simulationParameters 
@@ -8134,15 +6460,15 @@ Number of paths found:  3
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-91.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-103.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-92.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-104.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-93.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-105.png" width="672" />
 
 #### Runing time by method 
 
@@ -8206,8 +6532,8 @@ Number of paths found:  3
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QOJBQOJUMR"> Show/Hide foundCycle query </button> 
- <div id="QOJBQOJUMR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BRCYKTYZHC"> Show/Hide foundCycle query </button> 
+ <div id="BRCYKTYZHC" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8235,8 +6561,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HQNENBMVQE"> Show/Hide foundPath query </button> 
- <div id="HQNENBMVQE" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TBURSBDUZX"> Show/Hide foundPath query </button> 
+ <div id="TBURSBDUZX" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8260,62 +6586,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-02-24-HT69z4--CV </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 39,926 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 41,787 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 440 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 861 </td>
-   <td style="text-align:right;"> 1,163,982 </td>
-   <td style="text-align:right;"> 290,564 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-02-24-HT69z4--DV 
 
 #### simulationParameters 
@@ -8388,15 +6658,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-94.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-106.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-95.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-107.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-96.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-108.png" width="672" />
 
 #### Runing time by method 
 
@@ -8489,8 +6759,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CMWRQIGAEJ"> Show/Hide foundCycle query </button> 
- <div id="CMWRQIGAEJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IZPJBAIDMG"> Show/Hide foundCycle query </button> 
+ <div id="IZPJBAIDMG" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8518,8 +6788,8 @@ Number of cycles found:  1
 
 Number of paths found:  8 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KOXKZCLZUY"> Show/Hide foundPath query </button> 
- <div id="KOXKZCLZUY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZWOMEDSWWE"> Show/Hide foundPath query </button> 
+ <div id="ZWOMEDSWWE" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8543,62 +6813,6 @@ Number of paths found:  8
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-02-24-HT69z4--DV </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 39,564 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 41,425 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 440 </td>
-   <td style="text-align:right;"> 220 </td>
-   <td style="text-align:right;"> 861 </td>
-   <td style="text-align:right;"> 240,198 </td>
-   <td style="text-align:right;"> 2,330 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-02-34-qV6kk7--CV 
 
 #### simulationParameters 
@@ -8671,15 +6885,15 @@ Number of paths found:  8
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-97.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-109.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-98.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-110.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-99.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-111.png" width="672" />
 
 #### Runing time by method 
 
@@ -8743,8 +6957,8 @@ Number of paths found:  8
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GBYUOUQTMQ"> Show/Hide foundCycle query </button> 
- <div id="GBYUOUQTMQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SUIUSFUTDW"> Show/Hide foundCycle query </button> 
+ <div id="SUIUSFUTDW" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8772,8 +6986,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JGFEYDOTHW"> Show/Hide foundPath query </button> 
- <div id="JGFEYDOTHW" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HZMIMSEONH"> Show/Hide foundPath query </button> 
+ <div id="HZMIMSEONH" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8797,62 +7011,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-02-34-qV6kk7--CV </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 144,894 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 147,355 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 840 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,461 </td>
-   <td style="text-align:right;"> 6,300,874 </td>
-   <td style="text-align:right;"> 1,058,750 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-02-34-qV6kk7--DV 
 
 #### simulationParameters 
@@ -8925,15 +7083,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-100.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-112.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-101.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-113.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-102.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-114.png" width="672" />
 
 #### Runing time by method 
 
@@ -9015,8 +7173,8 @@ Number of paths found:  0
 
 Number of cycles found:  14 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VJKPJPIWVE"> Show/Hide foundCycle query </button> 
- <div id="VJKPJPIWVE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XDRIPXIISR"> Show/Hide foundCycle query </button> 
+ <div id="XDRIPXIISR" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9044,8 +7202,8 @@ Number of cycles found:  14
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OCYJNYMESY"> Show/Hide foundPath query </button> 
- <div id="OCYJNYMESY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DAGNVCPBIP"> Show/Hide foundPath query </button> 
+ <div id="DAGNVCPBIP" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9069,62 +7227,6 @@ Number of paths found:  1
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-02-34-qV6kk7--DV </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 143,760 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 146,221 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 840 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,461 </td>
-   <td style="text-align:right;"> 906,965 </td>
-   <td style="text-align:right;"> 2,981 </td>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-03-55-uLoEi8--CV 
 
 #### simulationParameters 
@@ -9197,15 +7299,15 @@ Number of paths found:  1
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-103.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-115.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-104.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-116.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-105.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-117.png" width="672" />
 
 #### Runing time by method 
 
@@ -9287,8 +7389,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QYODCTJAGG"> Show/Hide foundCycle query </button> 
- <div id="QYODCTJAGG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IRULINKXSP"> Show/Hide foundCycle query </button> 
+ <div id="IRULINKXSP" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9316,8 +7418,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MJNUPYJNQF"> Show/Hide foundPath query </button> 
- <div id="MJNUPYJNQF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OUZOEETLUX"> Show/Hide foundPath query </button> 
+ <div id="OUZOEETLUX" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9341,62 +7443,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-03-55-uLoEi8--CV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 132,832 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 136,463 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,631 </td>
-   <td style="text-align:right;"> 5,801,230 </td>
-   <td style="text-align:right;"> 1,008,854 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-03-55-uLoEi8--DV 
 
 #### simulationParameters 
@@ -9469,15 +7515,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-106.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-118.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-107.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-119.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-108.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-120.png" width="672" />
 
 #### Runing time by method 
 
@@ -9559,8 +7605,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EOSBBLZOFZ"> Show/Hide foundCycle query </button> 
- <div id="EOSBBLZOFZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QLEYHBTHBK"> Show/Hide foundCycle query </button> 
+ <div id="QLEYHBTHBK" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9588,8 +7634,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SMBENHRQOH"> Show/Hide foundPath query </button> 
- <div id="SMBENHRQOH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QANWAREBPX"> Show/Hide foundPath query </button> 
+ <div id="QANWAREBPX" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9613,62 +7659,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-03-55-uLoEi8--DV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 132,384 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 136,015 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,631 </td>
-   <td style="text-align:right;"> 1,138,759 </td>
-   <td style="text-align:right;"> 4,481 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-06-21-3RT7tA--CV 
 
 #### simulationParameters 
@@ -9741,15 +7731,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-109.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-121.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-110.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-122.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-111.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-123.png" width="672" />
 
 #### Runing time by method 
 
@@ -9825,8 +7815,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IIITKKGBGG"> Show/Hide foundCycle query </button> 
- <div id="IIITKKGBGG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WCZYTWNJCW"> Show/Hide foundCycle query </button> 
+ <div id="WCZYTWNJCW" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9854,8 +7844,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IDXVFEVBKY"> Show/Hide foundPath query </button> 
- <div id="IDXVFEVBKY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JOYQFWPTGG"> Show/Hide foundPath query </button> 
+ <div id="JOYQFWPTGG" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9879,62 +7869,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-06-21-3RT7tA--CV </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 516,630 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 521,461 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 1,620 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 2,831 </td>
-   <td style="text-align:right;"> 14,304,911 </td>
-   <td style="text-align:right;"> 1,471,953 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-06-21-3RT7tA--DV 
 
 #### simulationParameters 
@@ -10007,15 +7941,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-112.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-124.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-113.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-125.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-114.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-126.png" width="672" />
 
 #### Runing time by method 
 
@@ -10091,8 +8025,8 @@ Number of paths found:  0
 
 Number of cycles found:  73 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NNJXGWWUAW"> Show/Hide foundCycle query </button> 
- <div id="NNJXGWWUAW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XYOTFNJWRK"> Show/Hide foundCycle query </button> 
+ <div id="XYOTFNJWRK" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10120,8 +8054,8 @@ Number of cycles found:  73
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AKONCZKXBY"> Show/Hide foundPath query </button> 
- <div id="AKONCZKXBY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GYMMCTNKBD"> Show/Hide foundPath query </button> 
+ <div id="GYMMCTNKBD" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10145,62 +8079,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-06-21-3RT7tA--DV </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 515,889 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 520,720 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 1,620 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 2,831 </td>
-   <td style="text-align:right;"> 5,451,918 </td>
-   <td style="text-align:right;"> 6,019 </td>
-   <td style="text-align:right;"> 73 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-03-29-rephNw--CV 
 
 #### simulationParameters 
@@ -10273,15 +8151,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-115.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-127.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-116.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-128.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-117.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-129.png" width="672" />
 
 #### Runing time by method 
 
@@ -10345,8 +8223,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VUNAZWJEOS"> Show/Hide foundCycle query </button> 
- <div id="VUNAZWJEOS" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NWAPDTYQXV"> Show/Hide foundCycle query </button> 
+ <div id="NWAPDTYQXV" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10374,8 +8252,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LZVBWJTYNN"> Show/Hide foundPath query </button> 
- <div id="LZVBWJTYNN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BGPLHPCNIH"> Show/Hide foundPath query </button> 
+ <div id="BGPLHPCNIH" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10399,62 +8277,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-03-29-rephNw--CV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 131,652 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 135,283 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,631 </td>
-   <td style="text-align:right;"> 5,855,923 </td>
-   <td style="text-align:right;"> 1,010,312 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-03-29-rephNw--DV 
 
 #### simulationParameters 
@@ -10527,15 +8349,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-118.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-130.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-119.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-131.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-120.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-132.png" width="672" />
 
 #### Runing time by method 
 
@@ -10611,8 +8433,8 @@ Number of paths found:  0
 
 Number of cycles found:  25 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GAAMKJLWYN"> Show/Hide foundCycle query </button> 
- <div id="GAAMKJLWYN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HOSZSPLVCN"> Show/Hide foundCycle query </button> 
+ <div id="HOSZSPLVCN" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10640,8 +8462,8 @@ Number of cycles found:  25
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DLKAWKKSKA"> Show/Hide foundPath query </button> 
- <div id="DLKAWKKSKA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LMKDDGVGHX"> Show/Hide foundPath query </button> 
+ <div id="LMKDDGVGHX" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10665,62 +8487,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-03-29-rephNw--DV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 128,214 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 131,845 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,631 </td>
-   <td style="text-align:right;"> 1,095,682 </td>
-   <td style="text-align:right;"> 4,525 </td>
-   <td style="text-align:right;"> 25 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-04-21-PcvZuy--CV 
 
 #### simulationParameters 
@@ -10793,15 +8559,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-121.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-133.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-122.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-134.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-123.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-135.png" width="672" />
 
 #### Runing time by method 
 
@@ -10865,8 +8631,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AXGMEOQJGY"> Show/Hide foundCycle query </button> 
- <div id="AXGMEOQJGY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SJQQASBLEP"> Show/Hide foundCycle query </button> 
+ <div id="SJQQASBLEP" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10894,8 +8660,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PTXVGLKDHA"> Show/Hide foundPath query </button> 
- <div id="PTXVGLKDHA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EZRTUWOWDK"> Show/Hide foundPath query </button> 
+ <div id="EZRTUWOWDK" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10919,62 +8685,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-04-21-PcvZuy--CV </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 502,100 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 506,931 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 1,620 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 2,831 </td>
-   <td style="text-align:right;"> 14,287,163 </td>
-   <td style="text-align:right;"> 1,505,032 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-04-21-PcvZuy--DV 
 
 #### simulationParameters 
@@ -11047,15 +8757,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-124.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-136.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-125.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-137.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-126.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-138.png" width="672" />
 
 #### Runing time by method 
 
@@ -11141,8 +8851,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IPRNVGIYYT"> Show/Hide foundCycle query </button> 
- <div id="IPRNVGIYYT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HVPGKJHGIN"> Show/Hide foundCycle query </button> 
+ <div id="HVPGKJHGIN" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11170,8 +8880,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DUGSLOOUNS"> Show/Hide foundPath query </button> 
- <div id="DUGSLOOUNS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EZCZHAFKKK"> Show/Hide foundPath query </button> 
+ <div id="EZCZHAFKKK" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11195,62 +8905,6 @@ Number of paths found:  3600
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-04-21-PcvZuy--DV </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 496,468 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 501,299 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 1,620 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 2,831 </td>
-   <td style="text-align:right;"> 4,279,109 </td>
-   <td style="text-align:right;"> 16,435 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3,600 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-08-52-e9mxSB--CV 
 
 #### simulationParameters 
@@ -11323,15 +8977,15 @@ Number of paths found:  3600
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-127.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-139.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-128.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-140.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-129.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-141.png" width="672" />
 
 #### Runing time by method 
 
@@ -11395,8 +9049,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KTTCAYXLFQ"> Show/Hide foundCycle query </button> 
- <div id="KTTCAYXLFQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YMKWYCXTBF"> Show/Hide foundCycle query </button> 
+ <div id="YMKWYCXTBF" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11424,8 +9078,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JLOQUNZYWS"> Show/Hide foundPath query </button> 
- <div id="JLOQUNZYWS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ESROXAZYMG"> Show/Hide foundPath query </button> 
+ <div id="ESROXAZYMG" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11449,62 +9103,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-08-52-e9mxSB--CV </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 141,454 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 145,115 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 840 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,661 </td>
-   <td style="text-align:right;"> 6,356,562 </td>
-   <td style="text-align:right;"> 1,058,634 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-08-52-e9mxSB--DV 
 
 #### simulationParameters 
@@ -11577,15 +9175,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-130.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-142.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-131.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-143.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-132.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-144.png" width="672" />
 
 #### Runing time by method 
 
@@ -11667,8 +9265,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OPRMZVGKDG"> Show/Hide foundCycle query </button> 
- <div id="OPRMZVGKDG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PCICTATJDL"> Show/Hide foundCycle query </button> 
+ <div id="PCICTATJDL" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11696,8 +9294,8 @@ Number of cycles found:  3
 
 Number of paths found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HRASIBLAVK"> Show/Hide foundPath query </button> 
- <div id="HRASIBLAVK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NBOTDHFGVP"> Show/Hide foundPath query </button> 
+ <div id="NBOTDHFGVP" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11721,62 +9319,6 @@ Number of paths found:  4
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-08-52-e9mxSB--DV </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 140,952 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 144,613 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 840 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,661 </td>
-   <td style="text-align:right;"> 1,110,172 </td>
-   <td style="text-align:right;"> 4,581 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-12-21-b9wEmt--CV 
 
 #### simulationParameters 
@@ -11849,15 +9391,15 @@ Number of paths found:  4
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-133.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-145.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-134.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-146.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-135.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-147.png" width="672" />
 
 #### Runing time by method 
 
@@ -11933,8 +9475,8 @@ Number of paths found:  4
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AZIFTMIOQY"> Show/Hide foundCycle query </button> 
- <div id="AZIFTMIOQY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IYBGWJQEOR"> Show/Hide foundCycle query </button> 
+ <div id="IYBGWJQEOR" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11962,8 +9504,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GNQCYQCTNG"> Show/Hide foundPath query </button> 
- <div id="GNQCYQCTNG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XYFXLMXNVS"> Show/Hide foundPath query </button> 
+ <div id="XYFXLMXNVS" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11987,62 +9529,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-12-21-b9wEmt--CV </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 526,126 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 530,987 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 1,640 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 2,861 </td>
-   <td style="text-align:right;"> 14,318,288 </td>
-   <td style="text-align:right;"> 1,433,372 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-12-21-b9wEmt--DV 
 
 #### simulationParameters 
@@ -12115,15 +9601,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-136.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-148.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-137.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-149.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-138.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-150.png" width="672" />
 
 #### Runing time by method 
 
@@ -12205,8 +9691,8 @@ Number of paths found:  0
 
 Number of cycles found:  34 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YYMAZDMTWD"> Show/Hide foundCycle query </button> 
- <div id="YYMAZDMTWD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FIVKVSPEQE"> Show/Hide foundCycle query </button> 
+ <div id="FIVKVSPEQE" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12234,8 +9720,8 @@ Number of cycles found:  34
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AFTKSYUFMQ"> Show/Hide foundPath query </button> 
- <div id="AFTKSYUFMQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZOSFDVFIHL"> Show/Hide foundPath query </button> 
+ <div id="ZOSFDVFIHL" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12259,62 +9745,6 @@ Number of paths found:  3
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-12-21-b9wEmt--DV </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 525,525 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 530,386 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 1,640 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 2,861 </td>
-   <td style="text-align:right;"> 5,064,338 </td>
-   <td style="text-align:right;"> 5,967 </td>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-07-25-JPeHEv--CV 
 
 #### simulationParameters 
@@ -12387,15 +9817,15 @@ Number of paths found:  3
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-139.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-151.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-140.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-152.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-141.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-153.png" width="672" />
 
 #### Runing time by method 
 
@@ -12459,8 +9889,8 @@ Number of paths found:  3
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ATYEOHABJH"> Show/Hide foundCycle query </button> 
- <div id="ATYEOHABJH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TQYZOJEFPQ"> Show/Hide foundCycle query </button> 
+ <div id="TQYZOJEFPQ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12488,8 +9918,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NSKTBJWAWL"> Show/Hide foundPath query </button> 
- <div id="NSKTBJWAWL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZRHUSBOKRI"> Show/Hide foundPath query </button> 
+ <div id="ZRHUSBOKRI" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12513,62 +9943,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-07-25-JPeHEv--CV </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 140,824 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 144,485 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 840 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,661 </td>
-   <td style="text-align:right;"> 6,259,703 </td>
-   <td style="text-align:right;"> 1,060,600 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-07-25-JPeHEv--DV 
 
 #### simulationParameters 
@@ -12641,15 +10015,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-142.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-154.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-143.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-155.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-144.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-156.png" width="672" />
 
 #### Runing time by method 
 
@@ -12735,8 +10109,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TKVDOXZCJL"> Show/Hide foundCycle query </button> 
- <div id="TKVDOXZCJL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HMUDLFCSYW"> Show/Hide foundCycle query </button> 
+ <div id="HMUDLFCSYW" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12764,8 +10138,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KMPEJVXAZN"> Show/Hide foundPath query </button> 
- <div id="KMPEJVXAZN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TBSBJJGSIP"> Show/Hide foundPath query </button> 
+ <div id="TBSBJJGSIP" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12789,62 +10163,6 @@ Number of paths found:  3600
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-07-25-JPeHEv--DV </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 136,390 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 140,051 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 840 </td>
-   <td style="text-align:right;"> 420 </td>
-   <td style="text-align:right;"> 1,661 </td>
-   <td style="text-align:right;"> 1,236,435 </td>
-   <td style="text-align:right;"> 15,265 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3,600 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-09-20-5oCIZR--CV 
 
 #### simulationParameters 
@@ -12917,15 +10235,15 @@ Number of paths found:  3600
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-145.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-157.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-146.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-158.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-147.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-159.png" width="672" />
 
 #### Runing time by method 
 
@@ -13011,8 +10329,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ELPRJSVVRL"> Show/Hide foundCycle query </button> 
- <div id="ELPRJSVVRL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#THTVZCSAEL"> Show/Hide foundCycle query </button> 
+ <div id="THTVZCSAEL" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13040,8 +10358,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FOZLKEWJGO"> Show/Hide foundPath query </button> 
- <div id="FOZLKEWJGO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PUQDRFIKDF"> Show/Hide foundPath query </button> 
+ <div id="PUQDRFIKDF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13065,62 +10383,6 @@ Number of paths found:  3600
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-09-20-5oCIZR--CV </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 523,896 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 528,757 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 1,640 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 2,861 </td>
-   <td style="text-align:right;"> 10,762,227 </td>
-   <td style="text-align:right;"> 1,454,317 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3,600 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-09-20-5oCIZR--DV 
 
 #### simulationParameters 
@@ -13193,15 +10455,15 @@ Number of paths found:  3600
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-148.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-160.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-149.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-161.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-150.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-162.png" width="672" />
 
 #### Runing time by method 
 
@@ -13287,8 +10549,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JOOKWRTSJQ"> Show/Hide foundCycle query </button> 
- <div id="JOOKWRTSJQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OVGYFDKONB"> Show/Hide foundCycle query </button> 
+ <div id="OVGYFDKONB" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13316,8 +10578,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BUJXWBCFDM"> Show/Hide foundPath query </button> 
- <div id="BUJXWBCFDM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KTDEFJGFMO"> Show/Hide foundPath query </button> 
+ <div id="KTDEFJGFMO" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13341,62 +10603,6 @@ Number of paths found:  3600
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 400 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-09-20-5oCIZR--DV </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 517,818 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 2,401 </td>
-   <td style="text-align:right;"> 522,679 </td>
-   <td style="text-align:right;"> 401 </td>
-   <td style="text-align:right;"> 1,640 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 2,861 </td>
-   <td style="text-align:right;"> 4,681,150 </td>
-   <td style="text-align:right;"> 16,465 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3,600 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-25-9f8vyU--CV 
 
 #### simulationParameters 
@@ -13469,15 +10675,15 @@ Number of paths found:  3600
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-151.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-163.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-152.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-164.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-153.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-165.png" width="672" />
 
 #### Runing time by method 
 
@@ -13563,8 +10769,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WMOZWLNWKC"> Show/Hide foundCycle query </button> 
- <div id="WMOZWLNWKC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PUXZAWHHTO"> Show/Hide foundCycle query </button> 
+ <div id="PUXZAWHHTO" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13592,8 +10798,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JALNOFUJIL"> Show/Hide foundPath query </button> 
- <div id="JALNOFUJIL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BXVLROJVHF"> Show/Hide foundPath query </button> 
+ <div id="BXVLROJVHF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13617,62 +10823,6 @@ Number of paths found:  3600
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 800 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-25-9f8vyU--CV </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 470,834 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 4,801 </td>
-   <td style="text-align:right;"> 478,065 </td>
-   <td style="text-align:right;"> 801 </td>
-   <td style="text-align:right;"> 1,620 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 3,231 </td>
-   <td style="text-align:right;"> 10,732,684 </td>
-   <td style="text-align:right;"> 1,536,161 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3,600 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-11-01-25-9f8vyU--DV 
 
 #### simulationParameters 
@@ -13745,15 +10895,15 @@ Number of paths found:  3600
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-154.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-166.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-155.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-167.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-156.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-168.png" width="672" />
 
 #### Runing time by method 
 
@@ -13839,8 +10989,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LLFMCPZIZJ"> Show/Hide foundCycle query </button> 
- <div id="LLFMCPZIZJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MLJPAYHMDB"> Show/Hide foundCycle query </button> 
+ <div id="MLJPAYHMDB" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13868,8 +11018,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OFSKIAPMIF"> Show/Hide foundPath query </button> 
- <div id="OFSKIAPMIF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MNLSENJIYP"> Show/Hide foundPath query </button> 
+ <div id="MNLSENJIYP" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13893,62 +11043,10 @@ Number of paths found:  3600
      
 
 </div>
-#### Summary of simulation 
+## Scatterplots of experiment 
 
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 800 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
-   <td style="text-align:left;"> SIM08-11-01-25-9f8vyU--DV </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 447,548 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 4,801 </td>
-   <td style="text-align:right;"> 454,779 </td>
-   <td style="text-align:right;"> 801 </td>
-   <td style="text-align:right;"> 1,620 </td>
-   <td style="text-align:right;"> 810 </td>
-   <td style="text-align:right;"> 3,231 </td>
-   <td style="text-align:right;"> 5,013,478 </td>
-   <td style="text-align:right;"> 19,635 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3,600 </td>
-  </tr>
-</tbody>
-</table></div>
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-169.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-170.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-171.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-172.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-173.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-174.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-175.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-176.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-177.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-178.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-179.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-180.png" width="672" />   
+
 # Experiment  3 
 
 Pre-generated smallWorld social network of agents with known diameters < 10; different similarity search thresholds 
@@ -14067,15 +11165,15 @@ Pre-generated smallWorld social network of agents with known diameters < 10; dif
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-157.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-181.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-158.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-182.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-159.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-183.png" width="672" />
 
 #### Runing time by method 
 
@@ -14157,8 +11255,8 @@ Pre-generated smallWorld social network of agents with known diameters < 10; dif
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IHVPIWIVZY"> Show/Hide foundCycle query </button> 
- <div id="IHVPIWIVZY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TELWKXFKVP"> Show/Hide foundCycle query </button> 
+ <div id="TELWKXFKVP" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14186,8 +11284,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JLLSNWRNXH"> Show/Hide foundPath query </button> 
- <div id="JLLSNWRNXH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RAXBALFJMW"> Show/Hide foundPath query </button> 
+ <div id="RAXBALFJMW" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14211,62 +11309,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
-   <td style="text-align:left;"> SIM08-12-12-23-DDd6WJ--CV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 137,786 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 140,217 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 7,635,320 </td>
-   <td style="text-align:right;"> 1,009,610 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-12-12-23-DDd6WJ--DV 
 
 #### simulationParameters 
@@ -14339,15 +11381,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-160.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-184.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-161.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-185.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-162.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-186.png" width="672" />
 
 #### Runing time by method 
 
@@ -14440,8 +11482,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XGWKRYIMIJ"> Show/Hide foundCycle query </button> 
- <div id="XGWKRYIMIJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OUKGQUFNPA"> Show/Hide foundCycle query </button> 
+ <div id="OUKGQUFNPA" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14469,8 +11511,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QLWZYKVUIQ"> Show/Hide foundPath query </button> 
- <div id="QLWZYKVUIQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DEXJKVFNQW"> Show/Hide foundPath query </button> 
+ <div id="DEXJKVFNQW" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14494,62 +11536,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
-   <td style="text-align:left;"> SIM08-12-12-23-DDd6WJ--DV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 137,030 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 139,461 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 867,386 </td>
-   <td style="text-align:right;"> 3,142 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-12-12-59-7pHkve--CV 
 
 #### simulationParameters 
@@ -14622,15 +11608,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-163.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-187.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-164.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-188.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-165.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-189.png" width="672" />
 
 #### Runing time by method 
 
@@ -14718,8 +11704,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PMIMSHNOYB"> Show/Hide foundCycle query </button> 
- <div id="PMIMSHNOYB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZXCQUSYUTJ"> Show/Hide foundCycle query </button> 
+ <div id="ZXCQUSYUTJ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14747,8 +11733,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UMILCXCWWQ"> Show/Hide foundPath query </button> 
- <div id="UMILCXCWWQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OOPJOEMMNO"> Show/Hide foundPath query </button> 
+ <div id="OOPJOEMMNO" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14772,62 +11758,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.95 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
-   <td style="text-align:left;"> SIM08-12-12-59-7pHkve--CV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 136,258 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 138,689 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 6,314,133 </td>
-   <td style="text-align:right;"> 1,009,073 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-12-12-59-7pHkve--DV 
 
 #### simulationParameters 
@@ -14900,15 +11830,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-166.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-190.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-167.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-191.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-168.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-192.png" width="672" />
 
 #### Runing time by method 
 
@@ -15001,8 +11931,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XHCIIRFSFN"> Show/Hide foundCycle query </button> 
- <div id="XHCIIRFSFN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LYQZWUVNQB"> Show/Hide foundCycle query </button> 
+ <div id="LYQZWUVNQB" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15030,8 +11960,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PTTTUWCEZG"> Show/Hide foundPath query </button> 
- <div id="PTTTUWCEZG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HXKZYHDWSO"> Show/Hide foundPath query </button> 
+ <div id="HXKZYHDWSO" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15055,62 +11985,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.95 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
-   <td style="text-align:left;"> SIM08-12-12-59-7pHkve--DV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 135,497 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 137,928 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 789,693 </td>
-   <td style="text-align:right;"> 2,928 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-12-11-17-FUJWvx--CV 
 
 #### simulationParameters 
@@ -15183,15 +12057,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-169.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-193.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-170.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-194.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-171.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-195.png" width="672" />
 
 #### Runing time by method 
 
@@ -15279,8 +12153,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GLMUCGIVNO"> Show/Hide foundCycle query </button> 
- <div id="GLMUCGIVNO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VLTJUXWVRW"> Show/Hide foundCycle query </button> 
+ <div id="VLTJUXWVRW" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15308,8 +12182,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FAICEKJNFC"> Show/Hide foundPath query </button> 
- <div id="FAICEKJNFC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RXZCWMRPCN"> Show/Hide foundPath query </button> 
+ <div id="RXZCWMRPCN" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15333,62 +12207,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.9 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
-   <td style="text-align:left;"> SIM08-12-11-17-FUJWvx--CV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 137,670 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 140,101 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 7,437,524 </td>
-   <td style="text-align:right;"> 1,009,608 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-12-11-17-FUJWvx--DV 
 
 #### simulationParameters 
@@ -15461,15 +12279,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-172.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-196.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-173.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-197.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-174.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-198.png" width="672" />
 
 #### Runing time by method 
 
@@ -15562,8 +12380,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JSJBOLTRQM"> Show/Hide foundCycle query </button> 
- <div id="JSJBOLTRQM" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UUEGRVRWZZ"> Show/Hide foundCycle query </button> 
+ <div id="UUEGRVRWZZ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15591,8 +12409,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NRPTOPLZXM"> Show/Hide foundPath query </button> 
- <div id="NRPTOPLZXM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JFVNCZTOKD"> Show/Hide foundPath query </button> 
+ <div id="JFVNCZTOKD" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15616,62 +12434,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.9 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
-   <td style="text-align:left;"> SIM08-12-11-17-FUJWvx--DV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 136,727 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 139,158 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 873,404 </td>
-   <td style="text-align:right;"> 3,083 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-12-11-52-Upza75--CV 
 
 #### simulationParameters 
@@ -15744,15 +12506,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-175.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-199.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-176.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-200.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-177.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-201.png" width="672" />
 
 #### Runing time by method 
 
@@ -15834,8 +12596,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OCEYNUHWXE"> Show/Hide foundCycle query </button> 
- <div id="OCEYNUHWXE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AYFFPAQXCD"> Show/Hide foundCycle query </button> 
+ <div id="AYFFPAQXCD" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15863,8 +12625,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HOAJHPYQGL"> Show/Hide foundPath query </button> 
- <div id="HOAJHPYQGL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CJUVAYIXIP"> Show/Hide foundPath query </button> 
+ <div id="CJUVAYIXIP" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15888,62 +12650,6 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.95 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
-   <td style="text-align:left;"> SIM08-12-11-52-Upza75--CV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 137,548 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 139,979 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 6,591,958 </td>
-   <td style="text-align:right;"> 1,009,416 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
 ###  SIM08-12-11-52-Upza75--DV 
 
 #### simulationParameters 
@@ -16016,15 +12722,15 @@ Number of paths found:  0
 </table>
 #### distribution of similarityEdgesByWeight
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-178.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-202.png" width="672" />
 
 #### Degree distribution of item->similarity->item edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-179.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-203.png" width="672" />
 
 #### Degree distribution of agent->knows->agent edges
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-180.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-204.png" width="672" />
 
 #### Runing time by method 
 
@@ -16117,8 +12823,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PTSHVPZOJC"> Show/Hide foundCycle query </button> 
- <div id="PTSHVPZOJC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DGSYDHFBVU"> Show/Hide foundCycle query </button> 
+ <div id="DGSYDHFBVU" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -16146,8 +12852,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NUQHBWCXKZ"> Show/Hide foundPath query </button> 
- <div id="NUQHBWCXKZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BYHFHBZFYB"> Show/Hide foundPath query </button> 
+ <div id="BYHFHBZFYB" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -16171,19 +12877,25 @@ Number of paths found:  0
      
 
 </div>
-#### Summary of simulation 
+## Scatterplots of experiment 
+
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-205.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-206.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-207.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-208.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-209.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-210.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-211.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-212.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-213.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-214.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-215.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-216.png" width="672" />  
+
+# Cross analysis of all selected experiments
+
+## Summary data 
 
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
    <th style="text-align:left;"> experimentId </th>
    <th style="text-align:left;"> simulationId </th>
+   <th style="text-align:right;"> agentNumber </th>
+   <th style="text-align:right;"> similarityConnectThreshold </th>
+   <th style="text-align:right;"> chainLength </th>
+   <th style="text-align:right;"> similaritySearchThreshold </th>
+   <th style="text-align:left;"> maxDistance </th>
+   <th style="text-align:right;"> randomWorksNumberMultiplier </th>
    <th style="text-align:right;"> edges_offers </th>
    <th style="text-align:right;"> edges_similarity </th>
    <th style="text-align:right;"> edges_owns </th>
@@ -16198,74 +12910,20 @@ Number of paths found:  0
    <th style="text-align:right;"> process_total </th>
    <th style="text-align:right;"> foundCycles </th>
    <th style="text-align:right;"> foundPaths </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 200 </td>
-   <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.95 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
-   <td style="text-align:left;"> SIM08-12-11-52-Upza75--DV </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 136,430 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,201 </td>
-   <td style="text-align:right;"> 138,861 </td>
-   <td style="text-align:right;"> 201 </td>
-   <td style="text-align:right;"> 820 </td>
-   <td style="text-align:right;"> 410 </td>
-   <td style="text-align:right;"> 1,431 </td>
-   <td style="text-align:right;"> 858,418 </td>
-   <td style="text-align:right;"> 3,018 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table></div>
-# Summary of all selected experiments 
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; "><table class="table table-condensed" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:left;"> experimentId </th>
-   <th style="text-align:left;"> simulationId </th>
-   <th style="text-align:left;"> agentNumber </th>
-   <th style="text-align:right;"> similarityConnectThreshold </th>
-   <th style="text-align:left;"> chainLength </th>
-   <th style="text-align:left;"> similaritySearchThreshold </th>
-   <th style="text-align:left;"> maxDistance </th>
-   <th style="text-align:left;"> randomWorksNumberMultiplier </th>
-   <th style="text-align:right;"> edges_offers </th>
-   <th style="text-align:right;"> edges_similarity </th>
-   <th style="text-align:right;"> edges_owns </th>
-   <th style="text-align:right;"> edges_demands </th>
-   <th style="text-align:right;"> edges_knows </th>
-   <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> vertices_agent </th>
-   <th style="text-align:right;"> vertices_item </th>
-   <th style="text-align:right;"> vertices_work </th>
-   <th style="text-align:right;"> vertices_total </th>
-   <th style="text-align:right;"> sum_wallTime_ms_total </th>
-   <th style="text-align:right;"> process_total </th>
-   <th style="text-align:right;"> foundCycles </th>
-   <th style="text-align:right;"> foundPaths </th>
+   <th style="text-align:right;"> sum_wallTime_min_total </th>
+   <th style="text-align:left;"> simulationType </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> EXP08-10-01-33-JYSw5Z </td>
    <td style="text-align:left;"> SIM08-10-01-33-niVTL7--CV </td>
-   <td style="text-align:left;"> 1000 </td>
+   <td style="text-align:right;"> 1,000 </td>
    <td style="text-align:right;"> 0.5 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2,020 </td>
    <td style="text-align:right;"> 3,154,142 </td>
    <td style="text-align:right;"> 2,020 </td>
@@ -16280,16 +12938,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 643,374 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 243.057950 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-10-01-33-JYSw5Z </td>
    <td style="text-align:left;"> SIM08-10-01-33-niVTL7--DV </td>
-   <td style="text-align:left;"> 1000 </td>
+   <td style="text-align:right;"> 1,000 </td>
    <td style="text-align:right;"> 0.5 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2,020 </td>
    <td style="text-align:right;"> 3,154,029 </td>
    <td style="text-align:right;"> 2,020 </td>
@@ -16304,16 +12964,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 16,673 </td>
    <td style="text-align:right;"> 138 </td>
    <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 1,158.815317 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-05-AZFerX--CV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 210 </td>
    <td style="text-align:right;"> 37,332 </td>
    <td style="text-align:right;"> 210 </td>
@@ -16328,16 +12990,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 264,685 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 17.028017 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-05-AZFerX--DV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 210 </td>
    <td style="text-align:right;"> 36,948 </td>
    <td style="text-align:right;"> 210 </td>
@@ -16352,16 +13016,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,463 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2.884183 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-59-AkTEKa--CV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 110 </td>
    <td style="text-align:right;"> 10,192 </td>
    <td style="text-align:right;"> 110 </td>
@@ -16376,16 +13042,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 72,658 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3.588867 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-59-AkTEKa--DV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 110 </td>
    <td style="text-align:right;"> 10,062 </td>
    <td style="text-align:right;"> 110 </td>
@@ -16400,16 +13068,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,159 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1.193183 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-01-9svHYu--CV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 210 </td>
    <td style="text-align:right;"> 37,300 </td>
    <td style="text-align:right;"> 210 </td>
@@ -16424,16 +13094,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 264,715 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 16.907950 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-01-9svHYu--DV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 210 </td>
    <td style="text-align:right;"> 36,856 </td>
    <td style="text-align:right;"> 210 </td>
@@ -16448,16 +13120,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,463 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2.775583 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-58-5ZEBa6--CV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 110 </td>
    <td style="text-align:right;"> 9,864 </td>
    <td style="text-align:right;"> 110 </td>
@@ -16472,16 +13146,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 72,653 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3.541950 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-58-5ZEBa6--DV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 110 </td>
    <td style="text-align:right;"> 9,744 </td>
    <td style="text-align:right;"> 110 </td>
@@ -16496,16 +13172,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,157 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1.119533 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-11-j9XCLm--CV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 120 </td>
    <td style="text-align:right;"> 12,624 </td>
    <td style="text-align:right;"> 120 </td>
@@ -16520,16 +13198,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 86,465 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4.521783 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-11-j9XCLm--DV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 120 </td>
    <td style="text-align:right;"> 12,460 </td>
    <td style="text-align:right;"> 120 </td>
@@ -16544,16 +13224,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,209 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1.199317 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-18-bWXLYd--CV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 220 </td>
    <td style="text-align:right;"> 42,070 </td>
    <td style="text-align:right;"> 220 </td>
@@ -16568,16 +13250,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 290,521 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 19.669300 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-18-bWXLYd--DV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 220 </td>
    <td style="text-align:right;"> 41,594 </td>
    <td style="text-align:right;"> 220 </td>
@@ -16592,16 +13276,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,521 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 3.206350 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-10-bCM5fk--CV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 120 </td>
    <td style="text-align:right;"> 12,316 </td>
    <td style="text-align:right;"> 120 </td>
@@ -16616,16 +13302,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 86,450 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 4.427800 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-10-bCM5fk--DV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 120 </td>
    <td style="text-align:right;"> 12,182 </td>
    <td style="text-align:right;"> 120 </td>
@@ -16640,16 +13328,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,209 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1.306783 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-13-7mwJNk--CV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 220 </td>
    <td style="text-align:right;"> 41,772 </td>
    <td style="text-align:right;"> 220 </td>
@@ -16664,16 +13354,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 290,521 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 19.634550 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-13-7mwJNk--DV </td>
-   <td style="text-align:left;"> 100 </td>
+   <td style="text-align:right;"> 100 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 220 </td>
    <td style="text-align:right;"> 41,296 </td>
    <td style="text-align:right;"> 220 </td>
@@ -16688,16 +13380,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,521 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3.032000 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-28-2mwNJ9--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 210 </td>
    <td style="text-align:right;"> 35,300 </td>
    <td style="text-align:right;"> 210 </td>
@@ -16712,16 +13406,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 264,723 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 17.006833 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-28-2mwNJ9--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 210 </td>
    <td style="text-align:right;"> 34,939 </td>
    <td style="text-align:right;"> 210 </td>
@@ -16736,16 +13432,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,263 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3.777350 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-58-qocSnR--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 136,918 </td>
    <td style="text-align:right;"> 410 </td>
@@ -16760,16 +13458,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,008,787 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 98.329967 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-58-qocSnR--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 136,130 </td>
    <td style="text-align:right;"> 410 </td>
@@ -16784,16 +13484,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,910 </td>
    <td style="text-align:right;"> 23 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 14.464350 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-23-LU7jps--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 210 </td>
    <td style="text-align:right;"> 36,494 </td>
    <td style="text-align:right;"> 210 </td>
@@ -16808,16 +13510,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 264,744 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 17.294733 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-23-LU7jps--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 210 </td>
    <td style="text-align:right;"> 36,192 </td>
    <td style="text-align:right;"> 210 </td>
@@ -16832,16 +13536,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,277 </td>
    <td style="text-align:right;"> 7 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4.216800 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-33-2tryyr--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 133,544 </td>
    <td style="text-align:right;"> 410 </td>
@@ -16856,16 +13562,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,008,931 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 95.512883 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-33-2tryyr--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 132,468 </td>
    <td style="text-align:right;"> 410 </td>
@@ -16880,16 +13588,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,907 </td>
    <td style="text-align:right;"> 24 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 13.713683 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-29-wnUn7p--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 220 </td>
    <td style="text-align:right;"> 39,760 </td>
    <td style="text-align:right;"> 220 </td>
@@ -16904,16 +13614,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 290,516 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 19.396767 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-29-wnUn7p--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 220 </td>
    <td style="text-align:right;"> 39,494 </td>
    <td style="text-align:right;"> 220 </td>
@@ -16928,16 +13640,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,327 </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 4.153167 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-02-JQ4Xga--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 420 </td>
    <td style="text-align:right;"> 143,002 </td>
    <td style="text-align:right;"> 420 </td>
@@ -16952,16 +13666,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,058,579 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 105.414917 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-02-JQ4Xga--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 420 </td>
    <td style="text-align:right;"> 142,210 </td>
    <td style="text-align:right;"> 420 </td>
@@ -16976,16 +13692,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,984 </td>
    <td style="text-align:right;"> 15 </td>
    <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 12.958983 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-24-HT69z4--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 220 </td>
    <td style="text-align:right;"> 39,926 </td>
    <td style="text-align:right;"> 220 </td>
@@ -17000,16 +13718,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 290,564 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 19.399700 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-24-HT69z4--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 220 </td>
    <td style="text-align:right;"> 39,564 </td>
    <td style="text-align:right;"> 220 </td>
@@ -17024,16 +13744,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,330 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 4.003300 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-34-qV6kk7--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 420 </td>
    <td style="text-align:right;"> 144,894 </td>
    <td style="text-align:right;"> 420 </td>
@@ -17048,16 +13770,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,058,750 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 105.014567 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-02-34-qV6kk7--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 420 </td>
    <td style="text-align:right;"> 143,760 </td>
    <td style="text-align:right;"> 420 </td>
@@ -17072,16 +13796,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,981 </td>
    <td style="text-align:right;"> 14 </td>
    <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 15.116083 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-55-uLoEi8--CV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 132,832 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17096,16 +13822,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,008,854 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 96.687167 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-55-uLoEi8--DV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 132,384 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17120,16 +13848,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 4,481 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 18.979317 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-06-21-3RT7tA--CV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 810 </td>
    <td style="text-align:right;"> 516,630 </td>
    <td style="text-align:right;"> 810 </td>
@@ -17144,16 +13874,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,471,953 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 238.415183 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-06-21-3RT7tA--DV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 810 </td>
    <td style="text-align:right;"> 515,889 </td>
    <td style="text-align:right;"> 810 </td>
@@ -17168,16 +13900,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 6,019 </td>
    <td style="text-align:right;"> 73 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 90.865300 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-29-rephNw--CV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 131,652 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17192,16 +13926,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,010,312 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 97.598717 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-03-29-rephNw--DV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 128,214 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17216,16 +13952,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 4,525 </td>
    <td style="text-align:right;"> 25 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 18.261367 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-04-21-PcvZuy--CV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 810 </td>
    <td style="text-align:right;"> 502,100 </td>
    <td style="text-align:right;"> 810 </td>
@@ -17240,16 +13978,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,505,032 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 238.119383 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-04-21-PcvZuy--DV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 810 </td>
    <td style="text-align:right;"> 496,468 </td>
    <td style="text-align:right;"> 810 </td>
@@ -17264,16 +14004,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 16,435 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:right;"> 71.318483 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-08-52-e9mxSB--CV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 420 </td>
    <td style="text-align:right;"> 141,454 </td>
    <td style="text-align:right;"> 420 </td>
@@ -17288,16 +14030,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,058,634 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 105.942700 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-08-52-e9mxSB--DV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 420 </td>
    <td style="text-align:right;"> 140,952 </td>
    <td style="text-align:right;"> 420 </td>
@@ -17312,16 +14056,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 4,581 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 18.502867 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-21-b9wEmt--CV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 820 </td>
    <td style="text-align:right;"> 526,126 </td>
    <td style="text-align:right;"> 820 </td>
@@ -17336,16 +14082,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,433,372 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 238.638133 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-12-21-b9wEmt--DV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 820 </td>
    <td style="text-align:right;"> 525,525 </td>
    <td style="text-align:right;"> 820 </td>
@@ -17360,16 +14108,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 5,967 </td>
    <td style="text-align:right;"> 34 </td>
    <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 84.405633 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-07-25-JPeHEv--CV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 420 </td>
    <td style="text-align:right;"> 140,824 </td>
    <td style="text-align:right;"> 420 </td>
@@ -17384,16 +14134,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,060,600 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 104.328383 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-07-25-JPeHEv--DV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 420 </td>
    <td style="text-align:right;"> 136,390 </td>
    <td style="text-align:right;"> 420 </td>
@@ -17408,16 +14160,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 15,265 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:right;"> 20.607250 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-09-20-5oCIZR--CV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 820 </td>
    <td style="text-align:right;"> 523,896 </td>
    <td style="text-align:right;"> 820 </td>
@@ -17432,16 +14186,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,454,317 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:right;"> 179.370450 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-09-20-5oCIZR--DV </td>
-   <td style="text-align:left;"> 400 </td>
+   <td style="text-align:right;"> 400 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 820 </td>
    <td style="text-align:right;"> 517,818 </td>
    <td style="text-align:right;"> 820 </td>
@@ -17456,16 +14212,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 16,465 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:right;"> 78.019167 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-25-9f8vyU--CV </td>
-   <td style="text-align:left;"> 800 </td>
+   <td style="text-align:right;"> 800 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 810 </td>
    <td style="text-align:right;"> 470,834 </td>
    <td style="text-align:right;"> 810 </td>
@@ -17480,16 +14238,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,536,161 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:right;"> 178.878067 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-11-12-58-3BvMSL </td>
    <td style="text-align:left;"> SIM08-11-01-25-9f8vyU--DV </td>
-   <td style="text-align:left;"> 800 </td>
+   <td style="text-align:right;"> 800 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1.00 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 810 </td>
    <td style="text-align:right;"> 447,548 </td>
    <td style="text-align:right;"> 810 </td>
@@ -17504,16 +14264,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 19,635 </td>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 3,600 </td>
+   <td style="text-align:right;"> 83.557967 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-12-23-DDd6WJ--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.90 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 137,786 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17528,16 +14290,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,009,610 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 127.255333 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-12-23-DDd6WJ--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.90 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 137,030 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17552,16 +14316,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 3,142 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 14.456433 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-12-59-7pHkve--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.95 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.95 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 136,258 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17576,16 +14342,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,009,073 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 105.235550 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-12-59-7pHkve--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.95 </td>
    <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.95 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 135,497 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17600,16 +14368,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 2,928 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 13.161550 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-11-17-FUJWvx--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.90 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 137,670 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17624,16 +14394,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,009,608 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 123.958733 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-11-17-FUJWvx--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.90 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 136,727 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17648,16 +14420,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 3,083 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 14.556733 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-11-52-Upza75--CV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.95 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 137,548 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17672,16 +14446,18 @@ Number of paths found:  0
    <td style="text-align:right;"> 1,009,416 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 109.865967 </td>
+   <td style="text-align:left;"> Centralized </td>
   </tr>
   <tr>
    <td style="text-align:left;"> EXP08-12-11-17-5tvhCK </td>
    <td style="text-align:left;"> SIM08-12-11-52-Upza75--DV </td>
-   <td style="text-align:left;"> 200 </td>
+   <td style="text-align:right;"> 200 </td>
    <td style="text-align:right;"> 0.9 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> 0.95 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.95 </td>
    <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 410 </td>
    <td style="text-align:right;"> 136,430 </td>
    <td style="text-align:right;"> 410 </td>
@@ -17696,11 +14472,13 @@ Number of paths found:  0
    <td style="text-align:right;"> 3,018 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 14.306967 </td>
+   <td style="text-align:left;"> Decentralized </td>
   </tr>
 </tbody>
 </table></div>
-## Scatterplots 
+## Scatterplots of all experiments 
 
-<img src="02-selectedExperiments_files/figure-html/get-experiment-info-181.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-182.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-183.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-184.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-185.png" width="672" />
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-217.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-218.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-219.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-220.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-221.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-222.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-223.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-224.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-225.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-226.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-227.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-228.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-229.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-230.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-231.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-232.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-233.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-234.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-235.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-236.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-237.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-238.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-239.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-240.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-241.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-242.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-243.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-244.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-245.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-246.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-247.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-248.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-249.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-250.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-251.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-252.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-253.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-254.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-255.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-256.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-257.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-258.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-259.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-260.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-261.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-262.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-263.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-264.png" width="672" />
 
 

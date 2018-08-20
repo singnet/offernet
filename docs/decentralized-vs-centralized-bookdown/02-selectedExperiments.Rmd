@@ -21,10 +21,26 @@ library(stringi)
 <!--#### variables: -->
 ```{r get-experiment-info, results = 'asis', eval=TRUE}
 
+#defining a function to be used somewhere in the end of the document...
+scatterplot <- function(data, xstr,ystr, sizestr, colorstr, titlelab, ylab,xlab) {
+  gg <- ggplot(data, aes_string(x=xstr, y=ystr, color=colorstr)) + 
+    geom_point(aes_string(size=sizestr, color=colorstr)) + 
+    geom_smooth(method="loess", se=F) + 
+    #xlim(c(0, 0.1)) + 
+    #ylim(c(0, 500000)) + 
+    labs(title=titlelab, 
+         y=ylab, 
+         x=xlab, 
+         size=sizestr,
+         color=colorstr)
+}
+
 selectedExperiments <- c('EXP08-10-01-33-JYSw5Z','EXP08-11-12-58-3BvMSL','EXP08-12-11-17-5tvhCK')
 descriptions <- c('Randomly connected social network of agents, unknown diameter; similarityConnectThreshold = 0.5','Pre-generated smallWorld social network of agents with known diameters < 10; similarityThreshold = 0.9','Pre-generated smallWorld social network of agents with known diameters < 10; different similarity search thresholds')
 x<-1
 for (experimentId in selectedExperiments) {
+
+  cat(paste('   \n\n'))
   cat(paste('# Experiment ',x, '\n\n'))
   cat(paste(descriptions[x],'\n\n'))
   x<-x+1
@@ -478,28 +494,84 @@ for (experimentId in selectedExperiments) {
           cat('\n</div>\n')        
   
   
-        cat(paste('#### Summary of simulation','\n\n'))
+        #cat(paste('#### Summary of simulation','\n\n'))
         
-        sum <- kable(for_sum.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
-          kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
-            scroll_box(height = NULL, width = '1300px',
-              box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
+        #sum <- kable(for_sum.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
+        #  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+        #    scroll_box(height = NULL, width = '1300px',
+        #      box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
     
             #column_spec(0:ncol(experiment.df),width="10em") 
             #add_header_above(c("labels"=5))
-        print(sum)
+        #print(sum)
       
-      
-      if (!exists('summary.df')) {
-        summary.df <- for_sum.df
+      if (!exists('experiment_summary.df')) {
+        experiment_summary.df <- for_sum.df
       } else{
-        summary.df <- rbind.fill(summary.df, for_sum.df)
+        experiment_summary.df <- rbind.fill(experiment_summary.df, for_sum.df)
       }
-  
   }
+
+      # housekeeping on form_sum.df -- correct types and reorder...
+
+      experiment_summary.df$sum_wallTime_min_total <- experiment_summary.df$sum_wallTime_ms_total /60000
+      experiment_summary.df$simulationType <- ifelse(grepl('--DV',experiment_summary.df$simulationId),"Decentralized", "Centralized")
+
+      options(scipen=999)  # turn-off scientific notation like 1e+48
+      theme_set(theme_bw())  # pre-set the bw theme.
+
+      experiment_summary.df$agentNumber <- sapply(experiment_summary.df$agentNumber, as.numeric)
+      experiment_summary.df$chainLength <- sapply(experiment_summary.df$chainLength, as.numeric)
+      experiment_summary.df$similaritySearchThreshold <- sapply(experiment_summary.df$similaritySearchThreshold, as.numeric)
+      experiment_summary.df$randomWorksNumberMultiplier <- sapply(experiment_summary.df$randomWorksNumberMultiplier, as.numeric)
+
+      file_name <- paste('./R_data/experiment_',experimentId,'_summary.Rdata', sep="")
+      save(experiment_summary.df,file=file_name)
+
+      cat(paste('## Scatterplots of experiment','\n\n'))
+
+      ys <- c('sum_wallTime_min_total')
+      colors <- c('simulationType')
+      used <- append(ys,colors)
+      sizes <- c('foundCycles')
+      used <- append(used,sizes)
+      remove <- c('randomWorksNumberMultiplier', 'experimentId', 'simulationId','sum_wallTime_ms_total', 'foundPaths', 'chainLength','similaritySearchThreshold','similarityConnectThreshold','maxDistance', 'simulationType')
+      used <- append(used, remove)
+      xs=names(experiment_summary.df)[!(names(experiment_summary.df) %in% used)]
+
+
+      # generate permutations of the plots with the above variables
+      for (y_str in ys) {
+        for (color_str in colors) {
+          for (size_str in sizes) {
+            for (x_str in xs) {
+              print(scatterplot(
+                experiment_summary.df,
+                x_str,
+                y_str,
+                size_str,
+                color_str,
+                paste(x_str, ' vs ',y_str),
+                y_str,
+                x_str))
+            }
+          }
+        }
+      }
+
+      if (!exists('summary.df')) {
+        summary.df <- experiment_summary.df
+      } else{
+        summary.df <- rbind.fill(summary.df, experiment_summary.df)
+      }
+
+      rm(experiment_summary.df)
+
 }
-  
-cat(paste('# Summary of all selected experiments \n\n'))
+
+cat(paste('  \n\n'))
+cat(paste('# Cross analysis of all selected experiments\n\n'))
+cat(paste('## Summary data \n\n'))
 refcols <- c("experimentId", "simulationId")
 summary.df <- summary.df[, c(refcols, setdiff(names(summary.df), refcols))]
 summary <- kable(summary.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
@@ -510,81 +582,58 @@ summary <- kable(summary.df,format.args = list(decimal.mark = '.', big.mark = ",
     #add_header_above(c("labels"=5))
 print(summary)
 
-summary.df$sum_wallTime_min_total <- summary.df$sum_wallTime_ms_total /60000
-summary.df$simulationType <- ifelse(grepl('--DV',summary.df$simulationId),"Decentralized", "Centralized")
+#summary.df$sum_wallTime_min_total <- summary.df$sum_wallTime_ms_total /60000
+#summary.df$simulationType <- ifelse(grepl('--DV',summary.df$simulationId),"Decentralized", "Centralized")
 
 options(scipen=999)  # turn-off scientific notation like 1e+48
 theme_set(theme_bw())  # pre-set the bw theme.
 
-cat(paste('## Scatterplots \n\n'))
+cat(paste('## Scatterplots of all experiments \n\n'))
 
 # housekeeping on summary.df -- correct types and reorder...
-summary.df$agentNumber <- sapply(summary.df$agentNumber, as.numeric)
-summary.df$chainLength <- sapply(summary.df$chainLength, as.numeric)
-summary.df$similaritySearchThreshold <- sapply(summary.df$similaritySearchThreshold, as.numeric)
-summary.df$randomWorksNumberMultiplier <- sapply(summary.df$randomWorksNumberMultiplier, as.numeric)
+#summary.df$agentNumber <- sapply(summary.df$agentNumber, as.numeric)
+#summary.df$chainLength <- sapply(summary.df$chainLength, as.numeric)
+#summary.df$similaritySearchThreshold <- sapply(summary.df$similaritySearchThreshold, as.numeric)
+#summary.df$randomWorksNumberMultiplier <- sapply(summary.df$randomWorksNumberMultiplier, as.numeric)
 
-summary.df$maxDistance <- sapply(summary.df$maxDistance, as.numeric)
+#summary.df$maxDistance <- sapply(summary.df$maxDistance, as.numeric)
 summary.df <- summary.df[order(summary.df$agentNumber),] 
-scatterplot <- function(data, xstr,ystr, sizestr, colorstr, titlelab, ylab,xlab) {
-  gg <- ggplot(data, aes_string(x=xstr, y=ystr)) + 
-    geom_point(aes_string(size=sizestr, color=colorstr)) + 
-    geom_smooth(method="loess", se=F) + 
-    #xlim(c(0, 0.1)) + 
-    #ylim(c(0, 500000)) + 
-    labs(title=titlelab, 
-         y=ylab, 
-         x=xlab, 
-         size=sizestr,
-         color=colorstr)
-  plot(gg)
+
+
+summary.df$simulationType_chainLength <- paste(summary.df$simulationType,'-',summary.df$chainLength)
+summary.df$simulationType_foundCycles <- paste(summary.df$simulationType,'-',summary.df$foundCycles)
+summary.df$simulationType_similaritySearchThreshold <- paste(summary.df$simulationType,'-',summary.df$similaritySearchThreshold)
+summary.df$simulationType_similarityConnectThreshold <- paste(summary.df$simulationType,'-',summary.df$similarityConnectThreshold)
+summary.df$simulationType_maxDistance <- paste(summary.df$simulationType,'-',summary.df$maxDistance)
+
+ys <- c('sum_wallTime_min_total')
+colors <- c('simulationType_chainLength','simulationType_similaritySearchThreshold','simulationType_similarityConnectThreshold','simulationType_maxDistance')
+used <- append(ys,colors)
+sizes <- c('foundCycles')
+used <- append(used,sizes)
+remove <- c('randomWorksNumberMultiplier', 'experimentId', 'simulationId','sum_wallTime_ms_total', 'foundPaths', 'chainLength','similaritySearchThreshold','similarityConnectThreshold','maxDistance', 'simulationType','simulationType_foundCycles')
+used <- append(used, remove)
+xs=names(summary.df)[!(names(summary.df) %in% used)]
+
+save(summary.df,file='./R_data/summary_of_all_experiments.Rdata')
+
+for (y_str in ys) {
+  for (color_str in colors) {
+    for (size_str in sizes) {
+      for (x_str in xs) {
+        print(scatterplot(
+          summary.df,
+          x_str,
+          y_str,
+          size_str,
+          color_str,
+          paste(x_str, ' vs ',y_str),
+          y_str,
+          x_str))
+      }
+    }
+  }
 }
-
-scatterplot(summary.df,
-            'agentNumber',
-            'sum_wallTime_min_total',
-            'foundCycles',
-            'simulationType',
-            "agentNumber vs systemTime",
-            "total system time (min)",
-            "agent number")
-
-scatterplot(summary.df,
-            'vertices_total',
-            'sum_wallTime_min_total',
-            'foundCycles',
-            'simulationType',
-            "verticesNumber vs systemTime",
-            "total system time (min)",
-            "all vertices number")
-
-scatterplot(summary.df,
-            'edges_total',
-            'sum_wallTime_min_total',
-            'foundCycles',
-            'simulationType',
-            "edgeNumber vs systemTime",
-            "total system time (min)",
-            "all edge number")
-
-scatterplot(summary.df,
-            'edges_similarity',
-            'sum_wallTime_min_total',
-            'foundCycles',
-            'simulationType',
-            "similarityEdges vs systemTime",
-            "total system time (min)",
-            "similarity edges")
-
-scatterplot(summary.df,
-            'vertices_item',
-            'sum_wallTime_min_total',
-            'foundCycles',
-            'simulationType',
-            "itemNumber vs systemTime",
-            "total system time (min)",
-            "item number")
-
 
 ```
 
