@@ -1,7 +1,7 @@
-book_filename: "OfferNet(s) e-Lab notebook"
-chapter_name: "Chapter "
+book_filename: "Decentralized vs centralized search in OfferNet"
+chapter_name: ""
 repo: https://github.com/singnet/offernet
 output_dir: ../public/experiment-decentralized-vs-centralized
-rmd_files: ["index.Rmd", "01-DecentralizedVsCentralized.Rmd", "03-smallWorldGraphs.Rmd", "05-References.Rmd"]
+rmd_files: ["index.Rmd", "01-allExperiments.Rmd",  "02-selectedExperiments.Rmd", "05-References.Rmd"]
 clean: [book.bib]
 new_session: yes

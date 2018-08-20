@@ -25,7 +25,7 @@
 <meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
 
 
-<meta name="date" content="2018-08-14">
+<meta name="date" content="2018-08-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -167,6 +167,7 @@
 <li><em>Limited number of hard-coded types</em>. Obviously simplest to implement (and, depending on the angle of simulation, could be practical for the start), yet less realistic for a full fledged Offer Networks system.</li>
 <li><em>Natural language descriptions</em> (or at least structured natural language). This seems to be most realistic, but also hardest to implement, as would need some sort of NLP capabilities on behalf of agents. The advantage is that it would allow seamless interaction of humans with the system (see HMI).</li>
 <li><em>Vector representations</em>. A sort of a middle ground between natural language and hard coded types; I am currently in favour of this one, since it allows to define a simple similarity measure between items within exchange – allowing also to map them with ‘fuzzy’ or ‘incomplete’ preferences – which is an essential and necessary feature of the system;</li>
+<li><em>Real numbers</em> can be a practical solution for experimenting with the system because they are easy to generate, store and require only basic mathematical functions for calculating similarity (see <a href="https://singnet.github.io/offernet/public/experiment-decentralized-vs-centralized/decentralized-vs-centralized-search-in-offernet.html#similarity-search">more</a>)</li>
 <li><em>Map representations</em>. The problem with vector representations is that they will require a sort of global key map for the values in a vector. In a map representation, and agent could explicitly indicate keys and their values. The similarity calculation may become somewhat more complicated in this case.
 Sparse Distributed Representation (of HTM) <span class="citation">(Ahmad and Hawkins <a href="#ref-ahmad_properties_2015">2015</a>)</span>. Just an idea so far, but could be interesting to explore.</li>
 </ul>

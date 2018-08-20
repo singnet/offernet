@@ -1,0 +1,66 @@
+#### vertices:
+```{r allVerticesByLabel, results='asis'}
+# print table allVerticesByLabel
+vertices.df <- as.data.frame(json_data$allVerticesByLabel$data)
+vertices.df[,"Total"] = rowSums(vertices.df)
+kable(vertices.df, format.args = list(decimal.mark = '.', big.mark = ",")) %>%
+  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+    column_spec(1:ncol(vertices.df),width="5em") 
+    #add_header_above(c("labels"=5))
+```
+
+#### similarity edges by weight
+```{r similarityEdgesByWeight, results='asis'}
+# print plot similarityEdgesByWeight
+similarity <-json_data$similarityEdgesByWeight$data
+wghts <- as.numeric(unlist(names(similarity)))
+frequencies <- as.numeric(similarity)
+similarity.df <- data.frame(weight=wghts,edges=frequencies)
+
+library(ggplot2)
+se <- ggplot(data=similarity.df, aes(x=weight, y=frequencies)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  geom_text(aes(label=weight), vjust=1.6, color="white", size=3.5)+
+  xlab("Weght")+
+  ylab("Number of edges")+
+  theme_minimal()+
+  geom_line()
+se
+```
+
+
+#### Degree distribution of item->similarity->item edges
+```{r degreeDistributonDirecteditemsimilarity, results='asis'}
+# plot degreeDistribution items-similarity
+degrees <- json_data$degreeDistributionDirecteditemsimilarity$data
+dgr <- as.numeric(unlist(names(degrees)))
+frequencies <- as.numeric(degrees)
+degrees.df <- data.frame(degrees=dgr,frequencies=frequencies)
+
+dd_is<-ggplot(degrees.df, aes(x=degrees)) +
+  geom_histogram(binwidth=20, fill="white", color="black")+
+  geom_vline(aes(xintercept=mean(dgr)), color="blue",
+             linetype="dashed")+
+  labs(x="Degree", y = "Count")+
+  theme_classic()
+dd_is
+```
+
+#### Degree distribution of agent->knows->agent edges
+```{r degreeDistributionUndirectedagentknows, results='asis'}
+# plot degreeDistribution agent-knows
+degrees <- json_data$degreeDistributionUndirectedagentknows$data
+dgr <- as.numeric(unlist(names(degrees)))
+frequencies <- as.numeric(degrees)
+degrees.df <- data.frame(degrees=dgr,frequencies=frequencies)
+
+se <- ggplot(data=degrees.df, aes(x=degrees, y=frequencies)) +
+  geom_bar(stat="identity")+
+  geom_text(aes(label=frequencies), vjust=1.6, color="white", size=3.5)+
+  scale_x_continuous(breaks=dgr)+
+  xlab("Number of knows edges")+
+  ylab("Number of agents")+
+  theme_classic()
+se
+
+```

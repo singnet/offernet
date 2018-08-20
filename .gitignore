@@ -17,7 +17,7 @@ analysis/experimentData/
 analysis/data/
 analysis/elabnotebook-generate/octopress-2.0/
 analysis/elabnotebook-generate/tmp/
-analysis/elabnotebook-generate/
 analysis/elabnotebook-generate/scripts/knitr/*.md
+analysis/elabnotebook-generate/scripts/knitr/*.html
 analysis/elabnotebook-generate/scripts/knitr/*.dat
 docs/decentralized-vs-centralized-bookdown/ON_codebase_version.dat

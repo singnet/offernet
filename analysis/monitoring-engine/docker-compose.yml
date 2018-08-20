@@ -28,7 +28,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      LS_JAVA_OPTS: "-Xmx512m -Xms512m"
+      LS_JAVA_OPTS: "-Xmx4g -Xms4g"
     networks:
       - elk
     depends_on:
