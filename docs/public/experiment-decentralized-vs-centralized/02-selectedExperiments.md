@@ -105,9 +105,9 @@ Randomly connected social network of agents, unknown diameter; similarityConnect
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -206,8 +206,8 @@ Randomly connected social network of agents, unknown diameter; similarityConnect
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ROIXEBBMPT"> Show/Hide foundCycle query </button> 
- <div id="ROIXEBBMPT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CYSOUODERW"> Show/Hide foundCycle query </button> 
+ <div id="CYSOUODERW" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -235,8 +235,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HUFRXRCTJH"> Show/Hide foundPath query </button> 
- <div id="HUFRXRCTJH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SNJJPFWOUJ"> Show/Hide foundPath query </button> 
+ <div id="SNJJPFWOUJ" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -279,9 +279,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -371,9 +371,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -472,8 +472,8 @@ Number of paths found:  0
 
 Number of cycles found:  138 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DUXZCMYFPX"> Show/Hide foundCycle query </button> 
- <div id="DUXZCMYFPX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SWVLYAYEDH"> Show/Hide foundCycle query </button> 
+ <div id="SWVLYAYEDH" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -501,8 +501,8 @@ Number of cycles found:  138
 
 Number of paths found:  15 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TVMKBMSIYR"> Show/Hide foundPath query </button> 
- <div id="TVMKBMSIYR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PBNAIDSHID"> Show/Hide foundPath query </button> 
+ <div id="PBNAIDSHID" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -545,9 +545,9 @@ Number of paths found:  15
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -683,9 +683,9 @@ Pre-generated smallWorld social network of agents with known diameters < 10; sim
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -772,8 +772,8 @@ Pre-generated smallWorld social network of agents with known diameters < 10; sim
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QFXKEJUVQO"> Show/Hide foundCycle query </button> 
- <div id="QFXKEJUVQO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TLBGCZBAVY"> Show/Hide foundCycle query </button> 
+ <div id="TLBGCZBAVY" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -801,8 +801,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WFCRAYKVLZ"> Show/Hide foundPath query </button> 
- <div id="WFCRAYKVLZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XTJTUUNXCA"> Show/Hide foundPath query </button> 
+ <div id="XTJTUUNXCA" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -845,9 +845,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -937,9 +937,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -1048,8 +1048,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JMTTTXZJBL"> Show/Hide foundCycle query </button> 
- <div id="JMTTTXZJBL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BXBEXOKPMD"> Show/Hide foundCycle query </button> 
+ <div id="BXBEXOKPMD" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1077,8 +1077,8 @@ Number of cycles found:  4
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VRUJYFNHXB"> Show/Hide foundPath query </button> 
- <div id="VRUJYFNHXB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OOHOVJHRUH"> Show/Hide foundPath query </button> 
+ <div id="OOHOVJHRUH" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1121,9 +1121,9 @@ Number of paths found:  1
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -1213,9 +1213,9 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -1302,8 +1302,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DDRHPGAPVV"> Show/Hide foundCycle query </button> 
- <div id="DDRHPGAPVV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VOKZOOOABE"> Show/Hide foundCycle query </button> 
+ <div id="VOKZOOOABE" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1331,8 +1331,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TCKXDBMJHP"> Show/Hide foundPath query </button> 
- <div id="TCKXDBMJHP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YFWYNDYXJS"> Show/Hide foundPath query </button> 
+ <div id="YFWYNDYXJS" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1375,9 +1375,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -1467,9 +1467,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -1578,8 +1578,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KZIOSUWIYP"> Show/Hide foundCycle query </button> 
- <div id="KZIOSUWIYP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RBMSCLBYCF"> Show/Hide foundCycle query </button> 
+ <div id="RBMSCLBYCF" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1607,8 +1607,8 @@ Number of cycles found:  1
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZCCMIFTMWM"> Show/Hide foundPath query </button> 
- <div id="ZCCMIFTMWM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KWCXXGEZBH"> Show/Hide foundPath query </button> 
+ <div id="KWCXXGEZBH" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1651,9 +1651,9 @@ Number of paths found:  2
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -1743,9 +1743,9 @@ Number of paths found:  2
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -1832,8 +1832,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HGGXBAOBBV"> Show/Hide foundCycle query </button> 
- <div id="HGGXBAOBBV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KBJAUIYZYF"> Show/Hide foundCycle query </button> 
+ <div id="KBJAUIYZYF" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1861,8 +1861,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QFYAKTCTMW"> Show/Hide foundPath query </button> 
- <div id="QFYAKTCTMW" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SAUIBBLCFG"> Show/Hide foundPath query </button> 
+ <div id="SAUIBBLCFG" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -1905,9 +1905,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -1997,9 +1997,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -2108,8 +2108,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FPQNDZSRAV"> Show/Hide foundCycle query </button> 
- <div id="FPQNDZSRAV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OQRLWKICNT"> Show/Hide foundCycle query </button> 
+ <div id="OQRLWKICNT" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2137,8 +2137,8 @@ Number of cycles found:  5
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#THQKOFITNM"> Show/Hide foundPath query </button> 
- <div id="THQKOFITNM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TARRHYPLPY"> Show/Hide foundPath query </button> 
+ <div id="TARRHYPLPY" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2181,9 +2181,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -2273,9 +2273,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -2362,8 +2362,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KXLNPMYWUE"> Show/Hide foundCycle query </button> 
- <div id="KXLNPMYWUE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SKRELRMZWH"> Show/Hide foundCycle query </button> 
+ <div id="SKRELRMZWH" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2391,8 +2391,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JCCPHEEOZR"> Show/Hide foundPath query </button> 
- <div id="JCCPHEEOZR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WCLOVGXZPH"> Show/Hide foundPath query </button> 
+ <div id="WCLOVGXZPH" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2435,9 +2435,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -2527,9 +2527,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -2638,8 +2638,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DBOTGJRMRN"> Show/Hide foundCycle query </button> 
- <div id="DBOTGJRMRN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ROMSTVCBHC"> Show/Hide foundCycle query </button> 
+ <div id="ROMSTVCBHC" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2667,8 +2667,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TVYFRAOWAA"> Show/Hide foundPath query </button> 
- <div id="TVYFRAOWAA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GKXORITKSU"> Show/Hide foundPath query </button> 
+ <div id="GKXORITKSU" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2711,9 +2711,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -2803,9 +2803,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -2892,8 +2892,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XQYIYAKKRK"> Show/Hide foundCycle query </button> 
- <div id="XQYIYAKKRK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OCWJRABNDJ"> Show/Hide foundCycle query </button> 
+ <div id="OCWJRABNDJ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2921,8 +2921,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UKKTGQHDLL"> Show/Hide foundPath query </button> 
- <div id="UKKTGQHDLL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OJTTPSKZKL"> Show/Hide foundPath query </button> 
+ <div id="OJTTPSKZKL" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -2965,9 +2965,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -3057,9 +3057,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -3168,8 +3168,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BVQZJPMEAH"> Show/Hide foundCycle query </button> 
- <div id="BVQZJPMEAH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YHRFCAEVEZ"> Show/Hide foundCycle query </button> 
+ <div id="YHRFCAEVEZ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3197,8 +3197,8 @@ Number of cycles found:  1
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GIEYFYISQY"> Show/Hide foundPath query </button> 
- <div id="GIEYFYISQY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LMLAAQSAVI"> Show/Hide foundPath query </button> 
+ <div id="LMLAAQSAVI" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3241,9 +3241,9 @@ Number of paths found:  2
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -3333,9 +3333,9 @@ Number of paths found:  2
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -3422,8 +3422,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DQBSKEKGDR"> Show/Hide foundCycle query </button> 
- <div id="DQBSKEKGDR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GWXBUXLWNC"> Show/Hide foundCycle query </button> 
+ <div id="GWXBUXLWNC" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3451,8 +3451,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VYFUPYRXER"> Show/Hide foundPath query </button> 
- <div id="VYFUPYRXER" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CBQBVBSKFX"> Show/Hide foundPath query </button> 
+ <div id="CBQBVBSKFX" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3495,9 +3495,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -3587,9 +3587,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -3705,8 +3705,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GNZUELWZVR"> Show/Hide foundCycle query </button> 
- <div id="GNZUELWZVR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZFEAKKVFEX"> Show/Hide foundCycle query </button> 
+ <div id="ZFEAKKVFEX" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3734,8 +3734,8 @@ Number of cycles found:  4
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ROXFBCJHCX"> Show/Hide foundPath query </button> 
- <div id="ROXFBCJHCX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KLDLALBSFF"> Show/Hide foundPath query </button> 
+ <div id="KLDLALBSFF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3778,9 +3778,9 @@ Number of paths found:  2
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -3870,9 +3870,9 @@ Number of paths found:  2
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -3959,8 +3959,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VWEMJQKJSS"> Show/Hide foundCycle query </button> 
- <div id="VWEMJQKJSS" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KPZKIHMALH"> Show/Hide foundCycle query </button> 
+ <div id="KPZKIHMALH" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -3988,8 +3988,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AHPCADRLHP"> Show/Hide foundPath query </button> 
- <div id="AHPCADRLHP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KBFLJZRDDW"> Show/Hide foundPath query </button> 
+ <div id="KBFLJZRDDW" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4032,9 +4032,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -4124,9 +4124,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -4235,8 +4235,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VJTOFFIKDY"> Show/Hide foundCycle query </button> 
- <div id="VJTOFFIKDY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OILSKTVRGZ"> Show/Hide foundCycle query </button> 
+ <div id="OILSKTVRGZ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4264,8 +4264,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BSSGIGBAEA"> Show/Hide foundPath query </button> 
- <div id="BSSGIGBAEA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UGEPGAGXNZ"> Show/Hide foundPath query </button> 
+ <div id="UGEPGAGXNZ" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4308,9 +4308,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -4400,9 +4400,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -4489,8 +4489,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JPXAOTNMVG"> Show/Hide foundCycle query </button> 
- <div id="JPXAOTNMVG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZHCZIFCUUB"> Show/Hide foundCycle query </button> 
+ <div id="ZHCZIFCUUB" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4518,8 +4518,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KUDCOEDUGO"> Show/Hide foundPath query </button> 
- <div id="KUDCOEDUGO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DYPVDAEJUR"> Show/Hide foundPath query </button> 
+ <div id="DYPVDAEJUR" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4562,9 +4562,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -4654,9 +4654,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -4772,8 +4772,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NFLUGMTSWA"> Show/Hide foundCycle query </button> 
- <div id="NFLUGMTSWA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NLKLGXEGYL"> Show/Hide foundCycle query </button> 
+ <div id="NLKLGXEGYL" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4801,8 +4801,8 @@ Number of cycles found:  5
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JPWEBAVFJU"> Show/Hide foundPath query </button> 
- <div id="JPWEBAVFJU" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RGHGPOQJAQ"> Show/Hide foundPath query </button> 
+ <div id="RGHGPOQJAQ" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -4845,9 +4845,9 @@ Number of paths found:  1
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -4937,9 +4937,9 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -5026,8 +5026,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IFQUUQYCTU"> Show/Hide foundCycle query </button> 
- <div id="IFQUUQYCTU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FDATWVUIKT"> Show/Hide foundCycle query </button> 
+ <div id="FDATWVUIKT" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5055,8 +5055,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ULZGKEGKRR"> Show/Hide foundPath query </button> 
- <div id="ULZGKEGKRR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ABBPXHDHIV"> Show/Hide foundPath query </button> 
+ <div id="ABBPXHDHIV" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5099,9 +5099,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -5191,9 +5191,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -5302,8 +5302,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BGCAMWWGOZ"> Show/Hide foundCycle query </button> 
- <div id="BGCAMWWGOZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DJSFHSPVGP"> Show/Hide foundCycle query </button> 
+ <div id="DJSFHSPVGP" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5331,8 +5331,8 @@ Number of cycles found:  5
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YDAFCREIUX"> Show/Hide foundPath query </button> 
- <div id="YDAFCREIUX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RKMDPYPEKK"> Show/Hide foundPath query </button> 
+ <div id="RKMDPYPEKK" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5375,9 +5375,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -5467,9 +5467,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -5556,8 +5556,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QBBPSCGFAL"> Show/Hide foundCycle query </button> 
- <div id="QBBPSCGFAL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GPZZMVYUBR"> Show/Hide foundCycle query </button> 
+ <div id="GPZZMVYUBR" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5585,8 +5585,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OCVSNGMNNO"> Show/Hide foundPath query </button> 
- <div id="OCVSNGMNNO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WVQWGUOYCR"> Show/Hide foundPath query </button> 
+ <div id="WVQWGUOYCR" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5629,9 +5629,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -5721,9 +5721,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -5822,8 +5822,8 @@ Number of paths found:  0
 
 Number of cycles found:  23 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZYXUMZMUKX"> Show/Hide foundCycle query </button> 
- <div id="ZYXUMZMUKX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UFMCSUJQOS"> Show/Hide foundCycle query </button> 
+ <div id="UFMCSUJQOS" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5851,8 +5851,8 @@ Number of cycles found:  23
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VWCLOBEABI"> Show/Hide foundPath query </button> 
- <div id="VWCLOBEABI" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RGNAXKKMWG"> Show/Hide foundPath query </button> 
+ <div id="RGNAXKKMWG" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -5895,9 +5895,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -5987,9 +5987,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -6076,8 +6076,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HXTOSZVWIK"> Show/Hide foundCycle query </button> 
- <div id="HXTOSZVWIK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PRHSHAXQGT"> Show/Hide foundCycle query </button> 
+ <div id="PRHSHAXQGT" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6105,8 +6105,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YHNZOBPUBT"> Show/Hide foundPath query </button> 
- <div id="YHNZOBPUBT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MUAMYZLXSF"> Show/Hide foundPath query </button> 
+ <div id="MUAMYZLXSF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6149,9 +6149,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -6241,9 +6241,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -6359,8 +6359,8 @@ Number of paths found:  0
 
 Number of cycles found:  7 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WPSDKAZPSL"> Show/Hide foundCycle query </button> 
- <div id="WPSDKAZPSL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JJCPRJGEDL"> Show/Hide foundCycle query </button> 
+ <div id="JJCPRJGEDL" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6388,8 +6388,8 @@ Number of cycles found:  7
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KHWROKKBYQ"> Show/Hide foundPath query </button> 
- <div id="KHWROKKBYQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ABMYWOFTLP"> Show/Hide foundPath query </button> 
+ <div id="ABMYWOFTLP" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6432,9 +6432,9 @@ Number of paths found:  1
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -6524,9 +6524,9 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -6613,8 +6613,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PUMHFPARMW"> Show/Hide foundCycle query </button> 
- <div id="PUMHFPARMW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WBXVONIEMI"> Show/Hide foundCycle query </button> 
+ <div id="WBXVONIEMI" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6642,8 +6642,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EVZORLCCUH"> Show/Hide foundPath query </button> 
- <div id="EVZORLCCUH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HKNFLSSNZA"> Show/Hide foundPath query </button> 
+ <div id="HKNFLSSNZA" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6686,9 +6686,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -6778,9 +6778,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -6889,8 +6889,8 @@ Number of paths found:  0
 
 Number of cycles found:  24 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LJXHHHUCUK"> Show/Hide foundCycle query </button> 
- <div id="LJXHHHUCUK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DCEZZVRSAB"> Show/Hide foundCycle query </button> 
+ <div id="DCEZZVRSAB" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6918,8 +6918,8 @@ Number of cycles found:  24
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JMJQZMZUVK"> Show/Hide foundPath query </button> 
- <div id="JMJQZMZUVK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KSPWEZHOXA"> Show/Hide foundPath query </button> 
+ <div id="KSPWEZHOXA" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -6962,9 +6962,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -7054,9 +7054,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -7143,8 +7143,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WXOIJCSQZP"> Show/Hide foundCycle query </button> 
- <div id="WXOIJCSQZP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#STULDQSDCI"> Show/Hide foundCycle query </button> 
+ <div id="STULDQSDCI" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7172,8 +7172,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ASVHGBTZRA"> Show/Hide foundPath query </button> 
- <div id="ASVHGBTZRA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VUJWVGZEIY"> Show/Hide foundPath query </button> 
+ <div id="VUJWVGZEIY" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7216,9 +7216,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -7308,9 +7308,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -7426,8 +7426,8 @@ Number of paths found:  0
 
 Number of cycles found:  6 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XILORLTJUG"> Show/Hide foundCycle query </button> 
- <div id="XILORLTJUG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MYKTJFNWCL"> Show/Hide foundCycle query </button> 
+ <div id="MYKTJFNWCL" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7455,8 +7455,8 @@ Number of cycles found:  6
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PNRKUWYXKI"> Show/Hide foundPath query </button> 
- <div id="PNRKUWYXKI" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DKIIMTPFPD"> Show/Hide foundPath query </button> 
+ <div id="DKIIMTPFPD" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7499,9 +7499,9 @@ Number of paths found:  2
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -7591,9 +7591,9 @@ Number of paths found:  2
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -7680,8 +7680,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IEPQIKBMMM"> Show/Hide foundCycle query </button> 
- <div id="IEPQIKBMMM" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YLVJIAWOBC"> Show/Hide foundCycle query </button> 
+ <div id="YLVJIAWOBC" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7709,8 +7709,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZVZLMDOIZL"> Show/Hide foundPath query </button> 
- <div id="ZVZLMDOIZL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YPHXORMLVT"> Show/Hide foundPath query </button> 
+ <div id="YPHXORMLVT" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7753,9 +7753,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -7845,9 +7845,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -7952,8 +7952,8 @@ Number of paths found:  0
 
 Number of cycles found:  15 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QUMTTWHEZD"> Show/Hide foundCycle query </button> 
- <div id="QUMTTWHEZD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FIUJZIHFTW"> Show/Hide foundCycle query </button> 
+ <div id="FIUJZIHFTW" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -7981,8 +7981,8 @@ Number of cycles found:  15
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VUMDWPFAMC"> Show/Hide foundPath query </button> 
- <div id="VUMDWPFAMC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NWMVXAOSES"> Show/Hide foundPath query </button> 
+ <div id="NWMVXAOSES" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8025,9 +8025,9 @@ Number of paths found:  3
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -8117,9 +8117,9 @@ Number of paths found:  3
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -8206,8 +8206,8 @@ Number of paths found:  3
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#POOIQZGTTW"> Show/Hide foundCycle query </button> 
- <div id="POOIQZGTTW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QOJBQOJUMR"> Show/Hide foundCycle query </button> 
+ <div id="QOJBQOJUMR" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8235,8 +8235,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GAMVCAKDBD"> Show/Hide foundPath query </button> 
- <div id="GAMVCAKDBD" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HQNENBMVQE"> Show/Hide foundPath query </button> 
+ <div id="HQNENBMVQE" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8279,9 +8279,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -8371,9 +8371,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -8489,8 +8489,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RTFMCBLGLP"> Show/Hide foundCycle query </button> 
- <div id="RTFMCBLGLP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CMWRQIGAEJ"> Show/Hide foundCycle query </button> 
+ <div id="CMWRQIGAEJ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8518,8 +8518,8 @@ Number of cycles found:  1
 
 Number of paths found:  8 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GHOBDYOGXD"> Show/Hide foundPath query </button> 
- <div id="GHOBDYOGXD" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KOXKZCLZUY"> Show/Hide foundPath query </button> 
+ <div id="KOXKZCLZUY" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8562,9 +8562,9 @@ Number of paths found:  8
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -8654,9 +8654,9 @@ Number of paths found:  8
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -8743,8 +8743,8 @@ Number of paths found:  8
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YGOQUJQAYX"> Show/Hide foundCycle query </button> 
- <div id="YGOQUJQAYX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GBYUOUQTMQ"> Show/Hide foundCycle query </button> 
+ <div id="GBYUOUQTMQ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8772,8 +8772,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VFLWMLYRIS"> Show/Hide foundPath query </button> 
- <div id="VFLWMLYRIS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JGFEYDOTHW"> Show/Hide foundPath query </button> 
+ <div id="JGFEYDOTHW" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -8816,9 +8816,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -8908,9 +8908,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -9015,8 +9015,8 @@ Number of paths found:  0
 
 Number of cycles found:  14 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PTGMRWPPFK"> Show/Hide foundCycle query </button> 
- <div id="PTGMRWPPFK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VJKPJPIWVE"> Show/Hide foundCycle query </button> 
+ <div id="VJKPJPIWVE" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9044,8 +9044,8 @@ Number of cycles found:  14
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EXVQMXQETP"> Show/Hide foundPath query </button> 
- <div id="EXVQMXQETP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OCYJNYMESY"> Show/Hide foundPath query </button> 
+ <div id="OCYJNYMESY" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9088,9 +9088,9 @@ Number of paths found:  1
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -9180,9 +9180,9 @@ Number of paths found:  1
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -9287,8 +9287,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OUPCUKOZUN"> Show/Hide foundCycle query </button> 
- <div id="OUPCUKOZUN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QYODCTJAGG"> Show/Hide foundCycle query </button> 
+ <div id="QYODCTJAGG" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9316,8 +9316,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XQPJPYOBFP"> Show/Hide foundPath query </button> 
- <div id="XQPJPYOBFP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MJNUPYJNQF"> Show/Hide foundPath query </button> 
+ <div id="MJNUPYJNQF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9360,9 +9360,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -9452,9 +9452,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -9559,8 +9559,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PWYMWETBWH"> Show/Hide foundCycle query </button> 
- <div id="PWYMWETBWH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EOSBBLZOFZ"> Show/Hide foundCycle query </button> 
+ <div id="EOSBBLZOFZ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9588,8 +9588,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MKMPNDWCFL"> Show/Hide foundPath query </button> 
- <div id="MKMPNDWCFL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SMBENHRQOH"> Show/Hide foundPath query </button> 
+ <div id="SMBENHRQOH" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9632,9 +9632,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -9724,9 +9724,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -9825,8 +9825,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AIHAITDCIE"> Show/Hide foundCycle query </button> 
- <div id="AIHAITDCIE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IIITKKGBGG"> Show/Hide foundCycle query </button> 
+ <div id="IIITKKGBGG" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9854,8 +9854,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GFGCCNETJB"> Show/Hide foundPath query </button> 
- <div id="GFGCCNETJB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IDXVFEVBKY"> Show/Hide foundPath query </button> 
+ <div id="IDXVFEVBKY" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -9898,9 +9898,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -9990,9 +9990,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -10091,8 +10091,8 @@ Number of paths found:  0
 
 Number of cycles found:  73 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XKJTLLDVSI"> Show/Hide foundCycle query </button> 
- <div id="XKJTLLDVSI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NNJXGWWUAW"> Show/Hide foundCycle query </button> 
+ <div id="NNJXGWWUAW" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10120,8 +10120,8 @@ Number of cycles found:  73
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IVDVKLMPNN"> Show/Hide foundPath query </button> 
- <div id="IVDVKLMPNN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AKONCZKXBY"> Show/Hide foundPath query </button> 
+ <div id="AKONCZKXBY" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10164,9 +10164,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -10256,9 +10256,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -10345,8 +10345,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZEQLEYCIIJ"> Show/Hide foundCycle query </button> 
- <div id="ZEQLEYCIIJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VUNAZWJEOS"> Show/Hide foundCycle query </button> 
+ <div id="VUNAZWJEOS" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10374,8 +10374,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IEDZRQGMSZ"> Show/Hide foundPath query </button> 
- <div id="IEDZRQGMSZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LZVBWJTYNN"> Show/Hide foundPath query </button> 
+ <div id="LZVBWJTYNN" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10418,9 +10418,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -10510,9 +10510,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -10611,8 +10611,8 @@ Number of paths found:  0
 
 Number of cycles found:  25 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HCQPLFHGRH"> Show/Hide foundCycle query </button> 
- <div id="HCQPLFHGRH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GAAMKJLWYN"> Show/Hide foundCycle query </button> 
+ <div id="GAAMKJLWYN" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10640,8 +10640,8 @@ Number of cycles found:  25
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HJPIDOIIGT"> Show/Hide foundPath query </button> 
- <div id="HJPIDOIIGT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DLKAWKKSKA"> Show/Hide foundPath query </button> 
+ <div id="DLKAWKKSKA" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10684,9 +10684,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -10776,9 +10776,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -10865,8 +10865,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UTRMKIODYX"> Show/Hide foundCycle query </button> 
- <div id="UTRMKIODYX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AXGMEOQJGY"> Show/Hide foundCycle query </button> 
+ <div id="AXGMEOQJGY" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10894,8 +10894,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EQFPIYRXPX"> Show/Hide foundPath query </button> 
- <div id="EQFPIYRXPX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PTXVGLKDHA"> Show/Hide foundPath query </button> 
+ <div id="PTXVGLKDHA" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -10938,9 +10938,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -11030,9 +11030,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -11141,8 +11141,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UOPLCTUVTQ"> Show/Hide foundCycle query </button> 
- <div id="UOPLCTUVTQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IPRNVGIYYT"> Show/Hide foundCycle query </button> 
+ <div id="IPRNVGIYYT" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11170,8 +11170,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BOBQOORYZZ"> Show/Hide foundPath query </button> 
- <div id="BOBQOORYZZ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DUGSLOOUNS"> Show/Hide foundPath query </button> 
+ <div id="DUGSLOOUNS" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11214,9 +11214,9 @@ Number of paths found:  3600
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -11306,9 +11306,9 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -11395,8 +11395,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ECKEAMAMHV"> Show/Hide foundCycle query </button> 
- <div id="ECKEAMAMHV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KTTCAYXLFQ"> Show/Hide foundCycle query </button> 
+ <div id="KTTCAYXLFQ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11424,8 +11424,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#APPPAZDEEP"> Show/Hide foundPath query </button> 
- <div id="APPPAZDEEP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JLOQUNZYWS"> Show/Hide foundPath query </button> 
+ <div id="JLOQUNZYWS" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11468,9 +11468,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -11560,9 +11560,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -11667,8 +11667,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QVIPLSDLHO"> Show/Hide foundCycle query </button> 
- <div id="QVIPLSDLHO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OPRMZVGKDG"> Show/Hide foundCycle query </button> 
+ <div id="OPRMZVGKDG" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11696,8 +11696,8 @@ Number of cycles found:  3
 
 Number of paths found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TGUQNXQBBT"> Show/Hide foundPath query </button> 
- <div id="TGUQNXQBBT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HRASIBLAVK"> Show/Hide foundPath query </button> 
+ <div id="HRASIBLAVK" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11740,9 +11740,9 @@ Number of paths found:  4
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -11832,9 +11832,9 @@ Number of paths found:  4
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -11933,8 +11933,8 @@ Number of paths found:  4
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KXRNUXHOBZ"> Show/Hide foundCycle query </button> 
- <div id="KXRNUXHOBZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AZIFTMIOQY"> Show/Hide foundCycle query </button> 
+ <div id="AZIFTMIOQY" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -11962,8 +11962,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IOZMMVFTAK"> Show/Hide foundPath query </button> 
- <div id="IOZMMVFTAK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GNQCYQCTNG"> Show/Hide foundPath query </button> 
+ <div id="GNQCYQCTNG" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12006,9 +12006,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -12098,9 +12098,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -12205,8 +12205,8 @@ Number of paths found:  0
 
 Number of cycles found:  34 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XNRHUUGWWO"> Show/Hide foundCycle query </button> 
- <div id="XNRHUUGWWO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YYMAZDMTWD"> Show/Hide foundCycle query </button> 
+ <div id="YYMAZDMTWD" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12234,8 +12234,8 @@ Number of cycles found:  34
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EGCACQYWGT"> Show/Hide foundPath query </button> 
- <div id="EGCACQYWGT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AFTKSYUFMQ"> Show/Hide foundPath query </button> 
+ <div id="AFTKSYUFMQ" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12278,9 +12278,9 @@ Number of paths found:  3
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -12370,9 +12370,9 @@ Number of paths found:  3
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -12459,8 +12459,8 @@ Number of paths found:  3
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZYPKPSOXSI"> Show/Hide foundCycle query </button> 
- <div id="ZYPKPSOXSI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ATYEOHABJH"> Show/Hide foundCycle query </button> 
+ <div id="ATYEOHABJH" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12488,8 +12488,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TPSXHFULNU"> Show/Hide foundPath query </button> 
- <div id="TPSXHFULNU" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NSKTBJWAWL"> Show/Hide foundPath query </button> 
+ <div id="NSKTBJWAWL" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12532,9 +12532,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -12624,9 +12624,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -12735,8 +12735,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NTWZLORWGB"> Show/Hide foundCycle query </button> 
- <div id="NTWZLORWGB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TKVDOXZCJL"> Show/Hide foundCycle query </button> 
+ <div id="TKVDOXZCJL" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12764,8 +12764,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LEQNOPSQYQ"> Show/Hide foundPath query </button> 
- <div id="LEQNOPSQYQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KMPEJVXAZN"> Show/Hide foundPath query </button> 
+ <div id="KMPEJVXAZN" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -12808,9 +12808,9 @@ Number of paths found:  3600
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -12900,9 +12900,9 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -13011,8 +13011,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RKVSFDLIQX"> Show/Hide foundCycle query </button> 
- <div id="RKVSFDLIQX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ELPRJSVVRL"> Show/Hide foundCycle query </button> 
+ <div id="ELPRJSVVRL" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13040,8 +13040,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XCICLDOMIS"> Show/Hide foundPath query </button> 
- <div id="XCICLDOMIS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FOZLKEWJGO"> Show/Hide foundPath query </button> 
+ <div id="FOZLKEWJGO" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13084,9 +13084,9 @@ Number of paths found:  3600
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -13176,9 +13176,9 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -13287,8 +13287,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GTZFFTYVQD"> Show/Hide foundCycle query </button> 
- <div id="GTZFFTYVQD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JOOKWRTSJQ"> Show/Hide foundCycle query </button> 
+ <div id="JOOKWRTSJQ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13316,8 +13316,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OUIDFRPKOD"> Show/Hide foundPath query </button> 
- <div id="OUIDFRPKOD" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BUJXWBCFDM"> Show/Hide foundPath query </button> 
+ <div id="BUJXWBCFDM" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13360,9 +13360,9 @@ Number of paths found:  3600
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -13452,9 +13452,9 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -13563,8 +13563,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HEMXSPQNEA"> Show/Hide foundCycle query </button> 
- <div id="HEMXSPQNEA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WMOZWLNWKC"> Show/Hide foundCycle query </button> 
+ <div id="WMOZWLNWKC" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13592,8 +13592,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BMPAZYHUCY"> Show/Hide foundPath query </button> 
- <div id="BMPAZYHUCY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JALNOFUJIL"> Show/Hide foundPath query </button> 
+ <div id="JALNOFUJIL" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13636,9 +13636,9 @@ Number of paths found:  3600
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -13728,9 +13728,9 @@ Number of paths found:  3600
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -13839,8 +13839,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CPPHYDERAL"> Show/Hide foundCycle query </button> 
- <div id="CPPHYDERAL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LLFMCPZIZJ"> Show/Hide foundCycle query </button> 
+ <div id="LLFMCPZIZJ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13868,8 +13868,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FLKMDXMSZN"> Show/Hide foundPath query </button> 
- <div id="FLKMDXMSZN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OFSKIAPMIF"> Show/Hide foundPath query </button> 
+ <div id="OFSKIAPMIF" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -13912,9 +13912,9 @@ Number of paths found:  3600
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -14050,9 +14050,9 @@ Pre-generated smallWorld social network of agents with known diameters < 10; dif
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -14157,8 +14157,8 @@ Pre-generated smallWorld social network of agents with known diameters < 10; dif
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ISLLZIZCSN"> Show/Hide foundCycle query </button> 
- <div id="ISLLZIZCSN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IHVPIWIVZY"> Show/Hide foundCycle query </button> 
+ <div id="IHVPIWIVZY" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14186,8 +14186,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GHNKOMRDEQ"> Show/Hide foundPath query </button> 
- <div id="GHNKOMRDEQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JLLSNWRNXH"> Show/Hide foundPath query </button> 
+ <div id="JLLSNWRNXH" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14230,9 +14230,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -14322,9 +14322,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -14440,8 +14440,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EDHPZLDNNK"> Show/Hide foundCycle query </button> 
- <div id="EDHPZLDNNK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XGWKRYIMIJ"> Show/Hide foundCycle query </button> 
+ <div id="XGWKRYIMIJ" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14469,8 +14469,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OEIXQUXZED"> Show/Hide foundPath query </button> 
- <div id="OEIXQUXZED" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QLWZYKVUIQ"> Show/Hide foundPath query </button> 
+ <div id="QLWZYKVUIQ" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14513,9 +14513,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -14605,9 +14605,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -14718,8 +14718,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IQVZEJFJQF"> Show/Hide foundCycle query </button> 
- <div id="IQVZEJFJQF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PMIMSHNOYB"> Show/Hide foundCycle query </button> 
+ <div id="PMIMSHNOYB" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14747,8 +14747,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#URNILGOXQJ"> Show/Hide foundPath query </button> 
- <div id="URNILGOXQJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UMILCXCWWQ"> Show/Hide foundPath query </button> 
+ <div id="UMILCXCWWQ" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -14791,9 +14791,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -14883,9 +14883,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -15001,8 +15001,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OTBFSNTLMD"> Show/Hide foundCycle query </button> 
- <div id="OTBFSNTLMD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XHCIIRFSFN"> Show/Hide foundCycle query </button> 
+ <div id="XHCIIRFSFN" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15030,8 +15030,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KKZWBWCTQM"> Show/Hide foundPath query </button> 
- <div id="KKZWBWCTQM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PTTTUWCEZG"> Show/Hide foundPath query </button> 
+ <div id="PTTTUWCEZG" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15074,9 +15074,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -15166,9 +15166,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -15279,8 +15279,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZARRRNLNCE"> Show/Hide foundCycle query </button> 
- <div id="ZARRRNLNCE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GLMUCGIVNO"> Show/Hide foundCycle query </button> 
+ <div id="GLMUCGIVNO" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15308,8 +15308,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HIBITAXYSL"> Show/Hide foundPath query </button> 
- <div id="HIBITAXYSL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FAICEKJNFC"> Show/Hide foundPath query </button> 
+ <div id="FAICEKJNFC" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15352,9 +15352,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -15444,9 +15444,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -15562,8 +15562,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VDXLROKKTP"> Show/Hide foundCycle query </button> 
- <div id="VDXLROKKTP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JSJBOLTRQM"> Show/Hide foundCycle query </button> 
+ <div id="JSJBOLTRQM" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15591,8 +15591,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QGOLJOPMBU"> Show/Hide foundPath query </button> 
- <div id="QGOLJOPMBU" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NRPTOPLZXM"> Show/Hide foundPath query </button> 
+ <div id="NRPTOPLZXM" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15635,9 +15635,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -15727,9 +15727,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -15834,8 +15834,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BXUZJJYJWI"> Show/Hide foundCycle query </button> 
- <div id="BXUZJJYJWI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OCEYNUHWXE"> Show/Hide foundCycle query </button> 
+ <div id="OCEYNUHWXE" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15863,8 +15863,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WCUHZCTTNN"> Show/Hide foundPath query </button> 
- <div id="WCUHZCTTNN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HOAJHPYQGL"> Show/Hide foundPath query </button> 
+ <div id="HOAJHPYQGL" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -15907,9 +15907,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -15999,9 +15999,9 @@ Number of paths found:  0
 <table class="table table-condensed" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
   </tr>
  </thead>
@@ -16117,8 +16117,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NNCTROZRMC"> Show/Hide foundCycle query </button> 
- <div id="NNCTROZRMC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PTSHVPZOJC"> Show/Hide foundCycle query </button> 
+ <div id="PTSHVPZOJC" class="collapse" >  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -16146,8 +16146,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JKWOTXJCQT"> Show/Hide foundPath query </button> 
- <div id="JKWOTXJCQT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NUQHBWCXKZ"> Show/Hide foundPath query </button> 
+ <div id="NUQHBWCXKZ" class="collapse">  
      GET /filebeat-*/_search 
               { 
                 "query": {
@@ -16190,9 +16190,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -16246,9 +16246,9 @@ Number of paths found:  0
    <th style="text-align:right;"> edges_demands </th>
    <th style="text-align:right;"> edges_knows </th>
    <th style="text-align:right;"> edges_total </th>
-   <th style="text-align:right;"> edges_agent </th>
-   <th style="text-align:right;"> edges_item </th>
-   <th style="text-align:right;"> edges_work </th>
+   <th style="text-align:right;"> vertices_agent </th>
+   <th style="text-align:right;"> vertices_item </th>
+   <th style="text-align:right;"> vertices_work </th>
    <th style="text-align:right;"> vertices_total </th>
    <th style="text-align:right;"> sum_wallTime_ms_total </th>
    <th style="text-align:right;"> process_total </th>
@@ -17699,5 +17699,8 @@ Number of paths found:  0
   </tr>
 </tbody>
 </table></div>
+## Scatterplots 
+
+<img src="02-selectedExperiments_files/figure-html/get-experiment-info-181.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-182.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-183.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-184.png" width="672" /><img src="02-selectedExperiments_files/figure-html/get-experiment-info-185.png" width="672" />
 
 

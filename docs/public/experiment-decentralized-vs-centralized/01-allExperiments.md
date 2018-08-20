@@ -494,8 +494,8 @@ Here we dump data of all experiments that were run in the period between April 2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EEGYPVGRUY"> Show/Hide foundCycle query </button> 
- <div id="EEGYPVGRUY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KBOHYXZGVN"> Show/Hide foundCycle query </button> 
+ <div id="KBOHYXZGVN" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -523,8 +523,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TRKACVVIZF"> Show/Hide foundPath query </button> 
- <div id="TRKACVVIZF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TBSODTELXF"> Show/Hide foundPath query </button> 
+ <div id="TBSODTELXF" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -656,8 +656,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QPXQCHBPNL"> Show/Hide foundCycle query </button> 
- <div id="QPXQCHBPNL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RRJBQRXYRG"> Show/Hide foundCycle query </button> 
+ <div id="RRJBQRXYRG" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -685,8 +685,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TUACCCABFS"> Show/Hide foundPath query </button> 
- <div id="TUACCCABFS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZHWDCWJQON"> Show/Hide foundPath query </button> 
+ <div id="ZHWDCWJQON" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -818,8 +818,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YJDLWBDKXP"> Show/Hide foundCycle query </button> 
- <div id="YJDLWBDKXP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DOOYPVTDCR"> Show/Hide foundCycle query </button> 
+ <div id="DOOYPVTDCR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -847,8 +847,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TBHRLIMVBB"> Show/Hide foundPath query </button> 
- <div id="TBHRLIMVBB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VNDUGLLDMH"> Show/Hide foundPath query </button> 
+ <div id="VNDUGLLDMH" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -980,8 +980,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NQAJTPUYBW"> Show/Hide foundCycle query </button> 
- <div id="NQAJTPUYBW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IZWHXYESTS"> Show/Hide foundCycle query </button> 
+ <div id="IZWHXYESTS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1009,8 +1009,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IERPUYYBGA"> Show/Hide foundPath query </button> 
- <div id="IERPUYYBGA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BGNMQWSQNX"> Show/Hide foundPath query </button> 
+ <div id="BGNMQWSQNX" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1142,8 +1142,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NHLEWPGNNM"> Show/Hide foundCycle query </button> 
- <div id="NHLEWPGNNM" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BUXVFKUQNC"> Show/Hide foundCycle query </button> 
+ <div id="BUXVFKUQNC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1171,8 +1171,8 @@ Number of cycles found:  5
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XCUGLSHCWT"> Show/Hide foundPath query </button> 
- <div id="XCUGLSHCWT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RTTEKPQHXW"> Show/Hide foundPath query </button> 
+ <div id="RTTEKPQHXW" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1304,8 +1304,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XBZPKBQLNW"> Show/Hide foundCycle query </button> 
- <div id="XBZPKBQLNW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CXRRJNAEER"> Show/Hide foundCycle query </button> 
+ <div id="CXRRJNAEER" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1333,8 +1333,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PWAUWVHVAG"> Show/Hide foundPath query </button> 
- <div id="PWAUWVHVAG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WKFTCWDDLT"> Show/Hide foundPath query </button> 
+ <div id="WKFTCWDDLT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1466,8 +1466,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GJJPJUHYNC"> Show/Hide foundCycle query </button> 
- <div id="GJJPJUHYNC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BUGXWVXEDT"> Show/Hide foundCycle query </button> 
+ <div id="BUGXWVXEDT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1495,8 +1495,8 @@ Number of cycles found:  0
 
 Number of paths found:  3599 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LKSMXOHVBR"> Show/Hide foundPath query </button> 
- <div id="LKSMXOHVBR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GVHMKMRXZC"> Show/Hide foundPath query </button> 
+ <div id="GVHMKMRXZC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1628,8 +1628,8 @@ Number of paths found:  3599
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BJDNUDHYRL"> Show/Hide foundCycle query </button> 
- <div id="BJDNUDHYRL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RLQLKNDXGG"> Show/Hide foundCycle query </button> 
+ <div id="RLQLKNDXGG" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1657,8 +1657,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LXFBMRBKNY"> Show/Hide foundPath query </button> 
- <div id="LXFBMRBKNY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OXFGSUYRIJ"> Show/Hide foundPath query </button> 
+ <div id="OXFGSUYRIJ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1790,8 +1790,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HQBQSFWOTX"> Show/Hide foundCycle query </button> 
- <div id="HQBQSFWOTX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZMPSULYSHX"> Show/Hide foundCycle query </button> 
+ <div id="ZMPSULYSHX" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1819,8 +1819,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ANDHMMQNOH"> Show/Hide foundPath query </button> 
- <div id="ANDHMMQNOH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SPOUVNCCGB"> Show/Hide foundPath query </button> 
+ <div id="SPOUVNCCGB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1952,8 +1952,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LVLSHEFNHA"> Show/Hide foundCycle query </button> 
- <div id="LVLSHEFNHA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GKQVKZSJXD"> Show/Hide foundCycle query </button> 
+ <div id="GKQVKZSJXD" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -1981,8 +1981,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TFNHDZIHSD"> Show/Hide foundPath query </button> 
- <div id="TFNHDZIHSD" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ILKSNLYGNY"> Show/Hide foundPath query </button> 
+ <div id="ILKSNLYGNY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2114,8 +2114,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JBQKFDVKNJ"> Show/Hide foundCycle query </button> 
- <div id="JBQKFDVKNJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OSLMKBHOAJ"> Show/Hide foundCycle query </button> 
+ <div id="OSLMKBHOAJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2143,8 +2143,8 @@ Number of cycles found:  0
 
 Number of paths found:  3599 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EPHPQGBIJB"> Show/Hide foundPath query </button> 
- <div id="EPHPQGBIJB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WVCLHXNPSD"> Show/Hide foundPath query </button> 
+ <div id="WVCLHXNPSD" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2276,8 +2276,8 @@ Number of paths found:  3599
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WHOSPNJCUW"> Show/Hide foundCycle query </button> 
- <div id="WHOSPNJCUW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PJOITIUSJQ"> Show/Hide foundCycle query </button> 
+ <div id="PJOITIUSJQ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2305,8 +2305,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QSWMESEBOA"> Show/Hide foundPath query </button> 
- <div id="QSWMESEBOA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MZNYOSOJYW"> Show/Hide foundPath query </button> 
+ <div id="MZNYOSOJYW" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2438,8 +2438,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZOAWWPNMGA"> Show/Hide foundCycle query </button> 
- <div id="ZOAWWPNMGA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VDPMMSAKMO"> Show/Hide foundCycle query </button> 
+ <div id="VDPMMSAKMO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2467,8 +2467,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BYEYKEJOER"> Show/Hide foundPath query </button> 
- <div id="BYEYKEJOER" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MJNLRKNLUG"> Show/Hide foundPath query </button> 
+ <div id="MJNLRKNLUG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2600,8 +2600,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OKVPYKPIDO"> Show/Hide foundCycle query </button> 
- <div id="OKVPYKPIDO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XCTTBXRWTM"> Show/Hide foundCycle query </button> 
+ <div id="XCTTBXRWTM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2629,8 +2629,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SVOFEFNLMO"> Show/Hide foundPath query </button> 
- <div id="SVOFEFNLMO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HCXNQHSPTR"> Show/Hide foundPath query </button> 
+ <div id="HCXNQHSPTR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2762,8 +2762,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YZJCCRBYDG"> Show/Hide foundCycle query </button> 
- <div id="YZJCCRBYDG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EFOQQPURAL"> Show/Hide foundCycle query </button> 
+ <div id="EFOQQPURAL" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2791,8 +2791,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SOKPBDJULJ"> Show/Hide foundPath query </button> 
- <div id="SOKPBDJULJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CCKWQAXRAP"> Show/Hide foundPath query </button> 
+ <div id="CCKWQAXRAP" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2924,8 +2924,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BPRUHVUEUJ"> Show/Hide foundCycle query </button> 
- <div id="BPRUHVUEUJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FOBEMNBUWY"> Show/Hide foundCycle query </button> 
+ <div id="FOBEMNBUWY" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -2953,8 +2953,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NVMVGMNHXO"> Show/Hide foundPath query </button> 
- <div id="NVMVGMNHXO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LEPJBULGFL"> Show/Hide foundPath query </button> 
+ <div id="LEPJBULGFL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3086,8 +3086,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WUKSOUZLRO"> Show/Hide foundCycle query </button> 
- <div id="WUKSOUZLRO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MWAXQYZLKJ"> Show/Hide foundCycle query </button> 
+ <div id="MWAXQYZLKJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3115,8 +3115,8 @@ Number of cycles found:  2
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GVKHFIZKTM"> Show/Hide foundPath query </button> 
- <div id="GVKHFIZKTM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SFWXXLUZFO"> Show/Hide foundPath query </button> 
+ <div id="SFWXXLUZFO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3248,8 +3248,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PNBEGAFMZB"> Show/Hide foundCycle query </button> 
- <div id="PNBEGAFMZB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YPGYWZNLRO"> Show/Hide foundCycle query </button> 
+ <div id="YPGYWZNLRO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3277,8 +3277,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EJWZGQAWRQ"> Show/Hide foundPath query </button> 
- <div id="EJWZGQAWRQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LEVDOVSHXH"> Show/Hide foundPath query </button> 
+ <div id="LEVDOVSHXH" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3410,8 +3410,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UYAJLPHGNP"> Show/Hide foundCycle query </button> 
- <div id="UYAJLPHGNP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YRDVEWBVQZ"> Show/Hide foundCycle query </button> 
+ <div id="YRDVEWBVQZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3439,8 +3439,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QJRXKIQXYR"> Show/Hide foundPath query </button> 
- <div id="QJRXKIQXYR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PMFCGCTRUA"> Show/Hide foundPath query </button> 
+ <div id="PMFCGCTRUA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3865,8 +3865,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NRJXLLPUFF"> Show/Hide foundCycle query </button> 
- <div id="NRJXLLPUFF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HSLNNCHZTI"> Show/Hide foundCycle query </button> 
+ <div id="HSLNNCHZTI" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -3894,8 +3894,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PHCJNSXVSM"> Show/Hide foundPath query </button> 
- <div id="PHCJNSXVSM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HEACOIPOFY"> Show/Hide foundPath query </button> 
+ <div id="HEACOIPOFY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4029,8 +4029,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UWPJHDHHRV"> Show/Hide foundCycle query </button> 
- <div id="UWPJHDHHRV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FEDBYFTWEI"> Show/Hide foundCycle query </button> 
+ <div id="FEDBYFTWEI" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4058,8 +4058,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VGJFOJWAYF"> Show/Hide foundPath query </button> 
- <div id="VGJFOJWAYF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KKXBDNYKPT"> Show/Hide foundPath query </button> 
+ <div id="KKXBDNYKPT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4193,8 +4193,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YDDJWSTELX"> Show/Hide foundCycle query </button> 
- <div id="YDDJWSTELX" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AOLBWWJYYD"> Show/Hide foundCycle query </button> 
+ <div id="AOLBWWJYYD" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4222,8 +4222,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JQQUWUKBOY"> Show/Hide foundPath query </button> 
- <div id="JQQUWUKBOY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UNUJEPUCBB"> Show/Hide foundPath query </button> 
+ <div id="UNUJEPUCBB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4357,8 +4357,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NXZJYZYBME"> Show/Hide foundCycle query </button> 
- <div id="NXZJYZYBME" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FDFLCJGMDI"> Show/Hide foundCycle query </button> 
+ <div id="FDFLCJGMDI" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4386,8 +4386,8 @@ Number of cycles found:  0
 
 Number of paths found:  10797 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LLMRPQYMDP"> Show/Hide foundPath query </button> 
- <div id="LLMRPQYMDP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AXPDDYJUHX"> Show/Hide foundPath query </button> 
+ <div id="AXPDDYJUHX" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4521,8 +4521,8 @@ Number of paths found:  10797
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KPRFTCQHSH"> Show/Hide foundCycle query </button> 
- <div id="KPRFTCQHSH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZXCSMBRIKR"> Show/Hide foundCycle query </button> 
+ <div id="ZXCSMBRIKR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4550,8 +4550,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TGQIISEPFX"> Show/Hide foundPath query </button> 
- <div id="TGQIISEPFX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AXOBIKFMDC"> Show/Hide foundPath query </button> 
+ <div id="AXOBIKFMDC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4685,8 +4685,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GPCEBQVART"> Show/Hide foundCycle query </button> 
- <div id="GPCEBQVART" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NSRGUGCECE"> Show/Hide foundCycle query </button> 
+ <div id="NSRGUGCECE" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4714,8 +4714,8 @@ Number of cycles found:  4
 
 Number of paths found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IKQXLISOGJ"> Show/Hide foundPath query </button> 
- <div id="IKQXLISOGJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YGTGZRZONC"> Show/Hide foundPath query </button> 
+ <div id="YGTGZRZONC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4849,8 +4849,8 @@ Number of paths found:  4
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PUTACKQUYN"> Show/Hide foundCycle query </button> 
- <div id="PUTACKQUYN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LCNQJHUCKP"> Show/Hide foundCycle query </button> 
+ <div id="LCNQJHUCKP" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -4878,8 +4878,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IYFAIMJWPA"> Show/Hide foundPath query </button> 
- <div id="IYFAIMJWPA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QFUOCHHLKY"> Show/Hide foundPath query </button> 
+ <div id="QFUOCHHLKY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5013,8 +5013,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UNFYPXXKGN"> Show/Hide foundCycle query </button> 
- <div id="UNFYPXXKGN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LCYMTROCRI"> Show/Hide foundCycle query </button> 
+ <div id="LCYMTROCRI" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5042,8 +5042,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DDONOYOGIN"> Show/Hide foundPath query </button> 
- <div id="DDONOYOGIN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QLTUNWGDBG"> Show/Hide foundPath query </button> 
+ <div id="QLTUNWGDBG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5177,8 +5177,8 @@ Number of paths found:  10798
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YIUPGLHCVF"> Show/Hide foundCycle query </button> 
- <div id="YIUPGLHCVF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZSUWNTTUYA"> Show/Hide foundCycle query </button> 
+ <div id="ZSUWNTTUYA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5206,8 +5206,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KGMJSAXIAF"> Show/Hide foundPath query </button> 
- <div id="KGMJSAXIAF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WZNNKXKXJN"> Show/Hide foundPath query </button> 
+ <div id="WZNNKXKXJN" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5341,8 +5341,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XBEIMPXEGL"> Show/Hide foundCycle query </button> 
- <div id="XBEIMPXEGL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WXEOGBYUAC"> Show/Hide foundCycle query </button> 
+ <div id="WXEOGBYUAC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5370,8 +5370,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CEVZZEFPCQ"> Show/Hide foundPath query </button> 
- <div id="CEVZZEFPCQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WSWZMDCNRD"> Show/Hide foundPath query </button> 
+ <div id="WSWZMDCNRD" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5505,8 +5505,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TZIUFVMZRP"> Show/Hide foundCycle query </button> 
- <div id="TZIUFVMZRP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YQPLRLTAMH"> Show/Hide foundCycle query </button> 
+ <div id="YQPLRLTAMH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5534,8 +5534,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#STNUQNTPNK"> Show/Hide foundPath query </button> 
- <div id="STNUQNTPNK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FOOQMPDXHS"> Show/Hide foundPath query </button> 
+ <div id="FOOQMPDXHS" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5669,8 +5669,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WKQYQSDLNB"> Show/Hide foundCycle query </button> 
- <div id="WKQYQSDLNB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OMCUJYRGOZ"> Show/Hide foundCycle query </button> 
+ <div id="OMCUJYRGOZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5698,8 +5698,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XKAUOGXRMR"> Show/Hide foundPath query </button> 
- <div id="XKAUOGXRMR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XXHNOEJFGZ"> Show/Hide foundPath query </button> 
+ <div id="XXHNOEJFGZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5833,8 +5833,8 @@ Number of paths found:  10798
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BDCOCGZMAW"> Show/Hide foundCycle query </button> 
- <div id="BDCOCGZMAW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DHUYCACXFC"> Show/Hide foundCycle query </button> 
+ <div id="DHUYCACXFC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5862,8 +5862,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EFUOACHFRX"> Show/Hide foundPath query </button> 
- <div id="EFUOACHFRX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GRUUTAHQNO"> Show/Hide foundPath query </button> 
+ <div id="GRUUTAHQNO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -5997,8 +5997,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DDBZWBCZEE"> Show/Hide foundCycle query </button> 
- <div id="DDBZWBCZEE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AGSTDRPPJV"> Show/Hide foundCycle query </button> 
+ <div id="AGSTDRPPJV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6026,8 +6026,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WGKIWQJLWN"> Show/Hide foundPath query </button> 
- <div id="WGKIWQJLWN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZEWQQBPEQP"> Show/Hide foundPath query </button> 
+ <div id="ZEWQQBPEQP" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6161,8 +6161,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PRDFCDGRBV"> Show/Hide foundCycle query </button> 
- <div id="PRDFCDGRBV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BDRRZJOHBM"> Show/Hide foundCycle query </button> 
+ <div id="BDRRZJOHBM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6190,8 +6190,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QBNESRELER"> Show/Hide foundPath query </button> 
- <div id="QBNESRELER" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GKCSRQPZGA"> Show/Hide foundPath query </button> 
+ <div id="GKCSRQPZGA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6325,8 +6325,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MLYWFOZLPW"> Show/Hide foundCycle query </button> 
- <div id="MLYWFOZLPW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PPCLHFUTOQ"> Show/Hide foundCycle query </button> 
+ <div id="PPCLHFUTOQ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6354,8 +6354,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DZMKJFIXPG"> Show/Hide foundPath query </button> 
- <div id="DZMKJFIXPG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YPWTLIROPP"> Show/Hide foundPath query </button> 
+ <div id="YPWTLIROPP" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6489,8 +6489,8 @@ Number of paths found:  10798
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LAFUASWZTB"> Show/Hide foundCycle query </button> 
- <div id="LAFUASWZTB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EIVYASPQQY"> Show/Hide foundCycle query </button> 
+ <div id="EIVYASPQQY" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6518,8 +6518,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FVJANYMAPK"> Show/Hide foundPath query </button> 
- <div id="FVJANYMAPK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TCFDWNOQGV"> Show/Hide foundPath query </button> 
+ <div id="TCFDWNOQGV" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6653,8 +6653,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QWUVRSNKRP"> Show/Hide foundCycle query </button> 
- <div id="QWUVRSNKRP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UYXYAMOIIW"> Show/Hide foundCycle query </button> 
+ <div id="UYXYAMOIIW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6682,8 +6682,8 @@ Number of cycles found:  2
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GSGKKHHTLC"> Show/Hide foundPath query </button> 
- <div id="GSGKKHHTLC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PPLFGNLYKO"> Show/Hide foundPath query </button> 
+ <div id="PPLFGNLYKO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6817,8 +6817,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XCFTUPFILR"> Show/Hide foundCycle query </button> 
- <div id="XCFTUPFILR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#THDVBCKTUM"> Show/Hide foundCycle query </button> 
+ <div id="THDVBCKTUM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6846,8 +6846,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XAYFZUZYXS"> Show/Hide foundPath query </button> 
- <div id="XAYFZUZYXS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ANSYZTFCBM"> Show/Hide foundPath query </button> 
+ <div id="ANSYZTFCBM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -6981,8 +6981,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JCOIBPRAGO"> Show/Hide foundCycle query </button> 
- <div id="JCOIBPRAGO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IAKRHHNZAW"> Show/Hide foundCycle query </button> 
+ <div id="IAKRHHNZAW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7010,8 +7010,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SHQQUEXTJP"> Show/Hide foundPath query </button> 
- <div id="SHQQUEXTJP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EEBMHPFHPW"> Show/Hide foundPath query </button> 
+ <div id="EEBMHPFHPW" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7145,8 +7145,8 @@ Number of paths found:  10798
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VRLWIKLRBC"> Show/Hide foundCycle query </button> 
- <div id="VRLWIKLRBC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AFFQZPTGWP"> Show/Hide foundCycle query </button> 
+ <div id="AFFQZPTGWP" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7174,8 +7174,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BBUIWYPRYQ"> Show/Hide foundPath query </button> 
- <div id="BBUIWYPRYQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RNVOJEDMXY"> Show/Hide foundPath query </button> 
+ <div id="RNVOJEDMXY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7309,8 +7309,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PRVYOBHAOY"> Show/Hide foundCycle query </button> 
- <div id="PRVYOBHAOY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ADNUOTLLKC"> Show/Hide foundCycle query </button> 
+ <div id="ADNUOTLLKC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7338,8 +7338,8 @@ Number of cycles found:  1
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YIDRPEQFFH"> Show/Hide foundPath query </button> 
- <div id="YIDRPEQFFH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MQQNOWNOEI"> Show/Hide foundPath query </button> 
+ <div id="MQQNOWNOEI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7473,8 +7473,8 @@ Number of paths found:  3
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WXIBVCWYZJ"> Show/Hide foundCycle query </button> 
- <div id="WXIBVCWYZJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WLPWUOBUTR"> Show/Hide foundCycle query </button> 
+ <div id="WLPWUOBUTR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7502,8 +7502,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZXLKAPVXSJ"> Show/Hide foundPath query </button> 
- <div id="ZXLKAPVXSJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PZJFKKDZWU"> Show/Hide foundPath query </button> 
+ <div id="PZJFKKDZWU" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7637,8 +7637,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PWIDRQSNZV"> Show/Hide foundCycle query </button> 
- <div id="PWIDRQSNZV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EIKXTAAXKI"> Show/Hide foundCycle query </button> 
+ <div id="EIKXTAAXKI" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7666,8 +7666,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MOQRFVGQJV"> Show/Hide foundPath query </button> 
- <div id="MOQRFVGQJV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TKTOGWSUZI"> Show/Hide foundPath query </button> 
+ <div id="TKTOGWSUZI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7885,8 +7885,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HEUSXQFTLB"> Show/Hide foundCycle query </button> 
- <div id="HEUSXQFTLB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NIVTGBVCRP"> Show/Hide foundCycle query </button> 
+ <div id="NIVTGBVCRP" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -7914,8 +7914,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IRJJVHOVCV"> Show/Hide foundPath query </button> 
- <div id="IRJJVHOVCV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SWLARITQOY"> Show/Hide foundPath query </button> 
+ <div id="SWLARITQOY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8047,8 +8047,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GRLZQKAOLF"> Show/Hide foundCycle query </button> 
- <div id="GRLZQKAOLF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PHAQFIHAUU"> Show/Hide foundCycle query </button> 
+ <div id="PHAQFIHAUU" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8076,8 +8076,8 @@ Number of cycles found:  1
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NORQAHPTIQ"> Show/Hide foundPath query </button> 
- <div id="NORQAHPTIQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GURCHWIQYJ"> Show/Hide foundPath query </button> 
+ <div id="GURCHWIQYJ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8209,8 +8209,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IBBRDUHJWV"> Show/Hide foundCycle query </button> 
- <div id="IBBRDUHJWV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TRCRLEYSFO"> Show/Hide foundCycle query </button> 
+ <div id="TRCRLEYSFO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8238,8 +8238,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DRBJZUPSBT"> Show/Hide foundPath query </button> 
- <div id="DRBJZUPSBT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MAUDLABVJO"> Show/Hide foundPath query </button> 
+ <div id="MAUDLABVJO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8371,8 +8371,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RXQZNAIZUO"> Show/Hide foundCycle query </button> 
- <div id="RXQZNAIZUO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FDPJTAZTHG"> Show/Hide foundCycle query </button> 
+ <div id="FDPJTAZTHG" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8400,8 +8400,8 @@ Number of cycles found:  0
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QLIQMQLXEC"> Show/Hide foundPath query </button> 
- <div id="QLIQMQLXEC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BVQFMEHTWM"> Show/Hide foundPath query </button> 
+ <div id="BVQFMEHTWM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8533,8 +8533,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XJIJASRRWI"> Show/Hide foundCycle query </button> 
- <div id="XJIJASRRWI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DFEHWAMANH"> Show/Hide foundCycle query </button> 
+ <div id="DFEHWAMANH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8562,8 +8562,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ISVQMMWUMK"> Show/Hide foundPath query </button> 
- <div id="ISVQMMWUMK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CWAIHIFGKC"> Show/Hide foundPath query </button> 
+ <div id="CWAIHIFGKC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8695,8 +8695,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YHZLNPGYXF"> Show/Hide foundCycle query </button> 
- <div id="YHZLNPGYXF" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YEBMQHVNPC"> Show/Hide foundCycle query </button> 
+ <div id="YEBMQHVNPC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8724,8 +8724,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TTXIROGANX"> Show/Hide foundPath query </button> 
- <div id="TTXIROGANX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KFHALAURSQ"> Show/Hide foundPath query </button> 
+ <div id="KFHALAURSQ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8913,8 +8913,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BAMZPKGDFS"> Show/Hide foundCycle query </button> 
- <div id="BAMZPKGDFS" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CRQAVTXDNH"> Show/Hide foundCycle query </button> 
+ <div id="CRQAVTXDNH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -8942,8 +8942,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YMZAOXMLDE"> Show/Hide foundPath query </button> 
- <div id="YMZAOXMLDE" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AEDUAYVZZQ"> Show/Hide foundPath query </button> 
+ <div id="AEDUAYVZZQ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9075,8 +9075,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WCBQIQIKVO"> Show/Hide foundCycle query </button> 
- <div id="WCBQIQIKVO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GMVDWBSMVA"> Show/Hide foundCycle query </button> 
+ <div id="GMVDWBSMVA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9104,8 +9104,8 @@ Number of cycles found:  1
 
 Number of paths found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PTVQSZUGBI"> Show/Hide foundPath query </button> 
- <div id="PTVQSZUGBI" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BIGQPIDFOB"> Show/Hide foundPath query </button> 
+ <div id="BIGQPIDFOB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9237,8 +9237,8 @@ Number of paths found:  5
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SFAGAXQCIG"> Show/Hide foundCycle query </button> 
- <div id="SFAGAXQCIG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AERPYSLRXJ"> Show/Hide foundCycle query </button> 
+ <div id="AERPYSLRXJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9266,8 +9266,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LTFSBHJZAV"> Show/Hide foundPath query </button> 
- <div id="LTFSBHJZAV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OSSVSTTZUL"> Show/Hide foundPath query </button> 
+ <div id="OSSVSTTZUL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9494,8 +9494,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SDTTBKRYZW"> Show/Hide foundCycle query </button> 
- <div id="SDTTBKRYZW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZSDXLLCCIM"> Show/Hide foundCycle query </button> 
+ <div id="ZSDXLLCCIM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9523,8 +9523,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FQQDASEFFD"> Show/Hide foundPath query </button> 
- <div id="FQQDASEFFD" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MRMSHGKVUD"> Show/Hide foundPath query </button> 
+ <div id="MRMSHGKVUD" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9658,8 +9658,8 @@ Number of paths found:  0
 
 Number of cycles found:  87 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AOCVTVZDCC"> Show/Hide foundCycle query </button> 
- <div id="AOCVTVZDCC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EJLJMYLXQM"> Show/Hide foundCycle query </button> 
+ <div id="EJLJMYLXQM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9687,8 +9687,8 @@ Number of cycles found:  87
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#INLQLQOWOU"> Show/Hide foundPath query </button> 
- <div id="INLQLQOWOU" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EFXSDAYNDX"> Show/Hide foundPath query </button> 
+ <div id="EFXSDAYNDX" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9822,8 +9822,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KTXICWJENS"> Show/Hide foundCycle query </button> 
- <div id="KTXICWJENS" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BHKBBIDTPF"> Show/Hide foundCycle query </button> 
+ <div id="BHKBBIDTPF" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9851,8 +9851,8 @@ Number of cycles found:  0
 
 Number of paths found:  10798 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OTYMHBNRTC"> Show/Hide foundPath query </button> 
- <div id="OTYMHBNRTC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GUTVZWZFGI"> Show/Hide foundPath query </button> 
+ <div id="GUTVZWZFGI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -9986,8 +9986,8 @@ Number of paths found:  10798
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#COCAGISPLA"> Show/Hide foundCycle query </button> 
- <div id="COCAGISPLA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BMWQZUFFZZ"> Show/Hide foundCycle query </button> 
+ <div id="BMWQZUFFZZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10015,8 +10015,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BAVQNXAHIN"> Show/Hide foundPath query </button> 
- <div id="BAVQNXAHIN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MDMLOTTXMK"> Show/Hide foundPath query </button> 
+ <div id="MDMLOTTXMK" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10126,8 +10126,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OBZSDNYXTW"> Show/Hide foundCycle query </button> 
- <div id="OBZSDNYXTW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WTZGQMTTKB"> Show/Hide foundCycle query </button> 
+ <div id="WTZGQMTTKB" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10155,8 +10155,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TMOGVYZHTW"> Show/Hide foundPath query </button> 
- <div id="TMOGVYZHTW" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FYKDTMOXWW"> Show/Hide foundPath query </button> 
+ <div id="FYKDTMOXWW" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10290,8 +10290,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EZSHULXLJE"> Show/Hide foundCycle query </button> 
- <div id="EZSHULXLJE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WWEDREACLW"> Show/Hide foundCycle query </button> 
+ <div id="WWEDREACLW" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10319,8 +10319,8 @@ Number of cycles found:  0
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OWWMVJTNFN"> Show/Hide foundPath query </button> 
- <div id="OWWMVJTNFN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HZCKENHNNV"> Show/Hide foundPath query </button> 
+ <div id="HZCKENHNNV" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10498,8 +10498,8 @@ Number of paths found:  0
 
 Number of cycles found:  138 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SWXNDJGFLD"> Show/Hide foundCycle query </button> 
- <div id="SWXNDJGFLD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ORRPFVZGBG"> Show/Hide foundCycle query </button> 
+ <div id="ORRPFVZGBG" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10527,8 +10527,8 @@ Number of cycles found:  138
 
 Number of paths found:  15 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EPXDGUKNZG"> Show/Hide foundPath query </button> 
- <div id="EPXDGUKNZG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PGWDXNSSRZ"> Show/Hide foundPath query </button> 
+ <div id="PGWDXNSSRZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10660,8 +10660,8 @@ Number of paths found:  15
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EDKAKEMJSD"> Show/Hide foundCycle query </button> 
- <div id="EDKAKEMJSD" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KDAHJVSTMS"> Show/Hide foundCycle query </button> 
+ <div id="KDAHJVSTMS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10689,8 +10689,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DBQXRAHRWC"> Show/Hide foundPath query </button> 
- <div id="DBQXRAHRWC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CQJYIJDMYU"> Show/Hide foundPath query </button> 
+ <div id="CQJYIJDMYU" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10868,8 +10868,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RCYDPPNEKR"> Show/Hide foundCycle query </button> 
- <div id="RCYDPPNEKR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DBPGUFPCBA"> Show/Hide foundCycle query </button> 
+ <div id="DBPGUFPCBA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -10897,8 +10897,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HYVNCWTMTG"> Show/Hide foundPath query </button> 
- <div id="HYVNCWTMTG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UBKMDXPGDJ"> Show/Hide foundPath query </button> 
+ <div id="UBKMDXPGDJ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11030,8 +11030,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TBXHKIUMMB"> Show/Hide foundCycle query </button> 
- <div id="TBXHKIUMMB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PICGSQMGQG"> Show/Hide foundCycle query </button> 
+ <div id="PICGSQMGQG" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11059,8 +11059,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DZGEIYBRBH"> Show/Hide foundPath query </button> 
- <div id="DZGEIYBRBH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TEWRVPGJWP"> Show/Hide foundPath query </button> 
+ <div id="TEWRVPGJWP" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11233,8 +11233,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AWLOYTACHC"> Show/Hide foundCycle query </button> 
- <div id="AWLOYTACHC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UJVPIUAGXH"> Show/Hide foundCycle query </button> 
+ <div id="UJVPIUAGXH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11262,8 +11262,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PAXSJZTDHA"> Show/Hide foundPath query </button> 
- <div id="PAXSJZTDHA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DDWZZHSLKA"> Show/Hide foundPath query </button> 
+ <div id="DDWZZHSLKA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11393,8 +11393,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GSJREVGVPT"> Show/Hide foundCycle query </button> 
- <div id="GSJREVGVPT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XMGMJLSLJK"> Show/Hide foundCycle query </button> 
+ <div id="XMGMJLSLJK" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11422,8 +11422,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HRFVOTTKLP"> Show/Hide foundPath query </button> 
- <div id="HRFVOTTKLP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NQRAGAEZCV"> Show/Hide foundPath query </button> 
+ <div id="NQRAGAEZCV" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11596,8 +11596,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YEJAEGXCPY"> Show/Hide foundCycle query </button> 
- <div id="YEJAEGXCPY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WTLAKMGLIZ"> Show/Hide foundCycle query </button> 
+ <div id="WTLAKMGLIZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11625,8 +11625,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EDNYYHQVQD"> Show/Hide foundPath query </button> 
- <div id="EDNYYHQVQD" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MRNJGNSFWS"> Show/Hide foundPath query </button> 
+ <div id="MRNJGNSFWS" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11756,8 +11756,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YSIVBHSRHS"> Show/Hide foundCycle query </button> 
- <div id="YSIVBHSRHS" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OWASBBAEXG"> Show/Hide foundCycle query </button> 
+ <div id="OWASBBAEXG" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11785,8 +11785,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LPYQPWZZXS"> Show/Hide foundPath query </button> 
- <div id="LPYQPWZZXS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TZOUBHBAQV"> Show/Hide foundPath query </button> 
+ <div id="TZOUBHBAQV" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -11975,8 +11975,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GEAFHTBGJV"> Show/Hide foundCycle query </button> 
- <div id="GEAFHTBGJV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LWANODQYHJ"> Show/Hide foundCycle query </button> 
+ <div id="LWANODQYHJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12004,8 +12004,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JWZGSKDRCS"> Show/Hide foundPath query </button> 
- <div id="JWZGSKDRCS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HVQMGVHCZL"> Show/Hide foundPath query </button> 
+ <div id="HVQMGVHCZL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12135,8 +12135,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PMHRSWGBOQ"> Show/Hide foundCycle query </button> 
- <div id="PMHRSWGBOQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YTZSHFZGHV"> Show/Hide foundCycle query </button> 
+ <div id="YTZSHFZGHV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12164,8 +12164,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LPNUDXGBRY"> Show/Hide foundPath query </button> 
- <div id="LPNUDXGBRY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XKKAVJIHAN"> Show/Hide foundPath query </button> 
+ <div id="XKKAVJIHAN" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12887,8 +12887,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RPNVJDICWB"> Show/Hide foundCycle query </button> 
- <div id="RPNVJDICWB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ARIVZIPBJT"> Show/Hide foundCycle query </button> 
+ <div id="ARIVZIPBJT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -12916,8 +12916,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FNQPRWLJCH"> Show/Hide foundPath query </button> 
- <div id="FNQPRWLJCH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZSQZYSWAGI"> Show/Hide foundPath query </button> 
+ <div id="ZSQZYSWAGI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13051,8 +13051,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VNCWGNFGWQ"> Show/Hide foundCycle query </button> 
- <div id="VNCWGNFGWQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#APCKMBDFNQ"> Show/Hide foundCycle query </button> 
+ <div id="APCKMBDFNQ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13080,8 +13080,8 @@ Number of cycles found:  5
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NWOBVKYODV"> Show/Hide foundPath query </button> 
- <div id="NWOBVKYODV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AXPXWUMDPM"> Show/Hide foundPath query </button> 
+ <div id="AXPXWUMDPM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13215,8 +13215,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GJBNJBDXCG"> Show/Hide foundCycle query </button> 
- <div id="GJBNJBDXCG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FIXYIKFHUX"> Show/Hide foundCycle query </button> 
+ <div id="FIXYIKFHUX" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13244,8 +13244,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VQOUZZQJOY"> Show/Hide foundPath query </button> 
- <div id="VQOUZZQJOY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QLFTEXCQFM"> Show/Hide foundPath query </button> 
+ <div id="QLFTEXCQFM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13379,8 +13379,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JZINXCXGLU"> Show/Hide foundCycle query </button> 
- <div id="JZINXCXGLU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VTEACMQUAL"> Show/Hide foundCycle query </button> 
+ <div id="VTEACMQUAL" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13408,8 +13408,8 @@ Number of cycles found:  4
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UQLCQIQYOH"> Show/Hide foundPath query </button> 
- <div id="UQLCQIQYOH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YTBVMZUHSK"> Show/Hide foundPath query </button> 
+ <div id="YTBVMZUHSK" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13543,8 +13543,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EKVYHQKTBR"> Show/Hide foundCycle query </button> 
- <div id="EKVYHQKTBR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NXLSCKRIJI"> Show/Hide foundCycle query </button> 
+ <div id="NXLSCKRIJI" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13572,8 +13572,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JZDAINCFZA"> Show/Hide foundPath query </button> 
- <div id="JZDAINCFZA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PDAUHXRYUV"> Show/Hide foundPath query </button> 
+ <div id="PDAUHXRYUV" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13707,8 +13707,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MWZSXYFMFI"> Show/Hide foundCycle query </button> 
- <div id="MWZSXYFMFI" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CTTXUBWEPM"> Show/Hide foundCycle query </button> 
+ <div id="CTTXUBWEPM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13736,8 +13736,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FHTKRRJCME"> Show/Hide foundPath query </button> 
- <div id="FHTKRRJCME" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XDTJKCLTQB"> Show/Hide foundPath query </button> 
+ <div id="XDTJKCLTQB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13871,8 +13871,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XXDULCFGEZ"> Show/Hide foundCycle query </button> 
- <div id="XXDULCFGEZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RJCMAZVWLQ"> Show/Hide foundCycle query </button> 
+ <div id="RJCMAZVWLQ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -13900,8 +13900,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IXSNZTQNLX"> Show/Hide foundPath query </button> 
- <div id="IXSNZTQNLX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FNXSZCFSCL"> Show/Hide foundPath query </button> 
+ <div id="FNXSZCFSCL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14035,8 +14035,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AOOBOYSYZY"> Show/Hide foundCycle query </button> 
- <div id="AOOBOYSYZY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GIXARZSXZI"> Show/Hide foundCycle query </button> 
+ <div id="GIXARZSXZI" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14064,8 +14064,8 @@ Number of cycles found:  1
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#IWEMQQRYJP"> Show/Hide foundPath query </button> 
- <div id="IWEMQQRYJP" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GPXHPWDSDZ"> Show/Hide foundPath query </button> 
+ <div id="GPXHPWDSDZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14199,8 +14199,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HQOYDCTHPZ"> Show/Hide foundCycle query </button> 
- <div id="HQOYDCTHPZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PKCTIGEFGZ"> Show/Hide foundCycle query </button> 
+ <div id="PKCTIGEFGZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14228,8 +14228,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DFPGMNYXSK"> Show/Hide foundPath query </button> 
- <div id="DFPGMNYXSK" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HDUIYWGQCE"> Show/Hide foundPath query </button> 
+ <div id="HDUIYWGQCE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14363,8 +14363,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XUZGGOGDHT"> Show/Hide foundCycle query </button> 
- <div id="XUZGGOGDHT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JMJVRYDJYZ"> Show/Hide foundCycle query </button> 
+ <div id="JMJVRYDJYZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14392,8 +14392,8 @@ Number of cycles found:  5
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GINOYFXHDN"> Show/Hide foundPath query </button> 
- <div id="GINOYFXHDN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VJVDTHMYHQ"> Show/Hide foundPath query </button> 
+ <div id="VJVDTHMYHQ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14527,8 +14527,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PGLTDDXKYJ"> Show/Hide foundCycle query </button> 
- <div id="PGLTDDXKYJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OWIVPWXRNS"> Show/Hide foundCycle query </button> 
+ <div id="OWIVPWXRNS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14556,8 +14556,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VITWDTCHLR"> Show/Hide foundPath query </button> 
- <div id="VITWDTCHLR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MXVSIMCYCO"> Show/Hide foundPath query </button> 
+ <div id="MXVSIMCYCO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14691,8 +14691,8 @@ Number of paths found:  0
 
 Number of cycles found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MYXTEJMQLO"> Show/Hide foundCycle query </button> 
- <div id="MYXTEJMQLO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QCVLRTFSBC"> Show/Hide foundCycle query </button> 
+ <div id="QCVLRTFSBC" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14720,8 +14720,8 @@ Number of cycles found:  4
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JCBUCSEYZB"> Show/Hide foundPath query </button> 
- <div id="JCBUCSEYZB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PWQPZWXEDU"> Show/Hide foundPath query </button> 
+ <div id="PWQPZWXEDU" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14855,8 +14855,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#HJYZFKJDHG"> Show/Hide foundCycle query </button> 
- <div id="HJYZFKJDHG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DHGAVXYWVE"> Show/Hide foundCycle query </button> 
+ <div id="DHGAVXYWVE" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -14884,8 +14884,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JZQEMJTIRW"> Show/Hide foundPath query </button> 
- <div id="JZQEMJTIRW" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AXGUCXPHPO"> Show/Hide foundPath query </button> 
+ <div id="AXGUCXPHPO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15019,8 +15019,8 @@ Number of paths found:  0
 
 Number of cycles found:  7 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KXMKNGIPYA"> Show/Hide foundCycle query </button> 
- <div id="KXMKNGIPYA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NNXTPOKWLO"> Show/Hide foundCycle query </button> 
+ <div id="NNXTPOKWLO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15048,8 +15048,8 @@ Number of cycles found:  7
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DRAMFXLGBT"> Show/Hide foundPath query </button> 
- <div id="DRAMFXLGBT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ERETBGKBXO"> Show/Hide foundPath query </button> 
+ <div id="ERETBGKBXO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15183,8 +15183,8 @@ Number of paths found:  1
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AAPIZWSMHB"> Show/Hide foundCycle query </button> 
- <div id="AAPIZWSMHB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IPBRAOSRNY"> Show/Hide foundCycle query </button> 
+ <div id="IPBRAOSRNY" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15212,8 +15212,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OZLCFMJZLN"> Show/Hide foundPath query </button> 
- <div id="OZLCFMJZLN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OZLPQERMGE"> Show/Hide foundPath query </button> 
+ <div id="OZLPQERMGE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15347,8 +15347,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ICFNODCMQC"> Show/Hide foundCycle query </button> 
- <div id="ICFNODCMQC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KUMIMCQXCT"> Show/Hide foundCycle query </button> 
+ <div id="KUMIMCQXCT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15376,8 +15376,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MUQXVGXYBH"> Show/Hide foundPath query </button> 
- <div id="MUQXVGXYBH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GJXEEWSGBZ"> Show/Hide foundPath query </button> 
+ <div id="GJXEEWSGBZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15511,8 +15511,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RMAMUMIJWA"> Show/Hide foundCycle query </button> 
- <div id="RMAMUMIJWA" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OOCDTVPSUO"> Show/Hide foundCycle query </button> 
+ <div id="OOCDTVPSUO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15540,8 +15540,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DEGSRWVVDJ"> Show/Hide foundPath query </button> 
- <div id="DEGSRWVVDJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TRUDYPCAWO"> Show/Hide foundPath query </button> 
+ <div id="TRUDYPCAWO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15675,8 +15675,8 @@ Number of paths found:  0
 
 Number of cycles found:  5 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FYVQCQFQZT"> Show/Hide foundCycle query </button> 
- <div id="FYVQCQFQZT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RGAFXLTSYJ"> Show/Hide foundCycle query </button> 
+ <div id="RGAFXLTSYJ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15704,8 +15704,8 @@ Number of cycles found:  5
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XCYYCVZAAQ"> Show/Hide foundPath query </button> 
- <div id="XCYYCVZAAQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KREFTVLJWN"> Show/Hide foundPath query </button> 
+ <div id="KREFTVLJWN" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15839,8 +15839,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SCNOBNQXLO"> Show/Hide foundCycle query </button> 
- <div id="SCNOBNQXLO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EUXVJHQHQO"> Show/Hide foundCycle query </button> 
+ <div id="EUXVJHQHQO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -15868,8 +15868,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YMWZLOHUSE"> Show/Hide foundPath query </button> 
- <div id="YMWZLOHUSE" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MQBKTBQGPA"> Show/Hide foundPath query </button> 
+ <div id="MQBKTBQGPA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16003,8 +16003,8 @@ Number of paths found:  0
 
 Number of cycles found:  24 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DLNIHRNBZK"> Show/Hide foundCycle query </button> 
- <div id="DLNIHRNBZK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DOWHBFXQQX"> Show/Hide foundCycle query </button> 
+ <div id="DOWHBFXQQX" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16032,8 +16032,8 @@ Number of cycles found:  24
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CLUOYNQKWB"> Show/Hide foundPath query </button> 
- <div id="CLUOYNQKWB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZPHTFTFHQA"> Show/Hide foundPath query </button> 
+ <div id="ZPHTFTFHQA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16167,8 +16167,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZBGWZVETVP"> Show/Hide foundCycle query </button> 
- <div id="ZBGWZVETVP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QFNKEIZMCY"> Show/Hide foundCycle query </button> 
+ <div id="QFNKEIZMCY" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16196,8 +16196,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WCEXEXLTMV"> Show/Hide foundPath query </button> 
- <div id="WCEXEXLTMV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GRRPUHZZSY"> Show/Hide foundPath query </button> 
+ <div id="GRRPUHZZSY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16331,8 +16331,8 @@ Number of paths found:  0
 
 Number of cycles found:  23 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OVXICFGWCC"> Show/Hide foundCycle query </button> 
- <div id="OVXICFGWCC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DBURQNJZNF"> Show/Hide foundCycle query </button> 
+ <div id="DBURQNJZNF" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16360,8 +16360,8 @@ Number of cycles found:  23
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LYBUUJYQNG"> Show/Hide foundPath query </button> 
- <div id="LYBUUJYQNG" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PKERBREWIZ"> Show/Hide foundPath query </button> 
+ <div id="PKERBREWIZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16495,8 +16495,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JNTMWTNFBW"> Show/Hide foundCycle query </button> 
- <div id="JNTMWTNFBW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XZICPBXYHB"> Show/Hide foundCycle query </button> 
+ <div id="XZICPBXYHB" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16524,8 +16524,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VKTTRHNVFO"> Show/Hide foundPath query </button> 
- <div id="VKTTRHNVFO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PQNOHOZXSI"> Show/Hide foundPath query </button> 
+ <div id="PQNOHOZXSI" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16659,8 +16659,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VLUMIFMAZW"> Show/Hide foundCycle query </button> 
- <div id="VLUMIFMAZW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IKZTYPKSTS"> Show/Hide foundCycle query </button> 
+ <div id="IKZTYPKSTS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16688,8 +16688,8 @@ Number of cycles found:  1
 
 Number of paths found:  8 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DZPLNZZLBX"> Show/Hide foundPath query </button> 
- <div id="DZPLNZZLBX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZTYADIPTKR"> Show/Hide foundPath query </button> 
+ <div id="ZTYADIPTKR" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16823,8 +16823,8 @@ Number of paths found:  8
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XBBOKOAPWT"> Show/Hide foundCycle query </button> 
- <div id="XBBOKOAPWT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TTRMLWCZUO"> Show/Hide foundCycle query </button> 
+ <div id="TTRMLWCZUO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16852,8 +16852,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WJLVILGLFY"> Show/Hide foundPath query </button> 
- <div id="WJLVILGLFY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WJIGCHXVHU"> Show/Hide foundPath query </button> 
+ <div id="WJIGCHXVHU" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -16987,8 +16987,8 @@ Number of paths found:  0
 
 Number of cycles found:  6 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ECBDAQALXE"> Show/Hide foundCycle query </button> 
- <div id="ECBDAQALXE" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HTCOPKOFIR"> Show/Hide foundCycle query </button> 
+ <div id="HTCOPKOFIR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17016,8 +17016,8 @@ Number of cycles found:  6
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ISSUQPZJPR"> Show/Hide foundPath query </button> 
- <div id="ISSUQPZJPR" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YJODALOVOG"> Show/Hide foundPath query </button> 
+ <div id="YJODALOVOG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17151,8 +17151,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#DFSLOLDKAU"> Show/Hide foundCycle query </button> 
- <div id="DFSLOLDKAU" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UEDMKNCTLR"> Show/Hide foundCycle query </button> 
+ <div id="UEDMKNCTLR" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17180,8 +17180,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MHPQOLQRHA"> Show/Hide foundPath query </button> 
- <div id="MHPQOLQRHA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AYVEPYLSSE"> Show/Hide foundPath query </button> 
+ <div id="AYVEPYLSSE" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17315,8 +17315,8 @@ Number of paths found:  0
 
 Number of cycles found:  14 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VKVUOGLZOG"> Show/Hide foundCycle query </button> 
- <div id="VKVUOGLZOG" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SFLGQXGXIV"> Show/Hide foundCycle query </button> 
+ <div id="SFLGQXGXIV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17344,8 +17344,8 @@ Number of cycles found:  14
 
 Number of paths found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BLSCTITMEA"> Show/Hide foundPath query </button> 
- <div id="BLSCTITMEA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LYXDNTAEOU"> Show/Hide foundPath query </button> 
+ <div id="LYXDNTAEOU" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17479,8 +17479,8 @@ Number of paths found:  1
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CNGQIFUPPR"> Show/Hide foundCycle query </button> 
- <div id="CNGQIFUPPR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SPGIYMSKKB"> Show/Hide foundCycle query </button> 
+ <div id="SPGIYMSKKB" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17508,8 +17508,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CFAJGFFHIA"> Show/Hide foundPath query </button> 
- <div id="CFAJGFFHIA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LMLNZJEQLP"> Show/Hide foundPath query </button> 
+ <div id="LMLNZJEQLP" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17643,8 +17643,8 @@ Number of paths found:  0
 
 Number of cycles found:  15 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AJOOJYXYHC"> Show/Hide foundCycle query </button> 
- <div id="AJOOJYXYHC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PXQUKVEXVV"> Show/Hide foundCycle query </button> 
+ <div id="PXQUKVEXVV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17672,8 +17672,8 @@ Number of cycles found:  15
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#PROESBFVCY"> Show/Hide foundPath query </button> 
- <div id="PROESBFVCY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TCWIPPOQIK"> Show/Hide foundPath query </button> 
+ <div id="TCWIPPOQIK" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17807,8 +17807,8 @@ Number of paths found:  3
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RZTWYFQYOQ"> Show/Hide foundCycle query </button> 
- <div id="RZTWYFQYOQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UPQUULGPKP"> Show/Hide foundCycle query </button> 
+ <div id="UPQUULGPKP" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17836,8 +17836,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JTUFLACMPN"> Show/Hide foundPath query </button> 
- <div id="JTUFLACMPN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#SXRDKXEXTG"> Show/Hide foundPath query </button> 
+ <div id="SXRDKXEXTG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -17971,8 +17971,8 @@ Number of paths found:  0
 
 Number of cycles found:  25 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GXUGUFQYJT"> Show/Hide foundCycle query </button> 
- <div id="GXUGUFQYJT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LTXIKUXCDZ"> Show/Hide foundCycle query </button> 
+ <div id="LTXIKUXCDZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18000,8 +18000,8 @@ Number of cycles found:  25
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZAYVWNEHKF"> Show/Hide foundPath query </button> 
- <div id="ZAYVWNEHKF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#PVCSRXRNOQ"> Show/Hide foundPath query </button> 
+ <div id="PVCSRXRNOQ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18135,8 +18135,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#GYGPCHXDGQ"> Show/Hide foundCycle query </button> 
- <div id="GYGPCHXDGQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WJAXWIBKNA"> Show/Hide foundCycle query </button> 
+ <div id="WJAXWIBKNA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18164,8 +18164,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#BNUGDXJDUH"> Show/Hide foundPath query </button> 
- <div id="BNUGDXJDUH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#GNVXNUFGNT"> Show/Hide foundPath query </button> 
+ <div id="GNVXNUFGNT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18299,8 +18299,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YEASFGFBQL"> Show/Hide foundCycle query </button> 
- <div id="YEASFGFBQL" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HHFMBLMMBQ"> Show/Hide foundCycle query </button> 
+ <div id="HHFMBLMMBQ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18328,8 +18328,8 @@ Number of cycles found:  3
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TSZJZJPTHC"> Show/Hide foundPath query </button> 
- <div id="TSZJZJPTHC" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CRZPNMGYUF"> Show/Hide foundPath query </button> 
+ <div id="CRZPNMGYUF" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18463,8 +18463,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MSVVCUTQSW"> Show/Hide foundCycle query </button> 
- <div id="MSVVCUTQSW" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WAUBDMEOSS"> Show/Hide foundCycle query </button> 
+ <div id="WAUBDMEOSS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18492,8 +18492,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ORSEXKPOAX"> Show/Hide foundPath query </button> 
- <div id="ORSEXKPOAX" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#VIIEPOEAND"> Show/Hide foundPath query </button> 
+ <div id="VIIEPOEAND" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18627,8 +18627,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KAUZBOPAYJ"> Show/Hide foundCycle query </button> 
- <div id="KAUZBOPAYJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OWHAXLKNPE"> Show/Hide foundCycle query </button> 
+ <div id="OWHAXLKNPE" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18656,8 +18656,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CHBTEYBQVS"> Show/Hide foundPath query </button> 
- <div id="CHBTEYBQVS" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CFLZHGICCZ"> Show/Hide foundPath query </button> 
+ <div id="CFLZHGICCZ" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18791,8 +18791,8 @@ Number of paths found:  3600
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MIEMEMDCDV"> Show/Hide foundCycle query </button> 
- <div id="MIEMEMDCDV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#UMMPOWRKWG"> Show/Hide foundCycle query </button> 
+ <div id="UMMPOWRKWG" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18820,8 +18820,8 @@ Number of cycles found:  3
 
 Number of paths found:  7 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#LHJPNMTDAM"> Show/Hide foundPath query </button> 
- <div id="LHJPNMTDAM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AUPIWOALKB"> Show/Hide foundPath query </button> 
+ <div id="AUPIWOALKB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18955,8 +18955,8 @@ Number of paths found:  7
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MPBGSWDRDJ"> Show/Hide foundCycle query </button> 
- <div id="MPBGSWDRDJ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JQDEWSDMRN"> Show/Hide foundCycle query </button> 
+ <div id="JQDEWSDMRN" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -18984,8 +18984,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ZUUVOMZOLO"> Show/Hide foundPath query </button> 
- <div id="ZUUVOMZOLO" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#LBNSRBXONA"> Show/Hide foundPath query </button> 
+ <div id="LBNSRBXONA" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19119,8 +19119,8 @@ Number of paths found:  0
 
 Number of cycles found:  73 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SSXQGKUNKB"> Show/Hide foundCycle query </button> 
- <div id="SSXQGKUNKB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NSONBFLZIO"> Show/Hide foundCycle query </button> 
+ <div id="NSONBFLZIO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19148,8 +19148,8 @@ Number of cycles found:  73
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#NJSNZVRHOL"> Show/Hide foundPath query </button> 
- <div id="NJSNZVRHOL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KVAXKPDNLO"> Show/Hide foundPath query </button> 
+ <div id="KVAXKPDNLO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19283,8 +19283,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FUYSWTPJXY"> Show/Hide foundCycle query </button> 
- <div id="FUYSWTPJXY" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XEWGBFNCZY"> Show/Hide foundCycle query </button> 
+ <div id="XEWGBFNCZY" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19312,8 +19312,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ELXOYKGWSA"> Show/Hide foundPath query </button> 
- <div id="ELXOYKGWSA" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AYKGKMKPXD"> Show/Hide foundPath query </button> 
+ <div id="AYKGKMKPXD" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19447,8 +19447,8 @@ Number of paths found:  0
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XUNFZZOIVH"> Show/Hide foundCycle query </button> 
- <div id="XUNFZZOIVH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NIBHBWIFLV"> Show/Hide foundCycle query </button> 
+ <div id="NIBHBWIFLV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19476,8 +19476,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XEHZJORBYT"> Show/Hide foundPath query </button> 
- <div id="XEHZJORBYT" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YYXIHMKXQL"> Show/Hide foundPath query </button> 
+ <div id="YYXIHMKXQL" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19611,8 +19611,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UMJGYJOVVQ"> Show/Hide foundCycle query </button> 
- <div id="UMJGYJOVVQ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ISPUFNIOCO"> Show/Hide foundCycle query </button> 
+ <div id="ISPUFNIOCO" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19640,8 +19640,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MLJPLKWDTQ"> Show/Hide foundPath query </button> 
- <div id="MLJPLKWDTQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ERUZLONVUO"> Show/Hide foundPath query </button> 
+ <div id="ERUZLONVUO" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19775,8 +19775,8 @@ Number of paths found:  0
 
 Number of cycles found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#STMBWOHDBC"> Show/Hide foundCycle query </button> 
- <div id="STMBWOHDBC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TYXFBPBHGU"> Show/Hide foundCycle query </button> 
+ <div id="TYXFBPBHGU" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19804,8 +19804,8 @@ Number of cycles found:  3
 
 Number of paths found:  4 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SNHTNOQNDI"> Show/Hide foundPath query </button> 
- <div id="SNHTNOQNDI" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ZLYLTFZKRW"> Show/Hide foundPath query </button> 
+ <div id="ZLYLTFZKRW" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19939,8 +19939,8 @@ Number of paths found:  4
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MKGHZQJXQC"> Show/Hide foundCycle query </button> 
- <div id="MKGHZQJXQC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JISZBWDALV"> Show/Hide foundCycle query </button> 
+ <div id="JISZBWDALV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -19968,8 +19968,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FARLWUMRTV"> Show/Hide foundPath query </button> 
- <div id="FARLWUMRTV" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#OYXGSCIWGY"> Show/Hide foundPath query </button> 
+ <div id="OYXGSCIWGY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20103,8 +20103,8 @@ Number of paths found:  3600
 
 Number of cycles found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#SJPMHMYYUO"> Show/Hide foundCycle query </button> 
- <div id="SJPMHMYYUO" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EIIBBGVCPB"> Show/Hide foundCycle query </button> 
+ <div id="EIIBBGVCPB" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20132,8 +20132,8 @@ Number of cycles found:  0
 
 Number of paths found:  3600 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VPTKWSMZSY"> Show/Hide foundPath query </button> 
- <div id="VPTKWSMZSY" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KLPQXTGALK"> Show/Hide foundPath query </button> 
+ <div id="KLPQXTGALK" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20267,8 +20267,8 @@ Number of paths found:  3600
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ANQRAKKNFB"> Show/Hide foundCycle query </button> 
- <div id="ANQRAKKNFB" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#TIRWATUKIV"> Show/Hide foundCycle query </button> 
+ <div id="TIRWATUKIV" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20296,8 +20296,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FCNBPAZZMB"> Show/Hide foundPath query </button> 
- <div id="FCNBPAZZMB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FSYOJCGHHM"> Show/Hide foundPath query </button> 
+ <div id="FSYOJCGHHM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20431,8 +20431,8 @@ Number of paths found:  0
 
 Number of cycles found:  34 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TDADXTVHTN"> Show/Hide foundCycle query </button> 
- <div id="TDADXTVHTN" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NUUZGKBSDU"> Show/Hide foundCycle query </button> 
+ <div id="NUUZGKBSDU" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20460,8 +20460,8 @@ Number of cycles found:  34
 
 Number of paths found:  3 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#ODXECJEELN"> Show/Hide foundPath query </button> 
- <div id="ODXECJEELN" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AKXUGOHOWB"> Show/Hide foundPath query </button> 
+ <div id="AKXUGOHOWB" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20595,8 +20595,8 @@ Number of paths found:  3
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RXYGNGFEYH"> Show/Hide foundCycle query </button> 
- <div id="RXYGNGFEYH" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#YGFRBKOPKX"> Show/Hide foundCycle query </button> 
+ <div id="YGFRBKOPKX" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20624,8 +20624,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KTSKIHSFQJ"> Show/Hide foundPath query </button> 
- <div id="KTSKIHSFQJ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#XXBPVTMBRT"> Show/Hide foundPath query </button> 
+ <div id="XXBPVTMBRT" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20759,8 +20759,8 @@ Number of paths found:  0
 
 Number of cycles found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WAOJZBHKIC"> Show/Hide foundCycle query </button> 
- <div id="WAOJZBHKIC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FWIJWQNESN"> Show/Hide foundCycle query </button> 
+ <div id="FWIJWQNESN" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20788,8 +20788,8 @@ Number of cycles found:  2
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OZSKSLTEHL"> Show/Hide foundPath query </button> 
- <div id="OZSKSLTEHL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MUQZUWKLHY"> Show/Hide foundPath query </button> 
+ <div id="MUQZUWKLHY" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20923,8 +20923,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#RBACUBYNAT"> Show/Hide foundCycle query </button> 
- <div id="RBACUBYNAT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#DGKNYBKQLP"> Show/Hide foundCycle query </button> 
+ <div id="DGKNYBKQLP" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -20952,8 +20952,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#YXWIRGGMYL"> Show/Hide foundPath query </button> 
- <div id="YXWIRGGMYL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BKMLBFJOYW"> Show/Hide foundPath query </button> 
+ <div id="BKMLBFJOYW" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21087,8 +21087,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XHJLLFADYC"> Show/Hide foundCycle query </button> 
- <div id="XHJLLFADYC" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WXRCPZFUFT"> Show/Hide foundCycle query </button> 
+ <div id="WXRCPZFUFT" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21116,8 +21116,8 @@ Number of cycles found:  1
 
 Number of paths found:  2 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#VCDGRWFSEL"> Show/Hide foundPath query </button> 
- <div id="VCDGRWFSEL" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FXDQZYEAZC"> Show/Hide foundPath query </button> 
+ <div id="FXDQZYEAZC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21355,8 +21355,8 @@ Number of paths found:  2
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KCOSAPZZBT"> Show/Hide foundCycle query </button> 
- <div id="KCOSAPZZBT" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#EVSYQPDCNN"> Show/Hide foundCycle query </button> 
+ <div id="EVSYQPDCNN" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21384,8 +21384,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#USNZWXIHEW"> Show/Hide foundPath query </button> 
- <div id="USNZWXIHEW" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JNVAIVPOGM"> Show/Hide foundPath query </button> 
+ <div id="JNVAIVPOGM" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21517,8 +21517,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FWSXXQZRAM"> Show/Hide foundCycle query </button> 
- <div id="FWSXXQZRAM" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#AXEZMLEUCM"> Show/Hide foundCycle query </button> 
+ <div id="AXEZMLEUCM" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21546,8 +21546,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#XPFVCBTTWH"> Show/Hide foundPath query </button> 
- <div id="XPFVCBTTWH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KPYJUYAFQP"> Show/Hide foundPath query </button> 
+ <div id="KPYJUYAFQP" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21679,8 +21679,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#MPRDZXMVAZ"> Show/Hide foundCycle query </button> 
- <div id="MPRDZXMVAZ" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HBQUNANHTZ"> Show/Hide foundCycle query </button> 
+ <div id="HBQUNANHTZ" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21708,8 +21708,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#EKBAJVSOTB"> Show/Hide foundPath query </button> 
- <div id="EKBAJVSOTB" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#CPQEVBVSRC"> Show/Hide foundPath query </button> 
+ <div id="CPQEVBVSRC" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21841,8 +21841,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#CAMIRTATXP"> Show/Hide foundCycle query </button> 
- <div id="CAMIRTATXP" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#JRFICPAVNA"> Show/Hide foundCycle query </button> 
+ <div id="JRFICPAVNA" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -21870,8 +21870,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#AFAADYSLHQ"> Show/Hide foundPath query </button> 
- <div id="AFAADYSLHQ" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#HTCTOYLGSG"> Show/Hide foundPath query </button> 
+ <div id="HTCTOYLGSG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22003,8 +22003,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#JAVQRFKKAK"> Show/Hide foundCycle query </button> 
- <div id="JAVQRFKKAK" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#RFCNKJKIMD"> Show/Hide foundCycle query </button> 
+ <div id="RFCNKJKIMD" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22032,8 +22032,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#QVDTGLZUGM"> Show/Hide foundPath query </button> 
- <div id="QVDTGLZUGM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#ISBOGYNQOH"> Show/Hide foundPath query </button> 
+ <div id="ISBOGYNQOH" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22165,8 +22165,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#OERBGNUAXS"> Show/Hide foundCycle query </button> 
- <div id="OERBGNUAXS" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#KLRLHCERTH"> Show/Hide foundCycle query </button> 
+ <div id="KLRLHCERTH" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22194,8 +22194,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#UQZETGHKPM"> Show/Hide foundPath query </button> 
- <div id="UQZETGHKPM" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#NFVRORXCSF"> Show/Hide foundPath query </button> 
+ <div id="NFVRORXCSF" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22327,8 +22327,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#KJVOTVWCTV"> Show/Hide foundCycle query </button> 
- <div id="KJVOTVWCTV" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QKSSHFIBRU"> Show/Hide foundCycle query </button> 
+ <div id="QKSSHFIBRU" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22356,8 +22356,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#WKORVFGLYF"> Show/Hide foundPath query </button> 
- <div id="WKORVFGLYF" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#MFHOGGRLND"> Show/Hide foundPath query </button> 
+ <div id="MFHOGGRLND" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22489,8 +22489,8 @@ Number of paths found:  0
 
 Number of cycles found:  1 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#FDHQDDTFPR"> Show/Hide foundCycle query </button> 
- <div id="FDHQDDTFPR" class="collapse" >  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QUVNPGKYTS"> Show/Hide foundCycle query </button> 
+ <div id="QUVNPGKYTS" class="collapse" >  
      GET /filebeat-*/_search 
             { 
               "query": {
@@ -22518,8 +22518,8 @@ Number of cycles found:  1
 
 Number of paths found:  0 
 
-<button class="btn btn-primary" data-toggle="collapse" data-target="#TIFSETFIJH"> Show/Hide foundPath query </button> 
- <div id="TIFSETFIJH" class="collapse">  
+<button class="btn btn-primary" data-toggle="collapse" data-target="#WPOCDQBQIG"> Show/Hide foundPath query </button> 
+ <div id="WPOCDQBQIG" class="collapse">  
      GET /filebeat-*/_search 
             { 
               "query": {

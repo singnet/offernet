@@ -176,7 +176,7 @@ for (experimentId in selectedExperiments) {
     # output allVerticesByType
     vertices.df <- data.frame(fromJSON(simulationData[which(simulationData$method == 'allVerticesByLabel'),]$results))
     names <- colnames(vertices.df)
-    names <- paste('edges',names,sep="_")
+    names <- paste('vertices',names,sep="_")
     colnames(vertices.df) <- names
     
     vertices.df$vertices_total <- rowSums(vertices.df)
@@ -509,6 +509,82 @@ summary <- kable(summary.df,format.args = list(decimal.mark = '.', big.mark = ",
     #column_spec(0:ncol(experiment.df),width="10em") 
     #add_header_above(c("labels"=5))
 print(summary)
+
+summary.df$sum_wallTime_min_total <- summary.df$sum_wallTime_ms_total /60000
+summary.df$simulationType <- ifelse(grepl('--DV',summary.df$simulationId),"Decentralized", "Centralized")
+
+options(scipen=999)  # turn-off scientific notation like 1e+48
+theme_set(theme_bw())  # pre-set the bw theme.
+
+cat(paste('## Scatterplots \n\n'))
+
+# housekeeping on summary.df -- correct types and reorder...
+summary.df$agentNumber <- sapply(summary.df$agentNumber, as.numeric)
+summary.df$chainLength <- sapply(summary.df$chainLength, as.numeric)
+summary.df$similaritySearchThreshold <- sapply(summary.df$similaritySearchThreshold, as.numeric)
+summary.df$randomWorksNumberMultiplier <- sapply(summary.df$randomWorksNumberMultiplier, as.numeric)
+
+summary.df$maxDistance <- sapply(summary.df$maxDistance, as.numeric)
+summary.df <- summary.df[order(summary.df$agentNumber),] 
+scatterplot <- function(data, xstr,ystr, sizestr, colorstr, titlelab, ylab,xlab) {
+  gg <- ggplot(data, aes_string(x=xstr, y=ystr)) + 
+    geom_point(aes_string(size=sizestr, color=colorstr)) + 
+    geom_smooth(method="loess", se=F) + 
+    #xlim(c(0, 0.1)) + 
+    #ylim(c(0, 500000)) + 
+    labs(title=titlelab, 
+         y=ylab, 
+         x=xlab, 
+         size=sizestr,
+         color=colorstr)
+  plot(gg)
+}
+
+scatterplot(summary.df,
+            'agentNumber',
+            'sum_wallTime_min_total',
+            'foundCycles',
+            'simulationType',
+            "agentNumber vs systemTime",
+            "total system time (min)",
+            "agent number")
+
+scatterplot(summary.df,
+            'vertices_total',
+            'sum_wallTime_min_total',
+            'foundCycles',
+            'simulationType',
+            "verticesNumber vs systemTime",
+            "total system time (min)",
+            "all vertices number")
+
+scatterplot(summary.df,
+            'edges_total',
+            'sum_wallTime_min_total',
+            'foundCycles',
+            'simulationType',
+            "edgeNumber vs systemTime",
+            "total system time (min)",
+            "all edge number")
+
+scatterplot(summary.df,
+            'edges_similarity',
+            'sum_wallTime_min_total',
+            'foundCycles',
+            'simulationType',
+            "similarityEdges vs systemTime",
+            "total system time (min)",
+            "similarity edges")
+
+scatterplot(summary.df,
+            'vertices_item',
+            'sum_wallTime_min_total',
+            'foundCycles',
+            'simulationType',
+            "itemNumber vs systemTime",
+            "total system time (min)",
+            "item number")
+
 
 ```
 
