@@ -34,13 +34,29 @@ From the conceptual perspective we want to operationalize the principle progress
 
 ## Offer Networks
 
-Offer Networks is a concept of an alternative economy where Agents (humans, AIs and or more/less simple programs and intelligences) find, negotiate and execute locally and globally beneficial series of not-only-monetary exchanges of tangible and/or intangible goods. It was first proposed by [@goertzel_beyond_2015] in the context of post-money economy and further developed by [@heylighen_offer_2017] in the context of Global Brain research.
+Offer Networks is a concept of an alternative economy where Agents (humans, AIs and or more/less simple programs and intelligences) find, negotiate and execute locally and globally beneficial series of hybrid exchanges (monetary and non-monetary) of tangible and/or intangible goods. It was first proposed by [@goertzel_beyond_2015] in the context of post-money economy and further developed by [@heylighen_offer_2017] in the context of Global Brain research.
 
-For our purposes, Offer Networks is a practical context for implementing and testing the mechanism of progressive determination. Notwithstanding, it is also a research project on its own, aiming at conceiving, conceptualizing and proof-of-concept implementation of alternative economy for the age of decentralized and autonomous AI technologies.
+Offer Networks is a practical context for the mechanism of progressive determination, enabling its implementation and testing in computational medium. Notwithstanding, it is a research project on its own, aiming at conceiving, conceptualizing and proof-of-concept implementation of alternative economy for the age of decentralized and autonomous AI technologies.
 
-### Research directions
+### Model specification
 
-#### Model specification
+Offer Networks model is conceived as a special case of certain computational aspects of the descriptive model of the individuation of cognition [@weinbaum_weaver_synthetic_2017], [weinbaum_weaver_open_2017]. As such it adheres to the main conceptual principles of the open-ended intelligence, but does not attempt to fully cover them.
+
+The relation between model of individuation of cognition and the Offer Networks model is probably best illustrated via the graphical representations of both: 
+
+```{r picture-scales-of-individuation, fig.cap='Relationship among scales, populations and boundaries in the model. The chosen scale of analysis is $S$. $S+1$ is the higher scale while $S-1$ is the lower scale. $P_{s}$ denotes a population of agents at scale $S$. Solid circles denote the agents of population $P$ at any scale. Dashed lined circles denote super-agents at any scale e.g. -- $A_{s}$ at the center of the figure, denotes a super-agent that emerges from the interactions of agents in $P_{s}$. Super-agents at scale $S$ are the agents of the population $P_{s+1}$. The $i-th$ super-agent at scale $S$ is denoted $A_{s}^{i}$, the superscript is omitted if unneeded. Also, the subscript $S$ is omitted from $A$ or $P$ in the text if it is redundant (adapted from [@weinbaum_weaver_synthetic_2017]).', fig.show = "hold", fig.ncol = 1, out.width='80%', fig.align='center', echo=FALSE, eval=TRUE}
+knitr::include_graphics("pictures/illustration_of_scales.png")
+```
+
+```{r architecture, fig.cap='Conceptual architecture of OfferNet', out.width='60%', fig.align='center', echo=FALSE}
+knitr::include_graphics("pictures/OfferNet_architecture.png")
+```
+
+The obvious relation between models that they describe interactions between heterogeneous agents that give rise to higher order behaviours of assemblages of agents. The main difference is that the former model is very abstract, while the latter features specific types of agents as required by the context of Offer Networks. We will not go into details of the mapping of the models, but rather explain in more detail components of Offer Networks model. Let us first start with the data structure and then explain processes that agents perform on in.
+
+
+
+
 
 #### Research questions
 
