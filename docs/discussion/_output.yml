@@ -1,7 +1,7 @@
 bookdown::gitbook:
   css: style.css 
   split_by: chapter
-  toc_depth: 4
+  toc_depth: 6
   config:
     toc:
       collapse: subsection

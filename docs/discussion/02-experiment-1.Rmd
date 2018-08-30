@@ -1,0 +1,7 @@
+# Experiment #1: comparison of decentralized and centralized search
+
+##  Discussion of results
+
+## Further steps
+
+An additional note regarding flexibility of the model -- ability to calculate costs of exchange (e.g. in OfferNet(s) transportation costs)
