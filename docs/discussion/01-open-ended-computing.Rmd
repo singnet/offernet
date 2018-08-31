@@ -61,7 +61,7 @@ Most importantly, both models describe interactions between heterogeneous agents
 
 The data structure of OfferNet(s) is a property graph, composed from nodes of type $[agent, work, item]$ and edges of type $[knows, owns, demands, offers, similarity]$:
 
-```{r offernet-initial-structure, fig.cap='OfferNet(s) graph structure: note that the initial structure does not contain *similarity* links, which appear in the graph only after processes are run.', out.width='45%', fig.align='center', echo=FALSE}
+```{r offernet-initial-structure, fig.cap='OfferNet(s) graph structure: note that the initial structure does not contain *similarity* links, which appear in the graph only after running [similarity search](#process1-similarity-search) processes.', out.width='45%', fig.align='center', echo=FALSE}
 knitr::include_graphics("pictures/toy_graph_before_processes.png")
 ```
 
@@ -98,25 +98,38 @@ Algorithmically, similarity search is implemented in two flavours -- centralized
 
 ###### Centralized similarity search
 
-Centralized similarity search simply fetches all items in the network, compares each item value with every other and creates `similarity` link between them if the similarity value exceeds a parameter called `similaritySearchThreshold`. This parameter regulates the density of connectivity between `items` on the one hand and the ability for agents to exchange "fuzzy" similar items on the other.
+Centralized similarity search simply fetches all items in the network, compares each item value with every other and creates `similarity` link between them if the similarity value exceeds a parameter called `similarityConnectThreshold`. This parameter regulates the density of connectivity between `items` on the one hand and the ability for agents to exchange "fuzzy" similar items on the other.
 
 Centralized similarity search requires a full scan of the graph in order to collect data on all items demanded or offered by agents at certain moment in time, combining this data into a single data structure and then processing it in a centralized (but possibly distributed) manner. 
 
-Currently the process is implemented by [`connectAllSimilarCentralized`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/OfferNet.groovy#L698) routine.
+Currently the process is implemented by [`OfferNet.connectAllSimilarCentralized()`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/OfferNet.groovy#L698) routine.
 
 ###### Decentralized similarity search
 
-Decentralized similarity search, contrary to the centralized flavour, works only on behalf of an agent that initiates the search and does not require fetching all item values from the network. It operates as a spreading activation which starts with the items of the initiating agent and checks similarity of items of its neighbours. Decentralized similarity search takes `similaritySearchThreshold` and `maxDistance` parameters. The former serves the same way as in centralized search, while the latter determines how far into the neighbourhood the spreading activation process traverses.
+Decentralized similarity search, contrary to the centralized flavour, works only on behalf of an agent that initiates the search and does not require fetching all item values from the network. On the other hand, the decentralized process requires concurrent and asynchronous execution on behalf of each agent. It operates as a spreading activation which starts with the items of the initiating agent and checks similarity of items of its neighbours. Decentralized similarity search takes `similarityConnectThreshold` and `maxDistance` parameters. The former serves the same way as in centralized search, while the latter determines how far into the neighbourhood of an agent spreading activation process traverses. 
 
-Currently the process is implemented by [`searchAndConnect`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/Agent.groovy#L367) routine.
+Currently the process is implemented by [`Agent.searchAndConnect(...)`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/Agent.groovy#L367) routine.
 
 ##### Process#2: Find cycles of changeable items
 
-In graph theory a cycle is a collection of vertices and edges among them where each vertex present the collection is reachable from itself via the edges present in the collection. Cycle search is the process that finds such data structures in an OfferNet(s) graph (see picture below).
+In graph theory a cycle is a collection of vertices and edges among them where each vertex present in the collection is reachable from itself via the edges present in the collection. Cycle search is the process that finds such data structures in a messy and unstructured graph.
 
-##### Process#3: Find and connect similar items of exchange via similarity links
+A cycle discovered in OfferNet(s) (see figure \@ref(fig:cycle-search-two-graphs) below) represents a match of demands and offers of at least two agents participating in the marketplace and the possibility of actual exchange of their items. More formally, it is a subgraph of the OfferNet(s), where agents "know" other agents' preferences with respect to the discovered match and can agree to execute (or not) the exchange cycle (see [process #3](process3-execute-exchange-cycle)).
 
-##### Process#4: Execute exchange cycles
+```{r cycle-search-two-graphs, fig.cap='Cycles discovered in the OfferNet(s) graph by cycle search processes; note how it relates to the conceptual architecture of Offer Networks (figure \\@ref(fig:architecture))', out.width='95%', fig.align='center', echo=FALSE}
+knitr::include_graphics("pictures/cycle_discovery_two_graphs.png")
+```
+For the purposes of [Experiment #1](#experiment-one), cycle search process is implemented by [`Agent.cycleSearch(...)`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/Agent.groovy#L681) routine, which takes a `similaritySearchThreshold` as an argument. This argument determines, how much 'fuzzyness' an agent is willing to accept when considering options to exchange items with other agents. E.g. if $similaritySearchThreshold = 1$, only strictly equivalent items will be considered for exchange, otherwise -- certain amount of variability of items can still be considered acceptable. Note, that in a distributed system each agent participating in the exchange could have different `similaritySearchThreshold` parameter (i.e. preferences).
+
+Another important aspect, emphasized in figure \@ref(fig:cycle-search-two-graphs) is that while cycles are of dynamic nature -- emerging and dissolving during operation of the OfferNet(s) graph -- they are basic elements of conceptual architecture as a self-organizing network of interacting agents (see figure \@ref(fig:architecture)).
+
+Cycles are temporary structures -- they get dissolved when executed (see [process #3](#execute-cycles)). Actually the more beneficial exchanges get executed in Offer Networks per unit of time, the more "overall efficient" the system can be considered (see [notes](#additional-notes) on Experiment #1) for more on this aspect). 
+
+##### Process#3: Execute exchange cycles(#execute-cycles)
+
+Finding cycles only increases the probability that certain items will be exchanged but is far from guaranteeing it. While in a centralized system an execution of the discovered cycle is straightforward, it is not so in a decentralized case. First, more than one cycle can emerge involving overlaps of agents and items in which case some sort of consensus has to be reached via negotiations on which cycle will be executed and which will be neglected. Second, when a cycle involves fuzzy matches, the willingness of agents to exchange items that are not strictly similar, may be confirmed. Third, in real cases the presence of insufficient information in the network due to incomplete preferences [@mandler_incomplete_2005] should be considered -- implying the necessity of a negotiation round between agents involved in the cycle before its execution. Furthermore, exchanges in distributed systems cannot rely on a single provider of trust and therefore must use a distributed trust model [@abdul-rahman_distributed_1997] including, but not necessarily limited to the blockchain technology [@swan_blockchain:_2015].
+
+##### Process#4: Find and connect similar items of exchange via similarity links
 
 #### Research questions
 
@@ -139,4 +152,4 @@ We are working towards this goal by asking (and answering) concrete research que
 
 <a name="singnet-offernet">3</a>: [https://github.com/singnet/offernet](https://github.com/singnet/offernet); development is supported by SingularityNET Foundation ([https://singularitynet.io/research-initiatives/](https://singularitynet.io/research-initiatives/)).
 
-<a name="singnet-offernet-d784d1c"></a>: singnet/offernet git repo, commit number [d784d1c](https://github.com/singnet/offernet/tree/d784d1c27e71202441e26d55badb4f9a22f7d8da).
+<a name="singnet-offernet-d784d1c">4</a>: [singnet/offernet](https://github.com/singnet/offernet) git repository, commit number [d784d1c](https://github.com/singnet/offernet/tree/d784d1c27e71202441e26d55badb4f9a22f7d8da).

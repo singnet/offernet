@@ -1,7 +1,14 @@
-# Experiment #1: comparison of decentralized and centralized search
+# Experiment #1: comparison of decentralized and centralized search{#experiment-one}
 
 ##  Discussion of results
 
 ## Further steps
 
-An additional note regarding flexibility of the model -- ability to calculate costs of exchange (e.g. in OfferNet(s) transportation costs)
+
+## Additional notes (flexibility of the model)(#additional-notes)
+
+* General treatment of the OfferNet(s) model (for interaction of processes)
+* Ability to calculate costs of exchange (e.g. in OfferNet(s) transportation costs)
+* Represent data as agents with offer/demand pairs;
+* Dynamic negotiation between agents;
+* 'Efficiency' measure of the network operation -- the number of exchanges per unit of time;
