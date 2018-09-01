@@ -41,8 +41,6 @@ Offer Networks is a concept of an alternative economy where Agents (humans, AIs 
 
 Offer Networks is a practical context enabling implementation and testing of the mechanism of progressive determination and generalized stigmergic cooperation in a computational medium. Notwithstanding, it is a research project on its own, aiming at conceiving, conceptualizing and proof-of-concept implementation of alternative economy for the age of decentralized and autonomous AI technologies. 
 
-### Model specification
-
 Offer Networks model is conceived as a special case of certain computational aspects of the descriptive model of the individuation of cognition [@weinbaum_weaver_synthetic_2017], [@weinbaum_weaver_open_2017]. As such it adheres to the main conceptual principles of the open-ended intelligence and decentralized computing, but does not attempt to fully cover them.
 
 Relation between conceptual models of individuation of cognition and Offer Networks is well conveyed via graphical representations of both: 
@@ -57,7 +55,7 @@ knitr::include_graphics("pictures/OfferNet_architecture.png")
 
 Most importantly, both models describe interactions between heterogeneous agents that give rise to higher order behaviours of assemblages of agents. The main difference is that the model of individuation of cognition is very abstract, while the OfferNet model features specific types of agents and their relations as required by the domain. We will not go into details of the mapping of the models, but rather explain in more detail components of Offer Networks model. Let us first start with the data structure and then explain distributed processes performed on it by agents.
 
-#### Data structure
+### Data structure
 
 The data structure of OfferNet(s) is a property graph, composed from nodes of type $[agent, work, item]$ and edges of type $[knows, owns, demands, offers, similarity]$:
 
@@ -69,7 +67,19 @@ knitr::include_graphics("pictures/toy_graph_before_processes.png")
 * A **work** represents a specialized 'process of exchange' that an agent is willing to execute if any interested parties exist in the network. As every process, $work$ has inputs ($demands$) and outputs ($offers$). In the current simplified model a $work$ features one $demand$ and one $offer$ yet in principle arbitrary complex works can be represented -- e.g. featuring more than one input (energy, computational resources or a monetary payment) or output. This aspect is particularly interesting with respect to potential integration of OfferNet(s) framework to SingularityNET -- considering that a $work$ can involve 'exchange' of data output (e.g. text description of image) for data input (e.g. image to be described) and certain amount of AGI tokens. Note that in this case, a $work$ would not be a 'process of exchange' but rather a 'process of text summarization' which nevertheless can be perfectly well represented within the same framework. Finally, in OfferNet(s), a $work$ connects to $items$ of exchange via $demands$ or $offers$ link.
 * An **item** is an actual item of exchange. In OfferNet(s) this is limited to actual physical or non-physical items where $demands$ link means that it is an input and $offers$ -- output. In a more generalized model an item could be a representation of any input or output (data, token, energy units, etc.); 
 
-#### Processes
+### Research questions
+
+The ambition of Offer Networks (as an alternative economy) is to **conceive, implement and test mechanisms of search, matching and execution of exchange of goods and services in a decentralized system both in terms of information and control**<sup>[1](#information-control-decentralization)</sup>. Note, that such definition of decentralization does not enforce homogeneity of agents -- i.e. agents can wildly differ in their knowledge of the network and exercisable control, yet still be far from omniscient and omnipotent at the scale of the whole network. Actually, such dynamic heterogeneity is a desirable property leading to beneficial social network dynamics [@veitas_living_2017]. Also note that it differs from the original formulation of the goal of Offer Networks as *search and execute globally optimal set of exchanges that would maximally satisfy outstanding offers/demands by maximum number of agents* [@goertzel_matching_2015] by relaxing optimality requirement.
+
+We are working towards this goal by asking (and answering) concrete research questions which allow for clear formulation and testing of scientific and computational hypotheses -- a process leading to incremental building of the system. The current research horizon encompasses following questions:
+
+1. **What are parameters that determine advantages and disadvantages of decentralized and centralized search algorithms in different contexts**?. In principle, Offer Networks goals can be achieved by either centralized (global) or decentralized (local) processes running on the same data structure as defined earlier. In practice, however, the feasibility of any of the approaches is largely determined by concrete circumstances and context-specific aspects. For example, centralized algorithms can optimize results at the cost of combinatorial explosion of computational complexity needed to carry them out, while decentralized algorithms may achieve sub-optimal, but still "good enough" results faster. The very term "good enough" implies context dependency. In order to provide at least some insights to this question we set-up centralized and decentralized search processes in Offer Networks and test them with different parameters (see [design](https://singnet.github.io/offernet/public/offernet-documentation/implementation.html#compare-decentralized-and-centralized-search), [results](https://singnet.github.io/offernet/public/experiment-decentralized-vs-centralized/) and [discussion](#discussion-of-results) of the experiment on comparing decentralized and centralized search).
+
+2.  **Can we conceive decentralized processes which make themselves more efficient by utilizing results of 'traces' left by preceding processes**? This research question addresses the feasibility of implementing stigmergic coordination principle of the open-ended decentralized computing as formulated [above](#basic-principles) in different contexts. Such processes, interacting among each other in a decentralized way, would implement **learning** ability of the network. Similar to the first research question, the learning ability of the network can be implemented in a centralized or decentralized manner. The design of the experiment needed to answer this research question is informed by the insights from results of the first experiment  -- see its [further steps](#further-steps).
+
+3. **How can we utilize learning network of heterogeneous processes for implementing a decentralized exchange of goods and services**? Answering this research question requires integration of the answers and insights from research question 1 and 2 in an Offer Networks system. The actual design of experiments required for answering this research question will be approached after obtaining and interpreting results of the experiment based on the second research question.
+
+### Processes
 
 Following basic principles of open-ended decentralized computing, Offer Networks is implemented as an ecosystem of decentralized processes interacting via the stigmergic medium. Note, that on the general level these principles are in line with the conceptual model of **Cognitive Synergy** -- "a dynamic in which multiple cognitive processes, cooperating to control the same cognitive system, assist each other in overcoming bottlenecks encountered during their internal processing". The model of cognitive synergy is used explicitly in the design of OpenCog cognitive architecture [@goertzel_toward_2017]. The list of decentralized processes is open-ended -- any process can be added by an agent participating in the network. Processes required for basic functionality of OfferNet(s) are:
 
@@ -80,7 +90,7 @@ Following basic principles of open-ended decentralized computing, Offer Networks
 
 These processes are described in detail below. Additionally, every experiment designed to answer a specific research question can feature specialized processes for that purpose -- discussed under description of an [experiment](#experiment-comparison-of-decentralized-and-centralized-search). Finally, OfferNet(s) architecture can be broadly extended by adding different processes and their interactions -- discussed in [further steps](#further-steps) following Experiment 1.
 
-##### Process#1: Similarity search
+#### Process#1: Similarity search
 
 Similarity search process searches similar `item`s in the network and connects them with `similarity` links. The ability to measure similarity of items is based on a uniform [representation](https://singnet.github.io/offernet/public/offernet-documentation/conceptual-framework.html#representation-theory-of-value) and [description](https://singnet.github.io/offernet/public/offernet-documentation/conceptual-framework.html#description-of-items-of-exchange) of item value. [Similarity measure](https://singnet.github.io/offernet/public/offernet-documentation/conceptual-framework.html#similarity-measure) also can take different forms. Recall furthermore, that initially `item`s are related only indirectly via agents that have posted them into a network. The goal of similarity search process is to connect items directly and by this keep the data structure of OfferNet(s) in a form that would make finding cycles in possible and efficient. For the visual representation of how similarity search mutates the graph, see figures below.
 
@@ -96,7 +106,7 @@ At the current version of OfferNet(s) software framework<sup>[4](#singnet-offern
 
 Algorithmically, similarity search is implemented in two flavours -- centralized and decentralized. Comparison of performance of them forms the basis of Experiment 1 (see [description further](#discussion-of-results)).
 
-###### Centralized similarity search
+##### Centralized similarity search
 
 Centralized similarity search simply fetches all items in the network, compares each item value with every other and creates `similarity` link between them if the similarity value exceeds a parameter called `similarityConnectThreshold`. This parameter regulates the density of connectivity between `items` on the one hand and the ability for agents to exchange "fuzzy" similar items on the other.
 
@@ -104,13 +114,42 @@ Centralized similarity search requires a full scan of the graph in order to coll
 
 Currently the process is implemented by [`OfferNet.connectAllSimilarCentralized()`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/OfferNet.groovy#L698) routine.
 
-###### Decentralized similarity search
+##### Decentralized similarity search
 
 Decentralized similarity search, contrary to the centralized flavour, works only on behalf of an agent that initiates the search and does not require fetching all item values from the network. On the other hand, the decentralized process requires concurrent and asynchronous execution on behalf of each agent. It operates as a spreading activation which starts with the items of the initiating agent and checks similarity of items of its neighbours. Decentralized similarity search takes `similarityConnectThreshold` and `maxDistance` parameters. The former serves the same way as in centralized search, while the latter determines how far into the neighbourhood of an agent spreading activation process traverses. 
 
-Currently the process is implemented by [`Agent.searchAndConnect(...)`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/Agent.groovy#L367) routine.
+Currently the process is implemented by [`Agent.searchAndConnect(...)`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/Agent.groovy#L367) routine which roughly follows this logic:
 
-##### Process#2: Find cycles of changeable items
+```{r similarity-search-via-agents, tidy=FALSE, eval=FALSE}
+
+# parameters:
+# -- me: the agent that initiates traversal
+# -- maxDistance: number of hops in traversal;
+# -- similarityConnectThreshold: only items with this and higher similarity are connected;
+
+	myItems <- me.getAllDemands() + me.getAllOffers();
+	discoveredItems <- emptyList();
+	distance = 0;
+
+	function getItemsOfNeighbours(agents):
+			for each agent in agents do:
+				discoveredItems <- discoveredItems + agent.getAllDemands() + agent.getAllOffers();
+				neighbours <- agent.knowsAgents();
+				getItemsOfNeighbours(neighbours);
+				distance = distance +1;
+				if distance = maxDistance do:
+					break from cycle;
+
+	getItemsOfNeighbours(me)
+
+	for each discoveredItem in discoveredItems do:
+			for each myItem in myItems do:
+				similarityValue = calculateSimilarity(discoveredItem, myItem)
+				if similarityValue >= similarityConnectThershold do:
+					createLink(from: myItem, to: disoveredItem, type: similarity, value: similarityValue)
+```
+
+#### Process#2: Find cycles of changeable items
 
 In graph theory a cycle is a collection of vertices and edges among them where each vertex present in the collection is reachable from itself via the edges present in the collection. Cycle search is the process that finds such data structures in a messy and unstructured graph.
 
@@ -119,30 +158,61 @@ A cycle discovered in OfferNet(s) (see figure \@ref(fig:cycle-search-two-graphs)
 ```{r cycle-search-two-graphs, fig.cap='Cycles discovered in the OfferNet(s) graph by cycle search processes; note how it relates to the conceptual architecture of Offer Networks (figure \\@ref(fig:architecture))', out.width='95%', fig.align='center', echo=FALSE}
 knitr::include_graphics("pictures/cycle_discovery_two_graphs.png")
 ```
-For the purposes of [Experiment #1](#experiment-one), cycle search process is implemented by [`Agent.cycleSearch(...)`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/Agent.groovy#L681) routine, which takes a `similaritySearchThreshold` as an argument. This argument determines, how much 'fuzzyness' an agent is willing to accept when considering options to exchange items with other agents. E.g. if $similaritySearchThreshold = 1$, only strictly equivalent items will be considered for exchange, otherwise -- certain amount of variability of items can still be considered acceptable. Note, that in a distributed system each agent participating in the exchange could have different `similaritySearchThreshold` parameter (i.e. preferences).
+For the purposes of [Experiment #1](#experiment-one), cycle search process is implemented by [`Agent.cycleSearch(...)`](https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/Agent.groovy#L681) routine, which takes a `similarityConstraint` as an argument. This argument determines, how much 'fuzzyness' an agent is willing to accept when considering options to exchange items with other agents. E.g. if $similarityConstraint = 1$, only strictly equivalent items will be considered for exchange, otherwise -- certain amount of variability of items can still be considered acceptable. Note, that in a distributed system each agent participating in the exchange could have different `similarityConstraint` parameter (i.e. preferences). The process roughly follows this logic:
 
 Another important aspect, emphasized in figure \@ref(fig:cycle-search-two-graphs) is that while cycles are of dynamic nature -- emerging and dissolving during operation of the OfferNet(s) graph -- they are basic elements of conceptual architecture as a self-organizing network of interacting agents (see figure \@ref(fig:architecture)).
 
 Cycles are temporary structures -- they get dissolved when executed (see [process #3](#execute-cycles)). Actually the more beneficial exchanges get executed in Offer Networks per unit of time, the more "overall efficient" the system can be considered (see [notes](#additional-notes) on Experiment #1) for more on this aspect). 
 
-##### Process#3: Execute exchange cycles(#execute-cycles)
+#### Process#3: Execute exchange cycles{#execute-cycles}
 
 Finding cycles only increases the probability that certain items will be exchanged but is far from guaranteeing it. While in a centralized system an execution of the discovered cycle is straightforward, it is not so in a decentralized case. First, more than one cycle can emerge involving overlaps of agents and items in which case some sort of consensus has to be reached via negotiations on which cycle will be executed and which will be neglected. Second, when a cycle involves fuzzy matches, the willingness of agents to exchange items that are not strictly similar, may be confirmed. Third, in real cases the presence of insufficient information in the network due to incomplete preferences [@mandler_incomplete_2005] should be considered -- implying the necessity of a negotiation round between agents involved in the cycle before its execution. Furthermore, exchanges in distributed systems cannot rely on a single provider of trust and therefore must use a distributed trust model [@abdul-rahman_distributed_1997] including, but not necessarily limited to the blockchain technology [@swan_blockchain:_2015].
 
-##### Process#4: Find and connect similar items of exchange via similarity links
+#### Process#4: Search and connect similar items of exchange via similarity links{#search-via-similarity-links}
 
-#### Research questions
+Success and computational complexity of finding matches in the graph is mostly due to the similarity search process rather than cycle search (see [discussion of Experiment #1](#experiment-one)). Similarity search via the $agent \xrightarrow{\text{knows}} agent$ subnetwork is relatively costly because it requires to check many agents in the neighbourhood graph in order to find a similar item. It may be much more efficient to traverse similarity links between items directly (i.e. utilizing graph topologies on the right rather than left of figures \@ref(fig:mutation-small-graph) and \@ref(fig:mutation-larger-graph)). The process adheres to the following logic:
 
-The ambition of Offer Networks (as an alternative economy) is to **conceive, implement and test mechanisms of search, matching and execution of exchange of goods and services in a decentralized system both in terms of information and control**<sup>[1](#information-control-decentralization)</sup>. Note, that such definition of decentralization does not enforce homogeneity of agents -- i.e. agents can wildly differ in their knowledge of the network and exercisable control, yet still be far from omniscient and omnipotent at the scale of the whole network. Actually, such dynamic heterogeneity is a desirable property leading to beneficial social network dynamics [@veitas_living_2017]. Also note that it differs from the original formulation of the goal of Offer Networks as *search and execute globally optimal set of exchanges that would maximally satisfy outstanding offers/demands by maximum number of agents* [@goertzel_matching_2015] by relaxing optimality requirement.
 
-We are working towards this goal by asking (and answering) concrete research questions which allow for clear formulation and testing of scientific and computational hypotheses -- a process leading to incremental building of the system. The current research horizon encompasses following questions:
+```{r similarity-search-via-items, tidy=FALSE, eval=FALSE}
 
-1. **What are parameters that determine advantages and disadvantages of decentralized and centralized search algorithms in different contexts**?. In principle, Offer Networks goals can be achieved by either centralized (global) or decentralized (local) processes running on the same data structure as defined earlier. In practice, however, the feasibility of any of the approaches is largely determined by concrete circumstances and context-specific aspects. For example, centralized algorithms can optimize results at the cost of combinatorial explosion of computational complexity needed to carry them out, while decentralized algorithms may achieve sub-optimal, but still "good enough" results faster. The very term "good enough" implies context dependency. In order to provide at least some insights to this question we set-up centralized and decentralized search processes in Offer Networks and test them with different parameters (see [design](https://singnet.github.io/offernet/public/offernet-documentation/implementation.html#compare-decentralized-and-centralized-search), [results](https://singnet.github.io/offernet/public/experiment-decentralized-vs-centralized/) and [discussion](#discussion-of-results) of the experiment on comparing decentralized and centralized search).
+# parameters:
+# -- me: the agent that initiates traversal
+# -- maxDistance: number of hops in traversal;
+# -- similarityConnectThreshold: only items with this and higher similarity are connected;
+# function getItemsOfNeighbours(agent) is defined in pseudocode for Process #1;
 
-2.  **Can we conceive decentralized processes which make themselves more efficient by utilizing results of 'traces' left by preceding processes**? This research question addresses the feasibility of implementing stigmergic coordination principle of the open-ended decentralized computing as formulated [above](#basic-principles) in different contexts. Such processes, interacting among each other in a decentralized way, would implement **learning** ability of the network. Similar to the first research question, the learning ability of the network can be implemented in a centralized or decentralized manner. The design of the experiment needed to answer this research question is informed by the insights from results of the first experiment  -- see its [further steps](#further-steps).
+	myItems <- me.getAllDemands() + me.getAllOffers();
+	distance = 0;
 
-3. **How can we utilize learning network of heterogeneous processes for implementing a decentralized exchange of goods and services**? Answering this research question requires integration of the answers and insights from research question 1 and 2 in an Offer Networks system. The actual design of experiments required for answering this research question will be approached after obtaining and interpreting results of the experiment based on the second research question.
+	function searchAndConnectViaSimilarityLinks(myItem, otherItem):
+		similarityValue <- calculateSimilarity(item, otherItem)
+		if similarityValue >= similarityConnectThreshold do:
+			createLink(from: myItem, to: iterItem, type: similarity, value: similarityValue)
+		if distance > maxDistance do:
+			break from the loop;
+		else:
+			nextMostSimilarItem <- item.getSimilarItems(max(similarityValue))
+			searchAndConnectViaSimilarityLinks(myItem, nextMostSimilarItem)
 
+
+	for each myItem in myItems do:
+		distance = distance + 1;
+		if distance = maxDistance do:
+			break from cycle;
+		if item.hasSimilarityLinks() do:
+			mostSimilarItem <- item.getSimilarItems(max(similarityValue))
+			searchAndConnectViaSimilarityLinks(myItem, mostSimilarItem)
+		else:
+			itemsOfNeighbours <- getItemsOfNeighbours(me)
+			for each discoveredItem in itemsOfNeighbours do:
+				searchAndConnectViaSimilarityLinks(myItem, discoveredItem)
+```
+
+As specified, this process traverses largest $item \xrightarrow{\text{similarity}} item$ subgraph directly if it exist, otherwise, reverts back to traversing $agent \xrightarrow{\text{knows}} agent$
+subnetwork as defined by [Process #1](#process1-similarity-search). In OfferNet(s) framework many such processes operate concurrently on behalf of different agents, yet each process changes overall graph structure that is traversed by other processes, therefore they together lead to the desired dynamics of [progressive determination](#open-ended-decentralized-computing).
+
+
+[Experiment #1](#experiment-one), discussed further, implements processes [#1](#process1-similarity-search) and [#2](#process-find-cycles-of-changeable-items) and compares running times of their centralized and decentralized counterparts.
 
 ## Footnotes
 

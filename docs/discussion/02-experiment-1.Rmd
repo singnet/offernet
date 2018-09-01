@@ -5,7 +5,7 @@
 ## Further steps
 
 
-## Additional notes (flexibility of the model)(#additional-notes)
+## Additional notes (flexibility of the model){#additional-notes}
 
 * General treatment of the OfferNet(s) model (for interaction of processes)
 * Ability to calculate costs of exchange (e.g. in OfferNet(s) transportation costs)
