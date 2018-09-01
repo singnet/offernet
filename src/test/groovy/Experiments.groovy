@@ -37,7 +37,7 @@ import akka.testkit.javadsl.TestKit;
 
 
 
-public class ExperimentsAll {
+public class Experiments {
 	static ActorSystem system = ActorSystem.create("SimulationTests");
 	static private Logger logger;
 	private Simulation sim;
@@ -58,7 +58,7 @@ public class ExperimentsAll {
   	}
 
 	@Test
-	void run() {
+	void experimentOne() {
 
 		/*
 		* Constructing the parameter matrix:
