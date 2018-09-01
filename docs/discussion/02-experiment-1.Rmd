@@ -1,6 +1,31 @@
 # Experiment #1: comparison of decentralized and centralized search{#experiment-one}
 
-##  Discussion of results
+With this experiment we would like to see how centralized similarity search and cycle search processes perform with comparison to decentralized processes. 
+
+## Setup
+
+For that purpose we have implemented [Process #1](#process1-similarity-search) and Process #2(#process2-find-cycles-of-changeable-items) in centralized and decentralized flavours. In order to compare them we follow these steps:
+
+1. First, we create an Offer Network of predefined size (parameter `agentNumber`); We experiment with the random graph (where agents are randomly connected with 'knows' links) and a small-world graph, where we know the diameter of the network in advance;
+2. Then we artificially create a list of items which, if correctly searched and connected in the OfferNet(s) graph, form a chain . The length of the predefined cycle is set by parameter `chainLength`;
+3. Items from the list are assigned to random agents in the network;
+4. Then, we create a special `taskAgent` owning a `work` which, when correctly connected to the potential chain inserted in the network by step 2, closes it into a loop forming a cycle (see figure \@ref(fig:cycle-search-two-graphs)). 
+5. Finally, we run the decentralized and centralized processes on the same graph and retain running times of each method:
+	5.1. Similarity search process connects all similar items with 'similarity' links, as [explained above]((#process1-similarity-search));
+	5.2. Cycle search process is run on behalf of taskAgent and discovers the cycle inserted by step 2 (in case similarity search process correctly connected similar items);
+
+An experiment is a series of simulations, each of which takes the following parameters:
+
+* `agentNumber`: number of agents in the network (apart from taskAgent);
+* `similarityConnectThreshold`: the minimum similarity value between items connected with explicit link by similarity search process;
+* `chainLength`: the length of the chain inserted into the network by step 2;
+* `similaritySearchThreshold`: minimal similarity of items to be considered as eligible for exchange;
+* `maxDistance`: radius of agent's neighbour network when searching for similar items;
+* `randomWorksNumberMultiplier`: the number of random works and items which are assigned to the agents in the network to make cycle search more realistic;
+
+Detailed data about all experiments, simulations, their parameters and descriptive analysis of obtained results is provided in Electronic Laboratory Notebook [here](https://singnet.github.io/offernet/public/experiment-decentralized-vs-centralized/all-experiments.html). In the next two sections we discuss insights of the analysis and further steps based on them.
+
+##  Discussion
 
 ## Further steps
 
