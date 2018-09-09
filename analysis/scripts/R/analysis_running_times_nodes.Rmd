@@ -1,0 +1,61 @@
+```{r simulation-time-vs-similarity-edges, fig.cap='Dependence of simulation time on `similarity` edges in the graph as modulated by `similarityConnectThreshold` parameter for different agent numbers.', echo=FALSE, results='asis', fig.width=8, fig.height=12}
+
+library(ggplot2)
+
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+
+fancy_scientific <- function(l) {
+  # turn in to character string in scientific notation
+  l <- format(l, scientific = TRUE)
+  # quote the part before the exponent to keep all the digits
+  l <- gsub("^(.*)e", "'\\1'e", l)
+  # turn the 'e+' into plotmath format
+  l <- gsub("e", "%*%10^", l)
+  # return this as an expression
+  parse(text=l)
+}
+
+exp11.env <- LoadToEnvironment('~/offernet/docs/decentralized-vs-centralized-bookdown/R_data/summary_of_all_experiments.Rdata')
+exp12.env <- LoadToEnvironment('~/offernet/docs/additional-centralized-vs-decentralized/R_data/summary_of_all_experiments.Rdata')
+exp13.env <- LoadToEnvironment('~/offernet/docs/more-centralized-vs-decentralized/R_data/summary_of_all_experiments.Rdata')
+all.df <- exp11.env$summary.df
+all.df <- rbind(all.df, exp12.env$summary.df)
+all.df <- rbind(all.df, exp13.env$summary.df)
+# filtering out experiment which was run on random graphs in order to make results more consistent
+all.df <- all.df[which(all.df$experimentId != "EXP08-10-01-33-JYSw5Z" & all.df$experimentId != "EXP08-11-12-58-3BvMSL"), ]
+all.df$simulationType_agentNumber <- paste(all.df$simulationType,'-',all.df$agentNumber)
+
+agentNumbers = sort(unique(all.df$agentNumber))
+i = 1
+for (agentNumber in agentNumbers) {
+  e.df <- all.df[which(all.df$agentNumber == agentNumber),]
+  gg[[i]] <- ggplot(e.df, aes(x=edges_similarity, y=sum_wallTime_min_total, color=simulationType)) + 
+      geom_point(aes(size=foundCycles)) + 
+      geom_smooth(method="loess", se=F) + 
+      scale_x_continuous(labels=fancy_scientific) +
+      #xlim(c(0, 0.1)) + 
+      #ylim(c(0, 500000)) + 
+      labs(title = paste('agentNumber = ',agentNumber)) +
+      theme(axis.title.x=element_blank(),
+            axis.title.y=element_blank(),
+            plot.title = element_text(size=11),
+            axis.text.x = element_text(hjust = 1)
+      )
+  i<-i+1
+}
+#install.packages('ggpubr')
+library(ggpubr)
+figure <- ggarrange(gg[[1]],gg[[2]],
+             gg[[3]],gg[[4]],
+             gg[[5]],gg[[6]],
+             gg[[7]],gg[[8]],
+             nrow=4,
+             ncol=2,
+             common.legend=TRUE,
+             legend='bottom')
+
+annotate_figure(figure, bottom = text_grob("y-axis: simulationTime in minutes; x-axis: number of similarity edges in the graph;", size = 10))
+```
