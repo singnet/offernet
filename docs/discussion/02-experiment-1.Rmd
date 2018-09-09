@@ -1,3 +1,8 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, error=FALSE, output=FALSE, source = FALSE)
+```
+
 # Experiment #1: comparison of decentralized and centralized search{#experiment-one}
 
 With this experiment we would like to see how centralized similarity search and cycle search processes perform with comparison to decentralized processes. 
@@ -32,7 +37,7 @@ Detailed data about all experiments, simulations, their parameters and descripti
 
 ##  Discussion
 
-## On decentralized versus centralized computation
+### On decentralized versus centralized computation
 
 As many non-trivial (and interesting) questions, the issue of whether centralized or decentralized models are "better" cannot be answered in a univocal manner. The short and not very informative answer to this question would be "it depends" -- you can always find cases and examples where one of them works better. Our goal is therefore not to answer 'yes or no' but to figure out parameters and circumstances where one or another type of model or algorithm fairs better. 
 
@@ -45,18 +50,199 @@ A centralized system is a system where all transitions between atomic program st
 
 Bottom line is that it makes sense to start designing a computational framework or architecture based on decentralized model but allow for a centralized computation to emerge out of it rather than the other way round.
 
-* overall, decentralized search is faster than centralized in connecting similar items and finding a cycle, yet it depends on parameters;
-* centralized search explodes by number of vertices in the graph (items);
-* decentralized search explodes depending on edges in the graph (similarity edges between items);
-* decentralized search is sensitive to the topology of the graph, while centralized search is not;
-* the number of processes in centralized search is roughly proportional to the number of items in the graph, but these processes are very short;
-* the number of processes in decentralized search is roughly proportional to the number of agents in the graph, but average time of the process is roughly proportional to the number of links;
+### Sensitivity to graph topology
+
+One of the first hypotheses that experiments seem to support is that decentralized and centralized search have very different sensibility to the underlying graph topology. That is, centralized search algorithm is more sensitive to how many agent nodes are in the graph and not on how they are connected, while decentralized search **is** sensitive to the topology of $agent \xrightarrow{\text{knows}} agent$ subgraph. This is because decentralized graph traversals continue only as much as constrained by `maxDistance` parameters (which defines the radius of agent network to be searched -- see [#setup]) and if the diameter of graph is larger than this radius, then the cycle may not be found (even though it exists in a network). It is of course possible to increase `maxDistance` parameter to the arbitrary large number, but this also may increase time of search drastically (see graph below).
+
+```{r simulation-time-vs-maxDistance, fig.cap='Dependence of simulation time on maxDistance parameter.', echo=FALSE, results='asis', fig.width=6, fig.height=4}
+#install.packages('plotly')
+library(plotly)
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+all.df <- LoadToEnvironment('~/offernet/docs/original-decentralized-vs-centralized-analysis/R_data/summary_of_all_experiments.Rdata')$summary.df
+all.df <- all.df[which(all.df$similarityConnectThreshold != "NA"),]
+
+gg <- ggplotly(
+  ggplot(all.df, aes(x=maxDistance, y=sum_wallTime_min_total, color=simulationType)) + 
+    geom_point(aes(size=foundCycles)) + 
+    scale_x_discrete(limits=c("5","10","30")) +
+    #xlim(c(0, 0.1)) + 
+    #ylim(c(0, 500000)) + 
+    labs(y='simulationTime, minutes', 
+         x='maxDistance',
+         color='simulationType',
+         size='foundCycles'
+    )
+)
+gg
+
+#knitr::include_graphics("pictures/runingTimesvsmaxDistances_experimentOne.png")
+```
+
+For that we ran experiments with the same parameters on two different graph topologies  -- (1) randomly connected and (2) small world with diameter of less than 10.
+
+```{r random-and-smallWorld-graphs, fig.cap='Success rate of finding a cycle in random and small world graphs, by `maxDistance` parameter; small world graphs were generated ', echo=FALSE, results='asis', fig.width=8, fig.height=4}
+
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+
+fancy_scientific <- function(l) {
+  # turn in to character string in scientific notation
+  l <- format(l, scientific = TRUE)
+  # quote the part before the exponent to keep all the digits
+  l <- gsub("^(.*)e", "'\\1'e", l)
+  # turn the 'e+' into plotmath format
+  l <- gsub("e", "%*%10^", l)
+  # return this as an expression
+  parse(text=l)
+}
+
+exp11.env <- LoadToEnvironment('~/offernet/docs/original-decentralized-vs-centralized-analysis/R_data/summary_of_all_experiments.Rdata')
+all.df <- exp11.env$summary.df
+all.df$graphType <- ifelse(all.df$experimentId == "EXP08-12-11-17-5tvhCK","smallWorld", "random")
+
+library(dplyr)
+deps <- group_by(all.df, maxDistance, graphType)
+found <- function(v) {
+  ifelse(v>0,1,0)
+}
+
+averages <- summarize(deps, success = mean(found(foundCycles)), count = n())
+
+library(ggplot2)
+ggplot(data = averages, aes(x=maxDistance, y=graphType, fill=success)) + 
+  scale_x_discrete(limits=c("5","10","30")) +
+  geom_tile() +
+  geom_text(aes(label=paste('cyclesFound: ',scales::percent(round(success,2)),'\n','simulations: ',count)),size=4,na.rm=TRUE,fontface='italic', color='grey15') +
+  scale_fill_gradient(low = "firebrick3", high = "springgreen3")
+```
+
+### Centralized search explodes by the number of vertices
+
+```{r centralized-search-by-vertices, fig.cap='Time needed for centralized search roughly increases depending on number of item vertices in the graph: important parameters used for simulations displayed: agentNumbers=[400,500,600,700,800]; similarityConnectThreshold = 0.99', echo=FALSE, results='asis', fig.width=8, fig.height=4}
+library(ggplot2)
+library(ggpubr)
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+
+fancy_scientific <- function(l) {
+  # turn in to character string in scientific notation
+  l <- format(l, scientific = TRUE)
+  # quote the part before the exponent to keep all the digits
+  l <- gsub("^(.*)e", "'\\1'e", l)
+  # turn the 'e+' into plotmath format
+  l <- gsub("e", "%*%10^", l)
+  # return this as an expression
+  parse(text=l)
+}
+
+exp11.env <- LoadToEnvironment('~/offernet/docs/decentralized-vs-centralized-bookdown/R_data/summary_of_all_experiments.Rdata')
+exp12.env <- LoadToEnvironment('~/offernet/docs/additional-centralized-vs-decentralized/R_data/summary_of_all_experiments.Rdata')
+exp13.env <- LoadToEnvironment('~/offernet/docs/more-centralized-vs-decentralized/R_data/summary_of_all_experiments.Rdata')
+all.df <- exp11.env$summary.df
+all.df <- rbind(all.df, exp12.env$summary.df)
+all.df <- rbind(all.df, exp13.env$summary.df)
+# filtering out experiment which was run on random graphs in order to make results more consistent
+all.df <- all.df[which(all.df$experimentId != "EXP08-10-01-33-JYSw5Z" & all.df$experimentId != "EXP08-11-12-58-3BvMSL"), ]
+all.df$simulationType_agentNumber <- paste(all.df$simulationType,'-',all.df$agentNumber)
+all.df <- all.df[which(all.df$simulationType != "Decentralized"), ]
+all.df <- all.df[which(all.df$randomWorksNumberMultiplier == 1), ]
+all.df <- all.df[which(all.df$similarityConnectThreshold == 0.99), ]
+
+ggplot(all.df, aes(x=vertices_total, y=sum_wallTime_min_total)) + 
+    #geom_point(aes(size=agentNumber)) + 
+    geom_smooth(method="loess", se=F) + 
+    scale_x_continuous(labels=fancy_scientific) +
+    geom_text(aes(label=paste(agentNumber,'\nagents')), size=4) +
+    #xlim(c(0, 0.1)) + 
+    #ylim(c(0, 500000)) + 
+    labs(y = 'simulationTime, minutes',
+         x = 'number of vertices in the graph') 
+```
+
+### Decentralized search explodes by the number of edges
+
+```{r simulation-time-vs-similarity-edges, fig.cap='Dependence of simulation time on `similarity` edges in the graph as modulated by `similarityConnectThreshold` parameter for different agent numbers.', echo=FALSE, results='asis', fig.width=8, fig.height=12}
+
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+
+fancy_scientific <- function(l) {
+  # turn in to character string in scientific notation
+  l <- format(l, scientific = TRUE)
+  # quote the part before the exponent to keep all the digits
+  l <- gsub("^(.*)e", "'\\1'e", l)
+  # turn the 'e+' into plotmath format
+  l <- gsub("e", "%*%10^", l)
+  # return this as an expression
+  parse(text=l)
+}
+
+exp11.env <- LoadToEnvironment('~/offernet/docs/decentralized-vs-centralized-bookdown/R_data/summary_of_all_experiments.Rdata')
+exp12.env <- LoadToEnvironment('~/offernet/docs/additional-centralized-vs-decentralized/R_data/summary_of_all_experiments.Rdata')
+exp13.env <- LoadToEnvironment('~/offernet/docs/more-centralized-vs-decentralized/R_data/summary_of_all_experiments.Rdata')
+all.df <- exp11.env$summary.df
+all.df <- rbind(all.df, exp12.env$summary.df)
+all.df <- rbind(all.df, exp13.env$summary.df)
+# filtering out experiment which was run on random graphs in order to make results more consistent
+all.df <- all.df[which(all.df$experimentId != "EXP08-10-01-33-JYSw5Z" & all.df$experimentId != "EXP08-11-12-58-3BvMSL"), ]
+all.df$simulationType_agentNumber <- paste(all.df$simulationType,'-',all.df$agentNumber)
+
+agentNumbers = sort(unique(all.df$agentNumber))
+i = 1
+gg <- list()
+for (agentNumber in agentNumbers) {
+  e.df <- all.df[which(all.df$agentNumber == agentNumber),]
+  gg[[i]] <- ggplot(e.df, aes(x=edges_similarity, y=sum_wallTime_min_total, color=simulationType)) + 
+      geom_point(aes(size=foundCycles)) + 
+      geom_smooth(method="loess", se=F) + 
+      scale_x_continuous(labels=fancy_scientific) +
+      #xlim(c(0, 0.1)) + 
+      #ylim(c(0, 500000)) + 
+      labs(title = paste('agentNumber = ',agentNumber)) +
+      theme(axis.title.x=element_blank(),
+            axis.title.y=element_blank(),
+            plot.title = element_text(size=11),
+            axis.text.x = element_text(hjust = 1)
+      )
+  i<-i+1
+}
+#install.packages('ggpubr')
+library(ggpubr)
+figure <- ggarrange(gg[[1]],gg[[2]],
+             gg[[3]],gg[[4]],
+             gg[[5]],gg[[6]],
+             gg[[7]],gg[[8]],
+             nrow=4,
+             ncol=2,
+             common.legend=TRUE,
+             legend='bottom')
+
+annotate_figure(figure, bottom = text_grob("y-axis: simulationTime in minutes; x-axis: number of similarity edges in the graph;", size = 10))
+```
 
 ## Insights and future steps
 
-* Decentralized search can be optimized by smartly constructing traversals which do not traverse all edges in the graph (some sort of 'biased spreading activation')  - the topic of the Experiment #2;
-* Decentralized search can be optimized by controling topology of the graph -- namely, keeping the diameter of the graph in certain range;
+Based on the results of experiments and above discussion we can confidently make  the following considerations in order to guide further design of the software framework:
 
+* First, centralized search is not feasible for graphs with large number of nodes. This is not very surprising as it is known that many graph algorithms tend to behave exponentially. Note, that even in case of "moderate" exponential behaviour it is not acceptable for us, since the goal of the Offer Networks architecture (and open-ended decentralized computing framework in general) is to conceive conceptual and computational model able to achieve practical solutions on very large graph data structures -- with at least millions of vertices and tens of millions of edges. Smaller graphs, while may be useful for academic research purposes, does not sound interesting enough for devising a computational model of alternative economy.
+
+Decentralization is sought by us as a conceptual remedy for intractability of centralized algorithms when running on very large graph data structures. 
+* Decentralized search without additional optimizations does not perform well on:
+	* graphs with large diameters of $agent \xrightarrow{\text{knows}} agent$ subgraphs and 
+	* graphs with large amount of similarity links between items;
+* Despite above, decentralized search can be optimized by:
+	* smartly constructing traversals which do not traverse all edges in the graph (some sort of 'biased spreading activation');
+	* controlling topology of the graph -- namely, keeping the diameter of the graph in certain range;
+	* These are the topics of Experiment #2;
 
 ## Additional notes (flexibility of the model){#additional-notes}
 
