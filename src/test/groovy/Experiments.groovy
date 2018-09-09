@@ -34,6 +34,8 @@ import groovy.json.JsonSlurper;
 import akka.testkit.TestActorRef
 import akka.testkit.JavaTestKit;
 import akka.testkit.javadsl.TestKit;
+import scala.concurrent.duration.Duration;
+import java.util.concurrent.TimeUnit;
 
 
 
@@ -53,7 +55,8 @@ public class Experiments {
 
 	@AfterClass
   	static void teardown() {
-    	TestKit.shutdownActorSystem(system, true);
+        def duration = Duration.create(30, TimeUnit.SECONDS)
+    	TestKit.shutdownActorSystem(system, duration, true);
     	system = null;
   	}
 
@@ -65,17 +68,17 @@ public class Experiments {
 		* both centralized and decentralized search will be run on every 
 		* permutation of these parameters;
 		*/
-		Global.parameters.similarityThreshold = 0.9
+		def similarityConnectThresholds = [0.9, 0.93, 0.96, 0.99]
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 		Global.parameters.experimentId = experimentId
-		def agentNumbers = [200]//, 1000, 2000, 5000] // number of agents in the network
+		def agentNumbers = [700, 800]//, 1000, 2000, 5000] // number of agents in the network
 		def chainLengths = [10] // the length of the chain to drop into the network (cannot be less than 3!)
-		def randomWorksNumberMultipliers = [2] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [5, 10] // the maximum number of hops when doing decentralized similarity search;
-		def similaritySearchThresholds = [0.9, 0.95] // consider only items that are this similar when searching for path;
+		def randomWorksNumberMultipliers = [2 ] // number of random works (outside chain) to drop into the network;
+		def maxDistances = [10] // the maximum number of hops when doing decentralized similarity search;
+		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
 		 
 
-		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={}: similarityConnectThresholds={} : message=[{}]', 
+		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={} : similarityConnectThresholds={} : message=[{}]', 
       		'decentralizedVersion', 
       		experimentId,
       		agentNumbers,
@@ -83,7 +86,7 @@ public class Experiments {
       		randomWorksNumberMultipliers,
       		maxDistances,
       		similaritySearchThresholds,
-      		Global.parameters.similarityThreshold,
+      		similarityConnectThresholds,
       		'pre-generated smallWorld graph of agents with known diameters < 10; different similarity search thresholds'
       	)
 
@@ -93,6 +96,8 @@ public class Experiments {
 					def randomWorksNumber = agentNumber*randomWorksNumberMultiplier;
 					maxDistances.each { maxDistance ->
 						similaritySearchThresholds.each { similaritySearchThreshold ->
+							similarityConnectThresholds.each {similarityConnectThreshold ->
+								Global.parameters.similarityThreshold = similarityConnectThreshold								
 								// This is actual experiment code; 
 								// The choice is to construct the whole structure anew for each run
 								// It is not strictly necessary, yet may be good for equalizing performance
@@ -162,6 +167,7 @@ public class Experiments {
 								runCentralizedVersion(taskAgent, chainedWorksJson, experimentId);
 								sim.on.analyze("Analysis after runCentralizedVersion")
 								sim.on.archive()
+							}
 						}
 					}
 				}
