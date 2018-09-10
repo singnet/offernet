@@ -1,0 +1,7 @@
+book_filename: "Decentralized vs centralized search in OfferNet"
+chapter_name: ""
+repo: https://github.com/singnet/offernet
+output_dir: ../public/discussions
+rmd_files: ["index.Rmd", "01-open-ended-computing.Rmd", "02-experiment-1.Rmd", "05-References.Rmd"]
+clean: [book.bib]
+new_session: yes

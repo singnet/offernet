@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="188.38333mm"
+   height="46.622025mm"
+   viewBox="0 0 667.49997 165.19615"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Experiment_1-all_parameters.svg"
+   inkscape:export-filename="/home/kabir/repos/offernet/docs/discussion/pictures/Experiment_1-all_parameters.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="312.60592"
+     inkscape:cy="-32.671411"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     inkscape:window-x="1985"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-2.3819771,-67.634445)">
+    <image
+       sodipodi:absref="/home/kabir/repos/offernet/docs/discussion/pictures/Experiment_1-1_parameters.png"
+       xlink:href="Experiment_1-1_parameters.png"
+       width="196.5"
+       height="126.5"
+       preserveAspectRatio="none"
+       id="image4230"
+       x="2.3819733"
+       y="82.71608" />
+    <image
+       sodipodi:absref="/home/kabir/repos/offernet/docs/discussion/pictures/Experiment_1-2_parameters.png"
+       xlink:href="Experiment_1-2_parameters.png"
+       width="257"
+       height="126.5"
+       preserveAspectRatio="none"
+       id="image4241"
+       x="198.88197"
+       y="82.71608" />
+    <image
+       sodipodi:absref="/home/kabir/repos/offernet/docs/discussion/pictures/Experiment_1-3_parameters.png"
+       xlink:href="Experiment_1-3_parameters.png"
+       width="214"
+       height="128"
+       preserveAspectRatio="none"
+       id="image4252"
+       x="455.88196"
+       y="82.71608" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 198.49498,69.988854 0.38699,139.227226 0,0"
+       id="path4255"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 457.4063,68.816308 0.38699,139.227222 0,0"
+       id="path4255-3"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="160.61426"
+       y="76.554832"
+       id="text4272"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4274"
+         x="160.61426"
+         y="76.554832"
+         style="font-size:10px">values</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="417.68863"
+       y="75.73719"
+       id="text4272-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4274-7"
+         x="417.68863"
+         y="75.73719"
+         style="font-size:10px">values</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="616.18359"
+       y="75.232101"
+       id="text4272-6-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4274-7-3"
+         x="616.18359"
+         y="75.232101"
+         style="font-size:10px">values</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="111.64574"
+       y="220.189"
+       id="text4272-6-56"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4274-7-2"
+         x="111.64574"
+         y="220.189"
+         style="font-size:10px;text-align:center;text-anchor:middle">(a) Experiment run #1:</tspan><tspan
+         sodipodi:role="line"
+         x="111.64574"
+         y="232.689"
+         style="font-size:10px;text-align:center;text-anchor:middle"
+         id="tspan4383">1 simulation</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="319.05499"
+       y="219.72484"
+       id="text4272-6-56-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4274-7-2-7"
+         x="319.05499"
+         y="219.72484"
+         style="font-size:10px;text-align:center;text-anchor:middle">(b) Experiment run #2:</tspan><tspan
+         sodipodi:role="line"
+         x="319.05499"
+         y="232.22484"
+         style="font-size:10px;text-align:center;text-anchor:middle"
+         id="tspan4385">50 simulations</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="567.21802"
+       y="219.72484"
+       id="text4272-6-56-2-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4274-7-2-7-9"
+         x="567.21802"
+         y="219.72484"
+         style="font-size:10px;text-align:center;text-anchor:middle">(c) Experiment run #3:</tspan><tspan
+         sodipodi:role="line"
+         x="567.21802"
+         y="232.22484"
+         style="font-size:10px;text-align:center;text-anchor:middle"
+         id="tspan4387">8 simulations</tspan></text>
+  </g>
+</svg>

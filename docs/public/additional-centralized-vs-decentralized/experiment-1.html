@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Additional experiments for decentralized vs centralized search</title>
+  <meta name="description" content="Additional experiments for decentralized vs centralized search">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Additional experiments for decentralized vs centralized search" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="singnet/offernet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Additional experiments for decentralized vs centralized search" />
+  
+  
+  
+
+<meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
+
+
+<meta name="date" content="2018-09-07">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="experiment-2.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">OfferNet(s) e-Lab notebook</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="experiment-1.html"><a href="experiment-1.html"><i class="fa fa-check"></i><b>2</b> Experiment 1</a><ul>
+<li class="chapter" data-level="2.1" data-path="experiment-1.html"><a href="experiment-1.html#experimental-set-up"><i class="fa fa-check"></i><b>2.1</b> Experimental set up</a></li>
+<li class="chapter" data-level="2.2" data-path="experiment-1.html"><a href="experiment-1.html#descriptive-analysis-of-each-simulation"><i class="fa fa-check"></i><b>2.2</b> Descriptive analysis of each simulation</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="experiment-1.html"><a href="experiment-1.html#sim09-04-04-11-qx3waocv"><i class="fa fa-check"></i><b>2.2.1</b> SIM09-04-04-11-QX3wao–CV</a><ul>
+<li class="chapter" data-level="2.2.1.1" data-path="experiment-1.html"><a href="experiment-1.html#simulationparameters"><i class="fa fa-check"></i><b>2.2.1.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="2.2.1.2" data-path="experiment-1.html"><a href="experiment-1.html#alledgesbylabel"><i class="fa fa-check"></i><b>2.2.1.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="2.2.1.3" data-path="experiment-1.html"><a href="experiment-1.html#allverticesbytype"><i class="fa fa-check"></i><b>2.2.1.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="2.2.1.4" data-path="experiment-1.html"><a href="experiment-1.html#distribution-of-similarityedgesbyweight"><i class="fa fa-check"></i><b>2.2.1.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="2.2.1.5" data-path="experiment-1.html"><a href="experiment-1.html#degree-distribution-of-item-similarity-item-edges"><i class="fa fa-check"></i><b>2.2.1.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="2.2.1.6" data-path="experiment-1.html"><a href="experiment-1.html#degree-distribution-of-agent-knows-agent-edges"><i class="fa fa-check"></i><b>2.2.1.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="2.2.1.7" data-path="experiment-1.html"><a href="experiment-1.html#runing-time-by-method"><i class="fa fa-check"></i><b>2.2.1.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="2.2.1.8" data-path="experiment-1.html"><a href="experiment-1.html#found-structures"><i class="fa fa-check"></i><b>2.2.1.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2.2" data-path="experiment-1.html"><a href="experiment-1.html#sim09-04-04-11-qx3waodv"><i class="fa fa-check"></i><b>2.2.2</b> SIM09-04-04-11-QX3wao–DV</a><ul>
+<li class="chapter" data-level="2.2.2.1" data-path="experiment-1.html"><a href="experiment-1.html#simulationparameters-1"><i class="fa fa-check"></i><b>2.2.2.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="2.2.2.2" data-path="experiment-1.html"><a href="experiment-1.html#alledgesbylabel-1"><i class="fa fa-check"></i><b>2.2.2.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="2.2.2.3" data-path="experiment-1.html"><a href="experiment-1.html#allverticesbytype-1"><i class="fa fa-check"></i><b>2.2.2.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="2.2.2.4" data-path="experiment-1.html"><a href="experiment-1.html#distribution-of-similarityedgesbyweight-1"><i class="fa fa-check"></i><b>2.2.2.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="2.2.2.5" data-path="experiment-1.html"><a href="experiment-1.html#degree-distribution-of-item-similarity-item-edges-1"><i class="fa fa-check"></i><b>2.2.2.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="2.2.2.6" data-path="experiment-1.html"><a href="experiment-1.html#degree-distribution-of-agent-knows-agent-edges-1"><i class="fa fa-check"></i><b>2.2.2.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="2.2.2.7" data-path="experiment-1.html"><a href="experiment-1.html#runing-time-by-method-1"><i class="fa fa-check"></i><b>2.2.2.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="2.2.2.8" data-path="experiment-1.html"><a href="experiment-1.html#found-structures-1"><i class="fa fa-check"></i><b>2.2.2.8</b> Found structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="experiment-1.html"><a href="experiment-1.html#scatterplots-of-experiment"><i class="fa fa-check"></i><b>2.3</b> Scatterplots of experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="experiment-2.html"><a href="experiment-2.html"><i class="fa fa-check"></i><b>3</b> Experiment 2</a><ul>
+<li class="chapter" data-level="3.1" data-path="experiment-2.html"><a href="experiment-2.html#experimental-set-up-1"><i class="fa fa-check"></i><b>3.1</b> Experimental set up</a></li>
+<li class="chapter" data-level="3.2" data-path="experiment-2.html"><a href="experiment-2.html#descriptive-analysis-of-each-simulation-1"><i class="fa fa-check"></i><b>3.2</b> Descriptive analysis of each simulation</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-01-4yasghcv"><i class="fa fa-check"></i><b>3.2.1</b> SIM09-04-11-01-4YaSGh–CV</a><ul>
+<li class="chapter" data-level="3.2.1.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-2"><i class="fa fa-check"></i><b>3.2.1.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.1.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-2"><i class="fa fa-check"></i><b>3.2.1.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.1.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-2"><i class="fa fa-check"></i><b>3.2.1.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.1.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-2"><i class="fa fa-check"></i><b>3.2.1.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.1.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-2"><i class="fa fa-check"></i><b>3.2.1.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.1.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-2"><i class="fa fa-check"></i><b>3.2.1.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.1.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-2"><i class="fa fa-check"></i><b>3.2.1.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.1.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-2"><i class="fa fa-check"></i><b>3.2.1.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.2" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-01-4yasghdv"><i class="fa fa-check"></i><b>3.2.2</b> SIM09-04-11-01-4YaSGh–DV</a><ul>
+<li class="chapter" data-level="3.2.2.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-3"><i class="fa fa-check"></i><b>3.2.2.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.2.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-3"><i class="fa fa-check"></i><b>3.2.2.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.2.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-3"><i class="fa fa-check"></i><b>3.2.2.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.2.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-3"><i class="fa fa-check"></i><b>3.2.2.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.2.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-3"><i class="fa fa-check"></i><b>3.2.2.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.2.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-3"><i class="fa fa-check"></i><b>3.2.2.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.2.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-3"><i class="fa fa-check"></i><b>3.2.2.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.2.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-3"><i class="fa fa-check"></i><b>3.2.2.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.3" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-06-vouk3xcv"><i class="fa fa-check"></i><b>3.2.3</b> SIM09-04-11-06-vouK3X–CV</a><ul>
+<li class="chapter" data-level="3.2.3.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-4"><i class="fa fa-check"></i><b>3.2.3.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.3.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-4"><i class="fa fa-check"></i><b>3.2.3.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.3.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-4"><i class="fa fa-check"></i><b>3.2.3.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.3.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-4"><i class="fa fa-check"></i><b>3.2.3.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.3.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-4"><i class="fa fa-check"></i><b>3.2.3.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.3.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-4"><i class="fa fa-check"></i><b>3.2.3.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.3.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-4"><i class="fa fa-check"></i><b>3.2.3.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.3.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-4"><i class="fa fa-check"></i><b>3.2.3.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.4" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-06-vouk3xdv"><i class="fa fa-check"></i><b>3.2.4</b> SIM09-04-11-06-vouK3X–DV</a><ul>
+<li class="chapter" data-level="3.2.4.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-5"><i class="fa fa-check"></i><b>3.2.4.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.4.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-5"><i class="fa fa-check"></i><b>3.2.4.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.4.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-5"><i class="fa fa-check"></i><b>3.2.4.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.4.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-5"><i class="fa fa-check"></i><b>3.2.4.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.4.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-5"><i class="fa fa-check"></i><b>3.2.4.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.4.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-5"><i class="fa fa-check"></i><b>3.2.4.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.4.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-5"><i class="fa fa-check"></i><b>3.2.4.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.4.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-5"><i class="fa fa-check"></i><b>3.2.4.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.5" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-35-fropbmcv"><i class="fa fa-check"></i><b>3.2.5</b> SIM09-04-11-35-FroPBm–CV</a><ul>
+<li class="chapter" data-level="3.2.5.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-6"><i class="fa fa-check"></i><b>3.2.5.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.5.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-6"><i class="fa fa-check"></i><b>3.2.5.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.5.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-6"><i class="fa fa-check"></i><b>3.2.5.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.5.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-6"><i class="fa fa-check"></i><b>3.2.5.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.5.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-6"><i class="fa fa-check"></i><b>3.2.5.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.5.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-6"><i class="fa fa-check"></i><b>3.2.5.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.5.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-6"><i class="fa fa-check"></i><b>3.2.5.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.5.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-6"><i class="fa fa-check"></i><b>3.2.5.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.6" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-35-fropbmdv"><i class="fa fa-check"></i><b>3.2.6</b> SIM09-04-11-35-FroPBm–DV</a><ul>
+<li class="chapter" data-level="3.2.6.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-7"><i class="fa fa-check"></i><b>3.2.6.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.6.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-7"><i class="fa fa-check"></i><b>3.2.6.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.6.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-7"><i class="fa fa-check"></i><b>3.2.6.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.6.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-7"><i class="fa fa-check"></i><b>3.2.6.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.6.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-7"><i class="fa fa-check"></i><b>3.2.6.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.6.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-7"><i class="fa fa-check"></i><b>3.2.6.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.6.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-7"><i class="fa fa-check"></i><b>3.2.6.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.6.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-7"><i class="fa fa-check"></i><b>3.2.6.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.7" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-00-wrfr95cv"><i class="fa fa-check"></i><b>3.2.7</b> SIM09-04-11-00-wrFr95–CV</a><ul>
+<li class="chapter" data-level="3.2.7.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-8"><i class="fa fa-check"></i><b>3.2.7.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.7.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-8"><i class="fa fa-check"></i><b>3.2.7.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.7.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-8"><i class="fa fa-check"></i><b>3.2.7.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.7.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-8"><i class="fa fa-check"></i><b>3.2.7.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.7.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-8"><i class="fa fa-check"></i><b>3.2.7.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.7.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-8"><i class="fa fa-check"></i><b>3.2.7.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.7.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-8"><i class="fa fa-check"></i><b>3.2.7.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.7.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-8"><i class="fa fa-check"></i><b>3.2.7.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.8" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-00-wrfr95dv"><i class="fa fa-check"></i><b>3.2.8</b> SIM09-04-11-00-wrFr95–DV</a><ul>
+<li class="chapter" data-level="3.2.8.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-9"><i class="fa fa-check"></i><b>3.2.8.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.8.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-9"><i class="fa fa-check"></i><b>3.2.8.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.8.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-9"><i class="fa fa-check"></i><b>3.2.8.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.8.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-9"><i class="fa fa-check"></i><b>3.2.8.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.8.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-9"><i class="fa fa-check"></i><b>3.2.8.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.8.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-9"><i class="fa fa-check"></i><b>3.2.8.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.8.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-9"><i class="fa fa-check"></i><b>3.2.8.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.8.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-9"><i class="fa fa-check"></i><b>3.2.8.8</b> Found structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="experiment-2.html"><a href="experiment-2.html#scatterplots-of-experiment-1"><i class="fa fa-check"></i><b>3.3</b> Scatterplots of experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="experiment-3.html"><a href="experiment-3.html"><i class="fa fa-check"></i><b>4</b> Experiment 3</a><ul>
+<li class="chapter" data-level="4.1" data-path="experiment-3.html"><a href="experiment-3.html#experimental-set-up-2"><i class="fa fa-check"></i><b>4.1</b> Experimental set up</a></li>
+<li class="chapter" data-level="4.2" data-path="experiment-3.html"><a href="experiment-3.html#descriptive-analysis-of-each-simulation-2"><i class="fa fa-check"></i><b>4.2</b> Descriptive analysis of each simulation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-13-vhdefycv"><i class="fa fa-check"></i><b>4.2.1</b> SIM09-04-01-13-vhDeFY–CV</a><ul>
+<li class="chapter" data-level="4.2.1.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-10"><i class="fa fa-check"></i><b>4.2.1.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.1.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-10"><i class="fa fa-check"></i><b>4.2.1.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.1.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-10"><i class="fa fa-check"></i><b>4.2.1.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.1.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-10"><i class="fa fa-check"></i><b>4.2.1.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.1.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-10"><i class="fa fa-check"></i><b>4.2.1.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.1.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-10"><i class="fa fa-check"></i><b>4.2.1.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.1.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-10"><i class="fa fa-check"></i><b>4.2.1.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.1.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-10"><i class="fa fa-check"></i><b>4.2.1.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.2" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-13-vhdefydv"><i class="fa fa-check"></i><b>4.2.2</b> SIM09-04-01-13-vhDeFY–DV</a><ul>
+<li class="chapter" data-level="4.2.2.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-11"><i class="fa fa-check"></i><b>4.2.2.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.2.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-11"><i class="fa fa-check"></i><b>4.2.2.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.2.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-11"><i class="fa fa-check"></i><b>4.2.2.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.2.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-11"><i class="fa fa-check"></i><b>4.2.2.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.2.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-11"><i class="fa fa-check"></i><b>4.2.2.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.2.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-11"><i class="fa fa-check"></i><b>4.2.2.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.2.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-11"><i class="fa fa-check"></i><b>4.2.2.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.2.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-11"><i class="fa fa-check"></i><b>4.2.2.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.3" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-26-ody6ejcv"><i class="fa fa-check"></i><b>4.2.3</b> SIM09-04-01-26-odY6eJ–CV</a><ul>
+<li class="chapter" data-level="4.2.3.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-12"><i class="fa fa-check"></i><b>4.2.3.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.3.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-12"><i class="fa fa-check"></i><b>4.2.3.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.3.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-12"><i class="fa fa-check"></i><b>4.2.3.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.3.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-12"><i class="fa fa-check"></i><b>4.2.3.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.3.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-12"><i class="fa fa-check"></i><b>4.2.3.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.3.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-12"><i class="fa fa-check"></i><b>4.2.3.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.3.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-12"><i class="fa fa-check"></i><b>4.2.3.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.3.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-12"><i class="fa fa-check"></i><b>4.2.3.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.4" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-26-ody6ejdv"><i class="fa fa-check"></i><b>4.2.4</b> SIM09-04-01-26-odY6eJ–DV</a><ul>
+<li class="chapter" data-level="4.2.4.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-13"><i class="fa fa-check"></i><b>4.2.4.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.4.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-13"><i class="fa fa-check"></i><b>4.2.4.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.4.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-13"><i class="fa fa-check"></i><b>4.2.4.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.4.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-13"><i class="fa fa-check"></i><b>4.2.4.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.4.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-13"><i class="fa fa-check"></i><b>4.2.4.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.4.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-13"><i class="fa fa-check"></i><b>4.2.4.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.4.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-13"><i class="fa fa-check"></i><b>4.2.4.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.4.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-13"><i class="fa fa-check"></i><b>4.2.4.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.5" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-38-zwreuzcv"><i class="fa fa-check"></i><b>4.2.5</b> SIM09-04-01-38-zWrEUZ–CV</a><ul>
+<li class="chapter" data-level="4.2.5.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-14"><i class="fa fa-check"></i><b>4.2.5.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.5.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-14"><i class="fa fa-check"></i><b>4.2.5.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.5.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-14"><i class="fa fa-check"></i><b>4.2.5.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.5.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-14"><i class="fa fa-check"></i><b>4.2.5.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.5.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-14"><i class="fa fa-check"></i><b>4.2.5.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.5.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-14"><i class="fa fa-check"></i><b>4.2.5.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.5.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-14"><i class="fa fa-check"></i><b>4.2.5.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.5.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-14"><i class="fa fa-check"></i><b>4.2.5.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.6" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-38-zwreuzdv"><i class="fa fa-check"></i><b>4.2.6</b> SIM09-04-01-38-zWrEUZ–DV</a><ul>
+<li class="chapter" data-level="4.2.6.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-15"><i class="fa fa-check"></i><b>4.2.6.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.6.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-15"><i class="fa fa-check"></i><b>4.2.6.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.6.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-15"><i class="fa fa-check"></i><b>4.2.6.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.6.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-15"><i class="fa fa-check"></i><b>4.2.6.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.6.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-15"><i class="fa fa-check"></i><b>4.2.6.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.6.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-15"><i class="fa fa-check"></i><b>4.2.6.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.6.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-15"><i class="fa fa-check"></i><b>4.2.6.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.6.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-15"><i class="fa fa-check"></i><b>4.2.6.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.7" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-48-pgr9j8cv"><i class="fa fa-check"></i><b>4.2.7</b> SIM09-04-01-48-PGR9J8–CV</a><ul>
+<li class="chapter" data-level="4.2.7.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-16"><i class="fa fa-check"></i><b>4.2.7.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.7.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-16"><i class="fa fa-check"></i><b>4.2.7.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.7.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-16"><i class="fa fa-check"></i><b>4.2.7.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.7.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-16"><i class="fa fa-check"></i><b>4.2.7.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.7.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-16"><i class="fa fa-check"></i><b>4.2.7.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.7.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-16"><i class="fa fa-check"></i><b>4.2.7.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.7.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-16"><i class="fa fa-check"></i><b>4.2.7.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.7.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-16"><i class="fa fa-check"></i><b>4.2.7.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.8" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-48-pgr9j8dv"><i class="fa fa-check"></i><b>4.2.8</b> SIM09-04-01-48-PGR9J8–DV</a><ul>
+<li class="chapter" data-level="4.2.8.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-17"><i class="fa fa-check"></i><b>4.2.8.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.8.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-17"><i class="fa fa-check"></i><b>4.2.8.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.8.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-17"><i class="fa fa-check"></i><b>4.2.8.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.8.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-17"><i class="fa fa-check"></i><b>4.2.8.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.8.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-17"><i class="fa fa-check"></i><b>4.2.8.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.8.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-17"><i class="fa fa-check"></i><b>4.2.8.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.8.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-17"><i class="fa fa-check"></i><b>4.2.8.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.8.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-17"><i class="fa fa-check"></i><b>4.2.8.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.9" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-55-8swvevcv"><i class="fa fa-check"></i><b>4.2.9</b> SIM09-04-01-55-8swVEv–CV</a><ul>
+<li class="chapter" data-level="4.2.9.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-18"><i class="fa fa-check"></i><b>4.2.9.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.9.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-18"><i class="fa fa-check"></i><b>4.2.9.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.9.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-18"><i class="fa fa-check"></i><b>4.2.9.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.9.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-18"><i class="fa fa-check"></i><b>4.2.9.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.9.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-18"><i class="fa fa-check"></i><b>4.2.9.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.9.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-18"><i class="fa fa-check"></i><b>4.2.9.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.9.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-18"><i class="fa fa-check"></i><b>4.2.9.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.9.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-18"><i class="fa fa-check"></i><b>4.2.9.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.10" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-55-8swvevdv"><i class="fa fa-check"></i><b>4.2.10</b> SIM09-04-01-55-8swVEv–DV</a><ul>
+<li class="chapter" data-level="4.2.10.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-19"><i class="fa fa-check"></i><b>4.2.10.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.10.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-19"><i class="fa fa-check"></i><b>4.2.10.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.10.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-19"><i class="fa fa-check"></i><b>4.2.10.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.10.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-19"><i class="fa fa-check"></i><b>4.2.10.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.10.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-19"><i class="fa fa-check"></i><b>4.2.10.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.10.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-19"><i class="fa fa-check"></i><b>4.2.10.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.10.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-19"><i class="fa fa-check"></i><b>4.2.10.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.10.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-19"><i class="fa fa-check"></i><b>4.2.10.8</b> Found structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="experiment-3.html"><a href="experiment-3.html#scatterplots-of-experiment-2"><i class="fa fa-check"></i><b>4.3</b> Scatterplots of experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cross-analysis-of-all-additional-experiments.html"><a href="cross-analysis-of-all-additional-experiments.html"><i class="fa fa-check"></i><b>5</b> Cross analysis of all additional experiments</a><ul>
+<li class="chapter" data-level="5.1" data-path="cross-analysis-of-all-additional-experiments.html"><a href="cross-analysis-of-all-additional-experiments.html#summary-data"><i class="fa fa-check"></i><b>5.1</b> Summary data</a></li>
+<li class="chapter" data-level="5.2" data-path="cross-analysis-of-all-additional-experiments.html"><a href="cross-analysis-of-all-additional-experiments.html#scatterplots-of-all-experiments"><i class="fa fa-check"></i><b>5.2</b> Scatterplots of all experiments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Additional experiments for decentralized vs centralized search</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="experiment-1" class="section level1">
+<h1><span class="header-section-number">2</span> Experiment 1</h1>
+<p>800 agents simulation (repeating crashed one)</p>
+<div id="experimental-set-up" class="section level2">
+<h2><span class="header-section-number">2.1</span> Experimental set up</h2>
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Values
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+experimentId
+</td>
+<td style="text-align:left;">
+EXP09-04-04-11-kvIbMs
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+agentNumbers
+</td>
+<td style="text-align:left;">
+800
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+maxDistances
+</td>
+<td style="text-align:left;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+randomWorksNumberMultipliers
+</td>
+<td style="text-align:left;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+similarityConnectThresholds
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chainLengths
+</td>
+<td style="text-align:left;">
+10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="descriptive-analysis-of-each-simulation" class="section level2">
+<h2><span class="header-section-number">2.2</span> Descriptive analysis of each simulation</h2>
+<div id="sim09-04-04-11-qx3waocv" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> SIM09-04-04-11-QX3wao–CV</h3>
+<div id="simulationparameters" class="section level4">
+<h4><span class="header-section-number">2.2.1.1</span> simulationParameters</h4>
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+agentNumber
+</th>
+<th style="text-align:left;">
+similarityConnectThreshold
+</th>
+<th style="text-align:left;">
+chainLength
+</th>
+<th style="text-align:left;">
+similaritySearchThreshold
+</th>
+<th style="text-align:left;">
+maxDistance
+</th>
+<th style="text-align:left;">
+randomWorksNumberMultiplier
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 20em; ">
+800
+</td>
+<td style="text-align:left;width: 15em; ">
+0.9
+</td>
+<td style="text-align:left;width: 15em; ">
+10
+</td>
+<td style="text-align:left;width: 15em; ">
+1
+</td>
+<td style="text-align:left;width: 15em; ">
+10
+</td>
+<td style="text-align:left;width: 15em; ">
+2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="alledgesbylabel" class="section level4">
+<h4><span class="header-section-number">2.2.1.2</span> allEdgesByLabel</h4>
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:right;">
+edges_offers
+</th>
+<th style="text-align:right;">
+edges_similarity
+</th>
+<th style="text-align:right;">
+edges_owns
+</th>
+<th style="text-align:right;">
+edges_demands
+</th>
+<th style="text-align:right;">
+edges_knows
+</th>
+<th style="text-align:right;">
+edges_total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 5em; ">
+1,610
+</td>
+<td style="text-align:right;width: 5em; ">
+2,007,454
+</td>
+<td style="text-align:right;width: 5em; ">
+1,610
+</td>
+<td style="text-align:right;width: 5em; ">
+1,610
+</td>
+<td style="text-align:right;width: 5em; ">
+4,801
+</td>
+<td style="text-align:right;width: 5em; ">
+2,017,085
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="allverticesbytype" class="section level4">
+<h4><span class="header-section-number">2.2.1.3</span> allVerticesByType</h4>
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:right;">
+vertices_agent
+</th>
+<th style="text-align:right;">
+vertices_item
+</th>
+<th style="text-align:right;">
+vertices_work
+</th>
+<th style="text-align:right;">
+vertices_total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 5em; ">
+801
+</td>
+<td style="text-align:right;width: 5em; ">
+3,220
+</td>
+<td style="text-align:right;width: 5em; ">
+1,610
+</td>
+<td style="text-align:right;width: 5em; ">
+5,631
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="distribution-of-similarityedgesbyweight" class="section level4">
+<h4><span class="header-section-number">2.2.1.4</span> distribution of similarityEdgesByWeight</h4>
+<p><img src="index_files/figure-html/get-experiment-info-1.png" width="672" /></p>
+</div>
+<div id="degree-distribution-of-item-similarity-item-edges" class="section level4">
+<h4><span class="header-section-number">2.2.1.5</span> Degree distribution of item-&gt;similarity-&gt;item edges</h4>
+<p><img src="index_files/figure-html/get-experiment-info-2.png" width="672" /></p>
+</div>
+<div id="degree-distribution-of-agent-knows-agent-edges" class="section level4">
+<h4><span class="header-section-number">2.2.1.6</span> Degree distribution of agent-&gt;knows-&gt;agent edges</h4>
+<p><img src="index_files/figure-html/get-experiment-info-3.png" width="672" /></p>
+</div>
+<div id="runing-time-by-method" class="section level4">
+<h4><span class="header-section-number">2.2.1.7</span> Runing time by method</h4>
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+key
+</th>
+<th style="text-align:right;">
+doc_count
+</th>
+<th style="text-align:right;">
+sum_wallTime_ms.value
+</th>
+<th style="text-align:left;">
+avg_wallTime_ms.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+connectIfSimilar
+</td>
+<td style="text-align:right;">
+257,499
+</td>
+<td style="text-align:right;">
+3,608,209
+</td>
+<td style="text-align:left;">
+14.0125165534623
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+existsSimilarity
+</td>
+<td style="text-align:right;">
+257,499
+</td>
+<td style="text-align:right;">
+3,599,639
+</td>
+<td style="text-align:left;">
+13.979234870815
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+similarityEdges
+</td>
+<td style="text-align:right;">
+257,499
+</td>
+<td style="text-align:right;">
+3,488,034
+</td>
+<td style="text-align:left;">
+13.5458157119057
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cycleSearch
+</td>
+<td style="text-align:right;">
+956
+</td>
+<td style="text-align:right;">
+53,942
+</td>
+<td style="text-align:left;">
+56.4246861924686
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+getWorks
+</td>
+<td style="text-align:right;">
+955
+</td>
+<td style="text-align:right;">
+6,895
+</td>
+<td style="text-align:left;">
+7.21989528795812
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+init
+</td>
+<td style="text-align:right;">
+802
+</td>
+<td style="text-align:right;">
+201,392
+</td>
+<td style="text-align:left;">
+251.112219451372
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+connectAllSimilar
+</td>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:right;">
+3,611,470
+</td>
+<td style="text-align:left;">
+44586.049382716
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+connect
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+216
+</td>
+<td style="text-align:left;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+searchAndConnect
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+825,394
+</td>
+<td style="text-align:left;">
+82539.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:right;font-weight: bold;">
+775,373
+</td>
+<td style="text-align:right;font-weight: bold;">
+15,395,191
+</td>
+<td style="text-align:left;font-weight: bold;">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="found-structures" class="section level4">
+<h4><span class="header-section-number">2.2.1.8</span> Found structures</h4>
+<div id="cycles" class="section level5">
+<h5><span class="header-section-number">2.2.1.8.1</span> Cycles</h5>
+<p>Number of cycles found: 1</p>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#IIVVXLBPHH">
+Show/Hide foundCycle query
+</button>
+<div id="IIVVXLBPHH" class="collapse">
+<pre><code> GET /filebeat-*/_search 
+          { 
+            &quot;query&quot;: {
+              &quot;bool&quot;: {
+                &quot;must&quot;: [
+                  { &quot;match_phrase&quot;: {
+                    &quot;simulationId&quot;: &quot;SIM09-04-04-11-QX3wao--CV&quot;
+                    }
+                  },
+                  { &quot;bool&quot;: {
+                    &quot;should&quot;: [
+                      { &quot;match&quot;: {
+                        &quot;keyword&quot;: &quot;foundCycle&quot;
+                      }}
+                    ]
+                  }}
+                ]
+              }
+            }
+          }
+ </code></pre>
+</div>
+</div>
+<div id="paths" class="section level5">
+<h5><span class="header-section-number">2.2.1.8.2</span> Paths</h5>
+<p>Number of paths found: 0</p>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#QOBITAEDIY">
+Show/Hide foundPath query
+</button>
+<div id="QOBITAEDIY" class="collapse">
+<pre><code> GET /filebeat-*/_search 
+          { 
+            &quot;query&quot;: {
+              &quot;bool&quot;: {
+                &quot;must&quot;: [
+                  { &quot;match_phrase&quot;: {
+                    &quot;simulationId&quot;: &quot;SIM09-04-04-11-QX3wao--CV&quot;
+                    }
+                  },
+                  { &quot;bool&quot;: {
+                    &quot;should&quot;: [
+                      { &quot;match&quot;: {
+                        &quot;keyword&quot;: &quot;foundPath&quot;
+                      }}
+                    ]
+                  }}
+                ]
+              }
+            }
+          }
+ </code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="sim09-04-04-11-qx3waodv" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> SIM09-04-04-11-QX3wao–DV</h3>
+<div id="simulationparameters-1" class="section level4">
+<h4><span class="header-section-number">2.2.2.1</span> simulationParameters</h4>
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+agentNumber
+</th>
+<th style="text-align:left;">
+similarityConnectThreshold
+</th>
+<th style="text-align:left;">
+chainLength
+</th>
+<th style="text-align:left;">
+similaritySearchThreshold
+</th>
+<th style="text-align:left;">
+maxDistance
+</th>
+<th style="text-align:left;">
+randomWorksNumberMultiplier
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 20em; ">
+800
+</td>
+<td style="text-align:left;width: 15em; ">
+0.9
+</td>
+<td style="text-align:left;width: 15em; ">
+10
+</td>
+<td style="text-align:left;width: 15em; ">
+1
+</td>
+<td style="text-align:left;width: 15em; ">
+10
+</td>
+<td style="text-align:left;width: 15em; ">
+2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="alledgesbylabel-1" class="section level4">
+<h4><span class="header-section-number">2.2.2.2</span> allEdgesByLabel</h4>
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:right;">
+edges_offers
+</th>
+<th style="text-align:right;">
+edges_similarity
+</th>
+<th style="text-align:right;">
+edges_owns
+</th>
+<th style="text-align:right;">
+edges_demands
+</th>
+<th style="text-align:right;">
+edges_knows
+</th>
+<th style="text-align:right;">
+edges_total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 5em; ">
+1,610
+</td>
+<td style="text-align:right;width: 5em; ">
+2,007,284
+</td>
+<td style="text-align:right;width: 5em; ">
+1,610
+</td>
+<td style="text-align:right;width: 5em; ">
+1,610
+</td>
+<td style="text-align:right;width: 5em; ">
+4,801
+</td>
+<td style="text-align:right;width: 5em; ">
+2,016,915
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="allverticesbytype-1" class="section level4">
+<h4><span class="header-section-number">2.2.2.3</span> allVerticesByType</h4>
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:right;">
+vertices_agent
+</th>
+<th style="text-align:right;">
+vertices_item
+</th>
+<th style="text-align:right;">
+vertices_work
+</th>
+<th style="text-align:right;">
+vertices_total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 5em; ">
+801
+</td>
+<td style="text-align:right;width: 5em; ">
+3,220
+</td>
+<td style="text-align:right;width: 5em; ">
+1,610
+</td>
+<td style="text-align:right;width: 5em; ">
+5,631
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="distribution-of-similarityedgesbyweight-1" class="section level4">
+<h4><span class="header-section-number">2.2.2.4</span> distribution of similarityEdgesByWeight</h4>
+<p><img src="index_files/figure-html/get-experiment-info-4.png" width="672" /></p>
+</div>
+<div id="degree-distribution-of-item-similarity-item-edges-1" class="section level4">
+<h4><span class="header-section-number">2.2.2.5</span> Degree distribution of item-&gt;similarity-&gt;item edges</h4>
+<p><img src="index_files/figure-html/get-experiment-info-5.png" width="672" /></p>
+</div>
+<div id="degree-distribution-of-agent-knows-agent-edges-1" class="section level4">
+<h4><span class="header-section-number">2.2.2.6</span> Degree distribution of agent-&gt;knows-&gt;agent edges</h4>
+<p><img src="index_files/figure-html/get-experiment-info-6.png" width="672" /></p>
+</div>
+<div id="runing-time-by-method-1" class="section level4">
+<h4><span class="header-section-number">2.2.2.7</span> Runing time by method</h4>
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+key
+</th>
+<th style="text-align:right;">
+doc_count
+</th>
+<th style="text-align:right;">
+sum_wallTime_ms.value
+</th>
+<th style="text-align:left;">
+avg_wallTime_ms.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+knowsAgent
+</td>
+<td style="text-align:right;">
+4,801
+</td>
+<td style="text-align:right;">
+10,493
+</td>
+<td style="text-align:left;">
+2.18558633617996
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+addItemToWork
+</td>
+<td style="text-align:right;">
+3,220
+</td>
+<td style="text-align:right;">
+47,540
+</td>
+<td style="text-align:left;">
+14.7639751552795
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ownsWork
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:right;">
+22,568
+</td>
+<td style="text-align:left;">
+14.0173913043478
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+individualCycleSearch
+</td>
+<td style="text-align:right;">
+960
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+0.0645833333333333
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+init
+</td>
+<td style="text-align:right;">
+803
+</td>
+<td style="text-align:right;">
+194,078
+</td>
+<td style="text-align:left;">
+241.691158156912
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+searchAndConnect
+</td>
+<td style="text-align:right;">
+791
+</td>
+<td style="text-align:right;">
+44,226,828
+</td>
+<td style="text-align:left;">
+55912.5512010114
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+getWorksItems
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+getWorks
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+131,917
+</td>
+<td style="text-align:left;">
+21986.1666666667
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cycleSearch
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+234,176
+</td>
+<td style="text-align:left;">
+46835.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:right;font-weight: bold;">
+12,214
+</td>
+<td style="text-align:right;font-weight: bold;">
+44,867,716
+</td>
+<td style="text-align:left;font-weight: bold;">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="found-structures-1" class="section level4">
+<h4><span class="header-section-number">2.2.2.8</span> Found structures</h4>
+<div id="cycles-1" class="section level5">
+<h5><span class="header-section-number">2.2.2.8.1</span> Cycles</h5>
+<p>Number of cycles found: 3</p>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#FOAKOXETLS">
+Show/Hide foundCycle query
+</button>
+<div id="FOAKOXETLS" class="collapse">
+<pre><code> GET /filebeat-*/_search 
+          { 
+            &quot;query&quot;: {
+              &quot;bool&quot;: {
+                &quot;must&quot;: [
+                  { &quot;match_phrase&quot;: {
+                    &quot;simulationId&quot;: &quot;SIM09-04-04-11-QX3wao--DV&quot;
+                    }
+                  },
+                  { &quot;bool&quot;: {
+                    &quot;should&quot;: [
+                      { &quot;match&quot;: {
+                        &quot;keyword&quot;: &quot;foundCycle&quot;
+                      }}
+                    ]
+                  }}
+                ]
+              }
+            }
+          }
+ </code></pre>
+</div>
+</div>
+<div id="paths-1" class="section level5">
+<h5><span class="header-section-number">2.2.2.8.2</span> Paths</h5>
+<p>Number of paths found: 0</p>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BTCOWHHZGG">
+Show/Hide foundPath query
+</button>
+<div id="BTCOWHHZGG" class="collapse">
+<pre><code> GET /filebeat-*/_search 
+          { 
+            &quot;query&quot;: {
+              &quot;bool&quot;: {
+                &quot;must&quot;: [
+                  { &quot;match_phrase&quot;: {
+                    &quot;simulationId&quot;: &quot;SIM09-04-04-11-QX3wao--DV&quot;
+                    }
+                  },
+                  { &quot;bool&quot;: {
+                    &quot;should&quot;: [
+                      { &quot;match&quot;: {
+                        &quot;keyword&quot;: &quot;foundPath&quot;
+                      }}
+                    ]
+                  }}
+                ]
+              }
+            }
+          }
+ </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="scatterplots-of-experiment" class="section level2">
+<h2><span class="header-section-number">2.3</span> Scatterplots of experiment</h2>
+<p><img src="index_files/figure-html/get-experiment-info-7.png" width="672" /><img src="index_files/figure-html/get-experiment-info-8.png" width="672" /><img src="index_files/figure-html/get-experiment-info-9.png" width="672" /><img src="index_files/figure-html/get-experiment-info-10.png" width="672" /><img src="index_files/figure-html/get-experiment-info-11.png" width="672" /><img src="index_files/figure-html/get-experiment-info-12.png" width="672" /><img src="index_files/figure-html/get-experiment-info-13.png" width="672" /><img src="index_files/figure-html/get-experiment-info-14.png" width="672" /><img src="index_files/figure-html/get-experiment-info-15.png" width="672" /><img src="index_files/figure-html/get-experiment-info-16.png" width="672" /><img src="index_files/figure-html/get-experiment-info-17.png" width="672" /><img src="index_files/figure-html/get-experiment-info-18.png" width="672" /></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="experiment-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
