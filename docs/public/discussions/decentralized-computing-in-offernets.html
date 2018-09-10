@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Experiment #1: centralized vs decentralized search</title>
+  <meta name="description" content="Experiment #1: centralized vs decentralized search">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Experiment #1: centralized vs decentralized search" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="singnet/offernet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Experiment #1: centralized vs decentralized search" />
+  
+  
+  
+
+<meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
+
+
+<meta name="date" content="2018-09-10">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="experiment-one.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">OfferNet(s) e-Lab notebook</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html"><i class="fa fa-check"></i><b>2</b> Decentralized computing in OfferNet(s)</a><ul>
+<li class="chapter" data-level="2.1" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#open-ended-decentralized-computing"><i class="fa fa-check"></i><b>2.1</b> Open-ended decentralized computing</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#basic-principles"><i class="fa fa-check"></i><b>2.1.1</b> Basic principles</a></li>
+<li class="chapter" data-level="2.1.2" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#directions-of-simulation-modelling-research"><i class="fa fa-check"></i><b>2.1.2</b> Directions of simulation modelling research</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#offer-networks"><i class="fa fa-check"></i><b>2.2</b> Offer Networks</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#data-structure"><i class="fa fa-check"></i><b>2.2.1</b> Data structure</a></li>
+<li class="chapter" data-level="2.2.2" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#research-questions"><i class="fa fa-check"></i><b>2.2.2</b> Research questions</a></li>
+<li class="chapter" data-level="2.2.3" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#processes"><i class="fa fa-check"></i><b>2.2.3</b> Processes</a><ul>
+<li class="chapter" data-level="2.2.3.1" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#process1-similarity-search"><i class="fa fa-check"></i><b>2.2.3.1</b> Process#1: Similarity search</a><ul>
+<li class="chapter" data-level="2.2.3.1.1" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#centralized-similarity-search"><i class="fa fa-check"></i><b>2.2.3.1.1</b> Centralized similarity search</a></li>
+<li class="chapter" data-level="2.2.3.1.2" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#decentralized-similarity-search"><i class="fa fa-check"></i><b>2.2.3.1.2</b> Decentralized similarity search</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2.3.2" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#process2-find-cycles-of-changeable-items"><i class="fa fa-check"></i><b>2.2.3.2</b> Process#2: Find cycles of changeable items</a></li>
+<li class="chapter" data-level="2.2.3.3" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#execute-cycles"><i class="fa fa-check"></i><b>2.2.3.3</b> Process#3: Execute exchange cycles</a></li>
+<li class="chapter" data-level="2.2.3.4" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#search-via-similarity-links"><i class="fa fa-check"></i><b>2.2.3.4</b> Process#4: Search and connect similar items of exchange via similarity links</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="decentralized-computing-in-offernets.html"><a href="decentralized-computing-in-offernets.html#footnotes"><i class="fa fa-check"></i><b>2.3</b> Footnotes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="experiment-one.html"><a href="experiment-one.html"><i class="fa fa-check"></i><b>3</b> Experiment #1: comparison of decentralized and centralized search</a><ul>
+<li class="chapter" data-level="3.1" data-path="experiment-one.html"><a href="experiment-one.html#setup"><i class="fa fa-check"></i><b>3.1</b> Setup</a></li>
+<li class="chapter" data-level="3.2" data-path="experiment-one.html"><a href="experiment-one.html#discussion"><i class="fa fa-check"></i><b>3.2</b> Discussion</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="experiment-one.html"><a href="experiment-one.html#on-decentralized-versus-centralized-computation"><i class="fa fa-check"></i><b>3.2.1</b> On decentralized versus centralized computation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="experiment-one.html"><a href="experiment-one.html#sensitivity-to-graph-topology"><i class="fa fa-check"></i><b>3.2.2</b> Sensitivity to graph topology</a></li>
+<li class="chapter" data-level="3.2.3" data-path="experiment-one.html"><a href="experiment-one.html#decentralized-search-explodes-by-the-number-of-edges"><i class="fa fa-check"></i><b>3.2.3</b> Decentralized search explodes by the number of edges</a></li>
+<li class="chapter" data-level="3.2.4" data-path="experiment-one.html"><a href="experiment-one.html#centralized-search-time-increases-by-the-number-of-vertices"><i class="fa fa-check"></i><b>3.2.4</b> Centralized search time increases by the number of vertices</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="experiment-one.html"><a href="experiment-one.html#insights-and-future-steps"><i class="fa fa-check"></i><b>3.3</b> Insights and future steps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Experiment #1: centralized vs decentralized search</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="decentralized-computing-in-offernets" class="section level1">
+<h1><span class="header-section-number">2</span> Decentralized computing in OfferNet(s)</h1>
+<p>We consider a simplified framework of decentralized barter exchange between independent and heterogeneous agents – <strong>Offer Networks</strong> – for demonstrating main properties of what we call <strong>open-ended decentralized computing</strong> which is a paradigm for researching and testing the possibility of computational emergence of open-ended intelligence <span class="citation">(D. Weinbaum (Weaver) and Veitas <a href="#ref-weinbaum_weaver_open_2017">2017</a><a href="#ref-weinbaum_weaver_open_2017">b</a>; Weinbaum (Weaver) <a href="#ref-weinbaum_weaver_open-ended_2018">2018</a>)</span> by performing computer simulations.</p>
+<p>We first shortly introduce main concepts of open-ended decentralized computing and then show how they are being mapped to the Offer Networks architecture. Finally, results of preliminary experiments are presented and discussed. We discuss the possibilities of opportunities of extension of Offer Networks architecture as we go.</p>
+<div id="open-ended-decentralized-computing" class="section level2">
+<h2><span class="header-section-number">2.1</span> Open-ended decentralized computing</h2>
+<p>Open-ended intelligence is an abstraction of the process of human cognitive development, extended to general agents and systems. Three facets of it are (1) the philosophical concept of individuation, (2) sense-making and (3) the individuation (via progressive determination) of general cognitive agents. Open-ended intelligence can be framed in terms of a decentralized, self-organising scalable network of interacting agents. A critical aspect of individuation of intelligence is disparity resolution and coordination among independent and heterogeneous agents which <em>a priori</em> hold distinct value systems. See <span class="citation">(D. Weinbaum (Weaver) and Veitas <a href="#ref-weinbaum_weaver_open_2017">2017</a><a href="#ref-weinbaum_weaver_open_2017">b</a>)</span> for the introduction of the concept in the context of Artificial General Intelligence and <span class="citation">(Weinbaum (Weaver) <a href="#ref-weinbaum_weaver_open-ended_2018">2018</a>)</span> for in-depth metaphysical treatment of the framework.</p>
+<div id="basic-principles" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Basic principles</h3>
+<p>Main aspects of open-ended decentralized computing, derived from the open-ended intelligence philosophy are:</p>
+<ul>
+<li><p><strong>Network of heterogenous agents</strong>. First, since open-ended intelligence is framed in terms of decentralized network of interacting agents, it determines the usage of an Actor model of computation <span class="citation">(Hewitt, Bishop, and Steiger <a href="#ref-hewitt_universal_1973">1973</a>; Agha and Hewitt <a href="#ref-agha_concurrent_1985">1985</a>; Hewitt <a href="#ref-zenil_what_2013">2013</a>, <a href="#ref-hewitt_viewing_1976">1976</a>)</span> as a computational framework. Actor model features communication medium where many independent and heterogeneous agents interact via message passing. Even though each individual actor in the framework can represent a deterministic computation (algorithm), a network of actors in its general form is non-deterministic – probabilistic and deterministic behaviours can be represented using it, but the general formalism itself is not constrained in any way by them.</p></li>
+<li><p><strong>Stigmergic coordination</strong>. Second, the possibility of progressive determination of emergent structures in a network (as assemblages of actors) is implemented by applying the universal mechanism of stigmergic coordination <span class="citation">(Heylighen <a href="#ref-heylighen_stigmergy_2016">2016</a>)</span>. Stigmergy is a mechanism of indirect coordination between actions of otherwise independent actors via the shared medium or context where individual actions shape the medium and medium influences further individual actions in recursive way. Thus generalized concept of stigmergy is equivalent to the concept of progressive determination, which is the actual mechanism of individuation <span class="citation">(D. Weinbaum (Weaver) and Veitas <a href="#ref-weinbaum_weaver_open_2017">2017</a><a href="#ref-weinbaum_weaver_open_2017">b</a>; Veitas and Weinbaum <a href="#ref-veitas_living_2017">2017</a>)</span>. In Open-ended decentralized computing, the shared medium allowing for stigmergic coordination and progressive determination is implemented as a graph (concretely – property graph <span class="citation">(Robinson, Weber, and Eifrem <a href="#ref-robinson_graph_2015">2015</a>; Rodriguez and Neubauer <a href="#ref-rodriguez_graph_2010">2010</a>)</span>) which can be read from and written to by each actor in a concurrent and asynchronous manner. Often used notion of stigmergy to denote indirect communication in colonies of eusocial insects via pheromone traces is but a special case of the general concept.</p></li>
+<li><p><strong>Decentralization</strong>. Third, open-ended decentralized computing meticulously follows the principle of open-ended intelligence in that it is not constrained by any <em>a priori</em> goals. We conceive a framework which is not constrained by pre-defined structures and general goals, yet where they <strong>can</strong> emerge from the interaction among elements or indirectly influenced by limiting behavioural repertoire of agents participating in the network. Implementation wise, we strictly enforce the principle of decentralization – positing that there could exist no actor or agent <em>a priori</em> having complete and full knowledge of the network (i.e. underlying graph structure) or control over it<sup><a href="#information-control-decentralization">1</a></sup>. Such agent in principle could emerge from indirect or direct coordination happening in the network, but it cannot obtain such “privileged” status before interaction begins (hence – no <em>a priori</em>). The principle of decentralization, apart from conceptual importance, influences many software design and rather low level decisions on coding level – e.g. prohibition of global and shared data structures apart the network itself <sup><a href="#no-need-for-global-structure">2</a></sup>.</p></li>
+</ul>
+</div>
+<div id="directions-of-simulation-modelling-research" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Directions of simulation modelling research</h3>
+<p>Open-ended decentralized computing is a research direction and a practically applicable paradigm. The chosen research method for advancing it is <strong>simulation modelling</strong> which encompasses two aspects: (1) designing and implementing a software architecture based on aforementioned principles having practical importance and (2) running computational experiments on it. OfferNet(s) software architecture <sup><a href="#singnet-offernet">3</a></sup> is such a framework. Purposes of simulation modelling research reflect the double nature of Offer Networks – as an implementation of open-ended decentralized computing framework and a pragmatic application of it for solving well-defined (or definable) problems. We first start with delineation of the former and then go on to describe the latter.</p>
+<p>From the broadest conceptual perspective we want to operationalize the principle of progressive determination in a working software architecture. Such an architecture would demonstrate practical aspects of open-ended intelligence philosophy and pave a way for its application in many contexts, including, but not limited to the quest for the Artificial General Intelligence. In summary, the software architecture is meant for researching:</p>
+<ul>
+<li>The very possibility of implementing the mechanism of progressive determination in the computational medium;</li>
+<li>Identifying and demonstrating contexts where application of decentralized mechanism of progressive determination makes more sense from practical perspective than conventional centralized algorithms;</li>
+<li>Demonstrate bottom-up emergence of higher order structures in the network having detectable, yet not <em>a priori</em> defined functionality in the context of the network; such structures take form of <em>ad-hoc</em> assemblages of lower level actors.</li>
+</ul>
+</div>
+</div>
+<div id="offer-networks" class="section level2">
+<h2><span class="header-section-number">2.2</span> Offer Networks</h2>
+<p>Offer Networks is a concept of an alternative economy where Agents (humans, AIs and more or less simple programs and intelligences) find, negotiate and execute locally and globally beneficial series of hybrid exchanges (monetary and non-monetary) of tangible and/or intangible goods. It was first proposed by <span class="citation">(Ben Goertzel <a href="#ref-goertzel_beyond_2015">2015</a><a href="#ref-goertzel_beyond_2015">b</a>)</span> in the context of post-money economy and further developed by <span class="citation">(Heylighen <a href="#ref-heylighen_offer_2017">2017</a>)</span> in the context of Global Brain research. It is a research project aiming at conceiving, conceptualizing and proof-of-concept implementation of alternative economy for the age of decentralized and autonomous AI technologies.</p>
+<p>Notwithstanding above, on a higher conceptual level, Offer Networks is a practical context enabling implementation and testing of the mechanism of progressive determination and generalized stigmergic cooperation in a computational medium. Offer Networks model is conceived as a special case of certain computational aspects of the descriptive model of the individuation of cognition <span class="citation">(D. Weinbaum (Weaver) and Veitas <a href="#ref-weinbaum_weaver_synthetic_2017">2017</a><a href="#ref-weinbaum_weaver_synthetic_2017">a</a>, <a href="#ref-weinbaum_weaver_open_2017">2017</a><a href="#ref-weinbaum_weaver_open_2017">b</a>)</span>. As such it adheres to the main conceptual principles of the open-ended intelligence and decentralized computing, but does not attempt to fully cover them.</p>
+<p>Relation between conceptual models of individuation of cognition and Offer Networks is well conveyed via graphical representations of both:</p>
+<div class="figure" style="text-align: center"><span id="fig:picture-scales-of-individuation"></span>
+<img src="pictures/illustration_of_scales.png" alt="Conceptual model of individuation of cognition in terms of relationship among scales, populations and boundaries. The chosen scale of analysis is $S$. $S+1$ is the higher scale while $S-1$ is the lower scale. $P_{s}$ denotes a population of agents at scale $S$. Solid circles denote the agents of population $P$ at any scale. Dashed lined circles denote super-agents at any scale: e.g. -- $A_{s}$ at the center of the figure, denotes a super-agent that emerges from the interactions of agents in $P_{s}$. Super-agents at scale $S$ are the agents of the population $P_{s+1}$. The $i-th$ super-agent at scale $S$ is denoted $A_{s}^{i}$, the superscript is omitted if unneeded. Also, the subscript $S$ is omitted from $A$ or $P$ in the text if it is redundant (adapted from [@weinbaum_weaver_synthetic_2017])." width="60%" />
+<p class="caption">
+Figure 2.1: Conceptual model of individuation of cognition in terms of relationship among scales, populations and boundaries. The chosen scale of analysis is <span class="math inline">\(S\)</span>. <span class="math inline">\(S+1\)</span> is the higher scale while <span class="math inline">\(S-1\)</span> is the lower scale. <span class="math inline">\(P_{s}\)</span> denotes a population of agents at scale <span class="math inline">\(S\)</span>. Solid circles denote the agents of population <span class="math inline">\(P\)</span> at any scale. Dashed lined circles denote super-agents at any scale: e.g. – <span class="math inline">\(A_{s}\)</span> at the center of the figure, denotes a super-agent that emerges from the interactions of agents in <span class="math inline">\(P_{s}\)</span>. Super-agents at scale <span class="math inline">\(S\)</span> are the agents of the population <span class="math inline">\(P_{s+1}\)</span>. The <span class="math inline">\(i-th\)</span> super-agent at scale <span class="math inline">\(S\)</span> is denoted <span class="math inline">\(A_{s}^{i}\)</span>, the superscript is omitted if unneeded. Also, the subscript <span class="math inline">\(S\)</span> is omitted from <span class="math inline">\(A\)</span> or <span class="math inline">\(P\)</span> in the text if it is redundant (adapted from <span class="citation">(D. Weinbaum (Weaver) and Veitas <a href="#ref-weinbaum_weaver_synthetic_2017">2017</a><a href="#ref-weinbaum_weaver_synthetic_2017">a</a>)</span>).
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:architecture"></span>
+<img src="pictures/OfferNet_architecture.png" alt="Conceptual architecture of OfferNet as a self-organizing network of interacting agents" width="50%" />
+<p class="caption">
+Figure 2.2: Conceptual architecture of OfferNet as a self-organizing network of interacting agents
+</p>
+</div>
+<p>Most importantly, both models describe interactions between heterogeneous agents that give rise to higher order behaviours of assemblages of agents. The main difference is that the model of individuation of cognition is very abstract, while the OfferNet model features specific types of agents and their relations as required by the domain. We will not go into details of the mapping of the models, but rather explain in more detail components of Offer Networks model. Let us first start with the data structure and then explain distributed processes performed on it by agents.</p>
+<div id="data-structure" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Data structure</h3>
+<p>The data structure of OfferNet(s) is a property graph, composed from nodes of type <span class="math inline">\([agent, work, item]\)</span> and edges of type <span class="math inline">\([knows, owns, demands, offers, similarity]\)</span>:</p>
+<div class="figure" style="text-align: center"><span id="fig:offernet-initial-structure"></span>
+<img src="pictures/toy_graph_before_processes.png" alt="OfferNet(s) graph structure: note that the initial structure does not contain *similarity* links, which appear in the graph only after running [similarity search](#process1-similarity-search) processes." width="45%" />
+<p class="caption">
+Figure 2.3: OfferNet(s) graph structure: note that the initial structure does not contain <em>similarity</em> links, which appear in the graph only after running <a href="decentralized-computing-in-offernets.html#process1-similarity-search">similarity search</a> processes.
+</p>
+</div>
+<ul>
+<li><strong>Agents</strong> form a type of social network by relating to each other via <code>knows</code> links. The only hard constraint for the network of agents is that it should be a connected graph (i.e. there is a path between each vertices). Nevertheless, the effectiveness of processes running on this network very much depends on how they are connected – i.e. the topology of <span class="math inline">\(agent \xrightarrow{\text{knows}} agent\)</span> subnetwork (see <a href="experiment-one.html#discussion">discusion</a>). Agents also relate to one or more <span class="math inline">\(work\)</span> via <span class="math inline">\(owns\)</span> links – representing situations when an agent publishes what it ‘wishes’ to exchange something in the network;</li>
+<li>A <strong>work</strong> represents a specialized ‘process of exchange’ that an agent is willing to execute if any interested parties exist in the network. As every process, <span class="math inline">\(work\)</span> has inputs (<span class="math inline">\(demands\)</span>) and outputs (<span class="math inline">\(offers\)</span>). In the current simplified model a <span class="math inline">\(work\)</span> features only one <span class="math inline">\(demand\)</span> and one <span class="math inline">\(offer\)</span>. In principle arbitrary complex works can be represented – e.g. featuring more than one input (energy, computational resources or a monetary payment) or output. This aspect is particularly interesting with respect to potential integration of OfferNet(s) framework to SingularityNET – considering that a <span class="math inline">\(work\)</span> can involve ‘exchange’ of data output (e.g. text description of image) for data input (e.g. image to be described) and certain amount of AGI tokens. Note that in this case, a <span class="math inline">\(work\)</span> would not be a ‘process of exchange’ but rather a ‘process of text summarization’ which nevertheless can be perfectly well represented within the same framework. Finally, in OfferNet(s), a <span class="math inline">\(work\)</span> connects to <span class="math inline">\(items\)</span> of exchange via <span class="math inline">\(demands\)</span> or <span class="math inline">\(offers\)</span> link.</li>
+<li>An <strong>item</strong> is an actual item of exchange. In OfferNet(s) this is limited to actual physical or non-physical items where <span class="math inline">\(demands\)</span> link means that it is an input and <span class="math inline">\(offers\)</span> – output. In a more generalized model an item could be a representation of any input or output (data, token, energy units, etc.);</li>
+</ul>
+</div>
+<div id="research-questions" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Research questions</h3>
+<p>The ambition of Offer Networks (as an alternative economy) is to <strong>conceive, implement and test mechanisms of search, matching and execution of exchange of goods and services in a decentralized system both in terms of information and control</strong><sup><a href="#information-control-decentralization">1</a></sup>. Note, that such definition of decentralization does not enforce homogeneity of agents – i.e. agents can wildly differ in their knowledge of the network and exercisable control, yet still be far from omniscient and omnipotent at the scale of the whole network. Actually, such dynamic heterogeneity is a desirable property leading to beneficial social network dynamics <span class="citation">(Veitas and Weinbaum <a href="#ref-veitas_living_2017">2017</a>)</span>. Also note that this definition somewhat differs from the original formulation of the goal of Offer Networks as <em>search and execute globally optimal set of exchanges that would maximally satisfy outstanding offers/demands by maximum number of agents</em> <span class="citation">(Ben Goertzel <a href="#ref-goertzel_matching_2015">2015</a><a href="#ref-goertzel_matching_2015">a</a>)</span> by relaxing optimality requirement.</p>
+<p>We are working towards this goal by asking (and answering) concrete research questions which allow for clear formulation and testing of scientific hypotheses – a process leading to incremental building of the system. The current research horizon encompasses following questions:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>What are parameters that determine advantages and disadvantages of decentralized and centralized search algorithms in different contexts</strong>? In principle, Offer Networks goals can be achieved by either centralized (global) or decentralized (local) processes running on the same data structure as defined earlier. In practice, however, the feasibility of any of the approaches is largely determined by concrete circumstances and context-specific aspects. For example, centralized algorithms can optimize results at the cost of combinatorial explosion of computational complexity needed to carry them out, while decentralized algorithms may achieve sub-optimal, but still “good enough” results faster at the cost of giving up control on the whole data structure. The very term “good enough” implies context dependency. In order to provide at least some insights to this question we set-up centralized and decentralized search processes in Offer Networks and test them with different parameters (see <a href="https://singnet.github.io/offernet/public/offernet-documentation/implementation.html#compare-decentralized-and-centralized-search">design</a> and <a href="experiment-one.html#discussion">discussion</a> of the experiment on comparing decentralized and centralized search).</p></li>
+<li><p><strong>Can we conceive decentralized processes which make themselves more efficient by utilizing results of ‘traces’ left by preceding processes</strong>? This research question addresses the feasibility of implementing stigmergic coordination principle of the open-ended decentralized computing as formulated <a href="decentralized-computing-in-offernets.html#basic-principles">above</a> in different contexts. Such processes, interacting among each other in a decentralized way, would implement <strong>learning</strong> ability of the network. Similar to the first research question, the learning ability of the network can be implemented in a centralized or decentralized manner. The design of the experiment needed to answer this research question is informed by the insights from results of the first experiment – see its <a href="#insights-and-further-steps">further steps</a>.</p></li>
+<li><p><strong>How can we utilize learning network of heterogeneous processes for implementing a decentralized exchange of goods and services</strong>? Answering this research question requires additional conceptual work is needed as well integration of the answers and insights from research question 1 and 2 in an Offer Networks system. The actual design of experiments required for answering this research question will be approached after obtaining and interpreting results of the experiment based on the second research question.</p></li>
+</ol>
+</div>
+<div id="processes" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Processes</h3>
+<p>Following basic principles of open-ended decentralized computing, Offer Networks is implemented as an ecosystem of decentralized processes interacting via the stigmergic medium. Note, that on the general level these principles are in line with the conceptual model of <strong>Cognitive Synergy</strong> – “a dynamic in which multiple cognitive processes, cooperating to control the same cognitive system, assist each other in overcoming bottlenecks encountered during their internal processing”. The model of cognitive synergy is used explicitly in the design of OpenCog cognitive architecture <span class="citation">(Goertzel <a href="#ref-goertzel_toward_2017">2017</a>)</span>. The list of decentralized processes is open-ended – any process can be added by an agent participating in the network. Processes required for basic functionality of OfferNet(s) are:</p>
+<ol style="list-style-type: decimal">
+<li><a href="decentralized-computing-in-offernets.html#process1-similarity-search">Similarity search</a>;</li>
+<li><a href="decentralized-computing-in-offernets.html#process2-find-cycles-of-changeable-items">Find cycles of changeable items</a>;</li>
+<li><a href="decentralized-computing-in-offernets.html#execute-cycles">Execute exchange cycles</a>;</li>
+<li><a href="decentralized-computing-in-offernets.html#search-via-similarity-links">Find and connect items of exchange via similarity links</a>;</li>
+</ol>
+<p>These processes are described in detail below. Additionally, every experiment designed to answer a specific research question can feature specialized processes for that purpose – discussed under description of an <a href="#experiment-comparison-of-decentralized-and-centralized-search">experiment</a>. Finally, OfferNet(s) architecture can be broadly extended by adding different processes and their interactions – discussed in <a href="#further-steps">further steps</a> following Experiment 1.</p>
+<div id="process1-similarity-search" class="section level4">
+<h4><span class="header-section-number">2.2.3.1</span> Process#1: Similarity search</h4>
+<p>Similarity search process searches similar <code>item</code>s in the network and connects them with <code>similarity</code> links. The ability to measure similarity of items is based on a uniform <a href="https://singnet.github.io/offernet/public/offernet-documentation/conceptual-framework.html#representation-theory-of-value">representation</a> and <a href="https://singnet.github.io/offernet/public/offernet-documentation/conceptual-framework.html#description-of-items-of-exchange">description</a> of item value. <a href="https://singnet.github.io/offernet/public/offernet-documentation/conceptual-framework.html#similarity-measure">Similarity measure</a> also can take different forms. Note, that all these measures are global parameters of simulation framework and different forms of it can be ‘plugged’ and ‘unplugged’ from the system. Furthermore, in a decentralized system, nothing prevents agents to agree on the usage of different similarity measures within the same framework. For the visual representation of how similarity search mutates the graph, see figures below.</p>
+<div class="figure" style="text-align: center"><span id="fig:mutation-small-graph"></span>
+<img src="pictures/mutation_of_toy_graph.png" alt="Graph mutations due to similarity search process illustrated on the toy graph." width="100%" />
+<p class="caption">
+Figure 2.4: Graph mutations due to similarity search process illustrated on the toy graph.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:mutation-larger-graph"></span>
+<img src="pictures/mutation_of_larger_graph.png" alt="Visualization of larger graph mutations due to similarity search process." width="100%" />
+<p class="caption">
+Figure 2.5: Visualization of larger graph mutations due to similarity search process.
+</p>
+</div>
+<p>Initially <code>item</code>s are related only indirectly via agents that have posted them into a network. The goal of similarity search process is to connect items directly and by this keep the data structure of OfferNet(s) in a form that would make finding cycles possible and efficient.</p>
+<p>In the current version of OfferNet(s) software framework<sup><a href="#singnet-offernet-d784d1c">4</a></sup>, <code>item</code> values are represented as real numbers in the range <span class="math inline">\([0,1]\)</span>. Similarity between two items is then calculated using the formula <span class="math inline">\(Sim = 1 - abs(value_{i1} - value_{i2})\)</span> which also results in the real number of range <span class="math inline">\([0,1]\)</span>. The closer the number to one, the more <code>similar</code> items are.</p>
+<p>Algorithmically, similarity search is implemented in two flavours – centralized and decentralized. Comparison of performance of them forms the basis of Experiment 1 (see <a href="experiment-one.html#discussion">description further</a>).</p>
+<div id="centralized-similarity-search" class="section level5">
+<h5><span class="header-section-number">2.2.3.1.1</span> Centralized similarity search</h5>
+<p>Centralized similarity search simply fetches all items in the network, compares each item value with every other and creates <code>similarity</code> link between them if the similarity value exceeds a parameter called <code>similarityConnectThreshold</code>. This parameter regulates the density of connectivity between <code>items</code> on the one hand and the ability for agents to exchange “fuzzy” similar items on the other.</p>
+<p>Centralized similarity search requires a full scan of the graph in order to collect data on all items demanded or offered by agents at certain moment in time, combining this data into a single data structure and then processing it in a centralized (but possibly distributed) manner.</p>
+<p>Currently the process is implemented by <a href="https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/OfferNet.groovy#L698"><code>OfferNet.connectAllSimilarCentralized()</code></a> routine.</p>
+</div>
+<div id="decentralized-similarity-search" class="section level5">
+<h5><span class="header-section-number">2.2.3.1.2</span> Decentralized similarity search</h5>
+<p>Decentralized similarity search, contrary to the centralized flavour, works only on behalf of an agent that initiates the search and does not require fetching all item values from the network. On the other hand, a decentralized process requires concurrent and asynchronous execution on behalf of each agent. It operates as a spreading activation which starts with the items of the initiating agent and checks similarity of them with those of agent’s neighbours. Decentralized similarity search takes <code>similarityConnectThreshold</code> and <code>maxDistance</code> parameters. The former serves the same way as in centralized search, while the latter determines how far into the neighbourhood of an agent spreading activation process traverses.</p>
+<p>Currently the process is implemented by <a href="https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/Agent.groovy#L367"><code>Agent.searchAndConnect(...)</code></a> routine which roughly follows this logic:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parameters:</span>
+<span class="co"># -- me: the agent that initiates traversal</span>
+<span class="co"># -- maxDistance: number of hops in traversal;</span>
+<span class="co"># -- similarityConnectThreshold: only items with this and higher similarity are connected;</span>
+
+    myItems &lt;-<span class="st"> </span><span class="kw">me.getAllDemands</span>() <span class="op">+</span><span class="st"> </span><span class="kw">me.getAllOffers</span>();
+    discoveredItems &lt;-<span class="st"> </span><span class="kw">emptyList</span>();
+    distance =<span class="st"> </span><span class="dv">0</span>;
+
+    <span class="cf">function</span> <span class="kw">getItemsOfNeighbours</span>(agents)<span class="op">:</span>
+<span class="st">            </span><span class="cf">for</span> each agent <span class="cf">in</span> agents do<span class="op">:</span>
+<span class="st">                </span>discoveredItems &lt;-<span class="st"> </span>discoveredItems <span class="op">+</span><span class="st"> </span><span class="kw">agent.getAllDemands</span>() <span class="op">+</span><span class="st"> </span><span class="kw">agent.getAllOffers</span>();
+                neighbours &lt;-<span class="st"> </span><span class="kw">agent.knowsAgents</span>();
+                <span class="kw">getItemsOfNeighbours</span>(neighbours);
+                distance =<span class="st"> </span>distance <span class="op">+</span><span class="dv">1</span>;
+                <span class="cf">if</span> distance =<span class="st"> </span>maxDistance do<span class="op">:</span>
+<span class="st">                    </span><span class="cf">break</span> from cycle;
+
+    <span class="kw">getItemsOfNeighbours</span>(me)
+
+    <span class="cf">for</span> each discoveredItem <span class="cf">in</span> discoveredItems do<span class="op">:</span>
+<span class="st">            </span><span class="cf">for</span> each myItem <span class="cf">in</span> myItems do<span class="op">:</span>
+<span class="st">                </span>similarityValue =<span class="st"> </span><span class="kw">calculateSimilarity</span>(discoveredItem, myItem)
+                <span class="cf">if</span> similarityValue <span class="op">&gt;=</span><span class="st"> </span>similarityConnectThershold do<span class="op">:</span>
+<span class="st">                    </span><span class="kw">createLink</span>(from<span class="op">:</span><span class="st"> </span>myItem, to<span class="op">:</span><span class="st"> </span>disoveredItem, type<span class="op">:</span><span class="st"> </span>similarity, value<span class="op">:</span><span class="st"> </span>similarityValue)</code></pre>
+</div>
+</div>
+<div id="process2-find-cycles-of-changeable-items" class="section level4">
+<h4><span class="header-section-number">2.2.3.2</span> Process#2: Find cycles of changeable items</h4>
+<p>In graph theory, a cycle is a collection of vertices and edges among them where each vertex present in the collection is reachable from itself via the edges present in the collection. Cycle search is the process that finds such data structures in a messy and unstructured graph.</p>
+<p>A cycle discovered in OfferNet(s) (see figure <a href="decentralized-computing-in-offernets.html#fig:cycle-search-two-graphs">2.6</a> below) represents a match of demands and offers of at least two agents participating in the marketplace and the possibility of actual exchange of their items. More formally, it is a subgraph of the OfferNet(s), where agents “know” other agents’ preferences with respect to the discovered match and can agree to execute (or not) the exchange cycle (see <a href="execute-cycle">process #3</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:cycle-search-two-graphs"></span>
+<img src="pictures/cycle_discovery_two_graphs.png" alt="Cycles discovered in the OfferNet(s) graph by cycle search processes; note how it relates to the conceptual architecture of Offer Networks (figure \@ref(fig:architecture))" width="95%" />
+<p class="caption">
+Figure 2.6: Cycles discovered in the OfferNet(s) graph by cycle search processes; note how it relates to the conceptual architecture of Offer Networks (figure <a href="decentralized-computing-in-offernets.html#fig:architecture">2.2</a>)
+</p>
+</div>
+<p>For the purposes of <a href="experiment-one.html#experiment-one">Experiment #1</a>, cycle search process is implemented by <a href="https://github.com/singnet/offernet/blob/30c9d7b5b7fcab5d6fa1cf6bb97c86ccc6cb7c2f/src/main/groovy/Agent.groovy#L681"><code>Agent.cycleSearch(...)</code></a> routine, which takes a <code>similaritySearchThreshold</code> as an argument. This argument determines, how much ‘fuzzyness’ an agent is willing to accept when considering options to exchange items with other agents. E.g. if <span class="math inline">\(similaritySearchThreshold = 1\)</span>, only strictly equivalent items will be considered for exchange, otherwise – certain amount of variability of items can still be considered acceptable. Note, that in a distributed system each agent participating in the exchange may have a different <code>similaritySearchThreshold</code> parameter (signifying an individual preference).</p>
+<p>Cycles are temporary structures – they get dissolved when executed (see <a href="decentralized-computing-in-offernets.html#execute-cycles">process #3</a>). Actually the system can be considered more beneficial the more cycles are discovered, executed and dissolved in OfferNet(s) per unit of time. Another important aspect, emphasized in figure <a href="decentralized-computing-in-offernets.html#fig:cycle-search-two-graphs">2.6</a> is that while cycles are of dynamic nature – emerging and dissolving during operation of the OfferNet(s) graph – they are basic elements of conceptual architecture as a self-organizing network of interacting agents (see figure <a href="decentralized-computing-in-offernets.html#fig:architecture">2.2</a>).</p>
+</div>
+<div id="execute-cycles" class="section level4">
+<h4><span class="header-section-number">2.2.3.3</span> Process#3: Execute exchange cycles</h4>
+<p>Finding cycles only increases the probability that certain items will be exchanged but is far from guaranteeing it. While in a centralized system an execution of the discovered cycle is straightforward, it is not so in a decentralized case. First, more than one cycle can emerge involving overlaps of agents and items in which case some sort of consensus has to be reached via negotiations on which cycle will be executed and which will be neglected. Second, when a cycle involves fuzzy matches, the willingness of agents to exchange items that are not strictly similar have be confirmed. Third, in real cases the presence of insufficient information in the network due to incomplete preferences <span class="citation">(Mandler <a href="#ref-mandler_incomplete_2005">2005</a>)</span> should be considered – implying the necessity of a negotiation round between agents involved in the cycle before its execution. Furthermore, exchanges in distributed systems cannot rely on a single provider of trust and therefore must use a distributed trust model <span class="citation">(Abdul-Rahman and Hailes <a href="#ref-abdul-rahman_distributed_1997">1997</a>)</span> including, but not necessarily limited to the blockchain technology <span class="citation">(Swan <a href="#ref-swan_blockchain:_2015">2015</a>)</span> and a reputation system or systems <span class="citation">(Kolonin et al. <a href="#ref-kolonin_reputation_2018">2018</a>)</span>.</p>
+</div>
+<div id="search-via-similarity-links" class="section level4">
+<h4><span class="header-section-number">2.2.3.4</span> Process#4: Search and connect similar items of exchange via similarity links</h4>
+<p>Success and computational complexity of finding matches in the graph is mostly due to the similarity search process rather than cycle search (see <a href="experiment-one.html#discussion">discussion</a> and [future steps] #1](#insights-and-future-steps) of Experiment #1). Similarity search via the <span class="math inline">\(agent \xrightarrow{\text{knows}} agent\)</span> subnetwork is relatively costly because it requires to check many agents in the neighbourhood graph in order to find a similar item. Furthermore, in a decentralized scenario and depending on the topology of the graph the search may not succeed even the cycle exists (see <a href="experiment-one.html#sensitivity-to-graph-topology">sensitivity to graph topology aspect</a>), It may be much more efficient to traverse similarity links between items directly (i.e. utilizing graph topologies on the right rather than left of figures <a href="decentralized-computing-in-offernets.html#fig:mutation-small-graph">2.4</a> and <a href="decentralized-computing-in-offernets.html#fig:mutation-larger-graph">2.5</a>). The process would adhere to the following logic:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parameters:</span>
+<span class="co"># -- me: the agent that initiates traversal</span>
+<span class="co"># -- maxDistance: number of hops in traversal;</span>
+<span class="co"># -- similarityConnectThreshold: only items with this and higher similarity are connected;</span>
+<span class="co"># function getItemsOfNeighbours(agent) is defined in pseudocode for Process #1;</span>
+
+    myItems &lt;-<span class="st"> </span><span class="kw">me.getAllDemands</span>() <span class="op">+</span><span class="st"> </span><span class="kw">me.getAllOffers</span>();
+    distance =<span class="st"> </span><span class="dv">0</span>;
+
+    <span class="cf">function</span> <span class="kw">searchAndConnectViaSimilarityLinks</span>(myItem, otherItem)<span class="op">:</span>
+<span class="st">        </span>similarityValue &lt;-<span class="st"> </span><span class="kw">calculateSimilarity</span>(item, otherItem)
+        <span class="cf">if</span> similarityValue <span class="op">&gt;=</span><span class="st"> </span>similarityConnectThreshold do<span class="op">:</span>
+<span class="st">            </span><span class="kw">createLink</span>(from<span class="op">:</span><span class="st"> </span>myItem, to<span class="op">:</span><span class="st"> </span>iterItem, type<span class="op">:</span><span class="st"> </span>similarity, value<span class="op">:</span><span class="st"> </span>similarityValue)
+        <span class="cf">if</span> distance <span class="op">&gt;</span><span class="st"> </span>maxDistance do<span class="op">:</span>
+<span class="st">            </span><span class="cf">break</span> from the loop;
+        <span class="cf">else</span><span class="op">:</span>
+<span class="st">            </span>nextMostSimilarItem &lt;-<span class="st"> </span><span class="kw">item.getSimilarItems</span>(<span class="kw">max</span>(similarityValue))
+            <span class="kw">searchAndConnectViaSimilarityLinks</span>(myItem, nextMostSimilarItem)
+
+
+    <span class="cf">for</span> each myItem <span class="cf">in</span> myItems do<span class="op">:</span>
+<span class="st">        </span>distance =<span class="st"> </span>distance <span class="op">+</span><span class="st"> </span><span class="dv">1</span>;
+        <span class="cf">if</span> distance =<span class="st"> </span>maxDistance do<span class="op">:</span>
+<span class="st">            </span><span class="cf">break</span> from cycle;
+        <span class="cf">if</span> <span class="kw">item.hasSimilarityLinks</span>() do<span class="op">:</span>
+<span class="st">            </span>mostSimilarItem &lt;-<span class="st"> </span><span class="kw">item.getSimilarItems</span>(<span class="kw">max</span>(similarityValue))
+            <span class="kw">searchAndConnectViaSimilarityLinks</span>(myItem, mostSimilarItem)
+        <span class="cf">else</span><span class="op">:</span>
+<span class="st">            </span>itemsOfNeighbours &lt;-<span class="st"> </span><span class="kw">getItemsOfNeighbours</span>(me)
+            <span class="cf">for</span> each discoveredItem <span class="cf">in</span> itemsOfNeighbours do<span class="op">:</span>
+<span class="st">                </span><span class="kw">searchAndConnectViaSimilarityLinks</span>(myItem, discoveredItem)</code></pre>
+<p>As specified, this process traverses <span class="math inline">\(item \xrightarrow{\text{similarity}} item\)</span> subgraph directly if it exist, otherwise, reverts back to traversing <span class="math inline">\(agent \xrightarrow{\text{knows}} agent\)</span>
+subnetwork as defined by <a href="decentralized-computing-in-offernets.html#process1-similarity-search">Process #1</a>. In OfferNet(s) framework many such processes operate concurrently on behalf of different agents, yet each process changes overall graph structure that is traversed by other processes, therefore they together lead to the desired dynamics of <a href="decentralized-computing-in-offernets.html#open-ended-decentralized-computing">progressive determination</a>.</p>
+<p><a href="experiment-one.html#experiment-one">Experiment #1</a>, discussed further, implements processes <a href="decentralized-computing-in-offernets.html#process1-similarity-search">#1</a> and <a href="##process2-find-cycles-of-changeable-items">#2</a> and compares running times of their centralized and decentralized counterparts. <a href="https://singnet.github.io/offernet/public/offernet-documentation/implementation.html#design-and-demonstrate-learning-capabilities-of-the-network">Experiment #2</a> (not yet carried out) will implement <a href="decentralized-computing-in-offernets.html#search-via-similarity-links">process #4</a>. <a href="decentralized-computing-in-offernets.html#execute-cycles">Process #3</a> is due for implementation in yet further experiments.</p>
+</div>
+</div>
+</div>
+<div id="footnotes" class="section level2">
+<h2><span class="header-section-number">2.3</span> Footnotes</h2>
+<p><a name="information-control-decentralization">1</a>: Two types of decentralization can be distinguished – decentralization of information and decentralization of control. Decentralization of information means that no actor in a network can have full knowledge of the whole network (i.e. to know its global state), while decentralization of control – that no single agent can exercise actions that single-handedly determine dynamics of the network.</p>
+<p><a name="no-need-for-global-structure">2</a>: Actually, even the usage of a global structure (graph) for representing the network itself is determined by technical/pragmatic convenience rather than conceptual necessity.</p>
+<p><a name="singnet-offernet">3</a>: <a href="https://github.com/singnet/offernet" class="uri">https://github.com/singnet/offernet</a>; development is supported by SingularityNET Foundation (<a href="https://singularitynet.io/research-initiatives/" class="uri">https://singularitynet.io/research-initiatives/</a>).</p>
+<p><a name="singnet-offernet-d784d1c">4</a>: <a href="https://github.com/singnet/offernet">singnet/offernet</a> git repository, commit number <a href="https://github.com/singnet/offernet/tree/d784d1c27e71202441e26d55badb4f9a22f7d8da">d784d1c</a>.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-weinbaum_weaver_open_2017">
+<p>Weinbaum (Weaver), David, and Viktoras Veitas. 2017b. “Open Ended Intelligence: The Individuation of Intelligent Agents.” <em>Journal of Experimental &amp; Theoretical Artificial Intelligence</em> 29 (2): 371–96. <a href="https://doi.org/10.1080/0952813X.2016.1185748" class="uri">https://doi.org/10.1080/0952813X.2016.1185748</a>.</p>
+</div>
+<div id="ref-weinbaum_weaver_open-ended_2018">
+<p>Weinbaum (Weaver), David R. 2018. “Open-Ended Intelligence.” PhD Thesis, Brussels: Vrije Universiteit Brussel. <a href="https://www.academia.edu/36140514/Open-Ended_Intelligence_-_PhD_Thesis" class="uri">https://www.academia.edu/36140514/Open-Ended_Intelligence_-_PhD_Thesis</a>.</p>
+</div>
+<div id="ref-hewitt_universal_1973">
+<p>Hewitt, Carl, Peter Bishop, and Richard Steiger. 1973. “A Universal Modular ACTOR Formalism for Artificial Intelligence.” In <em>Proceedings of the 3rd International Joint Conference on Artificial Intelligence</em>, 235–45. IJCAI’73. San Francisco, CA, USA: Morgan Kaufmann Publishers Inc. <a href="http://dl.acm.org/citation.cfm?id=1624775.1624804" class="uri">http://dl.acm.org/citation.cfm?id=1624775.1624804</a>.</p>
+</div>
+<div id="ref-agha_concurrent_1985">
+<p>Agha, Gul, and Carl Hewitt. 1985. “Concurrent Programming Using Actors: Exploiting Large-Scale Parallelism.” In <em>Proceedings of the Fifth Conference on Foundations of Software Technology and Theoretical Computer Science</em>, 19–41. London, UK, UK: Springer-Verlag. <a href="http://dl.acm.org/citation.cfm?id=646823.706913" class="uri">http://dl.acm.org/citation.cfm?id=646823.706913</a>.</p>
+</div>
+<div id="ref-zenil_what_2013">
+<p>Hewitt, C. 2013. “What Is Computation? Actor Model Vs Turing’s Model.” In <em>A Computable Universe: Understanding and Exploring Nature as Computation</em>, edited by Hector Zenil and Roger Penrose, 159–87. World Scientific.</p>
+</div>
+<div id="ref-hewitt_viewing_1976">
+<p>Hewitt, Carl. 1976. “Viewing Control Structures as Patterns of Passing Messages,” December. <a href="http://dspace.mit.edu/handle/1721.1/6272" class="uri">http://dspace.mit.edu/handle/1721.1/6272</a>.</p>
+</div>
+<div id="ref-heylighen_stigmergy_2016">
+<p>Heylighen, Francis. 2016. “Stigmergy as a Universal Coordination Mechanism I: Definition and Components.” <em>Cognitive Systems Research</em>, Special Issue of Cognitive Systems Research – Human-Human Stigmergy, 38 (June): 4–13. <a href="https://doi.org/10.1016/j.cogsys.2015.12.002" class="uri">https://doi.org/10.1016/j.cogsys.2015.12.002</a>.</p>
+</div>
+<div id="ref-veitas_living_2017">
+<p>Veitas, Viktoras, and David Weinbaum. 2017. “Living Cognitive Society: A ‘Digital’ World of Views.” <em>Technological Forecasting and Social Change</em> 114: 16–26. <a href="https://doi.org/https://doi.org/10.1016/j.techfore.2016.05.002" class="uri">https://doi.org/https://doi.org/10.1016/j.techfore.2016.05.002</a>.</p>
+</div>
+<div id="ref-robinson_graph_2015">
+<p>Robinson, Ian, Jim Weber, and Efil Eifrem. 2015. <em>Graph Databases: New Opportunities for Connected Data</em>. 2nd ed. <a href="http://shop.oreilly.com/product/0636920028246.do" class="uri">http://shop.oreilly.com/product/0636920028246.do</a>.</p>
+</div>
+<div id="ref-rodriguez_graph_2010">
+<p>Rodriguez, Marko A., and Peter Neubauer. 2010. “The Graph Traversal Pattern.” <em>arXiv:1004.1001 [Cs]</em>, April. <a href="http://arxiv.org/abs/1004.1001" class="uri">http://arxiv.org/abs/1004.1001</a>.</p>
+</div>
+<div id="ref-goertzel_beyond_2015">
+<p>Goertzel, Ben. 2015b. “Beyond Money: Offer Networks, a Potential Infrastructure for a Post-Money Economy.” In <em>The End of the Beginning: Life, Society and Economy on the Brink of the Singularity</em>, edited by Ben Goertzel and Ted Goertzel, 1 edition, 522–54. Humanity+ Press.</p>
+</div>
+<div id="ref-heylighen_offer_2017">
+<p>Heylighen, Francis. 2017. “The Offer Network Protocol: Mathematical Foundations and a Roadmap for the Development of a Global Brain.” <em>The European Physical Journal Special Topics</em> 226 (2): 283–312. <a href="https://doi.org/10.1140/epjst/e2016-60241-5" class="uri">https://doi.org/10.1140/epjst/e2016-60241-5</a>.</p>
+</div>
+<div id="ref-weinbaum_weaver_synthetic_2017">
+<p>Weinbaum (Weaver), David, and V. Veitas. 2017a. “Synthetic Cognitive Development.” <em>The European Physical Journal Special Topics</em> 226 (2): 243–68. <a href="https://doi.org/10.1140/epjst/e2016-60088-2" class="uri">https://doi.org/10.1140/epjst/e2016-60088-2</a>.</p>
+</div>
+<div id="ref-goertzel_matching_2015">
+<p>Goertzel, Ben. 2015a. “Matching Algorithm for Attention Offer Networks.”</p>
+</div>
+<div id="ref-goertzel_toward_2017">
+<p>Goertzel, B. 2017. “Toward a Formal Model of Cognitive Synergy.” <em>ArXiv E-Prints</em>, March.</p>
+</div>
+<div id="ref-mandler_incomplete_2005">
+<p>Mandler, Michael. 2005. “Incomplete Preferences and Rational Intransitivity of Choice.” <em>Games and Economic Behavior</em> 50 (2): 255–77. <a href="https://doi.org/10.1016/j.geb.2004.02.007" class="uri">https://doi.org/10.1016/j.geb.2004.02.007</a>.</p>
+</div>
+<div id="ref-abdul-rahman_distributed_1997">
+<p>Abdul-Rahman, Alfarez, and Stephen Hailes. 1997. “A Distributed Trust Model.” In <em>Proceedings of the 1997 Workshop on New Security Paradigms</em>, 48–60. NSPW ’97. Langdale, Cumbria, United Kingdom: ACM. <a href="https://doi.org/10.1145/283699.283739" class="uri">https://doi.org/10.1145/283699.283739</a>.</p>
+</div>
+<div id="ref-swan_blockchain:_2015">
+<p>Swan, Melanie. 2015. <em>Blockchain: Blueprint for a New Economy</em>. 1 edition. O’Reilly Media.</p>
+</div>
+<div id="ref-kolonin_reputation_2018">
+<p>Kolonin, A., B. Goertzel, D. Duong, and M. Ikle. 2018. “A Reputation System for Artificial Societies.” <em>ArXiv E-Prints</em>, June.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="experiment-one.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
