@@ -1,7 +1,15 @@
-p.caption {
-  color: #595959;
-  margin-top: 50px;
+.book .book-body .page-wrapper .page-inner {
+  max-width: 900px !important;
 }
+
+.caption {
+  color: #595959  !important;
+  margin-top: 20px  !important;
+  margin-right: 100px  !important;
+  margin-left: 100px !important; 
+  font-size: 90% !important;
+}
+
 p code {
   white-space: inherit;
 }
@@ -11,9 +19,5 @@ pre {
 }
 pre code {
   white-space: inherit;
-}
-
-.book .book-body .page-wrapper .page-inner {
-  max-width: 900px !important;
 }
 
