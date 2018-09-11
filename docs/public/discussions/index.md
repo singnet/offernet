@@ -1,7 +1,7 @@
 --- 
 title: "Experiment #1: centralized vs decentralized search"
 author: "Kabir Veitas (kabir@singularitynet.io)"
-date: "2018-09-10"
+date: "2018-09-11"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -19,4 +19,4 @@ Here I discuss and provide broader interpretation of results documented in the E
 2. [Experiment #1, run #2](https://singnet.github.io/offernet/public/additional-centralized-vs-decentralized/)
 3. [Experiment #1, run #3](https://singnet.github.io/offernet/public/more-centralized-vs-decentralized/)
 
-Section [Decentralized computing in OfferNet(s)](#decentralized-computing-in-offernets) discusses the concept of open-ended decentralized computing with relationship to Offer Networks is discussed. Section [Experiment #1:comparison of decentralized and centralized search](#experiment-one) provides analysis and interpretation of data obtained from running computer simulations. All the code used by simulations and documentation (including this page) can be accessed and downloaded from [singnet/offernet](https://github.com/singnet/offernet) GitHub repository.
+Section [Decentralized computing in OfferNet(s)](#decentralized-computing-in-offernets) discusses the concept of open-ended decentralized computing with relationship to Offer Networks. Section [Experiment #1:comparison of decentralized and centralized search](#experiment-one) provides analysis and interpretation of data obtained from running computer simulations. All the code used by simulations and documentation (including this page) can be accessed and downloaded from [singnet/offernet](https://github.com/singnet/offernet) GitHub repository.
