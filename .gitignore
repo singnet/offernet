@@ -12,6 +12,7 @@ docs/public/unit-tests
 docs/cucumber-json-report.json
 docs/offernet-docs-bookdown/cucumber-json-report.json
 docs/offernet-docs-bookdown/cucumber-json-report-processed.json
+docs/*/_bookdown_files/
 lib/
 analysis/experimentData/
 analysis/data/
