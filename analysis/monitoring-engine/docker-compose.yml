@@ -13,7 +13,7 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xmx4g -Xms4g"
+      ES_JAVA_OPTS: "-Xmx6g -Xms6g"
       XPACK_MONITORING_ENABLED: "true"
     networks:
       - elk
