@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>OfferNet(s)</title>
+ <link href="https://singularitynet.io/research-initiatives//atom.xml" rel="self"/>
+ <link href="https://singularitynet.io/research-initiatives//"/>
+ <updated>2018-10-05T12:42:24+02:00</updated>
+ <id>https://singularitynet.io/research-initiatives/</id>
+ <author>
+   <name>Kabir Veitas</name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Decentralized vs. centralized search v.0.1</title>
+   <link href="https://singularitynet.io/research-initiatives//2018/07/30/centralized_vs_decentralized_search/"/>
+   <updated>2018-07-30T00:00:00+02:00</updated>
+   <id>https://singularitynet.io/research-initiatives//2018/07/30/centralized_vs_decentralized_search</id>
+   <content type="html">&lt;p&gt;These are the series of experiments aimed at getting insight at similarity and cycle search routines in Offer Network and small scale testing of the framework. The work on this experiment is tracked on singnet/offernet GitHub repository issue &lt;a href=&quot;https://github.com/singnet/offernet/issues/15&quot;&gt;#15 Compare decentralized and centralized search of items&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Analysis of simulation results are accessible via the link &lt;a href=&quot;https://singnet.github.io/offernet/public/discussions/&quot;&gt;Experiment 1: decentralized vs centralized search&lt;/a&gt; and are updates as more data comes from simulations.&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>

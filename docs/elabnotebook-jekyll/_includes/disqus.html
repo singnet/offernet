@@ -1,0 +1,26 @@
+    <!-- About Section -->
+    <section id="discussion" class="container content-section text-center page">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <span title="For posting, you will need to register :(. The least hassle way is to use one of your social network accounts (see 'Login' menu) on the right..."><p>Please post your questions / comments here:</p></span>
+            </div>
+        </div>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'agi15ida';
+            var public_api_key = '9zXAs833bDq8L5yAKLtZKOCPhG0hpz5u2HJzAaEdLIONYWelhDEGQTDpUlRUetyH'
+            var disqus_config = function () {
+                // The generated payload which authenticates users with Disqus
+                this.page.remote_auth_s3 = '<message> <hmac> <timestamp>';
+                this.page.api_key = public_api_key;
+            };
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </section>

@@ -4,7 +4,8 @@ kramdown:
   math_engine: mathjax
   
 highlighter:      rouge
-baseurl:          offernet/public/elabnotebook
+baseurl:          /offernet/public/elabnotebook #for pushing into github
+#baseurl:          /elabnotebook #for local tests
 
 # Permalinks
 permalink:        pretty
@@ -14,7 +15,6 @@ title:            OfferNet(s)
 tagline:          'Electronic Lab Notebook'
 description:      'Technical writings on computational experiments of OfferNets: a research project of SingularityNET'
 url:              https://singularitynet.io/research-initiatives/
-host:		          0.0.0.0
 author:
   name:           'Kabir Veitas'
   url:            https://community.singularitynet.io/t/hello-from-kabir/692?u=kabir

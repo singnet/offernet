@@ -1,0 +1,8 @@
+#install.packages('stargazer')
+library(stargazer)
+``` {r regression, results='asis'}
+fitCV <- lm(sum_wallTime_min_total ~ agentNumber +  vertices_total + edges_total  +  chainLength + maxDistance + randomWorksNumberMultiplier, data=summary.df[which(summary.df$simulationType == 'Centralized'),])
+fitDV <- lm(sum_wallTime_min_total ~ agentNumber  + vertices_total + edges_total  + chainLength + maxDistance + randomWorksNumberMultiplier, data=summary.df[which(summary.df$simulationType == 'Decentralized'),])
+fit <- lm(sum_wallTime_min_total ~ agentNumber + vertices_total + edges_total + factor(simulationType) + chainLength + maxDistance + randomWorksNumberMultiplier, data=summary.df)
+stargazer(fitCV,fitDV,fit,type = "html")
+```

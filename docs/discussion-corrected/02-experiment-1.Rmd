@@ -1,0 +1,470 @@
+---
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, error=FALSE, output=FALSE, source = FALSE)
+```
+
+# Experiment #1: comparison of decentralized and centralized search{#experiment-one}
+
+With this experiment we would like to see how centralized similarity search and cycle search processes perform with comparison to decentralized processes. Preliminary design of the experiment is explained [here](https://singnet.github.io/offernet/public/offernet-documentation/implementation.html#compare-decentralized-and-centralized-search).
+
+## Setup
+
+For that purpose we have implemented [Process #1](#process1-similarity-search) and [Process #2](#process2-find-cycles-of-changeable-items) in centralized and decentralized flavours. In order to compare them we follow these steps:
+
+1. First, we create an Offer Network of predefined size (parameter `agentNumber`); We experiment with the random graph (where agents are randomly connected with `knows` links) and a small-world graph, where we know the diameter of the network in advance;
+2. Then we artificially create a list of items which, if correctly searched and connected in the OfferNet(s) graph, would form a chain. The length of the predefined chain is set by parameter `chainLength`;
+3. Items from the list are assigned to random agents in the network;
+4. Then, we create a special `taskAgent` owning a `work` which, when correctly connected to the potential chain inserted into the network by step 2, closes it into a loop forming a cycle (as shown in the figure \@ref(fig:cycle-search-two-graphs)). 
+5. Finally, we run the decentralized and centralized processes on the same graph and log running times of each method.
+
+	5.1. Similarity search process connects all similar items with 'similarity' links, as explained [here]((#process1-similarity-search));
+
+	5.2. Cycle search process is run on behalf of taskAgent and discovers the cycle inserted by step 2 (in case similarity search process correctly connected similar items) -- as explained [here](#process2-find-cycles-of-changeable-items);
+
+	Note, that in decentralized case the all times of running the process on behalf of separate agents is aggregated.
+
+An experiment is a series of simulations, each of which takes the following parameters:
+
+* `agentNumber`: number of agents in the network (apart from `taskAgent`);
+* `similarityConnectThreshold`: the minimum similarity value between items connected with explicit link by similarity search process;
+* `chainLength`: the length of the chain inserted into the network by step 2;
+* `similaritySearchThreshold`: minimal similarity of items to be considered as eligible for exchange;
+* `maxDistance`: radius of agent's neighbour network when searching for similar items;
+* `randomWorksNumberMultiplier`: the number of random works and items which are assigned to the agents in the network to make cycle search more realistic;
+
+
+```{r all-simulation-parameters, fig.cap='Distribution of simulation parameters of all analysed experiments (3 separate runs, 136 simulations).', out.width='100%', fig.align='center', echo=FALSE, eval=TRUE}
+library(ggplot2)
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+
+exp11.env <- LoadToEnvironment('~/offernet/docs/decentralized-vs-centralized-bookdown-corrected/R_data/summary_of_all_experiments.Rdata')
+exp12.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_data/summary_of_all_experiments.Rdata')
+exp13.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')
+exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')
+exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
+all.df <- exp11.env$summary.df
+all.df <- rbind(all.df, exp12.env$summary.df)
+all.df <- rbind(all.df, exp13.env$summary.df)
+all.df <- rbind(all.df, exp14.env$summary.df)
+all.df <- rbind(all.df, exp15.env$summary.df)
+
+run1 <- c(
+  'EXP08-02-03-31-H5aVtH',
+  'EXP08-05-12-48-qrNbzW',
+  'EXP08-07-05-04-95KIBv',
+  'EXP08-09-01-35-9owMuE',
+  'EXP08-09-05-27-BmCFH6',
+  'EXP08-10-01-33-JYSw5Z',
+  'EXP08-10-10-15-t7WP6v',
+  'EXP08-11-12-38-3dSVwT',
+  'EXP08-11-12-44-BoTBgN',
+  'EXP08-11-12-54-LgXUNA',
+  'EXP08-11-12-58-3BvMSL',
+  'EXP08-12-11-17-5tvhCK'
+)
+run2 <- c('EXP09-04-04-11-kvIbMs','EXP09-04-11-00-zmNPzL','EXP09-04-01-13-AzAjTh')
+run3 <- c('EXP09-05-02-15-an9jYp','EXP09-05-11-49-gcWcHs','EXP09-07-02-54-hATxwM')
+run4 <- c('EXP09-25-07-21-KtTayU','EXP09-30-10-25-HycEjd')
+run5 <- c('EXP10-02-01-04-YQvrhC')
+
+all.df$run <- ifelse(all.df$experimentId %in% run1,"Run1",
+                     ifelse(all.df$experimentId %in% run2,"Run2", 
+                            ifelse(all.df$experimentId %in% run3,"Run3",
+                                   ifelse(all.df$experimentId %in% run4,"Run4", 
+                            "Run5"))))
+
+library(dplyr)
+byAgentNumber <-
+  all.df %>%
+  group_by(agentNumber, run) %>%
+  summarise(n_distinct(simulationId))
+names <- c('agentNumber','run','simulationCount')
+colnames(byAgentNumber) <- names
+
+totals <- byAgentNumber %>%
+  group_by(run) %>%
+  summarise(total = sum(simulationCount))
+
+byAgentNumberPlot <- ggplot(byAgentNumber, aes(x = run, y = simulationCount, fill = agentNumber, label = agentNumber)) +
+  geom_bar(stat = "identity") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  scale_fill_continuous(low="green4", high="brown")+
+  geom_text(aes(run, total, label = total, fill = NULL), data = totals, position=position_dodge(width=0.9), vjust=-0.4) +
+  labs(title='agentNumber',
+      y = 'Simulation count') +
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(size=8),
+        axis.title.y = element_text(size=9),
+        legend.title=element_blank(),
+        plot.title = element_text(size=9),
+        legend.position="bottom",legend.direction="horizontal")
+  
+byMaxDistance <-
+  all.df %>%
+  group_by(maxDistance, run) %>%
+  summarise(n_distinct(simulationId))
+names <- c('maxDistance','run','simulationCount')
+colnames(byMaxDistance) <- names
+
+totals <- byMaxDistance %>%
+  group_by(run) %>%
+  summarise(total = sum(simulationCount))
+
+byMaxDistancePlot <- ggplot(byMaxDistance, aes(x = run, y = simulationCount, fill = maxDistance, label = maxDistance)) +
+  geom_bar(stat = "identity") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  #scale_fill_continuous(low="green4", high="brown")+
+  labs(title='maxDistance',y = 'Simulation count') +
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(size=8),
+        axis.title.y = element_text(size=9),
+        plot.title = element_text(size=9)) +
+  guides(fill=FALSE)
+
+byChainLength <-
+  all.df %>%
+  group_by(chainLength, run) %>%
+  summarise(n_distinct(simulationId))
+names <- c('chainLength','run','simulationCount')
+colnames(byChainLength) <- names
+
+totals <- byChainLength %>%
+  group_by(run) %>%
+  summarise(total = sum(simulationCount))
+
+byChainLengthPlot <-ggplot(byChainLength, aes(x = run, y = simulationCount, fill = chainLength, label = chainLength)) +
+  geom_bar(stat = "identity") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  scale_fill_continuous(low="green4", high="blue")+
+  labs(title='chainLength',y = 'Simulation count') +
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(size=8),
+        axis.title.y = element_text(size=9),
+        plot.title = element_text(size=9)) +
+  guides(fill=FALSE)
+
+byWorksMultipliers <-
+  all.df %>%
+  group_by(randomWorksNumberMultiplier, run) %>%
+  summarise(n_distinct(simulationId))
+names <- c('randomWorksNumberMultiplier','run','simulationCount')
+colnames(byWorksMultipliers) <- names
+
+totals <- byWorksMultipliers %>%
+  group_by(run) %>%
+  summarise(total = sum(simulationCount))
+
+byWorksMultipliersPlot <-ggplot(byWorksMultipliers, aes(x = run, y = simulationCount, fill = randomWorksNumberMultiplier, label = randomWorksNumberMultiplier)) +
+  geom_bar(stat = "identity") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  scale_fill_continuous(low="green", high="orange")+
+  labs(title='randomWorksNumber\nMultiplier',y = 'Simulation count') +
+  theme(axis.title.x=element_blank(),
+        axis.title.y = element_text(size=9),
+        axis.text.x = element_text(size=8),
+        plot.title = element_text(size=9)) +
+  guides(fill=FALSE)
+
+byConnectThreshold <-
+  all.df %>%
+  group_by(similarityConnectThreshold, run) %>%
+  summarise(n_distinct(simulationId))
+names <- c('similarityConnectThreshold','run','simulationCount')
+colnames(byConnectThreshold) <- names
+
+totals <- byConnectThreshold %>%
+  group_by(run) %>%
+  summarise(total = sum(simulationCount))
+
+byConnectThresholdPlot <-ggplot(byConnectThreshold, aes(x = run, y = simulationCount, fill = similarityConnectThreshold, label = similarityConnectThreshold)) +
+  geom_bar(stat = "identity") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  labs(title='similarityConnectThreshold',y = 'Simulation count') +
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(size=8),
+        axis.title.y = element_text(size=9),
+        legend.title=element_blank(),
+        plot.title = element_text(size=9),
+        legend.position="bottom",legend.direction="horizontal")
+
+library(ggpubr)
+figure <- ggarrange(byAgentNumberPlot,
+                    ggarrange(byMaxDistancePlot,
+                              byChainLengthPlot,
+                              byWorksMultipliersPlot,
+                              nrow=3,
+                              ncol=1),
+                    byConnectThresholdPlot,
+                    nrow=1,
+                    ncol=3)
+annotate_figure(figure,
+                top = text_grob("Simulation counts by key parameters", face = "bold", size = 12))
+```
+
+Detailed data about all experiments, simulations, their parameters and descriptive analysis of obtained results is provided in Electronic Laboratory Notebook [here](https://singnet.github.io/offernet/public/experiment-decentralized-vs-centralized/all-experiments.html). In the next two sections we discuss insights of the analysis and further steps based on them.
+
+##  Discussion
+
+### On decentralized versus centralized computation
+
+As many non-trivial (and interesting) questions, the issue of whether centralized or decentralized models are "better" cannot be answered in a univocal manner. The short and not very informative answer to this question would be "it depends" -- you can always find cases and examples where one of them works better. Our goal is therefore not to answer 'yes or no' but to figure out parameters and circumstances where one or another type of model or algorithm fairs better. 
+
+Notwithstanding what was said above, decentralized and centralized computation models are not equal in terms of their expressivity. It can be shown that centralized computation is a special case of the decentralized model. For this we have to establish a relation between non-determinism and decentralization. Recall first that any computation or a program can be expressed as a graph of atomic program steps (as nodes) and transitions between them (as links) [@turchin_concept_1986; @pennachin_i._2014]. In general any Turing machine can be represented as a graph [@laud_complexity_2011]:
+
+```{r turing-machines-as-graphs, fig.cap='Representing Turing machines as graphs (adapted from [@laud_complexity_2011]).', out.width='100%', fig.align='center', echo=FALSE}
+knitr::include_graphics("pictures/turing_machines_as_graphs.png")
+```
+A centralized system is a system where all transitions between atomic program steps are known and controlled by a central observer -- this corresponds to the figure on the left. In a decentralized system, every atomic program has a freedom to choose any possible transition and this choice cannot be *a priori* known or controlled in any manner by the central observer -- this corresponds to the figure on the right. It is easy to see, that left image is the special case of right image, i.e. a non-deterministic / decentralized computation can be reduced to deterministic / centralized by pruning a number of links in the initial graph. 
+
+Bottom line, is that it makes sense to start designing a computational framework or architecture based on decentralized model but allow for a centralized computation to emerge out of it rather than the other way round. Even if emergence is not considered due high computational costs and overall unpredictability, it still makes sense to use decentralized framework and represent centralized processes 'manually'.
+
+### Sensitivity to graph topology
+
+One of the first hypotheses that experiments seem to support is that decentralized and centralized search have very different sensibility to the underlying graph topology. That is, centralized search algorithm is more sensitive to how many agent nodes are in the graph and not on how they are connected, while decentralized search **is** sensitive to the topology of $agent \xrightarrow{\text{knows}} agent$ subgraph. This is because decentralized graph traversals continue only as deep as constrained by `maxDistance` parameters (which defines the radius of agent network to be searched -- see [setup](#setup)) and if the diameter of graph is larger than this radius, then the cycle may not be found (even though it exists in a network). It is of course possible to increase `maxDistance` parameter to the arbitrary large number, but this also may increase time of search drastically (see graph below).
+
+```{r simulation-time-vs-maxDistance, fig.cap='Dependence of simulation time on maxDistance parameter.', echo=FALSE, results='asis', fig.width=6, fig.height=4}
+#install.packages('plotly')
+library(plotly)
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+exp11.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-1-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp11.df <- exp11.df[which(exp11.df$similarityConnectThreshold != "NA"),]
+exp11.df <- select(exp11.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
+all.df <- exp11.df
+exp12.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp12.df <- select(exp12.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
+all.df <- rbind(all.df, exp12.df)
+exp13.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp13.df <- select(exp13.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
+all.df <- rbind(all.df, exp13.df)
+exp14.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp14.df <- select(exp14.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
+all.df <- rbind(all.df, exp14.df)
+exp15.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp15.df <- select(exp15.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
+all.df <- rbind(all.df, exp15.df)
+
+dw = .75
+gg <- ggplotly(
+  ggplot(all.df, aes(x=maxDistance, y=sum_wallTime_min_total, color=simulationType)) + 
+    geom_point(position=position_jitterdodge(dodge.width=dw)) + 
+    scale_x_discrete(limits=c("5","10","30")) +
+    #xlim(c(0, 0.1)) + 
+    #ylim(c(0, 500000)) + 
+    labs(y='simulationTime, minutes', 
+         x='maxDistance',
+         color='simulationType'
+    ) +
+    theme(legend.title=element_blank())
+)
+gg
+
+#knitr::include_graphics("pictures/runingTimesvsmaxDistances_experimentOne.png")
+```
+
+For confirming the sensitivity of algorithms to graph topology we also ran experiments with the same parameters on two different graph topologies  -- (1) randomly connected and (2) small world with diameter of less than 10. As shown in the diagram below, success rate of finding a cycle in a random graph is often lower than 100% (except when the depth of each traversal is made very large), while working on small world graph with a known diameter and corresponding `maxDistance` parameter guarantees that the cycle will be found if it exists in the graph even in a decentralized scenario.
+
+```{r random-and-smallWorld-graphs, fig.cap='Success rate of finding a cycle in random and small world graphs, depending on `maxDistance` parameter. Small world graphs were with known diameter of < 10. Note that with random graphs, `maxDistance` of 5 and 10 is not enough to traverse the whole graph, while 30 often provides (but does not guarantee!) full coverage.', echo=FALSE, results='asis', fig.width=8, fig.height=4}
+
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+
+fancy_scientific <- function(l) {
+  # turn in to character string in scientific notation
+  l <- format(l, scientific = TRUE)
+  # quote the part before the exponent to keep all the digits
+  l <- gsub("^(.*)e", "'\\1'e", l)
+  # turn the 'e+' into plotmath format
+  l <- gsub("e", "%*%10^", l)
+  # return this as an expression
+  parse(text=l)
+}
+
+exp11.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-1-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp11.df <- exp11.df[which(exp11.df$similarityConnectThreshold != "NA"),]
+exp11.df <- select(exp11.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles, graphType)
+all.df <- exp11.df
+exp12.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp12.df <- select(exp12.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles, graphType)
+all.df <- rbind(all.df, exp12.df)
+exp13.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp13.df <- select(exp13.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles, graphType)
+all.df <- rbind(all.df, exp13.df)
+exp14.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp14.df <- select(exp14.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles,graphType)
+all.df <- rbind(all.df, exp14.df)
+exp15.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp15.df <- select(exp15.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles,graphType)
+all.df <- rbind(all.df, exp15.df)
+all.df <- all.df[which(all.df$simulationType != "Centralized"), ]
+
+
+library(dplyr)
+deps <- group_by(all.df, maxDistance, graphType)
+found <- function(v) {
+  ifelse(v>0,1,0)
+}
+
+averages <- summarize(deps, success = mean(found(foundCycles)), count = n())
+
+library(ggplot2)
+ggplot(data = averages, aes(x=maxDistance, y=graphType, fill=success)) + 
+  scale_x_discrete(limits=c("5","10","30")) +
+  geom_tile() +
+  geom_text(aes(label=paste('cyclesFound: ',scales::percent(round(success,2)),'\n','simulations: ',count)),size=4,na.rm=TRUE,fontface='italic', color='grey15') +
+  scale_fill_gradient(low = "firebrick3", high = "springgreen3")
+```
+
+### Decentralized search explodes by the number of edges
+
+As provided by the results of experiments with parameters described in table \@ref(fig:all-simulation-parameters), decentralized search is faster when there is relatively small number of links in the graph, yet its time complexity explodes above centralized search when the number of `similarity` edges in the graph exceeds about one million (see figure \@ref(fig:simulation-time-vs-similarity-edges) below, especially (g) and (h)). Dependency is plotted separately for graph with different `agentNumber` parameters, since number of vertices and number of edges in the graph are not independent variables -- `agentNumber` is the parameter of simulation, but number of edges is an emergent variable. We use the number of `similarity` edges rather than total number of edges in the graph only for the reason that the number of `similarity` edges exceeds numbers of other types of edges by a few orders of magnitude and renders them 'unimportant'.
+
+```{r simulation-time-vs-similarity-edges, fig.cap='Dependence of simulation time on `similarity` edges in the graph as modulated by `similarityConnectThreshold` parameter for different agent numbers.', echo=FALSE, results='asis', fig.width=8, fig.height=12}
+
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+
+fancy_scientific <- function(l) {
+  # turn in to character string in scientific notation
+  l <- format(l, scientific = TRUE)
+  # quote the part before the exponent to keep all the digits
+  l <- gsub("^(.*)e", "'\\1'e", l)
+  # turn the 'e+' into plotmath format
+  l <- gsub("e", "%*%10^", l)
+  # return this as an expression
+  parse(text=l)
+}
+
+exp11.env <- LoadToEnvironment('~/offernet/docs/decentralized-vs-centralized-bookdown-corrected/R_data/summary_of_all_experiments.Rdata')
+exp12.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_data/summary_of_all_experiments.Rdata')
+exp13.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')
+exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')
+exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
+all.df <- exp11.env$summary.df
+all.df <- rbind(all.df, exp12.env$summary.df)
+all.df <- rbind(all.df, exp13.env$summary.df)
+all.df <- rbind(all.df, exp14.env$summary.df)
+all.df <- rbind(all.df, exp15.env$summary.df)
+# filtering out experiment which was run on random graphs in order to make results more consistent
+#all.df <- all.df[which(all.df$experimentId != "EXP08-10-01-33-JYSw5Z" & all.df$experimentId != "EXP08-11-12-58-3BvMSL"), ]
+all.df$simulationType_agentNumber <- paste(all.df$simulationType,'-',all.df$agentNumber)
+
+agentNumbers = sort(unique(all.df$agentNumber))
+i = 1
+index <- c('(a)','(b)','(c)','(d)','(e)','(f)','(g)','(h)')
+gg <- list()
+for (agentNumber in agentNumbers) {
+  e.df <- all.df[which(all.df$agentNumber == agentNumber),]
+  gg[[i]] <- ggplot(e.df, aes(x=edges_similarity, y=sum_wallTime_min_total, color=simulationType)) + 
+      geom_point(aes(size=foundCycles)) + 
+      geom_smooth(method="loess", se=F) + 
+      scale_x_continuous(labels=fancy_scientific) +
+      #xlim(c(0, 0.1)) + 
+      #ylim(c(0, 500000)) + 
+      labs(title = paste(index[i],' agentNumber = ',agentNumber)) +
+      theme(axis.title.x=element_blank(),
+            axis.title.y=element_blank(),
+            plot.title = element_text(size=11),
+            axis.text.x = element_text(hjust = 1)
+      )
+  i<-i+1
+}
+#install.packages('ggpubr')
+library(ggpubr)
+figure <- ggarrange(gg[[1]],gg[[2]],
+             gg[[3]],gg[[4]],
+             gg[[5]],gg[[6]],
+             gg[[7]],gg[[8]],
+             nrow=4,
+             ncol=2,
+             common.legend=TRUE,
+             legend='bottom')
+
+annotate_figure(figure, bottom = text_grob("y-axis: simulationTime in minutes; x-axis: number of similarity edges in the graph;", size = 10))
+```
+
+### Centralized search time increases by the number of vertices
+
+Theoretically, centralized search time depends on the number of vertexes in the graph, due to the way centralized search works (see [explanation](#centralized-similarity-search)). In practice it is somewhat problematic to estimate, since number number of edges is very much dependent from number of vertices in the graph and it is difficult to isolate the two -- especially since number of edges is an emergent variable and not a parameter that can be manually set. Nevertheless, the dependency of simulation times on `agentNumbers` clearly indicates that time increases with `agentNumber`.
+
+```{r centralized-search-by-vertices, fig.cap='Time needed for centralized search roughly increases depending on number of item vertices in the graph: important parameters used for simulations displayed: agentNumbers=[400,500,600,700,800]; similarityConnectThreshold = 0.99', echo=FALSE, results='asis', fig.width=8, fig.height=4}
+library(ggplot2)
+library(ggpubr)
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+
+fancy_scientific <- function(l) {
+  # turn in to character string in scientific notation
+  l <- format(l, scientific = TRUE)
+  # quote the part before the exponent to keep all the digits
+  l <- gsub("^(.*)e", "'\\1'e", l)
+  # turn the 'e+' into plotmath format
+  l <- gsub("e", "%*%10^", l)
+  # return this as an expression
+  parse(text=l)
+}
+
+exp11.env <- LoadToEnvironment('~/offernet/docs/decentralized-vs-centralized-bookdown-corrected/R_data/summary_of_all_experiments.Rdata')
+exp12.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_data/summary_of_all_experiments.Rdata')
+exp13.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')
+exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')
+exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
+all.df <- exp11.env$summary.df
+all.df <- rbind(all.df, exp12.env$summary.df)
+all.df <- rbind(all.df, exp13.env$summary.df)
+all.df <- rbind(all.df, exp14.env$summary.df)
+all.df <- rbind(all.df, exp15.env$summary.df)
+# filtering out experiment which was run on random graphs in order to make results more consistent
+#all.df <- all.df[which(all.df$experimentId != "EXP08-10-01-33-JYSw5Z" & all.df$experimentId != "EXP08-11-12-58-3BvMSL"), ]
+all.df$simulationType_agentNumber <- paste(all.df$simulationType,'-',all.df$agentNumber)
+all.df <- all.df[which(all.df$simulationType != "Decentralized"), ]
+all.df <- all.df[which(all.df$randomWorksNumberMultiplier == 1), ]
+all.df <- all.df[which(all.df$similarityConnectThreshold == 0.99), ]
+
+ggplot(all.df, aes(x=vertices_total, y=sum_wallTime_min_total)) + 
+    #geom_point(aes(size=agentNumber)) + 
+    geom_smooth(method="loess", se=F) + 
+    scale_x_continuous(labels=fancy_scientific) +
+    geom_text(aes(label=paste(agentNumber,'\nagents')), size=4) +
+    #xlim(c(0, 0.1)) + 
+    #ylim(c(0, 500000)) + 
+    labs(y = 'simulationTime, minutes',
+         x = 'number of vertices in the graph') 
+```
+
+
+## Insights and future steps
+
+Based on the results of experiments and above discussion we can confidently make  the following considerations in order to guide further design of the software framework:
+
+* First, centralized search is not feasible for graphs with large number of nodes. This is not very surprising as it is known that many graph algorithms tend to behave exponentially. Note, that even in case of "moderate" exponential behaviour it is not acceptable for us, since the goal of the Offer Networks architecture (and open-ended decentralized computing framework in general) is to conceive conceptual and computational model able to achieve practical solutions on very large graph data structures -- with at least millions of vertices and tens of millions of edges. Smaller graphs, while may be useful for academic research purposes, do not sound interesting enough for devising a computational model of alternative economy.
+* Second, decentralization is sought as a conceptual remedy for intractability of centralized algorithms when run on very large (and dynamic) data structures. As explained [above](#on-decentralized-versus-centralized-computation), decentralization comes at a cost of increased aggregated computational complexity and loss of optimality but in principle enables to achieve asymptotic results in practically acceptable time frames. While decentralized search algorithms of OfferNet(s) do not perform very well when running on (1) graph structures with large diameters of $agent \xrightarrow{\text{knows}} agent$ subgraphs and (2) graphs with large amount of similarity links between items, decentralization provides possibilities of optimizations, which are not available in centralized computation;
+* Decentralized search can be greatly improved by following optimizations to be explored by [Experiment #2](https://singnet.github.io/offernet/public/offernet-documentation/implementation.html#design-and-demonstrate-learning-capabilities-of-the-network):
+	* smartly constructing traversals which dynamically prune search tree based on certain criteria, which could be individual for each agent. In OfferNet(s) model such criteria could be the degree of `similarity` among `items`;
+	* controlling topology of the graph by connecting `items` of the graph into $item \xrightarrow{\text{similarity}} item$ subgraph with bounded diameter and then running search processes [#4](#execute-cycles) along with processes [#1](#process1-similarity-search).
+* Last, but not least, as demonstrated by running times on graphs with large number of edges (see figure \@ref(fig:simulation-time-vs-similarity-edges)) large scale simulations are needed to reveal certain non-linear behaviours that cannot be extrapolated from small scale simulations alone (i.e. the observation that time needed for decentralized search exceeds centralized search only when number of edges is roughly above one million).
+
+<!--
+## Additional notes (flexibility of the model){#additional-notes}
+
+* General treatment of the OfferNet(s) model (for interaction of processes)
+* Ability to calculate costs of exchange (e.g. in OfferNet(s) transportation costs)
+* Represent data as agents with offer/demand pairs;
+* Dynamic negotiation between agents;
+* 'Efficiency' measure of the network operation -- the number of exchanges per unit of time;
+-->

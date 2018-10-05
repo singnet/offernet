@@ -1,0 +1,24 @@
+--- 
+title: "Experiment #1: centralized vs decentralized search"
+author: "Kabir Veitas (kabir@singularitynet.io)"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: singnet/offernet
+url: 'http\://seankross.com/bookdown-start/'
+---
+
+# Introduction
+
+Here I discuss and provide broader interpretation of results documented in the Electronic Laboratory Notebook:
+
+1. [Experiment #1, run #1](https://singnet.github.io/offernet/public/experiment-1-run-1-corrected/)
+2. [Experiment #1, run #2](https://singnet.github.io/offernet/public/experiment-1-run-2-corrected/)
+3. [Experiment #1, run #3](https://singnet.github.io/offernet/public/experiment-1-run-3-corrected/)
+4. [Experiment #1, run #4](https://singnet.github.io/offernet/public/experiment-1-run-4/)
+5. [Experiment #1, run #5](https://singnet.github.io/offernet/public/experiment-1-run-5/)
+
+Section [Decentralized computing in OfferNet(s)](#decentralized-computing-in-offernets) discusses the concept of open-ended decentralized computing with relationship to Offer Networks. Section [Experiment #1:comparison of decentralized and centralized search](#experiment-one) provides analysis and interpretation of data obtained from running computer simulations. All the code used by simulations and documentation (including this page) can be accessed and downloaded from [singnet/offernet](https://github.com/singnet/offernet) GitHub repository.

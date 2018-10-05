@@ -20,6 +20,3 @@ log4j.appender."TR.Append"=true
 log4j.appender."TR.layout"="org.apache.log4j.PatternLayout"
 log4j.appender."TR.layout.ConversionPattern"= '%d{ISO8601} [%t] %-5p %c %x : %m%n'
 log4j.appender."TR.Threshold"="TRACE"
-
-
-

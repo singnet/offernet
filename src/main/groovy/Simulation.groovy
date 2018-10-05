@@ -145,7 +145,7 @@ class Simulation extends UntypedAbstractActor {
   * not perfect: have to change to non -blocking message with probably future.onComplete...
   */
   private Object getAgentVertexId(ActorRef actorRef) {
-    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+    Timeout timeout = new Timeout(Duration.create(30, "seconds"));
     def msg = new Method("vertexId",[])
     Future<Object> future = Patterns.ask(actorRef, msg, timeout);
     def vertexId = Await.result(future, timeout.duration());

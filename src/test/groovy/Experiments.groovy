@@ -55,7 +55,7 @@ public class Experiments {
 
 	@AfterClass
   	static void teardown() {
-        def duration = Duration.create(30, TimeUnit.SECONDS)
+        def duration = Duration.create(300, TimeUnit.SECONDS)
     	TestKit.shutdownActorSystem(system, duration, true);
     	system = null;
   	}
@@ -68,17 +68,17 @@ public class Experiments {
 		* both centralized and decentralized search will be run on every 
 		* permutation of these parameters;
 		*/
-		def similarityConnectThresholds = [0.9, 0.93, 0.96, 0.99]
+		def similarityConnectThresholds = [0.9]
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 		Global.parameters.experimentId = experimentId
-		def agentNumbers = [700, 800]//, 1000, 2000, 5000] // number of agents in the network
-		def chainLengths = [10] // the length of the chain to drop into the network (cannot be less than 3!)
-		def randomWorksNumberMultipliers = [2 ] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [10] // the maximum number of hops when doing decentralized similarity search;
+		def agentNumbers = [800]//, 1000, 2000, 5000] // number of agents in the network
+		def chainLengths = [5,10,20] // the length of the chain to drop into the network (cannot be less than 3!)
+		def randomWorksNumberMultipliers = [2] // number of random works (outside chain) to drop into the network;
+		def maxDistances = [10,30] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
-		 
+		def graphTypes = ['random','smallWorld']
 
-		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={} : similarityConnectThresholds={} : message=[{}]', 
+		logger.warn('method={} : experimentId={} : agentNumbers={} : chainLengths={} : randomWorksNumberMultipliers={} : maxDistances={} : similaritySearchThresholds={} : similarityConnectThresholds={} : graphTypes={} : message=[{}]', 
       		'decentralizedVersion', 
       		experimentId,
       		agentNumbers,
@@ -87,7 +87,8 @@ public class Experiments {
       		maxDistances,
       		similaritySearchThresholds,
       		similarityConnectThresholds,
-      		'pre-generated smallWorld graph of agents with known diameters < 10; different similarity search thresholds'
+      		graphTypes,
+      		'800 agent simulations with 2 randomWorksNumbers...'
       	)
 
 		agentNumbers.each { agentNumber ->
@@ -97,76 +98,86 @@ public class Experiments {
 					maxDistances.each { maxDistance ->
 						similaritySearchThresholds.each { similaritySearchThreshold ->
 							similarityConnectThresholds.each {similarityConnectThreshold ->
-								Global.parameters.similarityThreshold = similarityConnectThreshold								
-								// This is actual experiment code; 
-								// The choice is to construct the whole structure anew for each run
-								// It is not strictly necessary, yet may be good for equalizing performance
+								graphTypes.each {graphType ->
+									Global.parameters.similarityThreshold = similarityConnectThreshold								
+									// This is actual experiment code; 
+									// The choice is to construct the whole structure anew for each run
+									// It is not strictly necessary, yet may be good for equalizing performance
 
-								Global.parameters.similaritySearchThreshold = similaritySearchThreshold
-								Global.parameters.simulationTimeout = this.timeout
+									Global.parameters.similaritySearchThreshold = similaritySearchThreshold
+									Global.parameters.simulationTimeout = this.timeout
 
-						       	// 1: create simulation object
-								Global.parameters.persistence=false
-						       	String simulationIdGeneral = 'SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6)
-								sim = TestActorRef.create(system, Simulation.props(simulationIdGeneral+"--DV")).underlyingActor();
-								Global.parameters.persistence=true
-								assertNotNull(sim);
-								sim.on.flushVertices();
-								sim.on.setEvaluationTimeout('PT2H') // setting timeout to max for cassandra...
-				
-								// 2: create agent network
-								//def agentList = sim.createAgentNetwork(agentNumber);
-								String fileName = "graphs/data/smallWorld"+agentNumber+".dat"
-								def agentList = sim.createAgentNetworkFromNetworkXDataFile(fileName)
-								// 3: add random works to the agents in the network
-								sim.addRandomWorksToAgents(randomWorksNumber)
+							       	// 1: create simulation object
+									Global.parameters.persistence=false
+							       	String simulationIdGeneral = 'SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6)
+									sim = TestActorRef.create(system, Simulation.props(simulationIdGeneral+"--DV")).underlyingActor();
+									Global.parameters.persistence=true
+									assertNotNull(sim);
+									sim.on.flushVertices();
+									sim.on.setEvaluationTimeout('PT2H') // setting timeout to max for cassandra...
+									
 
-								// 4. add chain to the network
-								def chains = [Utils.createChain(chainLength)]
-								def chain = chains[0]
-								def chainedWorksJson = sim.addChainToNetwork(chain, true)  // add chain to network and return json structure...
+									// 2: create agent network
+									def agentList;
+									if (graphType == 'smallWorld') {
+										String fileName = "graphs/data/smallWorld"+agentNumber+".dat"
+										agentList = sim.createAgentNetworkFromNetworkXDataFile(fileName)
+									} else {
+										agentList = sim.createAgentNetwork(agentNumber);
+									}
 
-								// 5: create taskAgent -- the one which closes the chain in the network
-								def taskAgent = createTaskAgentInTheNetwork(sim,chain)
+									// 3: add random works to the agents in the network
+									sim.addRandomWorksToAgents(randomWorksNumber)
 
-								// 6: running decentralized version...
+									// 4. add chain to the network
+									def chains = [Utils.createChain(chainLength)]
+									def chain = chains[0]
+									def chainedWorksJson = sim.addChainToNetwork(chain, true)  // add chain to network and return json structure...
 
-								logger.info('experimentId={} : simulationId={} : keyword={} : agentNumber={} : chainLength={} : randomWorksNumberMultiplier={} : maxDistance={} : similaritySearchThreshold={} : similarityConnectThreshold={}',
-									experimentId,
-									Global.parameters.simulationId,
-									'simulationParameters',
-						     		agentNumber,
-						      		chainLength,
-						      		randomWorksNumberMultiplier,
-						      		maxDistance,
-						      		similaritySearchThreshold,
-						      		Global.parameters.similarityThreshold
-						      	)								 
+									// 5: create taskAgent -- the one which closes the chain in the network
+									def taskAgent = createTaskAgentInTheNetwork(sim,chain)
 
-								runDecentralizedVersion(maxDistance, taskAgent, chainedWorksJson, experimentId);
-								sim.on.analyze("Analysis after runDecentralizedVersion")
-								sim.on.archive()
+									// 6: running decentralized version...
 
-								ArrayList allAgentIds = sim.agentIdToActorRefTable.keySet().toArray()
-								recreateActorSystem(allAgentIds,simulationIdGeneral+"--CV")							
+									logger.info('experimentId={} : simulationId={} : keyword={} : agentNumber={} : chainLength={} : randomWorksNumberMultiplier={} : maxDistance={} : similaritySearchThreshold={} : similarityConnectThreshold={} : graphType={}',
+										experimentId,
+										Global.parameters.simulationId,
+										'simulationParameters',
+							     		agentNumber,
+							      		chainLength,
+							      		randomWorksNumberMultiplier,
+							      		maxDistance,
+							      		similaritySearchThreshold,
+							      		Global.parameters.similarityThreshold,
+							      		graphType
+							      	)								 
 
-								// 8: running centralized version...
+									runDecentralizedVersion(maxDistance, taskAgent, chainedWorksJson, experimentId);
+									sim.on.analyze("Analysis after runDecentralizedVersion")
+									sim.on.archive()
 
-								logger.info('experimentId={} : simulationId={} : keyword={} : agentNumber={} : chainLength={} : randomWorksNumberMultiplier={} : maxDistance={} : similaritySearchThreshold={} : similarityConnectThreshold={}',
-									experimentId,
-									Global.parameters.simulationId,
-									'simulationParameters',
-						     		agentNumber,
-						      		chainLength,
-						      		randomWorksNumberMultiplier,
-						      		maxDistance,
-						      		similaritySearchThreshold,
-						      		Global.parameters.similarityThreshold
-						      	)								 
+									ArrayList allAgentIds = sim.agentIdToActorRefTable.keySet().toArray()
+									recreateActorSystem(allAgentIds,simulationIdGeneral+"--CV")							
 
-								runCentralizedVersion(taskAgent, chainedWorksJson, experimentId);
-								sim.on.analyze("Analysis after runCentralizedVersion")
-								sim.on.archive()
+									// 8: running centralized version...
+
+									logger.info('experimentId={} : simulationId={} : keyword={} : agentNumber={} : chainLength={} : randomWorksNumberMultiplier={} : maxDistance={} : similaritySearchThreshold={} : similarityConnectThreshold={} : graphType={}',
+										experimentId,
+										Global.parameters.simulationId,
+										'simulationParameters',
+							     		agentNumber,
+							      		chainLength,
+							      		randomWorksNumberMultiplier,
+							      		maxDistance,
+							      		similaritySearchThreshold,
+							      		Global.parameters.similarityThreshold,
+							      		graphType
+							      	)								 
+
+									runCentralizedVersion(taskAgent, chainedWorksJson, experimentId);
+									sim.on.analyze("Analysis after runCentralizedVersion")
+									sim.on.archive()
+								}
 							}
 						}
 					}
