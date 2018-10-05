@@ -225,35 +225,6 @@ A centralized system is a system where all transitions between atomic program st
 
 Bottom line, is that it makes sense to start designing a computational framework or architecture based on decentralized model but allow for a centralized computation to emerge out of it rather than the other way round. Even if emergence is not considered due high computational costs and overall unpredictability, it still makes sense to use decentralized framework and represent centralized processes 'manually'.
 
-### Significant parameters
-
-First, we run a simple linear regression on all results to obtain an indication of which parameters from parameter set may be more important and significant. It should be noted that from the strictly statistical point this analysis is not very sound, because the parameter space is not very well distributed (see above). Nevertheless, the linear regression summary seem to give some useful information, which of course has to be further tested and updated when as soon as more data is available.
-
-```{r regression, results = 'asis', echo=FALSE}
-LoadToEnvironment <- function(RData, env = new.env()){
-  load(RData, env)
-  return(env) 
-}
-
-exp11.env <- LoadToEnvironment('~/offernet/docs/decentralized-vs-centralized-bookdown-corrected/R_data/summary_of_all_experiments.Rdata')
-exp12.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_data/summary_of_all_experiments.Rdata')
-exp13.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')
-exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')
-exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
-all.df <- exp11.env$summary.df
-all.df <- rbind(all.df, exp12.env$summary.df)
-all.df <- rbind(all.df, exp13.env$summary.df)
-all.df <- rbind(all.df, exp14.env$summary.df)
-all.df <- rbind(all.df, exp15.env$summary.df)
-
-library(stargazer)
-
-fitCV <- lm(sum_wallTime_min_total ~ agentNumber +  vertices_total + edges_total  +  chainLength + maxDistance + similaritySearchThreshold + similarityConnectThreshold + randomWorksNumberMultiplier, data=all.df[which(all.df$simulationType == 'Centralized'),])
-fitDV <- lm(sum_wallTime_min_total ~ agentNumber  + vertices_total + edges_total  + chainLength + maxDistance + similaritySearchThreshold + similarityConnectThreshold + randomWorksNumberMultiplier, data=all.df[which(all.df$simulationType == 'Decentralized'),])
-fit <- lm(sum_wallTime_min_total ~ agentNumber + vertices_total + edges_total + factor(simulationType) + chainLength + maxDistance + similaritySearchThreshold + similarityConnectThreshold + randomWorksNumberMultiplier, data=all.df)
-stargazer(fitCV,fitDV,fit,type = "html",column.labels = c("Centralized", "Decentralized", "All"))
-```
-
 ### Sensitivity to graph topology
 
 One of the first hypotheses that experiments seem to support is that decentralized and centralized search have very different sensibility to the underlying graph topology. That is, centralized search algorithm is more sensitive to how many agent nodes are in the graph and not on how they are connected, while decentralized search **is** sensitive to the topology of $agent \xrightarrow{\text{knows}} agent$ subgraph. This is because decentralized graph traversals continue only as deep as constrained by `maxDistance` parameters (which defines the radius of agent network to be searched -- see [setup](#setup)) and if the diameter of graph is larger than this radius, then the cycle may not be found (even though it exists in a network). It is of course possible to increase `maxDistance` parameter to the arbitrary large number, but this also may increase time of search drastically (see graph below).
