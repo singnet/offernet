@@ -5,6 +5,7 @@ always_allow_html: yes
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, error=FALSE, output=FALSE, source = FALSE)
+knitr::opts_knit$set(eval.after = "fig.cap")
 ```
 
 # Experiment #1: comparison of decentralized and centralized search{#experiment-one}
@@ -37,7 +38,7 @@ An experiment is a series of simulations, each of which takes the following para
 * `randomWorksNumberMultiplier`: the number of random works and items which are assigned to the agents in the network to make cycle search more realistic;
 
 
-```{r all-simulation-parameters, fig.cap='Distribution of simulation parameters of all analysed experiments (3 separate runs, 136 simulations).', out.width='100%', fig.align='center', echo=FALSE, eval=TRUE}
+```{r all-simulation-parameters, fig.cap=paste('Distribution of simulation parameters of all analysed experiments (',Sys.getenv('R_TOTALSIM'),' simulations in total).'), out.width='100%', fig.align='center', echo=FALSE, eval=TRUE}
 library(ggplot2)
 LoadToEnvironment <- function(RData, env = new.env()){
   load(RData, env)
@@ -49,11 +50,17 @@ exp12.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_d
 exp13.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')
 exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')
 exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
+exp16.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary_of_all_experiments.Rdata')
+exp17.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')
 all.df <- exp11.env$summary.df
 all.df <- rbind(all.df, exp12.env$summary.df)
 all.df <- rbind(all.df, exp13.env$summary.df)
 all.df <- rbind(all.df, exp14.env$summary.df)
 all.df <- rbind(all.df, exp15.env$summary.df)
+all.df <- rbind(all.df, exp16.env$summary.df)
+all.df <- rbind(all.df, exp17.env$summary.df)
+
+Sys.setenv(R_TOTALSIM = length(unique(all.df$simulationId)))
 
 run1 <- c(
   'EXP08-02-03-31-H5aVtH',
@@ -70,33 +77,68 @@ run1 <- c(
   'EXP08-12-11-17-5tvhCK'
 )
 run2 <- c('EXP09-04-04-11-kvIbMs','EXP09-04-11-00-zmNPzL','EXP09-04-01-13-AzAjTh')
-run3 <- c('EXP09-05-02-15-an9jYp','EXP09-05-11-49-gcWcHs','EXP09-07-02-54-hATxwM')
-run4 <- c('EXP09-25-07-21-KtTayU','EXP09-30-10-25-HycEjd')
-run5 <- c('EXP10-02-01-04-YQvrhC')
 
-all.df$run <- ifelse(all.df$experimentId %in% run1,"Run1",
-                     ifelse(all.df$experimentId %in% run2,"Run2", 
-                            ifelse(all.df$experimentId %in% run3,"Run3",
-                                   ifelse(all.df$experimentId %in% run4,"Run4", 
-                            "Run5"))))
+run3 <- c('EXP09-05-02-15-an9jYp','EXP09-05-11-49-gcWcHs','EXP09-07-02-54-hATxwM')
+
+run4 <- c('EXP09-25-07-21-KtTayU','EXP09-30-10-25-HycEjd')
+
+run5 <-  c(
+'EXP10-02-01-04-YQvrhC',
+'EXP10-03-10-34-Lfip5F',
+'EXP10-03-11-06-mTThJr', 
+'EXP10-04-01-28-KKABTK', 
+'EXP10-04-11-00-6NwhDL', 
+'EXP10-05-01-29-BHt6a5',
+'EXP10-05-10-28-Z7PYyS',
+'EXP10-05-02-12-uUGIa6',
+'EXP10-06-01-49-jZTN76')
+
+run6 <- c(
+'EXP10-06-11-02-yABCGa',
+'EXP10-08-01-22-fA74de',
+'EXP10-10-01-42-zrrpbq')
+
+run7 <- c(
+'EXP10-13-12-56-ZEvsxw'
+)
+
+set1 <- c(run1,run2,run3)
+set2 <- c(run4,run5)
+set3 <- c(run6,run7)
+
+all.df$set <- ifelse(all.df$experimentId %in% set1,"1",
+                     ifelse(all.df$experimentId %in% set2,"2", 
+                            "3"))
+
+
+#all.df$run <- ifelse(all.df$experimentId %in% run1,"1",
+#                     ifelse(all.df$experimentId %in% run2,"2", 
+#                            ifelse(all.df$experimentId %in% run3,"3",
+#                                   ifelse(all.df$experimentId %in% run4,"4", 
+#                                      ifelse(all.df$experimentId %in% run4,"5", 
+#                                      "6")
+#                                      )
+#                                    )
+#                                  )
+#                                )
 
 library(dplyr)
 byAgentNumber <-
   all.df %>%
-  group_by(agentNumber, run) %>%
+  group_by(agentNumber, set) %>%
   summarise(n_distinct(simulationId))
-names <- c('agentNumber','run','simulationCount')
+names <- c('agentNumber','set','simulationCount')
 colnames(byAgentNumber) <- names
 
 totals <- byAgentNumber %>%
-  group_by(run) %>%
+  group_by(set) %>%
   summarise(total = sum(simulationCount))
 
-byAgentNumberPlot <- ggplot(byAgentNumber, aes(x = run, y = simulationCount, fill = agentNumber, label = agentNumber)) +
+byAgentNumberPlot <- ggplot(byAgentNumber, aes(x = set, y = simulationCount, fill = agentNumber, label = agentNumber)) +
   geom_bar(stat = "identity") +
   geom_text(size = 3, position = position_stack(vjust = 0.5)) +
   scale_fill_continuous(low="green4", high="brown")+
-  geom_text(aes(run, total, label = total, fill = NULL), data = totals, position=position_dodge(width=0.9), vjust=-0.4) +
+  geom_text(aes(set, total, label = total, fill = NULL), data = totals, position=position_dodge(width=0.9), vjust=-0.4) +
   labs(title='agentNumber',
       y = 'Simulation count') +
   theme(axis.title.x=element_blank(),
@@ -108,16 +150,16 @@ byAgentNumberPlot <- ggplot(byAgentNumber, aes(x = run, y = simulationCount, fil
   
 byMaxDistance <-
   all.df %>%
-  group_by(maxDistance, run) %>%
+  group_by(maxDistance, set) %>%
   summarise(n_distinct(simulationId))
-names <- c('maxDistance','run','simulationCount')
+names <- c('maxDistance','set','simulationCount')
 colnames(byMaxDistance) <- names
 
 totals <- byMaxDistance %>%
-  group_by(run) %>%
+  group_by(set) %>%
   summarise(total = sum(simulationCount))
 
-byMaxDistancePlot <- ggplot(byMaxDistance, aes(x = run, y = simulationCount, fill = maxDistance, label = maxDistance)) +
+byMaxDistancePlot <- ggplot(byMaxDistance, aes(x = set, y = simulationCount, fill = maxDistance, label = maxDistance)) +
   geom_bar(stat = "identity") +
   geom_text(size = 3, position = position_stack(vjust = 0.5)) +
   #scale_fill_continuous(low="green4", high="brown")+
@@ -130,16 +172,16 @@ byMaxDistancePlot <- ggplot(byMaxDistance, aes(x = run, y = simulationCount, fil
 
 byChainLength <-
   all.df %>%
-  group_by(chainLength, run) %>%
+  group_by(chainLength, set) %>%
   summarise(n_distinct(simulationId))
-names <- c('chainLength','run','simulationCount')
+names <- c('chainLength','set','simulationCount')
 colnames(byChainLength) <- names
 
 totals <- byChainLength %>%
-  group_by(run) %>%
+  group_by(set) %>%
   summarise(total = sum(simulationCount))
 
-byChainLengthPlot <-ggplot(byChainLength, aes(x = run, y = simulationCount, fill = chainLength, label = chainLength)) +
+byChainLengthPlot <-ggplot(byChainLength, aes(x = set, y = simulationCount, fill = chainLength, label = chainLength)) +
   geom_bar(stat = "identity") +
   geom_text(size = 3, position = position_stack(vjust = 0.5)) +
   scale_fill_continuous(low="green4", high="blue")+
@@ -152,16 +194,16 @@ byChainLengthPlot <-ggplot(byChainLength, aes(x = run, y = simulationCount, fill
 
 byWorksMultipliers <-
   all.df %>%
-  group_by(randomWorksNumberMultiplier, run) %>%
+  group_by(randomWorksNumberMultiplier, set) %>%
   summarise(n_distinct(simulationId))
-names <- c('randomWorksNumberMultiplier','run','simulationCount')
+names <- c('randomWorksNumberMultiplier','set','simulationCount')
 colnames(byWorksMultipliers) <- names
 
 totals <- byWorksMultipliers %>%
-  group_by(run) %>%
+  group_by(set) %>%
   summarise(total = sum(simulationCount))
 
-byWorksMultipliersPlot <-ggplot(byWorksMultipliers, aes(x = run, y = simulationCount, fill = randomWorksNumberMultiplier, label = randomWorksNumberMultiplier)) +
+byWorksMultipliersPlot <-ggplot(byWorksMultipliers, aes(x = set, y = simulationCount, fill = randomWorksNumberMultiplier, label = randomWorksNumberMultiplier)) +
   geom_bar(stat = "identity") +
   geom_text(size = 3, position = position_stack(vjust = 0.5)) +
   scale_fill_continuous(low="green", high="orange")+
@@ -174,16 +216,16 @@ byWorksMultipliersPlot <-ggplot(byWorksMultipliers, aes(x = run, y = simulationC
 
 byConnectThreshold <-
   all.df %>%
-  group_by(similarityConnectThreshold, run) %>%
+  group_by(similarityConnectThreshold, set) %>%
   summarise(n_distinct(simulationId))
-names <- c('similarityConnectThreshold','run','simulationCount')
+names <- c('similarityConnectThreshold','set','simulationCount')
 colnames(byConnectThreshold) <- names
 
 totals <- byConnectThreshold %>%
-  group_by(run) %>%
+  group_by(set) %>%
   summarise(total = sum(simulationCount))
 
-byConnectThresholdPlot <-ggplot(byConnectThreshold, aes(x = run, y = simulationCount, fill = similarityConnectThreshold, label = similarityConnectThreshold)) +
+byConnectThresholdPlot <-ggplot(byConnectThreshold, aes(x = set, y = simulationCount, fill = similarityConnectThreshold, label = similarityConnectThreshold)) +
   geom_bar(stat = "identity") +
   geom_text(size = 3, position = position_stack(vjust = 0.5)) +
   labs(title='similarityConnectThreshold',y = 'Simulation count') +
@@ -240,18 +282,30 @@ exp11.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-1-corrected/R_da
 exp11.df <- exp11.df[which(exp11.df$similarityConnectThreshold != "NA"),]
 exp11.df <- select(exp11.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
 all.df <- exp11.df
+
 exp12.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
 exp12.df <- select(exp12.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
 all.df <- rbind(all.df, exp12.df)
+
 exp13.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
 exp13.df <- select(exp13.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
 all.df <- rbind(all.df, exp13.df)
+
 exp14.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')$summary.df
 exp14.df <- select(exp14.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
 all.df <- rbind(all.df, exp14.df)
+
 exp15.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')$summary.df
 exp15.df <- select(exp15.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
 all.df <- rbind(all.df, exp15.df)
+
+exp16.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp16.df <- select(exp16.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
+all.df <- rbind(all.df, exp16.df)
+
+exp17.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp17.df <- select(exp17.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
+all.df <- rbind(all.df, exp17.df)
 
 dw = .75
 gg <- ggplotly(
@@ -273,7 +327,7 @@ gg
 
 For confirming the sensitivity of algorithms to graph topology we also ran experiments with the same parameters on two different graph topologies  -- (1) randomly connected and (2) small world with diameter of less than 10. As shown in the diagram below, success rate of finding a cycle in a random graph is often lower than 100% (except when the depth of each traversal is made very large), while working on small world graph with a known diameter and corresponding `maxDistance` parameter guarantees that the cycle will be found if it exists in the graph even in a decentralized scenario.
 
-```{r random-and-smallWorld-graphs, fig.cap='Success rate of finding a cycle in random and small world graphs, depending on `maxDistance` parameter. Small world graphs were with known diameter of < 10. Note that with random graphs, `maxDistance` of 5 and 10 is not enough to traverse the whole graph, while 30 often provides (but does not guarantee!) full coverage.', echo=FALSE, results='asis', fig.width=8, fig.height=4}
+```{r random-and-smallWorld-graphs, fig.cap='Success rate of finding a cycle in random and small world graphs, depending on `maxDistance` parameter. Small world graphs were with known diameter of =< 10. Note that with random graphs, `maxDistance` of 5 and 10 is not enough to traverse the whole graph, while 30 often provides (but does not guarantee!) full coverage. Similarly, `maxDistance` of 5 is not always enough to traverse small world graph which has larger diameter of around 10.' , echo=FALSE, results='asis', fig.width=8, fig.height=4}
 
 LoadToEnvironment <- function(RData, env = new.env()){
   load(RData, env)
@@ -295,20 +349,32 @@ exp11.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-1-corrected/R_da
 exp11.df <- exp11.df[which(exp11.df$similarityConnectThreshold != "NA"),]
 exp11.df <- select(exp11.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles, graphType)
 all.df <- exp11.df
+
 exp12.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
 exp12.df <- select(exp12.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles, graphType)
 all.df <- rbind(all.df, exp12.df)
+
 exp13.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
 exp13.df <- select(exp13.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles, graphType)
 all.df <- rbind(all.df, exp13.df)
+
 exp14.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')$summary.df
 exp14.df <- select(exp14.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles,graphType)
 all.df <- rbind(all.df, exp14.df)
+
 exp15.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')$summary.df
 exp15.df <- select(exp15.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles,graphType)
 all.df <- rbind(all.df, exp15.df)
-all.df <- all.df[which(all.df$simulationType != "Centralized"), ]
 
+exp16.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp16.df <- select(exp16.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles,graphType)
+all.df <- rbind(all.df, exp16.df)
+
+exp17.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp17.df <- select(exp16.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles,graphType)
+all.df <- rbind(all.df, exp17.df)
+
+all.df <- all.df[which(all.df$simulationType != "Centralized"), ]
 
 library(dplyr)
 deps <- group_by(all.df, maxDistance, graphType)
@@ -326,11 +392,12 @@ ggplot(data = averages, aes(x=maxDistance, y=graphType, fill=success)) +
   scale_fill_gradient(low = "firebrick3", high = "springgreen3")
 ```
 
-### Decentralized search explodes by the number of edges
+### Decentralized search time increases by the number of edges
 
-As provided by the results of experiments with parameters described in table \@ref(fig:all-simulation-parameters), decentralized search is faster when there is relatively small number of links in the graph, yet its time complexity explodes above centralized search when the number of `similarity` edges in the graph exceeds about one million (see figure \@ref(fig:simulation-time-vs-similarity-edges) below, especially (g) and (h)). Dependency is plotted separately for graph with different `agentNumber` parameters, since number of vertices and number of edges in the graph are not independent variables -- `agentNumber` is the parameter of simulation, but number of edges is an emergent variable. We use the number of `similarity` edges rather than total number of edges in the graph only for the reason that the number of `similarity` edges exceeds numbers of other types of edges by a few orders of magnitude and renders them 'unimportant'.
 
-```{r simulation-time-vs-similarity-edges, fig.cap='Dependence of simulation time on `similarity` edges in the graph as modulated by `similarityConnectThreshold` parameter for different agent numbers.', echo=FALSE, results='asis', fig.width=8, fig.height=12}
+As provided by the results of experiments with parameters described in table \@ref(fig:all-simulation-parameters), decentralized search is marginally faster when there is relatively small number of links in the graph, yet its time complexity quickly increases with the number of `similarity` edges (see figure \@ref(fig:simulation-time-vs-similarity-edges). Dependency is plotted separately for graph with different `agentNumber` parameters, since number of vertices and number of edges in the graph are not independent variables -- `agentNumber` is the parameter of simulation, but number of edges is an emergent variable. We use the number of `similarity` edges rather than total number of edges in the graph only for the reason that the number of `similarity` edges exceeds numbers of other types of edges by a few orders of magnitude and renders them 'unimportant'.
+
+```{r simulation-time-vs-similarity-edges, fig.cap='Dependence of simulation time on `similarity` edges in the graph as modulated by `similarityConnectThreshold` parameter for different agent numbers. Note, that centralized search is somewhat faster than decentralized which has to be investigated further.', echo=FALSE, results='asis', fig.width=8, fig.height=12}
 
 LoadToEnvironment <- function(RData, env = new.env()){
   load(RData, env)
@@ -353,11 +420,15 @@ exp12.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_d
 exp13.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')
 exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')
 exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
+exp16.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary_of_all_experiments.Rdata')
+exp17.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')
 all.df <- exp11.env$summary.df
 all.df <- rbind(all.df, exp12.env$summary.df)
 all.df <- rbind(all.df, exp13.env$summary.df)
 all.df <- rbind(all.df, exp14.env$summary.df)
 all.df <- rbind(all.df, exp15.env$summary.df)
+all.df <- rbind(all.df, exp16.env$summary.df)
+all.df <- rbind(all.df, exp17.env$summary.df)
 # filtering out experiment which was run on random graphs in order to make results more consistent
 #all.df <- all.df[which(all.df$experimentId != "EXP08-10-01-33-JYSw5Z" & all.df$experimentId != "EXP08-11-12-58-3BvMSL"), ]
 all.df$simulationType_agentNumber <- paste(all.df$simulationType,'-',all.df$agentNumber)
@@ -398,9 +469,10 @@ annotate_figure(figure, bottom = text_grob("y-axis: simulationTime in minutes; x
 
 ### Centralized search time increases by the number of vertices
 
-Theoretically, centralized search time depends on the number of vertexes in the graph, due to the way centralized search works (see [explanation](#centralized-similarity-search)). In practice it is somewhat problematic to estimate, since number number of edges is very much dependent from number of vertices in the graph and it is difficult to isolate the two -- especially since number of edges is an emergent variable and not a parameter that can be manually set. Nevertheless, the dependency of simulation times on `agentNumbers` clearly indicates that time increases with `agentNumber`.
+Theoretically, centralized search time depends on the number of vertexes in the graph, due to the way centralized search works (see [explanation](#centralized-similarity-search)). In practice it is somewhat problematic to estimate, since number number of edges is very much dependent from number of vertices in the graph and it is difficult to isolate the two -- especially since number of edges is an emergent variable and not a parameter that can be manually set. Nevertheless, the dependency of simulation times on `agentNumbers` indicates that time increases with `agentNumber`.
 
-```{r centralized-search-by-vertices, fig.cap='Time needed for centralized search roughly increases depending on number of item vertices in the graph: important parameters used for simulations displayed: agentNumbers=[400,500,600,700,800]; similarityConnectThreshold = 0.99', echo=FALSE, results='asis', fig.width=8, fig.height=4}
+```{r centralized-search-by-vertices, fig.cap='Time needed for centralized search roughly increases depending on number of item vertices in the graph: important parameters used for simulations displayed: agentNumbers=[50, 100, 200, 400,500,600,700,800]; Note, that in case of similarityConnectThreshold=0.9, there seems to be an anomaly, causes of which have to be investigated further.', echo=FALSE, results='asis', fig.width=8, fig.height=4}
+library(plyr)
 library(ggplot2)
 library(ggpubr)
 LoadToEnvironment <- function(RData, env = new.env()){
@@ -424,27 +496,35 @@ exp12.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_d
 exp13.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')
 exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')
 exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
+exp16.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary_of_all_experiments.Rdata')
+exp17.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')
 all.df <- exp11.env$summary.df
 all.df <- rbind(all.df, exp12.env$summary.df)
 all.df <- rbind(all.df, exp13.env$summary.df)
 all.df <- rbind(all.df, exp14.env$summary.df)
 all.df <- rbind(all.df, exp15.env$summary.df)
+all.df <- rbind(all.df, exp16.env$summary.df)
+all.df <- rbind(all.df, exp17.env$summary.df)
 # filtering out experiment which was run on random graphs in order to make results more consistent
 #all.df <- all.df[which(all.df$experimentId != "EXP08-10-01-33-JYSw5Z" & all.df$experimentId != "EXP08-11-12-58-3BvMSL"), ]
 all.df$simulationType_agentNumber <- paste(all.df$simulationType,'-',all.df$agentNumber)
 all.df <- all.df[which(all.df$simulationType != "Decentralized"), ]
 all.df <- all.df[which(all.df$randomWorksNumberMultiplier == 1), ]
-all.df <- all.df[which(all.df$similarityConnectThreshold == 0.99), ]
+#all.df <- all.df[which(all.df$similarityConnectThreshold == 0.99), ]
 
-ggplot(all.df, aes(x=vertices_total, y=sum_wallTime_min_total)) + 
-    #geom_point(aes(size=agentNumber)) + 
-    geom_smooth(method="loess", se=F) + 
-    scale_x_continuous(labels=fancy_scientific) +
-    geom_text(aes(label=paste(agentNumber,'\nagents')), size=4) +
-    #xlim(c(0, 0.1)) + 
-    #ylim(c(0, 500000)) + 
-    labs(y = 'simulationTime, minutes',
-         x = 'number of vertices in the graph') 
+summ.df <- ddply(all.df,~agentNumber+similarityConnectThreshold,summarise,avg_vertices_total=mean(vertices_total),avg_sum_wallTime_min_total=mean(sum_wallTime_min_total))
+
+ggplot(summ.df, aes(x=avg_vertices_total, y=avg_sum_wallTime_min_total, color=similarityConnectThreshold)) + 
+  geom_point( ) + 
+  geom_smooth(method="loess", se=F) + 
+  scale_x_continuous(labels=fancy_scientific) +
+  geom_text(aes(label=paste(agentNumber,'\nagents')), size=4) +
+  #xlim(c(0, 0.1)) + 
+  #ylim(c(0, 500000)) + 
+  labs(y = 'simulationTime, minutes',
+       x = 'number of vertices in the graph') +
+  guides(size=FALSE)
+
 ```
 
 
