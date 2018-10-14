@@ -1,5 +1,5 @@
 --- 
-title: "Tidy experiment with well distributed properties -- 1"
+title: "Tidy experiment with well distributed properties -- 2"
 author: "Kabir Veitas (kabir@singularitynet.io)"
 date: "`r Sys.Date()`"
 bibliography: book.bib

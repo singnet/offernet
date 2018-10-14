@@ -55,7 +55,7 @@ public class Experiments {
 
 	@AfterClass
   	static void teardown() {
-        def duration = Duration.create(300, TimeUnit.SECONDS)
+        def duration = Duration.create(1000, TimeUnit.SECONDS)
     	TestKit.shutdownActorSystem(system, duration, true);
     	system = null;
   	}
@@ -68,13 +68,13 @@ public class Experiments {
 		* both centralized and decentralized search will be run on every 
 		* permutation of these parameters;
 		*/
-		def similarityConnectThresholds = [0.9]
+		def similarityConnectThresholds = [0.96]
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 		Global.parameters.experimentId = experimentId
-		def agentNumbers = [800]//, 1000, 2000, 5000] // number of agents in the network
+		def agentNumbers = [50, 100, 200]//400, 800]//, 1000, 2000, 5000] // number of agents in the network
 		def chainLengths = [5,10,20] // the length of the chain to drop into the network (cannot be less than 3!)
-		def randomWorksNumberMultipliers = [2] // number of random works (outside chain) to drop into the network;
-		def maxDistances = [10,30] // the maximum number of hops when doing decentralized similarity search;
+		def randomWorksNumberMultipliers = [1,2] // number of random works (outside chain) to drop into the network;
+		def maxDistances = [5,10,30] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
 		def graphTypes = ['random','smallWorld']
 
@@ -88,7 +88,7 @@ public class Experiments {
       		similaritySearchThresholds,
       		similarityConnectThresholds,
       		graphTypes,
-      		'800 agent simulations with 2 randomWorksNumbers...'
+      		'50, 100 and 200 agents with similarityConnectThreshold 0.96'
       	)
 
 		agentNumbers.each { agentNumber ->
