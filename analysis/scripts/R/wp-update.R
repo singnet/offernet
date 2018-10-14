@@ -1,0 +1,60 @@
+library(ggplot2)
+LoadToEnvironment <- function(RData, env = new.env()){
+  load(RData, env)
+  return(env) 
+}
+
+expOrig.df <- LoadToEnvironment('~/offernet/docs/decentralized-vs-centralized-bookdown-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+expOrig.df <- select(expOrig.df, sum_wallTime_min_total)
+
+exp11.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-1-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp11.df <- exp11.df[which(exp11.df$similarityConnectThreshold != "NA"),]
+exp11.df <- select(exp11.df, sum_wallTime_min_total)
+exp12.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-2-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp12.df <- select(exp12.df, sum_wallTime_min_total)
+exp13.dfv <- LoadToEnvironment('~/offernet/docs/experiment-1-run-3-corrected/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp13.df <- select(exp13.df, sum_wallTime_min_total)
+exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp14.df <- select(exp14.df, sum_wallTime_min_total)
+exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp15.df <- select(exp15.df, sum_wallTime_min_total)
+exp16.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp16.df <- select(exp16.df, sum_wallTime_min_total)
+
+all.df <- expOrig.env$summary.df
+all.df <- rbind(all.df, exp11.df)
+all.df <- rbind(all.df, exp12.df)
+all.df <- rbind(all.df, exp13.df)
+all.df <- rbind(all.df, exp14.df)
+all.df <- rbind(all.df, exp15.df)
+all.df <- rbind(all.df, exp16.df)
+
+library(elastic)
+connect(es_port = 9200)
+cstats <- cluster_stats()
+
+metrics <- c(
+  'Number of simulations',
+  'Simulation time (user)',
+  'Data points (events)',
+  'Database size'
+)
+time <- str(Sys.time())
+values <- c(
+  nrow(all.df),
+  sum(all.df$sum_wallTime_min_total) / 60,
+  cstats$indices$docs$count,
+  cstats$indices$store$size_in_bytes / 1024 / 1024 / 1024
+  )
+units <- c(
+  'units',
+  'hours',
+  'units',
+  'GB'
+)
+
+stats.df <- data.frame(metrics,values,units)
+names(stats.df) <- c('','Metric','Value','Unit')
+library(kableExtra)
+kable(stats.df)
+
