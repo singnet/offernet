@@ -21,3 +21,5 @@ for edge in nx.edges(G):
     f.write("\n")
 
 f.close()
+
+print ('Diameter of the graph: '+ str(nx.diameter(G)))
