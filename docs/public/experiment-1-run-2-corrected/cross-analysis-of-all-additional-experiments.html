@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Additional experiments for decentralized vs centralized search</title>
+  <meta name="description" content="Additional experiments for decentralized vs centralized search">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Additional experiments for decentralized vs centralized search" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="singnet/offernet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Additional experiments for decentralized vs centralized search" />
+  
+  
+  
+
+<meta name="author" content="Kabir Veitas (kabir@singularitynet.io)">
+
+
+<meta name="date" content="2018-10-03">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="experiment-3.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">OfferNet(s) e-Lab notebook</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="experiment-1.html"><a href="experiment-1.html"><i class="fa fa-check"></i><b>2</b> Experiment 1</a><ul>
+<li class="chapter" data-level="2.1" data-path="experiment-1.html"><a href="experiment-1.html#experimental-set-up"><i class="fa fa-check"></i><b>2.1</b> Experimental set up</a></li>
+<li class="chapter" data-level="2.2" data-path="experiment-1.html"><a href="experiment-1.html#descriptive-analysis-of-each-simulation"><i class="fa fa-check"></i><b>2.2</b> Descriptive analysis of each simulation</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="experiment-1.html"><a href="experiment-1.html#sim09-04-04-11-qx3waocv"><i class="fa fa-check"></i><b>2.2.1</b> SIM09-04-04-11-QX3wao–CV</a><ul>
+<li class="chapter" data-level="2.2.1.1" data-path="experiment-1.html"><a href="experiment-1.html#simulationparameters"><i class="fa fa-check"></i><b>2.2.1.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="2.2.1.2" data-path="experiment-1.html"><a href="experiment-1.html#alledgesbylabel"><i class="fa fa-check"></i><b>2.2.1.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="2.2.1.3" data-path="experiment-1.html"><a href="experiment-1.html#allverticesbytype"><i class="fa fa-check"></i><b>2.2.1.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="2.2.1.4" data-path="experiment-1.html"><a href="experiment-1.html#distribution-of-similarityedgesbyweight"><i class="fa fa-check"></i><b>2.2.1.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="2.2.1.5" data-path="experiment-1.html"><a href="experiment-1.html#degree-distribution-of-item-similarity-item-edges"><i class="fa fa-check"></i><b>2.2.1.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="2.2.1.6" data-path="experiment-1.html"><a href="experiment-1.html#degree-distribution-of-agent-knows-agent-edges"><i class="fa fa-check"></i><b>2.2.1.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="2.2.1.7" data-path="experiment-1.html"><a href="experiment-1.html#runing-time-by-method"><i class="fa fa-check"></i><b>2.2.1.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="2.2.1.8" data-path="experiment-1.html"><a href="experiment-1.html#found-structures"><i class="fa fa-check"></i><b>2.2.1.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2.2" data-path="experiment-1.html"><a href="experiment-1.html#sim09-04-04-11-qx3waodv"><i class="fa fa-check"></i><b>2.2.2</b> SIM09-04-04-11-QX3wao–DV</a><ul>
+<li class="chapter" data-level="2.2.2.1" data-path="experiment-1.html"><a href="experiment-1.html#simulationparameters-1"><i class="fa fa-check"></i><b>2.2.2.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="2.2.2.2" data-path="experiment-1.html"><a href="experiment-1.html#alledgesbylabel-1"><i class="fa fa-check"></i><b>2.2.2.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="2.2.2.3" data-path="experiment-1.html"><a href="experiment-1.html#allverticesbytype-1"><i class="fa fa-check"></i><b>2.2.2.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="2.2.2.4" data-path="experiment-1.html"><a href="experiment-1.html#distribution-of-similarityedgesbyweight-1"><i class="fa fa-check"></i><b>2.2.2.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="2.2.2.5" data-path="experiment-1.html"><a href="experiment-1.html#degree-distribution-of-item-similarity-item-edges-1"><i class="fa fa-check"></i><b>2.2.2.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="2.2.2.6" data-path="experiment-1.html"><a href="experiment-1.html#degree-distribution-of-agent-knows-agent-edges-1"><i class="fa fa-check"></i><b>2.2.2.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="2.2.2.7" data-path="experiment-1.html"><a href="experiment-1.html#runing-time-by-method-1"><i class="fa fa-check"></i><b>2.2.2.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="2.2.2.8" data-path="experiment-1.html"><a href="experiment-1.html#found-structures-1"><i class="fa fa-check"></i><b>2.2.2.8</b> Found structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="experiment-1.html"><a href="experiment-1.html#scatterplots-of-experiment"><i class="fa fa-check"></i><b>2.3</b> Scatterplots of experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="experiment-2.html"><a href="experiment-2.html"><i class="fa fa-check"></i><b>3</b> Experiment 2</a><ul>
+<li class="chapter" data-level="3.1" data-path="experiment-2.html"><a href="experiment-2.html#experimental-set-up-1"><i class="fa fa-check"></i><b>3.1</b> Experimental set up</a></li>
+<li class="chapter" data-level="3.2" data-path="experiment-2.html"><a href="experiment-2.html#descriptive-analysis-of-each-simulation-1"><i class="fa fa-check"></i><b>3.2</b> Descriptive analysis of each simulation</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-01-4yasghcv"><i class="fa fa-check"></i><b>3.2.1</b> SIM09-04-11-01-4YaSGh–CV</a><ul>
+<li class="chapter" data-level="3.2.1.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-2"><i class="fa fa-check"></i><b>3.2.1.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.1.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-2"><i class="fa fa-check"></i><b>3.2.1.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.1.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-2"><i class="fa fa-check"></i><b>3.2.1.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.1.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-2"><i class="fa fa-check"></i><b>3.2.1.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.1.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-2"><i class="fa fa-check"></i><b>3.2.1.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.1.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-2"><i class="fa fa-check"></i><b>3.2.1.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.1.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-2"><i class="fa fa-check"></i><b>3.2.1.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.1.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-2"><i class="fa fa-check"></i><b>3.2.1.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.2" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-01-4yasghdv"><i class="fa fa-check"></i><b>3.2.2</b> SIM09-04-11-01-4YaSGh–DV</a><ul>
+<li class="chapter" data-level="3.2.2.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-3"><i class="fa fa-check"></i><b>3.2.2.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.2.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-3"><i class="fa fa-check"></i><b>3.2.2.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.2.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-3"><i class="fa fa-check"></i><b>3.2.2.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.2.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-3"><i class="fa fa-check"></i><b>3.2.2.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.2.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-3"><i class="fa fa-check"></i><b>3.2.2.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.2.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-3"><i class="fa fa-check"></i><b>3.2.2.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.2.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-3"><i class="fa fa-check"></i><b>3.2.2.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.2.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-3"><i class="fa fa-check"></i><b>3.2.2.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.3" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-06-vouk3xcv"><i class="fa fa-check"></i><b>3.2.3</b> SIM09-04-11-06-vouK3X–CV</a><ul>
+<li class="chapter" data-level="3.2.3.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-4"><i class="fa fa-check"></i><b>3.2.3.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.3.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-4"><i class="fa fa-check"></i><b>3.2.3.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.3.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-4"><i class="fa fa-check"></i><b>3.2.3.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.3.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-4"><i class="fa fa-check"></i><b>3.2.3.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.3.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-4"><i class="fa fa-check"></i><b>3.2.3.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.3.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-4"><i class="fa fa-check"></i><b>3.2.3.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.3.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-4"><i class="fa fa-check"></i><b>3.2.3.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.3.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-4"><i class="fa fa-check"></i><b>3.2.3.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.4" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-06-vouk3xdv"><i class="fa fa-check"></i><b>3.2.4</b> SIM09-04-11-06-vouK3X–DV</a><ul>
+<li class="chapter" data-level="3.2.4.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-5"><i class="fa fa-check"></i><b>3.2.4.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.4.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-5"><i class="fa fa-check"></i><b>3.2.4.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.4.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-5"><i class="fa fa-check"></i><b>3.2.4.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.4.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-5"><i class="fa fa-check"></i><b>3.2.4.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.4.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-5"><i class="fa fa-check"></i><b>3.2.4.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.4.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-5"><i class="fa fa-check"></i><b>3.2.4.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.4.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-5"><i class="fa fa-check"></i><b>3.2.4.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.4.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-5"><i class="fa fa-check"></i><b>3.2.4.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.5" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-35-fropbmcv"><i class="fa fa-check"></i><b>3.2.5</b> SIM09-04-11-35-FroPBm–CV</a><ul>
+<li class="chapter" data-level="3.2.5.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-6"><i class="fa fa-check"></i><b>3.2.5.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.5.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-6"><i class="fa fa-check"></i><b>3.2.5.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.5.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-6"><i class="fa fa-check"></i><b>3.2.5.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.5.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-6"><i class="fa fa-check"></i><b>3.2.5.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.5.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-6"><i class="fa fa-check"></i><b>3.2.5.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.5.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-6"><i class="fa fa-check"></i><b>3.2.5.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.5.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-6"><i class="fa fa-check"></i><b>3.2.5.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.5.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-6"><i class="fa fa-check"></i><b>3.2.5.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.6" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-35-fropbmdv"><i class="fa fa-check"></i><b>3.2.6</b> SIM09-04-11-35-FroPBm–DV</a><ul>
+<li class="chapter" data-level="3.2.6.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-7"><i class="fa fa-check"></i><b>3.2.6.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.6.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-7"><i class="fa fa-check"></i><b>3.2.6.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.6.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-7"><i class="fa fa-check"></i><b>3.2.6.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.6.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-7"><i class="fa fa-check"></i><b>3.2.6.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.6.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-7"><i class="fa fa-check"></i><b>3.2.6.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.6.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-7"><i class="fa fa-check"></i><b>3.2.6.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.6.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-7"><i class="fa fa-check"></i><b>3.2.6.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.6.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-7"><i class="fa fa-check"></i><b>3.2.6.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.7" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-00-wrfr95cv"><i class="fa fa-check"></i><b>3.2.7</b> SIM09-04-11-00-wrFr95–CV</a><ul>
+<li class="chapter" data-level="3.2.7.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-8"><i class="fa fa-check"></i><b>3.2.7.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.7.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-8"><i class="fa fa-check"></i><b>3.2.7.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.7.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-8"><i class="fa fa-check"></i><b>3.2.7.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.7.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-8"><i class="fa fa-check"></i><b>3.2.7.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.7.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-8"><i class="fa fa-check"></i><b>3.2.7.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.7.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-8"><i class="fa fa-check"></i><b>3.2.7.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.7.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-8"><i class="fa fa-check"></i><b>3.2.7.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.7.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-8"><i class="fa fa-check"></i><b>3.2.7.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2.8" data-path="experiment-2.html"><a href="experiment-2.html#sim09-04-11-00-wrfr95dv"><i class="fa fa-check"></i><b>3.2.8</b> SIM09-04-11-00-wrFr95–DV</a><ul>
+<li class="chapter" data-level="3.2.8.1" data-path="experiment-2.html"><a href="experiment-2.html#simulationparameters-9"><i class="fa fa-check"></i><b>3.2.8.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="3.2.8.2" data-path="experiment-2.html"><a href="experiment-2.html#alledgesbylabel-9"><i class="fa fa-check"></i><b>3.2.8.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="3.2.8.3" data-path="experiment-2.html"><a href="experiment-2.html#allverticesbytype-9"><i class="fa fa-check"></i><b>3.2.8.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="3.2.8.4" data-path="experiment-2.html"><a href="experiment-2.html#distribution-of-similarityedgesbyweight-9"><i class="fa fa-check"></i><b>3.2.8.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="3.2.8.5" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-item-similarity-item-edges-9"><i class="fa fa-check"></i><b>3.2.8.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="3.2.8.6" data-path="experiment-2.html"><a href="experiment-2.html#degree-distribution-of-agent-knows-agent-edges-9"><i class="fa fa-check"></i><b>3.2.8.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="3.2.8.7" data-path="experiment-2.html"><a href="experiment-2.html#runing-time-by-method-9"><i class="fa fa-check"></i><b>3.2.8.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="3.2.8.8" data-path="experiment-2.html"><a href="experiment-2.html#found-structures-9"><i class="fa fa-check"></i><b>3.2.8.8</b> Found structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="experiment-2.html"><a href="experiment-2.html#scatterplots-of-experiment-1"><i class="fa fa-check"></i><b>3.3</b> Scatterplots of experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="experiment-3.html"><a href="experiment-3.html"><i class="fa fa-check"></i><b>4</b> Experiment 3</a><ul>
+<li class="chapter" data-level="4.1" data-path="experiment-3.html"><a href="experiment-3.html#experimental-set-up-2"><i class="fa fa-check"></i><b>4.1</b> Experimental set up</a></li>
+<li class="chapter" data-level="4.2" data-path="experiment-3.html"><a href="experiment-3.html#descriptive-analysis-of-each-simulation-2"><i class="fa fa-check"></i><b>4.2</b> Descriptive analysis of each simulation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-13-vhdefycv"><i class="fa fa-check"></i><b>4.2.1</b> SIM09-04-01-13-vhDeFY–CV</a><ul>
+<li class="chapter" data-level="4.2.1.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-10"><i class="fa fa-check"></i><b>4.2.1.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.1.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-10"><i class="fa fa-check"></i><b>4.2.1.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.1.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-10"><i class="fa fa-check"></i><b>4.2.1.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.1.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-10"><i class="fa fa-check"></i><b>4.2.1.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.1.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-10"><i class="fa fa-check"></i><b>4.2.1.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.1.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-10"><i class="fa fa-check"></i><b>4.2.1.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.1.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-10"><i class="fa fa-check"></i><b>4.2.1.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.1.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-10"><i class="fa fa-check"></i><b>4.2.1.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.2" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-13-vhdefydv"><i class="fa fa-check"></i><b>4.2.2</b> SIM09-04-01-13-vhDeFY–DV</a><ul>
+<li class="chapter" data-level="4.2.2.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-11"><i class="fa fa-check"></i><b>4.2.2.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.2.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-11"><i class="fa fa-check"></i><b>4.2.2.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.2.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-11"><i class="fa fa-check"></i><b>4.2.2.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.2.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-11"><i class="fa fa-check"></i><b>4.2.2.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.2.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-11"><i class="fa fa-check"></i><b>4.2.2.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.2.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-11"><i class="fa fa-check"></i><b>4.2.2.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.2.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-11"><i class="fa fa-check"></i><b>4.2.2.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.2.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-11"><i class="fa fa-check"></i><b>4.2.2.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.3" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-26-ody6ejcv"><i class="fa fa-check"></i><b>4.2.3</b> SIM09-04-01-26-odY6eJ–CV</a><ul>
+<li class="chapter" data-level="4.2.3.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-12"><i class="fa fa-check"></i><b>4.2.3.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.3.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-12"><i class="fa fa-check"></i><b>4.2.3.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.3.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-12"><i class="fa fa-check"></i><b>4.2.3.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.3.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-12"><i class="fa fa-check"></i><b>4.2.3.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.3.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-12"><i class="fa fa-check"></i><b>4.2.3.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.3.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-12"><i class="fa fa-check"></i><b>4.2.3.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.3.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-12"><i class="fa fa-check"></i><b>4.2.3.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.3.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-12"><i class="fa fa-check"></i><b>4.2.3.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.4" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-26-ody6ejdv"><i class="fa fa-check"></i><b>4.2.4</b> SIM09-04-01-26-odY6eJ–DV</a><ul>
+<li class="chapter" data-level="4.2.4.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-13"><i class="fa fa-check"></i><b>4.2.4.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.4.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-13"><i class="fa fa-check"></i><b>4.2.4.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.4.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-13"><i class="fa fa-check"></i><b>4.2.4.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.4.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-13"><i class="fa fa-check"></i><b>4.2.4.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.4.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-13"><i class="fa fa-check"></i><b>4.2.4.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.4.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-13"><i class="fa fa-check"></i><b>4.2.4.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.4.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-13"><i class="fa fa-check"></i><b>4.2.4.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.4.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-13"><i class="fa fa-check"></i><b>4.2.4.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.5" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-38-zwreuzcv"><i class="fa fa-check"></i><b>4.2.5</b> SIM09-04-01-38-zWrEUZ–CV</a><ul>
+<li class="chapter" data-level="4.2.5.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-14"><i class="fa fa-check"></i><b>4.2.5.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.5.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-14"><i class="fa fa-check"></i><b>4.2.5.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.5.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-14"><i class="fa fa-check"></i><b>4.2.5.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.5.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-14"><i class="fa fa-check"></i><b>4.2.5.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.5.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-14"><i class="fa fa-check"></i><b>4.2.5.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.5.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-14"><i class="fa fa-check"></i><b>4.2.5.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.5.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-14"><i class="fa fa-check"></i><b>4.2.5.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.5.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-14"><i class="fa fa-check"></i><b>4.2.5.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.6" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-38-zwreuzdv"><i class="fa fa-check"></i><b>4.2.6</b> SIM09-04-01-38-zWrEUZ–DV</a><ul>
+<li class="chapter" data-level="4.2.6.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-15"><i class="fa fa-check"></i><b>4.2.6.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.6.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-15"><i class="fa fa-check"></i><b>4.2.6.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.6.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-15"><i class="fa fa-check"></i><b>4.2.6.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.6.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-15"><i class="fa fa-check"></i><b>4.2.6.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.6.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-15"><i class="fa fa-check"></i><b>4.2.6.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.6.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-15"><i class="fa fa-check"></i><b>4.2.6.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.6.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-15"><i class="fa fa-check"></i><b>4.2.6.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.6.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-15"><i class="fa fa-check"></i><b>4.2.6.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.7" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-48-pgr9j8cv"><i class="fa fa-check"></i><b>4.2.7</b> SIM09-04-01-48-PGR9J8–CV</a><ul>
+<li class="chapter" data-level="4.2.7.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-16"><i class="fa fa-check"></i><b>4.2.7.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.7.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-16"><i class="fa fa-check"></i><b>4.2.7.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.7.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-16"><i class="fa fa-check"></i><b>4.2.7.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.7.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-16"><i class="fa fa-check"></i><b>4.2.7.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.7.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-16"><i class="fa fa-check"></i><b>4.2.7.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.7.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-16"><i class="fa fa-check"></i><b>4.2.7.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.7.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-16"><i class="fa fa-check"></i><b>4.2.7.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.7.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-16"><i class="fa fa-check"></i><b>4.2.7.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.8" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-48-pgr9j8dv"><i class="fa fa-check"></i><b>4.2.8</b> SIM09-04-01-48-PGR9J8–DV</a><ul>
+<li class="chapter" data-level="4.2.8.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-17"><i class="fa fa-check"></i><b>4.2.8.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.8.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-17"><i class="fa fa-check"></i><b>4.2.8.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.8.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-17"><i class="fa fa-check"></i><b>4.2.8.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.8.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-17"><i class="fa fa-check"></i><b>4.2.8.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.8.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-17"><i class="fa fa-check"></i><b>4.2.8.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.8.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-17"><i class="fa fa-check"></i><b>4.2.8.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.8.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-17"><i class="fa fa-check"></i><b>4.2.8.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.8.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-17"><i class="fa fa-check"></i><b>4.2.8.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.9" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-55-8swvevcv"><i class="fa fa-check"></i><b>4.2.9</b> SIM09-04-01-55-8swVEv–CV</a><ul>
+<li class="chapter" data-level="4.2.9.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-18"><i class="fa fa-check"></i><b>4.2.9.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.9.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-18"><i class="fa fa-check"></i><b>4.2.9.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.9.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-18"><i class="fa fa-check"></i><b>4.2.9.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.9.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-18"><i class="fa fa-check"></i><b>4.2.9.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.9.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-18"><i class="fa fa-check"></i><b>4.2.9.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.9.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-18"><i class="fa fa-check"></i><b>4.2.9.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.9.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-18"><i class="fa fa-check"></i><b>4.2.9.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.9.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-18"><i class="fa fa-check"></i><b>4.2.9.8</b> Found structures</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.10" data-path="experiment-3.html"><a href="experiment-3.html#sim09-04-01-55-8swvevdv"><i class="fa fa-check"></i><b>4.2.10</b> SIM09-04-01-55-8swVEv–DV</a><ul>
+<li class="chapter" data-level="4.2.10.1" data-path="experiment-3.html"><a href="experiment-3.html#simulationparameters-19"><i class="fa fa-check"></i><b>4.2.10.1</b> simulationParameters</a></li>
+<li class="chapter" data-level="4.2.10.2" data-path="experiment-3.html"><a href="experiment-3.html#alledgesbylabel-19"><i class="fa fa-check"></i><b>4.2.10.2</b> allEdgesByLabel</a></li>
+<li class="chapter" data-level="4.2.10.3" data-path="experiment-3.html"><a href="experiment-3.html#allverticesbytype-19"><i class="fa fa-check"></i><b>4.2.10.3</b> allVerticesByType</a></li>
+<li class="chapter" data-level="4.2.10.4" data-path="experiment-3.html"><a href="experiment-3.html#distribution-of-similarityedgesbyweight-19"><i class="fa fa-check"></i><b>4.2.10.4</b> distribution of similarityEdgesByWeight</a></li>
+<li class="chapter" data-level="4.2.10.5" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-item-similarity-item-edges-19"><i class="fa fa-check"></i><b>4.2.10.5</b> Degree distribution of item-&gt;similarity-&gt;item edges</a></li>
+<li class="chapter" data-level="4.2.10.6" data-path="experiment-3.html"><a href="experiment-3.html#degree-distribution-of-agent-knows-agent-edges-19"><i class="fa fa-check"></i><b>4.2.10.6</b> Degree distribution of agent-&gt;knows-&gt;agent edges</a></li>
+<li class="chapter" data-level="4.2.10.7" data-path="experiment-3.html"><a href="experiment-3.html#runing-time-by-method-19"><i class="fa fa-check"></i><b>4.2.10.7</b> Runing time by method</a></li>
+<li class="chapter" data-level="4.2.10.8" data-path="experiment-3.html"><a href="experiment-3.html#found-structures-19"><i class="fa fa-check"></i><b>4.2.10.8</b> Found structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="experiment-3.html"><a href="experiment-3.html#scatterplots-of-experiment-2"><i class="fa fa-check"></i><b>4.3</b> Scatterplots of experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cross-analysis-of-all-additional-experiments.html"><a href="cross-analysis-of-all-additional-experiments.html"><i class="fa fa-check"></i><b>5</b> Cross analysis of all additional experiments</a><ul>
+<li class="chapter" data-level="5.1" data-path="cross-analysis-of-all-additional-experiments.html"><a href="cross-analysis-of-all-additional-experiments.html#summary-data"><i class="fa fa-check"></i><b>5.1</b> Summary data</a></li>
+<li class="chapter" data-level="5.2" data-path="cross-analysis-of-all-additional-experiments.html"><a href="cross-analysis-of-all-additional-experiments.html#scatterplots-of-all-experiments"><i class="fa fa-check"></i><b>5.2</b> Scatterplots of all experiments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Additional experiments for decentralized vs centralized search</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cross-analysis-of-all-additional-experiments" class="section level1">
+<h1><span class="header-section-number">5</span> Cross analysis of all additional experiments</h1>
+<div id="summary-data" class="section level2">
+<h2><span class="header-section-number">5.1</span> Summary data</h2>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1300px; ">
+<table class="table table-condensed" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+experimentId
+</th>
+<th style="text-align:left;">
+simulationId
+</th>
+<th style="text-align:right;">
+agentNumber
+</th>
+<th style="text-align:left;">
+similarityConnectThreshold
+</th>
+<th style="text-align:right;">
+chainLength
+</th>
+<th style="text-align:right;">
+similaritySearchThreshold
+</th>
+<th style="text-align:left;">
+maxDistance
+</th>
+<th style="text-align:right;">
+randomWorksNumberMultiplier
+</th>
+<th style="text-align:right;">
+edges_offers
+</th>
+<th style="text-align:right;">
+edges_similarity
+</th>
+<th style="text-align:right;">
+edges_owns
+</th>
+<th style="text-align:right;">
+edges_demands
+</th>
+<th style="text-align:right;">
+edges_knows
+</th>
+<th style="text-align:right;">
+edges_total
+</th>
+<th style="text-align:right;">
+vertices_agent
+</th>
+<th style="text-align:right;">
+vertices_item
+</th>
+<th style="text-align:right;">
+vertices_work
+</th>
+<th style="text-align:right;">
+vertices_total
+</th>
+<th style="text-align:right;">
+sum_wallTime_ms_total
+</th>
+<th style="text-align:right;">
+process_total
+</th>
+<th style="text-align:right;">
+foundCycles
+</th>
+<th style="text-align:right;">
+foundPaths
+</th>
+<th style="text-align:right;">
+sum_wallTime_min_total
+</th>
+<th style="text-align:left;">
+simulationType
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+EXP09-04-04-11-kvIbMs
+</td>
+<td style="text-align:left;">
+SIM09-04-04-11-QX3wao–CV
+</td>
+<td style="text-align:right;">
+800
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:right;">
+2,007,454
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:right;">
+4,801
+</td>
+<td style="text-align:right;">
+2,017,085
+</td>
+<td style="text-align:right;">
+801
+</td>
+<td style="text-align:right;">
+3,220
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:right;">
+5,631
+</td>
+<td style="text-align:right;">
+4,507,057
+</td>
+<td style="text-align:right;">
+2,079
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+75.1176167
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-04-11-kvIbMs
+</td>
+<td style="text-align:left;">
+SIM09-04-04-11-QX3wao–DV
+</td>
+<td style="text-align:right;">
+800
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:right;">
+2,007,284
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:right;">
+4,801
+</td>
+<td style="text-align:right;">
+2,016,915
+</td>
+<td style="text-align:right;">
+801
+</td>
+<td style="text-align:right;">
+3,220
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:right;">
+5,631
+</td>
+<td style="text-align:right;">
+44,533,858
+</td>
+<td style="text-align:right;">
+1,779
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+742.2309667
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-11-00-zmNPzL
+</td>
+<td style="text-align:left;">
+SIM09-04-11-01-4YaSGh–CV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+37,414
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+38,645
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+282,409
+</td>
+<td style="text-align:right;">
+627
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.7068167
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-11-00-zmNPzL
+</td>
+<td style="text-align:left;">
+SIM09-04-11-01-4YaSGh–DV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+37,016
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+38,247
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+175,252
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2.9208667
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-11-00-zmNPzL
+</td>
+<td style="text-align:left;">
+SIM09-04-11-06-vouK3X–CV
+</td>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+410
+</td>
+<td style="text-align:right;">
+138,996
+</td>
+<td style="text-align:right;">
+410
+</td>
+<td style="text-align:right;">
+410
+</td>
+<td style="text-align:right;">
+1,201
+</td>
+<td style="text-align:right;">
+141,427
+</td>
+<td style="text-align:right;">
+201
+</td>
+<td style="text-align:right;">
+820
+</td>
+<td style="text-align:right;">
+410
+</td>
+<td style="text-align:right;">
+1,431
+</td>
+<td style="text-align:right;">
+1,650,675
+</td>
+<td style="text-align:right;">
+1,241
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+27.5112500
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-11-00-zmNPzL
+</td>
+<td style="text-align:left;">
+SIM09-04-11-06-vouK3X–DV
+</td>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+410
+</td>
+<td style="text-align:right;">
+137,952
+</td>
+<td style="text-align:right;">
+410
+</td>
+<td style="text-align:right;">
+410
+</td>
+<td style="text-align:right;">
+1,201
+</td>
+<td style="text-align:right;">
+140,383
+</td>
+<td style="text-align:right;">
+201
+</td>
+<td style="text-align:right;">
+820
+</td>
+<td style="text-align:right;">
+410
+</td>
+<td style="text-align:right;">
+1,431
+</td>
+<td style="text-align:right;">
+903,842
+</td>
+<td style="text-align:right;">
+299
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+15.0640333
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-11-00-zmNPzL
+</td>
+<td style="text-align:left;">
+SIM09-04-11-35-FroPBm–CV
+</td>
+<td style="text-align:right;">
+400
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+810
+</td>
+<td style="text-align:right;">
+516,016
+</td>
+<td style="text-align:right;">
+810
+</td>
+<td style="text-align:right;">
+810
+</td>
+<td style="text-align:right;">
+2,401
+</td>
+<td style="text-align:right;">
+520,847
+</td>
+<td style="text-align:right;">
+401
+</td>
+<td style="text-align:right;">
+1,620
+</td>
+<td style="text-align:right;">
+810
+</td>
+<td style="text-align:right;">
+2,831
+</td>
+<td style="text-align:right;">
+3,831,663
+</td>
+<td style="text-align:right;">
+758
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+63.8610500
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-11-00-zmNPzL
+</td>
+<td style="text-align:left;">
+SIM09-04-11-35-FroPBm–DV
+</td>
+<td style="text-align:right;">
+400
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+810
+</td>
+<td style="text-align:right;">
+515,321
+</td>
+<td style="text-align:right;">
+810
+</td>
+<td style="text-align:right;">
+810
+</td>
+<td style="text-align:right;">
+2,401
+</td>
+<td style="text-align:right;">
+520,152
+</td>
+<td style="text-align:right;">
+401
+</td>
+<td style="text-align:right;">
+1,620
+</td>
+<td style="text-align:right;">
+810
+</td>
+<td style="text-align:right;">
+2,831
+</td>
+<td style="text-align:right;">
+5,521,903
+</td>
+<td style="text-align:right;">
+510
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+92.0317167
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-11-00-zmNPzL
+</td>
+<td style="text-align:left;">
+SIM09-04-11-00-wrFr95–CV
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+11,264
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+201
+</td>
+<td style="text-align:right;">
+11,795
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+220
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+381
+</td>
+<td style="text-align:right;">
+59,755
+</td>
+<td style="text-align:right;">
+320
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.9959167
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-11-00-zmNPzL
+</td>
+<td style="text-align:left;">
+SIM09-04-11-00-wrFr95–DV
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+11,080
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+201
+</td>
+<td style="text-align:right;">
+11,611
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+220
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+381
+</td>
+<td style="text-align:right;">
+39,423
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.6570500
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-13-vhDeFY–CV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+156,822
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+158,053
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+761,753
+</td>
+<td style="text-align:right;">
+1,140
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+12.6958833
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-13-vhDeFY–DV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+153,891
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+155,122
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+796,104
+</td>
+<td style="text-align:right;">
+187
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+13.2684000
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-26-odY6eJ–CV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.6
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+133,014
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+134,245
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+654,510
+</td>
+<td style="text-align:right;">
+1,081
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+10.9085000
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-26-odY6eJ–DV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.6
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+130,030
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+131,261
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+636,311
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+10.6051833
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-38-zWrEUZ–CV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.7
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+109,158
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+110,389
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+573,258
+</td>
+<td style="text-align:right;">
+915
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+9.5543000
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-38-zWrEUZ–DV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.7
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+106,910
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+108,141
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+479,622
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+7.9937000
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-48-PGR9J8–CV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.8
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+73,966
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+75,197
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+429,900
+</td>
+<td style="text-align:right;">
+824
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+7.1650000
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-48-PGR9J8–DV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.8
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+73,104
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+74,335
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+310,391
+</td>
+<td style="text-align:right;">
+149
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+5.1731833
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-55-8swVEv–CV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+37,490
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+38,721
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+281,597
+</td>
+<td style="text-align:right;">
+630
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.6932833
+</td>
+<td style="text-align:left;">
+Centralized
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EXP09-04-01-13-AzAjTh
+</td>
+<td style="text-align:left;">
+SIM09-04-01-55-8swVEv–DV
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+37,086
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+601
+</td>
+<td style="text-align:right;">
+38,317
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+731
+</td>
+<td style="text-align:right;">
+171,819
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2.8636500
+</td>
+<td style="text-align:left;">
+Decentralized
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="scatterplots-of-all-experiments" class="section level2">
+<h2><span class="header-section-number">5.2</span> Scatterplots of all experiments</h2>
+<p><img src="index_files/figure-html/get-experiment-info-97.png" width="672" /><img src="index_files/figure-html/get-experiment-info-98.png" width="672" /><img src="index_files/figure-html/get-experiment-info-99.png" width="672" /><img src="index_files/figure-html/get-experiment-info-100.png" width="672" /><img src="index_files/figure-html/get-experiment-info-101.png" width="672" /><img src="index_files/figure-html/get-experiment-info-102.png" width="672" /><img src="index_files/figure-html/get-experiment-info-103.png" width="672" /><img src="index_files/figure-html/get-experiment-info-104.png" width="672" /><img src="index_files/figure-html/get-experiment-info-105.png" width="672" /><img src="index_files/figure-html/get-experiment-info-106.png" width="672" /><img src="index_files/figure-html/get-experiment-info-107.png" width="672" /><img src="index_files/figure-html/get-experiment-info-108.png" width="672" /><img src="index_files/figure-html/get-experiment-info-109.png" width="672" /><img src="index_files/figure-html/get-experiment-info-110.png" width="672" /><img src="index_files/figure-html/get-experiment-info-111.png" width="672" /><img src="index_files/figure-html/get-experiment-info-112.png" width="672" /><img src="index_files/figure-html/get-experiment-info-113.png" width="672" /><img src="index_files/figure-html/get-experiment-info-114.png" width="672" /><img src="index_files/figure-html/get-experiment-info-115.png" width="672" /><img src="index_files/figure-html/get-experiment-info-116.png" width="672" /><img src="index_files/figure-html/get-experiment-info-117.png" width="672" /><img src="index_files/figure-html/get-experiment-info-118.png" width="672" /><img src="index_files/figure-html/get-experiment-info-119.png" width="672" /><img src="index_files/figure-html/get-experiment-info-120.png" width="672" /><img src="index_files/figure-html/get-experiment-info-121.png" width="672" /><img src="index_files/figure-html/get-experiment-info-122.png" width="672" /><img src="index_files/figure-html/get-experiment-info-123.png" width="672" /><img src="index_files/figure-html/get-experiment-info-124.png" width="672" /><img src="index_files/figure-html/get-experiment-info-125.png" width="672" /><img src="index_files/figure-html/get-experiment-info-126.png" width="672" /><img src="index_files/figure-html/get-experiment-info-127.png" width="672" /><img src="index_files/figure-html/get-experiment-info-128.png" width="672" /><img src="index_files/figure-html/get-experiment-info-129.png" width="672" /><img src="index_files/figure-html/get-experiment-info-130.png" width="672" /><img src="index_files/figure-html/get-experiment-info-131.png" width="672" /><img src="index_files/figure-html/get-experiment-info-132.png" width="672" /><img src="index_files/figure-html/get-experiment-info-133.png" width="672" /><img src="index_files/figure-html/get-experiment-info-134.png" width="672" /><img src="index_files/figure-html/get-experiment-info-135.png" width="672" /><img src="index_files/figure-html/get-experiment-info-136.png" width="672" /><img src="index_files/figure-html/get-experiment-info-137.png" width="672" /><img src="index_files/figure-html/get-experiment-info-138.png" width="672" /><img src="index_files/figure-html/get-experiment-info-139.png" width="672" /><img src="index_files/figure-html/get-experiment-info-140.png" width="672" /><img src="index_files/figure-html/get-experiment-info-141.png" width="672" /><img src="index_files/figure-html/get-experiment-info-142.png" width="672" /><img src="index_files/figure-html/get-experiment-info-143.png" width="672" /><img src="index_files/figure-html/get-experiment-info-144.png" width="672" /><img src="index_files/figure-html/get-experiment-info-145.png" width="672" /><img src="index_files/figure-html/get-experiment-info-146.png" width="672" /><img src="index_files/figure-html/get-experiment-info-147.png" width="672" /><img src="index_files/figure-html/get-experiment-info-148.png" width="672" /><img src="index_files/figure-html/get-experiment-info-149.png" width="672" /><img src="index_files/figure-html/get-experiment-info-150.png" width="672" /><img src="index_files/figure-html/get-experiment-info-151.png" width="672" /><img src="index_files/figure-html/get-experiment-info-152.png" width="672" /><img src="index_files/figure-html/get-experiment-info-153.png" width="672" /><img src="index_files/figure-html/get-experiment-info-154.png" width="672" /><img src="index_files/figure-html/get-experiment-info-155.png" width="672" /><img src="index_files/figure-html/get-experiment-info-156.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="experiment-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
