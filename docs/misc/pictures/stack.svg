@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="stack.svg"
+   inkscape:export-filename="/home/kabir/repos/offernet/docs/misc/pictures/stack.png"
+   inkscape:export-xdpi="299"
+   inkscape:export-ydpi="299">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="130.83449 : 473.16908 : 1"
+       inkscape:vp_y="-258.03712 : 603.62483 : 0"
+       inkscape:vp_z="815.0355 : 765.65085 : 1"
+       inkscape:persp3d-origin="518.19308 : 513.53797 : 1"
+       id="perspective4166" />
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="50.507628 : 528.20141 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="794.60212 : 528.20141 : 1"
+       inkscape:persp3d-origin="422.55487 : 352.80771 : 1"
+       id="perspective4136" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.6203867"
+     inkscape:cx="398.39395"
+     inkscape:cy="719.36364"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer2"
+     showgrid="false"
+     showguides="false"
+     inkscape:window-width="1859"
+     inkscape:window-height="1056"
+     inkscape:window-x="61"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4696" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Shadow">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9"
+       width="205.24994"
+       height="30.169765"
+       x="52.936237"
+       y="177.56947"
+       ry="4.4053698" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-9"
+       width="205.24994"
+       height="30.169765"
+       x="52.394505"
+       y="217.4287"
+       ry="4.4053698" />
+  </g>
+  <g
+     inkscape:label="Rectangles"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <rect
+       style="opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.96081096;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168"
+       width="204.63078"
+       height="31.085358"
+       x="48.935345"
+       y="172.79825"
+       ry="4.5390639" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Text">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="150.40201"
+       y="192.10197"
+       id="text4521"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="150.40201"
+         y="192.10197"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4525">Heterogenous agents' logic</tspan></text>
+    <rect
+       style="opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.95310658;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-5"
+       width="204.45985"
+       height="30.614389"
+       x="48.544971"
+       y="212.2988"
+       ry="4.4702935" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="152.80089"
+       y="232.16217"
+       id="text4521-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="152.80089"
+         y="232.16217"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4525-8">Actor framework</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="143.3902"
+       y="394.47131"
+       id="text4521-7-9-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="143.3902"
+         y="394.47131"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4688" /></text>
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-9-0"
+       width="205.24994"
+       height="30.169765"
+       x="52.545971"
+       y="258.4491"
+       ry="4.4053698" />
+    <rect
+       style="opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.95310658;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-5-2"
+       width="204.45985"
+       height="30.614389"
+       x="48.696438"
+       y="253.31918"
+       ry="4.4702935" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="151.57127"
+       y="273.18256"
+       id="text4521-7-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="151.57127"
+         y="273.18256"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4525-8-1">Graph computing engine</tspan></text>
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-9-0-9"
+       width="205.24994"
+       height="30.169765"
+       x="52.393063"
+       y="297.3161"
+       ry="4.4053698" />
+    <rect
+       style="opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.95310658;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-5-2-6"
+       width="204.45985"
+       height="30.614389"
+       x="48.54353"
+       y="292.18619"
+       ry="4.4702935" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="151.41837"
+       y="312.04956"
+       id="text4521-7-0-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="151.41837"
+         y="312.04956"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4774">Persistent network topology</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="98.832886"
+       y="157.30629"
+       id="text4778"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4780"
+         x="98.832886"
+         y="157.30629"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;font-family:MathJax_Main;-inkscape-font-specification:MathJax_Main">Architecture</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.38344049;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.38344056, 2.76688111;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 261.69078,133.3659 0,205.06155"
+       id="path4782"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-8"
+       width="205.24994"
+       height="30.169765"
+       x="282.64169"
+       y="175.65594"
+       ry="4.4053698" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-9-9"
+       width="205.24994"
+       height="30.169765"
+       x="283.2048"
+       y="216.0676"
+       ry="4.4053698" />
+    <rect
+       style="display:inline;opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.96081096;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-0"
+       width="204.63078"
+       height="31.085358"
+       x="279.74564"
+       y="171.43716"
+       ry="4.5390639" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:100%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="385.63171"
+       y="183.0069"
+       id="text4521-2"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="387.19421"
+         y="183.0069"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:100%;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4860">Custom code </tspan><tspan
+         sodipodi:role="line"
+         x="385.63171"
+         y="195.88882"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:100%;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4864">(Groovy / Java / Gremlin)</tspan></text>
+    <rect
+       style="opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.95310658;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-5-7"
+       width="204.45985"
+       height="30.614389"
+       x="279.35529"
+       y="210.93771"
+       ry="4.4702935" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="383.61121"
+       y="230.80109"
+       id="text4521-7-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="383.61121"
+         y="230.80109"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4525-8-5">akka.io (java)</tspan></text>
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-9-0-7"
+       width="205.24994"
+       height="30.169765"
+       x="283.35626"
+       y="257.08801"
+       ry="4.4053698" />
+    <rect
+       style="opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.95310658;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-5-2-1"
+       width="204.45985"
+       height="30.614389"
+       x="279.50674"
+       y="251.9581"
+       ry="4.4702935" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="384.03888"
+       y="270.71661"
+       id="text4521-7-0-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="384.03888"
+         y="270.71661"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4525-8-1-3">tinkerpop.apache.org (java)</tspan></text>
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-9-0-9-3"
+       width="205.24994"
+       height="30.169765"
+       x="283.20337"
+       y="295.95502"
+       ry="4.4053698" />
+    <rect
+       style="opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.95310658;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-5-2-6-8"
+       width="204.45985"
+       height="30.614389"
+       x="279.35382"
+       y="290.8251"
+       ry="4.4702935" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="382.22867"
+       y="310.68848"
+       id="text4521-7-0-2-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="382.22867"
+         y="310.68848"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4774-1">DataStax Enterprise Graph</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="337.37717"
+       y="154.84033"
+       id="text4778-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4780-8"
+         x="337.37717"
+         y="154.84033"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;font-family:MathJax_Main;-inkscape-font-specification:MathJax_Main">Software</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.37601686;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.37601684, 2.75203368;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 502.94526,133.77466 0,202.86668"
+       id="path4782-6"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-8-3"
+       width="205.24994"
+       height="70.039299"
+       x="517.66583"
+       y="177.01518"
+       ry="7.2550445" />
+    <rect
+       style="display:inline;opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-0-0"
+       width="204.15321"
+       height="69.830116"
+       x="513.90369"
+       y="172.48276"
+       ry="7.1581988" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:100%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="618.99854"
+       y="198.45303"
+       id="text4521-2-8"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="620.56104"
+         y="198.45303"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:100%;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4966">Decentralized search, matching </tspan><tspan
+         sodipodi:role="line"
+         x="618.99854"
+         y="210.95303"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:100%;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4970">and other ON processes</tspan><tspan
+         sodipodi:role="line"
+         x="618.99854"
+         y="223.45303"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:100%;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4972">for each agent</tspan></text>
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-9-0-7-5"
+       width="205.24994"
+       height="30.169765"
+       x="517.27551"
+       y="257.89481"
+       ry="4.4053698" />
+    <rect
+       style="opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.95310658;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-5-2-1-9"
+       width="204.45985"
+       height="30.614389"
+       x="513.42603"
+       y="252.76491"
+       ry="4.4702935" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="615.19598"
+       y="270.97098"
+       id="text4521-7-0-3-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="615.19598"
+         y="270.97098"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4974">Interaction with network structures</tspan></text>
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-9-0-9-3-1"
+       width="205.24994"
+       height="30.169765"
+       x="517.12262"
+       y="296.76181"
+       ry="4.4053698" />
+    <rect
+       style="opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.95310658;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-5-2-6-8-5"
+       width="204.45985"
+       height="30.614389"
+       x="513.27307"
+       y="291.6319"
+       ry="4.4702935" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="616.14795"
+       y="311.49527"
+       id="text4521-7-0-2-5-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="616.14795"
+         y="311.49527"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan4774-1-8">Property graph domain model</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="519.92072"
+       y="156.19957"
+       id="text4778-0-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4780-8-5"
+         x="519.92072"
+         y="156.19957"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;font-family:MathJax_Main;-inkscape-font-specification:MathJax_Main">OfferNets implementation</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.38344049;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.38344056, 2.76688111;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 502.75076,207.24439 45.51555,208.14046"
+       id="path4782-65"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.38344049;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.38344056, 2.76688111;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 719.00598,249.42416 44.934967,247.91522"
+       id="path4782-65-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.38344049;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.38344056, 2.76688111;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 720.87104,289.19892 46.800021,287.68998"
+       id="path4782-65-9-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.22000002;stroke:none;stroke-width:1.04776502;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-9-7-9-4"
+       width="231.10791"
+       height="26.777771"
+       x="269.207"
+       y="332.47159"
+       ry="3.9100726" />
+    <rect
+       style="display:inline;opacity:1;fill:#fffbff;fill-opacity:1;stroke:#000000;stroke-width:0.96051705;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4168-5-3-7"
+       width="230.41075"
+       height="27.590424"
+       x="265.89658"
+       y="327.06488"
+       ry="4.0287361" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="382.43967"
+       y="344.61819"
+       id="text4521-3-1-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="384.00217"
+         y="344.61819"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:MathJax_Math;-inkscape-font-specification:MathJax_Math;text-align:center;text-anchor:middle"
+         id="tspan10146">DataStax Studio and DevOps frontends </tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 365.43058,321.50105 0,4.97185 0.0488,0.68359"
+       id="path10150"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+  </g>
+</svg>

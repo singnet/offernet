@@ -1,0 +1,31 @@
+--- 
+title: "Experiment #1: centralized vs decentralized search"
+author: "Kabir Veitas (kabir@singularitynet.io)"
+date: "2018-10-14"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: singnet/offernet
+url: 'http\://seankross.com/bookdown-start/'
+---
+
+# Introduction
+
+Here I discuss and provide broader interpretation of results documented in the Electronic Laboratory Notebook:
+
+1. Set 1:
+	1. [experiment-1-run-1-corrected](https://singnet.github.io/offernet/public/experiment-1-run-1-corrected/)
+	2. [experiment-1-run-2-corrected](https://singnet.github.io/offernet/public/experiment-1-run-2-corrected/)
+	3. [experiment-1-run-3-corrected](https://singnet.github.io/offernet/public/experiment-1-run-3-corrected/)
+2. Set 2:
+	4. [experiment-1-run-4](https://singnet.github.io/offernet/public/experiment-1-run-4/)
+	5. [experiment-1-run-5](https://singnet.github.io/offernet/public/experiment-1-run-5/)
+3. Set 3:
+	6. [experiment-1-run-6](https://singnet.github.io/offernet/public/experiment-1-run-6/)
+	7. [experiment-1-run-7](https://singnet.github.io/offernet/public/experiment-1-run-7/)
+
+All data used in this document in *.Rdata format is available from github repo, for earch experiment separately in directory ```https://github.com/singnet/offernet/blob/master/docs/{experiment name as above}/R_data/summary_of_all_experiments.Rdata```. Source code of all analysis documents is available from [singnet/offernet/docs](https://github.com/singnet/offernet/blob/master/docs/) directory repository. 
+
+Section [Decentralized computing in OfferNet(s)](#decentralized-computing-in-offernets) discusses the concept of open-ended decentralized computing with relationship to Offer Networks. Section [Experiment #1:comparison of decentralized and centralized search](#experiment-one) provides analysis and interpretation of data obtained from running computer simulations. All the code used by simulations and documentation (including this page) can be accessed and downloaded from [singnet/offernet](https://github.com/singnet/offernet) GitHub repository.

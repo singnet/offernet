@@ -1,5 +1,5 @@
 --- 
-title: "Tidy experiment with well distributed properties -- 1"
+title: "Tidy experiment with well distributed properties -- 2"
 author: "Kabir Veitas (kabir@singularitynet.io)"
 date: "`r Sys.Date()`"
 bibliography: book.bib
@@ -32,8 +32,27 @@ library(stringi)
 # Introduction
 
 ```{r experiment-description, results = 'asis', eval=TRUE}
-selectedExperiments <- c('EXP10-02-01-04-YQvrhC','EXP10-03-10-34-Lfip5F','EXP10-03-11-06-mTThJr', 'EXP10-04-01-28-KKABTK', 'EXP10-04-11-00-6NwhDL', 'EXP10-05-01-29-BHt6a5')
-descriptions <- c('agentNumbers=[400] : chainLengths=[10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; rest of simulations with 400 agents...','agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; rerunning with 800 agents...','agentNumbers=[800] : chainLengths=[5] : randomWorksNumberMultipliers=[1] : maxDistances=[30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; finishing 800 agent simulations with 1 randomWork after crash...', 'agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld] : message=[800 agent simulations with 2 randomWorksNumbers...]', 'agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[2] : maxDistances=[10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; repeating after crash', 'agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[2] : maxDistances=[10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; another crash -- putting what was left, more data should not harm...')
+selectedExperiments <- c(
+'EXP10-02-01-04-YQvrhC',
+'EXP10-03-10-34-Lfip5F',
+'EXP10-03-11-06-mTThJr', 
+'EXP10-04-01-28-KKABTK', 
+'EXP10-04-11-00-6NwhDL', 
+'EXP10-05-01-29-BHt6a5',
+'EXP10-05-10-28-Z7PYyS',
+'EXP10-05-02-12-uUGIa6',
+'EXP10-06-01-49-jZTN76')
+
+descriptions <- c(
+'agentNumbers=[400] : chainLengths=[10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; rest of simulations with 400 agents...',
+'agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; rerunning with 800 agents...',
+'agentNumbers=[800] : chainLengths=[5] : randomWorksNumberMultipliers=[1] : maxDistances=[30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; finishing 800 agent simulations with 1 randomWork after crash...',
+'agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld] : message=[800 agent simulations with 2 randomWorksNumbers...]',
+'agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[2] : maxDistances=[10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; repeating after crash', 
+'agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[2] : maxDistances=[10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; another crash -- putting what was left, more data should not harm...',
+'gentNumbers=[800] : chainLengths=[5] : randomWorksNumberMultipliers=[2] : maxDistances=[30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld]; finishing 800 agent simulation with maxDistance=30 and chainLength=5 -- after graph database restart, which stopped the repeated crashing (!)',
+'agentNumbers=[800] : chainLengths=[10, 20] : randomWorksNumberMultipliers=[2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld] : message=[Rerunning 800 agent simulations with 2 randomWorksNumbers and 10,20 chainLenghts....]',
+'agentNumbers=[800] : chainLengths=[10, 20] : randomWorksNumberMultipliers=[2] : maxDistances=[30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.9] : graphTypes=[random, smallWorld] : finishing the previous simulation with 800 agents.')
 ```
 
 |No. | expermentId | Comment |
@@ -44,6 +63,9 @@ descriptions <- c('agentNumbers=[400] : chainLengths=[10, 20] : randomWorksNumbe
 |4 | `r selectedExperiments[4]` | `r descriptions[4]` |
 |5 | `r selectedExperiments[5]` | `r descriptions[5]` |
 |6 | `r selectedExperiments[6]` | `r descriptions[6]` |
+|7 | `r selectedExperiments[7]` | `r descriptions[7]` |
+|8 | `r selectedExperiments[8]` | `r descriptions[8]` |
+|9 | `r selectedExperiments[9]` | `r descriptions[9]` |
 
 <!--#### variables: -->
 ```{r get-experiment-info, results = 'asis', eval=TRUE}
@@ -150,6 +172,7 @@ for (experimentId in selectedExperiments) {
   simulations.df <- simulations.df[which(simulations.df$simulationId != "SIM10-04-08-48-g9JKkC--DV"), ]
   simulations.df <- simulations.df[which(simulations.df$simulationId != "SIM10-04-03-23-mQeaNs--DV"), ]
   simulations.df <- simulations.df[which(simulations.df$simulationId != "SIM10-05-07-53-XPZNSG--DV"), ]
+  simulations.df <- simulations.df[which(simulations.df$simulationId != "SIM10-06-12-38-IqpJHw--DV"), ]
 
   rownames(simulations.df) <- c()
   

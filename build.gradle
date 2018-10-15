@@ -34,6 +34,11 @@ task buildBook(type: Exec) {
     args "-c", "scripts/build-offernet-documentation.sh"
 }
 
+task buildBlog(type: Exec) {
+    executable "sh"
+    args "-c", "scripts/build-elabnotebook-jekyll.sh"
+}
+
 task buildLabNotebook(type: Exec) {
     executable "sh"
     args "-c", "scripts/build-elabnotebook-bookdown.sh"
