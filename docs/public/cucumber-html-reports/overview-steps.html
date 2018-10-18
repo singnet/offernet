@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+<title>Cucumber-JVM Reports  - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber-JVM Report</p>
+      <ul class="nav navbar-nav navbar-right">
+                <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+                <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid" id="build-info">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Project</th>
+                        <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="info">
+            <td>io.singularitynet.offernet</td>
+                        <td>15 Oct 2018, 00:12</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h2>Steps Statistics</h2>
+              <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+          </div>
+  </div>
+</div>
+
+<div class="container-fluid" id="summary">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Duration</th>
+            <th>Average</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.a_connected_network_of_agents(int)</td>
+              <td>2</td>
+              <td class="duration" data-value="4824449313">4s 824ms</td>
+              <td class="duration" data-value="2412224656">2s 412ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.after(Scenario)</td>
+              <td>7</td>
+              <td class="duration" data-value="1045493078">1s 045ms</td>
+              <td class="duration" data-value="149356154">149ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.agentBefriendsAgent(String,String)</td>
+              <td>2</td>
+              <td class="duration" data-value="2930508534">2s 930ms</td>
+              <td class="duration" data-value="1465254267">1s 465ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.agentDoesNotExistOnTheOfferNet(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="114890314">114ms</td>
+              <td class="duration" data-value="114890314">114ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.agentExistsOnTheOfferNet(String)</td>
+              <td>1</td>
+              <td class="duration" data-value="30112576">030ms</td>
+              <td class="duration" data-value="30112576">030ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.agentIsCreatedOnTheOfferNet(String)</td>
+              <td>4</td>
+              <td class="duration" data-value="7529471153">7s 529ms</td>
+              <td class="duration" data-value="1882367788">1s 882ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.agent_finds_numberOfFoundItems_in_its_social_network(Integer)</td>
+              <td>2</td>
+              <td class="duration" data-value="270936">000ms</td>
+              <td class="duration" data-value="135468">000ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.agent_owns_a_work_which_item(String,String,String)</td>
+              <td>2</td>
+              <td class="duration" data-value="2599253066">2s 599ms</td>
+              <td class="duration" data-value="1299626533">1s 299ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.agent_publishes_a_pair_of_offer_and_demand_of(String,Double,Double)</td>
+              <td>1</td>
+              <td class="duration" data-value="1418175405">1s 418ms</td>
+              <td class="duration" data-value="1418175405">1s 418ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.all_agents_have_posted_pairsPerAgent_offer_demand_pair_each(Integer)</td>
+              <td>2</td>
+              <td class="duration" data-value="5046342843">5s 046ms</td>
+              <td class="duration" data-value="2523171421">2s 523ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.any_agent_finds_similar_items_by_executing_search_of_depth(int)</td>
+              <td>2</td>
+              <td class="duration" data-value="1753078113">1s 753ms</td>
+              <td class="duration" data-value="876539056">876ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.before(Scenario)</td>
+              <td>7</td>
+              <td class="duration" data-value="52897159016">52s 897ms</td>
+              <td class="duration" data-value="7556737002">7s 556ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.first_agent_initiates_search_of_searchDepth_depth(Integer)</td>
+              <td>2</td>
+              <td class="duration" data-value="4382632463">4s 382ms</td>
+              <td class="duration" data-value="2191316231">2s 191ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.that_similar_items_exist_in_the_network(int)</td>
+              <td>2</td>
+              <td class="duration" data-value="863737658">863ms</td>
+              <td class="duration" data-value="431868829">431ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.thereIsLinkBetweenAnd(String,String,String)</td>
+              <td>2</td>
+              <td class="duration" data-value="2737271758">2s 737ms</td>
+              <td class="duration" data-value="1368635879">1s 368ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.thereIsNoLinkBetweenAnd(String,String,String)</td>
+              <td>4</td>
+              <td class="duration" data-value="5385185154">5s 385ms</td>
+              <td class="duration" data-value="1346296288">1s 346ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.there_are_similarity_relations_in_the_network(int)</td>
+              <td>2</td>
+              <td class="duration" data-value="85535929">085ms</td>
+              <td class="duration" data-value="42767964">042ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">AgentBehaviorStepDefs.there_exists_an_sequentially_connected_line_of_numberOfAgents_agents(Integer)</td>
+              <td>2</td>
+              <td class="duration" data-value="4400522092">4s 400ms</td>
+              <td class="duration" data-value="2200261046">2s 200ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                      <tr>
+              <td class="location">SimulationBehaviorStepDefs.before(Scenario)</td>
+              <td>7</td>
+              <td class="duration" data-value="714256">000ms</td>
+              <td class="duration" data-value="102036">000ms</td>
+              <td class="passed">100.00%</td>
+            </tr>
+                  </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>19</td>
+            <td>54</td>
+            <td class="duration">1m 38s 044ms</td>
+            <td class="duration">1s 815ms</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>
