@@ -21,6 +21,11 @@ import groovy.json.internal.LazyMap
 
 import org.json.JSONArray
 
+import org.apache.tinkerpop.gremlin.structure.Graph
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource
+import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph
+import org.apache.tinkerpop.gremlin.structure.io.IoCore
+
 public class Utils {
     static Logger logger = LoggerFactory.getLogger('Utils.class');
 
@@ -402,5 +407,16 @@ public class Utils {
 
     public static Object kabirSimilarity(Double valueOne, Double valueTwo) {
         return 1-Math.abs(valueOne - valueTwo)
+    }
+
+    public static GraphTraversalSource importGraphML(String file) {
+      final Graph aGraph = TinkerGraph.open();
+      aGraph.io(IoCore.graphml()).readGraph(file);
+
+      GraphTraversalSource g = aGraph.traversal()
+    }
+
+    public static Map getAllShortestPaths(GraphTraversalSource g, List vertexTypes, List edgeLabels) {
+      return g.V().has('type',within(vertexTypes))
     }
 }

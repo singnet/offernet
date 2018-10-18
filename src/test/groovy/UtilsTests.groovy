@@ -24,6 +24,10 @@ import akka.testkit.JavaTestKit;
 
 import groovy.json.JsonSlurper;
 
+import org.apache.tinkerpop.gremlin.structure.Graph;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
+
+
 public class UtilsTests {
 		static private OfferNet on = new OfferNet().flushVertices();
 	    static private Logger logger;
@@ -85,5 +89,19 @@ public class UtilsTests {
 			def valueTwo = 0.1
 			def kabirSimilarity = Utils.kabirSimilarity(valueOne, valueTwo)
 			assert kabirSimilarity == 0.4
+		}
+
+		@Test getGraphVertices() {
+			String experimentDataDir = "/offernet/analysis/experimentData"
+			String experimentId = "EXP10-13-12-56-ZEvsxw"
+			String simulationId = "SIM10-13-12-56-bmib3J--DV"
+			String graphFileName = "graph.graphml"
+			String graphPath = experimentDir + "/" + 
+							   experimentId + "/" + 
+							   simulationId + 
+							   graphFileName
+			GraphTraversalSource g = importGraphML(graphPath);
+			Map allVertices = getAllShortestPaths(g, ['agent'], ['knows'])
+			logger.dobug('Returned list of vertices: {}',allVertices)
 		}
 }
