@@ -91,17 +91,4 @@ public class UtilsTests {
 			assert kabirSimilarity == 0.4
 		}
 
-		@Test getGraphVertices() {
-			String experimentDataDir = "/offernet/analysis/experimentData"
-			String experimentId = "EXP10-13-12-56-ZEvsxw"
-			String simulationId = "SIM10-13-12-56-bmib3J--DV"
-			String graphFileName = "graph.graphml"
-			String graphPath = experimentDir + "/" + 
-							   experimentId + "/" + 
-							   simulationId + 
-							   graphFileName
-			GraphTraversalSource g = importGraphML(graphPath);
-			Map allVertices = getAllShortestPaths(g, ['agent'], ['knows'])
-			logger.dobug('Returned list of vertices: {}',allVertices)
-		}
 }
