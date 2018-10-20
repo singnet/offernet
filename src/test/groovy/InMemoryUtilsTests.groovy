@@ -95,4 +95,18 @@ public class InMemoryUtilsTests {
 		Map getDegreeCentralityWorkDemands = InMemoryUtils.degreeCentrality(g,'work','demands')
 		Map getDegreeCentralityWorkOffers = InMemoryUtils.degreeCentrality(g,'work','offers')
 	}
+
+	@Test 
+	void betweenessCentralityTest() {
+		String experimentDataDir = "/home/kabir/offernet/analysis/experimentData"
+		String experimentId = "EXP10-13-12-56-ZEvsxw"
+		String simulationId = "SIM10-13-12-56-bmib3J--DV"
+		String graphFileName = "graph.graphml"
+		String graphPath = experimentDataDir + "/" + 
+						   experimentId + "/" + 
+						   simulationId + "/" +
+						   graphFileName
+		GraphTraversalSource g = InMemoryUtils.importGraphML(graphPath);
+		Map betweenessCentraliztyAgent = InMemoryUtils.betweenessCentrality(g,'agent','knows')
+	}
 }
