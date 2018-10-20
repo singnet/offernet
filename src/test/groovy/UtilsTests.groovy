@@ -24,6 +24,10 @@ import akka.testkit.JavaTestKit;
 
 import groovy.json.JsonSlurper;
 
+import org.apache.tinkerpop.gremlin.structure.Graph;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
+
+
 public class UtilsTests {
 		static private OfferNet on = new OfferNet().flushVertices();
 	    static private Logger logger;
@@ -86,4 +90,5 @@ public class UtilsTests {
 			def kabirSimilarity = Utils.kabirSimilarity(valueOne, valueTwo)
 			assert kabirSimilarity == 0.4
 		}
+
 }

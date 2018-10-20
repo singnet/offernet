@@ -58,7 +58,7 @@ jacocoTestReport {
 }
 
 test {
-    exclude '**/*Experiments*'
+    //exclude '**/*Experiments*'
     jvmArgs "-Dcom.sun.management.jmxremote"
     jvmArgs "-Dcom.sun.management.jmxremote.port=5999"
     jvmArgs "-Dcom.sun.management.jmxremote.local.only=false"
@@ -111,6 +111,7 @@ dependencies {
     testCompile 'info.cukes:cucumber-java:1.2.5'
     testCompile 'info.cukes:cucumber-junit:1.2.5'
     testCompile 'net.masterthought:cucumber-reporting:3.1.0'
+    testCompile 'org.apache.tinkerpop:tinkergraph-gremlin:3.3.3'
 }
 
 task copyLibraries(type: Copy) {

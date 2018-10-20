@@ -33,16 +33,23 @@ library(stringi)
 
 ```{r experiment-description, results = 'asis', eval=TRUE}
 selectedExperiments <- c(
-'EXP10-13-12-56-ZEvsxw'
+'EXP10-13-12-56-ZEvsxw',
+'EXP10-15-02-20-8z7Ew9',
+'EXP10-17-09-54-A7Z97s'
 )
 
 descriptions <- c(
-' agentNumbers=[50, 100, 200] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.96] : graphTypes=[random, smallWorld] : message=[50, 100 and 200 agents with similarityConnectThreshold 0.96]')
+' agentNumbers=[50, 100, 200] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.96] : graphTypes=[random, smallWorld] : message=[50, 100 and 200 agents with similarityConnectThreshold 0.96]',
+'agentNumbers=[400] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.96] : graphTypes=[random, smallWorld] : message=[400 agents with similarityConnectThreshold 0.96]',
+'agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.96] : graphTypes=[random, smallWorld] : message=[800 agents with similarityConnectThreshold 0.96]'
+)
 ```
 
 |No. | expermentId | Comment |
 |:--|:--|:--|
 |1 | `r selectedExperiments[1]` | `r descriptions[1]` |
+|2 | `r selectedExperiments[2]` | `r descriptions[2]` |
+|3 | `r selectedExperiments[3]` | `r descriptions[3]` |
 
 <!--#### variables: -->
 ```{r get-experiment-info, results = 'asis', eval=TRUE}
