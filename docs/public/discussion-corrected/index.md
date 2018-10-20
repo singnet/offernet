@@ -1,7 +1,7 @@
 --- 
 title: "Experiment #1: centralized vs decentralized search"
 author: "Kabir Veitas (kabir@singularitynet.io)"
-date: "2018-10-14"
+date: "2018-10-20"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
