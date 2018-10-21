@@ -10,6 +10,7 @@ import com.datastax.driver.dse.graph.GraphOptions
 import com.datastax.driver.dse.auth.DsePlainTextAuthProvider;
 import com.datastax.driver.core.PoolingOptions;
 import com.datastax.driver.core.HostDistance;
+import com.datastax.dse.graph.api.DseGraph
 
 import com.datastax.driver.dse.graph.Edge
 import com.datastax.driver.dse.graph.Vertex
@@ -29,6 +30,8 @@ import kamon.prometheus.PrometheusReporter;
 import kamon.zipkin.ZipkinReporter;
 
 import java.io.File;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource
+import org.apache.tinkerpop.gremlin.structure.io.IoCore
 
 public class OfferNet implements AutoCloseable {
 
@@ -880,14 +883,18 @@ public class OfferNet implements AutoCloseable {
     return similarityEdge;
   }
 
-  private boolean archive() {
-    SimpleGraphStatement developmentModeOn = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
-    session.executeGraph(developmentModeOn)
-
+  private int archive() {
     String outFileDir = System.getProperty("user.dir")+"/"+
               Global.parameters.experimentDataDir + "/" + 
               Global.parameters.experimentId + "/" +
               Global.parameters.simulationId
+    return exportGraphML(outFileDir)
+  }
+
+  public int exportGraphML(String outFileDir) {
+    SimpleGraphStatement developmentModeOn = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
+    session.executeGraph(developmentModeOn)
+
     File dir = new File(outFileDir)
     dir.mkdirs()
     dir.setWritable(true,false)
@@ -899,11 +906,88 @@ public class OfferNet implements AutoCloseable {
     SimpleGraphStatement s = new SimpleGraphStatement(
             "g.getGraph().io(IoCore.graphml()).writeGraph(outputFilePath)", params);
 
-    session.executeGraph(s);
+    GraphResultSet rs = session.executeGraph(s);
 
     SimpleGraphStatement developmentModeOff = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Production')")
     session.executeGraph(developmentModeOff)
 
+    return rs.getExecutionInfo().getSuccessfulExecutionIndex(); 
   }
+
+  public int importGraphML(String pathToFile) {
+      SimpleGraphStatement developmentModeOn = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
+      session.executeGraph(developmentModeOn)
+
+      Map params = new HashMap();
+      params.put("pathToFile", pathToFile);
+      SimpleGraphStatement s = new SimpleGraphStatement(
+            "g.getGraph().io(IoCore.graphml()).readGraph(pathToFile)", params);
+      GraphResultSet rs = session.executeGraph(s);
+
+      SimpleGraphStatement developmentModeOff = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Production')")
+      session.executeGraph(developmentModeOff)
+
+      return rs.getExecutionInfo().getSuccessfulExecutionIndex();
+  }
+
+  public Integer diameter(String vertexType, String... edgeLabel) {
+      def diameter = 0;
+      List allVertices = this.getVertices(vertexType)
+      allVertices.size().times() {
+        def vertex =  allVertices.pop()
+        allVertices.each { anotherVertex ->
+            def sp = []
+            if (edgeLabel) {
+              sp = shortestPath(vertex,anotherVertex,edgeLabel);
+            } else {
+              sp = shortestPath(vertex,anotherVertex);
+            }
+
+            diameter = diameter < sp ? sp : diameter
+        }
+      }
+      logger.debug('diameter of the graph is {}', diameter)
+      return diameter
+    }
+
+    public Integer shortestPath(Vertex vertexOne, Vertex vertexTwo, String... edgeLabel) {
+      GraphTraversalSource g = DseGraph.traversal(session);
+      List shortestPath;
+      if (edgeLabel) {
+        shortestPath = g.V(vertexOne.id()).repeat(bothE(edgeLabel).otherV().simplePath()).until(is(vertexTwo)).path().toList()
+      } else {
+        shortestPath = g.V(vertexOne.id()).repeat(bothE().otherV().simplePath()).until(is(vertexTwo)).path().toList()
+      }  
+      logger.debug('shortestPath between {} and {} is {}',vertexOne, vertexTwo, shortestPath)
+      def lengthOfShortestPath = (shortestPath.get(0).size()-1)/2 
+      logger.debug('lengthOfShortestPath between {} and {} is {}',vertexOne, vertexTwo, lengthOfShortestPath)
+      return lengthOfShortestPath
+    }
+
+    public Map degreeCentrality(GraphTraversalSource g, String vertexType, String edgeLabel) {
+      def degreeCentrality = g.withComputer().V().has('type',vertexType).groupCount().by(bothE(edgeLabel).count()).next()
+      logger.debug('degreeCentrality map of the {} -> {} subgraph is {}.',vertexType,edgeLabel,degreeCentrality)
+      return degreeCentrality
+    }
+
+    public Map betweenessCentrality(GraphTraversalSource g, String vertexType, String edgeLabel) {
+      def betweennessCentrality = g.withComputer().V().has('type',vertexType).as("v"). //1
+           repeat(bothE(edgeLabel).has('type',vertexType).simplePath().as("v")).emit(). //2\
+           filter(project("x","y","z").by(select(first, "v")). //3\
+                                       by(select(last, "v")).
+                                       by(select(all, "v").count(local)).as("triple").
+                  coalesce(select("x","y").as("a"). //4\
+                             select("triples").unfold().as("t").
+                             select("x","y").where(eq("a")).
+                             select("t"),
+                           store("triples")). //5\
+                  select("z").as("length").
+                  select("triple").select("z").where(eq("length"))). //6\
+           select(all, "v").unfold(). //7\
+           groupCount().next()
+      logger.debug('betweenessCentrality of the {} -> {} subgraph is {}.',vertexType,edgeLabel,betweennessCentrality)
+    }
+
+
 
 }

@@ -23,6 +23,9 @@ import akka.actor.ActorRef;
 import akka.testkit.TestActorRef
 import akka.testkit.JavaTestKit;
 
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource
+
+
 public class OfferNetTests {
 		static private OfferNet on = new OfferNet().flushVertices();
 	    static private Logger logger;
@@ -228,5 +231,34 @@ public class OfferNetTests {
 		assertNotNull(similarityEdge);
 	}
 
+	@Test
+	void importGraphMLTest() {
+		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+		String fileName = "graphs/data/smallWorld50.dat"
+		sim.createAgentNetworkFromNetworkXDataFile(fileName)
+
+		String archivePath = System.getProperty("user.dir")+"/temp"
+		int resultArchive = sim.on.exportGraphML(archivePath)
+		String graphPath = archivePath + '/graph.graphml'
+		int result = on.importGraphML(graphPath);
+		assert result == 0;
+		List allVertices = on.getVertices('agent')
+		assert allVertices.size() == 50
+	}
+
+	@Test 
+	void getDiameterTestAgents() {
+		String experimentDataDir = "/home/kabir/offernet/analysis/experimentData"
+		String experimentId = "EXP10-13-12-56-ZEvsxw"
+		String simulationId = "SIM10-13-12-56-bmib3J--DV"
+		String graphFileName = "graph.graphml"
+		String graphPath = experimentDataDir + "/" + 
+						   experimentId + "/" + 
+						   simulationId + "/" +
+						   graphFileName
+		GraphTraversalSource g = InMemoryUtils.importGraphML(graphPath);
+		List allVertices = InMemoryUtils.getAllVertices(g, 'agent')
+		def diameter = InMemoryUtils.getDiameter(g,allVertices,'knows')
+	}
 
 }
