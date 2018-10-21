@@ -915,9 +915,10 @@ public class OfferNet implements AutoCloseable {
   }
 
   public int importGraphML(String pathToFile) {
+      
       SimpleGraphStatement developmentModeOn = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
       session.executeGraph(developmentModeOn)
-
+      
       Map params = new HashMap();
       params.put("pathToFile", pathToFile);
       SimpleGraphStatement s = new SimpleGraphStatement(
@@ -926,68 +927,32 @@ public class OfferNet implements AutoCloseable {
 
       SimpleGraphStatement developmentModeOff = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Production')")
       session.executeGraph(developmentModeOff)
-
+      
       return rs.getExecutionInfo().getSuccessfulExecutionIndex();
   }
 
-  public Integer diameter(String vertexType, String... edgeLabel) {
-      def diameter = 0;
-      List allVertices = this.getVertices(vertexType)
-      allVertices.size().times() {
-        def vertex =  allVertices.pop()
-        allVertices.each { anotherVertex ->
-            def sp = []
-            if (edgeLabel) {
-              sp = shortestPath(vertex,anotherVertex,edgeLabel);
-            } else {
-              sp = shortestPath(vertex,anotherVertex);
-            }
-
-            diameter = diameter < sp ? sp : diameter
-        }
-      }
-      logger.debug('diameter of the graph is {}', diameter)
+  public Integer diameter(String vertexType, String edgeLabel) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      params.put("vertexType", vertexType);
+      params.put("edgeLabel", edgeLabel);
+      String query = """def list = g.V().has('type','agent').id().toList()
+          def size = list.size()
+          def diameter = 0
+          size.times {
+              def agentId = list.pop()
+              list.each { otherAgent ->
+                  def sp = g.V(agentId).repeat(bothE('knows').otherV().simplePath()).until(has(id,otherAgent)).limit(1).path().toList().get(0).size()
+                  diameter = sp > diameter ? sp : diameter
+              }
+          }
+          (diameter-1)/2
+      """
+      SimpleGraphStatement s = new SimpleGraphStatement(query, params);
+      GraphResultSet rs = session.executeGraph(s);
+      int diameter = rs.one().asInt();
+      logger.debug('Graph diameter: {}; calculation time: {}.',diameter,(System.currentTimeMillis() - start)/1000)
       return diameter
     }
-
-    public Integer shortestPath(Vertex vertexOne, Vertex vertexTwo, String... edgeLabel) {
-      GraphTraversalSource g = DseGraph.traversal(session);
-      List shortestPath;
-      if (edgeLabel) {
-        shortestPath = g.V(vertexOne.id()).repeat(bothE(edgeLabel).otherV().simplePath()).until(is(vertexTwo)).path().toList()
-      } else {
-        shortestPath = g.V(vertexOne.id()).repeat(bothE().otherV().simplePath()).until(is(vertexTwo)).path().toList()
-      }  
-      logger.debug('shortestPath between {} and {} is {}',vertexOne, vertexTwo, shortestPath)
-      def lengthOfShortestPath = (shortestPath.get(0).size()-1)/2 
-      logger.debug('lengthOfShortestPath between {} and {} is {}',vertexOne, vertexTwo, lengthOfShortestPath)
-      return lengthOfShortestPath
-    }
-
-    public Map degreeCentrality(GraphTraversalSource g, String vertexType, String edgeLabel) {
-      def degreeCentrality = g.withComputer().V().has('type',vertexType).groupCount().by(bothE(edgeLabel).count()).next()
-      logger.debug('degreeCentrality map of the {} -> {} subgraph is {}.',vertexType,edgeLabel,degreeCentrality)
-      return degreeCentrality
-    }
-
-    public Map betweenessCentrality(GraphTraversalSource g, String vertexType, String edgeLabel) {
-      def betweennessCentrality = g.withComputer().V().has('type',vertexType).as("v"). //1
-           repeat(bothE(edgeLabel).has('type',vertexType).simplePath().as("v")).emit(). //2\
-           filter(project("x","y","z").by(select(first, "v")). //3\
-                                       by(select(last, "v")).
-                                       by(select(all, "v").count(local)).as("triple").
-                  coalesce(select("x","y").as("a"). //4\
-                             select("triples").unfold().as("t").
-                             select("x","y").where(eq("a")).
-                             select("t"),
-                           store("triples")). //5\
-                  select("z").as("length").
-                  select("triple").select("z").where(eq("length"))). //6\
-           select(all, "v").unfold(). //7\
-           groupCount().next()
-      logger.debug('betweenessCentrality of the {} -> {} subgraph is {}.',vertexType,edgeLabel,betweennessCentrality)
-    }
-
-
 
 }

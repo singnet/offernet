@@ -233,6 +233,7 @@ public class OfferNetTests {
 
 	@Test
 	void importGraphMLTest() {
+
 		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
 		String fileName = "graphs/data/smallWorld50.dat"
 		sim.createAgentNetworkFromNetworkXDataFile(fileName)
@@ -247,18 +248,36 @@ public class OfferNetTests {
 	}
 
 	@Test 
-	void getDiameterTestAgents() {
-		String experimentDataDir = "/home/kabir/offernet/analysis/experimentData"
+	void diameterTestAgentsSmall() {
+		on.flushVertices();
+		// first test graph of 50 agents and diameter 9
+		String archiveDir = "graphs/archives"
 		String experimentId = "EXP10-13-12-56-ZEvsxw"
 		String simulationId = "SIM10-13-12-56-bmib3J--DV"
 		String graphFileName = "graph.graphml"
-		String graphPath = experimentDataDir + "/" + 
+		String graphPath = System.getProperty("user.dir") + "/"+
+						   archiveDir + "/" + 
 						   experimentId + "/" + 
 						   simulationId + "/" +
 						   graphFileName
-		GraphTraversalSource g = InMemoryUtils.importGraphML(graphPath);
-		List allVertices = InMemoryUtils.getAllVertices(g, 'agent')
-		def diameter = InMemoryUtils.getDiameter(g,allVertices,'knows')
+		int result = on.importGraphML(graphPath);
+		assert result == 0
+		def diameter = on.diameter('agent','knows')
+		assert diameter == 9
 	}
+
+	@Ignore // takes a lot of time...
+	@Test 
+	void diameterTestAgentsLarge() {
+		on.flushVertices();
+		// second test graph with 100 agents (?) and diameter something else
+		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+		String fileName = "graphs/data/smallWorld200-d6.dat"
+		sim.createAgentNetworkFromNetworkXDataFile(fileName)
+
+		def diameter = on.diameter('agent','knows')
+		assert diameter == 6
+	}
+
 
 }
