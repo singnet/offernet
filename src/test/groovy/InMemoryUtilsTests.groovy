@@ -14,6 +14,7 @@ import static org.junit.Assert.*
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 
@@ -33,6 +34,7 @@ public class InMemoryUtilsTests {
 		logger = LoggerFactory.getLogger('SimpleTests.class');
 	}
 
+	@Ignore
 	@Test 
 	void getGraphVertices() {
 		String experimentDataDir = "/home/kabir/offernet/analysis/experimentData"
@@ -48,6 +50,7 @@ public class InMemoryUtilsTests {
 		logger.debug('Returned list of vertices: {}',allVertices)
 	}
 
+	@Ignore
 	@Test 
 	void getDiameterTestAgents() {
 		String experimentDataDir = "/home/kabir/offernet/analysis/experimentData"
@@ -63,6 +66,7 @@ public class InMemoryUtilsTests {
 		def diameter = InMemoryUtils.getDiameter(g,allVertices,'knows')
 	}
 
+	@Ignore
 	@Test 
 	void getDiameterTestAll() {
 		String experimentDataDir = "/home/kabir/offernet/analysis/experimentData"
@@ -78,6 +82,7 @@ public class InMemoryUtilsTests {
 		def diameter = InMemoryUtils.getDiameter(g,allVertices)
 	}
 
+	@Ignore
 	@Test 
 	void getDegreeCentralityTest() {
 		String experimentDataDir = "/home/kabir/offernet/analysis/experimentData"
@@ -96,6 +101,7 @@ public class InMemoryUtilsTests {
 		Map getDegreeCentralityWorkOffers = InMemoryUtils.degreeCentrality(g,'work','offers')
 	}
 
+	@Ignore
 	@Test 
 	void betweenessCentralityTest() {
 		String experimentDataDir = "/home/kabir/offernet/analysis/experimentData"
