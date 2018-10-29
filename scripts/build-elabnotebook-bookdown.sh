@@ -52,6 +52,10 @@ cd docs/
 #cd experiment-1-run-7
 #Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")'
 
+# 14: tidy parameter spaces 5
+#cd experiment-1-run-8
+#Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")'
+
 # 11: from 6 -- corrected and expanded discussion with 12, 13
 cd discussion-corrected
 Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")'
