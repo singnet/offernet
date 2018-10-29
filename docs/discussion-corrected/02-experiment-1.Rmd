@@ -52,6 +52,7 @@ exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summar
 exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
 exp16.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary_of_all_experiments.Rdata')
 exp17.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')
+exp18.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-8/R_data/summary_of_all_experiments.Rdata')
 all.df <- exp11.env$summary.df
 all.df <- rbind(all.df, exp12.env$summary.df)
 all.df <- rbind(all.df, exp13.env$summary.df)
@@ -59,6 +60,7 @@ all.df <- rbind(all.df, exp14.env$summary.df)
 all.df <- rbind(all.df, exp15.env$summary.df)
 all.df <- rbind(all.df, exp16.env$summary.df)
 all.df <- rbind(all.df, exp17.env$summary.df)
+all.df <- rbind(all.df, exp18.env$summary.df)
 
 Sys.setenv(R_TOTALSIM = length(unique(all.df$simulationId)))
 
@@ -99,12 +101,18 @@ run6 <- c(
 'EXP10-10-01-42-zrrpbq')
 
 run7 <- c(
-'EXP10-13-12-56-ZEvsxw'
+'EXP10-13-12-56-ZEvsxw',
+'EXP10-15-02-20-8z7Ew9',
+'EXP10-17-09-54-A7Z97s'
+)
+
+run8 <- c(
+'EXP10-22-01-35-m9gbIT'
 )
 
 set1 <- c(run1,run2,run3)
 set2 <- c(run4,run5)
-set3 <- c(run6,run7)
+set3 <- c(run6,run7,run8)
 
 all.df$set <- ifelse(all.df$experimentId %in% set1,"1",
                      ifelse(all.df$experimentId %in% set2,"2", 
@@ -307,6 +315,10 @@ exp17.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary
 exp17.df <- select(exp17.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
 all.df <- rbind(all.df, exp17.df)
 
+exp18.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-8/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp18.df <- select(exp18.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles)
+all.df <- rbind(all.df, exp18.df)
+
 dw = .75
 gg <- ggplotly(
   ggplot(all.df, aes(x=maxDistance, y=sum_wallTime_min_total, color=simulationType)) + 
@@ -374,6 +386,10 @@ exp17.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary
 exp17.df <- select(exp16.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles,graphType)
 all.df <- rbind(all.df, exp17.df)
 
+exp18.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-8/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp18.df <- select(exp18.df, maxDistance, sum_wallTime_min_total, simulationType, foundCycles, graphType)
+all.df <- rbind(all.df, exp18.df)
+
 all.df <- all.df[which(all.df$simulationType != "Centralized"), ]
 
 library(dplyr)
@@ -422,6 +438,7 @@ exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summar
 exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
 exp16.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary_of_all_experiments.Rdata')
 exp17.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')
+exp18.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-8/R_data/summary_of_all_experiments.Rdata')
 all.df <- exp11.env$summary.df
 all.df <- rbind(all.df, exp12.env$summary.df)
 all.df <- rbind(all.df, exp13.env$summary.df)
@@ -429,6 +446,7 @@ all.df <- rbind(all.df, exp14.env$summary.df)
 all.df <- rbind(all.df, exp15.env$summary.df)
 all.df <- rbind(all.df, exp16.env$summary.df)
 all.df <- rbind(all.df, exp17.env$summary.df)
+all.df <- rbind(all.df, exp18.env$summary.df)
 # filtering out experiment which was run on random graphs in order to make results more consistent
 #all.df <- all.df[which(all.df$experimentId != "EXP08-10-01-33-JYSw5Z" & all.df$experimentId != "EXP08-11-12-58-3BvMSL"), ]
 all.df$simulationType_agentNumber <- paste(all.df$simulationType,'-',all.df$agentNumber)
@@ -498,6 +516,7 @@ exp14.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-4/R_data/summar
 exp15.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-5/R_data/summary_of_all_experiments.Rdata')
 exp16.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary_of_all_experiments.Rdata')
 exp17.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')
+exp18.env <- LoadToEnvironment('~/offernet/docs/experiment-1-run-8/R_data/summary_of_all_experiments.Rdata')
 all.df <- exp11.env$summary.df
 all.df <- rbind(all.df, exp12.env$summary.df)
 all.df <- rbind(all.df, exp13.env$summary.df)
@@ -505,6 +524,7 @@ all.df <- rbind(all.df, exp14.env$summary.df)
 all.df <- rbind(all.df, exp15.env$summary.df)
 all.df <- rbind(all.df, exp16.env$summary.df)
 all.df <- rbind(all.df, exp17.env$summary.df)
+all.df <- rbind(all.df, exp18.env$summary.df)
 # filtering out experiment which was run on random graphs in order to make results more consistent
 #all.df <- all.df[which(all.df$experimentId != "EXP08-10-01-33-JYSw5Z" & all.df$experimentId != "EXP08-11-12-58-3BvMSL"), ]
 all.df$simulationType_agentNumber <- paste(all.df$simulationType,'-',all.df$agentNumber)
