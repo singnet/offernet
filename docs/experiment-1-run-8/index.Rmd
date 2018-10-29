@@ -1,0 +1,717 @@
+--- 
+title: "Tidy experiment with well distributed properties -- 5"
+author: "Kabir Veitas (kabir@singularitynet.io)"
+date: "`r Sys.Date()`"
+bibliography: book.bib
+documentclass: book
+github-repo: singnet/offernet
+link-citations: yes
+site: bookdown::bookdown_site
+biblio-style: apalike
+url: http\://seankross.com/bookdown-start/
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, error=FALSE, output=FALSE, source = FALSE)
+Sys.setenv(ON_workdir = '/home/kabir/offernet/')
+```
+
+```{r init}
+#install.packages("jsonlite")
+#install.packages("kableExtra")
+#install.packages("ggplot2")
+#install.packages('elastic')
+library(elastic)
+library(jsonlite)
+library(knitr)
+library(kableExtra)
+library(plyr)
+library(stringi)
+```
+
+# Introduction
+
+```{r experiment-description, results = 'asis', eval=TRUE}
+selectedExperiments <- c(
+'EXP10-22-01-35-m9gbIT',
+'EXP10-24-11-04-bSZNPf',
+'EXP10-26-01-05-AJag2Q',
+'EXP10-27-11-37-63u5gk',
+'EXP10-27-01-00-gGtcdB'
+)
+
+descriptions <- c(
+'agentNumbers=[50, 100, 200] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.93] : graphTypes=[random, smallWorld] : message=[50, 100 and 200 agents with similarityConnectThreshold 0.93]',
+'agentNumbers=[400] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.93] : graphTypes=[random, smallWorld] : message=[400 agents with similarityConnectThreshold 0.93]',
+'agentNumbers=[800] : chainLengths=[5, 10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.93] : graphTypes=[random, smallWorld] : message=[800 agents with similarityConnectThreshold 0.93]; crashed after 23 simulations...',
+'agentNumbers=[800] : chainLengths=[5] : randomWorksNumberMultipliers=[2] : maxDistances=[30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.93] : graphTypes=[smallWorld] : message=[800 agents with similarityConnectThreshold 0.93 -- finishing chainLenght=5 after crash]',
+'agentNumbers=[800] : chainLengths=[10, 20] : randomWorksNumberMultipliers=[1, 2] : maxDistances=[5, 10, 30] : similaritySearchThresholds=[1] : similarityConnectThresholds=[0.93] : graphTypes=[random, smallWorld] : message=[800 agents with similarityConnectThreshold 0.93; finishing after crash restart (chain length 5 already done).]'
+)
+```
+
+|No. | expermentId | Comment |
+|:--|:--|:--|
+|1 | `r selectedExperiments[1]` | `r descriptions[1]` |
+|2 | `r selectedExperiments[2]` | `r descriptions[2]` |
+|3 | `r selectedExperiments[3]` | `r descriptions[3]` |
+|4 | `r selectedExperiments[4]` | `r descriptions[4]` |
+|5 | `r selectedExperiments[5]` | `r descriptions[5]` |
+
+<!--#### variables: -->
+```{r get-experiment-info, results = 'asis', eval=TRUE}
+
+#defining a function to be used somewhere in the end of the document...
+scatterplot <- function(data, xstr,ystr, sizestr, colorstr, titlelab, ylab,xlab) {
+  gg <- ggplot(data, aes_string(x=xstr, y=ystr, color=colorstr)) + 
+    geom_point(aes_string(size=sizestr, color=colorstr)) + 
+    geom_smooth(method="loess", se=F) + 
+    #xlim(c(0, 0.1)) + 
+    #ylim(c(0, 500000)) + 
+    labs(title=titlelab, 
+         y=ylab, 
+         x=xlab, 
+         size=sizestr,
+         color=colorstr)
+}
+
+
+# need to run this in order to get
+# PUT _all/_settings
+# {
+#     "index" : {
+#         "max_result_window" : "10000000"
+#     }
+# }
+
+x<-1
+for (experimentId in selectedExperiments) {
+  #cat(paste(experimentId))
+  cat(paste('   \n\n'))
+  cat(paste('# Experiment ',x, '\n\n'))
+  cat(paste(descriptions[x],'\n\n'))
+  x<-x+1
+  cat(paste('## Experimental set up','\n\n'))
+  conn <-connect(es_port = 9200)
+  template <- '{ 
+    "query": {
+      "bool": {
+        "must": [
+          { "match_phrase": {
+            "experimentId": "%s"
+            }
+          }
+        ],
+        "must_not": [
+          { "exists": { "field": "simulationId" } }
+        ]
+      }
+    }
+  }'
+  query <- sprintf(template, experimentId)
+  source=c('experimentId','agentNumbers','chainLengths','randomWorksNumberMultipliers','maxDistances','similaritySearchThresholds ', 'similarityConnectThresholds','graphTypes')
+  
+  
+  result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=10000)$hits$hits
+  experiment.df <- result[,-c(1:4)]
+  vars=sapply(strsplit(colnames(experiment.df), split='.', fixed=TRUE), function(x) (x[2]))
+  colnames(experiment.df) <- vars
+  refcols <- c("experimentId", "agentNumbers")
+  experiment.df <- experiment.df[, c(refcols, setdiff(names(experiment.df), refcols))]
+  experiment.df <- t(experiment.df)
+  colnames(experiment.df) <- c('Values')
+  
+  # print Experiment data
+  exp <- kable(experiment.df) %>%
+    kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') #%>%
+      #column_spec(0:ncol(experiment.df),width="10em") 
+      #add_header_above(c("labels"=5))
+  print(exp)
+  
+  
+  cat('## Descriptive analysis of each simulation\n\n')
+  
+  conn <-connect(es_port = 9200)
+  template <- '{ 
+    "query": {
+      "bool": {
+        "must": [
+          { "match_phrase": {
+            "experimentId": "%s"
+            }
+          },
+          { "match" :{
+            "keyword": "simulationParameters"
+          }},
+          { "exists": { "field": "simulationId" } }
+        ]
+      }
+    }
+  }'
+  query <- sprintf(template, experimentId)
+  source=c('simulationId','agentNumber','chainLength','randomWorksNumberMultiplier','maxDistance','similaritySearchThreshold','similarityConnectThreshold','graphType')
+  result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=10000)$hits$hits
+  
+  simulations.df <- result[,-c(1:4)]
+  vars=sapply(strsplit(colnames(simulations.df), split='.', fixed=TRUE), function(x) (x[2]))
+  colnames(simulations.df) <- vars
+  refcols <- c("simulationId", "agentNumber")
+  simulations.df <- simulations.df[, c(refcols, setdiff(names(simulations.df), refcols))]
+  simulations.df <- simulations.df[order(simulations.df$agentNumber, simulations.df$chainLength, simulations.df$maxDistance, simulations.df$simulationId),]
+  # getting rid of the simulation data on which the experiment crashed -- gives error...
+  simulations.df <- simulations.df[which(simulations.df$simulationId != "SIM10-27-08-53-Kt5aMA--DV"), ]
+
+
+  rownames(simulations.df) <- c()
+  
+  simulationIds <- simulations.df$simulationId
+  
+    conn <-connect(es_port = 9200)
+    template <- '{    "query": {
+            "bool": {
+              "must": [
+                {"exists" : { "field" : "method" }},
+                {"exists" : { "field" : "simulationId" }},
+                { "bool": {
+                  "should": [
+                      {"match_phrase": {
+                        "method": "allEdgesByLabel"
+                      }},
+                      {"match_phrase": {
+                        "method": "allVerticesByLabel"
+                      }},
+                      {"match_phrase": {
+                        "method": "similarityEdgesByWeight"
+                      }}
+                  ]
+                }}
+              ]
+            }
+        }}'
+    query <- sprintf(template)
+    source=c('simulationId','results', 'message', 'method','edgeLabel','vertexType','direction')
+    result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=10000)$hits$hits
+    
+    analysis.df <- result[,-c(1:4)]
+    vars=sapply(strsplit(colnames(analysis.df), split='.', fixed=TRUE), function(x) (x[2]))
+    colnames(analysis.df) <- vars
+    
+  
+  library(ggplot2)
+  
+  for (simulationId in simulationIds) {
+  
+    cat(paste('### ',simulationId,'\n\n'))
+    cat(paste('#### simulationParameters \n\n'))
+    
+    simulation.df <- simulations.df[which(simulations.df$simulationId == simulationId),][,-1]
+    rownames(simulation.df) <-c()
+    
+    for_sum.df <-data.frame()
+    for_sum.df <- simulation.df
+    for_sum.df$experimentId <-  experimentId
+    for_sum.df$simulationId <- simulationId
+  
+      
+    # output simulationParameters
+    print(kable(simulation.df) %>%
+      kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+        column_spec(1:1,width="20em") %>%
+        column_spec(2:ncol(simulation.df),width="15em")
+        #add_header_above(c("variables"))
+    )
+    
+    simulationData <- analysis.df[which(analysis.df$simulationId == simulationId),]
+    
+    # output allEdgesByLabel
+    test <- simulationData[which(simulationData$method == 'allEdgesByLabel'),]$results
+    if (! identical(test, character(0))) {
+      edges.df <- data.frame(fromJSON(simulationData[which(simulationData$method == 'allEdgesByLabel'),]$results))
+      names <- colnames(edges.df)
+      names <- paste('edges',names,sep="_")
+      colnames(edges.df) <- names
+      
+      edges.df$edges_total <- rowSums(edges.df)
+      for_sum.df <- cbind(for_sum.df,edges.df)
+      cat('#### allEdgesByLabel\n\n')
+      print(kable(edges.df, format.args = list(decimal.mark = '.', big.mark = ",")) %>%
+        kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+          column_spec(1:ncol(edges.df),width="5em") 
+          #add_header_above(c("labels"=5))
+      )
+    }
+    
+    # output allVerticesByType
+    test <- simulationData[which(simulationData$method == 'allEdgesByLabel'),]$results
+    if (! identical(test, character(0))) {
+      vertices.df <- data.frame(fromJSON(simulationData[which(simulationData$method == 'allVerticesByLabel'),]$results))
+      names <- colnames(vertices.df)
+      names <- paste('vertices',names,sep="_")
+      colnames(vertices.df) <- names
+      
+      vertices.df$vertices_total <- rowSums(vertices.df)
+      for_sum.df <- cbind(for_sum.df,vertices.df)
+      cat('#### allVerticesByType\n\n')
+      print(kable(vertices.df, format.args = list(decimal.mark = '.', big.mark = ",")) %>%
+        kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+          column_spec(1:ncol(vertices.df),width="5em") 
+          #add_header_above(c("labels"=5))
+      )
+    }
+    
+    # output similarityEdgesByWeight
+    test <- simulationData[which(simulationData$method == 'similarityEdgesByWeight'),]$results
+    if (! identical(test, character(0))) {
+        similarity <- data.frame(fromJSON(simulationData[which(simulationData$method == 'similarityEdgesByWeight'),]$results))
+        wghts <- as.numeric(substring(unlist(names(similarity)),first = 2))
+        frequencies <- as.numeric(similarity)
+        similarity.df <- data.frame(weight=wghts,edges=frequencies)
+        se <- ggplot(data=similarity.df, aes(x=weight, y=frequencies)) +
+          geom_bar(stat="identity", fill="steelblue")+
+          geom_text(aes(label=weight), vjust=1.6, color="white", size=3.5)+
+          xlab("Weight")+
+          ylab("Number of edges")+
+          theme_minimal()+
+          geom_line()
+        
+        cat('#### distribution of similarityEdgesByWeight\n\n')
+        print(se)
+        cat('\n\n')
+    }
+    
+    # plot degreeDistribution items-similarity
+    conn <-connect(es_port = 9200)
+    template <- '{
+            "query": {
+                "bool": {
+                  "must": [
+                    {"exists" : { "field" : "method" }},
+                    {"exists" : { "field" : "simulationId" }},
+                    {"match_phrase": {
+                      "simulationId": "%s"
+                    }},
+                    {"match_phrase": {
+                      "method": "%s"
+                    }},
+                    {"match": {
+                      "vertexType": "%s"
+                    }},
+                    {"match": {
+                      "edgeLabel": "%s"
+                    }},
+                    { "match": {
+                      "direction": "%s"
+                    }}
+                  ]
+                }
+            }
+        }'
+    method <- 'degreeDistribution'
+    vertexType <- 'item'
+    edgeLabel <- 'similarity'
+    direction <- 'out'
+    query <- sprintf(template, simulationId, method, vertexType, edgeLabel, direction)
+    source=c('simulationId','results', 'message', 'method','edgeLabel','vertexType','direction')
+    result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=100)$hits$hits
+    
+    data <- result[,-c(1:4)]
+    vars=sapply(strsplit(colnames(data), split='.', fixed=TRUE), function(x) (x[2]))
+    colnames(data) <- vars
+  
+    degrees <- fromJSON(data$results)
+    dgr <- as.numeric(substring(unlist(names(degrees)),first = 2))
+    frequencies <- as.numeric(degrees)
+    degrees.df <- data.frame(degrees=dgr,frequencies=frequencies)
+    
+    dd_is <- ggplot(data=degrees.df, aes(x=dgr, y=frequencies)) +
+      geom_bar(stat="identity", fill="white", color="black")+
+      #geom_text(aes(label=dgr), vjust=1.6, color="black", size=3.5)+
+      xlab("Degree")+
+      ylab("Count")+
+      theme_minimal()
+  
+    cat('#### Degree distribution of item->similarity->item edges\n\n')
+    #print(kable(degrees.df))
+    #cat('\n\n')
+    print(dd_is)
+    cat('\n\n')
+  
+    # plot degreeDistribution agent-knows
+    conn <-connect(es_port = 9200)
+    template <- '{
+            "query": {
+                "bool": {
+                  "must": [
+                    {"exists" : { "field" : "method" }},
+                    {"exists" : { "field" : "simulationId" }},
+                    {"match_phrase": {
+                      "simulationId": "%s"
+                    }},
+                    {"match_phrase": {
+                      "method": "%s"
+                    }},
+                    {"match": {
+                      "vertexType": "%s"
+                    }},
+                    {"match": {
+                      "edgeLabel": "%s"
+                    }},
+                    { "match": {
+                      "direction": "%s"
+                    }}
+                  ]
+                }
+            }
+        }'
+    method <- 'degreeDistribution'
+    vertexType <- 'agent'
+    edgeLabel <- 'knows'
+    direction <- 'both'
+    query <- sprintf(template, simulationId, method, vertexType, edgeLabel, direction)
+    source=c('simulationId','results', 'message', 'method','edgeLabel','vertexType','direction')
+    result <- Search(index="filebeat-*", source=source, body=query, asdf=TRUE, size=100)$hits$hits
+    
+    data <- result[,-c(1:4)]
+    vars=sapply(strsplit(colnames(data), split='.', fixed=TRUE), function(x) (x[2]))
+    colnames(data) <- vars
+  
+    a_degrees <- fromJSON(data$results)
+    dgr <- as.numeric(unlist(names(a_degrees)))
+    frequencies <- as.numeric(a_degrees)
+    a_degrees.df <- data.frame(degrees=dgr,frequencies=frequencies)
+    
+    dd_ak <- ggplot(data=a_degrees.df, aes(x=dgr, y=frequencies)) +
+      geom_bar(stat="identity", fill="white", color="black")+
+      #geom_text(aes(label=dgr), vjust=1.6, color="black", size=3.5)+
+      xlab("Degree")+
+      ylab("Count")+
+      theme_classic()
+  
+    cat('#### Degree distribution of agent->knows->agent edges\n\n')
+    #print(kable(a_degrees.df))
+    #cat('\n\n')
+    print(dd_ak)
+    cat('\n\n')  
+    
+    cat('#### Runing time by method \n\n')
+        conn <-connect(es_port = 9200)
+        template <- '
+              {
+                "_source": false, 
+                "query": {
+                  "match_phrase": { "simulationId" : "%s" }},
+                "aggs": {
+                  "group_by_method": {
+                    "terms": {
+                      "field": "method.keyword"
+                    },
+                    "aggs": {
+                      "group_by_method": {
+                        "terms": {
+                          "field": "method.keyword",
+                          "order": {
+                            "avg_wallTime_ms": "desc"
+                          }
+                        },
+                        "aggs": {
+                          "sum_wallTime_ms": {
+                            "sum": {
+                              "field": "wallTime_ms"
+                            }
+                          },
+                          "avg_wallTime_ms": {
+                            "avg": {
+                              "field": "wallTime_ms"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }      
+        '
+  
+        query <- sprintf(template, simulationId)
+        sim.result <- Search(index="filebeat-*", body=query, asdf=TRUE, size=10000)
+        sim.df <- sim.result$aggregations$group_by_method$buckets$group_by_method.buckets
+        methods.df <- ldply(sim.df, data.frame)
+        if (grepl('–CV',simulationId) | grepl('--CV',simulationId)) {
+          # this is centralized simulation therefore we need only these methods:
+          methodsToExclude <- c('existsSimilarity', 'connectIfSimilar', 'similarityEdges', 'init')
+        } else {
+          methodsToExclude <- c('knowsAgent', 'addItemToWork','ownsWork', 'init', 'getWorks')
+        }
+        methodsInTotal.df <- methods.df[which(!(methods.df$key %in% methodsToExclude)),]
+        
+        # no need to include analysis methods in calculation of total time spent -- exluding all
+        analysisMethods <- c('degreeDistribution','allEdgesByLabel', 'allVerticesByLabel', 'similarityEdgesByWeight', 'checkFoundPaths', 'pathContainsChain')
+        for (analysisMethod in analysisMethods) {
+          if (analysisMethod %in% methods.df$key) {
+            i <- which(methods.df$key == analysisMethod)
+            methods.df <- methods.df[-c(i),]
+          }
+        }
+        conn<-NULL
+        func <- function(z) if (is.numeric(z)) sum(z) else ''
+        sumrow <- as.data.frame(lapply(methodsInTotal.df, func))      
+        sumrow$avg_wallTime_ms.value <- ''
+        sumrow$key <- "Total"
+        
+        methods.df$includedInTotal <- ifelse(methods.df$key %in% methodsToExclude, "No", "Yes")
+        sumrow$includedInTotal <- ''
+        
+        extractFromMethods <- function(methods.df, column_name, keyword) {
+          index <- which(colnames(methods.df)==column_name)
+          values <- methods.df[,c(1,index)]
+          values <- t(values)
+          rownames(values) <-c()
+          names <- as.character(as.vector(values[1,]))
+          names <- paste(keyword,names,sep="_")
+          colnames(values) <-names
+          values <- values[-c(1),]
+          data.frame(lapply(values, type.convert), stringsAsFactors=FALSE)
+        }
+        
+        #processes <- extractFromMethods(methods.df,'doc_count','processes')
+        #times <- extractFromMethods(methods.df,'sum_wallTime_ms.value','times')
+        #for_sum.df <- cbind(for_sum.df,processes)
+        #for_sum.df <- cbind(for_sum.df,times)
+        
+        for_sum.df$sum_wallTime_ms_total <- sumrow$sum_wallTime_ms
+        for_sum.df$process_total <- sumrow$doc_count
+        last_row <- nrow(methods.df) +1
+        m <- kable(rbind(methods.df,sumrow),format.args = list(decimal.mark = '.', big.mark = ",")) %>%
+          kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+          row_spec(last_row, bold = TRUE)
+            #column_spec(0:ncol(experiment.df),width="10em") 
+            #add_header_above(c("labels"=5))
+        print(m)
+        
+        keyword <- 'foundCycle'
+        cat(paste('####  Found structures \n\n'))
+        cat(paste('#####  Cycles \n\n'))
+        
+        conn <-connect(es_port = 9200)
+        template <- '
+              { 
+                "query": {
+                  "bool": {
+                    "must": [
+                      { "match_phrase": {
+                        "simulationId": "%s"
+                        }
+                      },
+                      { "bool": {
+                        "should": [
+                          { "match": {
+                            "keyword": "%s"
+                          }}
+                        ]
+                      }}
+                    ]
+                  }
+                }
+              }
+    '
+  
+        query <- sprintf(template, simulationId, keyword)
+        cycle.result <- Search(index="filebeat-*", body=query, asdf=TRUE, size=10000)
+        cat(paste("Number of cycles found: ", cycle.result$hits$total),'\n\n')
+        for_sum.df$foundCycles <- cycle.result$hits$total
+        blockNo <- stri_rand_strings(1, 10, '[A-Z]')
+        full_query <- sprintf("%s %s", '     GET /filebeat-*/_search', query)
+        tooltip <- "To be used to extract graph from ElasticSearch and visualize via OfferNet visualization engine (given proper access permissions)"
+        cat(paste('<button class="btn btn-primary" data-toggle="collapse" data-target="#',blockNo,'"> Show/Hide ',keyword,' query </button> \n <div id="',blockNo,'" class="collapse" >  \n',sep=''))
+          cat(paste(full_query,'\n'))
+          cat('\n</div>\n')
+          
+        keyword <- 'foundPath'
+        cat(paste('#####  Paths \n\n'))
+        
+        conn <-connect(es_port = 9200)
+        template <- '
+              { 
+                "query": {
+                  "bool": {
+                    "must": [
+                      { "match_phrase": {
+                        "simulationId": "%s"
+                        }
+                      },
+                      { "bool": {
+                        "should": [
+                          { "match": {
+                            "keyword": "%s"
+                          }}
+                        ]
+                      }}
+                    ]
+                  }
+                }
+              }
+    '
+  
+        query <- sprintf(template, simulationId, keyword)
+        path.result <- Search(index="filebeat-*", body=query)
+        cat(paste("Number of paths found: ", path.result$hits$total),'\n\n')
+        for_sum.df$foundPaths <- path.result$hits$total
+        blockNo <- stri_rand_strings(1, 10, '[A-Z]')
+        full_query <- sprintf("%s %s", '     GET /filebeat-*/_search', query)
+        cat(paste('<button class="btn btn-primary" data-toggle="collapse" data-target="#',blockNo,'"> Show/Hide ',keyword,' query </button> \n <div id="',blockNo,'" class="collapse">  \n',sep=''))
+              cat(paste(full_query,'\n'))
+          cat('\n</div>\n')        
+  
+  
+        #cat(paste('#### Summary of simulation','\n\n'))
+        
+        #sum <- kable(for_sum.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
+        #  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+        #    scroll_box(height = NULL, width = '1300px',
+        #      box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
+    
+            #column_spec(0:ncol(experiment.df),width="10em") 
+            #add_header_above(c("labels"=5))
+        #print(sum)
+      
+      if (!exists('experiment_summary.df')) {
+        experiment_summary.df <- for_sum.df
+      } else{
+        experiment_summary.df <- rbind.fill(experiment_summary.df, for_sum.df)
+      }
+  }
+
+      # housekeeping on form_sum.df -- correct types and reorder...
+
+      experiment_summary.df$sum_wallTime_min_total <- experiment_summary.df$sum_wallTime_ms_total /60000
+      experiment_summary.df$simulationType <- ifelse(grepl('--DV',experiment_summary.df$simulationId),"Decentralized", "Centralized")
+
+      options(scipen=999)  # turn-off scientific notation like 1e+48
+      theme_set(theme_bw())  # pre-set the bw theme.
+
+      experiment_summary.df$agentNumber <- sapply(experiment_summary.df$agentNumber, as.numeric)
+      experiment_summary.df$chainLength <- sapply(experiment_summary.df$chainLength, as.numeric)
+      experiment_summary.df$similaritySearchThreshold <- sapply(experiment_summary.df$similaritySearchThreshold, as.numeric)
+      experiment_summary.df$randomWorksNumberMultiplier <- sapply(experiment_summary.df$randomWorksNumberMultiplier, as.numeric)
+
+      file_name <- paste('./R_data/experiment_',experimentId,'_summary.Rdata', sep="")
+      save(experiment_summary.df,file=file_name)
+
+      cat(paste('## Scatterplots of experiment','\n\n'))
+
+      ys <- c('sum_wallTime_min_total')
+      colors <- c('simulationType')
+      used <- append(ys,colors)
+      sizes <- c('foundCycles')
+      used <- append(used,sizes)
+      remove <- c('randomWorksNumberMultiplier', 'experimentId', 'simulationId','sum_wallTime_ms_total', 'foundPaths', 'chainLength','similaritySearchThreshold','similarityConnectThreshold','maxDistance', 'simulationType')
+      used <- append(used, remove)
+      xs=names(experiment_summary.df)[!(names(experiment_summary.df) %in% used)]
+
+
+      # generate permutations of the plots with the above variables
+      for (y_str in ys) {
+        for (color_str in colors) {
+          for (size_str in sizes) {
+            for (x_str in xs) {
+              print(scatterplot(
+                experiment_summary.df,
+                x_str,
+                y_str,
+                size_str,
+                color_str,
+                paste(x_str, ' vs ',y_str),
+                y_str,
+                x_str))
+            }
+          }
+        }
+      }
+
+      if (!exists('summary.df')) {
+        summary.df <- experiment_summary.df
+      } else{
+        summary.df <- rbind.fill(summary.df, experiment_summary.df)
+      }
+
+      rm(experiment_summary.df)
+
+}
+
+cat(paste('  \n\n'))
+cat(paste('# Cross analysis of all additional experiments\n\n'))
+cat(paste('## Summary data \n\n'))
+refcols <- c("experimentId", "simulationId")
+summary.df <- summary.df[, c(refcols, setdiff(names(summary.df), refcols))]
+summary <- kable(summary.df,format.args = list(decimal.mark = '.', big.mark = ",")) %>%
+  kable_styling(bootstrap_options='condensed',full_width = FALSE, position = 'left') %>%
+    scroll_box(height = NULL, width = '1300px',
+      box_css = "border: 1px solid #ddd; padding: 5px; ", extra_css = NULL)
+    #column_spec(0:ncol(experiment.df),width="10em") 
+    #add_header_above(c("labels"=5))
+print(summary)
+
+#summary.df$sum_wallTime_min_total <- summary.df$sum_wallTime_ms_total /60000
+#summary.df$simulationType <- ifelse(grepl('--DV',summary.df$simulationId),"Decentralized", "Centralized")
+
+options(scipen=999)  # turn-off scientific notation like 1e+48
+theme_set(theme_bw())  # pre-set the bw theme.
+
+cat(paste('## Scatterplots of all experiments \n\n'))
+
+# housekeeping on summary.df -- correct types and reorder...
+#summary.df$agentNumber <- sapply(summary.df$agentNumber, as.numeric)
+#summary.df$chainLength <- sapply(summary.df$chainLength, as.numeric)
+#summary.df$similaritySearchThreshold <- sapply(summary.df$similaritySearchThreshold, as.numeric)
+#summary.df$randomWorksNumberMultiplier <- sapply(summary.df$randomWorksNumberMultiplier, as.numeric)
+
+#summary.df$maxDistance <- sapply(summary.df$maxDistance, as.numeric)
+summary.df <- summary.df[order(summary.df$agentNumber),] 
+
+
+summary.df$simulationType_chainLength <- paste(summary.df$simulationType,'-',summary.df$chainLength)
+summary.df$simulationType_foundCycles <- paste(summary.df$simulationType,'-',summary.df$foundCycles)
+summary.df$simulationType_similaritySearchThreshold <- paste(summary.df$simulationType,'-',summary.df$similaritySearchThreshold)
+summary.df$simulationType_similarityConnectThreshold <- paste(summary.df$simulationType,'-',summary.df$similarityConnectThreshold)
+summary.df$simulationType_maxDistance <- paste(summary.df$simulationType,'-',summary.df$maxDistance)
+summary.df$simulationType_randomWorksNumberMultiplier <- paste(summary.df$simulationType,'-',summary.df$randomWorksNumberMultiplier)
+
+ys <- c('sum_wallTime_min_total')
+colors <- c('simulationType_chainLength','simulationType_similaritySearchThreshold','simulationType_similarityConnectThreshold','simulationType_maxDistance', 'simulationType_randomWorksNumberMultiplier')
+used <- append(ys,colors)
+sizes <- c('foundCycles')
+used <- append(used,sizes)
+remove <- c('randomWorksNumberMultiplier', 'experimentId', 'simulationId','sum_wallTime_ms_total', 'foundPaths', 'chainLength','similaritySearchThreshold','similarityConnectThreshold','maxDistance', 'simulationType','simulationType_foundCycles')
+used <- append(used, remove)
+xs=names(summary.df)[!(names(summary.df) %in% used)]
+
+save(summary.df,file='./R_data/summary_of_all_experiments.Rdata')
+
+for (y_str in ys) {
+  for (color_str in colors) {
+    for (size_str in sizes) {
+      for (x_str in xs) {
+        print(scatterplot(
+          summary.df,
+          x_str,
+          y_str,
+          size_str,
+          color_str,
+          paste(x_str, ' vs ',y_str),
+          y_str,
+          x_str))
+      }
+    }
+  }
+}
+
+cat(paste('  \n\n'))
+cat(paste('## Regression analysis \n\n'))
+
+library(stargazer)
+
+fitCV <- lm(sum_wallTime_min_total ~ agentNumber +  vertices_total + edges_total  +  chainLength + maxDistance + randomWorksNumberMultiplier, data=summary.df[which(summary.df$simulationType == 'Centralized'),])
+fitDV <- lm(sum_wallTime_min_total ~ agentNumber  + vertices_total + edges_total  + chainLength + maxDistance + randomWorksNumberMultiplier, data=summary.df[which(summary.df$simulationType == 'Decentralized'),])
+fit <- lm(sum_wallTime_min_total ~ agentNumber + vertices_total + edges_total + factor(simulationType) + chainLength + maxDistance + randomWorksNumberMultiplier, data=summary.df)
+stargazer(fitCV,fitDV,fit,type = "html",column.labels = c("Centralized", "Decentralized", "All"))
+
+```
