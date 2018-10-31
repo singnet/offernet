@@ -1,7 +1,7 @@
 --- 
 title: "Experiment #1: centralized vs decentralized search"
 author: "Kabir Veitas (kabir@singularitynet.io)"
-date: "2018-10-20"
+date: "2018-10-29"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -25,6 +25,7 @@ Here I discuss and provide broader interpretation of results documented in the E
 3. Set 3:
 	6. [experiment-1-run-6](https://singnet.github.io/offernet/public/experiment-1-run-6/)
 	7. [experiment-1-run-7](https://singnet.github.io/offernet/public/experiment-1-run-7/)
+	8. [experiment-1-run-8](https://singnet.github.io/offernet/public/experiment-1-run-8/)
 
 All data used in this document in *.Rdata format is available from github repo, for earch experiment separately in directory ```https://github.com/singnet/offernet/blob/master/docs/{experiment name as above}/R_data/summary_of_all_experiments.Rdata```. Source code of all analysis documents is available from [singnet/offernet/docs](https://github.com/singnet/offernet/blob/master/docs/) directory repository. 
 

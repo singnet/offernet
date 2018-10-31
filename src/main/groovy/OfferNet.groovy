@@ -10,6 +10,7 @@ import com.datastax.driver.dse.graph.GraphOptions
 import com.datastax.driver.dse.auth.DsePlainTextAuthProvider;
 import com.datastax.driver.core.PoolingOptions;
 import com.datastax.driver.core.HostDistance;
+import com.datastax.dse.graph.api.DseGraph
 
 import com.datastax.driver.dse.graph.Edge
 import com.datastax.driver.dse.graph.Vertex
@@ -29,6 +30,8 @@ import kamon.prometheus.PrometheusReporter;
 import kamon.zipkin.ZipkinReporter;
 
 import java.io.File;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource
+import org.apache.tinkerpop.gremlin.structure.io.IoCore
 
 public class OfferNet implements AutoCloseable {
 
@@ -880,14 +883,18 @@ public class OfferNet implements AutoCloseable {
     return similarityEdge;
   }
 
-  private boolean archive() {
-    SimpleGraphStatement developmentModeOn = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
-    session.executeGraph(developmentModeOn)
-
+  private int archive() {
     String outFileDir = System.getProperty("user.dir")+"/"+
               Global.parameters.experimentDataDir + "/" + 
               Global.parameters.experimentId + "/" +
               Global.parameters.simulationId
+    return exportGraphML(outFileDir)
+  }
+
+  public int exportGraphML(String outFileDir) {
+    SimpleGraphStatement developmentModeOn = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
+    session.executeGraph(developmentModeOn)
+
     File dir = new File(outFileDir)
     dir.mkdirs()
     dir.setWritable(true,false)
@@ -899,11 +906,53 @@ public class OfferNet implements AutoCloseable {
     SimpleGraphStatement s = new SimpleGraphStatement(
             "g.getGraph().io(IoCore.graphml()).writeGraph(outputFilePath)", params);
 
-    session.executeGraph(s);
+    GraphResultSet rs = session.executeGraph(s);
 
     SimpleGraphStatement developmentModeOff = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Production')")
     session.executeGraph(developmentModeOff)
 
+    return rs.getExecutionInfo().getSuccessfulExecutionIndex(); 
   }
+
+  public int importGraphML(String pathToFile) {
+      
+      SimpleGraphStatement developmentModeOn = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
+      session.executeGraph(developmentModeOn)
+      
+      Map params = new HashMap();
+      params.put("pathToFile", pathToFile);
+      SimpleGraphStatement s = new SimpleGraphStatement(
+            "g.getGraph().io(IoCore.graphml()).readGraph(pathToFile)", params);
+      GraphResultSet rs = session.executeGraph(s);
+
+      SimpleGraphStatement developmentModeOff = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Production')")
+      session.executeGraph(developmentModeOff)
+      
+      return rs.getExecutionInfo().getSuccessfulExecutionIndex();
+  }
+
+  public Integer diameter(String vertexType, String edgeLabel) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      params.put("vertexType", vertexType);
+      params.put("edgeLabel", edgeLabel);
+      String query = """def list = g.V().has('type','agent').id().toList()
+          def size = list.size()
+          def diameter = 0
+          size.times {
+              def agentId = list.pop()
+              list.each { otherAgent ->
+                  def sp = g.V(agentId).repeat(bothE('knows').otherV().simplePath()).until(has(id,otherAgent)).limit(1).path().toList().get(0).size()
+                  diameter = sp > diameter ? sp : diameter
+              }
+          }
+          (diameter-1)/2
+      """
+      SimpleGraphStatement s = new SimpleGraphStatement(query, params);
+      GraphResultSet rs = session.executeGraph(s);
+      int diameter = rs.one().asInt();
+      logger.debug('Graph diameter: {}; calculation time: {}.',diameter,(System.currentTimeMillis() - start)/1000)
+      return diameter
+    }
 
 }

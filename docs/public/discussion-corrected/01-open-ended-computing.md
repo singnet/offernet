@@ -1,7 +1,7 @@
 --- 
 title: "Discussion of experimental results"
 author: "Kabir Veitas (kabir@singularitynet.io)"
-date: "2018-10-20"
+date: "2018-10-29"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]

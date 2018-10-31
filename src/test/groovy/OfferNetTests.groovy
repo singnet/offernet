@@ -23,6 +23,9 @@ import akka.actor.ActorRef;
 import akka.testkit.TestActorRef
 import akka.testkit.JavaTestKit;
 
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource
+
+
 public class OfferNetTests {
 		static private OfferNet on = new OfferNet().flushVertices();
 	    static private Logger logger;
@@ -226,6 +229,56 @@ public class OfferNetTests {
 		def similarity = Utils.calculateSimilarity(item1,item2);
 		def similarityEdge = on.connect(item1,item2, similarity);
 		assertNotNull(similarityEdge);
+	}
+
+	@Ignore
+	@Test
+	void importGraphMLTest() {
+
+		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+		String fileName = "graphs/data/smallWorld50.dat"
+		sim.createAgentNetworkFromNetworkXDataFile(fileName)
+
+		String archivePath = System.getProperty("user.dir")+"/temp"
+		int resultArchive = sim.on.exportGraphML(archivePath)
+		String graphPath = archivePath + '/graph.graphml'
+		int result = on.importGraphML(graphPath);
+		assert result == 0;
+		List allVertices = on.getVertices('agent')
+		assert allVertices.size() == 50
+	}
+
+	@Ignore
+	@Test 
+	void diameterTestAgentsSmall() {
+		on.flushVertices();
+		// first test graph of 50 agents and diameter 9
+		String archiveDir = "graphs/archives"
+		String experimentId = "EXP10-13-12-56-ZEvsxw"
+		String simulationId = "SIM10-13-12-56-bmib3J--DV"
+		String graphFileName = "graph.graphml"
+		String graphPath = System.getProperty("user.dir") + "/"+
+						   archiveDir + "/" + 
+						   experimentId + "/" + 
+						   simulationId + "/" +
+						   graphFileName
+		int result = on.importGraphML(graphPath);
+		assert result == 0
+		def diameter = on.diameter('agent','knows')
+		assert diameter == 9
+	}
+
+	@Ignore // takes a lot of time...
+	@Test 
+	void diameterTestAgentsLarge() {
+		on.flushVertices();
+		// second test graph with 100 agents (?) and diameter something else
+		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+		String fileName = "graphs/data/smallWorld200-d6.dat"
+		sim.createAgentNetworkFromNetworkXDataFile(fileName)
+
+		def diameter = on.diameter('agent','knows')
+		assert diameter == 6
 	}
 
 

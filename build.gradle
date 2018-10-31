@@ -58,7 +58,7 @@ jacocoTestReport {
 }
 
 test {
-    //exclude '**/*Experiments*'
+    exclude '**/*Experiments*'
     jvmArgs "-Dcom.sun.management.jmxremote"
     jvmArgs "-Dcom.sun.management.jmxremote.port=5999"
     jvmArgs "-Dcom.sun.management.jmxremote.local.only=false"
