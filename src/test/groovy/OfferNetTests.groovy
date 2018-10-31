@@ -231,6 +231,7 @@ public class OfferNetTests {
 		assertNotNull(similarityEdge);
 	}
 
+	@Ignore
 	@Test
 	void importGraphMLTest() {
 
@@ -247,6 +248,7 @@ public class OfferNetTests {
 		assert allVertices.size() == 50
 	}
 
+	@Ignore
 	@Test 
 	void diameterTestAgentsSmall() {
 		on.flushVertices();
