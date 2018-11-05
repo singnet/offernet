@@ -16,7 +16,8 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import akka.actor.UntypedAbstractActor;
+import akka.actor.AbstractActorWithTimers;
+import akka.actor.AbstractActor.Receive
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.japi.Creator;
@@ -24,7 +25,7 @@ import groovy.json.JsonSlurper;
 
 //import java.util.UUID;
 
-public class Agent extends UntypedAbstractActor {
+public class Agent extends AbstractActorWithTimers {
     private Vertex vertex;
 	  private DseSession session;
     private Logger logger;
@@ -38,25 +39,17 @@ public class Agent extends UntypedAbstractActor {
     });
   }
 
-  public void onReceive(Object message) throws Exception {
-    logger.debug("{} : {} : agent {} received message: {} of {}",
-      'onReceive',
-      Global.parameters.simulationId,
-      this.id(),
-      message,
-      message.getClass())
-  
-    if (message instanceof Method) {
-      switch (message) {
-        default: 
+  @Override
+  public Receive createReceive() {
+      def runMethod = { message -> 
           def args = message.args
           def reply = this."$message.name"(*args)
           if (reply != null) { 
             getSender().tell(reply,getSelf());
           }
-          break;
-      }
-    }
+        }
+    return receiveBuilder()
+      .match(Method.class, runMethod).build();
   }
 
   /**
