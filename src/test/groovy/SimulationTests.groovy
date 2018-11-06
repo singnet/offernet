@@ -139,6 +139,33 @@ public class SimulationTests {
 		}
 
 		@Test
+		void createAgentNetworkWithChainAndTestActorTest() {
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			sim.on.flushVertices();
+			int size = 20
+
+			def chainLength = 4
+			def chains = [Utils.createChain(chainLength)]
+			def chain = chains[0]
+			logger.debug("Created chain to add to the network: {}", chain)
+
+			def agentList = sim.createAgentNetwork(size)
+			assertEquals(agentList.size(), size)
+			Global.parameters.reportMode=false
+
+		    def chainedWorks = sim.addChainToNetworkWithTaskAgent(chains[0])  // add chain to network and return json structure...
+      		//assertEquals(chainedWorks.size(),chainLength)
+			def agentNumber = sim.on.getVertices('agent').size();
+			assertEquals(agentNumber, size+1);
+			def knowsEdgeNumber = sim.on.getEdges('agent','knows').size();
+			assertEquals(knowsEdgeNumber, size);
+			def itemNumber = sim.on.getVertices('item').size();
+			
+		}
+
+
+		@Test
 		void createAgentNetworkWithChainAndRandomWorks() {
 			
 			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
@@ -384,7 +411,7 @@ public class SimulationTests {
       		assertTrue(foundPathsCount > 0);
 		}
 
-		@Ignore  // this test cannot path because idividual search happens via asynchronous messages
+		// this test does not check return values since individualCycleSearch is asynchronous and does not return value
 		@Test
 		void individualCycleSearchTest() {
 			/* run test with parameters: */
@@ -441,11 +468,120 @@ public class SimulationTests {
 			 // test fails without above line: 
 			 //it seems that connectIfSimilarForAllAgents takes a lot of time
 			 // need to debug
- 	       	int foundCyclesCount = sim.individualCycleSearch(taskAgent, chainedWorksJson);
-      		logger.debug("Found {} paths containing the chain", foundCyclesCount)
-      		assert foundCyclesCount > 0;
+ 	       	sim.individualCycleSearch(taskAgent, chainedWorksJson);
+ 	       	Thread.sleep(3000)
+      		//logger.debug("Found {} paths containing the chain", foundCyclesCount)
+      		//assert foundCyclesCount > 0;
 		}
 
+		// this test does not check return values since individualCycleSearch is asynchronous and does not return value
+		@Test
+		void individualCycleSearchWithMaxReachDistanceTest() {
+			/* run test with parameters: */
+			def agentNumber = 200 // number of agents in the network
+			def chainLength = 10 // the length of the chain to drop into the network;
+			def randomWorksNumber = 50*2 // number of random works (outside chain) to drop into the network;
+			def maxDistance = 50; // the maximum number of hops when doing decentralized similarity search;
+			def similaritySearchThreshold = 1 // consider only items that are this similar when searching for path;
+			def maxReachDistance = chainLength +1
+
+	       	Global.parameters.similaritySearchThreshold = similaritySearchThreshold
+	       	Global.parameters.persistence = false
+
+	       	// create simulation object
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			
+			// create agent network and put some random works into it
+			def agentList = sim.createAgentNetwork(agentNumber);
+			logger.debug("added agent network with agents: {}", agentList)			
+			sim.addRandomWorksToAgents(randomWorksNumber)
+
+			// create chain and assign its items to random agents
+			def chains = [Utils.createChain(chainLength)]
+			def chain = chains[0]
+			logger.debug("Created chain to add to the network: {}", chain)
+			
+			def chainedWorksJson = sim.addChainToNetwork(chain, true)  // add chain to network and return json structure...
+
+			// create agent that has a work which closes the chain into the cycle
+			// this agent will have the last item in he chain as demand
+			// and the first item in the chain as offer
+			
+			def vertexIdList = new ArrayList(sim.vertexIdToActorRefTable.keySet())
+			def taskAgent = sim.createAgent()
+			logger.debug('Created an agent {} for performing the cycle search',taskAgent)
+			def randomAgent = vertexIdList[new Random().nextInt(vertexIdList.size())]
+			Method msg = new Method("knowsAgent", new ArrayList(){{add(randomAgent)}});
+			Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+			Future<Object> future = Patterns.ask(taskAgent, msg, timeout);
+		  	def knowsEdge = (Edge) Await.result(future, timeout.duration());
+		  	assertNotNull(knowsEdge);
+		  	logger.debug('agent {} knows agent {}', taskAgent, randomAgent)			
+
+			msg = new Method("ownsWork", new ArrayList(){{add(chain[-1]);add(chain[0])}});
+			timeout = new Timeout(Duration.create(5, "seconds"));
+			future = Patterns.ask(taskAgent, msg, timeout);
+		  	Vertex taskWork = (Vertex) Await.result(future, timeout.duration());
+		  	assertNotNull(taskWork);
+		  	logger.debug('Added work {} to agent {}', taskWork, taskAgent)			
+
+		  	sim.decentralizedSimilaritySearchAndConnect(maxDistance)
+		  	//sim.centralizedSimilaritySearchAndConnect();
+			Thread.sleep(3000)
+			 // test fails without above line: 
+			 //it seems that connectIfSimilarForAllAgents takes a lot of time
+			 // need to debug
+ 	       	sim.individualCycleSearch(taskAgent, chainedWorksJson, maxReachDistance);
+ 	       	Thread.sleep(3000)
+      		//logger.debug("Found {} paths containing the chain", foundCyclesCount)
+      		//assert foundCyclesCount > 0;
+		}
+
+		// this test does not check return values since individualCycleSearch is asynchronous and does not return value
+		@Test
+		void individualCycleSearchWithTaskAgentTest() {
+			/* run test with parameters: */
+			def agentNumber = 200 // number of agents in the network
+			def chainLength = 10 // the length of the chain to drop into the network;
+			def randomWorksNumber = 50*2 // number of random works (outside chain) to drop into the network;
+			def maxDistance = 50; // the maximum number of hops when doing decentralized similarity search;
+			def similaritySearchThreshold = 1 // consider only items that are this similar when searching for path;
+
+	       	Global.parameters.similaritySearchThreshold = similaritySearchThreshold
+	       	Global.parameters.persistence = false
+
+	       	// create simulation object
+			def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
+			assertNotNull(sim);
+			
+			// create agent network and put some random works into it
+			def agentList = sim.createAgentNetwork(agentNumber);
+			logger.debug("added agent network with agents: {}", agentList)			
+			sim.addRandomWorksToAgents(randomWorksNumber)
+
+			// create chain and assign its items to random agents
+			def chains = [Utils.createChain(chainLength)]
+			def chain = chains[0]
+			logger.debug("Created chain to add to the network: {}", chain)
+			
+			def chainedWorksJson = sim.addChainToNetworkWithTaskAgent(chain) 
+
+			// create agent that has a work which closes the chain into the cycle
+			// this agent will have the last item in he chain as demand
+			// and the first item in the chain as offer
+			
+		  	sim.decentralizedSimilaritySearchAndConnect(maxDistance)
+		  	//sim.centralizedSimilaritySearchAndConnect();
+			Thread.sleep(3000)
+			 // test fails without above line: 
+			 //it seems that connectIfSimilarForAllAgents takes a lot of time
+			 // need to debug
+ 	       	sim.individualCycleSearch();
+ 	       	Thread.sleep(3000)
+      		//logger.debug("Found {} paths containing the chain", foundCyclesCount)
+      		//assert foundCyclesCount > 0;
+		}
 
 		@Test
 		void centralizedCycleSearchTestNaive() {
@@ -607,9 +743,11 @@ public class SimulationTests {
 		void createPeriodicTimerTest() {
 			def simTestRef = TestActorRef.create(system, Simulation.props())
 			def sim = simTestRef.underlyingActor();
-			String methodName = "createAgent"
-			List params = []
+			sim.createAgentNetwork(20)
+			String methodName = "addRandomWorksToAgents"
+			List params = [1]
 			int period = 500
+
 			sim.createPeriodicTimer(methodName,params,period)
 			Thread.sleep(5000)
 			simTestRef.suspend()

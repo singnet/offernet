@@ -68,11 +68,11 @@ public class Experiments {
 		* both centralized and decentralized search will be run on every 
 		* permutation of these parameters;
 		*/
-		def similarityConnectThresholds = [0.96]
+		def similarityConnectThresholds = [0.93]
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 		Global.parameters.experimentId = experimentId
-		def agentNumbers = [50, 100, 200]//400, 800]//, 1000, 2000, 5000] // number of agents in the network
-		def chainLengths = [5,10,20] // the length of the chain to drop into the network (cannot be less than 3!)
+		def agentNumbers = [800]//, 800]//, 1000, 2000, 5000] // number of agents in the network
+		def chainLengths = [10,20] // the length of the chain to drop into the network (cannot be less than 3!)
 		def randomWorksNumberMultipliers = [1,2] // number of random works (outside chain) to drop into the network;
 		def maxDistances = [5,10,30] // the maximum number of hops when doing decentralized similarity search;
 		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
@@ -88,7 +88,7 @@ public class Experiments {
       		similaritySearchThresholds,
       		similarityConnectThresholds,
       		graphTypes,
-      		'50, 100 and 200 agents with similarityConnectThreshold 0.96'
+      		'800 agents with similarityConnectThreshold 0.93; finishing after crash restart (chain length 5 already done).'
       	)
 
 		agentNumbers.each { agentNumber ->
@@ -259,7 +259,6 @@ public class Experiments {
 		}
 	}
 
-
 	String createTaskAgentInTheNetwork(Simulation sim, List chain) {
 	  def start = System.currentTimeMillis()
 	  def currentMethodName = "createTaskAgentInTheNetwork"
@@ -290,5 +289,104 @@ public class Experiments {
       return sim.actorRefToAgentIdTable.get(taskAgent)
     }
 
+    @Test
+    void stressTesting() {
+    	// PARAMETERS
+    	def similarityConnectThresholds = [0.95,0.999] // will be selected randomly within this range
+		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
+		Global.parameters.experimentId = experimentId
+		def initialAgentNumber = 1000
+		def newAgentsPerSecond =5
+		def chainLenghts = [5,20] // chain lengths will be selected randomly within this range;
+		def maxDistances = [5,30] // similarity search depth will be selected randomly within this range;
+		def maxDistancesCycleSearch = [10,30] // cycleSearch maxDistances will be selected randomly within this range;
+		def similaritySearchThresholds = [1] // consider only items that are this similar when searching for path;
+		def intialGraphType = 'smallWorld'
 
+		// events in simulation per second:
+		def randomPairsRate =  3.5
+		def pairsInChainRate = 3.5 
+		def randomCycleSearchRate = 7
+		def targetedCycleSearchRate = 0.2
+
+		/*
+		// events per agent per day rates:
+		def randomPairsRate = 0.15 
+		def chainCreationRate = 0.014 
+		def randomCycleSearchRate = 0.3
+		def targetedCycleSearchRate = 0.012
+		*/
+
+		def stressTestParameters = [
+			similaritySearchThresholds : similaritySearchThresholds,
+			initialAgentNumber : initialAgentNumber,
+			chainLengths: chainLengths,
+			maxDistances: maxDistances,
+			maxDistancesCycleSearch: maxDistancesCycleSearch,
+			similaritySearchThresholds: similaritySearchThresholds,
+			intialGraphType: intialGraphType,
+			randomPairsRate: randomPairsRate,
+			chainCreationRate: chainCreationRate,
+			randomCycleSearchRate: randomCycleSearchRate,
+			targetedCycleSearchRate: targetedCycleSearchRate
+		]
+
+		// create simulation for stress testing
+       	String simulationIdGeneral = 'SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6)
+       	def simRef = on.system.actorOf(Simulation.props(simulationIdGeneral+"--ST"),simulationIdGeneral+"--ST");
+		assertNotNull(sim);
+		simRef.tell(new Method('setEvaluationTimeout','PT2H'),getRef())// setting timeout to max for cassandra...
+
+		// create initial agentNetwork
+		String fileName = "graphs/data/smallWorld"+initialAgentNumber+".dat"
+	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+    	def msg = new Method("createAgentNetworkFromNetworkXDataFile",[fileName])
+    	Future<Object> future = Patterns.ask(simRef, msg, timeout);
+    	Await.result(future, timeout.duration());
+
+    	// start periodic ticker for agent creation 
+
+		String methodName = "createAgent"
+		List params = []
+		int periodInMillis = newAgentsPerSecond * 1000
+		List arguments = params.add(periodInMillis)
+
+		msg = new Method("createPeriodicTimer",arguments)
+    	simRef.tell(msg,getRef())
+
+    	// start periodic ticker for new random works creation
+
+		methodName = "addRandomWorksToAgents"
+		params = [1]
+		periodInMillis = 1/(randomPairsRate * 1000)
+		arguments = params.add(periodInMillis)
+
+		msg = new Method("createPeriodicTimer",arguments)
+    	simRef.tell(msg,getRef())
+
+    	// start periodic ticker for chain creation
+		methodName = "addChainToNetworkWithTaskAgent"
+		params = [chainLenghts]
+		chainRate = pairsInChainRate / ((chainLenghts[0]+chainLenghts[1]) / 2)
+		periodInMillis = 1 / chainRate  * 1000
+		arguments = params.add(periodInMillis)
+
+		msg = new Method("createPeriodicTimer",argumetns)
+    	simRef.tell(msg,getRef())
+
+    	// start periodic ticker for targeted cycle searches
+    	methodName = "individualCycleSearch"
+		params = []
+		periodInMillis = 1 / randomCycleSearchRate  * 1000
+		arguments = params.add(periodInMillis)
+
+		msg = new Method("createPeriodicTimer",arguments)
+    	simRef.tell(msg,getRef())
+
+    	// start periodic ticker for random cycle searches
+    	// -- need to modify cycleSearch to include maxDistance parameter
+
+    	// -- also: write tests for everything;
+    	// -- do not forget to make rolling log files (and delete after some time)
+    }
 }

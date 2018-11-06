@@ -45,6 +45,12 @@ public class Agent extends AbstractActorWithTimers {
   @Override
   public Receive createReceive() {
       def runMethod = { message -> 
+          logger.info("{}: {} : received message: {} of {}",
+          'createReceive',
+          Global.parameters.simulationId,
+          message,
+          message.getClass())
+
           def args = message.args
           def reply = this."$message.name"(*args)
           if (reply != null) { 
@@ -680,14 +686,38 @@ public class Agent extends AbstractActorWithTimers {
       return agentCycles
   }
 
-
-  private List<GraphNode> cycleSearch(Object similarityConstraint, List chain) {
+  private List<GraphNode> cycleSearch(Object similarityConstraint) {
       def itemWorks = this.getWorks();
       List<GraphNode> agentCycles = []
       itemWorks.each { work ->
           List<GraphNode> workCycles = this.cycleSearch(work, similarityConstraint);
           agentCycles.addAll(workCycles)
       }
+      logger.debug('agent {} found {} cycles', this.id(), agentCycles)
+      return agentCycles;
+  }
+
+  private List<GraphNode> cycleSearch(Object similarityConstraint, Integer maxReachDistance) {
+      def itemWorks = this.getWorks();
+      List<GraphNode> agentCycles = []
+      itemWorks.each { work ->
+          List<GraphNode> workCycles = this.cycleSearch(work, similarityConstraint,maxReachDistance);
+          agentCycles.addAll(workCycles)
+      }
+      logger.debug('agent {} found {} cycles', this.id(), agentCycles)
+      return agentCycles;
+  }
+
+
+  private List<GraphNode> cycleSearch(Object similarityConstraint, List chain) {
+      def agentCycles = cycleSearch(similarityConstraint);
+      logger.debug('agent {} found {} cycles', this.id(), agentCycles)
+      def reply = new Method("checkFoundPaths", new ArrayList(){{add(agentCycles);add(chain)}})
+      getSender().tell(reply,getSelf());
+  }
+
+  private List<GraphNode> cycleSearch(Object similarityConstraint, List chain, Integer maxReachDistance) {
+      def agentCycles = cycleSearch(similarityConstraint,maxReachDistance);
       logger.debug('agent {} found {} cycles', this.id(), agentCycles)
       def reply = new Method("checkFoundPaths", new ArrayList(){{add(agentCycles);add(chain)}})
       getSender().tell(reply,getSelf());
@@ -729,5 +759,50 @@ public class Agent extends AbstractActorWithTimers {
 
       return result;
   }
+
+
+  // the query used in this method is not very efficient since it loops until maxReachDistance without
+  // considering if the cycle was already found or not; 
+  // checking both maxReachDistance and cycle with or() operator gives error:
+  // "Only P predicates can be or'd together"...
+  private List<GraphNode> cycleSearch(Vertex work, Object similarityConstraint, Integer maxReachDistance) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      logger.debug('cycleSearch: Work is : {}', work)
+      logger.debug('cycleSearch: Work id is: {}', work.getId())
+      logger.debug('cycleSearch: similarityConstraint is: {}', similarityConstraint)
+      logger.debug('cycleSearch: formatted label is: {}', Utils.formatVertexLabel(work.getId()))
+      params.put("thisWork", work.getId());
+      params.put("similarityConstraint", similarityConstraint);
+      params.put("maxReachDistance", maxReachDistance);
+
+      logger.debug("Searching for a cycle starting from work {}, similarityConstraint {}, maxReachDistance {}", work.getId(), similarityConstraint, maxReachDistance)
+
+      SimpleGraphStatement s = new SimpleGraphStatement(
+                "g.V(thisWork).as('source').until(loops().is(gte(maxReachDistance)))"+
+                 ".repeat("+
+                 "__.outE('offers').subgraph('subGraph').inV().bothE('similarity')"+
+                 ".has('similarity',gte(similarityConstraint)).subgraph('subGraph')"+            // (2)
+                ".otherV().inE('demands').subgraph('subGraph').outV().dedup()).cap('subGraph').next().traversal().E()", params)
+
+      GraphResultSet rs = session.executeGraph(s);
+      logger.debug("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.debug("With parameters: {}", params);
+      def result = rs.all()
+      logger.debug("Graph results are exhausted {}", rs.isExhausted())
+      logger.debug("Received result {}",result)
+
+      logger.info('method={} : simulationId={} : agentId={} ; work={} ; similarityConstraint={} ; cycles_count={} : wallTime_ms={} msec.', 
+        'cycleSearch', 
+        Global.parameters.simulationId,
+        this.id(),
+        work.getId(),
+        similarityConstraint,
+        result.size(),
+        (System.currentTimeMillis()-start))
+
+      return result;
+  }
+
 
 }
