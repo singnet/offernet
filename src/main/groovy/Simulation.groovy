@@ -8,7 +8,8 @@ import com.datastax.driver.dse.graph.Vertex;
 import com.datastax.driver.dse.DseSession;
 import com.datastax.driver.dse.graph.GraphNode;
 
-import akka.actor.UntypedAbstractActor;
+import akka.actor.AbstractActorWithTimers;
+import akka.actor.AbstractActor.Receive;
 import akka.actor.Props;
 import akka.japi.Creator;
 
@@ -36,7 +37,7 @@ import groovy.json.JsonSlurper;
 import org.json.JSONArray
 
 
-class Simulation extends UntypedAbstractActor {
+class Simulation extends AbstractActorWithTimers {
 	public OfferNet on;
 	Logger logger;
 	List agentList;
@@ -63,23 +64,23 @@ class Simulation extends UntypedAbstractActor {
     });
   }
 
-  public void onReceive(Object message) throws Exception {
-    if (message instanceof Method) {
-      logger.info("{}: {} : received message: {} of {}",
-        'onReceive',
+  @Override
+  public Receive createReceive() {
+    def runMethod = { message -> 
+        logger.info("{}: {} : received message: {} of {}",
+        'createReceive',
         Global.parameters.simulationId,
         message,
         message.getClass())
-      switch (message) {
-        default: 
-          def args = message.args
-          def reply = this."$message.name"(*args)
-          if (reply) { 
-            getSender().tell(reply,getSelf());
-          }
-          break;
+
+        def args = message.args
+        def reply = this."$message.name"(*args)
+        if (reply != null) { 
+          getSender().tell(reply,getSelf());
+        }
       }
-    }
+    return receiveBuilder()
+      .match(Method.class, runMethod).build();
   }
 
   private Simulation() {
@@ -220,7 +221,7 @@ class Simulation extends UntypedAbstractActor {
 	}
 
 
-  private void createAgentNetworkFromNetworkXDataFile(String fileName) throws Throwable {
+  private boolean createAgentNetworkFromNetworkXDataFile(String fileName) throws Throwable {
         FileInputStream inStream = new FileInputStream(fileName);
         Scanner scanner = new Scanner(inStream);
         int numberOfAgents = scanner.nextInt();
@@ -258,6 +259,7 @@ class Simulation extends UntypedAbstractActor {
         	}
         }
         logger.debug("Created {} edges in the network",edges)
+        return true
     }
 
     private void createAgentNetworkConnectedStars(ActorRef center, Integer radius, Integer branchingFactor) {
@@ -292,6 +294,22 @@ class Simulation extends UntypedAbstractActor {
           (System.currentTimeMillis()-start)
         )
          
+    }
+
+    private void startRandomWorkGenerator(int events) {
+      // events is number of random works per agent per day
+    }
+
+    private void startChainGenerator(int events) {
+      // events is number of chains per agent per day
+    }
+
+    private void startRandomCycleSearchGenerator(int events) {
+      // events is number of randomCycleSearches per agent per day
+    }
+
+    private void startTargetedCycleSearchGenerator(int events) {
+      // events is number of targetedCycleSearches per agent per day
     }
 
     public List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
@@ -680,6 +698,5 @@ class Simulation extends UntypedAbstractActor {
         }
         return foundPathsCount;
     }
-
 
 }
