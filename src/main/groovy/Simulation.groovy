@@ -32,10 +32,11 @@ import scala.concurrent.Await;
 import scala.concurrent.duration.Duration;
 import akka.util.Timeout;
 
-
 import groovy.json.JsonSlurper;
 import org.json.JSONArray
 
+import java.util.concurrent.TimeUnit;
+import scala.concurrent.duration.FiniteDuration;
 
 class Simulation extends AbstractActorWithTimers {
 	public OfferNet on;
@@ -130,6 +131,14 @@ class Simulation extends AbstractActorWithTimers {
     actorRefToAgentIdTable.put(actorRef,agentId);
     return actorRef
   }
+
+  private createPeriodicTimer(String methodName, List params, int periodInMillis) {
+      getTimers().startPeriodicTimer(methodName, 
+                                      new Method(methodName , params), 
+                                      FiniteDuration.create(periodInMillis, TimeUnit.MILLISECONDS)
+                                    );
+  }
+
 
   /**
   This method is used when the simulation object is recreated with the same underlying graph

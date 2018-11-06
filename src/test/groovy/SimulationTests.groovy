@@ -603,4 +603,18 @@ public class SimulationTests {
 			assertEquals(40,itemNo); // creates two items (demand and offer) when creating a random work;
 		}
 
+		@Test
+		void createPeriodicTimerTest() {
+			def simTestRef = TestActorRef.create(system, Simulation.props())
+			def sim = simTestRef.underlyingActor();
+			String methodName = "createAgent"
+			List params = []
+			int period = 500
+			sim.createPeriodicTimer(methodName,params,period)
+			Thread.sleep(5000)
+			simTestRef.suspend()
+			assert sim.vertexIdToActorRefTable.size() != 0
+			simTestRef.stop()
+		}
+
 }
