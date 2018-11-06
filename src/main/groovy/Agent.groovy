@@ -23,6 +23,9 @@ import akka.actor.Props;
 import akka.japi.Creator;
 import groovy.json.JsonSlurper;
 
+import java.util.concurrent.TimeUnit;
+import scala.concurrent.duration.FiniteDuration;
+
 //import java.util.UUID;
 
 public class Agent extends AbstractActorWithTimers {
@@ -94,6 +97,13 @@ public class Agent extends AbstractActorWithTimers {
           agentId,
           (System.currentTimeMillis()-start))
 	}
+
+  private createPeriodicTimer(String methodName, List params, int periodInMillis) {
+      getTimers().startPeriodicTimer(methodName, 
+                                      new Method(methodName , params), 
+                                      FiniteDuration.create(periodInMillis, TimeUnit.MILLISECONDS)
+                                    );
+  }
 
   private emitNewVertexEvent(Vertex vertex) {
       Map vertexProperties = [id:vertex.getId(),label:vertex.getLabel()]
