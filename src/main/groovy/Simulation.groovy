@@ -453,7 +453,9 @@ class Simulation extends AbstractActorWithTimers {
         return chainedWorks;
     }
 
-    public void addChainToNetworkWithTaskAgent(List chain) {
+    public void addChainToNetworkWithTaskAgent(List chainLengths) {
+        def chainLength = new Random().nextInt(chainLengths[1]-chainLengths[0])+chainLengths[0]
+        def chain = Utils.createChain(chainLength)
         def chainAsJson = addChainToNetwork(chain, true)
         def agentId = createTaskAgentInTheNetwork(chain);
         def actorRef = agentIdToActorRefTable.get(agentId);
@@ -636,7 +638,8 @@ class Simulation extends AbstractActorWithTimers {
       def taskActorRefList = new ArrayList(this.taskActorRefToChainTable.keySet())
       def randomTaskAgent = taskActorRefList[new Random().nextInt(taskActorRefList.size())]
       def chain = taskActorRefToChainTable.get(randomTaskAgent);
-      individualCycleSearch(randomTaskAgent,chain)
+      def maxReachDistance
+      individualCycleSearch(randomTaskAgent,chain,maxReachDistance)
     }
 
     void individualCycleSearch(ActorRef agent, List chain, Integer maxReachDistance) {

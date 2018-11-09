@@ -543,7 +543,7 @@ public class SimulationTests {
 		void individualCycleSearchWithTaskAgentTest() {
 			/* run test with parameters: */
 			def agentNumber = 200 // number of agents in the network
-			def chainLength = 10 // the length of the chain to drop into the network;
+			def chainLengths = [5,10] // the length of the chain to drop into the network;
 			def randomWorksNumber = 50*2 // number of random works (outside chain) to drop into the network;
 			def maxDistance = 50; // the maximum number of hops when doing decentralized similarity search;
 			def similaritySearchThreshold = 1 // consider only items that are this similar when searching for path;
@@ -560,12 +560,7 @@ public class SimulationTests {
 			logger.debug("added agent network with agents: {}", agentList)			
 			sim.addRandomWorksToAgents(randomWorksNumber)
 
-			// create chain and assign its items to random agents
-			def chains = [Utils.createChain(chainLength)]
-			def chain = chains[0]
-			logger.debug("Created chain to add to the network: {}", chain)
-			
-			def chainedWorksJson = sim.addChainToNetworkWithTaskAgent(chain) 
+			def chainedWorksJson = sim.addChainToNetworkWithTaskAgent(chainLengths) 
 
 			// create agent that has a work which closes the chain into the cycle
 			// this agent will have the last item in he chain as demand
