@@ -415,7 +415,7 @@ public class SimulationTests {
 		@Test
 		void individualCycleSearchTest() {
 			/* run test with parameters: */
-			def agentNumber = 200 // number of agents in the network
+			def agentNumber = 50 // number of agents in the network
 			def chainLength = 10 // the length of the chain to drop into the network;
 			def randomWorksNumber = 50*2 // number of random works (outside chain) to drop into the network;
 			def maxDistance = 50; // the maximum number of hops when doing decentralized similarity search;
@@ -469,7 +469,7 @@ public class SimulationTests {
 			 //it seems that connectIfSimilarForAllAgents takes a lot of time
 			 // need to debug
  	       	sim.individualCycleSearch(taskAgent, chainedWorksJson);
- 	       	Thread.sleep(3000)
+ 	       	Thread.sleep(5000)
       		//logger.debug("Found {} paths containing the chain", foundCyclesCount)
       		//assert foundCyclesCount > 0;
 		}
@@ -478,7 +478,7 @@ public class SimulationTests {
 		@Test
 		void individualCycleSearchWithMaxReachDistanceTest() {
 			/* run test with parameters: */
-			def agentNumber = 200 // number of agents in the network
+			def agentNumber = 50 // number of agents in the network
 			def chainLength = 10 // the length of the chain to drop into the network;
 			def randomWorksNumber = 50*2 // number of random works (outside chain) to drop into the network;
 			def maxDistance = 50; // the maximum number of hops when doing decentralized similarity search;
@@ -533,7 +533,7 @@ public class SimulationTests {
 			 //it seems that connectIfSimilarForAllAgents takes a lot of time
 			 // need to debug
  	       	sim.individualCycleSearch(taskAgent, chainedWorksJson, maxReachDistance);
- 	       	Thread.sleep(3000)
+ 	       	Thread.sleep(5000)
       		//logger.debug("Found {} paths containing the chain", foundCyclesCount)
       		//assert foundCyclesCount > 0;
 		}

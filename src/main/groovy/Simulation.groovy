@@ -646,11 +646,12 @@ class Simulation extends AbstractActorWithTimers {
         Method msg = new Method("cycleSearch", new ArrayList(){{add(similaritySearchThreshold);add(chain);add(maxReachDistance)}});
         agent.tell(msg, getSelf());
         def currentMethodName = 'individualCycleSearch'
-        logger.info('method={} : simulationId={} : agentId={} : similaritySearchThreshold={} :  wallTime_ms={} msec.', 
+        logger.info('method={} : simulationId={} : agentId={} : similaritySearchThreshold={} : maxReachDistance={} :  wallTime_ms={} msec.', 
             currentMethodName, 
             Global.parameters.simulationId,
             this.actorRefToAgentIdTable.get(agent),
             similaritySearchThreshold,
+            maxReachDistance,
             (System.currentTimeMillis()-start)
         )
     }
