@@ -57,7 +57,7 @@ public class OfferNet implements AutoCloseable {
         //def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         //PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
-        system =  ActorSystem.create("OfferNet");
+        this.system = ActorSystem.create("OfferNet");
         try {
 
             cluster = DseCluster.builder()
@@ -185,7 +185,6 @@ public class OfferNet implements AutoCloseable {
     private Object setEvaluationTimeout(String timeout) {
        String query = "schema.config().option('graph.traversal_sources.g.evaluation_timeout').set('$timeout')"
        cluster.connect().executeGraph(query);
-
     }
 
     private Object createSocketWriter() {
@@ -196,7 +195,7 @@ public class OfferNet implements AutoCloseable {
     }
 
     private Object createAnalyst() {
-      def analyst = system.actorOf(Analyst.props(this.session),"Analyst");
+      def analyst = system.actorOf(Analyst.props(this.session, this),"Analyst");
       logger.debug("created a new Analyst actor {}", analyst);
       return analyst;
     }

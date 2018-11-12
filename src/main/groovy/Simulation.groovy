@@ -409,6 +409,7 @@ class Simulation extends AbstractActorWithTimers {
     */
     public Object addChainToNetwork(List chain, boolean json) {
         def currentMethodName = "addChainToNetwork"
+        logger.debug("Starting method {}", currentMethodName)
         def start = System.currentTimeMillis();
         def dataItemsWithDesignedSimilarities = new ArrayList()
         def affectedActors = []
@@ -420,6 +421,7 @@ class Simulation extends AbstractActorWithTimers {
               def random = new Random();
               def agentRef = actorRefs[random.nextInt(actorRefs.size())]
               Vertex work;
+              logger.debug("! affectedActors.contains(agentRef): {}", ! affectedActors.contains(agentRef))
               if (! affectedActors.contains(agentRef)){
                   /*
                   * a chain is added to the network by sending messages to agents to add a work with 
@@ -429,20 +431,21 @@ class Simulation extends AbstractActorWithTimers {
                   * and block until they get replies 
                   */
                   selected = true;
-                  Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+                  Timeout timeout = new Timeout(Duration.create(10, "seconds"));
                   String method = "ownsWork"
                   def args = [chain[x],chain[x+1]];
                   def msg = new Method(method,args)
                   Future<Object> future = Patterns.ask(agentRef, msg, timeout);
                   work = Await.result(future, timeout.duration());
                   affectedActors.add(agentRef)
+                  logger.debug("Added a link of a chain {} -- {} to work {}", chain[x], chain[x+1], work)
 
                   def singleChain = [:]  
                   def workLabel = Utils.formatVertexLabel(work.id)
                   singleChain.put("work", workLabel)
 
                   ['demands','offers'].each{ edgeLabel ->
-                    timeout = new Timeout(Duration.create(5, "seconds"));
+                    timeout = new Timeout(Duration.create(10, "seconds"));
                     method = "getWorksItems"
                     args = [work,edgeLabel];
                     msg = new Method(method,args)
@@ -452,6 +455,7 @@ class Simulation extends AbstractActorWithTimers {
                     if (edgeLabel == "offers") { z = x+1 }
                     singleChain.put("$edgeLabel", [ item: Utils.formatVertexLabel(items[0].id), value: chain[z] ] )
                   }
+                  logger.debug("Added items {} to singleChain", {})
                 chainedWorks.add(singleChain)
               }
             }
@@ -475,12 +479,10 @@ class Simulation extends AbstractActorWithTimers {
         return chainedWorks;
     }
 
-    public void addChainToNetworkWithTaskAgent(List params) {
-        def chainLenghts = params[0]
-        def tickers = params[1]
+    public void addChainToNetworkWithTaskAgent(List chainLenghts, List tickers) {
         def chainLenght = new Random().nextInt(chainLenghts[1]-chainLenghts[0])+chainLenghts[0]
         def chain = Utils.createChain(chainLenght)
-        def chainAsJson = addChainToNetwork(chain, true)
+        logger.debug("The chain is {}",chain)
         def agentId = createTaskAgentWithTickersInTheNetwork(chain, tickers);
         logger.debug("CreatedTask agent {}",agentId)
    }
@@ -853,13 +855,21 @@ class Simulation extends AbstractActorWithTimers {
       // create agent that has a work which closes the chain into the cycle
       // this agent will have the last item in he chain as demand
       // and the first item in the chain as offer
+      def chainAsJson = addChainToNetwork(chain, true)
+      if (tickers.size()>0) {
+        def cycleSearchTicker = tickers.pop()
+        def methodName = cycleSearchTicker[0]
+        def params = cycleSearchTicker[1]
+        def periodBetweenEventsInMillis = cycleSearchTicker[2]
+        params.add(chainAsJson)
+        def cycleSearchTickerAugmented = [methodName,params,periodBetweenEventsInMillis]
+        tickers.add(cycleSearchTickerAugmented)
+      }
       ActorRef taskAgent = this.createAgentWithTickers(tickers)
-      taskActorRefToChainTable.put(taskAgent,chain)
-
       def msg = new Method("ownsWork", new ArrayList(){{add(chain[-1]);add(chain[0])}});
-      def timeout = new Timeout(Duration.create(5, "seconds"));
-      def future = Patterns.ask(taskAgent, msg, timeout);
-      Vertex taskWork = (Vertex) Await.result(future, timeout.duration());
+      taskAgent.tell(msg,getSelf())
+
+      taskActorRefToChainTable.put(taskAgent,chainAsJson)
 
       logger.info('method={} : simulationId={} : agentRef={} : wallTime_ms={}',
       currentMethodName,

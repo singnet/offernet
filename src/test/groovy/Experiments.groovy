@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Experiments {
-	static ActorSystem system = ActorSystem.create("SimulationTests");
+	static ActorSystem system = Global.system
 	static private Logger logger;
 	private Simulation sim;
 	Integer timeout = 3600//18000 // timeout of a simulation in seconds (5 hours );
@@ -50,7 +50,6 @@ public class Experiments {
 	    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         PropertyConfigurator.configure(config.toProperties())
    	    logger = LoggerFactory.getLogger('Experiments.class');
-
 	}
 
 	@AfterClass
@@ -324,7 +323,7 @@ public class Experiments {
 		Global.parameters.similaritySearchThreshold = similaritySearchThreshold
 		// create simulation for stress testing
        	String simulationIdGeneral = 'SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6)
-       	def simRef = system.actorOf(Simulation.props(simulationIdGeneral+"--ST"),simulationIdGeneral+"--ST");
+       	def simRef = system.actorOf(Simulation.props(simulationIdGeneral+"--ST"),"SimulationActor");
 		assertNotNull(simRef);
 		simRef.tell(new Method('setEvaluationTimeout',['PT2H']),ActorRef.noSender())// setting timeout to max for cassandra...
 
@@ -356,7 +355,18 @@ public class Experiments {
 
     	// start periodic ticker for chain creation
 		methodName = "addChainToNetworkWithTaskAgent"
-		params = [chainLenghts, tickers]
+		tickers = []
+		// each agent creates some random work per some time
+		periodBetweenEventsInMillis = 1 / (randomPairsRatePerAgent / 24 / 60 / 60 / 1000 )
+		tickers.add(['ownsWork',[],periodBetweenEventsInMillis])
+		// each agent initiates search and connect process per some time
+		periodBetweenEventsInMillis = 1 / (searchAndConnectRatePerAgent / 24 / 60 / 60 / 1000 )
+		tickers.add(['searchAndConnect',[similarityConnectThreshold,maxSimilaritySearchDistance],periodBetweenEventsInMillis])
+		// each agent initiates cycle search per some time
+		periodBetweenEventsInMillis = 1 / (randomCycleSearchRatePerAgent / 24 / 60 / 60 / 1000 )
+		tickers.add(['cycleSearch',[similaritySearchThreshold,maxCycleSearchDistance],periodBetweenEventsInMillis])
+
+		def params = [chainLenghts, tickers]
 		periodBetweenEventsInMillis = 1 / (chainCreationRatePerAgent / 24 / 60 / 60 / 1000 )
 		arguments = [methodName, params, periodBetweenEventsInMillis] 
 

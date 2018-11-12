@@ -58,13 +58,13 @@ import java.util.concurrent.TimeUnit;
 public class SimulationTests {
 		static ActorSystem system = ActorSystem.create("SimulationTests");
 		static private Logger logger;
+		static ActorRef simRef = system.actorOf(Simulation.props("SimulationActor"),'SimulationActor');
 
 		@BeforeClass
 		static void initLogging() {
 		    def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
 	        PropertyConfigurator.configure(config.toProperties())
     	    logger = LoggerFactory.getLogger('SimulationTests.class');
-
 		}
 
 		@Test
@@ -88,7 +88,6 @@ public class SimulationTests {
 		@Test
 		void createAgentWithTickersTest() {
 			//def sim = TestActorRef.create(system, Simulation.props(),'SimulationActor').underlyingActor();
-			def simRef = system.actorOf(Simulation.props("SimulationActor"),'SimulationActor');
 			logger.debug('created SimulationActor with ActorRef {}',simRef)
 			List tickers = []
 			tickers.add(['ownsWork',[],200])
@@ -105,6 +104,34 @@ public class SimulationTests {
 			Thread.sleep(15000)
 		}
 
+		@Test
+		void addChainToNetworkWithTaskAgentTest() {
+			//def sim = TestActorRef.create(system, Simulation.props(),'SimulationActor').underlyingActor();
+			logger.debug('created SimulationActor with ActorRef {}',simRef)
+			List tickers = []
+			tickers.add(['ownsWork',[],2000])
+			// each agent initiates search and connect process per some time
+			tickers.add(['searchAndConnect',[0.99,10],500])
+			// each agent initiates cycle search per some time
+			tickers.add(['cycleSearchRandom',[5,20],2000])
+
+			10.times {
+				simRef.tell(new Method("createAgentWithTickers", new ArrayList(){{add(tickers)}}),simRef)
+			}
+
+			Thread.sleep(20000)
+
+			tickers = []
+			// each agent creates some random work per some time
+			tickers.add(['searchAndConnect',[0.99,10],500])
+			// each agent initiates cycle search per some time
+			tickers.add(['cycleSearch',[10,20],1000])
+
+			def params = [[5,6], tickers]
+	    	simRef.tell(new Method("addChainToNetworkWithTaskAgent",params),simRef)
+
+	    	Thread.sleep(20000)
+		}
 
 		@Test
 		void getAgentVertexIdTest() {
@@ -171,8 +198,9 @@ public class SimulationTests {
 			Global.parameters.reportMode=false
 
 		    def chainedWorks = sim.addChainToNetworkWithTaskAgent([[5,10],[]])  // add chain to network and return json structure...
-      		//assertEquals(chainedWorks.size(),chainLength)
-			def agentNumber = sim.on.getVertices('agent').size();
+      		Thread.sleep(20000)
+
+      		def agentNumber = sim.on.getVertices('agent').size();
 			assertEquals(agentNumber, size+1);
 			def knowsEdgeNumber = sim.on.getEdges('agent','knows').size();
 			assertEquals(knowsEdgeNumber, size);

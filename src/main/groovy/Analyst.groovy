@@ -24,17 +24,19 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.japi.Creator;
 import groovy.json.JsonSlurper;
+import org.json.JSONArray
 import groovy.json.JsonOutput;
 
 public class Analyst extends UntypedAbstractActor {
 	  private DseSession session;
     private Logger logger;
+    private OfferNet on;
 
-  static Props props(DseSession session) {
+  static Props props(DseSession session, OfferNet on) {
     return Props.create(new Creator<Analyst>() {
       @Override
       public Analyst create() throws Exception {
-        return new Analyst(session);
+        return new Analyst(session, on);
       }
     });
   }
@@ -59,13 +61,14 @@ public class Analyst extends UntypedAbstractActor {
     }
   }
 
-	public Analyst(DseSession session) {
+	public Analyst(DseSession session, OfferNet on) {
 
         def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('Analyst.class');
 
         this.session = session;
+        this.on = on;
 
 	}
 
@@ -159,5 +162,67 @@ public class Analyst extends UntypedAbstractActor {
         message,
         (System.currentTimeMillis()-start))
   }
+
+  int checkFoundPaths(List cycle, List chain) {
+      def start = System.currentTimeMillis();
+      def currentMethodName = 'checkFoundPaths'
+      def jsonSlurper = new JsonSlurper()
+      def cycleJson = jsonSlurper.parseText(cycle.toString());
+      def foundCyclesCount = 0;
+
+      def richCycle = getVerticesBelongingToSubgraph(cycleJson)
+      logger.debug("Got cycle enriched by vertices {}",richCycle)
+      def keyword = "";
+      if (richCycle.size()!=0) {
+          def cycleContainsChain = Utils.pathContainsChain(richCycle, chain)
+          if (cycleContainsChain) {
+            foundCyclesCount += 1;
+            keyword = "foundCycle";
+            Global.parameters.terminate_all = true
+          } else {
+            keyword = "foundPath"
+          }
+      }
+   
+      logger.info('method={} : simulationId={} : agentId={} : keyword={} : cyGraph={} : wallTime_ms={} msec.', 
+        currentMethodName, 
+        Global.parameters.simulationId,
+        getSender(),
+        keyword,
+        Utils.convertToCYNotation(richCycle,keyword),
+        (System.currentTimeMillis()-start)
+      )
+    return foundCyclesCount;
+  }
+
+  Object getVerticesBelongingToSubgraph(Object subgraph) {
+      def start = System.currentTimeMillis()
+      logger.debug("subgraph is {}",subgraph)
+      JSONArray uniquePath = new JSONArray()
+      subgraph.each { edge ->
+        JSONArray singleChain = new JSONArray()
+        singleChain.put(edge)
+        logger.debug("Getting vertexes of the edge {}",edge)
+        def inV = Utils.formatVertexLabel(edge.id.get('~in_vertex'))
+        logger.debug("Getting vertex {}",inV)
+        def vertexIn = this.on.getVertex(inV)
+        logger.debug('got vertexIn {}',vertexIn)
+        def outV = Utils.formatVertexLabel(edge.id.get('~out_vertex'))
+        logger.debug("Getting vertex {}",outV)
+        def vertexOut = this.on.getVertex(outV)
+        logger.debug('got vertexOut {}',vertexOut)
+        singleChain.put(vertexIn[0])
+        singleChain.put(vertexOut[0])
+        uniquePath.put(singleChain)
+      }
+      logger.debug("formed a uniquePath with edges and vertices {}",uniquePath)
+      logger.debug('{} : {} : wallTime_ms={} msec.', 
+        'getVerticesBelongingToSubgraph', 
+        Global.parameters.simulationId,
+        (System.currentTimeMillis()-start))
+
+      return uniquePath
+  }
+
 
 }
