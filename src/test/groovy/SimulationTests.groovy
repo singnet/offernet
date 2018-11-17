@@ -58,7 +58,6 @@ import java.util.concurrent.TimeUnit;
 public class SimulationTests {
 		static ActorSystem system = ActorSystem.create("SimulationTests");
 		static private Logger logger;
-		static ActorRef simRef = system.actorOf(Simulation.props("SimulationActor"),'SimulationActor');
 
 		@BeforeClass
 		static void initLogging() {
@@ -87,7 +86,9 @@ public class SimulationTests {
 
 		@Test
 		void createAgentWithTickersTest() {
-			//def sim = TestActorRef.create(system, Simulation.props(),'SimulationActor').underlyingActor();
+			def simRef = TestActorRef.create(system, Simulation.props(),'SimulationActor')
+			def sim = simRef.underlyingActor()
+			//ActorRef simRef = system.actorOf(Simulation.props("SimulationActor"),'SimulationActor');
 			logger.debug('created SimulationActor with ActorRef {}',simRef)
 			List tickers = []
 			tickers.add(['ownsWork',[],200])
@@ -101,36 +102,60 @@ public class SimulationTests {
 			simRef.tell(new Method("createAgentWithTickers", new ArrayList(){{add(tickers)}}),simRef)
 			simRef.tell(new Method("createAgentWithTickers", new ArrayList(){{add(tickers)}}),simRef)
 
-			Thread.sleep(15000)
+			def agentNumber = sim.on.getVertices('agent').size();
+			assert agentNumber == 4
 		}
 
 		@Test
 		void addChainToNetworkWithTaskAgentTest() {
-			//def sim = TestActorRef.create(system, Simulation.props(),'SimulationActor').underlyingActor();
+			def simRef = TestActorRef.create(system, Simulation.props(),'SimulationActor')
+			def sim = simRef.underlyingActor();
 			logger.debug('created SimulationActor with ActorRef {}',simRef)
 			List tickers = []
 			tickers.add(['ownsWork',[],2000])
 			// each agent initiates search and connect process per some time
-			tickers.add(['searchAndConnect',[0.99,10],500])
+			tickers.add(['searchAndConnect',[0.99,10],1000])
 			// each agent initiates cycle search per some time
-			tickers.add(['cycleSearchRandom',[5,20],2000])
+			tickers.add(['cycleSearchRandom',[1,20],2000])
 
 			10.times {
 				simRef.tell(new Method("createAgentWithTickers", new ArrayList(){{add(tickers)}}),simRef)
 			}
 
-			Thread.sleep(20000)
+			Thread.sleep(900)
+
+			assert sim.on.getVertices('agent').size() == 10
+		    Method msg = new Method("allEdgesByLabel", ["allEdgesByLabel", Global.parameters.simulationId]);
+		    Timeout timeout = new Timeout(Duration.create(10, "seconds"));
+		   	Future<Object> future = Patterns.ask(sim.on.analyst, msg, timeout);
+		   	String allEdgesByLabelString = Await.result(future, timeout.duration());
+		   	def jsonSlurper = new JsonSlurper();
+		   	def allEdgesByLabel = jsonSlurper.parseText(allEdgesByLabelString)
+		   	assert allEdgesByLabel.get("knows") == 9
+		   	assert allEdgesByLabel.size() == 1
 
 			tickers = []
 			// each agent creates some random work per some time
 			tickers.add(['searchAndConnect',[0.99,10],500])
 			// each agent initiates cycle search per some time
-			tickers.add(['cycleSearch',[10,20],1000])
+			tickers.add(['cycleSearch',[1,20],1000])
 
 			def params = [[5,6], tickers]
 	    	simRef.tell(new Method("addChainToNetworkWithTaskAgent",params),simRef)
 
-	    	Thread.sleep(20000)
+	    	Thread.sleep(2000)
+			assert sim.on.getVertices('agent').size() == 11
+			msg = new Method("allEdgesByLabel", ["allEdgesByLabel", Global.parameters.simulationId]);
+		    timeout = new Timeout(Duration.create(10, "seconds"));
+		   	future = Patterns.ask(sim.on.analyst, msg, timeout);
+		   	allEdgesByLabelString = Await.result(future, timeout.duration());
+		   	allEdgesByLabel = jsonSlurper.parseText(allEdgesByLabelString)
+		   	assert allEdgesByLabel.get("knows") == 10
+		   	assert allEdgesByLabel.size() > 1
+		   	assert allEdgesByLabel.get("similarity") > 0
+		   	assert allEdgesByLabel.get("owns") > 0
+		   	assert allEdgesByLabel.get("demands") > 0
+		   	assert allEdgesByLabel.get("offers") > 0
 		}
 
 		@Test

@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Experiments {
-	static ActorSystem system = Global.system
+	static ActorSystem system = ActorSystem.create("Experiments");
 	static private Logger logger;
 	private Simulation sim;
 	Integer timeout = 3600//18000 // timeout of a simulation in seconds (5 hours );
@@ -309,7 +309,7 @@ public class Experiments {
 		def randomCycleSearchRate = 7
 		def targetedCycleSearchRate = 0.2
 		*/
-		def timeoutStressTesting = 500000//3600000// 604800000 // this is 7 days in milliseconds
+		def timeoutStressTesting = 200000//3600000// 604800000 // this is 7 days in milliseconds
 
 		
 		// events per agent per day rates:

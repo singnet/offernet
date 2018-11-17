@@ -108,7 +108,7 @@ public class Analyst extends UntypedAbstractActor {
         (System.currentTimeMillis()-start))
   }
 
-  private allEdgesByLabel(String message, String simulationId) {
+  private Object allEdgesByLabel(String message, String simulationId) {
       def start = System.currentTimeMillis();
 
       String query = "g.V().has('type',within(['agent','item','work'])).outE().dedup().groupCount().by(label)"
@@ -124,6 +124,8 @@ public class Analyst extends UntypedAbstractActor {
         resultsJson,
         message,
         (System.currentTimeMillis()-start))
+
+      return resultsJson
   }
 
   private allVerticesByLabel(String message, String simulationId) {
