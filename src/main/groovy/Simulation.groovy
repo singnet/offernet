@@ -157,7 +157,8 @@ class Simulation extends AbstractActorWithTimers {
     return actorRef
   }
 
-  private createPeriodicTimer(String methodName, List params, int periodInMillis) {
+  private createPeriodicTimer(String methodName, List params, Object periodInMillis) {
+      this."$methodName"(*params)
       getTimers().startPeriodicTimer(methodName, 
                                       new Method(methodName , params), 
                                       FiniteDuration.create(periodInMillis, TimeUnit.MILLISECONDS)
@@ -179,14 +180,23 @@ class Simulation extends AbstractActorWithTimers {
   * gets agent vertexId via asynchronous blocking message
   * not perfect: have to change to non -blocking message with probably future.onComplete...
   */
+
+  /*
   private Object getAgentVertexId(ActorRef actorRef) {
-    Timeout timeout = new Timeout(Duration.create(30, "seconds"));
+    return actorRefToVertexIdTable.get(actorRef)
+  }
+  */
+
+  
+  private Object getAgentVertexId(ActorRef actorRef) {
+    Timeout timeout = new Timeout(Duration.create(200, "seconds"));
     def msg = new Method("vertexId",[])
     Future<Object> future = Patterns.ask(actorRef, msg, timeout);
     def vertexId = Await.result(future, timeout.duration());
     logger.debug('Got actorRefs {} vertexId {} via blocking future', actorRef, vertexId)
     return vertexId;
   }
+  
 
   public List createAgentNetwork(int numberOfAgents) {
     def start = System.currentTimeMillis()
@@ -431,7 +441,7 @@ class Simulation extends AbstractActorWithTimers {
                   * and block until they get replies 
                   */
                   selected = true;
-                  Timeout timeout = new Timeout(Duration.create(10, "seconds"));
+                  Timeout timeout = new Timeout(Duration.create(120, "seconds"));
                   String method = "ownsWork"
                   def args = [chain[x],chain[x+1]];
                   def msg = new Method(method,args)
@@ -445,7 +455,7 @@ class Simulation extends AbstractActorWithTimers {
                   singleChain.put("work", workLabel)
 
                   ['demands','offers'].each{ edgeLabel ->
-                    timeout = new Timeout(Duration.create(10, "seconds"));
+                    timeout = new Timeout(Duration.create(60, "seconds"));
                     method = "getWorksItems"
                     args = [work,edgeLabel];
                     msg = new Method(method,args)
@@ -856,20 +866,36 @@ class Simulation extends AbstractActorWithTimers {
       // this agent will have the last item in he chain as demand
       // and the first item in the chain as offer
       def chainAsJson = addChainToNetwork(chain, true)
+      logger.debug("tickersBeforeAugmenting={}",tickers)
       if (tickers.size()>0) {
+        logger.debug("before pop: tickers.size={}", tickers.size())
         def cycleSearchTicker = tickers.pop()
+        logger.debug("after pop: tickers.size={}", tickers.size())
+        logger.debug("cycleSearchTicker={}", cycleSearchTicker)
         def methodName = cycleSearchTicker[0]
+        logger.debug("methodName={}", methodName)
         def params = cycleSearchTicker[1]
+        logger.debug("params.size={}", tickers.size())
+        def paramsAugmented = []
+        for (int i=0; i<params.size()-1; i++) {
+          paramsAugmented.add(params[i])
+        }
+        logger.debug("paramsAugmented.size={}", tickers.size())
+        logger.debug("paramsAugmentedInitial={}", paramsAugmented)
+        logger.debug("paramsBeforeAugmenting={}", params)
         def periodBetweenEventsInMillis = cycleSearchTicker[2]
-        params.add(chainAsJson)
-        def cycleSearchTickerAugmented = [methodName,params,periodBetweenEventsInMillis]
+        paramsAugmented.add(chainAsJson)
+        logger.debug("paramsAugmentedAfterAugmenting={}", paramsAugmented)
+        def cycleSearchTickerAugmented = [methodName,paramsAugmented,periodBetweenEventsInMillis]
         tickers.add(cycleSearchTickerAugmented)
       }
+      logger.debug("tickersAfterAugmenting={}",tickers)
       ActorRef taskAgent = this.createAgentWithTickers(tickers)
       def msg = new Method("ownsWork", new ArrayList(){{add(chain[-1]);add(chain[0])}});
       taskAgent.tell(msg,getSelf())
 
       taskActorRefToChainTable.put(taskAgent,chainAsJson)
+      logger.debug("Registered taskAgent={} with chainAsJson={}", taskAgent,chainAsJson)
 
       logger.info('method={} : simulationId={} : agentRef={} : wallTime_ms={}',
       currentMethodName,
@@ -881,10 +907,16 @@ class Simulation extends AbstractActorWithTimers {
       return actorRefToAgentIdTable.get(taskAgent)
     }
 
-
     private Object setEvaluationTimeout(String timeout) {
        on.setEvaluationTimeout(timeout)
     }
 
+    private graphSize(String message) {
+      on.analyst.tell(new Method('allEdgesByLabel', [message, Global.parameters.simulationId]),ActorRef.noSender());
+      on.analyst.tell(new Method('allVerticesByLabel', [message, Global.parameters.simulationId]),ActorRef.noSender());
+    }
 
+    private dseSessionState() {
+      on.dseSessionState();
+    }
 }

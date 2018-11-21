@@ -291,15 +291,15 @@ public class Experiments {
     @Test
     void stressTesting() {
     	// PARAMETERS
-    	def similarityConnectThreshold = 0.96 // will be selected randomly within this range
+    	def similarityConnectThreshold = 0.99 // will be selected randomly within this range
 		String experimentId = 'EXP'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6);
 		Global.parameters.experimentId = experimentId
-		def initialAgentNumber = 200
-		def newAgentsPerSecond =5
-		def chainLenghts = [5,20] // chain lengths will be selected randomly within this range;
+		def initialAgentNumber = 50
+		def newAgentsPerSecond = 1
+		def chainLenghts = [5,10] // chain lengths will be selected randomly within this range;
 		def maxSimilaritySearchDistance = 20 // similarity search depth will be selected randomly within this range;
-		def maxCycleSearchDistance = 20 // cycleSearch maxDistances will be selected randomly within this range;
-		def similaritySearchThreshold = 1 // consider only items that are this similar when searching for path;
+		def maxCycleSearchDistance = 15 // cycleSearch maxDistances will be selected randomly within this range;
+		def similaritySearchThreshold = 0.99 // consider only items that are this similar when searching for path;
 		def intialGraphType = 'smallWorld'
 
 		/*
@@ -309,23 +309,61 @@ public class Experiments {
 		def randomCycleSearchRate = 7
 		def targetedCycleSearchRate = 0.2
 		*/
-		def timeoutStressTesting = 200000//3600000// 604800000 // this is 7 days in milliseconds
+		def timeoutStressTesting = 3600000 * 2// 604800000 // this is 7 days in milliseconds
 
 		
 		// events per agent per day rates:
-		def randomPairsRatePerAgent = 0.15 
-		def chainCreationRatePerAgent = 0.014 
-		def randomCycleSearchRatePerAgent = 0.3
-		def targetedCycleSearchRatePerAgent = 0.012
-		def searchAndConnectRatePerAgent = 0.1
+		def randomPairsRatePerAgentPerDay = 0.15 * 10
+		def chainCreationRatePerAgentPerDay = 0.014 *10
+		def randomCycleSearchRatePerAgentPerDay = 0.3 *10
+		def targetedCycleSearchRatePerAgentPerDay = 0.012 *10  
+		def searchAndConnectRatePerAgentPerDay = 0.1 *10
 		
+		def millisBetweenRandomPairsPerAgent = 1 / (randomPairsRatePerAgentPerDay / 24 / 60 / 60 / 1000 )
+		def millisBetweenChainCreationPerAgent = 1 / (chainCreationRatePerAgentPerDay / 24 / 60 / 60 / 1000 )
+		def millisBetweenRandomCycleSearchPerAgent = 1 / (randomCycleSearchRatePerAgentPerDay / 24 / 60 / 60 / 1000 )
+		def millisBetweenTargetedCycleSearchPerAgent = 1 / (targetedCycleSearchRatePerAgentPerDay / 24 / 60 / 60 / 1000 )
+		def millisBetweenSearchAndConnectPerAgent = 1 / (searchAndConnectRatePerAgentPerDay / 24 / 60 / 60 / 1000 )
+		
+		def parametersAll = [
+			similarityConnectThreshold: similarityConnectThreshold,
+			initialAgentNumber: initialAgentNumber,
+			newAgentsPerSecond: newAgentsPerSecond,
+			chainLenghts: chainLenghts,
+			maxSimilaritySearchDistance: maxSimilaritySearchDistance,
+			maxCycleSearchDistance: maxCycleSearchDistance,
+			similaritySearchThreshold: similaritySearchThreshold,
+			intialGraphType: intialGraphType,
+			timeoutStressTesting: timeoutStressTesting,
+			randomPairsRatePerAgentPerDay: randomPairsRatePerAgentPerDay,
+			chainCreationRatePerAgentPerDay: chainCreationRatePerAgentPerDay,
+			randomCycleSearchRatePerAgentPerDay: randomCycleSearchRatePerAgentPerDay,
+			targetedCycleSearchRatePerAgentPerDay: targetedCycleSearchRatePerAgentPerDay,
+			searchAndConnectRatePerAgentPerDay: searchAndConnectRatePerAgentPerDay,
+			millisBetweenRandomPairsPerAgent: millisBetweenRandomPairsPerAgent,
+			millisBetweenChainCreationPerAgent: millisBetweenChainCreationPerAgent,
+			millisBetweenRandomCycleSearchPerAgent: millisBetweenRandomCycleSearchPerAgent,
+			millisBetweenTargetedCycleSearchPerAgent: millisBetweenTargetedCycleSearchPerAgent,
+			millisBetweenSearchAndConnectPerAgent: millisBetweenSearchAndConnectPerAgent
+		]
+
 		def start = System.currentTimeMillis()
 		Global.parameters.similaritySearchThreshold = similaritySearchThreshold
 		// create simulation for stress testing
        	String simulationIdGeneral = 'SIM'+(new SimpleDateFormat("MM-dd-hh-mm").format(new Date())) +"-"+ Utils.generateRandomString(6)
-       	def simRef = system.actorOf(Simulation.props(simulationIdGeneral+"--ST"),"SimulationActor");
+       	def simulationId = simulationIdGeneral+"--ST"
+       	Global.parameters.simulationId = simulationId
+       	def simRef = system.actorOf(Simulation.props(simulationId),"SimulationActor");
 		assertNotNull(simRef);
 		simRef.tell(new Method('setEvaluationTimeout',['PT2H']),ActorRef.noSender())// setting timeout to max for cassandra...
+
+		logger.info('method={} : message={} : experimentId={} : simulationId={} : parameters={}',
+			"stressTesting",
+			"after storing agentId and vertexId in Agent.class as parameters; may solve the timeout of getVertexId();",
+			experimentId,
+			simulationId,
+ 	    	parametersAll	
+	  	)	
 
 		// create initial agentNetwork
 		String fileName = "graphs/data/smallWorld"+initialAgentNumber+".dat"
@@ -339,17 +377,14 @@ public class Experiments {
 		String methodName = "createAgentWithTickers"
 		List tickers = []
 		// each agent creates some random work per some time
-		def periodBetweenEventsInMillis = 1 / (randomPairsRatePerAgent / 24 / 60 / 60 / 1000 )
-		tickers.add(['ownsWork',[],periodBetweenEventsInMillis])
+		tickers.add(['ownsWork',[],millisBetweenRandomPairsPerAgent])
 		// each agent initiates search and connect process per some time
-		periodBetweenEventsInMillis = 1 / (searchAndConnectRatePerAgent / 24 / 60 / 60 / 1000 )
-		tickers.add(['searchAndConnect',[similarityConnectThreshold,maxSimilaritySearchDistance],periodBetweenEventsInMillis])
+		tickers.add(['searchAndConnect',[similarityConnectThreshold,maxSimilaritySearchDistance],millisBetweenSearchAndConnectPerAgent])
 		// each agent initiates cycle search per some time
-		periodBetweenEventsInMillis = 1 / (randomCycleSearchRatePerAgent / 24 / 60 / 60 / 1000 )
-		tickers.add(['cycleSearchRandom',[similaritySearchThreshold,maxCycleSearchDistance],periodBetweenEventsInMillis])
+		tickers.add(['cycleSearchRandom',[similaritySearchThreshold,maxCycleSearchDistance],millisBetweenRandomCycleSearchPerAgent])
 		// start periodic ticker for random cycle searches
 
-		def arguments = [methodName, tickers, newAgentsPerSecond * 1000] 
+		def arguments = [methodName, [tickers], (1/newAgentsPerSecond) * 1000] 
 		msg = new Method("createPeriodicTimer",arguments)
     	simRef.tell(msg,ActorRef.noSender())
 
@@ -357,21 +392,21 @@ public class Experiments {
 		methodName = "addChainToNetworkWithTaskAgent"
 		tickers = []
 		// each agent creates some random work per some time
-		periodBetweenEventsInMillis = 1 / (randomPairsRatePerAgent / 24 / 60 / 60 / 1000 )
-		tickers.add(['ownsWork',[],periodBetweenEventsInMillis])
+		tickers.add(['ownsWork',[],millisBetweenRandomPairsPerAgent])
 		// each agent initiates search and connect process per some time
-		periodBetweenEventsInMillis = 1 / (searchAndConnectRatePerAgent / 24 / 60 / 60 / 1000 )
-		tickers.add(['searchAndConnect',[similarityConnectThreshold,maxSimilaritySearchDistance],periodBetweenEventsInMillis])
+		tickers.add(['searchAndConnect',[similarityConnectThreshold,maxSimilaritySearchDistance],millisBetweenSearchAndConnectPerAgent])
 		// each agent initiates cycle search per some time
-		periodBetweenEventsInMillis = 1 / (randomCycleSearchRatePerAgent / 24 / 60 / 60 / 1000 )
-		tickers.add(['cycleSearch',[similaritySearchThreshold,maxCycleSearchDistance],periodBetweenEventsInMillis])
+		tickers.add(['cycleSearch',[similaritySearchThreshold,maxCycleSearchDistance],millisBetweenTargetedCycleSearchPerAgent])
 
 		def params = [chainLenghts, tickers]
-		periodBetweenEventsInMillis = 1 / (chainCreationRatePerAgent / 24 / 60 / 60 / 1000 )
-		arguments = [methodName, params, periodBetweenEventsInMillis] 
+		arguments = [methodName, params, millisBetweenChainCreationPerAgent] 
 
 		msg = new Method("createPeriodicTimer",arguments)
     	simRef.tell(msg,ActorRef.noSender())
+
+    	arguments = ["dseSessionState", [], 10000] 
+    	msg = new Method("createPeriodicTimer",arguments)
+		simRef.tell(msg,ActorRef.noSender())    	
 
     	Thread.sleep(timeoutStressTesting)
 
@@ -380,5 +415,8 @@ public class Experiments {
           Global.parameters.simulationId,
           "stopped due to pre-defined timeout",
           (System.currentTimeMillis()-start))
+
+	    simRef.tell(new Method('graphSize', ["graphSize after ending simulation"]),ActorRef.noSender());
+		Thread.sleep(2000)
     }
 }
