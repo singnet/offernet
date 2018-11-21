@@ -11,6 +11,9 @@ import com.datastax.driver.dse.auth.DsePlainTextAuthProvider;
 import com.datastax.driver.core.PoolingOptions;
 import com.datastax.driver.core.HostDistance;
 import com.datastax.dse.graph.api.DseGraph
+import com.datastax.driver.core.policies.LoadBalancingPolicy;
+import com.datastax.driver.core.Session
+import com.datastax.driver.core.Host
 
 import com.datastax.driver.dse.graph.Edge
 import com.datastax.driver.dse.graph.Vertex
@@ -41,6 +44,9 @@ public class OfferNet implements AutoCloseable {
     static ActorSystem system;
     ActorRef socketWriter;
     ActorRef analyst;
+    private LoadBalancingPolicy loadBalancingPolicy;
+    private PoolingOptions poolingOptions;
+
 
     public void ass() {
     Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -57,7 +63,7 @@ public class OfferNet implements AutoCloseable {
         //def config = new ConfigSlurper().parse(new File('configs/log4j-properties.groovy').toURL())
         //PropertyConfigurator.configure(config.toProperties())
         logger = LoggerFactory.getLogger('OfferNet.class');
-        system =  ActorSystem.create("OfferNet");
+        this.system = ActorSystem.create("OfferNet");
         try {
 
             cluster = DseCluster.builder()
@@ -150,6 +156,8 @@ public class OfferNet implements AutoCloseable {
               SimpleGraphStatement createEdgeIndexes = new SimpleGraphStatement(vertexIndexes);
               session.executeGraph(createEdgeIndexes)
 
+              this.loadBalancingPolicy = cluster.getConfiguration().getPolicies().getLoadBalancingPolicy();
+              this.poolingOptions = cluster.getConfiguration().getPoolingOptions();
 
             } else if (Global.parameters.developmentMode) {
               SimpleGraphStatement developmentMode = new SimpleGraphStatement("schema.config().option('graph.schema_mode').set('Development')")
@@ -185,7 +193,6 @@ public class OfferNet implements AutoCloseable {
     private Object setEvaluationTimeout(String timeout) {
        String query = "schema.config().option('graph.traversal_sources.g.evaluation_timeout').set('$timeout')"
        cluster.connect().executeGraph(query);
-
     }
 
     private Object createSocketWriter() {
@@ -196,7 +203,7 @@ public class OfferNet implements AutoCloseable {
     }
 
     private Object createAnalyst() {
-      def analyst = system.actorOf(Analyst.props(this.session),"Analyst");
+      def analyst = system.actorOf(Analyst.props(this.session, this),"Analyst");
       logger.debug("created a new Analyst actor {}", analyst);
       return analyst;
     }
@@ -953,6 +960,25 @@ public class OfferNet implements AutoCloseable {
       int diameter = rs.one().asInt();
       logger.debug('Graph diameter: {}; calculation time: {}.',diameter,(System.currentTimeMillis() - start)/1000)
       return diameter
+    }
+
+    private dseSessionState() {
+
+      Session.State state = session.getState();
+      for (Host host : state.getConnectedHosts()) {
+            HostDistance distance = loadBalancingPolicy.distance(host);
+            int openConnections = state.getOpenConnections(host);
+            int trashedConnections = state.getTrashedConnections(host);
+            int inFlightQueries = state.getInFlightQueries(host);
+            logger.info('method={} : simulationId={} : host={} : distance={} : openConnections={} : trashedConnections={} : inFlightQueries={}', 
+              'dseSessionState', 
+              Global.parameters.simulationId,
+              host,
+              distance,
+              openConnections,
+              trashedConnections,
+              inFlightQueries)
+        }
     }
 
 }

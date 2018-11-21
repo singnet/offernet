@@ -5,10 +5,12 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.datastax.driver.dse.graph.Vertex;
+import com.datastax.driver.dse.graph.Edge;
 import com.datastax.driver.dse.DseSession;
 import com.datastax.driver.dse.graph.GraphNode;
 
-import akka.actor.UntypedAbstractActor;
+import akka.actor.AbstractActorWithTimers;
+import akka.actor.AbstractActor.Receive;
 import akka.actor.Props;
 import akka.japi.Creator;
 
@@ -31,12 +33,13 @@ import scala.concurrent.Await;
 import scala.concurrent.duration.Duration;
 import akka.util.Timeout;
 
-
 import groovy.json.JsonSlurper;
 import org.json.JSONArray
 
+import java.util.concurrent.TimeUnit;
+import scala.concurrent.duration.FiniteDuration;
 
-class Simulation extends UntypedAbstractActor {
+class Simulation extends AbstractActorWithTimers {
 	public OfferNet on;
 	Logger logger;
 	List agentList;
@@ -44,6 +47,7 @@ class Simulation extends UntypedAbstractActor {
   public Hashtable<ActorRef,String> actorRefToVertexIdTable;
   public Hashtable<ActorRef,String> actorRefToAgentIdTable;
   public Hashtable<String,ActorRef> agentIdToActorRefTable;
+  public Hashtable<String,List> taskActorRefToChainTable;
 
   public static Props props() {
     return Props.create(new Creator<Simulation>() {
@@ -63,23 +67,23 @@ class Simulation extends UntypedAbstractActor {
     });
   }
 
-  public void onReceive(Object message) throws Exception {
-    if (message instanceof Method) {
-      logger.info("{}: {} : received message: {} of {}",
-        'onReceive',
+  @Override
+  public Receive createReceive() {
+    def runMethod = { message -> 
+        logger.info("{}: {} : received message: {} of {}",
+        'createReceive',
         Global.parameters.simulationId,
         message,
         message.getClass())
-      switch (message) {
-        default: 
-          def args = message.args
-          def reply = this."$message.name"(*args)
-          if (reply) { 
-            getSender().tell(reply,getSelf());
-          }
-          break;
+
+        def args = message.args
+        def reply = this."$message.name"(*args)
+        if (reply != null) { 
+          getSender().tell(reply,getSelf());
+        }
       }
-    }
+    return receiveBuilder()
+      .match(Method.class, runMethod).build();
   }
 
   private Simulation() {
@@ -101,6 +105,7 @@ class Simulation extends UntypedAbstractActor {
     actorRefToVertexIdTable = new Hashtable<ActorRef,String>();
     agentIdToActorRefTable = new Hashtable<String,ActorRef>();
     actorRefToAgentIdTable = new Hashtable<String,ActorRef>();
+    taskActorRefToChainTable = new Hashtable<String,ActorRef>();
 
     // write simulation Id to global variables in order to be able to access from everywhere
     Global.parameters.simulationId = simulationId;
@@ -112,6 +117,28 @@ class Simulation extends UntypedAbstractActor {
 
 	}
 
+  private ActorRef createAgentWithTickers(List tickers) {
+    ArrayList existingVertexIds = vertexIdToActorRefTable.keySet().toArray();
+    logger.debug("existingVertexIds array is of size {}: {}", existingVertexIds.size(), existingVertexIds)
+    def randomVertexId;
+    if (existingVertexIds.size() > 1) {
+      def random = new Random();
+      def id = random.nextInt(existingVertexIds.size()-1)
+      randomVertexId = existingVertexIds[id]
+    } else if (existingVertexIds.size() == 1) {
+      randomVertexId = existingVertexIds[0]
+    }
+    def agentRef = createAgent() 
+    if (existingVertexIds.size() != 0) {
+      def msg = new Method("knowsAgent",[randomVertexId])
+      agentRef.tell(msg, getSelf())
+    }
+    tickers.each { arguments ->
+      def msg = new Method("createPeriodicTimer",arguments)
+      agentRef.tell(msg, getSelf())
+    }
+    return agentRef
+  }
 
   private ActorRef createAgent() {
     String agentId = UUID.randomUUID().toString();
@@ -130,6 +157,15 @@ class Simulation extends UntypedAbstractActor {
     return actorRef
   }
 
+  private createPeriodicTimer(String methodName, List params, Object periodInMillis) {
+      this."$methodName"(*params)
+      getTimers().startPeriodicTimer(methodName, 
+                                      new Method(methodName , params), 
+                                      FiniteDuration.create(periodInMillis, TimeUnit.MILLISECONDS)
+                                    );
+  }
+
+
   /**
   This method is used when the simulation object is recreated with the same underlying graph
   */
@@ -144,14 +180,23 @@ class Simulation extends UntypedAbstractActor {
   * gets agent vertexId via asynchronous blocking message
   * not perfect: have to change to non -blocking message with probably future.onComplete...
   */
+
+  /*
   private Object getAgentVertexId(ActorRef actorRef) {
-    Timeout timeout = new Timeout(Duration.create(30, "seconds"));
+    return actorRefToVertexIdTable.get(actorRef)
+  }
+  */
+
+  
+  private Object getAgentVertexId(ActorRef actorRef) {
+    Timeout timeout = new Timeout(Duration.create(200, "seconds"));
     def msg = new Method("vertexId",[])
     Future<Object> future = Patterns.ask(actorRef, msg, timeout);
     def vertexId = Await.result(future, timeout.duration());
     logger.debug('Got actorRefs {} vertexId {} via blocking future', actorRef, vertexId)
     return vertexId;
   }
+  
 
   public List createAgentNetwork(int numberOfAgents) {
     def start = System.currentTimeMillis()
@@ -220,7 +265,7 @@ class Simulation extends UntypedAbstractActor {
 	}
 
 
-  private void createAgentNetworkFromNetworkXDataFile(String fileName) throws Throwable {
+  private boolean createAgentNetworkFromNetworkXDataFile(String fileName) throws Throwable {
         FileInputStream inStream = new FileInputStream(fileName);
         Scanner scanner = new Scanner(inStream);
         int numberOfAgents = scanner.nextInt();
@@ -258,6 +303,7 @@ class Simulation extends UntypedAbstractActor {
         	}
         }
         logger.debug("Created {} edges in the network",edges)
+        return true
     }
 
     private void createAgentNetworkConnectedStars(ActorRef center, Integer radius, Integer branchingFactor) {
@@ -294,6 +340,22 @@ class Simulation extends UntypedAbstractActor {
          
     }
 
+    private void startRandomWorkGenerator(int events) {
+      // events is number of random works per agent per day
+    }
+
+    private void startChainGenerator(int events) {
+      // events is number of chains per agent per day
+    }
+
+    private void startRandomCycleSearchGenerator(int events) {
+      // events is number of randomCycleSearches per agent per day
+    }
+
+    private void startTargetedCycleSearchGenerator(int events) {
+      // events is number of targetedCycleSearches per agent per day
+    }
+
     public List createAgentNetwork(Integer numberOfAgents, Integer numberOfRandomWorks, ArrayList chains) {
       def start = System.currentTimeMillis();
       agentList = this.createAgentNetwork(numberOfAgents)
@@ -305,6 +367,13 @@ class Simulation extends UntypedAbstractActor {
       logger.debug("Method {} took {} seconds to complete", 'createAgentNetwork', (System.currentTimeMillis()-start)/1000)
 
       return agentList;
+    }
+
+    public List addChainToNetwork(int maxLenght, int minLenght) {
+      Random r = new Random();
+      int chainLenght = r.nextInt(maxLenght-minLenght) + minLenght;
+      def chain = Utils.createChain(chainLenght) 
+      return this.addChainToNetwork(chain);
     }
 
     public List addChainToNetwork(List chain) {
@@ -350,6 +419,7 @@ class Simulation extends UntypedAbstractActor {
     */
     public Object addChainToNetwork(List chain, boolean json) {
         def currentMethodName = "addChainToNetwork"
+        logger.debug("Starting method {}", currentMethodName)
         def start = System.currentTimeMillis();
         def dataItemsWithDesignedSimilarities = new ArrayList()
         def affectedActors = []
@@ -361,6 +431,7 @@ class Simulation extends UntypedAbstractActor {
               def random = new Random();
               def agentRef = actorRefs[random.nextInt(actorRefs.size())]
               Vertex work;
+              logger.debug("! affectedActors.contains(agentRef): {}", ! affectedActors.contains(agentRef))
               if (! affectedActors.contains(agentRef)){
                   /*
                   * a chain is added to the network by sending messages to agents to add a work with 
@@ -370,20 +441,21 @@ class Simulation extends UntypedAbstractActor {
                   * and block until they get replies 
                   */
                   selected = true;
-                  Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+                  Timeout timeout = new Timeout(Duration.create(120, "seconds"));
                   String method = "ownsWork"
                   def args = [chain[x],chain[x+1]];
                   def msg = new Method(method,args)
                   Future<Object> future = Patterns.ask(agentRef, msg, timeout);
                   work = Await.result(future, timeout.duration());
                   affectedActors.add(agentRef)
+                  logger.debug("Added a link of a chain {} -- {} to work {}", chain[x], chain[x+1], work)
 
                   def singleChain = [:]  
                   def workLabel = Utils.formatVertexLabel(work.id)
                   singleChain.put("work", workLabel)
 
                   ['demands','offers'].each{ edgeLabel ->
-                    timeout = new Timeout(Duration.create(5, "seconds"));
+                    timeout = new Timeout(Duration.create(60, "seconds"));
                     method = "getWorksItems"
                     args = [work,edgeLabel];
                     msg = new Method(method,args)
@@ -393,6 +465,7 @@ class Simulation extends UntypedAbstractActor {
                     if (edgeLabel == "offers") { z = x+1 }
                     singleChain.put("$edgeLabel", [ item: Utils.formatVertexLabel(items[0].id), value: chain[z] ] )
                   }
+                  logger.debug("Added items {} to singleChain", {})
                 chainedWorks.add(singleChain)
               }
             }
@@ -415,6 +488,14 @@ class Simulation extends UntypedAbstractActor {
         ) 
         return chainedWorks;
     }
+
+    public void addChainToNetworkWithTaskAgent(List chainLenghts, List tickers) {
+        def chainLenght = new Random().nextInt(chainLenghts[1]-chainLenghts[0])+chainLenghts[0]
+        def chain = Utils.createChain(chainLenght)
+        logger.debug("The chain is {}",chain)
+        def agentId = createTaskAgentWithTickersInTheNetwork(chain, tickers);
+        logger.debug("CreatedTask agent {}",agentId)
+   }
 
     /**
     * Simply checks if an agent with a given Id already exist on the offernet graph..
@@ -588,6 +669,74 @@ class Simulation extends UntypedAbstractActor {
       logger.debug("Method {} took {} seconds to complete", 'decentralizedSimilaritySearchAndConnect', (System.currentTimeMillis()-start)/1000)
     }
 
+    void individualCycleSearchTargeted(List maxReachDistances) {
+      def taskActorRefList = new ArrayList(this.taskActorRefToChainTable.keySet())
+      logger.debug("taskActorRefList size is: {}",taskActorRefList.size)
+      while (!(taskActorRefList.size() > 0)) {
+        logger.debug("no task agents created yet.. waiting")
+        Thread.sleep(1000)
+        taskActorRefList = new ArrayList(this.taskActorRefToChainTable.keySet())
+      }
+      def randomTaskAgent = taskActorRefList[new Random().nextInt(taskActorRefList.size())]
+      def chain = taskActorRefToChainTable.get(randomTaskAgent);
+      def maxReachDistance = new Random().nextInt(maxReachDistances[1] - maxReachDistances[0])+maxReachDistances[0]
+      logger.debug('method={} : agentRef={} : maxReachDistances={}', 
+          "individualCycleSearchTargeted", 
+          randomTaskAgent,
+          maxReachDistances
+      )
+      individualCycleSearch(randomTaskAgent,chain,maxReachDistance)
+    }
+
+    void individualCycleSearchRandom(List maxReachDistances) {
+      def actorRefList = new ArrayList(this.actorRefToAgentIdTable.keySet())
+      def randomTaskAgent = actorRefList[new Random().nextInt(actorRefList.size())]
+      def maxReachDistance = new Random().nextInt(maxReachDistances[1] - maxReachDistances[0])+maxReachDistances[0]
+      def type = 'random'
+      logger.debug('method={} : agentRef={} : maxReachDistances={}', 
+            "individualCycleSearchRandom", 
+            randomTaskAgent,
+            maxReachDistances
+        )
+      individualCycleSearch(randomTaskAgent,maxReachDistance)
+    }
+
+
+    void individualCycleSearch(ActorRef agent, List chain, Integer maxReachDistance) {
+        def start = System.currentTimeMillis();
+        def uniqueCycles = [] as Set
+        def similaritySearchThreshold = Global.parameters.similaritySearchThreshold 
+        Method msg = new Method("cycleSearch", new ArrayList(){{add(similaritySearchThreshold);add(chain);add(maxReachDistance)}});
+        agent.tell(msg, getSelf());
+        def currentMethodName = 'individualCycleSearch'
+        logger.info('method={} : simulationId={} : agentId={} : similaritySearchThreshold={} : maxReachDistance={} :  wallTime_ms={} msec.', 
+            currentMethodName, 
+            Global.parameters.simulationId,
+            this.actorRefToAgentIdTable.get(agent),
+            similaritySearchThreshold,
+            maxReachDistance,
+            (System.currentTimeMillis()-start)
+        )
+    }
+
+    void individualCycleSearch(ActorRef agent, Integer maxReachDistance) {
+        def start = System.currentTimeMillis();
+        def uniqueCycles = [] as Set
+        def similaritySearchThreshold = Global.parameters.similaritySearchThreshold 
+        Method msg = new Method("cycleSearchRandom", new ArrayList(){{add(similaritySearchThreshold);add(maxReachDistance)}});
+        agent.tell(msg, getSelf());
+        def currentMethodName = 'individualCycleSearch'
+        logger.info('method={} : simulationId={} : agentId={} : similaritySearchThreshold={} : maxReachDistance={} :  wallTime_ms={} msec.', 
+            currentMethodName, 
+            Global.parameters.simulationId,
+            this.actorRefToAgentIdTable.get(agent),
+            similaritySearchThreshold,
+            maxReachDistance,
+            (System.currentTimeMillis()-start)
+        )
+    }
+
+
     void individualCycleSearch(ActorRef agent, List chain) {
         def start = System.currentTimeMillis();
         def uniqueCycles = [] as Set
@@ -681,5 +830,93 @@ class Simulation extends UntypedAbstractActor {
         return foundPathsCount;
     }
 
+    String createTaskAgentInTheNetwork(List chain) {
+      def start = System.currentTimeMillis()
+      def currentMethodName = "createTaskAgentInTheNetwork"
+        // create agent that has a work which closes the chain into the cycle
+        // this agent will have the last item in he chain as demand
+        // and the first item in the chain as offer
+        def vertexIdList = new ArrayList(this.vertexIdToActorRefTable.keySet())
+        ActorRef taskAgent = this.createAgent()
+        def randomAgent = vertexIdList[new Random().nextInt(vertexIdList.size())]
+        Method msg = new Method("knowsAgent", new ArrayList(){{add(randomAgent)}});
+        Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+        Future<Object> future = Patterns.ask(taskAgent, msg, timeout);
+        def knowsEdge = (Edge) Await.result(future, timeout.duration());
 
+        msg = new Method("ownsWork", new ArrayList(){{add(chain[-1]);add(chain[0])}});
+        timeout = new Timeout(Duration.create(5, "seconds"));
+        future = Patterns.ask(taskAgent, msg, timeout);
+        Vertex taskWork = (Vertex) Await.result(future, timeout.duration());
+
+      logger.info('method={} : simulationId={} : agentRef={} : wallTime_ms={}',
+      currentMethodName,
+      Global.parameters.simulationId,
+      taskAgent,
+        (System.currentTimeMillis()-start)
+      ) 
+
+      return actorRefToAgentIdTable.get(taskAgent)
+    }
+
+    String createTaskAgentWithTickersInTheNetwork(List chain, List tickers) {
+      def start = System.currentTimeMillis()
+      def currentMethodName = "createTaskAgentWithTickersInTheNetwork"
+      // create agent that has a work which closes the chain into the cycle
+      // this agent will have the last item in he chain as demand
+      // and the first item in the chain as offer
+      def chainAsJson = addChainToNetwork(chain, true)
+      logger.debug("tickersBeforeAugmenting={}",tickers)
+      if (tickers.size()>0) {
+        logger.debug("before pop: tickers.size={}", tickers.size())
+        def cycleSearchTicker = tickers.pop()
+        logger.debug("after pop: tickers.size={}", tickers.size())
+        logger.debug("cycleSearchTicker={}", cycleSearchTicker)
+        def methodName = cycleSearchTicker[0]
+        logger.debug("methodName={}", methodName)
+        def params = cycleSearchTicker[1]
+        logger.debug("params.size={}", tickers.size())
+        def paramsAugmented = []
+        for (int i=0; i<params.size()-1; i++) {
+          paramsAugmented.add(params[i])
+        }
+        logger.debug("paramsAugmented.size={}", tickers.size())
+        logger.debug("paramsAugmentedInitial={}", paramsAugmented)
+        logger.debug("paramsBeforeAugmenting={}", params)
+        def periodBetweenEventsInMillis = cycleSearchTicker[2]
+        paramsAugmented.add(chainAsJson)
+        logger.debug("paramsAugmentedAfterAugmenting={}", paramsAugmented)
+        def cycleSearchTickerAugmented = [methodName,paramsAugmented,periodBetweenEventsInMillis]
+        tickers.add(cycleSearchTickerAugmented)
+      }
+      logger.debug("tickersAfterAugmenting={}",tickers)
+      ActorRef taskAgent = this.createAgentWithTickers(tickers)
+      def msg = new Method("ownsWork", new ArrayList(){{add(chain[-1]);add(chain[0])}});
+      taskAgent.tell(msg,getSelf())
+
+      taskActorRefToChainTable.put(taskAgent,chainAsJson)
+      logger.debug("Registered taskAgent={} with chainAsJson={}", taskAgent,chainAsJson)
+
+      logger.info('method={} : simulationId={} : agentRef={} : wallTime_ms={}',
+      currentMethodName,
+      Global.parameters.simulationId,
+      taskAgent,
+        (System.currentTimeMillis()-start)
+      ) 
+
+      return actorRefToAgentIdTable.get(taskAgent)
+    }
+
+    private Object setEvaluationTimeout(String timeout) {
+       on.setEvaluationTimeout(timeout)
+    }
+
+    private graphSize(String message) {
+      on.analyst.tell(new Method('allEdgesByLabel', [message, Global.parameters.simulationId]),ActorRef.noSender());
+      on.analyst.tell(new Method('allVerticesByLabel', [message, Global.parameters.simulationId]),ActorRef.noSender());
+    }
+
+    private dseSessionState() {
+      on.dseSessionState();
+    }
 }

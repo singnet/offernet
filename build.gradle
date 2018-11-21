@@ -137,3 +137,8 @@ tasks.withType(JavaCompile) {
     options.warnings = false
 }
 
+task stressTesting(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'io.singularitynet.offernet.Main'
+  args 'stressTesting'
+}

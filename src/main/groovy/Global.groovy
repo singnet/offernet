@@ -2,6 +2,7 @@ package io.singularitynet.offernet
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import akka.actor.ActorSystem;
 
 class Global {
 	/*
@@ -21,5 +22,4 @@ class Global {
 	static tempConfigFileName = System.getProperty('user.dir')+"/configs/offernet.conf"
 	public static Map parameters = new ConfigSlurper('config').parse(new File(tempConfigFileName).toURI().toURL())
 	public static Map simulationParameters = new HashMap<>()
-
 }

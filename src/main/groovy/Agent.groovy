@@ -16,18 +16,25 @@ import org.apache.log4j.PropertyConfigurator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import akka.actor.UntypedAbstractActor;
+import akka.actor.AbstractActorWithTimers;
+import akka.actor.AbstractActor.Receive
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.japi.Creator;
 import groovy.json.JsonSlurper;
 
+import java.util.concurrent.TimeUnit;
+import scala.concurrent.duration.FiniteDuration;
+
 //import java.util.UUID;
 
-public class Agent extends UntypedAbstractActor {
+public class Agent extends AbstractActorWithTimers {
     private Vertex vertex;
 	  private DseSession session;
     private Logger logger;
+
+    private String agentId;
+    private Object vertexId;
 
   static Props props(DseSession session, String agentId) {
     return Props.create(new Creator<Agent>() {
@@ -38,25 +45,23 @@ public class Agent extends UntypedAbstractActor {
     });
   }
 
-  public void onReceive(Object message) throws Exception {
-    logger.debug("{} : {} : agent {} received message: {} of {}",
-      'onReceive',
-      Global.parameters.simulationId,
-      this.id(),
-      message,
-      message.getClass())
-  
-    if (message instanceof Method) {
-      switch (message) {
-        default: 
+  @Override
+  public Receive createReceive() {
+      def runMethod = { message -> 
+          logger.info("{}: {} : received message: {} of {}",
+          'createReceive',
+          Global.parameters.simulationId,
+          message,
+          message.getClass())
+
           def args = message.args
           def reply = this."$message.name"(*args)
           if (reply != null) { 
             getSender().tell(reply,getSelf());
           }
-          break;
-      }
-    }
+        }
+    return receiveBuilder()
+      .match(Method.class, runMethod).build();
   }
 
   /**
@@ -90,6 +95,8 @@ public class Agent extends UntypedAbstractActor {
           "else\n"+
             "g.V().has(propertyKey1,propertyValue1).has(agentIdLabel,agentId)", params));
         this.vertex = rs.one().asVertex();
+        this.vertexId = vertex.getId()
+        this.agentId = vertex.getProperty("agentId").getValue().asString();
 
         if (Global.parameters.visualizationEngine) {
           this.emitNewVertexEvent(this.vertex)
@@ -101,6 +108,18 @@ public class Agent extends UntypedAbstractActor {
           agentId,
           (System.currentTimeMillis()-start))
 	}
+
+  private createPeriodicTimer(String methodName, List params, Object periodInMillis) {
+      this."$methodName"(*params)
+      getTimers().startPeriodicTimer(methodName, 
+                                      new Method(methodName , params), 
+                                      FiniteDuration.create(periodInMillis, TimeUnit.MILLISECONDS)
+                                    );
+      logger.debug("method={} : params={} : periodInMillis={}",
+        methodName,
+        params,
+        periodInMillis)
+  }
 
   private emitNewVertexEvent(Vertex vertex) {
       Map vertexProperties = [id:vertex.getId(),label:vertex.getLabel()]
@@ -122,14 +141,14 @@ public class Agent extends UntypedAbstractActor {
   * need to rename into something more intuitive -- agentId
   */
   private String id() {
-    return vertex.getProperty("agentId").getValue().asString();
+    return agentId;
   }
 
   /**
   * returns the agentId property on the vertex, which is the unique id in the graph
   */
   private Object vertexId() {
-    return vertex.getId();
+    return vertexId;
   }
 
   /*
@@ -677,17 +696,44 @@ public class Agent extends UntypedAbstractActor {
       return agentCycles
   }
 
-
-  private List<GraphNode> cycleSearch(Object similarityConstraint, List chain) {
+  private List<GraphNode> cycleSearch(Object similarityConstraint) {
       def itemWorks = this.getWorks();
       List<GraphNode> agentCycles = []
       itemWorks.each { work ->
           List<GraphNode> workCycles = this.cycleSearch(work, similarityConstraint);
           agentCycles.addAll(workCycles)
       }
-      logger.debug('agent {} found {} cycles', this.id(), agentCycles)
+      return agentCycles;
+  }
+
+  private List<GraphNode> cycleSearch(Object similarityConstraint, Integer maxReachDistance) {
+      def itemWorks = this.getWorks();
+      List<GraphNode> agentCycles = []
+      itemWorks.each { work ->
+          List<GraphNode> workCycles = this.cycleSearch(work, similarityConstraint,maxReachDistance);
+          agentCycles.addAll(workCycles)
+      }
+      return agentCycles;
+  }
+
+
+  private List<GraphNode> cycleSearch(Object similarityConstraint, List chain) {
+      def agentCycles = cycleSearch(similarityConstraint);
+      logger.debug('agent {} found {} paths or cycles: checking for chain', this.id(), agentCycles)
       def reply = new Method("checkFoundPaths", new ArrayList(){{add(agentCycles);add(chain)}})
-      getSender().tell(reply,getSelf());
+      getContext().actorSelection("/user/Analyst").tell(reply,getSelf())
+  }
+
+  private List<GraphNode> cycleSearch(Object similarityConstraint, Integer maxReachDistance, List chain) {
+      def agentCycles = cycleSearch(similarityConstraint,maxReachDistance);
+      logger.debug('agent {} found {} paths or cycles: checking for chain', this.id(), agentCycles)
+      def reply = new Method("checkFoundPaths", new ArrayList(){{add(agentCycles);add(chain)}})
+      getContext().actorSelection("/user/Analyst").tell(reply,getSelf())
+  }
+
+  private List<GraphNode> cycleSearchRandom(Object similarityConstraint, Integer maxReachDistance) {
+      def agentCycles = cycleSearch(similarityConstraint,maxReachDistance);
+      logger.debug('agent {} found {} paths or cycles', this.id(), agentCycles);
   }
 
   private List<GraphNode> cycleSearch(Vertex work, Object similarityConstraint) {
@@ -726,5 +772,51 @@ public class Agent extends UntypedAbstractActor {
 
       return result;
   }
+
+
+  // the query used in this method is not very efficient since it loops until maxReachDistance without
+  // considering if the cycle was already found or not; 
+  // checking both maxReachDistance and cycle with or() operator gives error:
+  // "Only P predicates can be or'd together"...
+  private List<GraphNode> cycleSearch(Vertex work, Object similarityConstraint, Integer maxReachDistance) {
+      def start = System.currentTimeMillis()
+      Map params = new HashMap();
+      logger.debug('cycleSearch: Work is : {}', work)
+      logger.debug('cycleSearch: Work id is: {}', work.getId())
+      logger.debug('cycleSearch: similarityConstraint is: {}', similarityConstraint)
+      logger.debug('cycleSearch: formatted label is: {}', Utils.formatVertexLabel(work.getId()))
+      params.put("thisWork", work.getId());
+      params.put("similarityConstraint", similarityConstraint);
+      params.put("maxReachDistance", maxReachDistance);
+
+      logger.debug("Searching for a cycle starting from work {}, similarityConstraint {}, maxReachDistance {}", work.getId(), similarityConstraint, maxReachDistance)
+
+      SimpleGraphStatement s = new SimpleGraphStatement(
+                "g.V(thisWork).as('source').until(loops().is(gte(maxReachDistance)))"+
+                 ".repeat("+
+                 "__.outE('offers').subgraph('subGraph').inV().bothE('similarity')"+
+                 ".has('similarity',gte(similarityConstraint)).subgraph('subGraph')"+            // (2)
+                ".otherV().inE('demands').subgraph('subGraph').outV().dedup()).cap('subGraph').next().traversal().E()", params)
+
+      GraphResultSet rs = session.executeGraph(s);
+      logger.debug("Executed statement: {}",Utils.getStatement(rs,params));
+      logger.debug("With parameters: {}", params);
+      def result = rs.all()
+      logger.debug("Graph results are exhausted {}", rs.isExhausted())
+      logger.debug("Received result {}",result)
+
+      logger.info('method={} : simulationId={} : agentId={} ; work={} ; similarityConstraint={} : maxReachDistance={} : cycles_count={} : wallTime_ms={} msec.', 
+        'cycleSearch', 
+        Global.parameters.simulationId,
+        this.id(),
+        work.getId(),
+        similarityConstraint,
+        maxReachDistance,
+        result.size(),
+        (System.currentTimeMillis()-start))
+
+      return result;
+  }
+
 
 }

@@ -369,29 +369,20 @@ public class AgentTests {
 
 	}
 
-
-	/*
-	@Test 
-	void pathSearchTest() {
-		def sim = TestActorRef.create(system, Simulation.props()).underlyingActor();
-		assertNotNull(sim);
-		sim.on.flushVertices();
-
-		def agents = sim.createAgentLine(5);
-		def agent1 = agents.get(0)
-		assertNotNull(agent1)
-		sim.addRandomWorksToAgents(6)
-		def chains = [Utils.createChain(3)]
-		sim.addChainToNetwork(chains);
-
-
-
-	    Method msg = new Method("searchPath", new ArrayList(){{add(linkName);}});
-	    Timeout timeout = new Timeout(Duration.create(5, "seconds"));
-	   	Future<Object> future = Patterns.ask(actorOneRef, msg, timeout);
-  		List edges = (List<Edge>) Await.result(future, timeout.duration());
-  		assertTrue(edges.size() == 0);
+	@Test
+	void createPeriodicTimerTest() {
+		def agentTestRef = TestActorRef.create(system, Agent.props(on.session, UUID.randomUUID().toString()))
+		def agent = agentTestRef.underlyingActor();
+		String methodName = "ownsWork"
+		List params = [Utils.generateDouble(),Utils.generateDouble()]
+		int period = 1000
+		agent.createPeriodicTimer(methodName,params,period)
+		Thread.sleep(5000)
+		agentTestRef.suspend()
+		def works = agent.getWorks()
+		assertNotNull(works)
+		assert works.size() != 0
+		agentTestRef.stop()
 	}
-	*/
 
 }

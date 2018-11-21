@@ -81,6 +81,8 @@ exp16.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-6/R_data/summary
 exp16.df <- select(exp16.df, sum_wallTime_min_total)
 exp17.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')$summary.df
 exp17.df <- select(exp17.df, sum_wallTime_min_total)
+exp18.df <- LoadToEnvironment('~/offernet/docs/experiment-1-run-7/R_data/summary_of_all_experiments.Rdata')$summary.df
+exp18.df <- select(exp18.df, sum_wallTime_min_total)
 
 all.df <- exp11.df
 all.df <- rbind(all.df, exp12.df)
@@ -89,6 +91,7 @@ all.df <- rbind(all.df, exp14.df)
 all.df <- rbind(all.df, exp15.df)
 all.df <- rbind(all.df, exp16.df)
 all.df <- rbind(all.df, exp17.df)
+all.df <- rbind(all.df, exp18.df)
 
 library(elastic)
 conn<-connect(es_port = 9200)
